@@ -11,7 +11,7 @@ from contextlib import asynccontextmanager, contextmanager
  
 from fastapi import FastAPI, HTTPException, Depends, Request, WebSocket, WebSocketDisconnect, UploadFile, File
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
  
@@ -1165,7 +1165,12 @@ class OpoResultRequest(BaseModel):
 # =============================================================================
 # CORE ROUTES
 # =============================================================================
- 
+
+@app.get("/")
+async def redirect_root():
+    """Redirect root to /bank"""
+    return RedirectResponse(url="/bank", status_code=307)
+
 @app.get("/bank", response_class=HTMLResponse)
 async def root():
     """Serve the frontend with rooms polling script injected."""
