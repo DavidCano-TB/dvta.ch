@@ -404,8 +404,18 @@ async def verify_email(data: VerifyEmailRequest):
 # =============================================================================
 
 @app.get("/")
-async def index():
-    """Página principal - lista de exámenes"""
+async def root():
+    """Página principal - redirige a /exams"""
+    return RedirectResponse(url="/exams")
+
+@app.get("/exams")
+async def exams_index():
+    """Página principal de exámenes"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+@app.get("/exams/")
+async def exams_index_slash():
+    """Página principal de exámenes (con slash)"""
     return FileResponse(os.path.join(STATIC_DIR, "index.html"))
 
 @app.get("/opo")
@@ -428,7 +438,17 @@ async def opo_exam(user: dict = Depends(require_verified)):
     """Ejecución del examen OPO"""
     return FileResponse(os.path.join(OPO_DIR, "exam.html"))
 
-# Montar archivos estáticos
+@app.get("/health")
+async def health_check():
+    """Health check endpoint"""
+    return {
+        "status": "healthy",
+        "service": "DVDcoin Exams",
+        "version": "1.0.0",
+        "port": 8001
+    }
+
+# Montar archivos estáticos ANTES de las rutas catch-all
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 app.mount("/opo/static", StaticFiles(directory=OPO_DIR), name="opo_static")
 
