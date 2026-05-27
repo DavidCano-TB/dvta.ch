@@ -1,244 +1,141 @@
 @echo off
-setlocal enabledelayedexpansion
 chcp 65001 >nul
-cd /d "%~dp0"
+title DVDcoin - Sistema Completo
+color 0B
 
 :MENU
 cls
 echo.
 echo ═══════════════════════════════════════════════════════════════
-echo  🏦 DVDBANK - SISTEMA COMPLETO DE GESTIÓN
+echo   🏦 DVDcoin - Sistema de Gestión Completo
 echo ═══════════════════════════════════════════════════════════════
 echo.
-echo  SERVIDORES:
-echo  ───────────────────────────────────────────────────────────────
-echo   1. Iniciar todos los servidores
-echo   2. Detener todos los servidores
-echo   3. Ver estado de servidores
-echo   4. Reiniciar todos los servidores
-echo.
-echo  SERVIDORES INDIVIDUALES:
-echo  ───────────────────────────────────────────────────────────────
-echo   5. Iniciar servidor Bank (puerto 8000)
-echo   6. Iniciar servidor Exams (puerto 8001)
-echo   7. Iniciar servidor Games (puerto 8002)
-echo   8. Iniciar servidor Social (puerto 8003)
-echo.
-echo  CLOUDFLARE TUNNEL:
-echo  ───────────────────────────────────────────────────────────────
-echo   9. Iniciar túnel Cloudflare
-echo   10. Detener túnel Cloudflare
-echo   11. Reiniciar túnel Cloudflare
-echo.
-echo  SISTEMA COMPLETO:
-echo  ───────────────────────────────────────────────────────────────
-echo   12. Iniciar sistema completo (servidores + túnel)
-echo   13. Detener sistema completo
-echo   14. Reiniciar sistema completo
-echo.
-echo  MONITOREO:
-echo  ───────────────────────────────────────────────────────────────
-echo   15. Monitor automático (reinicia si falla)
-echo.
-echo   0. Salir
+echo   [1] 🚀 Iniciar TODOS los servidores
+echo   [2] 🔍 Verificar estado de servidores
+echo   [3] 🛑 Detener TODOS los servidores
+echo   [4] 🔄 Reiniciar sistema completo
+echo   [5] 🌐 Abrir URLs en navegador
+echo   [6] 📊 Ver logs en tiempo real
+echo   [7] ❌ Salir
 echo.
 echo ═══════════════════════════════════════════════════════════════
 echo.
-set /p OPCION="Selecciona una opción (0-15): "
+set /p opcion="Selecciona una opción (1-7): "
 
-if "%OPCION%"=="1" goto START_ALL_SERVERS
-if "%OPCION%"=="2" goto STOP_ALL_SERVERS
-if "%OPCION%"=="3" goto STATUS
-if "%OPCION%"=="4" goto RESTART_ALL_SERVERS
-if "%OPCION%"=="5" goto START_BANK
-if "%OPCION%"=="6" goto START_EXAMS
-if "%OPCION%"=="7" goto START_GAMES
-if "%OPCION%"=="8" goto START_SOCIAL
-if "%OPCION%"=="9" goto START_TUNNEL
-if "%OPCION%"=="10" goto STOP_TUNNEL
-if "%OPCION%"=="11" goto RESTART_TUNNEL
-if "%OPCION%"=="12" goto START_COMPLETE
-if "%OPCION%"=="13" goto STOP_COMPLETE
-if "%OPCION%"=="14" goto RESTART_COMPLETE
-if "%OPCION%"=="15" goto MONITOR
-if "%OPCION%"=="0" goto EXIT
-
-echo.
-echo Opción no válida
-timeout /t 2 /nobreak >nul
+if "%opcion%"=="1" goto INICIAR
+if "%opcion%"=="2" goto VERIFICAR
+if "%opcion%"=="3" goto DETENER
+if "%opcion%"=="4" goto REINICIAR
+if "%opcion%"=="5" goto ABRIR_URLS
+if "%opcion%"=="6" goto LOGS
+if "%opcion%"=="7" goto SALIR
 goto MENU
 
-:START_ALL_SERVERS
+:INICIAR
 cls
 echo.
-echo Iniciando todos los servidores...
-python arquitectura_servidores.py start-all
-pause
+echo ═══════════════════════════════════════════════════════════════
+echo   🚀 Iniciando Sistema Completo
+echo ═══════════════════════════════════════════════════════════════
+echo.
+call INICIAR_TODOS_SERVIDORES.bat
 goto MENU
 
-:STOP_ALL_SERVERS
+:VERIFICAR
 cls
 echo.
-echo Deteniendo todos los servidores...
-python arquitectura_servidores.py stop-all
-pause
+echo ═══════════════════════════════════════════════════════════════
+echo   🔍 Verificando Estado de Servidores
+echo ═══════════════════════════════════════════════════════════════
+echo.
+call VERIFICAR_SERVIDORES.bat
 goto MENU
 
-:STATUS
+:DETENER
 cls
 echo.
-python arquitectura_servidores.py status
-pause
+echo ═══════════════════════════════════════════════════════════════
+echo   🛑 Deteniendo Sistema Completo
+echo ═══════════════════════════════════════════════════════════════
+echo.
+call DETENER_TODOS_SERVIDORES.bat
 goto MENU
 
-:RESTART_ALL_SERVERS
+:REINICIAR
 cls
 echo.
-echo Reiniciando todos los servidores...
-python arquitectura_servidores.py stop-all
+echo ═══════════════════════════════════════════════════════════════
+echo   🔄 Reiniciando Sistema Completo
+echo ═══════════════════════════════════════════════════════════════
+echo.
+echo [1/2] Deteniendo servidores...
+call DETENER_TODOS_SERVIDORES.bat
+echo.
+echo [2/2] Iniciando servidores...
 timeout /t 3 /nobreak >nul
-python arquitectura_servidores.py start-all
-pause
+call INICIAR_TODOS_SERVIDORES.bat
 goto MENU
 
-:START_BANK
+:ABRIR_URLS
 cls
 echo.
-python arquitectura_servidores.py start bank
-pause
-goto MENU
-
-:START_EXAMS
-cls
+echo ═══════════════════════════════════════════════════════════════
+echo   🌐 Abriendo URLs en Navegador
+echo ═══════════════════════════════════════════════════════════════
 echo.
-python arquitectura_servidores.py start exams
-pause
-goto MENU
-
-:START_GAMES
-cls
-echo.
-python arquitectura_servidores.py start games
-pause
-goto MENU
-
-:START_SOCIAL
-cls
-echo.
-python arquitectura_servidores.py start social
-pause
-goto MENU
-
-:START_TUNNEL
-cls
-echo.
-echo Iniciando túnel Cloudflare...
-taskkill /F /IM cloudflared.exe >nul 2>&1
+echo Abriendo Bank...
+start https://dvta.ch/bank
 timeout /t 2 /nobreak >nul
-start "Cloudflare Tunnel" /MIN cloudflared.exe tunnel --config cloudflare-multi-server.yml run dvta-tunnel
-timeout /t 5 /nobreak >nul
-echo.
-echo ✅ Túnel iniciado
-echo.
-echo URLs disponibles:
-echo   • https://dvta.ch (Bank)
-echo   • https://bank.dvta.ch (Bank)
-echo   • https://exams.dvta.ch (Exams)
-echo   • https://games.dvta.ch (Games)
-echo   • https://social.dvta.ch (Social)
-pause
-goto MENU
 
-:STOP_TUNNEL
-cls
-echo.
-echo Deteniendo túnel Cloudflare...
-taskkill /F /IM cloudflared.exe >nul 2>&1
-echo ✅ Túnel detenido
-pause
-goto MENU
-
-:RESTART_TUNNEL
-cls
-echo.
-echo Reiniciando túnel Cloudflare...
-taskkill /F /IM cloudflared.exe >nul 2>&1
+echo Abriendo Exams...
+start https://exams.dvta.ch
 timeout /t 2 /nobreak >nul
-start "Cloudflare Tunnel" /MIN cloudflared.exe tunnel --config cloudflare-multi-server.yml run dvta-tunnel
-timeout /t 5 /nobreak >nul
-echo ✅ Túnel reiniciado
-pause
-goto MENU
 
-:START_COMPLETE
-cls
-echo.
-echo ═══════════════════════════════════════════════════════════════
-echo  🚀 INICIANDO SISTEMA COMPLETO
-echo ═══════════════════════════════════════════════════════════════
-echo.
-echo [1/2] Iniciando servidores...
-python arquitectura_servidores.py start-all
-echo.
-echo [2/2] Iniciando túnel Cloudflare...
-taskkill /F /IM cloudflared.exe >nul 2>&1
+echo Abriendo Games...
+start https://games.dvta.ch
 timeout /t 2 /nobreak >nul
-start "Cloudflare Tunnel" /MIN cloudflared.exe tunnel --config cloudflare-multi-server.yml run dvta-tunnel
-timeout /t 5 /nobreak >nul
-echo.
-echo ═══════════════════════════════════════════════════════════════
-echo  ✅ SISTEMA COMPLETO INICIADO
-echo ═══════════════════════════════════════════════════════════════
-echo.
-echo URLs disponibles:
-echo   • https://dvta.ch
-echo   • https://bank.dvta.ch
-echo   • https://exams.dvta.ch
-echo   • https://games.dvta.ch
-echo   • https://social.dvta.ch
-echo.
-pause
-goto MENU
 
-:STOP_COMPLETE
-cls
-echo.
-echo Deteniendo sistema completo...
-echo.
-echo [1/2] Deteniendo túnel...
-taskkill /F /IM cloudflared.exe >nul 2>&1
-echo.
-echo [2/2] Deteniendo servidores...
-python arquitectura_servidores.py stop-all
-echo.
-echo ✅ Sistema completo detenido
-pause
-goto MENU
-
-:RESTART_COMPLETE
-cls
-echo.
-echo Reiniciando sistema completo...
-call :STOP_COMPLETE
-timeout /t 3 /nobreak >nul
-call :START_COMPLETE
-goto MENU
-
-:MONITOR
-cls
-echo.
-echo Iniciando monitor automático...
-echo.
-python arquitectura_servidores.py monitor
-pause
-goto MENU
-
-:EXIT
-cls
-echo.
-echo ═══════════════════════════════════════════════════════════════
-echo  👋 ¡Hasta luego!
-echo ═══════════════════════════════════════════════════════════════
-echo.
+echo Abriendo Social...
+start https://social.dvta.ch
 timeout /t 2 /nobreak >nul
-exit /b 0
+
+echo.
+echo ✅ Todas las URLs abiertas
+echo.
+pause
+goto MENU
+
+:LOGS
+cls
+echo.
+echo ═══════════════════════════════════════════════════════════════
+echo   📊 Logs en Tiempo Real
+echo ═══════════════════════════════════════════════════════════════
+echo.
+echo Los logs se muestran en las ventanas individuales de cada servidor
+echo.
+echo Para ver logs:
+echo   1. Busca las ventanas con títulos:
+echo      - DVDcoin Bank (8000)
+echo      - DVDcoin Exams (8001)
+echo      - DVDcoin Games (8002)
+echo      - DVDcoin Social (8003)
+echo.
+echo   2. Cada ventana muestra los logs de su servidor
+echo.
+pause
+goto MENU
+
+:SALIR
+cls
+echo.
+echo ═══════════════════════════════════════════════════════════════
+echo   👋 Saliendo del Sistema
+echo ═══════════════════════════════════════════════════════════════
+echo.
+echo ⚠️  Los servidores seguirán corriendo en segundo plano
+echo.
+echo Para detenerlos, ejecuta: DETENER_TODOS_SERVIDORES.bat
+echo.
+pause
+exit
