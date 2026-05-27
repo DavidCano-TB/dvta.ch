@@ -1089,6 +1089,17 @@ async def lifespan(app: FastAPI):
 limiter = Limiter(key_func=get_remote_address) if _has_limiter else _FakeLimiter()
  
 app = FastAPI(title="DVDcoin Bank", version="4.0", lifespan=lifespan)
+
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring"""
+    return {
+        "status": "healthy",
+        "service": "dvdbank",
+        "version": "4.0",
+        "timestamp": datetime.now().isoformat()
+    }
  
 if _has_limiter:
     app.state.limiter = limiter

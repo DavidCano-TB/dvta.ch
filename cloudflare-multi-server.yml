@@ -1,0 +1,58 @@
+tunnel: b75039b1-7b54-4da0-b2ab-0a338bfccdc5
+credentials-file: C:\Users\PC\.cloudflared\b75039b1-7b54-4da0-b2ab-0a338bfccdc5.json
+
+# Configuración de múltiples servidores con balanceo de carga
+ingress:
+  # Ruta principal - Bank (dashboard principal)
+  - hostname: dvta.ch
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  - hostname: www.dvta.ch
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  # Módulo Bank - Sistema bancario principal
+  - hostname: bank.dvta.ch
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  # Módulo Exams - Sistema de oposiciones
+  - hostname: exams.dvta.ch
+    service: http://localhost:8001
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  # Módulo Games - Juegos y entretenimiento
+  - hostname: games.dvta.ch
+    service: http://localhost:8002
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  # Módulo Social - Chat y mensajería
+  - hostname: social.dvta.ch
+    service: http://localhost:8003
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  # API principal
+  - hostname: api.dvta.ch
+    service: http://localhost:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s
+      
+  # Catch-all - redirige todo lo demás al servidor principal
+  - service: http://localhost:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 30s

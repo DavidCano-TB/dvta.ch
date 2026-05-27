@@ -1,0 +1,134 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║                    🌐 GUÍA RÁPIDA DE dvta.ch                             ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  🚀 INICIAR dvta.ch                                                       │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  1. Ejecuta:  ACTIVAR_DVTA_CH_AHORA.bat
+  
+  2. Espera 30 segundos
+  
+  3. Abre:  https://dvta.ch
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  📊 VER ESTADO                                                            │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  Ejecuta:  STATUS_DVTA.bat
+  
+  Te mostrará:
+    • Si el servidor está corriendo
+    • Si el tunnel está activo
+    • Si todo funciona correctamente
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  🔄 AUTO-ARRANQUE (Opcional)                                              │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  ACTIVAR:   CREAR_AUTOARRANQUE_DVTA.bat  (requiere admin)
+  DESACTIVAR: ELIMINAR_AUTOARRANQUE_DVTA.bat  (requiere admin)
+  
+  Con auto-arranque, dvta.ch se inicia automáticamente al arrancar Windows
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  🛑 DETENER dvta.ch                                                       │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  Opción 1: Cierra las ventanas "DVDExams Server" y "Cloudflare Tunnel"
+  
+  Opción 2: Ejecuta en CMD:
+    taskkill /F /IM python.exe
+    taskkill /F /IM cloudflared.exe
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  ❌ SOLUCIÓN DE PROBLEMAS                                                 │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  Error 1033 en dvta.ch:
+    → Ejecuta: ACTIVAR_DVTA_CH_AHORA.bat
+  
+  Puerto 8001 ocupado:
+    → Ejecuta: taskkill /F /IM python.exe
+    → Luego: ACTIVAR_DVTA_CH_AHORA.bat
+  
+  Dependencias faltantes:
+    → cd modules\exams
+    → pip install -r requirements.txt
+  
+  dvta.ch no carga:
+    → Verifica estado: STATUS_DVTA.bat
+    → Espera 30-60 segundos después de iniciar
+    → Recarga la página (Ctrl+F5)
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  📁 ARCHIVOS IMPORTANTES                                                  │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  ACTIVAR_DVTA_CH_AHORA.bat      → Iniciar dvta.ch (PRINCIPAL)
+  STATUS_DVTA.bat                → Ver estado de servicios
+  CREAR_AUTOARRANQUE_DVTA.bat    → Configurar auto-arranque
+  ELIMINAR_AUTOARRANQUE_DVTA.bat → Eliminar auto-arranque
+  README_DVTA_CH.md              → Documentación completa
+  
+  modules\exams\app_exams.py     → Servidor principal
+  modules\exams\start_exams.py   → Script de inicio robusto
+  cloudflare-dvta-config.yml     → Configuración del tunnel
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  🌐 ACCESO                                                                │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  Externo:  https://dvta.ch
+  Local:    http://localhost:8001
+  
+  Puerto:   8001
+  Servicio: DVDcoin Exams
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  ✅ CHECKLIST ANTES DE USAR                                               │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  □ Python 3.11+ instalado
+  □ Dependencias instaladas (pip install -r modules\exams\requirements.txt)
+  □ cloudflared.exe disponible
+  □ Credenciales de Cloudflare configuradas
+  □ Puerto 8001 libre
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  💡 TIPS                                                                  │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  • Mantén las ventanas de servidor y tunnel abiertas (minimizadas)
+  • La primera conexión puede tardar más (30-60 segundos)
+  • Si cambias código, reinicia con ACTIVAR_DVTA_CH_AHORA.bat
+  • Usa STATUS_DVTA.bat para verificar que todo funciona
+  • Configura auto-arranque para no tener que iniciar manualmente
+
+
+┌───────────────────────────────────────────────────────────────────────────┐
+│  📞 AYUDA ADICIONAL                                                       │
+└───────────────────────────────────────────────────────────────────────────┘
+
+  README_DVTA_CH.md              → Guía completa con todos los detalles
+  RESUMEN_FINAL_SISTEMA.md       → Resumen del sistema completo
+  modules\exams\README.md        → Documentación del módulo Exams
+
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║                                                                           ║
+║  Última actualización: 27 Mayo 2026                                      ║
+║  Versión: 2.0                                                            ║
+║                                                                           ║
+╚═══════════════════════════════════════════════════════════════════════════╝
