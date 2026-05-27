@@ -1,0 +1,176 @@
+================================================================================
+  ⚠️  LEE ESTO AHORA - PROBLEMA IDENTIFICADO
+================================================================================
+
+EL PROBLEMA:
+
+Estás intentando acceder a OPO usando esta URL:
+  ❌ https://unhidden-patient-cradling.ngrok-free.dev/opo
+
+Esa URL es de NGROK y NO FUNCIONA porque ngrok no está corriendo.
+
+================================================================================
+  ✅ SOLUCIÓN: USA LA URL CORRECTA
+================================================================================
+
+Debes usar esta URL:
+  ✅ http://localhost:8000/opo
+
+IMPORTANTE: Fíjate que es:
+  • http:// (NO https://)
+  • localhost:8000 (NO ngrok-free.dev)
+  • /opo al final
+
+================================================================================
+  🚀 PASOS PARA ACCEDER A OPO AHORA
+================================================================================
+
+PASO 1: Verificar que el servidor está corriendo
+─────────────────────────────────────────────────
+
+Abre PowerShell o CMD y ejecuta:
+
+  tasklist | findstr python.exe
+
+Si aparece "python.exe" → El servidor está corriendo ✅
+Si NO aparece nada → Ejecuta: REINICIO_AUTOMATICO_OPO.bat
+
+PASO 2: Abrir OPO en el navegador
+─────────────────────────────────────────────────
+
+Opción A - Ejecutar script:
+  
+  ABRIR_OPO_CORRECTO.bat
+
+Opción B - Abrir manualmente:
+
+  1. Abre tu navegador (Chrome, Firefox, Edge, etc.)
+  2. En la barra de direcciones, escribe:
+     http://localhost:8000/opo
+  3. Presiona Enter
+
+PASO 3: Refrescar la página
+─────────────────────────────────────────────────
+
+Una vez que se abra la página, presiona:
+
+  Ctrl + Shift + R
+
+Esto limpia la caché y carga todo de nuevo.
+
+================================================================================
+  ✅ QUÉ DEBERÍAS VER
+================================================================================
+
+Si todo funciona, verás:
+
+┌────────────────────────────────────────────────────────────┐
+│ 📝 OPO                                                      │
+│ FEA Radiodiagnóstico                                       │
+│                                    [Conectado] [@test_user]│ ← VERDE
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│              📋 Elige el siguiente bloque                  │
+│           30 simulacros · 10 preguntas cada uno            │
+│                                                            │
+│  [Bloque 1] [Bloque 2] [Bloque 3] [Bloque 4] [Bloque 5]  │
+│  [Bloque 6] [Bloque 7] [Bloque 8] [Bloque 9] [Bloque 10] │
+│  [Bloque 11] [Bloque 12] ...                              │
+│                                                            │
+│         [🔊 Activar audio]  [📊 Mis stats]                │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+
+================================================================================
+  ❌ SI SIGUE SIN FUNCIONAR
+================================================================================
+
+PROBLEMA 1: Error "ERR_CONNECTION_REFUSED"
+───────────────────────────────────────────
+Causa: El servidor no está corriendo
+
+Solución:
+  1. Ejecuta: REINICIO_AUTOMATICO_OPO.bat
+  2. Espera 20 segundos
+  3. Abre: http://localhost:8000/opo
+  4. Presiona: Ctrl+Shift+R
+
+PROBLEMA 2: Pantalla vacía o en blanco
+───────────────────────────────────────
+Causa: Caché del navegador
+
+Solución:
+  1. Presiona: Ctrl+Shift+R
+  2. Espera 5 segundos
+  3. Presiona: F5
+
+PROBLEMA 3: Badge dice "Conectando..." (rojo)
+───────────────────────────────────────
+Causa: El servidor está iniciando o hay un problema de conexión
+
+Solución:
+  1. Espera 10 segundos más
+  2. Presiona: F5
+  3. Si persiste, presiona F12 y ve a "Console" para ver errores
+
+PROBLEMA 4: Badge dice "Sin acceso OPO"
+───────────────────────────────────────
+Causa: Tu usuario no tiene permisos
+
+Solución:
+  1. Ejecuta: AGREGAR_USUARIO_Y_REINICIAR.bat test_user
+     (reemplaza "test_user" con tu usuario)
+  2. Espera 20 segundos
+  3. Refresca el navegador
+
+================================================================================
+  🔧 SCRIPTS ÚTILES
+================================================================================
+
+REINICIO_AUTOMATICO_OPO.bat
+  → Reinicia el servidor automáticamente
+  → USA ESTE si el servidor no está corriendo
+
+ABRIR_OPO_CORRECTO.bat
+  → Abre OPO en la URL correcta (localhost)
+  → USA ESTE para abrir OPO
+
+MATAR_TODO_Y_REINICIAR_OPO.bat
+  → Mata todos los procesos y reinicia
+  → USA ESTE si hay procesos bloqueados
+
+DIAGNOSTICO_COMPLETO_OPO.bat
+  → Verifica el estado completo del sistema
+  → USA ESTE para ver qué está mal
+
+================================================================================
+  📝 RESUMEN
+================================================================================
+
+1. NO uses: https://unhidden-patient-cradling.ngrok-free.dev/opo
+2. USA: http://localhost:8000/opo
+3. Ejecuta: ABRIR_OPO_CORRECTO.bat
+4. Presiona: Ctrl+Shift+R
+
+================================================================================
+  ⚡ ACCIÓN INMEDIATA
+================================================================================
+
+Ejecuta AHORA:
+
+  ABRIR_OPO_CORRECTO.bat
+
+O abre manualmente:
+
+  http://localhost:8000/opo
+
+Y presiona:
+
+  Ctrl + Shift + R
+
+================================================================================
+
+NOTA: El servidor ya debería estar corriendo. Si no lo está, ejecuta:
+      REINICIO_AUTOMATICO_OPO.bat
+
+================================================================================

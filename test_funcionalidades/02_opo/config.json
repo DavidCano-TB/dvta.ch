@@ -1,0 +1,31 @@
+{
+  "server": {
+    "base_url": "http://localhost:8000",
+    "ws_url": "ws://localhost:8000",
+    "timeout": 30
+  },
+  "credentials": {
+    "admin": {
+      "username": "dvd",
+      "password": "dvd_aGGDdCWQ5Bh3"
+    },
+    "test_user": {
+      "username": "test_user",
+      "password": "test123"
+    },
+    "test_user2": {
+      "username": "test_user2",
+      "password": "test123"
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "detailed": true,
+    "save_responses": true
+  },
+  "test_settings": {
+    "cleanup_after_tests": true,
+    "create_test_users": true,
+    "parallel_execution": false
+  }
+}

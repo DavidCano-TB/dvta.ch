@@ -1,0 +1,134 @@
+═══════════════════════════════════════════════════════════════════════════
+  🚀 GUÍA COMPLETA: MIGRACIÓN A dvta.ch CON CLOUDFLARE
+═══════════════════════════════════════════════════════════════════════════
+
+Fecha: 27 Mayo 2026
+Dominio: dvta.ch
+Sistema: Windows 10
+Objetivo: Migrar de ngrok a Cloudflare Tunnel con dominio propio
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ PASO 1: CAMBIAR NAMESERVERS (YA COMPLETADO)
+═══════════════════════════════════════════════════════════════════════════
+
+✅ HECHO - Ya cambiaste los nameservers en Infomaniak:
+   - Antes: ns11.infomaniak.ch, ns12.infomaniak.ch
+   - Ahora: nelci.ns.cloudflare.com, otto.ns.cloudflare.com
+
+⏳ Estado actual: Propagando (1-24 horas, normalmente 2-4 horas)
+
+Puedes verificar el estado en:
+https://dash.cloudflare.com/bc719d01fe06039b0823aab050e9150a/dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+  📧 PASO 2: CONFIGURAR REGISTROS DNS DE EMAIL (HACER AHORA)
+═══════════════════════════════════════════════════════════════════════════
+
+Aunque los nameservers estén propagando, puedes configurar los DNS ahora.
+
+ACCIÓN REQUERIDA:
+
+1. Ejecuta el archivo: PASO_2_CONFIGURAR_EMAIL.bat
+
+2. El script te pedirá un token de Cloudflare. Para crearlo:
+   
+   a) Abre: https://dash.cloudflare.com/profile/api-tokens
+   
+   b) Clic en [Create Token]
+   
+   c) Busca "Edit zone DNS" y clic en [Use template]
+   
+   d) En "Zone Resources":
+      - Zone: Include - Specific zone
+      - Selecciona: dvta.ch
+   
+   e) Clic en [Continue to summary]
+   
+   f) Clic en [Create Token]
+   
+   g) COPIA el token (solo se muestra una vez)
+
+3. Pega el token cuando el script te lo pida
+
+4. El script creará automáticamente:
+   ✅ MX → mta-gw.infomaniak.ch (servidor de correo)
+   ✅ SPF → autorización de envío
+   ✅ DKIM → firma digital de emails
+   ✅ DMARC → política de seguridad
+   ✅ Autoconfig → configuración automática (Thunderbird)
+   ✅ Autodiscover → configuración automática (Outlook)
+
+RESULTADO: Tu email @dvta.ch seguirá funcionando con Infomaniak
+
+═══════════════════════════════════════════════════════════════════════════
+  🌐 PASO 3: CREAR CLOUDFLARE TUNNEL (DESPUÉS DEL PASO 2)
+═══════════════════════════════════════════════════════════════════════════
+
+Una vez configurado el email, crearemos el túnel de Cloudflare.
+
+ACCIÓN REQUERIDA:
+
+1. Ejecutarás un script que creará automáticamente:
+   - Un nuevo túnel de Cloudflare para dvta.ch
+   - Registros DNS A/AAAA apuntando al túnel
+   - Configuración para conectar tu servidor local (puerto 8000)
+
+2. El túnel reemplazará completamente a ngrok
+
+3. Ventajas sobre ngrok:
+   ✅ URL permanente (https://dvta.ch)
+   ✅ No cambia al reiniciar
+   ✅ Más rápido y estable
+   ✅ Gratis sin límites
+   ✅ Certificado SSL automático
+
+═══════════════════════════════════════════════════════════════════════════
+  🔄 PASO 4: ACTUALIZAR SCRIPTS DE INICIO (DESPUÉS DEL PASO 3)
+═══════════════════════════════════════════════════════════════════════════
+
+Actualizaremos todos los scripts .bat para usar Cloudflare en lugar de ngrok.
+
+Scripts que se actualizarán:
+- ARRANCAR.bat
+- INICIAR_SISTEMA_COMPLETO.bat
+- INSTALAR_INICIO_AUTOMATICO.bat
+- Y todos los demás que usen ngrok
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ PASO 5: VERIFICAR QUE TODO FUNCIONA
+═══════════════════════════════════════════════════════════════════════════
+
+Verificaremos:
+1. ✅ Email @dvta.ch funciona (enviar y recibir)
+2. ✅ Web accesible en https://dvta.ch
+3. ✅ Certificado SSL válido
+4. ✅ Sistema arranca automáticamente con Windows
+5. ✅ No más dependencia de ngrok
+
+═══════════════════════════════════════════════════════════════════════════
+  📝 RESUMEN DE ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════════
+
+Archivos de configuración:
+- PASO_2_CONFIGURAR_EMAIL.bat ← EJECUTAR AHORA
+- configurar_dns_cloudflare_dvta.py (usado por el .bat)
+- REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt (backup de DNS)
+- cloudflare-config.yml (se actualizará para dvta.ch)
+
+Información de Cloudflare:
+- Dominio: dvta.ch
+- Zone ID: a0353c3d6ad85c54e8ed8f31237538b9
+- Account ID: bc719d01fe06039b0823aab050e9150a
+- Dashboard: https://dash.cloudflare.com/bc719d01fe06039b0823aab050e9150a/dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 ACCIÓN INMEDIATA: EJECUTA PASO_2_CONFIGURAR_EMAIL.bat
+═══════════════════════════════════════════════════════════════════════════
+
+Haz doble clic en: PASO_2_CONFIGURAR_EMAIL.bat
+
+El script te guiará paso a paso para crear el token y configurar el email.
+
+Una vez completado, avísame y continuaremos con el Paso 3 (crear el túnel).
+
+═══════════════════════════════════════════════════════════════════════════

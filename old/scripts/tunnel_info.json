@@ -1,0 +1,7 @@
+{
+  "tunnel_id": "6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33",
+  "domain": "dvta.ch",
+  "config_file": "cloudflare-tunnel-dvta.yml",
+  "credentials_file": "C:\\Users\\PC\\.cloudflared\\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json",
+  "created_date": "2026-05-27"
+}

@@ -1,0 +1,83 @@
+/* Language Bar - Auto-hide on scroll */
+.language-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(135deg, rgba(4,4,10,0.98) 0%, rgba(20,20,30,0.98) 100%);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(212,168,67,0.2);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.language-bar.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.language-bar__label {
+  font-size: 0.75rem;
+  color: rgba(212,168,67,0.8);
+  font-weight: 500;
+  margin-right: 4px;
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .language-bar__label {
+    display: inline;
+  }
+}
+
+.language-bar__button {
+  background: rgba(212,168,67,0.1);
+  border: 1px solid rgba(212,168,67,0.3);
+  color: rgba(212,168,67,0.9);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.language-bar__button:hover {
+  background: rgba(212,168,67,0.2);
+  border-color: rgba(212,168,67,0.5);
+  transform: translateY(-1px);
+}
+
+.language-bar__button.active {
+  background: rgba(212,168,67,0.25);
+  border-color: rgba(212,168,67,0.6);
+  color: #D4A843;
+  box-shadow: 0 0 10px rgba(212,168,67,0.3);
+}
+
+.language-bar__button:active {
+  transform: translateY(0);
+}
+
+/* Adjust body padding when language bar is visible */
+body.has-language-bar {
+  padding-top: 44px;
+}
+
+body.has-language-bar.has-unified-nav {
+  padding-top: 44px; /* Language bar height */
+}
+
+/* Adjust unified nav position */
+body.has-language-bar #unifiedNavContainer {
+  top: 44px;
+}

@@ -1,0 +1,77 @@
+========================================
+  CAMBIO APLICADO: SIN CRUCEROS
+  HUNDIR LA FLOTA
+========================================
+
+FECHA: 16.05.2026
+HORA: 10:00
+
+========================================
+CAMBIO SOLICITADO:
+========================================
+
+❌ ELIMINAR CRUCEROS (3 cuadrados)
+
+========================================
+CAMBIOS APLICADOS:
+========================================
+
+✅ ARCHIVO: admin.html
+
+1. Línea 149-151: Eliminada configuración de Crucero
+2. Línea 322: Eliminada línea de reset de crucero
+3. Línea 367-372: Eliminada configuración en setup
+
+========================================
+CONFIGURACIÓN FINAL DE BARCOS:
+========================================
+
+🚢 Portaaviones - 5 cuadrados - Cantidad: 1
+⛴️ Acorazado    - 4 cuadrados - Cantidad: 1
+🚤 Submarino    - 3 cuadrados - Cantidad: 1
+🛥️ Destructor   - 2 cuadrados - Cantidad: 1
+⛵ Patrullera   - 1 cuadrado  - Cantidad: 1
+
+TOTAL: 5 barcos = 15 cuadrados
+
+========================================
+ANTES vs AHORA:
+========================================
+
+ANTES (6 barcos):
+- Portaaviones (5)
+- Acorazado (4)
+- Crucero (3)      ← ELIMINADO
+- Submarino (3)    ← Ahora es el único de 3
+- Destructor (2)
+- Patrullera (1)
+
+AHORA (5 barcos):
+- Portaaviones (5)
+- Acorazado (4)
+- Submarino (3)
+- Destructor (2)
+- Patrullera (1)
+
+========================================
+PARA PROBAR:
+========================================
+
+1. Abrir navegador
+2. Presionar Ctrl + F5 para recargar
+3. Ir a /hundirlaflota/admin.html
+4. Verificar que aparecen solo 5 tipos de barcos
+5. Verificar que NO aparece Crucero
+6. Configurar y jugar partida
+
+========================================
+ESTADO: APLICADO ✅
+========================================
+
+El crucero ha sido eliminado de la configuración.
+Ahora solo hay 5 tipos de barcos.
+El servidor no necesita reinicio (cambios HTML).
+
+Recarga la página con Ctrl + F5 para ver los cambios.
+
+========================================

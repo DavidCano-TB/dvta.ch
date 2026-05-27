@@ -1,0 +1,125 @@
+============================================
+ SISTEMA DE APUESTAS - COMPLETAMENTE FUNCIONAL
+============================================
+
+FECHA: 2026-05-02 23:10
+ESTADO: ✅ TODO FUNCIONANDO
+
+============================================
+ URLS ACTIVAS
+============================================
+
+SERVIDOR LOCAL:
+  http://127.0.0.1:8000
+
+URL NGROK (ACCESO EXTERNO):
+  https://striking-symphony-mummify.ngrok-free.dev
+
+URLS DE PORRAS:
+  - Porra 1: /apuestas/porra/1
+  - Porra 2: /apuestas/porra/2
+  - Porra 3: /apuestas/porra/3
+  - Lista: /apuestas
+
+============================================
+ CORRECCIONES APLICADAS
+============================================
+
+✓ Fetch corregido en 3 páginas HTML
+  - Era: /api/porras/$1
+  - Ahora: /api/porras/${PORRA_ID}
+
+✓ Función selectOption() completa y funcional
+✓ CSS .optCard.selected presente (borde dorado)
+✓ onclick en todas las tarjetas de opciones
+✓ Servidor Python reiniciado y funcionando
+✓ Ngrok reiniciado y funcionando
+✓ Todos los procesos limpiados antes de reiniciar
+
+============================================
+ FUNCIONALIDADES VERIFICADAS
+============================================
+
+PARA MIEMBROS:
+✓ Crear nuevas porras
+✓ Seleccionar opción de apuesta (se marca con borde dorado)
+✓ Introducir cantidad en DVDcoins
+✓ Realizar apuesta (botón se habilita automáticamente)
+✓ Ver estadísticas personales
+✓ Ver estadísticas globales (12 métricas)
+
+PARA DVD (ADMIN):
+✓ Cerrar apuestas (aunque no sea fecha límite)
+✓ Resolver y pagar porras
+✓ Cancelar y devolver apuestas
+✓ Relanzar porras con nuevas fechas
+✓ Enmascarar porras (ocultar de lista pública)
+✓ Borrar porras
+
+============================================
+ FLUJO DE APUESTA
+============================================
+
+1. Abrir URL de porra
+2. Hacer clic en una opción
+   → Se marca con borde dorado
+   → Clase .selected se aplica
+3. Introducir cantidad en DVDcoins
+4. Botón "Apostar Ahora" se habilita automáticamente
+5. Hacer clic en "Apostar Ahora"
+6. Confirmar apuesta en el diálogo
+7. ¡Apuesta registrada!
+
+============================================
+ ARCHIVOS CORREGIDOS
+============================================
+
+✓ game_pages/apuestas/template_porra.html
+✓ game_pages/apuestas/porras/porra_1.html
+✓ game_pages/apuestas/porras/porra_2.html
+✓ game_pages/apuestas/porras/porra_3.html
+✓ static/index.html (botón móvil Apuestas)
+
+============================================
+ PROCESOS ACTIVOS
+============================================
+
+✓ Python (main.py) - Puerto 8000
+✓ Ngrok - Túnel HTTPS público
+
+============================================
+ COMANDOS ÚTILES
+============================================
+
+REINICIAR TODO:
+1. Stop-Process -Name python,ngrok -Force
+2. Start-Process python -ArgumentList "main.py"
+3. Start-Process ngrok -ArgumentList "http","8000"
+
+VERIFICAR SERVIDOR:
+curl http://127.0.0.1:8000/api/health
+
+OBTENER URL NGROK:
+curl http://127.0.0.1:4040/api/tunnels
+
+============================================
+ NOTAS IMPORTANTES
+============================================
+
+- El navegador ya se abrió automáticamente
+- Si pide autenticación, usa el token JWT
+- Recarga con Ctrl+F5 si ves caché antigua
+- Los botones ahora funcionan correctamente
+- Las estadísticas se actualizan en tiempo real
+
+============================================
+ SOPORTE
+============================================
+
+Si algo no funciona:
+1. Verifica que el servidor responde: /api/health
+2. Verifica que ngrok está activo: http://127.0.0.1:4040
+3. Recarga la página con Ctrl+F5
+4. Revisa la consola del navegador (F12)
+
+============================================

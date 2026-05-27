@@ -1,0 +1,93 @@
+# Graphify ignore file - archivos y carpetas a excluir del analisis
+
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Cache y temporales
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Bases de datos
+*.db
+*.sqlite
+*.sqlite3
+data/*.db
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Configuracion sensible
+config/.openai_key
+config/.groq_key
+config/.jwt_secret
+config/.ngrok_token
+conf/.jwt_secret
+conf/.ngrok_token
+conf/master.txt
+config/master.txt
+
+# Node modules (si existen)
+node_modules/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.vs/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos de Windows
+Thumbs.db
+desktop.ini
+
+# Ejecutables
+*.exe
+ngrok.exe
+nssm.exe
+
+# Backups
+*.backup
+*.bak
+*_backup.*
+*.migrated
+
+# Documentacion redundante (mantener solo principales)
+ANONIMIZACION_*.md
+CAMBIOS_*.md
+CORRECCION_*.md
+FIX_*.txt
+RESUMEN_*.txt
+VERIFICACION_*.md
+INSTRUCCIONES_*.txt
+
+# Archivos temporales de migracion
+actualizar_*.py
+aplicar_*.py
+corregir_*.py
+fix_*.py
+recuperar_*.py
+verificar_*.py
+check_*.py
+test_*.py
+diagnostico_*.py
+limpiar_*.py
+
+# Graphify output (evitar recursion)
+graphify-out/

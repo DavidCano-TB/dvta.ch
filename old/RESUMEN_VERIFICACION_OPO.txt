@@ -1,0 +1,159 @@
+============================================================
+RESUMEN DE VERIFICACIÓN OPO - COMPLETO
+============================================================
+
+FECHA: 2026-05-13
+ESTADO: ✓ TODOS LOS TESTS PASAN
+
+============================================================
+1. VERIFICACIÓN DEL BACKEND
+============================================================
+
+✓ Archivo de preguntas existe: 300 preguntas
+  Ubicación: static/opo/preguntas_opo_nebulosa.json
+
+✓ main.py sin código duplicado
+  - get_opo_manager definido 1 vez (línea ~4920)
+  - OpoManager carga preguntas correctamente (línea ~4565)
+  - total_blocks se calcula automáticamente: (300 + 9) // 10 = 30
+
+✓ Base de datos configurada
+  - 9 usuarios con acceso OPO:
+    aitor, dvd, dvdrec, nebulosa, nina, roy, test_user, victor, yu
+
+✓ Servidor arranca sin errores
+  - Puerto: 8000
+  - URL: http://localhost:8000
+  - OPO: http://localhost:8000/opo
+
+============================================================
+2. VERIFICACIÓN DEL FRONTEND
+============================================================
+
+✓ HTML completo (static/opo/game.html)
+  - div#waitBlockGrid presente
+  - función renderWaiting presente
+  - clase .blockBtn presente
+  - función connectWS presente
+  - constante OPO_USERS presente
+
+✓ El servidor sirve el HTML correctamente
+  - GET /opo devuelve 200 OK
+  - Todos los elementos necesarios están en el HTML
+
+============================================================
+3. PROBLEMA CORREGIDO
+============================================================
+
+PROBLEMA ORIGINAL:
+  - Código duplicado en main.py
+  - get_opo_manager definido 2 veces
+  - Python ejecutaba la primera definición (vieja, sin correcciones)
+  - El backend enviaba total_blocks = 0
+  - El frontend no renderizaba los bloques
+
+SOLUCIÓN APLICADA:
+  - Eliminada la primera definición de get_opo_manager
+  - Ahora solo existe una definición (línea ~4920)
+  - OpoManager inicializa total_blocks correctamente
+  - El backend envía total_blocks = 30
+
+============================================================
+4. CÓMO USAR OPO AHORA
+============================================================
+
+PASO 1: Arrancar el servidor
+  Opción A: python main.py
+  Opción B: python VERIFICAR_Y_ARRANCAR_OPO.py
+
+PASO 2: Abrir OPO en el navegador
+  Opción A: Ejecutar ABRIR_OPO_AHORA.bat
+  Opción B: Abrir manualmente http://localhost:8000/opo
+
+PASO 3: Iniciar sesión (si es necesario)
+  - Si ves "Acceso requerido", haz clic en "Ir al banco"
+  - Inicia sesión con tu usuario (dvd, nebulosa, etc.)
+  - Vuelve a /opo
+
+PASO 4: Verificar que funciona
+  - Deberías ver 30 bloques numerados del 1 al 30
+  - Haz clic en un bloque para empezar el test
+  - Si no ves los bloques, abre la consola (F12) y busca errores
+
+============================================================
+5. TROUBLESHOOTING
+============================================================
+
+SI NO VES LOS BLOQUES:
+
+1. Verifica que el servidor está corriendo
+   - Debe mostrar: "Uvicorn running on http://0.0.0.0:8000"
+
+2. Abre la consola del navegador (F12)
+   - Ve a la pestaña Console
+   - Busca errores en rojo
+   - Si hay errores de WebSocket, verifica que estás logueado
+
+3. Verifica que estás logueado
+   - Abre la consola (F12)
+   - Ve a la pestaña Application → Local Storage
+   - Busca "token" - debe tener un valor
+   - Si no hay token, ve a / e inicia sesión
+
+4. Limpia la caché del navegador
+   - Presiona Ctrl+Shift+R para recargar sin caché
+
+5. Verifica el WebSocket
+   - Abre la consola (F12)
+   - Ve a la pestaña Network → WS
+   - Debe haber una conexión a ws://localhost:8000/ws/opo
+   - Haz clic en la conexión y ve a Messages
+   - Debe recibir un mensaje con "total_blocks": 30
+
+============================================================
+6. SCRIPTS DISPONIBLES
+============================================================
+
+VERIFICAR_Y_ARRANCAR_OPO.py
+  - Verifica todo el sistema
+  - Arranca el servidor automáticamente
+  - Uso: python VERIFICAR_Y_ARRANCAR_OPO.py
+
+TEST_OPO_HTTP.py
+  - Verifica que el HTML se sirve correctamente
+  - Uso: python TEST_OPO_HTTP.py
+
+ABRIR_OPO_AHORA.bat
+  - Abre OPO en el navegador
+  - Muestra instrucciones
+  - Uso: doble clic o ejecutar desde CMD
+
+============================================================
+7. NGROK (NO USAR)
+============================================================
+
+⚠️ IMPORTANTE: NO USES NGROK
+
+El error ERR_NGROK_3200 indica que ngrok está offline.
+Usa SIEMPRE localhost:
+
+  ✓ CORRECTO: http://localhost:8000/opo
+  ✗ INCORRECTO: https://unhidden-patient-cradling.ngrok-free.dev/opo
+
+Si necesitas acceso remoto, configura ngrok correctamente:
+  1. Verifica que tienes el token en config/.ngrok_token
+  2. Ejecuta: ngrok http 8000
+  3. Usa la URL que ngrok te proporciona
+
+============================================================
+8. CONTACTO Y SOPORTE
+============================================================
+
+Si sigues teniendo problemas:
+  1. Abre la consola del navegador (F12)
+  2. Copia TODOS los errores en rojo
+  3. Reporta los errores con capturas de pantalla
+
+============================================================
+FIN DEL RESUMEN
+============================================================

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>Pasapalabra</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Mono:wght@400;500&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;--noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;--glass:rgba(255,255,255,.04);--border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);--text:#EAE6D8;--text2:#9A9070;--text3:#504430;--green:#38B87A;--red:#C83060;--blue:#4878D8;--r:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:15px;}
+body{background:var(--noir);color:var(--text);font-family:'DM Mono',monospace;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:24px;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--gold4);}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;}
+/* Header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(4,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;height:52px;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);}
+.hdrLogo{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);flex:1;}
+.connDot{width:8px;height:8px;border-radius:50%;background:var(--text3);flex-shrink:0;transition:background .3s;}
+.connDot.on{background:var(--green);box-shadow:0 0 6px rgba(56,184,122,.6);}
+/* Overlay */
+.overlay{position:fixed;inset:0;background:rgba(4,4,10,.97);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;}
+.ovTitle{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);}
+.ovSub{font-size:.8rem;color:var(--text2);max-width:360px;line-height:1.6;}
+/* Main */
+.wrap{max-width:860px;margin:0 auto;padding:14px;}
+/* Players bar */
+.players{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.pcard{flex:1;min-width:140px;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;transition:all .25s;}
+.pcard.active{border-color:rgba(56,184,122,.5);background:rgba(56,184,122,.07);box-shadow:0 0 14px rgba(56,184,122,.12);}
+.pcard.done{opacity:.45;}
+.pcTop{display:flex;align-items:center;gap:6px;margin-bottom:4px;}
+.pcName{font-size:.78rem;color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.pcScore{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold2);}
+.pcInfo{display:flex;gap:8px;font-size:.58rem;color:var(--text3);}
+.pcOk{color:var(--green);}
+.pcBad{color:var(--red);}
+.timerBar{height:2px;background:var(--border);border-radius:1px;margin-top:5px;overflow:hidden;}
+.timerFill{height:100%;background:var(--gold);border-radius:1px;transition:width 1s linear;}
+/* Rosco */
+.roscoWrap{display:flex;flex-direction:column;align-items:center;margin-bottom:14px;}
+.roscoSvg{width:min(320px,88vw);height:min(320px,88vw);}
+/* Question panel */
+.qpanel{background:var(--n3);border:1px solid var(--border2);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 20px rgba(0,0,0,.5);}
+.qrow{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;}
+.qletter{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold2);line-height:1;}
+.qtimer{margin-left:auto;font-size:.68rem;color:var(--text3);font-variant-numeric:tabular-nums;}
+.qtext{font-size:.88rem;color:var(--text);line-height:1.5;margin-bottom:8px;}
+.qhint{font-size:.68rem;color:var(--gold3);margin-bottom:8px;}
+/* Submission */
+.submission{background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.2);border-radius:var(--r);padding:8px 12px;font-size:.82rem;color:var(--gold2);margin-bottom:8px;min-height:36px;}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid;border-radius:var(--r);padding:8px 14px;font-size:.7rem;font-family:'DM Mono',monospace;letter-spacing:.05em;transition:all .2s;cursor:pointer;font-weight:500;}
+.btnG{background:rgba(56,184,122,.12);border-color:rgba(56,184,122,.4);color:var(--green);}
+.btnG:hover{background:rgba(56,184,122,.22);border-color:var(--green);}
+.btnD{background:rgba(200,48,96,.12);border-color:rgba(200,48,96,.35);color:#e05080;}
+.btnD:hover{background:rgba(200,48,96,.22);}
+.btnO{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.3);color:var(--gold2);}
+.btnO:hover{background:rgba(212,168,67,.2);}
+.btnN{background:var(--glass);border-color:var(--border);color:var(--text2);}
+.btnN:hover{border-color:var(--border2);color:var(--text);}
+.btnSm{padding:5px 10px;font-size:.65rem;}
+/* Bar rows */
+.barRow{display:flex;gap:6px;flex-wrap:wrap;padding-top:10px;margin-top:8px;border-top:1px solid var(--border);}
+/* Player input */
+.ansRow{display:flex;gap:6px;margin-top:8px;}
+.ansInput{flex:1;background:rgba(212,168,67,.05);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.88rem;outline:none;transition:all .2s;}
+.ansInput:focus{border-color:var(--gold);background:rgba(212,168,67,.1);}
+.ansInput::placeholder{color:var(--text3);}
+/* Flash */
+@keyframes fadeUp{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes fadeOut{to{opacity:0;transform:translateX(-50%) translateY(-10px)}}
+.flash{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:300;padding:10px 22px;border-radius:28px;font-size:.8rem;font-weight:600;pointer-events:none;white-space:nowrap;animation:fadeUp .35s ease,fadeOut .4s ease 2.1s forwards;}
+.flash.correct{background:rgba(56,184,122,.92);color:#fff;}
+.flash.wrong{background:rgba(200,48,96,.92);color:#fff;}
+.flash.passed{background:rgba(72,120,216,.92);color:#fff;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <span style="font-size:1.3rem">🎯</span>
+  <div class="hdrLogo">Pasapalabra</div>
+  <span id="statusBadge" style="font-size:.6rem;color:var(--text3)">—</span>
+  <div class="connDot" id="connDot"></div>
+</div>
+
+<div class="overlay" id="overlay">
+  <div class="ovTitle" id="ovTitle">🎯 Pasapalabra</div>
+  <div class="ovSub"  id="ovSub">Conectando…</div>
+</div>
+
+<div class="wrap" id="wrap" style="display:none">
+  <div class="players" id="players"></div>
+  <div class="roscoWrap"><svg class="roscoSvg" id="rosco" viewBox="0 0 280 280"></svg></div>
+  <div class="qpanel" id="qpanel" style="display:none">
+    <div class="qrow">
+      <span class="qletter" id="qLetter">A</span>
+      <span class="qtimer" id="qTimer">—</span>
+    </div>
+    <div class="qtext" id="qText">—</div>
+    <div class="qhint" id="qHint" style="display:none"></div>
+    <!-- Submission (admin sees player typing) -->
+    <div id="subWrap" style="display:none">
+      <div style="font-size:.56rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px">Respuesta del jugador</div>
+      <div class="submission" id="subText"></div>
+    </div>
+    <!-- Player input (active non-admin player) -->
+    <div class="ansRow" id="ansRow" style="display:none">
+      <input id="ansInput" class="ansInput" type="text" placeholder="Tu respuesta…"
+        autocomplete="off" autocorrect="off" spellcheck="false"
+        onkeydown="if(event.key==='Enter')sendAnswer()">
+      <button class="btn btnO btnSm" onclick="sendPass()">→ Pasa</button>
+      <button class="btn btnG btnSm" onclick="sendAnswer()">▶ Enviar</button>
+    </div>
+    <!-- Admin controls -->
+    <div class="barRow" id="adminBar" style="display:none">
+      <button class="btn btnG btnSm" onclick="ws.send(JSON.stringify({action:'correct'}))">✓ Correcto</button>
+      <button class="btn btnD btnSm" onclick="ws.send(JSON.stringify({action:'wrong'}))">✗ Fallo</button>
+      <button class="btn btnO btnSm" onclick="ws.send(JSON.stringify({action:'pass'}))">→ Pasa</button>
+      <button class="btn btnN btnSm" id="btnPause" onclick="togglePause()">⏸ Pausa</button>
+      <button class="btn btnN btnSm" id="btnStartTimer" style="display:none" onclick="ws.send(JSON.stringify({action:'start_timer'}))">▶ Iniciar turno</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const ps=new URLSearchParams(location.search);
+const tok=ps.get('token')||localStorage.getItem('dvd_token')||'';
+const WSB=location.protocol==='https:'?'wss://'+location.host:'ws://'+location.host;
+let ws,st=null,me=null,isAdmin=false,isPaused=false;
+
+async function init(){
+  if(!tok){showOv('Sin sesión','Abre el juego desde la aplicación principal.');return;}
+  try{const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});if(r.ok){me=await r.json();isAdmin=!!me.is_admin;}}catch(_){}
+  connect();
+}
+
+function connect(){
+  ws=new WebSocket(WSB+'/ws/pasapalabra?token='+encodeURIComponent(tok));
+  ws.onopen=()=>{document.getElementById('connDot').className='connDot on';};
+  ws.onmessage=ev=>{try{handle(JSON.parse(ev.data));}catch(_){}};
+  ws.onclose=()=>{document.getElementById('connDot').className='connDot';setTimeout(connect,3000);};
+  ws.onerror=()=>{};
+}
+
+function handle(data){
+  if(data.type==='action'){flash(data);return;}
+  if(data.type!=='state')return;
+  st=data;render();
+}
+
+function render(){
+  if(!st)return;
+  const status=st.status,ps=st.players||[],curI=st.current_player_idx??-1,curP=curI>=0?ps[curI]:null;
+
+  // Overlay
+  if(!st.enabled){
+    if(isAdmin){
+      showOv('🎯 Pasapalabra','Configura el juego desde el panel de administración.');
+    }else{
+      showOv('🎯 Pasapalabra','El juego no ha sido iniciado por el host.');
+    }
+    return;
+  }
+  if(status==='waiting'&&!isAdmin){showOv('🎯 Pasapalabra','Esperando a que la partida comience…');return;}
+  if(status==='finished'){
+    const cel=st.celebration,w=cel?.winners||[];
+    showOv('🏆 Fin',w.length?`@${w.join(', @')} gana`:'Fin de la partida');return;
+  }
+  hideOv();
+  document.getElementById('statusBadge').textContent=status;
+  document.getElementById('wrap').style.display='';
+
+  // Players
+  const pel=document.getElementById('players');
+  pel.innerHTML=ps.map((p,i)=>{
+    const act=i===curI&&!p.done,ok=Object.values(p.letters||{}).filter(v=>v==='correct').length,bad=Object.values(p.letters||{}).filter(v=>v==='wrong').length;
+    const tr=p.time_remaining??0,tr_max=st.setup?.rosco_time||500,pct=Math.max(0,tr/tr_max*100);
+    return `<div class="pcard ${act?'active':''} ${p.done?'done':''}">
+      <div class="pcTop"><span style="font-size:.8rem">${act?'▶':p.done?'✓':'○'}</span><span class="pcName">@${e(p.username)}</span><span class="pcScore">${p.score}</span></div>
+      <div class="pcInfo"><span class="pcOk">✓${ok}</span><span class="pcBad">✗${bad}</span><span style="margin-left:auto">⏱${fmtT(tr)}</span></div>
+      <div class="timerBar"><div class="timerFill" style="width:${pct}%;background:${pct<20?'var(--red)':pct<50?'var(--orange,#E07840)':'var(--gold)'}"></div></div>
+    </div>`;
+  }).join('');
+
+  // Rosco
+  if(curP)renderRosco(curP.letters,curP.current_letter);
+
+  // Question panel
+  const q=st.current_question,qp=document.getElementById('qpanel');
+  if(q&&curP&&!curP.done){
+    qp.style.display='';
+    document.getElementById('qLetter').textContent=q.letra||curP.current_letter||'?';
+    document.getElementById('qText').textContent=q.definicion||'—';
+    document.getElementById('qTimer').textContent=fmtT(curP.time_remaining??0);
+    // Hint (correct answer for admin)
+    const hEl=document.getElementById('qHint');
+    if(isAdmin&&q.respuesta){hEl.textContent='→ '+q.respuesta;hEl.style.display='';}
+    else hEl.style.display='none';
+    // Player submission display (for admin)
+    const sub=st.player_submission||'';
+    const sw=document.getElementById('subWrap');
+    if(isAdmin){sw.style.display=sub?'':'none';document.getElementById('subText').textContent=sub;}
+    else sw.style.display='none';
+    // Admin bar
+    const ab=document.getElementById('adminBar');
+    if(isAdmin){
+      ab.style.display='';
+      isPaused=status==='paused';
+      document.getElementById('btnPause').textContent=isPaused?'▶ Reanudar':'⏸ Pausa';
+      document.getElementById('btnStartTimer').style.display=status==='ready'?'':'none';
+    }else ab.style.display='none';
+    // Player input (my turn, not admin, game playing)
+    const myTurn=me&&curP.username===me.username&&!isAdmin&&status==='playing';
+    const ar=document.getElementById('ansRow');
+    ar.style.display=myTurn?'':'none';
+    if(myTurn)setTimeout(()=>document.getElementById('ansInput')?.focus(),60);
+  }else qp.style.display='none';
+}
+
+function renderRosco(letters,curL){
+  const svg=document.getElementById('rosco'),cx=140,cy=140,R=115,r=18;
+  const LL='ABCDEFGHIJKLMNOPQRSTUVWXYZ',n=26;
+  const col={correct:'#38B87A',wrong:'#C83060',passed:'#4878D8',pending:'#14141E'};
+  let s='';
+  for(let i=0;i<n;i++){
+    const L=LL[i],ang=(i/n)*2*Math.PI-Math.PI/2,x=cx+R*Math.cos(ang),y=cy+R*Math.sin(ang);
+    const st2=letters?.[L]||'pending',c=col[st2]||col.pending,isCur=L===curL;
+    s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}" fill="${c}" stroke="${isCur?'#F0C866':'rgba(212,168,67,.1)'}" stroke-width="${isCur?2.5:1}"/>
+<text x="${x.toFixed(1)}" y="${(y+5).toFixed(1)}" text-anchor="middle" font-size="12" font-family="Oswald,sans-serif" font-weight="700" fill="${st2==='pending'?'rgba(212,168,67,.45)':'#fff'}">${L}</text>`;
+  }
+  svg.innerHTML=s;
+}
+
+function fmtT(s){if(!s&&s!==0)return'—';return Math.floor(s/60)+':'+(s%60+'').padStart(2,'0');}
+function showOv(t,m){document.getElementById('ovTitle').textContent=t;document.getElementById('ovSub').textContent=m;document.getElementById('overlay').style.display='';document.getElementById('wrap').style.display='none';}
+function hideOv(){document.getElementById('overlay').style.display='none';}
+function togglePause(){ws.send(JSON.stringify({action:isPaused?'start_timer':'pause'}));}
+function sendAnswer(){const v=(document.getElementById('ansInput').value||'').trim();if(!v)return;ws.send(JSON.stringify({action:'player_answer',text:v}));document.getElementById('ansInput').value='';}
+function sendPass(){ws.send(JSON.stringify({action:'player_answer',text:'PASA'}));document.getElementById('ansInput').value='';}
+function flash(data){
+  document.querySelectorAll('.flash').forEach(el=>el.remove());
+  if(!data.result)return;
+  const msgs={correct:'✓ ¡Correcto!',wrong:`✗ ${data.letter||''}: ${data.answer||''}`,passed:`→ Pasa — ${data.answer||''}`};
+  const d=document.createElement('div');
+  d.className='flash '+data.result;
+  d.textContent=msgs[data.result]||data.result;
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),2600);
+}
+init();
+</script>
+</body>
+</html>

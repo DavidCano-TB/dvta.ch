@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>{TITULO}</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--glass:rgba(255,255,255,.04);--border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);--text:#EAE6D8;--text2:#9A9070;--text3:#504430;--green:#38B87A;--red:#C83060;--blue:#4878D8;--orange:#E07840;--r:12px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:15px;}
+body{background:var(--noir);color:var(--text);font-family:'DM Mono',monospace;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:24px;}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(4,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;height:52px;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);}
+.hdrLogo{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);flex:1;}
+.wrap{max-width:1100px;margin:0 auto;padding:20px;}
+.hero{background:linear-gradient(135deg,var(--n2),var(--n3));border:1px solid var(--border2);border-radius:var(--r);padding:32px;margin-bottom:24px;text-align:center;}
+.heroTitle{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold2);margin-bottom:16px;line-height:1.2;}
+.heroDesc{font-size:.92rem;color:var(--text2);line-height:1.7;margin-bottom:20px;max-width:700px;margin-left:auto;margin-right:auto;}
+.heroInfo{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;font-size:.75rem;color:var(--text3);}
+.heroInfo span{display:flex;align-items:center;gap:6px;background:rgba(212,168,67,.06);padding:6px 12px;border-radius:6px;}
+.statsBar{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:28px;}
+.statBox{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;transition:all .3s;}
+.statBox:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(212,168,67,.1);}
+.statVal{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold2);margin-bottom:6px;}
+.statLbl{font-size:.68rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;}
+.badge{display:inline-block;padding:5px 12px;border-radius:6px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.badge.abierta{background:rgba(56,184,122,.18);color:var(--green);border:1px solid rgba(56,184,122,.4);}
+.badge.cerrada{background:rgba(72,120,216,.18);color:var(--blue);border:1px solid rgba(72,120,216,.4);}
+.badge.finalizada{background:rgba(200,48,96,.18);color:var(--red);border:1px solid rgba(200,48,96,.4);}
+.badge.cancelada{background:rgba(90,106,128,.18);color:var(--text3);border:1px solid rgba(90,106,128,.4);}
+.section{background:var(--n2);border:1px solid var(--border2);border-radius:var(--r);padding:24px;margin-bottom:20px;}
+.sectionTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.optionsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px;}
+.optCard{background:var(--n3);border:3px solid var(--border);border-radius:var(--r);padding:22px;cursor:pointer !important;transition:all .3s;position:relative;overflow:hidden;user-select:none;}
+.optCard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gold);transform:scaleX(0);transition:transform .3s;z-index:1;}
+.optCard:hover{border-color:var(--gold);box-shadow:0 0 28px rgba(212,168,67,.2);transform:translateY(-3px);}
+.optCard:hover::before{transform:scaleX(1);}
+.optCard.selected{border:5px solid #D4A843 !important;background:rgba(212,168,67,.25) !important;box-shadow:0 0 40px rgba(212,168,67,.6) !important;transform:scale(1.05) !important;}
+.optCard.selected::before{transform:scaleX(1) !important;background:#F0C866 !important;height:8px !important;}
+.optCard.winner{border-color:var(--green);background:rgba(56,184,122,.12);box-shadow:0 0 32px rgba(56,184,122,.3);}
+.optCard.winner::before{background:var(--green);transform:scaleX(1);}
+.optIcon{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 14px;box-shadow:0 4px 12px rgba(0,0,0,.3);}
+.optName{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--text);margin-bottom:14px;text-align:center;font-weight:700;}
+.optStats{display:flex;flex-direction:column;gap:6px;font-size:.72rem;padding-top:12px;border-top:1px solid var(--border);}
+.optStat{display:flex;justify-content:space-between;align-items:center;}
+.optStatLbl{color:var(--text3);}
+.optStatVal{color:var(--gold2);font-weight:600;}
+.betPanel{background:linear-gradient(135deg,var(--n2),var(--n3));border:2px solid var(--border2);border-radius:var(--r);padding:28px;margin-bottom:24px;}
+.betTitle{font-size:1.2rem;color:var(--gold2);margin-bottom:18px;text-align:center;}
+.betInput{width:100%;background:rgba(212,168,67,.08);border:1px solid var(--border2);border-radius:var(--r);padding:14px;color:var(--text);font-family:'DM Mono',monospace;font-size:1.1rem;outline:none;margin-bottom:14px;text-align:center;}
+.betInput:focus{border-color:var(--gold);background:rgba(212,168,67,.14);box-shadow:0 0 12px rgba(212,168,67,.2);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid;border-radius:var(--r);padding:12px 20px;font-size:.85rem;font-family:'DM Mono',monospace;letter-spacing:.05em;transition:all .2s;cursor:pointer;font-weight:600;width:100%;}
+.btnG{background:rgba(56,184,122,.15);border-color:rgba(56,184,122,.5);color:var(--green);}
+.btnG:hover{background:rgba(56,184,122,.25);border-color:var(--green);box-shadow:0 0 16px rgba(56,184,122,.3);}
+.btnG:disabled{opacity:.4;cursor:not-allowed;}
+.btnO{background:rgba(212,168,67,.12);border-color:rgba(212,168,67,.4);color:var(--gold2);}
+.btnO:hover{background:rgba(212,168,67,.22);box-shadow:0 0 16px rgba(212,168,67,.2);}
+.btnD{background:rgba(200,48,96,.15);border-color:rgba(200,48,96,.4);color:#e05080;}
+.btnD:hover{background:rgba(200,48,96,.25);}
+.btnN{background:rgba(90,106,128,.15);border-color:rgba(90,106,128,.4);color:var(--text2);}
+.btnN:hover{background:rgba(90,106,128,.25);border-color:rgba(90,106,128,.6);}
+.apuestasList{margin-top:16px;}
+.apuestaItem{background:var(--n3);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;transition:all .2s;}
+.apuestaItem:hover{border-color:var(--gold);background:rgba(212,168,67,.05);}
+.apuestaItem.ganador{border-color:var(--green);background:rgba(56,184,122,.08);}
+.apuestaUser{font-size:.88rem;color:var(--text);font-weight:600;}
+.apuestaOpt{font-size:.74rem;color:var(--text2);margin-top:3px;}
+.apuestaCant{font-size:.95rem;color:var(--gold2);font-weight:700;}
+.apuestaGanancia{font-size:.8rem;color:var(--green);margin-top:3px;}
+.distBar{height:32px;background:var(--n4);border-radius:8px;overflow:hidden;display:flex;margin-bottom:12px;box-shadow:inset 0 2px 4px rgba(0,0,0,.3);}
+.distSeg{display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#fff;font-weight:700;transition:all .3s;cursor:pointer;}
+.distSeg:hover{filter:brightness(1.2);}
+.resultPanel{background:linear-gradient(135deg,rgba(56,184,122,.15),rgba(56,184,122,.08));border:2px solid var(--green);border-radius:var(--r);padding:28px;margin-bottom:24px;text-align:center;}
+.resultTitle{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--green);margin-bottom:12px;}
+.resultWinner{font-size:1.1rem;color:var(--text);margin-bottom:8px;}
+.resultBote{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--gold2);margin:16px 0;}
+.winnersList{background:var(--n3);border:1px solid var(--green);border-radius:var(--r);padding:20px;margin-top:16px;}
+.winnerItem{display:flex;justify-content:space-between;padding:12px;background:rgba(56,184,122,.08);border-radius:8px;margin-bottom:8px;}
+.empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:.9rem;}
+@keyframes slideIn{from{opacity:0;transform:translateX(100px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOut{to{opacity:0;transform:translateX(100px)}}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <span style="font-size:1.3rem">🎲</span>
+  <div class="hdrLogo">{TITULO}</div>
+  <span class="badge" id="estadoBadge">abierta</span>
+</div>
+
+<div class="wrap">
+  <div class="hero">
+    <div class="heroTitle">{TITULO}</div>
+    <div class="heroDesc">{DESCRIPCION}</div>
+    <div class="heroInfo" id="heroInfo">
+      <span>📅 Evento: <strong>{FECHA_EVENTO}</strong></span>
+      <span>⏰ Cierre: <strong>{FECHA_LIMITE}</strong></span>
+      <span>🎯 Tipo: <strong>{TIPO}</strong></span>
+    </div>
+  </div>
+
+  <!-- Estadísticas Generales de la Porra -->
+  <div class="statsBar" id="statsGenerales">
+    <div class="statBox">
+      <div class="statVal" id="totalBote">0</div>
+      <div class="statLbl">💰 Bote Total (DVDc)</div>
+    </div>
+    <div class="statBox">
+      <div class="statVal" id="totalVotos">0</div>
+      <div class="statLbl">👥 Total Votos</div>
+    </div>
+  </div>
+
+  <!-- Botón de Cerrar para DVD -->
+  <div id="dvdCloseButton" style="display:none;margin-bottom:20px;">
+    <button class="btn btnO" onclick="cerrarPorraDirecto()" style="width:auto;padding:12px 24px;">
+      🔒 Cerrar Porra
+    </button>
+  </div>
+
+  <div id="resultPanel" style="display:none;"></div>
+
+  <div class="section">
+    <div class="sectionTitle">📊 Opciones de Apuesta</div>
+    <div class="distBar" id="distBar"></div>
+    <div class="optionsGrid" id="optionsGrid">{OPCIONES_HTML}</div>
+  </div>
+
+  <div id="betPanel" class="betPanel">
+    <div class="betTitle">💰 Realizar Apuesta</div>
+    <div style="margin-bottom:14px;font-size:.8rem;color:var(--text2);text-align:center;">
+      Selecciona una opción arriba e introduce la cantidad a apostar.<br>
+      <strong style="color:var(--gold2);">✨ Puedes apostar múltiples veces en diferentes opciones</strong>
+    </div>
+    <input type="number" class="betInput" id="betAmount" placeholder="Cantidad en DVDcoins" min="1" step="1">
+    <button class="btn btnG" id="betBtn" onclick="realizarApuesta()" disabled>💸 Apostar Ahora</button>
+  </div>
+
+  <!-- PANEL DE ESTADÍSTICAS DETALLADAS - SOLO DVD -->
+  <div id="dvdStatsPanel" style="display:none;">
+    <div class="section" style="background:linear-gradient(135deg,var(--n2),var(--n3));border:2px solid var(--gold);">
+      <div class="sectionTitle" style="color:var(--gold2);">👑 ESTADÍSTICAS DETALLADAS (Solo DVD)</div>
+      
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:20px;">
+        <div style="background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:1.5rem;color:var(--gold2);font-weight:700;" id="dvdTotalApostantes">0</div>
+          <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">TOTAL APOSTANTES</div>
+        </div>
+        <div style="background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:1.5rem;color:var(--gold2);font-weight:700;" id="dvdTotalApuestas">0</div>
+          <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">TOTAL APUESTAS</div>
+        </div>
+        <div style="background:var(--n4);border:1px solid var(--orange);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:1.5rem;color:var(--orange);font-weight:700;" id="dvdComision">0</div>
+          <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">COMISIÓN</div>
+        </div>
+        <div style="background:var(--n4);border:1px solid var(--green);border-radius:8px;padding:14px;text-align:center;">
+          <div style="font-size:1.5rem;color:var(--green);font-weight:700;" id="dvdBoteNeto">0</div>
+          <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">BOTE NETO</div>
+        </div>
+      </div>
+
+      <div style="background:var(--n4);border:1px solid var(--border2);border-radius:8px;padding:16px;">
+        <div style="font-size:.9rem;color:var(--gold2);font-weight:700;margin-bottom:12px;">📋 TODAS LAS APUESTAS</div>
+        <div id="dvdAllBets" style="max-height:500px;overflow-y:auto;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const PORRA_ID={PORRA_ID};
+const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const ps=new URLSearchParams(location.search);
+const tok=ps.get('token')||localStorage.getItem('dvd_token')||'';
+let me=null,selectedOpt=null,porraData=null;
+
+async function init(){
+  if(!tok){alert('Sin sesión. Abre desde la aplicación.');return;}
+  try{
+    const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(r.ok)me=await r.json();
+  }catch(_){}
+  
+  loadData();
+  setInterval(loadData,10000);
+}
+
+async function loadData(){
+  try{
+    const r=await fetch(`/api/porras/`+PORRA_ID,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(!r.ok){
+      const errorText=await r.text();
+      console.error('Error loading porra:',errorText);
+      document.body.innerHTML=`<div style="padding:40px;text-align:center;color:var(--text);">
+        <h1 style="color:var(--red);">Error al cargar la porra</h1>
+        <p>${errorText}</p>
+        <button onclick="location.href='/apuestas?token=${tok}'" style="margin-top:20px;padding:10px 20px;background:var(--gold);border:none;border-radius:8px;cursor:pointer;">Volver a Apuestas</button>
+      </div>`;
+      return;
+    }
+    porraData=await r.json();
+    render();
+  }catch(e){
+    console.error('Error loading data:',e);
+    document.body.innerHTML=`<div style="padding:40px;text-align:center;color:var(--text);">
+      <h1 style="color:var(--red);">Error de conexión</h1>
+      <p>No se pudo cargar la porra. Por favor, intenta de nuevo.</p>
+      <button onclick="location.reload()" style="margin-top:20px;padding:10px 20px;background:var(--gold);border:none;border-radius:8px;cursor:pointer;">Reintentar</button>
+      <button onclick="location.href='/apuestas?token=${tok}'" style="margin-top:20px;margin-left:10px;padding:10px 20px;background:var(--n3);border:none;border-radius:8px;cursor:pointer;">Volver</button>
+    </div>`;
+  }
+}
+
+function render(){
+  try{
+    if(!porraData||!porraData.porra){
+      console.error('No porra data available');
+      return;
+    }
+    
+    const p=porraData.porra;
+    const stats=porraData.estadisticas;
+    const apuestas=porraData.apuestas;
+    const isDvd = porraData.is_dvd || false;
+    
+    if(!p||!stats||!apuestas){
+      console.error('Incomplete porra data');
+      return;
+    }
+    
+    // Mostrar panel de estadísticas detalladas solo para DVD
+    if(isDvd){
+      document.getElementById('dvdStatsPanel').style.display='';
+      renderDvdStats(stats, apuestas, p);
+    }else{
+      document.getElementById('dvdStatsPanel').style.display='none';
+    }
+    
+    document.getElementById('estadoBadge').textContent=traducirEstado(p.estado);
+    document.getElementById('estadoBadge').className='badge '+p.estado;
+    
+    document.getElementById('totalBote').textContent=stats.total_bote.toFixed(1);
+    
+    // Calcular total de votos (apostadores únicos)
+    const totalVotos = new Set(apuestas.map(a=>a.username)).size;
+    document.getElementById('totalVotos').textContent=totalVotos;
+    
+    // Mostrar botón de cerrar solo para DVD si la porra está abierta
+    if(isDvd && p.estado === 'abierta'){
+      document.getElementById('dvdCloseButton').style.display='';
+    }else{
+      document.getElementById('dvdCloseButton').style.display='none';
+    }
+    
+    // VERIFICAR DEADLINE EN TIEMPO REAL
+    let porraCerrada = p.estado === 'cerrada' || p.estado === 'finalizada' || p.estado === 'cancelada';
+    let mensajeCierre = '';
+    
+    // Si está "abierta", verificar si el deadline ya pasó
+    if(p.estado === 'abierta' && p.fecha_limite){
+      try{
+        const ahora = new Date();
+        const limite = new Date(p.fecha_limite);
+        
+        if(ahora >= limite){
+          porraCerrada = true;
+          mensajeCierre = 'La fecha límite ha pasado. Las apuestas están cerradas.';
+          console.log('⏰ Deadline pasado, bloqueando apuestas');
+        }
+      }catch(e){
+        console.error('Error verificando deadline:', e);
+      }
+    }
+    
+    // Determinar mensaje según estado
+    if(!mensajeCierre){
+      if(p.estado === 'cerrada'){
+        mensajeCierre = 'Esperando resolución del resultado.';
+      }else if(p.estado === 'finalizada'){
+        mensajeCierre = 'La porra ha sido finalizada.';
+      }else if(p.estado === 'cancelada'){
+        mensajeCierre = 'La porra ha sido cancelada.';
+      }
+    }
+    
+    // Mostrar panel de apuestas solo si está abierta Y no pasó el deadline
+    const betPanel = document.getElementById('betPanel');
+    if(porraCerrada){
+      // Mostrar mensaje de porra cerrada
+      betPanel.innerHTML = `
+        <div class="betTitle">⏰ Apuestas Cerradas</div>
+        <div style="text-align:center;padding:20px;color:var(--text2);font-size:.9rem;">
+          <p style="margin-bottom:10px;">Esta porra ya no acepta más apuestas.</p>
+          <p style="color:var(--text3);font-size:.8rem;">${mensajeCierre}</p>
+        </div>
+      `;
+      betPanel.style.display = '';
+    }else{
+      // Restaurar panel de apuestas original si está abierta
+      betPanel.innerHTML = `
+        <div class="betTitle">💰 Realizar Apuesta</div>
+        <div style="margin-bottom:14px;font-size:.8rem;color:var(--text2);text-align:center;">
+          Selecciona una opción arriba e introduce la cantidad a apostar.<br>
+          <strong style="color:var(--gold2);">✨ Puedes apostar múltiples veces en diferentes opciones</strong>
+        </div>
+        <input type="number" class="betInput" id="betAmount" placeholder="Cantidad en DVDcoins" min="1" step="1">
+        <button class="btn btnG" id="betBtn" onclick="realizarApuesta()" disabled>💸 Apostar Ahora</button>
+      `;
+      betPanel.style.display = '';
+    }
+    
+    // Result panel - SOLO mostrar opción ganadora para usuarios no-DVD
+    if(p.estado==='finalizada'&&p.resultado){
+      const optName=p.opciones.find(o=>o.valor===p.resultado)?.nombre||p.resultado;
+      
+      let html=`<div class="resultPanel">
+        <div class="resultTitle">🏆 ¡Porra Finalizada!</div>
+        <div class="resultWinner">Opción Ganadora: <strong>${e(optName)}</strong></div>`;
+      
+      if(isDvd){
+        // Solo DVD ve el bote total y los ganadores
+        const ganadores=apuestas.filter(a=>a.opcion===p.resultado);
+        html+=`<div class="resultBote">${stats.total_bote.toFixed(1)} DVDc</div>
+          <div style="font-size:.85rem;color:var(--text2);">Repartidos entre ${ganadores.length} ganador${ganadores.length!==1?'es':''}</div>`;
+        
+        if(ganadores.length>0){
+          html+=`<div class="winnersList"><div style="font-size:.9rem;color:var(--text2);margin-bottom:12px;font-weight:600;">💎 Ganadores:</div>`;
+          ganadores.forEach(g=>{
+            html+=`<div class="winnerItem">
+              <span style="color:var(--text);font-weight:600;">@${e(g.username)}</span>
+              <span style="color:var(--green);font-weight:700;">${g.ganancia.toFixed(1)} DVDc</span>
+            </div>`;
+          });
+          html+=`</div>`;
+        }
+      }
+      
+      html+=`</div>`;
+      document.getElementById('resultPanel').innerHTML=html;
+      document.getElementById('resultPanel').style.display='';
+    }else{
+      document.getElementById('resultPanel').style.display='none';
+    }
+    
+    // Distribution bar
+    const colors=['#38B87A','#4878D8','#E07840','#D4A843','#C83060','#6B9BD4','#E05260','#8BB3E8'];
+    let barHtml='';
+    let i=0;
+    for(let opt in stats.distribucion){
+      const d=stats.distribucion[opt];
+      if(d.porcentaje>0){
+        barHtml+=`<div class="distSeg" style="width:${d.porcentaje}%;background:${colors[i%colors.length]}" title="${e(d.nombre)}: ${d.porcentaje.toFixed(1)}%">${d.porcentaje>8?d.porcentaje.toFixed(0)+'%':''}</div>`;
+        i++;
+      }
+    }
+    document.getElementById('distBar').innerHTML=barHtml||'<div style="text-align:center;padding:8px;color:var(--text3);">Sin apuestas aún</div>';
+    
+    // Update options stats - Mostrar votos para TODOS los usuarios
+    for(let opt in stats.distribucion){
+      const d=stats.distribucion[opt];
+      const el=document.getElementById('stats_'+opt);
+      if(el){
+        // TODOS los usuarios ven la cantidad de votos
+        let html = `<div class="optStat"><span class="optStatLbl">👥 Votos:</span><span class="optStatVal" style="font-size:1.1rem;color:var(--gold2);">${d.count}</span></div>`;
+        html += `<div class="optStat"><span class="optStatLbl">% del Bote:</span><span class="optStatVal">${d.porcentaje.toFixed(1)}%</span></div>`;
+        
+        if(isDvd){
+          // DVD ve estadísticas adicionales
+          const ganancia_por_dvdc=d.total>0?(stats.total_bote/d.total):0;
+          const roi_potencial=d.total>0?((ganancia_por_dvdc-1)*100):0;
+          
+          html+=`<div class="optStat"><span class="optStatLbl">Total Apostado:</span><span class="optStatVal">${d.total.toFixed(1)} DVDc</span></div>
+            <div class="optStat"><span class="optStatLbl">Cuota:</span><span class="optStatVal">${d.cuota_implicita>0?d.cuota_implicita.toFixed(2)+'x':'-'}</span></div>
+            <div class="optStat"><span class="optStatLbl">Ganancia/DVDc:</span><span class="optStatVal">${ganancia_por_dvdc>0?ganancia_por_dvdc.toFixed(2)+' DVDc':'-'}</span></div>
+            <div class="optStat"><span class="optStatLbl">ROI Potencial:</span><span class="optStatVal" style="color:${roi_potencial>=0?'var(--green)':'var(--red)'}">${roi_potencial>0?'+':''}${roi_potencial.toFixed(1)}%</span></div>`;
+        }
+        
+        el.innerHTML = html;
+      }
+      
+      // Mark winner
+      const card=document.querySelector(`[data-valor="${opt}"]`);
+      if(card&&p.estado==='finalizada'&&p.resultado===opt){
+        card.classList.add('winner');
+      }
+    }
+    
+  }catch(e){
+    console.error('Error rendering porra:',e);
+  }
+}
+
+function renderDvdStats(stats, apuestas, porra){
+  // Estadísticas generales
+  const totalApostantes = new Set(apuestas.map(a=>a.username)).size;
+  const comision = stats.total_bote * porra.comision;
+  const boteNeto = stats.total_bote - comision;
+  
+  document.getElementById('dvdTotalApostantes').textContent = totalApostantes;
+  document.getElementById('dvdTotalApuestas').textContent = apuestas.length;
+  document.getElementById('dvdComision').textContent = comision.toFixed(1);
+  document.getElementById('dvdBoteNeto').textContent = boteNeto.toFixed(1);
+  
+  // Lista de todas las apuestas ordenadas por fecha (más recientes primero)
+  const sortedBets = [...apuestas].sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+  
+  let html = '';
+  if(sortedBets.length === 0){
+    html = '<div style="text-align:center;padding:20px;color:var(--text3);">No hay apuestas aún</div>';
+  }else{
+    sortedBets.forEach(a=>{
+      const fecha = new Date(a.fecha).toLocaleString('es-ES', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      const statusIcon = a.pagado ? (a.ganancia > a.cantidad ? '🏆' : '❌') : '⏳';
+      const statusColor = a.pagado ? (a.ganancia > a.cantidad ? 'var(--green)' : 'var(--red)') : 'var(--blue)';
+      const optName = porra.opciones.find(o=>o.valor===a.opcion)?.nombre || a.opcion;
+      
+      html += `
+        <div style="background:var(--n2);padding:12px 16px;margin-bottom:8px;border-radius:8px;border-left:4px solid ${statusColor};">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
+            <div>
+              <span style="font-size:.9rem;color:var(--text);font-weight:700;">${statusIcon} ${e(a.username)}</span>
+              <span style="font-size:.72rem;color:var(--text3);margin-left:10px;">📅 ${fecha}</span>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:.95rem;color:var(--gold2);font-weight:700;">${a.cantidad.toFixed(1)} DVDc</div>
+              ${a.pagado?`<div style="font-size:.72rem;color:${statusColor};font-weight:600;">Paid: ${a.ganancia.toFixed(1)} DVDc</div>`:'<div style="font-size:.72rem;color:var(--text3);">Pending</div>'}
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <div style="background:var(--glass);padding:6px 12px;border-radius:6px;font-size:.75rem;">
+              <span style="color:var(--text3);">Opción:</span>
+              <span style="color:var(--gold2);font-weight:600;margin-left:4px;">${e(optName)}</span>
+            </div>
+            ${a.pagado ? `
+              <div style="background:${a.ganancia > a.cantidad ? 'rgba(56,184,122,.12)' : 'rgba(200,48,96,.12)'};padding:6px 12px;border-radius:6px;font-size:.75rem;border:1px solid ${a.ganancia > a.cantidad ? 'rgba(56,184,122,.3)' : 'rgba(200,48,96,.3)'};">
+                <span style="color:var(--text3);">Resultado:</span>
+                <span style="color:${statusColor};font-weight:700;margin-left:4px;">${a.ganancia > a.cantidad ? 'GANÓ' : 'PERDIÓ'}</span>
+                <span style="color:${statusColor};font-weight:600;margin-left:6px;">${(a.ganancia - a.cantidad >= 0 ? '+' : '')}${(a.ganancia - a.cantidad).toFixed(1)} DVDc</span>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    });
+  }
+  
+  document.getElementById('dvdAllBets').innerHTML = html;
+}
+
+// Función para traducir estados
+function traducirEstado(estado){
+  const traducciones = {
+    'abierta': 'Abierta',
+    'cerrada': 'Cerrada',
+    'finalizada': 'Finalizada',
+    'cancelada': 'Cancelada'
+  };
+  return traducciones[estado] || estado;
+}
+
+function selectOption(valor){
+  console.log('🎯 Opción seleccionada:', valor);
+  selectedOpt=valor;
+  
+  // Remover selección de todas las tarjetas
+  document.querySelectorAll('.optCard').forEach(c=>{
+    c.classList.remove('selected');
+    c.style.border='3px solid rgba(212,168,67,.13)';
+    c.style.background='var(--n3)';
+    c.style.boxShadow='none';
+    c.style.transform='none';
+  });
+  
+  // Seleccionar la tarjeta clickeada
+  const card=document.querySelector(`[data-valor="${valor}"]`);
+  if(card){
+    card.classList.add('selected');
+    // Aplicar estilos inline para garantizar visibilidad
+    card.style.border='5px solid #D4A843';
+    card.style.background='rgba(212,168,67,.25)';
+    card.style.boxShadow='0 0 40px rgba(212,168,67,.6)';
+    card.style.transform='scale(1.05)';
+    card.scrollIntoView({behavior:'smooth',block:'nearest'});
+    console.log('✅ Tarjeta marcada como seleccionada');
+    console.log('✅ Estilos inline aplicados');
+  }else{
+    console.error('❌ No se encontró la tarjeta con valor:', valor);
+  }
+  
+  // Activar botón
+  const btn=document.getElementById('betBtn');
+  if(btn){
+    btn.disabled=false;
+    btn.style.opacity='1';
+    btn.style.cursor='pointer';
+    console.log('✅ Botón de apuesta activado');
+  }
+}
+
+async function realizarApuesta(){
+  const cantidad=parseFloat(document.getElementById('betAmount').value);
+  if(!cantidad||cantidad<=0){alert('Introduce una cantidad válida');return;}
+  if(cantidad<1){alert('La apuesta mínima es 1 DVDcoin');return;}
+  if(cantidad>10000){alert('La apuesta máxima es 10000 DVDcoins');return;}
+  if(!selectedOpt){alert('Selecciona una opción');return;}
+  
+  const optName=porraData.porra.opciones.find(o=>o.valor===selectedOpt)?.nombre;
+  if(!confirm(`¿Apostar ${cantidad} DVDcoins a "${optName}"?`))return;
+  
+  const btn=document.getElementById('betBtn');
+  btn.disabled=true;
+  btn.textContent='Apostando...';
+  
+  console.log('🎲 Realizando apuesta:', {porra_id: PORRA_ID, opcion: selectedOpt, cantidad});
+  
+  try{
+    const r=await fetch('/api/porras/apostar',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+      body:JSON.stringify({porra_id:PORRA_ID,opcion:selectedOpt,cantidad})
+    });
+    
+    console.log('📡 Respuesta del servidor:', r.status, r.statusText);
+    
+    if(r.ok){
+      const data=await r.json();
+      console.log('✅ Apuesta exitosa:', data);
+      showNotification('¡Apuesta registrada correctamente!','success');
+      if(data.nuevo_balance!==undefined){
+        showNotification(`Nuevo saldo: ${data.nuevo_balance.toFixed(1)} DVDc`,'info');
+      }
+      
+      // Limpiar selección y campo para permitir nueva apuesta
+      selectedOpt=null;
+      document.getElementById('betAmount').value='';
+      document.querySelectorAll('.optCard').forEach(c=>{
+        c.classList.remove('selected');
+        c.style.border='';
+        c.style.background='';
+        c.style.boxShadow='';
+        c.style.transform='';
+      });
+      
+      // Recargar datos
+      setTimeout(()=>{
+        loadData();
+        // Reactivar botón después de recargar
+        btn.disabled=false;
+        btn.textContent='💸 Apostar Ahora';
+      },500);
+    }else{
+      const contentType=r.headers.get('content-type');
+      if(contentType&&contentType.includes('application/json')){
+        const err=await r.json();
+        console.error('❌ Error del servidor:', err);
+        showNotification(err.detail||'Error al apostar','error');
+      }else{
+        const text=await r.text();
+        console.error('❌ Respuesta no JSON:', text);
+        showNotification('Error del servidor: '+r.status,'error');
+      }
+      btn.disabled=false;
+      btn.textContent='💸 Apostar Ahora';
+    }
+  }catch(e){
+    console.error('❌ Error de conexión:', e);
+    showNotification('Error de conexión: '+e.message,'error');
+    btn.disabled=false;
+    btn.textContent='💸 Apostar Ahora';
+  }
+}
+
+function showNotification(msg,type){
+  const notif=document.createElement('div');
+  notif.style.cssText=`position:fixed;top:80px;right:20px;z-index:1000;padding:16px 24px;border-radius:8px;font-size:.85rem;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,.3);animation:slideIn .3s ease;`;
+  if(type==='success'){
+    notif.style.background='rgba(56,184,122,.95)';
+    notif.style.color='#fff';
+    notif.textContent='✓ '+msg;
+  }else if(type==='error'){
+    notif.style.background='rgba(200,48,96,.95)';
+    notif.style.color='#fff';
+    notif.textContent='✗ '+msg;
+  }else{
+    notif.style.background='rgba(107,155,212,.95)';
+    notif.style.color='#fff';
+    notif.textContent='ℹ '+msg;
+  }
+  document.body.appendChild(notif);
+  setTimeout(()=>{
+    notif.style.animation='slideOut .3s ease';
+    setTimeout(()=>notif.remove(),300);
+  },3000);
+}
+
+async function cerrarPorraDirecto(){
+  if(!confirm('¿Cerrar esta porra? Ya no se podrán realizar más apuestas.')){
+    return;
+  }
+  
+  try{
+    const r=await fetch(`/api/porras/cerrar/${PORRA_ID}`,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
+    });
+    
+    if(r.ok){
+      showNotification('Porra cerrada correctamente','success');
+      setTimeout(()=>loadData(),500);
+    }else{
+      const err=await r.json();
+      showNotification(err.detail||'Error al cerrar la porra','error');
+    }
+  }catch(e){
+    showNotification('Error de conexión: '+e.message,'error');
+  }
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+preguntame todo lo necesario para que te de infos y hagas que git fucione debidamente
+
+elimina todos los archivos no necesarios para que el proyecto entero funcione
+
+elimina todo el codigo innecesario para que el proyecto funcione
+
+crea un archivo entero con el juego entero pero todo traducido a java, una estructura optima para el desarrollo y todo funcional y sin errores, de manera que pueda susbstituir todo por el nuevo proyecto. al final, tendras que decirme como hacerlo y como hacer que en vez de ejecutarse
+el juego presente al inicio de windows, lo haga el nuevo en java. ocupate de que en el codigo hayan todas
+las instalaciones necesarias de todo si faltasen, asi como las updates de todo a cada arranque. 
+todo debe funcionar igual o mejor. 
+
+dime como puedo gestionar el proyecto entero a distancia, tal vez que al desplegarlo al git main se ejecute, 
+quiero poder reiniciarlo, modificarlo y todo como ahora en el pc donde se alverga, pero de manera optima y a distancia, 
+implementa un ci cd de manera optima sin romper nada. 
+
+
+mejora la funcion borrar mensajes propios y de otros para dvd y solo propios para los otros miembros
+
+pon la hora a los mensajes
+pon la opcion de ampliar un video de una persona o toda la sala conectada (todas las camaras ) a toda la pantalla del mobil o pc y poder volver a otra vista
+despues, actua como un profesional y que esa funcion tenga sentido y mejore la visibilidad. haz que en esa pantalla, los 
+mensajes se vean sobre la foto, solo los dos ultimos mensajes con transparencias pero que sea legible. 
+
+
+
+
+preguntame todo lo necesario para que te de infos y hagas que git fucione debidamente
+
+
+
+
+
+poder leer los cuentos, ya no se leen
+
+
+
+
+
+
+
+crea un archivo entero con el juego entero pero todo traducido a java, una estructura optima para el desarrollo y todo funcional y sin errores, de manera que pueda susbstituir todo por el nuevo proyecto. al final, tendras que decirme como hacerlo y como hacer que en vez de ejecutarse
+el juego presente al inicio de windows, lo haga el nuevo en java. ocupate de que en el codigo hayan todas
+las instalaciones necesarias de todo si faltasen, asi como las updates de todo a cada arranque. 
+todo debe funcionar igual o mejor. 
+
+
+ni los cuentos ni las imagenes se ven en la galeria, arreglalo, que todo se pueda ver y abrir e interactuar
+
+--------------
+
+
+hay que las videollamadas funcionen a pantalla entera, tanto todas las camaras como pinchar solo una, que el chat se vea abajo de los videos si esta en pantalla completa
+haz que el texto del chat de videollamada para escribir sea mucho mas grande y el boton de enviar mucho mas pequeno. actua como un experto ui ux, programador y haz que todas las 
+funcionalidades sean perfectas nivel utilizacion. 
+pon las horas de envio de mensajes en todos los chats y que se puedan borrar los mensajes, tanto en video call como en el chat simple personal y grupal
+
+
+
+
+

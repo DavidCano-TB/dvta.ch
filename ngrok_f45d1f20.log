@@ -1,0 +1,2 @@
+t=2026-05-27T09:05:00+0200 lvl=warn msg="ngrok config file found at both XDG and legacy locations, using XDG location" xdg_path=C:\\Users\\PC\\AppData\\Local\\ngrok\\ngrok.yml legacy_path=C:\\Users\\PC\\.ngrok2\\ngrok.yml
+t=2026-05-27T12:33:59+0200 lvl=warn msg="Stopping forwarder" name=command_line acceptErr="failed to accept connection: Listener closed"

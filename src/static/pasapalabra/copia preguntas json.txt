@@ -1,0 +1,3431 @@
+{
+  "A": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Capital de los PaÃ­ses Bajos, ciudad de los canales y el Rijksmuseum",
+      "respuesta": "AMSTERDAM"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Capital de TurquÃ­a, diferente a la ciudad mÃ¡s populosa del paÃ­s",
+      "respuesta": "ANKARA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Mar entre Italia y los Balcanes, parte del MediterrÃ¡neo",
+      "respuesta": "ADRIÃTICO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Cordillera de Europa con el Mont Blanc como cima mÃ¡s alta",
+      "respuesta": "ALPES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Continente polar del sur, el mÃ¡s frÃ­o y ventoso del planeta",
+      "respuesta": "ANTÃRTIDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: PaÃ­s del CÃ¡ucaso cuya capital es BakÃº, rico en petrÃ³leo",
+      "respuesta": "AZERBAIYÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Caudillo huno del siglo V conocido como el azote de Dios",
+      "respuesta": "ATILA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Ciudad egipcia donde se alzÃ³ la gran biblioteca de la AntigÃ¼edad",
+      "respuesta": "ALEJANDRÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Sabio griego que formulÃ³ el principio de la flotaciÃ³n",
+      "respuesta": "ARQUÃMEDES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Primera mujer en volar en solitario sobre el ocÃ©ano AtlÃ¡ntico",
+      "respuesta": "AMELIA EARHART"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Joven judÃ­a que escribiÃ³ un diario escondida durante la Segunda Guerra Mundial",
+      "respuesta": "ANA FRANK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: En gramÃ¡tica, categorÃ­a invariable que modifica al verbo o al adjetivo",
+      "respuesta": "ADVERBIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: En gramÃ¡tica, categorÃ­a variable que califica o determina al nombre",
+      "respuesta": "ADJETIVO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Figura retÃ³rica que repite sonidos consonÃ¡nticos en palabras cercanas",
+      "respuesta": "ALITERACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: SupresiÃ³n de sonidos al final de una palabra, como gran de grande",
+      "respuesta": "APÃ“COPE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Figura retÃ³rica que suprime conjunciones en una enumeraciÃ³n para dar rapidez",
+      "respuesta": "ASÃNDETON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Verbo que ayuda a conjugar a otros, como haber o ser en espaÃ±ol",
+      "respuesta": "AUXILIAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Tipo de rima que solo coincide en vocales desde la Ãºltima sÃ­laba tÃ³nica",
+      "respuesta": "ASONANCIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Figura retÃ³rica que opone dos ideas contrarias en una misma frase",
+      "respuesta": "ANTÃTESIS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Palabra o expresiÃ³n anticuada que ya no se usa en la lengua viva",
+      "respuesta": "ARCAÃSMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Sigla que forma una palabra pronunciable, como ONU u OTAN",
+      "respuesta": "ACRÃ“NIMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: ProposiciÃ³n evidente por sÃ­ misma que no requiere demostraciÃ³n",
+      "respuesta": "AXIOMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: NarraciÃ³n breve de un hecho curioso o gracioso sobre alguien conocido",
+      "respuesta": "ANÃ‰CDOTA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: En inglÃ©s, el logro o resultado conseguido con esfuerzo y dedicaciÃ³n",
+      "respuesta": "ACHIEVEMENT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: En inglÃ©s, el proceso de adaptarse a nuevas condiciones o entornos",
+      "respuesta": "ADAPTATION"
+    }
+  ],
+  "B": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Capital de Serbia, ciudad balcÃ¡nica a orillas del Danubio y el Sava",
+      "respuesta": "BELGRADO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Capital del LÃ­bano, histÃ³ricamente llamada la ParÃ­s de Oriente Medio",
+      "respuesta": "BEIRUT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Capital de Tailandia, la ciudad mÃ¡s populosa del sudeste asiÃ¡tico",
+      "respuesta": "BANGKOK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: PaÃ­s pequeÃ±o de Ãfrica occidental cuya capital es Porto-Novo",
+      "respuesta": "BENÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: PaÃ­s himalayo entre India y China cuya capital es Timbu",
+      "respuesta": "BUTÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: PequeÃ±o estado insular del golfo PÃ©rsico cuya capital es Manama",
+      "respuesta": "BAHRÃ‰IN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Ciudad espaÃ±ola, capital de CataluÃ±a, sede de los Juegos OlÃ­mpicos de 1992",
+      "respuesta": "BARCELONA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Gran isla del PacÃ­fico compartida por Malasia, Indonesia y BrunÃ©i",
+      "respuesta": "BORNEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Mar interior del norte de Europa que baÃ±a Suecia, Finlandia y los paÃ­ses bÃ¡lticos",
+      "respuesta": "BÃLTICO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: RÃ­o asiÃ¡tico que nace en el TÃ­bet y desemboca en el golfo de Bengala",
+      "respuesta": "BRAHMAPUTRA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Compositor alemÃ¡n del Barroco, maestro de la fuga y el contrapunto",
+      "respuesta": "BACH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Escultor italiano del Barroco, autor de la Fuente de los Cuatro RÃ­os de Roma",
+      "respuesta": "BERNINI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Escritor francÃ©s del XIX, autor de La comedia humana con casi cien novelas",
+      "respuesta": "BALZAC"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Escritor italiano medieval, autor del DecamerÃ³n, cien cuentos durante la peste",
+      "respuesta": "BOCCACCIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Dramaturgo alemÃ¡n del XX, creador del teatro Ã©pico y el efecto de distanciamiento",
+      "respuesta": "BRECHT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: FÃ­sico danÃ©s que modelÃ³ la estructura del Ã¡tomo con niveles de energÃ­a cuÃ¡nticos",
+      "respuesta": "BOHR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Escritor ruso autor de El maestro y Margarita, el diablo en el MoscÃº soviÃ©tico",
+      "respuesta": "BULGÃKOV"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Escritora francesa existencialista, autora de El segundo sexo",
+      "respuesta": "BEAUVOIR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Palabra que tiene exactamente dos sÃ­labas, como mesa, libro o perro",
+      "respuesta": "BISÃLABA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Tipo de poesÃ­a que idealiza la vida pastoril y del campo",
+      "respuesta": "BUCÃ“LICA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: En gramÃ¡tica, oraciÃ³n que tiene sujeto y predicado ambos explÃ­citos",
+      "respuesta": "BIMEMBRE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: En inglÃ©s, el comportamiento y las normas de conducta de una persona",
+      "respuesta": "BEHAVIOUR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: En inglÃ©s, la creencia firme en algo sin necesidad de pruebas",
+      "respuesta": "BELIEF"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: En inglÃ©s, el lÃ­mite o frontera que separa dos zonas o territorios",
+      "respuesta": "BOUNDARY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: En inglÃ©s, el presupuesto o cantidad de dinero disponible para un fin",
+      "respuesta": "BUDGET"
+    }
+  ],
+  "C": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s del sudeste asiÃ¡tico cuya capital es Nom Pen, escenario del genocidio jemer",
+      "respuesta": "CAMBOYA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s de Ãfrica central sin salida al mar cuya capital es Yamena",
+      "respuesta": "CHAD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s de AmÃ©rica Central sin ejÃ©rcito cuya capital es San JosÃ©",
+      "respuesta": "COSTA RICA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s de Ãfrica central cuya capital es YaundÃ©, con dos lenguas europeas oficiales",
+      "respuesta": "CAMERÃšN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s insular del Caribe cuya capital es La Habana, famoso por el son y los puros",
+      "respuesta": "CUBA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Capital de Egipto, la ciudad mÃ¡s populosa del mundo Ã¡rabe",
+      "respuesta": "CAIRO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s balcÃ¡nico cuya capital es Zagreb, con extensa costa en el AdriÃ¡tico",
+      "respuesta": "CROACIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Ciudad de Marruecos que da nombre a la famosa pelÃ­cula de Humphrey Bogart",
+      "respuesta": "CASABLANCA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: PaÃ­s europeo cuya capital es Praga, separado de Eslovaquia pacÃ­ficamente en 1993",
+      "respuesta": "CHEQUIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: CientÃ­fico inglÃ©s que, junto a Watson, descubriÃ³ la doble hÃ©lice del ADN en 1953",
+      "respuesta": "CRICK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Compositor polaco del Romanticismo, maestro del piano y la mÃºsica nocturna",
+      "respuesta": "CHOPIN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Actor y director inglÃ©s del cine mudo, creador del personaje Charlot",
+      "respuesta": "CHAPLIN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Lord Protector inglÃ©s que venciÃ³ al rey en la guerra civil del siglo XVII",
+      "respuesta": "CROMWELL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pintor italiano del Barroco, maestro del claroscuro y la luz dramÃ¡tica teatral",
+      "respuesta": "CARAVAGGIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Poeta inglÃ©s del Romanticismo, autor de La balada del viejo marinero",
+      "respuesta": "COLERIDGE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Escritora inglesa creadora de HÃ©rcule Poirot y miss Marple, reina del gÃ©nero policÃ­aco",
+      "respuesta": "CHRISTIE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Personaje de Dickens que sueÃ±a con ser caballero partiendo de una humilde infancia",
+      "respuesta": "COPPERFIELD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Dios del tiempo en la mitologÃ­a griega, padre de Zeus, que devoraba a sus hijos",
+      "respuesta": "CRONOS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Significado afectivo o subjetivo que una palabra adquiere segÃºn el contexto",
+      "respuesta": "CONNOTACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: En sintaxis, oraciÃ³n compuesta cuyas proposiciones tienen el mismo rango gramatical",
+      "respuesta": "COORDINADA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: En gramÃ¡tica, verbo que une sujeto con atributo, como ser, estar o parecer",
+      "respuesta": "COPULATIVO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Variedad de la lengua espaÃ±ola hablada en Castilla, base del estÃ¡ndar peninsular",
+      "respuesta": "CASTELLANO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: En inglÃ©s, la creatividad o capacidad de generar ideas nuevas e imaginativas",
+      "respuesta": "CREATIVITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: En inglÃ©s, la cooperaciÃ³n o trabajo conjunto de personas hacia un objetivo comÃºn",
+      "respuesta": "COOPERATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: En inglÃ©s, el conjunto de costumbres, valores y creencias de una sociedad",
+      "respuesta": "CULTURE"
+    }
+  ],
+  "D": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Ciudad alemana a orillas del Elba, famosa por su arquitectura barroca y su porcelana",
+      "respuesta": "DRESDE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Capital de Bangladesh, una de las ciudades mÃ¡s densamente pobladas del mundo",
+      "respuesta": "DHAKA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Primer paÃ­s del Caribe con capital en Santo Domingo, llamado asÃ­ por su historia",
+      "respuesta": "DOMINICANA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: PequeÃ±o paÃ­s insular del Caribe de habla inglesa cuya capital es Roseau",
+      "respuesta": "DOMINICA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Cadena montaÃ±osa del norte de Italia de roca calcÃ¡rea, Patrimonio de la Humanidad",
+      "respuesta": "DOLOMITAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Ciudad inglesa que da nombre al estrecho mÃ¡s transitado del mundo entre GB y Francia",
+      "respuesta": "DOVER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: RÃ­o de Europa del Este que atraviesa Kiev y desemboca en el mar Negro",
+      "respuesta": "DNIÃ‰PER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: FilÃ³sofo enciclopedista francÃ©s del XVIII, director de la gran Enciclopedia ilustrada",
+      "respuesta": "DIDEROT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Escritor francÃ©s del XIX, autor de Los tres mosqueteros y El conde de Montecristo",
+      "respuesta": "DUMAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Gran escritor ruso del XIX, autor de Crimen y castigo y Los hermanos Karamazov",
+      "respuesta": "DOSTOIEVSKI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Escritor inglÃ©s del XVIII, autor de Robinson Crusoe, el famoso nÃ¡ufrago solitario",
+      "respuesta": "DEFOE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Poetisa americana del XIX que viviÃ³ recluida y publicÃ³ sus poemas solo tras su muerte",
+      "respuesta": "DICKINSON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Escultor renacentista italiano, autor del primer David en bronce desnudo de la historia",
+      "respuesta": "DONATELLO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pintor y grabador alemÃ¡n del Renacimiento, famoso por sus meticulosos autorretratos",
+      "respuesta": "DÃœRER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Personaje de Bram Stoker, conde vampiro de Transilvania que huye de la luz solar",
+      "respuesta": "DRÃCULA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Personaje de la mitologÃ­a griega, constructor del laberinto del Minotauro en Creta",
+      "respuesta": "DÃ‰DALO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Personaje de Shakespeare, el rey escocÃ©s asesinado por Macbeth para tomar el trono",
+      "respuesta": "DUNCAN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: En gramÃ¡tica, el uso del lenguaje en una situaciÃ³n comunicativa real y concreta",
+      "respuesta": "DISCURSO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Conjunto de rasgos lingÃ¼Ã­sticos que caracterizan el habla de una regiÃ³n o territorio",
+      "respuesta": "DIALECTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Tipo de texto donde el autor expone y defiende una tesis con argumentos razonados",
+      "respuesta": "DISERTACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: En gramÃ¡tica, proceso mediante el que las palabras cambian su forma segÃºn el caso",
+      "respuesta": "DECLINACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Texto escrito como intercambio de cartas entre dos o mÃ¡s personajes o personas",
+      "respuesta": "DIÃLOGO EPISTOLAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: En inglÃ©s, la diversidad o variedad de perspectivas y culturas en un grupo",
+      "respuesta": "DIVERSITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: En inglÃ©s, la determinaciÃ³n o empeÃ±o para conseguir algo pese a las dificultades",
+      "respuesta": "DETERMINATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: En inglÃ©s, el desarrollo o crecimiento progresivo de algo a lo largo del tiempo",
+      "respuesta": "DEVELOPMENT"
+    }
+  ],
+  "E": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: PaÃ­s de AmÃ©rica del Norte cuya capital es Washington DC, la mayor potencia mundial",
+      "respuesta": "ESTADOS UNIDOS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: NaciÃ³n del norte de Gran BretaÃ±a cuya capital es Edimburgo y sÃ­mbolo es el cardo",
+      "respuesta": "ESCOCIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: PaÃ­s europeo cuya capital es Bratislava, separado de la RepÃºblica Checa en 1993",
+      "respuesta": "ESLOVAQUIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: PaÃ­s balcÃ¡nico cuya capital es Liubliana, el mÃ¡s occidental de la antigua Yugoslavia",
+      "respuesta": "ESLOVENIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Ciudad alsaciana sede del Parlamento Europeo, en la frontera entre Francia y Alemania",
+      "respuesta": "ESTRASBURGO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: PequeÃ±a isla del MediterrÃ¡neo donde NapoleÃ³n fue desterrado por primera vez",
+      "respuesta": "ELBA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Dramaturgo griego, autor de Medea y Las bacantes, el mÃ¡s moderno de los tres grandes trÃ¡gicos",
+      "respuesta": "EURÃPIDES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: FilÃ³sofo griego que buscaba la felicidad en los placeres sencillos y en la amistad",
+      "respuesta": "EPICURO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: General americano que liderÃ³ el desembarco de NormandÃ­a en 1944 y fue presidente de EEUU",
+      "respuesta": "EISENHOWER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Personaje de la mitologÃ­a griega, hija de AgamenÃ³n, que ayuda a vengar la muerte de su padre",
+      "respuesta": "ELECTRA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Rey legendario griego que matÃ³ a su padre y se casÃ³ con su madre sin saberlo",
+      "respuesta": "EDIPO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Primer espaÃ±ol en ganar el Premio Nobel de Literatura, en el aÃ±o 1904",
+      "respuesta": "ECHEGARAY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Escritora espaÃ±ola del Realismo, pionera del naturalismo, autora de Los pazos de Ulloa",
+      "respuesta": "EMILIA PARDO BAZÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Figura retÃ³rica que presenta una serie de elementos sin conjunciones entre ellos",
+      "respuesta": "ENUMERACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Calidad de los sonidos que los hace agradables al oÃ­do en un texto escrito o hablado",
+      "respuesta": "EUFONÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Estudio del origen e historia de las palabras y su evoluciÃ³n a lo largo del tiempo",
+      "respuesta": "ETIMOLOGÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Tipo de composiciÃ³n poÃ©tica de gran extensiÃ³n que narra las hazaÃ±as de un hÃ©roe",
+      "respuesta": "EPOPEYA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Parte introductoria de un relato en la que se presenta el contexto y los personajes",
+      "respuesta": "EXPOSICIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Texto breve de reflexiÃ³n personal donde el autor argumenta su opiniÃ³n con libertad",
+      "respuesta": "ENSAYO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: En mÃ©trica, cuando el final de un verso no coincide con el fin de la unidad sintÃ¡ctica",
+      "respuesta": "ENCABALGAMIENTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: En inglÃ©s, la evidencia o prueba que respalda una afirmaciÃ³n o argumento",
+      "respuesta": "EVIDENCE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: En inglÃ©s, el intercambio de algo por otra cosa de igual o semejante valor",
+      "respuesta": "EXCHANGE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: En inglÃ©s, la experiencia acumulada al vivir o hacer algo durante un perÃ­odo",
+      "respuesta": "EXPERIENCE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: En inglÃ©s, la explicaciÃ³n o desarrollo detallado de una idea o concepto",
+      "respuesta": "EXPLANATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: En inglÃ©s, el entusiasmo o energÃ­a positiva con que alguien se dedica a algo",
+      "respuesta": "ENTHUSIASM"
+    }
+  ],
+  "F": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: ArchipiÃ©lago de Asia oriental cuya capital es Manila, mÃ¡s de 7.000 islas en el PacÃ­fico",
+      "respuesta": "FILIPINAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: ArchipiÃ©lago del PacÃ­fico sur cuya capital es Suva, famoso por sus playas tropicales",
+      "respuesta": "FIYI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Ciudad alemana a orillas del Main, centro financiero europeo y sede del BCE",
+      "respuesta": "FRÃNCFORT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: VolcÃ¡n sagrado de JapÃ³n, sÃ­mbolo del paÃ­s, pintado por Hokusai en sus grabados",
+      "respuesta": "FUJI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Ciudad portuguesa del Algarve, famosa por sus playas doradas y su casco histÃ³rico Ã¡rabe",
+      "respuesta": "FARO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Antigua denominaciÃ³n de la isla de TaiwÃ¡n, colonia espaÃ±ola y despuÃ©s portuguesa",
+      "respuesta": "FORMOSA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: RegiÃ³n histÃ³rica de BÃ©lgica y PaÃ­ses Bajos donde floreciÃ³ la gran escuela pictÃ³rica medieval",
+      "respuesta": "FLANDES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Isla canaria espaÃ±ola, una de las mÃ¡s ventosas del mundo, famosa por sus dunas",
+      "respuesta": "FUERTEVENTURA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: ArchipiÃ©lago autÃ³nomo de Dinamarca en el AtlÃ¡ntico Norte, famoso por sus acantilados",
+      "respuesta": "FEROE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Punto mÃ¡s profundo de los ocÃ©anos, mÃ¡s de 11.000 metros, en el PacÃ­fico occidental",
+      "respuesta": "FOSA DE LAS MARIANAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Ciudad japonesa cuya central nuclear sufriÃ³ un grave accidente radiactivo en 2011",
+      "respuesta": "FUKUSHIMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Fraile dominico espaÃ±ol del XVI que defendiÃ³ los derechos de los indÃ­genas americanos",
+      "respuesta": "FRAY BARTOLOMÃ‰ DE LAS CASAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Rey de Prusia conocido como el Grande, a la vez mÃºsico, guerrero y filÃ³sofo ilustrado",
+      "respuesta": "FEDERICO II"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Ingeniero italiano que fundÃ³ la marca de automÃ³viles deportivos mÃ¡s deseada del mundo",
+      "respuesta": "FERRARI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Rama de la lingÃ¼Ã­stica que estudia los fonemas y su funciÃ³n para distinguir significados",
+      "respuesta": "FONOLOGÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En morfologÃ­a, cada una de las conjugaciones posibles de un verbo en un tiempo y modo",
+      "respuesta": "FORMA VERBAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En morfologÃ­a, variaciÃ³n de las palabras para expresar gÃ©nero, nÃºmero o tiempo verbal",
+      "respuesta": "FLEXIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En narratologÃ­a, el punto de vista o perspectiva desde la que se narran los hechos",
+      "respuesta": "FOCALIZACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Texto en prosa que relata hechos reales o inventados con valor literario",
+      "respuesta": "FICCIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En inglÃ©s, el tiempo verbal que indica acciones aÃºn por ocurrir",
+      "respuesta": "FUTURE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En inglÃ©s, adjetivo que describe algo que procede de otro paÃ­s o lugar",
+      "respuesta": "FOREIGN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En inglÃ©s, adverbio que significa con frecuencia o a menudo",
+      "respuesta": "FREQUENTLY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En inglÃ©s, el marco conceptual o estructura que sirve de base para analizar algo",
+      "respuesta": "FRAMEWORK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En inglÃ©s, la funciÃ³n o propÃ³sito especÃ­fico para el que algo fue diseÃ±ado",
+      "respuesta": "FUNCTION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: En inglÃ©s, la fluidez o facilidad con que alguien habla o escribe en un idioma extranjero",
+      "respuesta": "FLUENCY"
+    }
+  ],
+  "G": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PaÃ­s de Ãfrica occidental cuya capital es Acra, primero en independizarse del colonialismo",
+      "respuesta": "GHANA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PaÃ­s de AmÃ©rica Central cuya capital es Ciudad de Guatemala, el mÃ¡s poblado de la regiÃ³n",
+      "respuesta": "GUATEMALA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PequeÃ±o paÃ­s del Caribe cuya capital es Saint Georges, invadido por EEUU en 1983",
+      "respuesta": "GRENADA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PaÃ­s de AmÃ©rica del Sur cuya capital es Georgetown, Ãºnico de habla inglesa en el continente",
+      "respuesta": "GUYANA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PaÃ­s de Ãfrica occidental cuya capital es Libreville, en el golfo de Guinea",
+      "respuesta": "GABÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PequeÃ±o paÃ­s de Ãfrica occidental cuya capital lleva el mismo nombre que el paÃ­s",
+      "respuesta": "GAMBIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: PaÃ­s de Ãfrica occidental, antigua colonia portuguesa, cuya capital es BisÃ¡u",
+      "respuesta": "GUINEA BISÃU"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Gran lago de Ãfrica oriental compartido por Kenia, Uganda y Tanzania",
+      "respuesta": "GRAN LAGO VICTORIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Ciudad espaÃ±ola de AndalucÃ­a, famosa por la Alhambra y el Generalife",
+      "respuesta": "GRANADA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pintor francÃ©s del postimpresionismo, famoso por sus cuadros de la Polinesia",
+      "respuesta": "GAUGUIN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: MatemÃ¡tico alemÃ¡n del XIX, uno de los mÃ¡s importantes en la historia de las ciencias",
+      "respuesta": "GAUSS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Escritor y filÃ³sofo espaÃ±ol del Barroco, autor de El criticÃ³n y El arte de la prudencia",
+      "respuesta": "GRACIÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: HÃ©roe sumerio protagonista del poema Ã©pico mÃ¡s antiguo conocido de la humanidad",
+      "respuesta": "GILGAMESH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Personaje de Jonathan Swift que visita a gigantes, enanos y caballos racionales en sus viajes",
+      "respuesta": "GULLIVER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Nombre del protagonista de La metamorfosis de Kafka, convertido en insecto",
+      "respuesta": "GREGOR SAMSA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En lingÃ¼Ã­stica, el conjunto de normas que regulan el uso correcto de una lengua",
+      "respuesta": "GRAMÃTICA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Conjunto de signos o letras que componen la representaciÃ³n escrita de una palabra",
+      "respuesta": "GRAFÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Tipo de poema medieval espaÃ±ol compuesto por una cuarteta y su glosa versificada",
+      "respuesta": "GLOSA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, el gobierno o sistema polÃ­tico que dirige un paÃ­s o estado",
+      "respuesta": "GOVERNMENT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, el proceso de interconexiÃ³n econÃ³mica y cultural entre todos los paÃ­ses",
+      "respuesta": "GLOBALIZATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, adjetivo que describe a alguien que da con generosidad sin esperar nada",
+      "respuesta": "GENEROUS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, el grupo de personas nacidas en una Ã©poca o perÃ­odo histÃ³rico similar",
+      "respuesta": "GENERATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, el objetivo o meta que alguien quiere alcanzar con su esfuerzo",
+      "respuesta": "GOAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, la orientaciÃ³n o guÃ­a que alguien proporciona a otra persona",
+      "respuesta": "GUIDANCE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: En inglÃ©s, la gratitud o sentimiento de agradecimiento hacia quien nos ayudÃ³",
+      "respuesta": "GRATITUDE"
+    }
+  ],
+  "H": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: PaÃ­s de Europa occidental cuya capital es Ãmsterdam, conocido por sus molinos y tulipanes",
+      "respuesta": "HOLANDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Capital de Vietnam, ciudad del norte con herencia colonial francesa",
+      "respuesta": "HANÃ“I"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Capital de Zimbabue, antigua Salisbury durante el dominio colonial britÃ¡nico",
+      "respuesta": "HARARE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Ciudad alemana famosa por su universidad medieval, la mÃ¡s antigua de Alemania",
+      "respuesta": "HEIDELBERG"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Ciudad portuaria del noreste de China, famosa por su festival de esculturas de hielo",
+      "respuesta": "HARBIN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: FilÃ³sofo griego presocrÃ¡tico que afirmÃ³ que todo fluye y nada permanece igual",
+      "respuesta": "HERÃCLITO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Poeta griego autor de la TeogonÃ­a y Los trabajos y los dÃ­as, contemporÃ¡neo de Homero",
+      "respuesta": "HESÃODO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: MÃ©dico inglÃ©s del XVII que descubriÃ³ el sistema de circulaciÃ³n de la sangre",
+      "respuesta": "HARVEY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: FilÃ³sofo alemÃ¡n del XX, autor de El ser y el tiempo, influyÃ³ en el existencialismo",
+      "respuesta": "HEIDEGGER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Escritor alemÃ¡n del XX, autor de El lobo estepario y Siddhartha",
+      "respuesta": "HESSE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: FÃ­sico alemÃ¡n que enunciÃ³ el principio de incertidumbre cuÃ¡ntica, Premio Nobel 1932",
+      "respuesta": "HEISENBERG"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Sacerdotisa de Afrodita en la mitologÃ­a griega, amada por Leandro que cruzaba el mar a nado",
+      "respuesta": "HERO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: ComposiciÃ³n lÃ­rica que alaba a una naciÃ³n, a Dios o a un hÃ©roe con tono solemne",
+      "respuesta": "HIMNO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Texto que narra la vida y virtudes de un santo o personaje religioso ejemplar",
+      "respuesta": "HAGIOGRAFÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En gramÃ¡tica, el modo verbal que expresa posibilidad, deseo o condiciÃ³n hipotÃ©tica",
+      "respuesta": "HIPOTÃ‰TICO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: NarraciÃ³n de hechos reales transmitida oralmente por quienes los presenciaron",
+      "respuesta": "HISTORIA ORAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la historia o los hechos pasados de una naciÃ³n o civilizaciÃ³n",
+      "respuesta": "HISTORY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, algo hecho a mano sin uso de mÃ¡quinas o procesos industriales",
+      "respuesta": "HANDMADE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la salud o el estado fÃ­sico y mental de bienestar de una persona",
+      "respuesta": "HEALTH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la esperanza o el deseo de que algo positivo ocurra en el futuro",
+      "respuesta": "HOPE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la hospitalidad o el trato amable que se da a los visitantes",
+      "respuesta": "HOSPITALITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la humildad, cualidad de reconocer los propios lÃ­mites sin exceso de orgullo",
+      "respuesta": "HUMILITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la honestidad o cualidad de decir siempre la verdad sin engaÃ±ar",
+      "respuesta": "HONESTY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, algo que ocurre de manera repetida y frecuente en la vida de alguien",
+      "respuesta": "HABITUAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: En inglÃ©s, la armonÃ­a o el estado de equilibrio y paz entre personas o elementos",
+      "respuesta": "HARMONY"
+    }
+  ],
+  "I": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: PaÃ­s de Oriente PrÃ³ximo cuya capital reconocida es Tel Aviv, fundado en 1948",
+      "respuesta": "ISRAEL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Capital de PakistÃ¡n, ciudad planificada desde cero en los aÃ±os 60 del siglo XX",
+      "respuesta": "ISLAMABAD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: ArchipiÃ©lago volcÃ¡nico de Portugal en el AtlÃ¡ntico Norte, con gÃ©iseres y paisajes Ãºnicos",
+      "respuesta": "ISLAS AZORES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: PequeÃ±o archipiÃ©lago del AtlÃ¡ntico sur disputado entre Argentina y el Reino Unido",
+      "respuesta": "ISLAS MALVINAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Isla del AtlÃ¡ntico sur donde NapoleÃ³n fue exiliado por segunda y Ãºltima vez",
+      "respuesta": "ISLA DE SANTA ELENA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Papa medieval que convocÃ³ la cuarta cruzada y consolidÃ³ el poder papal sobre los reyes",
+      "respuesta": "INOCENCIO III"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Arquitecto del Antiguo Egipto que diseÃ±Ã³ la primera pirÃ¡mide escalonada de la historia",
+      "respuesta": "IMHOTEP"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Primera Ministra de la India, hija del primer ministro Nehru, que gobernÃ³ el paÃ­s dos veces",
+      "respuesta": "INDIRA GANDHI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Proceso histÃ³rico por el que las potencias europeas dominaron territorios de todo el mundo",
+      "respuesta": "IMPERIALISMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Tribunal eclesiÃ¡stico creado en el siglo XIII para perseguir a los herejes",
+      "respuesta": "INQUISICIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Dramaturgo rumano-francÃ©s, fundador del teatro del absurdo, autor de La cantante calva",
+      "respuesta": "IONESCO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Novela histÃ³rica del escocÃ©s Walter Scott sobre un valiente caballero medieval inglÃ©s",
+      "respuesta": "IVANHOE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En gramÃ¡tica, categorÃ­a que expresa emociones espontÃ¡neas, como ay o bravo",
+      "respuesta": "INTERJECCIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Tiempo verbal que expresa acciones pasadas habituales o que estaban en curso",
+      "respuesta": "IMPERFECTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: RelaciÃ³n entre textos literarios que se citan, aluden o transforman unos a otros",
+      "respuesta": "INTERTEXTUALIDAD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Figura retÃ³rica que repite estructuras sintÃ¡cticas de igual longitud para crear equilibrio",
+      "respuesta": "ISOCOLON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: TÃ©cnica narrativa que oculta la identidad del narrador para dar objetividad al relato",
+      "respuesta": "IMPERSONALIDAD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Propiedad del texto que hace que todas sus partes estÃ©n relacionadas con el tema central",
+      "respuesta": "ISOTOPÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la identidad o el conjunto de rasgos que definen a una persona o grupo",
+      "respuesta": "IDENTITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la influencia o el efecto que algo tiene sobre algo o alguien",
+      "respuesta": "IMPACT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la inclusiÃ³n o acto de hacer que todos puedan participar por igual",
+      "respuesta": "INCLUSION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la iniciativa o capacidad de emprender algo por voluntad propia",
+      "respuesta": "INITIATIVE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la innovaciÃ³n o introducciÃ³n de ideas o mÃ©todos nuevos",
+      "respuesta": "INNOVATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la integridad o cualidad de actuar siempre de forma honesta y coherente",
+      "respuesta": "INTEGRITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: En inglÃ©s, la influencia indirecta que algo ejerce sobre el comportamiento de las personas",
+      "respuesta": "INFLUENCE"
+    }
+  ],
+  "J": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Ciudad mÃ¡s grande de Arabia SaudÃ­, el principal puerto del mar Rojo",
+      "respuesta": "JEDDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: PenÃ­nsula que forma la parte continental de Dinamarca, fronteriza con Alemania",
+      "respuesta": "JUTLANDIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Ciudad fronteriza del norte de MÃ©xico frente a El Paso en Texas",
+      "respuesta": "JUÃREZ"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Lago andino de PerÃº, escenario de la batalla que sellÃ³ la independencia peruana",
+      "respuesta": "JUNÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: RÃ­o espaÃ±ol que nace en la SerranÃ­a de Cuenca y desemboca en el MediterrÃ¡neo",
+      "respuesta": "JÃšCAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: RegiÃ³n histÃ³rica de Oriente Medio donde viviÃ³ el pueblo hebreo en la AntigÃ¼edad",
+      "respuesta": "JUDEA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Ingeniero escocÃ©s del XVIII que mejorÃ³ la mÃ¡quina de vapor, unidad de potencia elÃ©ctrica",
+      "respuesta": "JAMES WATT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Rey inglÃ©s que firmÃ³ la Carta Magna en 1215, primer gran acuerdo de derechos nobiliarios",
+      "respuesta": "JUAN SIN TIERRA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Fraile franciscano espaÃ±ol del XVIII que fundÃ³ misiones religiosas en California",
+      "respuesta": "JUNÃPERO SERRA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Poeta espaÃ±ol del Renacimiento que introdujo la mÃ©trica italiana en la lÃ­rica castellana",
+      "respuesta": "JUAN BOSCÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: FilÃ³sofo espaÃ±ol del XX, autor de La rebeliÃ³n de las masas y padre del perspectivismo",
+      "respuesta": "JOSÃ‰ ORTEGA Y GASSET"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Escritor mexicano del XX, autor de Pedro PÃ¡ramo, clave en el realismo mÃ¡gico hispano",
+      "respuesta": "JUAN RULFO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Escritor argentino del XX, autor de Rayuela, la gran novela del boom latinoamericano",
+      "respuesta": "JULIO CORTÃZAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Ilustrado espaÃ±ol del XVIII, reformista y autor del Informe sobre la ley agraria",
+      "respuesta": "JOVELLANOS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Personaje bÃ­blico que, segÃºn el texto sagrado, viviÃ³ tres dÃ­as en el vientre de una ballena",
+      "respuesta": "JONÃS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En lingÃ¼Ã­stica, la variedad de una lengua propia de un grupo profesional o social",
+      "respuesta": "JERGA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Sistema de escritura del Antiguo Egipto que combina imÃ¡genes y signos fonÃ©ticos",
+      "respuesta": "JEROGLÃFICO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Baile y canto popular de origen aragonÃ©s, representativo del folclore espaÃ±ol",
+      "respuesta": "JOTA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Poeta y mÃºsico medieval que recitaba obras de trovadores para el pueblo llano",
+      "respuesta": "JUGLAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En inglÃ©s, el viaje largo o aventura que implica transformaciÃ³n o cambio personal",
+      "respuesta": "JOURNEY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En inglÃ©s, el sistema legal que garantiza que cada persona recibe lo que merece",
+      "respuesta": "JUSTICE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En inglÃ©s, la alegrÃ­a o el sentimiento de felicidad intensa que algo produce",
+      "respuesta": "JOY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En inglÃ©s, la capacidad de tomar decisiones acertadas y sabias en situaciones difÃ­ciles",
+      "respuesta": "JUDGEMENT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En inglÃ©s, el mes de verano que sigue a junio y precede a agosto",
+      "respuesta": "JULY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: En inglÃ©s, el verbo que significa unirse o participar en algo junto a otras personas",
+      "respuesta": "JOIN"
+    }
+  ],
+  "K": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Ciudad mÃ¡s grande de PakistÃ¡n, principal puerto del paÃ­s y antigua capital",
+      "respuesta": "KARACHI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Capital de Malasia, famosa por las torres Petronas y sus rascacielos ultramodernos",
+      "respuesta": "KUALA LUMPUR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: VolcÃ¡n indonesio que al explotar en 1883 produjo uno de los mayores sonidos registrados",
+      "respuesta": "KRAKATOA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Fundador de la TurquÃ­a moderna, primer presidente de la RepÃºblica, modernizÃ³ el paÃ­s",
+      "respuesta": "KEMAL ATATÃœRK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Primer presidente de Kenia tras la independencia en 1963, lÃ­der anticolonial",
+      "respuesta": "KENYATTA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Sacerdote franciscano polaco que en Auschwitz ofreciÃ³ su vida para salvar a otro prisionero",
+      "respuesta": "KOLBE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Escritor alemÃ¡n del Romanticismo, autor de La marquesa de O y Penthesilea",
+      "respuesta": "KLEIST"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: LÃ­der soviÃ©tico que denunciÃ³ los crÃ­menes de Stalin y protagonizÃ³ la crisis de los misiles",
+      "respuesta": "KRUSCHEV"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Dios hindÃº del amor y la mÃºsica, protagonista del Mahabharata, con piel azul y flauta",
+      "respuesta": "KRISHNA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Dios del tiempo en la mitologÃ­a griega, padre de Zeus, identificado con Saturno en Roma",
+      "respuesta": "KRONOS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Monstruo marino de la mitologÃ­a escandinava, un pulpo gigante que hundÃ­a barcos",
+      "respuesta": "KRAKEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Sistema de escritura silÃ¡bica japonesa con formas hiragana y katakana",
+      "respuesta": "KANA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: TÃ©rmino literario de la Ã©pica anglosajona para compuesto metafÃ³rico, como camino de la ballena",
+      "respuesta": "KENNING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el animal marsupial australiano con bolsa abdominal y grandes patas traseras",
+      "respuesta": "KANGAROO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el juguete volador de papel o tela que se eleva con la fuerza del viento",
+      "respuesta": "KITE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el soldado medieval que montaba a caballo y servÃ­a lealmente a un seÃ±or",
+      "respuesta": "KNIGHT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, la escuela o clase para niÃ±os pequeÃ±os antes de la educaciÃ³n primaria",
+      "respuesta": "KINDERGARTEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el territorio gobernado por un rey o una reina con autoridad soberana",
+      "respuesta": "KINGDOM"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el dispositivo de teclas que se utiliza para escribir en un ordenador",
+      "respuesta": "KEYBOARD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, adjetivo que describe a alguien amable y bondadoso con los demÃ¡s",
+      "respuesta": "KIND"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, la comprensiÃ³n o informaciÃ³n que se tiene sobre un tema determinado",
+      "respuesta": "KNOWLEDGE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, la habilidad o destreza especial que alguien posee y domina",
+      "respuesta": "KNACK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el elemento esencial que explica o permite resolver algo",
+      "respuesta": "KEY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, el gesto de golpear una puerta con los nudillos para llamar la atenciÃ³n",
+      "respuesta": "KNOCK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: En inglÃ©s, la unidad de velocidad nÃ¡utica equivalente a una milla marina por hora",
+      "respuesta": "KNOT"
+    }
+  ],
+  "L": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: PaÃ­s del sudeste asiÃ¡tico cuya capital es VientiÃ¡n, el Ãºnico de la regiÃ³n sin salida al mar",
+      "respuesta": "LAOS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: PaÃ­s del norte de Ãfrica cuya capital es TrÃ­poli, con grandes reservas de petrÃ³leo",
+      "respuesta": "LIBIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: PaÃ­s de Ãfrica del sur, enclavado dentro de SudÃ¡frica, cuya capital es Maseru",
+      "respuesta": "LESOTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Capital de Angola, principal ciudad y puerto del paÃ­s en el AtlÃ¡ntico",
+      "respuesta": "LUANDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Capital de Zambia, en el sur del continente africano",
+      "respuesta": "LUSAKA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: RegiÃ³n del norte de Escandinavia habitada por el pueblo sami, famosa por el sol de medianoche",
+      "respuesta": "LAPONIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Lago de Asia central, antes el cuarto mÃ¡s grande del mundo, hoy casi desaparecido",
+      "respuesta": "LAGO ARAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Lago de Ãfrica oriental, el mÃ¡s grande del continente en extensiÃ³n superficial",
+      "respuesta": "LAGO VICTORIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Ciudad nigeriana, la mÃ¡s populosa de Ãfrica, antigua capital del paÃ­s",
+      "respuesta": "LAGOS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Gran ciudad de PakistÃ¡n, segunda del paÃ­s, antigua capital cultural del Punjab",
+      "respuesta": "LAHORE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Capital de GabÃ³n, en el golfo de Guinea, en la costa occidental de Ãfrica",
+      "respuesta": "LIBREVILLE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Naturalista sueco del XVIII que creÃ³ el sistema binomial de clasificaciÃ³n de los seres vivos",
+      "respuesta": "LINNEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: FilÃ³sofo y matemÃ¡tico alemÃ¡n del XVII, cofundador del cÃ¡lculo diferencial junto a Newton",
+      "respuesta": "LEIBNIZ"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: CientÃ­fico francÃ©s del XIX, padre de la microbiologÃ­a y descubridor de la pasteurizaciÃ³n",
+      "respuesta": "LOUIS PASTEUR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Compositor hÃºngaro del Romanticismo, maestro del piano y el poema sinfÃ³nico",
+      "respuesta": "LISZT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Personaje cÃ³mico de AristÃ³fanes, mujer ateniense que organiza una huelga para acabar la guerra",
+      "respuesta": "LISÃSTRATA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Escritor inglÃ©s del XIX, autor de Alicia en el PaÃ­s de las Maravillas y matemÃ¡tico de profesiÃ³n",
+      "respuesta": "LEWIS CARROLL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Escritor americano autor de La llamada de lo salvaje y Colmillo blanco",
+      "respuesta": "LONDON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Escritor asturiano del Realismo, autor de La Regenta, conocido por el seudÃ³nimo ClarÃ­n",
+      "respuesta": "LEOPOLDO ALAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: En gramÃ¡tica, tÃ©rmino o expresiÃ³n que indica el lugar donde se realiza la acciÃ³n",
+      "respuesta": "LOCATIVO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Arte de la expresiÃ³n escrita con valor estÃ©tico, en prosa o en verso",
+      "respuesta": "LITERATURA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: En inglÃ©s, el idioma o sistema de comunicaciÃ³n de una comunidad humana",
+      "respuesta": "LANGUAGE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: En inglÃ©s, el liderazgo o capacidad de guiar e inspirar a otras personas",
+      "respuesta": "LEADERSHIP"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: En inglÃ©s, el razonamiento ordenado y coherente para llegar a conclusiones vÃ¡lidas",
+      "respuesta": "LOGIC"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: En inglÃ©s, el legado o herencia que alguien deja a las generaciones siguientes",
+      "respuesta": "LEGACY"
+    }
+  ],
+  "M": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: PaÃ­s de Ãfrica austral cuya capital es Maputo, antigua colonia portuguesa en el Ãndico",
+      "respuesta": "MOZAMBIQUE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: PaÃ­s balcÃ¡nico cuya capital es Podgorica, el mÃ¡s joven surgido de la antigua Yugoslavia",
+      "respuesta": "MONTENEGRO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: PaÃ­s de Europa del Este cuya capital es ChisinÃ¡u, enclavado entre RumanÃ­a y Ucrania",
+      "respuesta": "MOLDAVIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: PaÃ­s de Asia central cuya capital es UlÃ¡n Bator, heredero del gran Imperio Mongol",
+      "respuesta": "MONGOLIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: PaÃ­s del sudeste asiÃ¡tico cuya capital es NaipyidÃ³, gobernado dÃ©cadas por junta militar",
+      "respuesta": "MYANMAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: RÃ­o mÃ¡s largo de EEUU, que nace en Minnesota y desemboca en el golfo de MÃ©xico",
+      "respuesta": "MISISIPI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Ciudad marroquÃ­ mÃ¡s visitada, corazÃ³n del comercio bereber en el sur del paÃ­s",
+      "respuesta": "MARRAKECH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Ciudad alemana de Baviera, sede de los JJ.OO. de 1972 y del famoso Oktoberfest",
+      "respuesta": "MÃšNICH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Ciudad canadiense mÃ¡s populosa de Quebec, con mezcla de culturas anglÃ³fona y francÃ³fona",
+      "respuesta": "MONTREAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Ciudad india mÃ¡s populosa, antes llamada Bombay, gran puerto del ocÃ©ano Ãndico",
+      "respuesta": "MUMBAI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Compositor alemÃ¡n del Romanticismo, autor del SueÃ±o de una noche de verano",
+      "respuesta": "MENDELSSOHN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pintor espaÃ±ol del XX, fundador del Surrealismo, famoso por sus formas y colores primarios",
+      "respuesta": "MIRÃ“"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Dramaturgo americano del XX, autor de La muerte de un viajante y Las brujas de Salem",
+      "respuesta": "MILLER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Escritora afroamericana, Premio Nobel de Literatura 1993, autora de Beloved",
+      "respuesta": "MORRISON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: CientÃ­fico austriaco que descubriÃ³ las leyes de la herencia genÃ©tica estudiando guisantes",
+      "respuesta": "MENDEL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: FÃ­sico escocÃ©s del XIX que formulÃ³ las ecuaciones del electromagnetismo",
+      "respuesta": "MAXWELL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Personaje de Shakespeare, rey escocÃ©s que asesina al rey Duncan para tomar el trono",
+      "respuesta": "MACBETH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Personaje de la mitologÃ­a griega, rey de Frigia al que todo lo que tocaba se convertÃ­a en oro",
+      "respuesta": "MIDAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Tipo de narraciÃ³n que combina lo real y lo fantÃ¡stico sin que los personajes se asombren",
+      "respuesta": "MOVIMIENTO NARRATIVO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: En retÃ³rica, la exageraciÃ³n expresiva para intensificar una idea mÃ¡s allÃ¡ de la realidad",
+      "respuesta": "MAGNIFICACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: En inglÃ©s, el movimiento de personas de un lugar a otro de manera temporal o permanente",
+      "respuesta": "MIGRATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: En inglÃ©s, la mente o la capacidad mental de pensar, razonar y sentir emociones",
+      "respuesta": "MIND"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: En inglÃ©s, la obra maestra o el trabajo de mayor calidad realizado por alguien",
+      "respuesta": "MASTERPIECE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: En inglÃ©s, el significado o sentido profundo que encierra algo o alguien",
+      "respuesta": "MEANING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: En inglÃ©s, la motivaciÃ³n o impulso que lleva a una persona a actuar de determinada manera",
+      "respuesta": "MOTIVATION"
+    }
+  ],
+  "N": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s de Ãfrica central cuya capital es Niamey, con el desierto del Sahara en el norte",
+      "respuesta": "NÃGER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s de Ãfrica occidental cuya capital es Abuya, el mÃ¡s poblado del continente africano",
+      "respuesta": "NIGERIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s de AmÃ©rica Central cuya capital es Managua, el mÃ¡s extenso de la regiÃ³n",
+      "respuesta": "NICARAGUA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s de Ãfrica austral cuya capital es Windhoek, antigua colonia alemana",
+      "respuesta": "NAMIBIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s del PacÃ­fico sur cuya capital es Wellington, con kiwis y cultura maorÃ­",
+      "respuesta": "NUEVA ZELANDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s escandinavo cuya capital es Oslo, donde se entrega el Premio Nobel de la Paz",
+      "respuesta": "NORUEGA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: PaÃ­s del sur de Asia cuya capital es KatmandÃº, en el corazÃ³n del Himalaya",
+      "respuesta": "NEPAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Capital de Kenia, principal centro econÃ³mico del Ãfrica subsahariana oriental",
+      "respuesta": "NAIROBI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Ciudad italiana destruida por el volcÃ¡n Vesubio en el aÃ±o 79 d.C., conservada bajo cenizas",
+      "respuesta": "NÃPOLES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: RegiÃ³n del norte de Francia donde se produjo el histÃ³rico desembarco aliado de 1944",
+      "respuesta": "NORMANDÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Inventor sueco que creÃ³ la dinamita y fundÃ³ los premios que llevan su nombre",
+      "respuesta": "NOBEL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: FilÃ³sofo alemÃ¡n que proclamÃ³ Dios ha muerto y desarrollÃ³ el concepto de superhombre",
+      "respuesta": "NIETZSCHE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: HÃ©roe bÃ­blico que, segÃºn el GÃ©nesis, construyÃ³ un arca para salvar a los animales del diluvio",
+      "respuesta": "NOÃ‰"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: General corso que se convirtiÃ³ en Emperador de los franceses y conquistÃ³ gran parte de Europa",
+      "respuesta": "NAPOLEÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: CientÃ­fico inglÃ©s del XVII que describiÃ³ la ley de la gravitaciÃ³n universal",
+      "respuesta": "NEWTON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En gramÃ¡tica, categorÃ­a lÃ©xica que designa seres, objetos, conceptos o sentimientos",
+      "respuesta": "NOMBRE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Parte del sintagma que es el elemento principal del que dependen los demÃ¡s",
+      "respuesta": "NÃšCLEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En narratologÃ­a, la voz que cuenta los hechos de una historia desde dentro o fuera",
+      "respuesta": "NARRADOR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Corriente literaria del XIX que describe la realidad social con objetividad y sin idealizarla",
+      "respuesta": "NATURALISMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: VariaciÃ³n morfolÃ³gica que distingue singular y plural en los nombres y verbos",
+      "respuesta": "NÃšMERO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En inglÃ©s, el sustantivo o palabra que designa personas, objetos o ideas",
+      "respuesta": "NOUN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En inglÃ©s, el mes undÃ©cimo del aÃ±o, que sigue a octubre y precede a diciembre",
+      "respuesta": "NOVEMBER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En inglÃ©s, el punto cardinal opuesto al sur en la brÃºjula y en los mapas",
+      "respuesta": "NORTH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En inglÃ©s, la informaciÃ³n reciente sobre eventos del mundo difundida en medios",
+      "respuesta": "NEWS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: En inglÃ©s, la red de conexiones entre personas que comparten intereses o profesiÃ³n",
+      "respuesta": "NETWORK"
+    }
+  ],
+  "O": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Ciudad y capital de Noruega, situada al fondo de un gran fiordo en el sur del paÃ­s",
+      "respuesta": "OSLO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: PaÃ­s del golfo PÃ©rsico cuya capital es Mascate, en la PenÃ­nsula ArÃ¡biga",
+      "respuesta": "OMÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Capital de CanadÃ¡, sede del Parlamento federal, la segunda ciudad mÃ¡s grande del paÃ­s",
+      "respuesta": "OTTAWA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Ciudad portuguesa del norte, la segunda mÃ¡s grande del paÃ­s, que da nombre al vino generoso",
+      "respuesta": "OPORTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Gran masa de agua salada que cubre el 71 por ciento de la superficie terrestre",
+      "respuesta": "OCÃ‰ANO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Escritor irlandÃ©s del XIX, autor de El retrato de Dorian Gray y comedias de agudo ingenio",
+      "respuesta": "OSCAR WILDE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Poeta romano, autor de las Metamorfosis, relatos de transformaciones mitolÃ³gicas",
+      "respuesta": "OVIDIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Poeta y mÃºsico de la mitologÃ­a griega cuya mÃºsica encantaba a bestias y piedras",
+      "respuesta": "ORFEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En gramÃ¡tica, unidad mÃ­nima con sujeto y predicado que expresa sentido completo",
+      "respuesta": "ORACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En gramÃ¡tica, el complemento que recibe directamente la acciÃ³n del verbo transitivo",
+      "respuesta": "OBJETO DIRECTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En literatura, poema lÃ­rico solemne que alaba o celebra a una persona, lugar o idea",
+      "respuesta": "ODA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Figura retÃ³rica que une dos tÃ©rminos de significado contrario, como silencio atronador",
+      "respuesta": "OXÃMORON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Verso de ocho sÃ­labas, el mÃ¡s frecuente en el romancero y la poesÃ­a popular espaÃ±ola",
+      "respuesta": "OCTOSÃLABO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Conjunto de reglas que determinan el uso correcto de la escritura en una lengua",
+      "respuesta": "ORTOGRAFÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Epopeya griega de Homero sobre el regreso de Ulises desde Troya hasta Ãtaca",
+      "respuesta": "ODISEA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, la obligaciÃ³n moral que se tiene hacia alguien por compromiso o deber",
+      "respuesta": "OBLIGATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, el objetivo o meta hacia el que se dirige una acciÃ³n o un plan",
+      "respuesta": "OBJECTIVE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, lo que estÃ¡ fuera de un espacio cerrado o de sus lÃ­mites",
+      "respuesta": "OUTSIDE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, la posibilidad de elegir entre varias alternativas disponibles",
+      "respuesta": "OPTION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, la dificultad o barrera que hay que superar para lograr algo",
+      "respuesta": "OBSTACLE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, adjetivo que describe algo accesible, no cerrado, disponible para todos",
+      "respuesta": "OPEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, el resultado o consecuencia esperada de una acciÃ³n o proceso",
+      "respuesta": "OUTCOME"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, el mes dÃ©cimo del aÃ±o, con la festividad de Halloween",
+      "respuesta": "OCTOBER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, el animal marino invertebrado con ocho tentÃ¡culos que habita en fondos oceÃ¡nicos",
+      "respuesta": "OCTOPUS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: En inglÃ©s, el aceite, especialmente el petrÃ³leo crudo extraÃ­do del subsuelo",
+      "respuesta": "OIL"
+    }
+  ],
+  "P": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: PaÃ­s sudamericano cuya capital es Lima, famoso por Machu Picchu y la civilizaciÃ³n inca",
+      "respuesta": "PERÃš"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: PaÃ­s europeo de la PenÃ­nsula IbÃ©rica cuya capital es Lisboa",
+      "respuesta": "PORTUGAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: PaÃ­s de Europa central cuya capital es Varsovia, el mÃ¡s grande de los exsoviÃ©ticos en la UE",
+      "respuesta": "POLONIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: PaÃ­s asiÃ¡tico cuya capital es Islamabad, vecino de India y AfganistÃ¡n",
+      "respuesta": "PAKISTÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: PaÃ­s centroamericano donde se encuentra el famoso canal entre el AtlÃ¡ntico y el PacÃ­fico",
+      "respuesta": "PANAMÃ"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: PaÃ­s sudamericano cuya capital es AsunciÃ³n, con dos lenguas oficiales: espaÃ±ol y guaranÃ­",
+      "respuesta": "PARAGUAY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Capital de Francia, ciudad de la Torre Eiffel, el Louvre y el Centro Pompidou",
+      "respuesta": "PARÃS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Ciudad italiana sepultada por el volcÃ¡n Vesubio en el aÃ±o 79 d.C. y conservada bajo cenizas",
+      "respuesta": "POMPEYA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: FilÃ³sofo griego, discÃ­pulo de SÃ³crates y maestro de AristÃ³teles, autor de La RepÃºblica",
+      "respuesta": "PLATÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Conquistador espaÃ±ol que sometiÃ³ al Imperio inca y fundÃ³ Lima en el siglo XVI",
+      "respuesta": "PIZARRO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Artista malagueÃ±o, cofundador del cubismo, autor del famoso cuadro Guernica",
+      "respuesta": "PICASSO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Personaje del cuento de Collodi cuya nariz crece cada vez que miente",
+      "respuesta": "PINOCHO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Poeta italiano del XIV, creador del soneto clÃ¡sico renacentista, amante de Laura",
+      "respuesta": "PETRARCA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Esposa fiel de Ulises que esperÃ³ su regreso durante veinte aÃ±os tejiendo y destejiendo",
+      "respuesta": "PENÃ‰LOPE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En gramÃ¡tica, la parte de la oraciÃ³n que contiene el verbo y dice algo del sujeto",
+      "respuesta": "PREDICADO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En gramÃ¡tica, elemento que se aÃ±ade antes de la raÃ­z para modificar su significado",
+      "respuesta": "PREFIJO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En literatura, texto breve que encabeza una obra y presenta su contenido o intenciÃ³n",
+      "respuesta": "PRÃ“LOGO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En retÃ³rica, figura que atribuye cualidades humanas a seres inanimados o abstractos",
+      "respuesta": "PERSONIFICACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En gramÃ¡tica, tiempo verbal del pasado que expresa una acciÃ³n concluida",
+      "respuesta": "PRETÃ‰RITO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En inglÃ©s, la persona que imparte clases y enseÃ±a en una universidad o instituto",
+      "respuesta": "PROFESSOR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En inglÃ©s, la acciÃ³n de defender a alguien o algo del daÃ±o o el peligro",
+      "respuesta": "PROTECTION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En inglÃ©s, algo que el Estado ofrece para uso de todos los ciudadanos sin distinciÃ³n",
+      "respuesta": "PUBLIC"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En inglÃ©s, el proceso de elaborar, fabricar o crear un producto o servicio",
+      "respuesta": "PRODUCTION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En inglÃ©s, el arte de expresar ideas con belleza y ritmo, generalmente en verso",
+      "respuesta": "POETRY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: En inglÃ©s, el poder o la capacidad de influir o hacer que las cosas sucedan",
+      "respuesta": "POWER"
+    }
+  ],
+  "Q": [
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Capital de Ecuador, ciudad a 2.850 metros de altitud en los Andes",
+      "respuesta": "QUITO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Personaje de Cervantes que lucha contra molinos creyendo que son gigantes",
+      "respuesta": "QUIJOTE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Lengua indÃ­gena mÃ¡s hablada de AmÃ©rica, idioma oficial del Imperio Inca",
+      "respuesta": "QUECHUA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Cereal andino rico en proteÃ­nas, considerado superalimento en todo el mundo",
+      "respuesta": "QUINOA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Sustancia amarga de la corteza del Ã¡rbol de la quina, usada contra la malaria",
+      "respuesta": "QUININA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Dolor de cabeza intenso y pulsÃ¡til, a veces con nÃ¡useas y sensibilidad a la luz",
+      "respuesta": "JAQUECA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Sala del hospital donde se realizan las operaciones quirÃºrgicas",
+      "respuesta": "QUIRÃ“FANO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Modelo a escala reducida de un edificio, paisaje u objeto tridimensional",
+      "respuesta": "MAQUETA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Grupo de personas unidas para competir o trabajar hacia un mismo objetivo",
+      "respuesta": "EQUIPO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Adjetivo que describe algo o alguien de reducido tamaÃ±o",
+      "respuesta": "PEQUEÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: DirecciÃ³n opuesta a la derecha al mirar hacia delante",
+      "respuesta": "IZQUIERDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Conquista o toma de un territorio mediante la fuerza de las armas",
+      "respuesta": "CONQUISTA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Insecto que pica y puede transmitir enfermedades tropicales",
+      "respuesta": "MOSQUITO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Pala para golpear la pelota en tenis, pÃ¡del o bÃ¡dminton",
+      "respuesta": "RAQUETA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Arte medieval que buscaba transformar metales comunes en oro",
+      "respuesta": "ALQUIMIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Objeto de gran valor histÃ³rico, artÃ­stico o religioso conservado por su importancia",
+      "respuesta": "RELIQUIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Comida abundante y festiva en celebraciÃ³n de un evento especial o una victoria",
+      "respuesta": "BANQUETE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Adjetivo que describe a alguien nervioso, inquieto o sin reposo ni calma",
+      "respuesta": "INQUIETO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Estado de la materia que fluye y adopta la forma del recipiente que la contiene",
+      "respuesta": "LÃQUIDO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Zona verde en una ciudad donde la gente pasea, descansa y los niÃ±os juegan",
+      "respuesta": "PARQUE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: ComposiciÃ³n musical para cinco instrumentos o cinco voces",
+      "respuesta": "QUINTETO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: RincÃ³n o Ã¡ngulo donde se unen dos paredes o dos calles en una ciudad",
+      "respuesta": "ESQUINA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Adjetivo que describe algo que estÃ¡ en equilibrio, sin ruido ni perturbaciÃ³n",
+      "respuesta": "TRANQUILO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: PerÃ­odo de exactamente cinco aÃ±os, frecuente en planes polÃ­ticos y econÃ³micos",
+      "respuesta": "QUINQUENIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Q: Persona que tiene entre cuarenta y cincuenta aÃ±os de edad",
+      "respuesta": "QUINCEAÃ‘ERO"
+    }
+  ],
+  "R": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: PaÃ­s de Europa del Este cuya capital es Bucarest, con el rÃ­o Danubio en su frontera sur",
+      "respuesta": "RUMANÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: PaÃ­s de Ãfrica oriental cuya capital es Kigali, escenario del genocidio de 1994",
+      "respuesta": "RUANDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: PaÃ­s mÃ¡s extenso de Europa, cuya capital es MoscÃº, que se extiende tambiÃ©n por Asia",
+      "respuesta": "RUSIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Capital de Letonia, famosa por su arquitectura Art Nouveau y su casco medieval",
+      "respuesta": "RIGA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Capital de Islandia, la mÃ¡s septentrional del mundo, a orillas del AtlÃ¡ntico Norte",
+      "respuesta": "REIKIAVIK"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Ciudad italiana, capital del paÃ­s, sede del Coliseo, el Vaticano y la Fontana di Trevi",
+      "respuesta": "ROMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: RÃ­o que nace en los Alpes suizos y desemboca en el mar del Norte a travÃ©s de Holanda",
+      "respuesta": "RIN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Capital de Marruecos, a orillas del ocÃ©ano AtlÃ¡ntico",
+      "respuesta": "RABAT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Explorador noruego que fue el primero en llegar al Polo Sur el 14 de diciembre de 1911",
+      "respuesta": "ROALD AMUNDSEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Revolucionario francÃ©s apodado el Incorruptible que dirigiÃ³ el Terror durante la RevoluciÃ³n",
+      "respuesta": "ROBESPIERRE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: FilÃ³sofo ginebrino del XVIII, autor del Contrato Social y del Emilio sobre educaciÃ³n",
+      "respuesta": "ROUSSEAU"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Artista renacentista italiano, autor de la Escuela de Atenas en los Museos Vaticanos",
+      "respuesta": "RAFAEL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Poeta nicaragÃ¼ense del Modernismo, renovador de la lÃ­rica en espaÃ±ol, autor de Azul",
+      "respuesta": "RUBÃ‰N DARÃO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Personaje de Defoe que naufragÃ³ solo en una isla desierta durante muchos aÃ±os",
+      "respuesta": "ROBINSON CRUSOE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Personaje de Shakespeare, joven de Verona que muere por amor en la obra homÃ³nima",
+      "respuesta": "ROMEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: ColecciÃ³n de composiciones Ã©pico-lÃ­ricas medievales espaÃ±olas en verso",
+      "respuesta": "ROMANCERO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Movimiento artÃ­stico y literario del XIX que valorÃ³ la emociÃ³n, lo natural y lo individual",
+      "respuesta": "ROMANTICISMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Corriente literaria del XIX que retrataba la realidad social sin idealizarla",
+      "respuesta": "REALISMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: En lingÃ¼Ã­stica, unidad mÃ­nima de la palabra que porta el significado lÃ©xico principal",
+      "respuesta": "RAÃZ"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: En gramÃ¡tica, verbo cuya acciÃ³n recae sobre el propio sujeto que la realiza",
+      "respuesta": "REFLEXIVO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Correspondencia de sonidos al final de los versos en una composiciÃ³n poÃ©tica",
+      "respuesta": "RIMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: En inglÃ©s, el acto de leer un texto con atenciÃ³n para comprenderlo o disfrutarlo",
+      "respuesta": "READING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: En inglÃ©s, la investigaciÃ³n sistemÃ¡tica para ampliar el conocimiento sobre un tema",
+      "respuesta": "RESEARCH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: En inglÃ©s, los derechos fundamentales e inalienables que tienen todas las personas",
+      "respuesta": "RIGHTS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: En inglÃ©s, la fortaleza mental que permite afrontar dificultades y sobreponerse a ellas",
+      "respuesta": "RESILIENCE"
+    }
+  ],
+  "S": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: PaÃ­s nÃ³rdico cuya capital es Estocolmo, famoso por ABBA, IKEA y los Premios Nobel",
+      "respuesta": "SUECIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: PaÃ­s alpino cuya capital es Berna, famoso por sus relojes, chocolate y neutralidad histÃ³rica",
+      "respuesta": "SUIZA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: PaÃ­s balcÃ¡nico cuya capital es Belgrado, surgido de la desintegraciÃ³n de Yugoslavia",
+      "respuesta": "SERBIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: PaÃ­s sudamericano cuya capital es Paramaribo, el mÃ¡s pequeÃ±o del continente",
+      "respuesta": "SURINAM"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: PaÃ­s africano atravesado por el rÃ­o Nilo cuya capital es Jartum",
+      "respuesta": "SUDÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Capital de Chile, la ciudad mÃ¡s grande del paÃ­s, a los pies de los Andes",
+      "respuesta": "SANTIAGO DE CHILE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Ciudad espaÃ±ola de AndalucÃ­a, sede de la Feria de Abril y del baile flamenco sevillana",
+      "respuesta": "SEVILLA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Desierto mÃ¡s grande del mundo, que ocupa el norte del continente africano",
+      "respuesta": "SAHARA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: FilÃ³sofo griego que enseÃ±aba dialogando por las calles de Atenas, condenado a muerte",
+      "respuesta": "SÃ“CRATES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Dramaturgo inglÃ©s, el mÃ¡s grande de la literatura universal, autor de Hamlet y Macbeth",
+      "respuesta": "SHAKESPEARE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Personaje de Cervantes, fiel escudero de Don Quijote, aldeano lleno de refranes",
+      "respuesta": "SANCHO PANZA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Personaje de la mitologÃ­a griega, rey de Corinto condenado a empujar eternamente una roca",
+      "respuesta": "SÃSIFO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Escritora sueca, primera mujer en ganar el Premio Nobel de Literatura, en 1909",
+      "respuesta": "SELMA LAGERLÃ–F"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Escritor irlandÃ©s del XVIII, autor de Los viajes de Gulliver, sÃ¡tira de la sociedad inglesa",
+      "respuesta": "SWIFT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Escritor escocÃ©s del XIX, autor de La isla del tesoro y El Dr. Jekyll y Mr. Hyde",
+      "respuesta": "STEVENSON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En gramÃ¡tica, la persona o grupo que realiza la acciÃ³n del verbo en la oraciÃ³n",
+      "respuesta": "SUJETO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En gramÃ¡tica, elemento que se aÃ±ade al final de la raÃ­z para formar palabras nuevas",
+      "respuesta": "SUFIJO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En fonÃ©tica, unidad fonolÃ³gica pronunciada en una sola emisiÃ³n de voz",
+      "respuesta": "SÃLABA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Figura retÃ³rica que compara explÃ­citamente dos elementos usando como o cual",
+      "respuesta": "SÃMIL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En gramÃ¡tica, conjunto de palabras que forman una unidad sintÃ¡ctica en la oraciÃ³n",
+      "respuesta": "SINTAGMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: RelaciÃ³n de significado entre palabras con el mismo o parecido significado",
+      "respuesta": "SINONIMIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Movimiento literario de finales del XIX que usaba sÃ­mbolos para expresar emociones",
+      "respuesta": "SIMBOLISMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En inglÃ©s, el resumen breve y conciso de un texto o de las ideas principales",
+      "respuesta": "SUMMARY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En inglÃ©s, el punto cardinal opuesto al norte en la brÃºjula y en los mapas",
+      "respuesta": "SOUTH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: En inglÃ©s, el espacio exterior donde se encuentran planetas, estrellas y galaxias",
+      "respuesta": "SPACE"
+    }
+  ],
+  "T": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: PaÃ­s asiÃ¡tico cuya capital es Bangkok, antiguamente llamado Siam",
+      "respuesta": "TAILANDIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: PaÃ­s de Ãfrica oriental cuya capital es Dodoma y cuya ciudad mÃ¡s grande es Dar es Salam",
+      "respuesta": "TANZANIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: PaÃ­s del Magreb cuya capital es TÃºnez, donde se iniciÃ³ la Primavera Ãrabe en 2011",
+      "respuesta": "TÃšNEZ"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: PaÃ­s que une Europa y Oriente Medio cuya capital es Ankara",
+      "respuesta": "TURQUÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Capital de JapÃ³n, la metrÃ³polis mÃ¡s poblada del mundo y centro tecnolÃ³gico de Asia",
+      "respuesta": "TOKIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Ciudad espaÃ±ola, antigua capital visigoda, sede del Arzobispado Primado de EspaÃ±a",
+      "respuesta": "TOLEDO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Capital de Georgia caucÃ¡sica, a orillas del rÃ­o Kura, entre Asia y Europa",
+      "respuesta": "TIFLIS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Gran escritor ruso del XIX, autor de Guerra y Paz y Ana Karenina",
+      "respuesta": "TOLSTÃ“I"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Personaje de Mark Twain, niÃ±o aventurero que navega el Mississippi con Huckleberry Finn",
+      "respuesta": "TOM SAWYER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: HÃ©roe de la mitologÃ­a griega que matÃ³ al Minotauro en el laberinto de Creta",
+      "respuesta": "TESEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Nombre de los dioses griegos anteriores a los olÃ­mpicos, derrotados por Zeus",
+      "respuesta": "TITANES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En gramÃ¡tica, la categorÃ­a verbal que indica cuÃ¡ndo ocurre la acciÃ³n del verbo",
+      "respuesta": "TIEMPO VERBAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: El asunto o idea principal sobre la que trata un texto literario o expositivo",
+      "respuesta": "TEMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Tipo de texto dramÃ¡tico donde el protagonista acaba destruido por una fuerza superior",
+      "respuesta": "TRAGEDIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En mÃ©trica, estrofa de tres versos con un esquema de rima determinado",
+      "respuesta": "TERCETO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Escritor ruso del XIX, autor de Padres e hijos, padre de la novela realista rusa",
+      "respuesta": "TURGUÃ‰NEV"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, la traducciÃ³n de un texto de un idioma a otro manteniendo el significado",
+      "respuesta": "TRANSLATION"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, la confianza que se deposita en alguien esperando que no decepcione",
+      "respuesta": "TRUST"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, el acto de desplazarse de un lugar a otro, especialmente lejos del hogar",
+      "respuesta": "TRAVEL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, la teorÃ­a o conjunto de ideas que explican un fenÃ³meno observado",
+      "respuesta": "THEORY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, la tesis o idea principal que se defiende en un texto argumentativo",
+      "respuesta": "THESIS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, el tiempo verbal que indica cuÃ¡ndo se realiza la acciÃ³n en una oraciÃ³n",
+      "respuesta": "TENSE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, el pensamiento o proceso de razonar y reflexionar sobre algo",
+      "respuesta": "THINKING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, la tolerancia o respeto hacia las ideas y creencias de los demÃ¡s",
+      "respuesta": "TOLERANCE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: En inglÃ©s, la transparencia o claridad con que se explica algo sin ocultar informaciÃ³n",
+      "respuesta": "TRANSPARENCY"
+    }
+  ],
+  "U": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: PaÃ­s de Europa del Este cuya capital es Kiev, el mÃ¡s extenso de Europa sin Rusia",
+      "respuesta": "UCRANIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: PaÃ­s de Asia central cuya capital es Taskent, famoso por las ciudades de la Ruta de la Seda",
+      "respuesta": "UZBEKISTÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: PaÃ­s de Ãfrica oriental cuya capital es Kampala, a orillas del lago Victoria",
+      "respuesta": "UGANDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: SÃ©ptimo planeta del sistema solar en orden de distancia al Sol, con eje casi horizontal",
+      "respuesta": "URANO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: PaÃ­s de AmÃ©rica del Sur cuya capital es Montevideo, el mÃ¡s pequeÃ±o del Cono Sur",
+      "respuesta": "URUGUAY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Cordillera rusa que sirve de frontera convencional entre los continentes europeo y asiÃ¡tico",
+      "respuesta": "URALES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Personaje de la Odisea de Homero, el mÃ¡s astuto de los hÃ©roes griegos, rey de Ãtaca",
+      "respuesta": "ULISES"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Escritor espaÃ±ol de la GeneraciÃ³n del 98, autor de Niebla y En torno al casticismo",
+      "respuesta": "UNAMUNO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En literatura, gÃ©nero que imagina cÃ³mo serÃ­a la sociedad perfecta sin injusticias",
+      "respuesta": "UTOPÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En gramÃ¡tica, el adverbio o expresiÃ³n que indica el lugar donde se realiza la acciÃ³n",
+      "respuesta": "UBICACIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, el cosmos completo con todos los planetas, estrellas y galaxias conocidas",
+      "respuesta": "UNIVERSE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la instituciÃ³n de educaciÃ³n superior donde se hacen carreras universitarias",
+      "respuesta": "UNIVERSITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, vÃ¡lido en cualquier lugar y cultura, sin excepciones posibles",
+      "respuesta": "UNIVERSAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la acciÃ³n de poner algo en prÃ¡ctica para cumplir un fin concreto",
+      "respuesta": "USE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la persona que hace uso de una herramienta, plataforma o servicio",
+      "respuesta": "USER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, perteneciente a la ciudad o zona urbana, lo contrario de rural o campestre",
+      "respuesta": "URBAN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, el verbo que significa comprender o captar el significado de algo",
+      "respuesta": "UNDERSTAND"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, adjetivo que describe algo que no es ordinario ni habitual",
+      "respuesta": "UNUSUAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la capacidad de unirse con otros para lograr un objetivo comÃºn",
+      "respuesta": "UNITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, instrumento de cuerdas hawaiano de cuatro cuerdas parecido a una pequeÃ±a guitarra",
+      "respuesta": "UKULELE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la direcciÃ³n hacia arriba en el espacio o en una jerarquÃ­a de categorÃ­as",
+      "respuesta": "UPWARD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, adjetivo que describe algo que necesita atenciÃ³n inmediata y sin demora",
+      "respuesta": "URGENT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, subir un archivo o documento a una plataforma o servidor en internet",
+      "respuesta": "UPLOAD"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la finalidad o el propÃ³sito para el que algo fue creado o diseÃ±ado",
+      "respuesta": "UTILITY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: En inglÃ©s, la uniÃ³n o el estado de estar juntos de forma armÃ³nica y compacta",
+      "respuesta": "UNION"
+    }
+  ],
+  "V": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: PaÃ­s de AmÃ©rica del Sur cuya capital es Caracas, con las mayores reservas de petrÃ³leo del mundo",
+      "respuesta": "VENEZUELA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: PaÃ­s de Asia del sudeste cuya capital es HanÃ³i, con costa en el mar de la China Meridional",
+      "respuesta": "VIETNAM"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Ciudad italiana construida sobre el agua, famosa por sus canales, gÃ³ndolas y Carnaval",
+      "respuesta": "VENECIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Capital del Estado mÃ¡s pequeÃ±o del mundo, situado dentro de la ciudad de Roma",
+      "respuesta": "VATICANO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Ciudad espaÃ±ola de la costa mediterrÃ¡nea, tercera mÃ¡s grande del paÃ­s, famosa por la paella",
+      "respuesta": "VALENCIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Segundo planeta del sistema solar, el mÃ¡s brillante del cielo nocturno, el de la diosa del amor",
+      "respuesta": "VENUS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Explorador portuguÃ©s que llegÃ³ a la India por mar rodeando el cabo de Buena Esperanza",
+      "respuesta": "VASCO DE GAMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: RÃ­o mÃ¡s largo de Europa, que atraviesa Rusia de norte a sur y desemboca en el Caspio",
+      "respuesta": "VOLGA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Escritor francÃ©s de la IlustraciÃ³n, autor de CÃ¡ndido, famoso por su ironÃ­a y crÃ­tica social",
+      "respuesta": "VOLTAIRE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Reina del Imperio BritÃ¡nico durante 64 aÃ±os, sÃ­mbolo de la era industrial y colonial",
+      "respuesta": "VICTORIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Compositor italiano del XIX, autor de Rigoletto, La Traviata y Otello, sÃ­mbolo de la Ã³pera",
+      "respuesta": "VERDI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pintor holandÃ©s del XVII, autor de La joven de la perla y sus luminosas escenas de interior",
+      "respuesta": "VERMEER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Poeta latino, autor de la Eneida y las BucÃ³licas, considerado el poeta nacional de Roma",
+      "respuesta": "VIRGILIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Escritor francÃ©s del XIX, padre de la ciencia ficciÃ³n moderna, autor de 20.000 leguas de viaje submarino",
+      "respuesta": "VERNE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Escritor espaÃ±ol del 98, autor de Luces de Bohemia y creador del esperpento",
+      "respuesta": "VALLE-INCLÃN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Dios romano del fuego y la forja, esposo de la diosa del amor, equivalente al Hefesto griego",
+      "respuesta": "VULCANO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Villano de la saga Harry Potter, el mago oscuro cuyo nombre nadie se atrevÃ­a a pronunciar",
+      "respuesta": "VOLDEMORT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: En gramÃ¡tica, la categorÃ­a lÃ©xica que expresa acciones, estados o procesos y se conjuga",
+      "respuesta": "VERBO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: En gramÃ¡tica, indica si la oraciÃ³n es activa, cuando el sujeto actÃºa, o pasiva",
+      "respuesta": "VOZ"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: En fonÃ©tica, sonido pronunciado sin obstÃ¡culos en el canal oral, nÃºcleo de la sÃ­laba",
+      "respuesta": "VOCAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: El punto de vista del narrador respecto a los eventos y personajes de la historia",
+      "respuesta": "VOZ NARRATIVA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Conjunto de palabras que usa habitualmente un hablante o que pertenecen a una lengua",
+      "respuesta": "VOCABULARIO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: En inglÃ©s, el conjunto de palabras conocidas por un hablante de un idioma",
+      "respuesta": "VOCABULARY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: En inglÃ©s, la categorÃ­a gramatical que indica la acciÃ³n o el estado en una oraciÃ³n",
+      "respuesta": "VERB"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: En inglÃ©s, la imagen mental o idea clara del futuro que tiene alguien",
+      "respuesta": "VISION"
+    }
+  ],
+  "W": [
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Compositor alemÃ¡n del Romanticismo, autor del ciclo El anillo del nibelungo",
+      "respuesta": "WAGNER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Primer presidente de los Estados Unidos, al que la capital del paÃ­s lleva el nombre",
+      "respuesta": "WASHINGTON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Torneo de tenis mÃ¡s antiguo del mundo, disputado sobre hierba en Londres",
+      "respuesta": "WIMBLEDON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Escritora inglesa modernista, autora de La seÃ±ora Dalloway y Al faro",
+      "respuesta": "VIRGINIA WOOLF"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Escritor inglÃ©s autor de La mÃ¡quina del tiempo y La guerra de los mundos",
+      "respuesta": "WELLS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: CientÃ­fico escocÃ©s que mejorÃ³ la mÃ¡quina de vapor y cuyo nombre es unidad de potencia",
+      "respuesta": "WATT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Poeta americano del XIX, padre de la poesÃ­a moderna americana, autor de Hojas de hierba",
+      "respuesta": "WHITMAN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: FÃ­sico alemÃ¡n que enunciÃ³ el principio de incertidumbre cuÃ¡ntica",
+      "respuesta": "WISSENSCHAFTLER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Compositor de la Quinta SinfonÃ­a y la Novena, sordo al componer",
+      "respuesta": "WILLIAM SHAKESPEARE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Emparedado relleno de distintos ingredientes entre dos rebanadas de pan de molde",
+      "respuesta": "SANDWICH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Fruto tropical de piel marrÃ³n y carne verde que da nombre a un pÃ¡jaro de Nueva Zelanda",
+      "respuesta": "KIWI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Conjunto de programas y aplicaciones instalados en un ordenador",
+      "respuesta": "SOFTWARE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Conjunto de componentes fÃ­sicos que forman un ordenador o dispositivo electrÃ³nico",
+      "respuesta": "HARDWARE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: Isla que fue antigua colonia espaÃ±ola en el PacÃ­fico asiÃ¡tico, ahora RepÃºblica de China",
+      "respuesta": "TAIWAN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: PaÃ­s del PacÃ­fico sur cuya capital es Wellington",
+      "respuesta": "WELLINGTON"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, el tiempo atmosfÃ©rico en un momento y lugar determinados",
+      "respuesta": "WEATHER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, el conjunto de pÃ¡ginas web interconectadas accesibles por internet",
+      "respuesta": "WEB"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, el perÃ­odo de descanso semanal que comprende el sÃ¡bado y el domingo",
+      "respuesta": "WEEKEND"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, la sabidurÃ­a o conocimiento profundo adquirido con la experiencia y el estudio",
+      "respuesta": "WISDOM"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, el lugar donde las personas trabajan o desarrollan su actividad laboral",
+      "respuesta": "WORKPLACE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, el bienestar fÃ­sico y mental de una persona o de un grupo social",
+      "respuesta": "WELLBEING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, la habilidad de producir textos escritos correctos y con valor expresivo",
+      "respuesta": "WRITING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, la persona que observa directamente un evento y puede dar testimonio de Ã©l",
+      "respuesta": "WITNESS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, la capacidad de asombro y admiraciÃ³n ante algo nuevo o extraordinario",
+      "respuesta": "WONDER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra W: En inglÃ©s, el planeta Tierra habitado por todos los seres vivos conocidos",
+      "respuesta": "WORLD"
+    }
+  ],
+  "X": [
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Instrumento de percusiÃ³n con lÃ¡minas de madera que se golpean con baquetas",
+      "respuesta": "XILÃ“FONO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Gas noble de la tabla periÃ³dica usado en lÃ¡mparas de flash fotogrÃ¡fico",
+      "respuesta": "XENÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Elemento quÃ­mico imprescindible para que los seres vivos puedan respirar",
+      "respuesta": "OXÃGENO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Prueba o ejercicio para evaluar los conocimientos de los alumnos en una asignatura",
+      "respuesta": "EXAMEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Resultado positivo de un esfuerzo, el logro de lo que se buscaba alcanzar",
+      "respuesta": "Ã‰XITO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Conjunto de palabras que forman un escrito o un discurso con coherencia",
+      "respuesta": "TEXTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Lo que estÃ¡ fuera de un edificio o de sus lÃ­mites, lo contrario de interior",
+      "respuesta": "EXTERIOR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Lo que sobrepasa los lÃ­mites normales o razonables en cantidad o intensidad",
+      "respuesta": "EXCESO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: En lingÃ¼Ã­stica, unidad mÃ­nima de la palabra que porta el significado lÃ©xico bÃ¡sico",
+      "respuesta": "LEXEMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: En mÃ©trica grecolatina, verso de seis pies usado en la Ã©pica de Homero y Virgilio",
+      "respuesta": "HEXÃMETRO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: En gramÃ¡tica, el conjunto de reglas sobre cÃ³mo se combinan las palabras en oraciones",
+      "respuesta": "SINTAXIS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: En gramÃ¡tica, verbo cuya acciÃ³n recae sobre el propio sujeto que la realiza",
+      "respuesta": "REFLEXIVO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Instrumento de viento de metal con forma curva y cuerpo cÃ³nico, inventado por Adolphe Sax",
+      "respuesta": "SAXOFÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Proceso cientÃ­fico diseÃ±ado para comprobar o refutar una hipÃ³tesis mediante observaciÃ³n",
+      "respuesta": "EXPERIMENTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: LiberaciÃ³n brusca de energÃ­a que produce una gran onda de presiÃ³n y calor",
+      "respuesta": "EXPLOSIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Comunicar o manifestar ideas y sentimientos mediante el lenguaje oral o escrito",
+      "respuesta": "EXPRESIÃ“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Persona que vive en un paÃ­s distinto al de su nacimiento o al de su ciudadanÃ­a",
+      "respuesta": "EXTRANJERO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Deporte de combate con guantes que se practica en un cuadrilÃ¡tero llamado ring",
+      "respuesta": "BOXEO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Gran sistema de miles de millones de estrellas al que pertenece nuestro sistema solar",
+      "respuesta": "GALAXIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Momento de mayor tensiÃ³n o intensidad dramÃ¡tica en una historia o acontecimiento",
+      "respuesta": "CLÃMAX"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Doctrina polÃ­tica y econÃ³mica basada en las ideas filosÃ³ficas de Karl Marx",
+      "respuesta": "MARXISMO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Cavidad del cuerpo humano que aloja el corazÃ³n y los pulmones, protegida por las costillas",
+      "respuesta": "TÃ“RAX"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: TÃ©cnica de reproducciÃ³n de documentos que usa electricidad estÃ¡tica y partÃ­culas de tÃ³ner",
+      "respuesta": "XEROGRAFÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Tejido vegetal que transporta el agua y las sales minerales desde la raÃ­z hasta las hojas",
+      "respuesta": "XILEMA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra X: Conjunto de preguntas y respuestas sobre temas culturales para evaluar conocimientos",
+      "respuesta": "EXAMEN ORAL"
+    }
+  ],
+  "Y": [
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Disciplina fÃ­sica y mental originaria de la India con miles de aÃ±os de tradiciÃ³n",
+      "respuesta": "YOGA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: PaÃ­s de la PenÃ­nsula ArÃ¡biga en conflicto armado desde 2015, capital SanÃ¡",
+      "respuesta": "YEMEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Moneda oficial de JapÃ³n, una de las mÃ¡s usadas en el comercio internacional",
+      "respuesta": "YEN"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Antigua federaciÃ³n balcÃ¡nica disuelta en 1992 que agrupaba varios pueblos europeos",
+      "respuesta": "YUGOSLAVIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: CivilizaciÃ³n precolombina de MÃ©xico y Guatemala, creadora de un preciso calendario",
+      "respuesta": "MAYA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Descarga elÃ©ctrica entre nubes o entre nubes y tierra durante una tormenta",
+      "respuesta": "RAYO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Texto en prosa donde un autor reflexiona y argumenta sobre un tema con libertad",
+      "respuesta": "ENSAYO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: El dÃ­a anterior al de hoy, el que ya ha pasado en el calendario",
+      "respuesta": "AYER"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Zona de arena o guijarros a orillas del mar donde la gente toma el sol",
+      "respuesta": "PLAYA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Plan o propuesta elaborada para realizar algo con una finalidad concreta",
+      "respuesta": "PROYECTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Asistencia, socorro o apoyo que se da a alguien que lo necesita o pide",
+      "respuesta": "AYUDA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Artista de circo que hace reÃ­r al pÃºblico con gestos, acrobacias y disfraces de colores",
+      "respuesta": "PAYASO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Respaldo, sostÃ©n o apoyo que se da a algo o alguien para que no caiga o fracase",
+      "respuesta": "APOYO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: Quinto mes del aÃ±o en el calendario gregoriano, cuando florece la primavera",
+      "respuesta": "MAYO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: InstituciÃ³n municipal que gobierna un pueblo o ciudad en EspaÃ±a y AmÃ©rica Latina",
+      "respuesta": "AYUNTAMIENTO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el pronombre de segunda persona del singular y del plural",
+      "respuesta": "YOU"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el perÃ­odo de tiempo equivalente a doce meses o 365 dÃ­as",
+      "respuesta": "YEAR"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, adjetivo que describe a alguien que tiene pocos aÃ±os de vida",
+      "respuesta": "YOUNG"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el color de los limones, los girasoles y el sol brillante",
+      "respuesta": "YELLOW"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el dÃ­a anterior al de hoy en la expresiÃ³n temporal inglesa",
+      "respuesta": "YESTERDAY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, adverbio que introduce una idea contraria a la anterior, como pero en espaÃ±ol",
+      "respuesta": "YET"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el alimento lÃ¡cteo cremoso hecho con leche fermentada",
+      "respuesta": "YOGURT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el conjunto de ejercicios fÃ­sicos y mentales originarios de la India",
+      "respuesta": "YOGA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, el embarcaciÃ³n de vela y lujo usada en competiciones nÃ¡uticas y regatas",
+      "respuesta": "YACHT"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Y: En inglÃ©s, los aÃ±os de juventud, la etapa de la vida entre la infancia y la madurez",
+      "respuesta": "YOUTH"
+    }
+  ],
+  "Z": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Ciudad espaÃ±ola de AragÃ³n, a orillas del Ebro, con la BasÃ­lica de Nuestra SeÃ±ora del Pilar",
+      "respuesta": "ZARAGOZA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: PaÃ­s de Ãfrica austral cuya capital es Harare, antigua Rhodesia del sur",
+      "respuesta": "ZIMBABUE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Capital de Croacia, la mayor ciudad del paÃ­s, con mÃ¡s de dos mil aÃ±os de historia",
+      "respuesta": "ZAGREB"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: RÃ­o africano que forma las cataratas Victoria y desemboca en el ocÃ©ano Ãndico",
+      "respuesta": "ZAMBEZE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: PaÃ­s de Ãfrica central cuya capital es Lusaka, atravesado por el rÃ­o que da nombre al paÃ­s",
+      "respuesta": "ZAMBIA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Antigua civilizaciÃ³n del Valle de Oaxaca en MÃ©xico, que construyÃ³ la ciudad de Monte AlbÃ¡n",
+      "respuesta": "ZAPOTECAS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Personaje ficticio enmascarado que defiende a los pobres en el MÃ©xico colonial espaÃ±ol",
+      "respuesta": "ZORRO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Rey de los dioses en la mitologÃ­a griega, seÃ±or del Olimpo que lanzaba rayos",
+      "respuesta": "ZEUS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Profeta persa del siglo VII a.C. que fundÃ³ una religiÃ³n basada en la lucha entre bien y mal",
+      "respuesta": "ZOROASTRO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Estudio cientÃ­fico de los animales, sus caracterÃ­sticas, comportamientos y clasificaciÃ³n",
+      "respuesta": "ZOOLOGÃA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Espacio cerrado donde se exhiben y cuidan animales de diferentes partes del mundo",
+      "respuesta": "ZOOLÃ“GICO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Nombre de la letra del abecedario espaÃ±ol con sonido interdental fricativo sordo",
+      "respuesta": "ZETA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el nÃºmero de valor nulo, el punto de partida en cualquier mediciÃ³n",
+      "respuesta": "ZERO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el Ã¡rea o espacio delimitado con una funciÃ³n o caracterÃ­stica especÃ­fica",
+      "respuesta": "ZONE"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el broche deslizante de una cremallera en prendas de ropa o bolsas",
+      "respuesta": "ZIP"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el parque zoolÃ³gico en su forma abreviada y coloquial",
+      "respuesta": "ZOO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, acercar la imagen o alejarla en una cÃ¡mara o pantalla digital",
+      "respuesta": "ZOOM"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, adjetivo que describe a alguien lleno de entusiasmo y energÃ­a apasionada",
+      "respuesta": "ZEALOUS"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, la clasificaciÃ³n o distribuciÃ³n territorial de una ciudad segÃºn su uso del suelo",
+      "respuesta": "ZONING"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el punto mÃ¡s alto o culminante de algo, el momento de mÃ¡ximo esplendor",
+      "respuesta": "ZENITH"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el espÃ­ritu o carÃ¡cter intelectual y cultural que define a una Ã©poca histÃ³rica",
+      "respuesta": "ZEITGEIST"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el vegetal verde alargado tambiÃ©n conocido como calabacÃ­n en EspaÃ±a",
+      "respuesta": "ZUCCHINI"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el estudio cientÃ­fico del comportamiento y la clasificaciÃ³n de los animales",
+      "respuesta": "ZOOLOGY"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, el fervor o la pasiÃ³n intensa con que alguien se entrega a una causa o tarea",
+      "respuesta": "ZEAL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: En inglÃ©s, la embarcaciÃ³n de vela y lujo utilizada en regatas y competiciones nÃ¡uticas",
+      "respuesta": "ZENOBIA"
+    }
+  ],
+  "Ã‘": [
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Animal bovino africano que protagoniza la gran migraciÃ³n en el Serengeti de Tanzania",
+      "respuesta": "Ã‘U"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Adjetivo coloquial para algo excesivamente sentimental, cursi o sin originalidad",
+      "respuesta": "Ã‘OÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Extra o pequeÃ±o regalo que el vendedor aÃ±ade a la compra en los mercados latinoamericanos",
+      "respuesta": "Ã‘APA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: ElevaciÃ³n rocosa de terreno, de menor tamaÃ±o que una montaÃ±a, con paredes verticales",
+      "respuesta": "PEÃ‘A"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Estado de descanso nocturno en el que el cerebro procesa y consolida los recuerdos",
+      "respuesta": "SUEÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Proyecto creativo que da forma visual a un objeto, espacio o producto",
+      "respuesta": "DISEÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Persona de corta edad que todavÃ­a se encuentra en la etapa de la infancia",
+      "respuesta": "NIÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: IndicaciÃ³n o aviso visible que advierte o informa sobre algo importante",
+      "respuesta": "SEÃ‘AL"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Gran elevaciÃ³n de terreno que forma parte de una cordillera o cadena montaÃ±osa",
+      "respuesta": "MONTAÃ‘A"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Conjunto de acciones organizadas para lograr un objetivo polÃ­tico o social",
+      "respuesta": "CAMPAÃ‘A"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: PaÃ­s de la PenÃ­nsula IbÃ©rica cuya capital es Madrid y tiene 17 comunidades autÃ³nomas",
+      "respuesta": "ESPAÃ‘A"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: La maÃ±ana del dÃ­a siguiente al que se estÃ¡ viviendo en el momento presente",
+      "respuesta": "MAÃ‘ANA"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Afecto o amor tierno que se siente hacia alguien querido o hacia algo apreciado",
+      "respuesta": "CARIÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: DimensiÃ³n o medida de algo que indica lo grande o pequeÃ±o que es un objeto",
+      "respuesta": "TAMAÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: EstaciÃ³n del aÃ±o que sigue al verano y precede al invierno, cuando caen las hojas",
+      "respuesta": "OTOÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Fruta tropical de corona verde y carne amarilla, jugosa y dulce, tambiÃ©n llamada ananÃ¡",
+      "respuesta": "PIÃ‘A"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Figura articulada que imita a una persona o animal y se usa como juguete para niÃ±os",
+      "respuesta": "MUÃ‘ECO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Parte de la mano formada con los dedos cerrados con fuerza, usada para golpear",
+      "respuesta": "PUÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Ã“rgano del cuerpo humano encargado de filtrar la sangre y producir orina",
+      "respuesta": "RIÃ‘Ã“N"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Adjetivo que describe algo raro, ajeno o diferente a lo que se conoce como normal",
+      "respuesta": "EXTRAÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Persona con quien se comparte amistad, trabajo, estudio o una actividad en comÃºn",
+      "respuesta": "COMPAÃ‘ERO"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Cada uno de los perÃ­odos de doce meses en que se divide el tiempo transcurrido",
+      "respuesta": "AÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Espacio del hogar destinado al aseo e higiene personal, con ducha o baÃ±era",
+      "respuesta": "BAÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: Trozo de madera gruesa de ramas o troncos, especialmente el que se usa para el fuego",
+      "respuesta": "LEÃ‘O"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Lleva la letra Ã‘: AcciÃ³n de acompaÃ±ar o escoltar a alguien en un camino, viaje o momento importante",
+      "respuesta": "ACOMPAÃ‘AR"
+    }
+  ]
+}

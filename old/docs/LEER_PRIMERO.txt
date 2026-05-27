@@ -1,0 +1,157 @@
+═══════════════════════════════════════════════════════════════════════════
+  📖 LEER PRIMERO - MIGRACIÓN A dvta.ch
+═══════════════════════════════════════════════════════════════════════════
+
+Fecha: 27 Mayo 2026
+Dominio: dvta.ch
+Estado: Listo para configurar el túnel
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ YA ESTÁ HECHO (NO NECESITAS HACER NADA)
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Dominio dvta.ch comprado en Infomaniak
+✅ Dominio añadido a Cloudflare
+✅ Nameservers cambiados a Cloudflare (propagando)
+✅ Registros DNS de email configurados (tu email @dvta.ch funcionará)
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 LO QUE TIENES QUE HACER (MUY SIMPLE)
+═══════════════════════════════════════════════════════════════════════════
+
+OPCIÓN A: TODO AUTOMÁTICO (RECOMENDADO)
+----------------------------------------
+
+1. Ejecuta: CONFIGURAR_TODO_DVTA.bat
+   - Se abrirá tu navegador
+   - Haz clic en "Authorize"
+   - Espera a que termine (2-3 minutos)
+
+2. Ejecuta: INICIAR_TUNNEL_DVTA.bat
+   - Deja la ventana abierta
+   - Tu sitio estará en https://dvta.ch
+
+¡Listo! 🎉
+
+
+OPCIÓN B: PASO A PASO (SI PREFIERES CONTROL)
+---------------------------------------------
+
+1. Ejecuta: PASO_3_CREAR_TUNNEL.bat
+   - Crea el túnel paso a paso
+
+2. Ejecuta: python crear_config_tunnel.py
+   - Crea el archivo de configuración
+
+3. Ejecuta: INICIAR_TUNNEL_DVTA.bat
+   - Inicia el túnel
+
+
+═══════════════════════════════════════════════════════════════════════════
+  📁 ARCHIVOS CREADOS PARA TI
+═══════════════════════════════════════════════════════════════════════════
+
+🚀 PARA EJECUTAR:
+   • CONFIGURAR_TODO_DVTA.bat ← EJECUTA ESTE PRIMERO (todo automático)
+   • INICIAR_TUNNEL_DVTA.bat ← EJECUTA ESTE DESPUÉS (inicia el túnel)
+   • VERIFICAR_TODO.bat (verifica que todo esté bien)
+
+📋 PASO A PASO (alternativa):
+   • PASO_3_CREAR_TUNNEL.bat (crear túnel paso a paso)
+   • crear_config_tunnel.py (crear configuración)
+
+📄 DOCUMENTACIÓN:
+   • LEER_PRIMERO.txt (este archivo)
+   • INSTRUCCIONES_SIMPLES.txt (guía simple)
+   • GUIA_COMPLETA_MIGRACION_DVTA_CH.txt (guía detallada)
+   • PASOS_SIGUIENTES.txt (pasos detallados)
+
+📧 EMAIL:
+   • PASO_2_CONFIGURAR_EMAIL.bat (ya ejecutado)
+   • VERIFICAR_DNS.bat (verificar email)
+   • REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt (backup DNS)
+
+═══════════════════════════════════════════════════════════════════════════
+  ⚡ INICIO RÁPIDO (SOLO 2 COMANDOS)
+═══════════════════════════════════════════════════════════════════════════
+
+1. Doble clic en: CONFIGURAR_TODO_DVTA.bat
+   ⏱️  Tiempo: 2-3 minutos
+   ⚠️  Autoriza en el navegador cuando se abra
+
+2. Doble clic en: INICIAR_TUNNEL_DVTA.bat
+   ⚠️  NO cierres esta ventana
+
+3. Abre tu navegador: https://dvta.ch
+
+¡Tu aplicación estará funcionando! 🎉
+
+═══════════════════════════════════════════════════════════════════════════
+  ❓ PREGUNTAS FRECUENTES
+═══════════════════════════════════════════════════════════════════════════
+
+P: ¿Necesito tener el servidor Python corriendo?
+R: Sí, ejecuta ARRANCAR.bat antes de iniciar el túnel
+
+P: ¿Qué pasa si cierro la ventana del túnel?
+R: El túnel se detiene. Vuelve a ejecutar INICIAR_TUNNEL_DVTA.bat
+
+P: ¿Puedo usar ngrok y Cloudflare al mismo tiempo?
+R: Sí, pero no es necesario. Cloudflare es mejor y gratis
+
+P: ¿Mi email @dvta.ch funciona?
+R: Sí, los registros DNS ya están configurados
+
+P: ¿Cuánto tarda en funcionar el dominio?
+R: Los nameservers tardan 1-24 horas en propagar (normalmente 2-4 horas)
+   Pero puedes configurar el túnel ahora mismo
+
+═══════════════════════════════════════════════════════════════════════════
+  🔧 SI ALGO FALLA
+═══════════════════════════════════════════════════════════════════════════
+
+Error: "cloudflared no está instalado"
+   → Descarga de: https://github.com/cloudflare/cloudflared/releases
+   → Archivo: cloudflared-windows-amd64.exe
+   → Renombra a: cloudflared.exe
+   → Mueve a: C:\Windows\System32\
+
+Error: "tunnel already exists"
+   → No es un error, el script usará el túnel existente
+
+Error: "unauthorized"
+   → Ejecuta: cloudflared tunnel login
+   → Autoriza en el navegador
+
+Error: "connection refused"
+   → Verifica que el servidor Python esté corriendo (puerto 8000)
+   → Ejecuta: ARRANCAR.bat
+
+═══════════════════════════════════════════════════════════════════════════
+  📞 INFORMACIÓN DE SOPORTE
+═══════════════════════════════════════════════════════════════════════════
+
+Cloudflare Dashboard:
+   https://dash.cloudflare.com/bc719d01fe06039b0823aab050e9150a/dvta.ch
+
+Zone ID: a0353c3d6ad85c54e8ed8f31237538b9
+Account ID: bc719d01fe06039b0823aab050e9150a
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 SIGUIENTE PASO DESPUÉS DE CONFIGURAR
+═══════════════════════════════════════════════════════════════════════════
+
+Una vez que el túnel funcione correctamente:
+
+1. Actualizaremos los scripts de inicio automático
+2. Eliminaremos la dependencia de ngrok
+3. Configuraremos Windows para iniciar todo automáticamente
+
+Pero primero, ¡vamos a hacer que funcione! 🚀
+
+═══════════════════════════════════════════════════════════════════════════
+
+Creado por: Kiro AI
+Fecha: 27 Mayo 2026
+
+═══════════════════════════════════════════════════════════════════════════

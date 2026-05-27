@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+venv/
+dvdcoin_bank_windows/
+
+# Bases de datos (no subir al repo — datos privados)
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.db.migrated
+
+# Backups de bases de datos
+backup/
+!backup/.gitignore
+backup_30min/
+
+# Secretos y configuración sensible
+conf/.jwt_secret
+conf/.ngrok_token
+conf/jwt_secret.txt
+conf/master.txt
+config/.ngrok_token
+config/ngrok_config.txt
+config/jwt_secret.txt
+config/master.txt
+
+# Logs
+logs/*.log
+logs/*.txt
+logs/current_url.txt
+!logs/.gitkeep
+no_sleep.log
+
+# Audio subido por usuarios
+static/audio/messages/*.webm
+static/audio/messages/*.mp4
+static/audio/messages/*.ogg
+
+# Cuentos subidos por usuarios (contenido privado)
+static/cuentos/*.docx
+static/cuentos/*.odt
+static/cuentos/*.txt
+static/cuentos/.meta.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.vs/
+
+# Backups con repositorios Git embebidos
+BACKUP_ANTES_LIMPIEZA_*/old/dvdcoin*
+old/dvdcoin*

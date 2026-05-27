@@ -1,0 +1,6806 @@
+{
+  "A": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 1 para la letra A",
+      "respuesta": "ARESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 2 para la letra A",
+      "respuesta": "ARESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 3 para la letra A",
+      "respuesta": "ARESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 4 para la letra A",
+      "respuesta": "ARESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 5 para la letra A",
+      "respuesta": "ARESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 6 para la letra A",
+      "respuesta": "ARESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 7 para la letra A",
+      "respuesta": "ARESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 8 para la letra A",
+      "respuesta": "ARESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 9 para la letra A",
+      "respuesta": "ARESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 10 para la letra A",
+      "respuesta": "ARESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 11 para la letra A",
+      "respuesta": "ARESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 12 para la letra A",
+      "respuesta": "ARESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 13 para la letra A",
+      "respuesta": "ARESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 14 para la letra A",
+      "respuesta": "ARESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 15 para la letra A",
+      "respuesta": "ARESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 16 para la letra A",
+      "respuesta": "ARESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 17 para la letra A",
+      "respuesta": "ARESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 18 para la letra A",
+      "respuesta": "ARESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 19 para la letra A",
+      "respuesta": "ARESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 20 para la letra A",
+      "respuesta": "ARESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 21 para la letra A",
+      "respuesta": "ARESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 22 para la letra A",
+      "respuesta": "ARESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 23 para la letra A",
+      "respuesta": "ARESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 24 para la letra A",
+      "respuesta": "ARESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 25 para la letra A",
+      "respuesta": "ARESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 26 para la letra A",
+      "respuesta": "ARESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 27 para la letra A",
+      "respuesta": "ARESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 28 para la letra A",
+      "respuesta": "ARESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 29 para la letra A",
+      "respuesta": "ARESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 30 para la letra A",
+      "respuesta": "ARESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 31 para la letra A",
+      "respuesta": "ARESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 32 para la letra A",
+      "respuesta": "ARESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 33 para la letra A",
+      "respuesta": "ARESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 34 para la letra A",
+      "respuesta": "ARESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 35 para la letra A",
+      "respuesta": "ARESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 36 para la letra A",
+      "respuesta": "ARESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 37 para la letra A",
+      "respuesta": "ARESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 38 para la letra A",
+      "respuesta": "ARESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 39 para la letra A",
+      "respuesta": "ARESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 40 para la letra A",
+      "respuesta": "ARESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 41 para la letra A",
+      "respuesta": "ARESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 42 para la letra A",
+      "respuesta": "ARESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 43 para la letra A",
+      "respuesta": "ARESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 44 para la letra A",
+      "respuesta": "ARESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 45 para la letra A",
+      "respuesta": "ARESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 46 para la letra A",
+      "respuesta": "ARESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 47 para la letra A",
+      "respuesta": "ARESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 48 para la letra A",
+      "respuesta": "ARESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 49 para la letra A",
+      "respuesta": "ARESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Pregunta 50 para la letra A",
+      "respuesta": "ARESPUESTA50"
+    }
+  ],
+  "B": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 1 para la letra B",
+      "respuesta": "BRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 2 para la letra B",
+      "respuesta": "BRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 3 para la letra B",
+      "respuesta": "BRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 4 para la letra B",
+      "respuesta": "BRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 5 para la letra B",
+      "respuesta": "BRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 6 para la letra B",
+      "respuesta": "BRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 7 para la letra B",
+      "respuesta": "BRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 8 para la letra B",
+      "respuesta": "BRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 9 para la letra B",
+      "respuesta": "BRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 10 para la letra B",
+      "respuesta": "BRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 11 para la letra B",
+      "respuesta": "BRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 12 para la letra B",
+      "respuesta": "BRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 13 para la letra B",
+      "respuesta": "BRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 14 para la letra B",
+      "respuesta": "BRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 15 para la letra B",
+      "respuesta": "BRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 16 para la letra B",
+      "respuesta": "BRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 17 para la letra B",
+      "respuesta": "BRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 18 para la letra B",
+      "respuesta": "BRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 19 para la letra B",
+      "respuesta": "BRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 20 para la letra B",
+      "respuesta": "BRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 21 para la letra B",
+      "respuesta": "BRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 22 para la letra B",
+      "respuesta": "BRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 23 para la letra B",
+      "respuesta": "BRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 24 para la letra B",
+      "respuesta": "BRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 25 para la letra B",
+      "respuesta": "BRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 26 para la letra B",
+      "respuesta": "BRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 27 para la letra B",
+      "respuesta": "BRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 28 para la letra B",
+      "respuesta": "BRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 29 para la letra B",
+      "respuesta": "BRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 30 para la letra B",
+      "respuesta": "BRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 31 para la letra B",
+      "respuesta": "BRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 32 para la letra B",
+      "respuesta": "BRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 33 para la letra B",
+      "respuesta": "BRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 34 para la letra B",
+      "respuesta": "BRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 35 para la letra B",
+      "respuesta": "BRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 36 para la letra B",
+      "respuesta": "BRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 37 para la letra B",
+      "respuesta": "BRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 38 para la letra B",
+      "respuesta": "BRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 39 para la letra B",
+      "respuesta": "BRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 40 para la letra B",
+      "respuesta": "BRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 41 para la letra B",
+      "respuesta": "BRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 42 para la letra B",
+      "respuesta": "BRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 43 para la letra B",
+      "respuesta": "BRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 44 para la letra B",
+      "respuesta": "BRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 45 para la letra B",
+      "respuesta": "BRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 46 para la letra B",
+      "respuesta": "BRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 47 para la letra B",
+      "respuesta": "BRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 48 para la letra B",
+      "respuesta": "BRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 49 para la letra B",
+      "respuesta": "BRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por B: Pregunta 50 para la letra B",
+      "respuesta": "BRESPUESTA50"
+    }
+  ],
+  "C": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 1 para la letra C",
+      "respuesta": "CRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 2 para la letra C",
+      "respuesta": "CRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 3 para la letra C",
+      "respuesta": "CRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 4 para la letra C",
+      "respuesta": "CRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 5 para la letra C",
+      "respuesta": "CRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 6 para la letra C",
+      "respuesta": "CRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 7 para la letra C",
+      "respuesta": "CRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 8 para la letra C",
+      "respuesta": "CRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 9 para la letra C",
+      "respuesta": "CRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 10 para la letra C",
+      "respuesta": "CRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 11 para la letra C",
+      "respuesta": "CRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 12 para la letra C",
+      "respuesta": "CRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 13 para la letra C",
+      "respuesta": "CRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 14 para la letra C",
+      "respuesta": "CRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 15 para la letra C",
+      "respuesta": "CRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 16 para la letra C",
+      "respuesta": "CRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 17 para la letra C",
+      "respuesta": "CRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 18 para la letra C",
+      "respuesta": "CRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 19 para la letra C",
+      "respuesta": "CRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 20 para la letra C",
+      "respuesta": "CRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 21 para la letra C",
+      "respuesta": "CRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 22 para la letra C",
+      "respuesta": "CRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 23 para la letra C",
+      "respuesta": "CRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 24 para la letra C",
+      "respuesta": "CRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 25 para la letra C",
+      "respuesta": "CRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 26 para la letra C",
+      "respuesta": "CRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 27 para la letra C",
+      "respuesta": "CRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 28 para la letra C",
+      "respuesta": "CRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 29 para la letra C",
+      "respuesta": "CRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 30 para la letra C",
+      "respuesta": "CRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 31 para la letra C",
+      "respuesta": "CRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 32 para la letra C",
+      "respuesta": "CRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 33 para la letra C",
+      "respuesta": "CRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 34 para la letra C",
+      "respuesta": "CRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 35 para la letra C",
+      "respuesta": "CRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 36 para la letra C",
+      "respuesta": "CRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 37 para la letra C",
+      "respuesta": "CRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 38 para la letra C",
+      "respuesta": "CRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 39 para la letra C",
+      "respuesta": "CRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 40 para la letra C",
+      "respuesta": "CRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 41 para la letra C",
+      "respuesta": "CRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 42 para la letra C",
+      "respuesta": "CRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 43 para la letra C",
+      "respuesta": "CRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 44 para la letra C",
+      "respuesta": "CRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 45 para la letra C",
+      "respuesta": "CRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 46 para la letra C",
+      "respuesta": "CRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 47 para la letra C",
+      "respuesta": "CRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 48 para la letra C",
+      "respuesta": "CRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 49 para la letra C",
+      "respuesta": "CRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por C: Pregunta 50 para la letra C",
+      "respuesta": "CRESPUESTA50"
+    }
+  ],
+  "D": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 1 para la letra D",
+      "respuesta": "DRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 2 para la letra D",
+      "respuesta": "DRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 3 para la letra D",
+      "respuesta": "DRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 4 para la letra D",
+      "respuesta": "DRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 5 para la letra D",
+      "respuesta": "DRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 6 para la letra D",
+      "respuesta": "DRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 7 para la letra D",
+      "respuesta": "DRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 8 para la letra D",
+      "respuesta": "DRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 9 para la letra D",
+      "respuesta": "DRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 10 para la letra D",
+      "respuesta": "DRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 11 para la letra D",
+      "respuesta": "DRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 12 para la letra D",
+      "respuesta": "DRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 13 para la letra D",
+      "respuesta": "DRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 14 para la letra D",
+      "respuesta": "DRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 15 para la letra D",
+      "respuesta": "DRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 16 para la letra D",
+      "respuesta": "DRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 17 para la letra D",
+      "respuesta": "DRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 18 para la letra D",
+      "respuesta": "DRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 19 para la letra D",
+      "respuesta": "DRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 20 para la letra D",
+      "respuesta": "DRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 21 para la letra D",
+      "respuesta": "DRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 22 para la letra D",
+      "respuesta": "DRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 23 para la letra D",
+      "respuesta": "DRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 24 para la letra D",
+      "respuesta": "DRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 25 para la letra D",
+      "respuesta": "DRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 26 para la letra D",
+      "respuesta": "DRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 27 para la letra D",
+      "respuesta": "DRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 28 para la letra D",
+      "respuesta": "DRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 29 para la letra D",
+      "respuesta": "DRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 30 para la letra D",
+      "respuesta": "DRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 31 para la letra D",
+      "respuesta": "DRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 32 para la letra D",
+      "respuesta": "DRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 33 para la letra D",
+      "respuesta": "DRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 34 para la letra D",
+      "respuesta": "DRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 35 para la letra D",
+      "respuesta": "DRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 36 para la letra D",
+      "respuesta": "DRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 37 para la letra D",
+      "respuesta": "DRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 38 para la letra D",
+      "respuesta": "DRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 39 para la letra D",
+      "respuesta": "DRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 40 para la letra D",
+      "respuesta": "DRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 41 para la letra D",
+      "respuesta": "DRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 42 para la letra D",
+      "respuesta": "DRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 43 para la letra D",
+      "respuesta": "DRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 44 para la letra D",
+      "respuesta": "DRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 45 para la letra D",
+      "respuesta": "DRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 46 para la letra D",
+      "respuesta": "DRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 47 para la letra D",
+      "respuesta": "DRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 48 para la letra D",
+      "respuesta": "DRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 49 para la letra D",
+      "respuesta": "DRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por D: Pregunta 50 para la letra D",
+      "respuesta": "DRESPUESTA50"
+    }
+  ],
+  "E": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 1 para la letra E",
+      "respuesta": "ERESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 2 para la letra E",
+      "respuesta": "ERESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 3 para la letra E",
+      "respuesta": "ERESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 4 para la letra E",
+      "respuesta": "ERESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 5 para la letra E",
+      "respuesta": "ERESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 6 para la letra E",
+      "respuesta": "ERESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 7 para la letra E",
+      "respuesta": "ERESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 8 para la letra E",
+      "respuesta": "ERESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 9 para la letra E",
+      "respuesta": "ERESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 10 para la letra E",
+      "respuesta": "ERESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 11 para la letra E",
+      "respuesta": "ERESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 12 para la letra E",
+      "respuesta": "ERESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 13 para la letra E",
+      "respuesta": "ERESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 14 para la letra E",
+      "respuesta": "ERESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 15 para la letra E",
+      "respuesta": "ERESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 16 para la letra E",
+      "respuesta": "ERESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 17 para la letra E",
+      "respuesta": "ERESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 18 para la letra E",
+      "respuesta": "ERESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 19 para la letra E",
+      "respuesta": "ERESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 20 para la letra E",
+      "respuesta": "ERESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 21 para la letra E",
+      "respuesta": "ERESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 22 para la letra E",
+      "respuesta": "ERESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 23 para la letra E",
+      "respuesta": "ERESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 24 para la letra E",
+      "respuesta": "ERESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 25 para la letra E",
+      "respuesta": "ERESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 26 para la letra E",
+      "respuesta": "ERESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 27 para la letra E",
+      "respuesta": "ERESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 28 para la letra E",
+      "respuesta": "ERESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 29 para la letra E",
+      "respuesta": "ERESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 30 para la letra E",
+      "respuesta": "ERESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 31 para la letra E",
+      "respuesta": "ERESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 32 para la letra E",
+      "respuesta": "ERESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 33 para la letra E",
+      "respuesta": "ERESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 34 para la letra E",
+      "respuesta": "ERESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 35 para la letra E",
+      "respuesta": "ERESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 36 para la letra E",
+      "respuesta": "ERESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 37 para la letra E",
+      "respuesta": "ERESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 38 para la letra E",
+      "respuesta": "ERESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 39 para la letra E",
+      "respuesta": "ERESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 40 para la letra E",
+      "respuesta": "ERESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 41 para la letra E",
+      "respuesta": "ERESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 42 para la letra E",
+      "respuesta": "ERESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 43 para la letra E",
+      "respuesta": "ERESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 44 para la letra E",
+      "respuesta": "ERESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 45 para la letra E",
+      "respuesta": "ERESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 46 para la letra E",
+      "respuesta": "ERESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 47 para la letra E",
+      "respuesta": "ERESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 48 para la letra E",
+      "respuesta": "ERESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 49 para la letra E",
+      "respuesta": "ERESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por E: Pregunta 50 para la letra E",
+      "respuesta": "ERESPUESTA50"
+    }
+  ],
+  "F": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 1 para la letra F",
+      "respuesta": "FRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 2 para la letra F",
+      "respuesta": "FRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 3 para la letra F",
+      "respuesta": "FRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 4 para la letra F",
+      "respuesta": "FRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 5 para la letra F",
+      "respuesta": "FRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 6 para la letra F",
+      "respuesta": "FRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 7 para la letra F",
+      "respuesta": "FRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 8 para la letra F",
+      "respuesta": "FRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 9 para la letra F",
+      "respuesta": "FRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 10 para la letra F",
+      "respuesta": "FRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 11 para la letra F",
+      "respuesta": "FRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 12 para la letra F",
+      "respuesta": "FRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 13 para la letra F",
+      "respuesta": "FRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 14 para la letra F",
+      "respuesta": "FRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 15 para la letra F",
+      "respuesta": "FRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 16 para la letra F",
+      "respuesta": "FRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 17 para la letra F",
+      "respuesta": "FRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 18 para la letra F",
+      "respuesta": "FRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 19 para la letra F",
+      "respuesta": "FRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 20 para la letra F",
+      "respuesta": "FRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 21 para la letra F",
+      "respuesta": "FRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 22 para la letra F",
+      "respuesta": "FRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 23 para la letra F",
+      "respuesta": "FRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 24 para la letra F",
+      "respuesta": "FRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 25 para la letra F",
+      "respuesta": "FRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 26 para la letra F",
+      "respuesta": "FRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 27 para la letra F",
+      "respuesta": "FRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 28 para la letra F",
+      "respuesta": "FRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 29 para la letra F",
+      "respuesta": "FRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 30 para la letra F",
+      "respuesta": "FRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 31 para la letra F",
+      "respuesta": "FRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 32 para la letra F",
+      "respuesta": "FRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 33 para la letra F",
+      "respuesta": "FRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 34 para la letra F",
+      "respuesta": "FRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 35 para la letra F",
+      "respuesta": "FRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 36 para la letra F",
+      "respuesta": "FRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 37 para la letra F",
+      "respuesta": "FRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 38 para la letra F",
+      "respuesta": "FRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 39 para la letra F",
+      "respuesta": "FRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 40 para la letra F",
+      "respuesta": "FRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 41 para la letra F",
+      "respuesta": "FRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 42 para la letra F",
+      "respuesta": "FRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 43 para la letra F",
+      "respuesta": "FRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 44 para la letra F",
+      "respuesta": "FRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 45 para la letra F",
+      "respuesta": "FRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 46 para la letra F",
+      "respuesta": "FRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 47 para la letra F",
+      "respuesta": "FRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 48 para la letra F",
+      "respuesta": "FRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 49 para la letra F",
+      "respuesta": "FRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por F: Pregunta 50 para la letra F",
+      "respuesta": "FRESPUESTA50"
+    }
+  ],
+  "G": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 1 para la letra G",
+      "respuesta": "GRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 2 para la letra G",
+      "respuesta": "GRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 3 para la letra G",
+      "respuesta": "GRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 4 para la letra G",
+      "respuesta": "GRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 5 para la letra G",
+      "respuesta": "GRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 6 para la letra G",
+      "respuesta": "GRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 7 para la letra G",
+      "respuesta": "GRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 8 para la letra G",
+      "respuesta": "GRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 9 para la letra G",
+      "respuesta": "GRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 10 para la letra G",
+      "respuesta": "GRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 11 para la letra G",
+      "respuesta": "GRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 12 para la letra G",
+      "respuesta": "GRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 13 para la letra G",
+      "respuesta": "GRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 14 para la letra G",
+      "respuesta": "GRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 15 para la letra G",
+      "respuesta": "GRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 16 para la letra G",
+      "respuesta": "GRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 17 para la letra G",
+      "respuesta": "GRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 18 para la letra G",
+      "respuesta": "GRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 19 para la letra G",
+      "respuesta": "GRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 20 para la letra G",
+      "respuesta": "GRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 21 para la letra G",
+      "respuesta": "GRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 22 para la letra G",
+      "respuesta": "GRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 23 para la letra G",
+      "respuesta": "GRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 24 para la letra G",
+      "respuesta": "GRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 25 para la letra G",
+      "respuesta": "GRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 26 para la letra G",
+      "respuesta": "GRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 27 para la letra G",
+      "respuesta": "GRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 28 para la letra G",
+      "respuesta": "GRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 29 para la letra G",
+      "respuesta": "GRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 30 para la letra G",
+      "respuesta": "GRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 31 para la letra G",
+      "respuesta": "GRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 32 para la letra G",
+      "respuesta": "GRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 33 para la letra G",
+      "respuesta": "GRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 34 para la letra G",
+      "respuesta": "GRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 35 para la letra G",
+      "respuesta": "GRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 36 para la letra G",
+      "respuesta": "GRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 37 para la letra G",
+      "respuesta": "GRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 38 para la letra G",
+      "respuesta": "GRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 39 para la letra G",
+      "respuesta": "GRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 40 para la letra G",
+      "respuesta": "GRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 41 para la letra G",
+      "respuesta": "GRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 42 para la letra G",
+      "respuesta": "GRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 43 para la letra G",
+      "respuesta": "GRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 44 para la letra G",
+      "respuesta": "GRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 45 para la letra G",
+      "respuesta": "GRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 46 para la letra G",
+      "respuesta": "GRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 47 para la letra G",
+      "respuesta": "GRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 48 para la letra G",
+      "respuesta": "GRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 49 para la letra G",
+      "respuesta": "GRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por G: Pregunta 50 para la letra G",
+      "respuesta": "GRESPUESTA50"
+    }
+  ],
+  "H": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 1 para la letra H",
+      "respuesta": "HRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 2 para la letra H",
+      "respuesta": "HRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 3 para la letra H",
+      "respuesta": "HRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 4 para la letra H",
+      "respuesta": "HRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 5 para la letra H",
+      "respuesta": "HRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 6 para la letra H",
+      "respuesta": "HRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 7 para la letra H",
+      "respuesta": "HRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 8 para la letra H",
+      "respuesta": "HRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 9 para la letra H",
+      "respuesta": "HRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 10 para la letra H",
+      "respuesta": "HRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 11 para la letra H",
+      "respuesta": "HRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 12 para la letra H",
+      "respuesta": "HRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 13 para la letra H",
+      "respuesta": "HRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 14 para la letra H",
+      "respuesta": "HRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 15 para la letra H",
+      "respuesta": "HRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 16 para la letra H",
+      "respuesta": "HRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 17 para la letra H",
+      "respuesta": "HRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 18 para la letra H",
+      "respuesta": "HRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 19 para la letra H",
+      "respuesta": "HRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 20 para la letra H",
+      "respuesta": "HRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 21 para la letra H",
+      "respuesta": "HRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 22 para la letra H",
+      "respuesta": "HRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 23 para la letra H",
+      "respuesta": "HRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 24 para la letra H",
+      "respuesta": "HRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 25 para la letra H",
+      "respuesta": "HRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 26 para la letra H",
+      "respuesta": "HRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 27 para la letra H",
+      "respuesta": "HRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 28 para la letra H",
+      "respuesta": "HRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 29 para la letra H",
+      "respuesta": "HRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 30 para la letra H",
+      "respuesta": "HRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 31 para la letra H",
+      "respuesta": "HRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 32 para la letra H",
+      "respuesta": "HRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 33 para la letra H",
+      "respuesta": "HRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 34 para la letra H",
+      "respuesta": "HRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 35 para la letra H",
+      "respuesta": "HRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 36 para la letra H",
+      "respuesta": "HRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 37 para la letra H",
+      "respuesta": "HRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 38 para la letra H",
+      "respuesta": "HRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 39 para la letra H",
+      "respuesta": "HRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 40 para la letra H",
+      "respuesta": "HRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 41 para la letra H",
+      "respuesta": "HRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 42 para la letra H",
+      "respuesta": "HRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 43 para la letra H",
+      "respuesta": "HRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 44 para la letra H",
+      "respuesta": "HRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 45 para la letra H",
+      "respuesta": "HRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 46 para la letra H",
+      "respuesta": "HRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 47 para la letra H",
+      "respuesta": "HRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 48 para la letra H",
+      "respuesta": "HRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 49 para la letra H",
+      "respuesta": "HRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por H: Pregunta 50 para la letra H",
+      "respuesta": "HRESPUESTA50"
+    }
+  ],
+  "I": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 1 para la letra I",
+      "respuesta": "IRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 2 para la letra I",
+      "respuesta": "IRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 3 para la letra I",
+      "respuesta": "IRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 4 para la letra I",
+      "respuesta": "IRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 5 para la letra I",
+      "respuesta": "IRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 6 para la letra I",
+      "respuesta": "IRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 7 para la letra I",
+      "respuesta": "IRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 8 para la letra I",
+      "respuesta": "IRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 9 para la letra I",
+      "respuesta": "IRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 10 para la letra I",
+      "respuesta": "IRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 11 para la letra I",
+      "respuesta": "IRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 12 para la letra I",
+      "respuesta": "IRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 13 para la letra I",
+      "respuesta": "IRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 14 para la letra I",
+      "respuesta": "IRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 15 para la letra I",
+      "respuesta": "IRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 16 para la letra I",
+      "respuesta": "IRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 17 para la letra I",
+      "respuesta": "IRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 18 para la letra I",
+      "respuesta": "IRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 19 para la letra I",
+      "respuesta": "IRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 20 para la letra I",
+      "respuesta": "IRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 21 para la letra I",
+      "respuesta": "IRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 22 para la letra I",
+      "respuesta": "IRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 23 para la letra I",
+      "respuesta": "IRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 24 para la letra I",
+      "respuesta": "IRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 25 para la letra I",
+      "respuesta": "IRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 26 para la letra I",
+      "respuesta": "IRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 27 para la letra I",
+      "respuesta": "IRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 28 para la letra I",
+      "respuesta": "IRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 29 para la letra I",
+      "respuesta": "IRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 30 para la letra I",
+      "respuesta": "IRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 31 para la letra I",
+      "respuesta": "IRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 32 para la letra I",
+      "respuesta": "IRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 33 para la letra I",
+      "respuesta": "IRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 34 para la letra I",
+      "respuesta": "IRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 35 para la letra I",
+      "respuesta": "IRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 36 para la letra I",
+      "respuesta": "IRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 37 para la letra I",
+      "respuesta": "IRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 38 para la letra I",
+      "respuesta": "IRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 39 para la letra I",
+      "respuesta": "IRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 40 para la letra I",
+      "respuesta": "IRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 41 para la letra I",
+      "respuesta": "IRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 42 para la letra I",
+      "respuesta": "IRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 43 para la letra I",
+      "respuesta": "IRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 44 para la letra I",
+      "respuesta": "IRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 45 para la letra I",
+      "respuesta": "IRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 46 para la letra I",
+      "respuesta": "IRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 47 para la letra I",
+      "respuesta": "IRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 48 para la letra I",
+      "respuesta": "IRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 49 para la letra I",
+      "respuesta": "IRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por I: Pregunta 50 para la letra I",
+      "respuesta": "IRESPUESTA50"
+    }
+  ],
+  "J": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 1 para la letra J",
+      "respuesta": "JRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 2 para la letra J",
+      "respuesta": "JRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 3 para la letra J",
+      "respuesta": "JRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 4 para la letra J",
+      "respuesta": "JRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 5 para la letra J",
+      "respuesta": "JRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 6 para la letra J",
+      "respuesta": "JRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 7 para la letra J",
+      "respuesta": "JRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 8 para la letra J",
+      "respuesta": "JRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 9 para la letra J",
+      "respuesta": "JRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 10 para la letra J",
+      "respuesta": "JRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 11 para la letra J",
+      "respuesta": "JRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 12 para la letra J",
+      "respuesta": "JRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 13 para la letra J",
+      "respuesta": "JRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 14 para la letra J",
+      "respuesta": "JRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 15 para la letra J",
+      "respuesta": "JRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 16 para la letra J",
+      "respuesta": "JRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 17 para la letra J",
+      "respuesta": "JRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 18 para la letra J",
+      "respuesta": "JRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 19 para la letra J",
+      "respuesta": "JRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 20 para la letra J",
+      "respuesta": "JRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 21 para la letra J",
+      "respuesta": "JRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 22 para la letra J",
+      "respuesta": "JRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 23 para la letra J",
+      "respuesta": "JRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 24 para la letra J",
+      "respuesta": "JRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 25 para la letra J",
+      "respuesta": "JRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 26 para la letra J",
+      "respuesta": "JRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 27 para la letra J",
+      "respuesta": "JRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 28 para la letra J",
+      "respuesta": "JRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 29 para la letra J",
+      "respuesta": "JRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 30 para la letra J",
+      "respuesta": "JRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 31 para la letra J",
+      "respuesta": "JRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 32 para la letra J",
+      "respuesta": "JRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 33 para la letra J",
+      "respuesta": "JRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 34 para la letra J",
+      "respuesta": "JRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 35 para la letra J",
+      "respuesta": "JRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 36 para la letra J",
+      "respuesta": "JRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 37 para la letra J",
+      "respuesta": "JRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 38 para la letra J",
+      "respuesta": "JRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 39 para la letra J",
+      "respuesta": "JRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 40 para la letra J",
+      "respuesta": "JRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 41 para la letra J",
+      "respuesta": "JRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 42 para la letra J",
+      "respuesta": "JRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 43 para la letra J",
+      "respuesta": "JRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 44 para la letra J",
+      "respuesta": "JRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 45 para la letra J",
+      "respuesta": "JRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 46 para la letra J",
+      "respuesta": "JRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 47 para la letra J",
+      "respuesta": "JRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 48 para la letra J",
+      "respuesta": "JRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 49 para la letra J",
+      "respuesta": "JRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por J: Pregunta 50 para la letra J",
+      "respuesta": "JRESPUESTA50"
+    }
+  ],
+  "K": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 1 para la letra K",
+      "respuesta": "KRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 2 para la letra K",
+      "respuesta": "KRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 3 para la letra K",
+      "respuesta": "KRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 4 para la letra K",
+      "respuesta": "KRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 5 para la letra K",
+      "respuesta": "KRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 6 para la letra K",
+      "respuesta": "KRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 7 para la letra K",
+      "respuesta": "KRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 8 para la letra K",
+      "respuesta": "KRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 9 para la letra K",
+      "respuesta": "KRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 10 para la letra K",
+      "respuesta": "KRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 11 para la letra K",
+      "respuesta": "KRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 12 para la letra K",
+      "respuesta": "KRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 13 para la letra K",
+      "respuesta": "KRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 14 para la letra K",
+      "respuesta": "KRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 15 para la letra K",
+      "respuesta": "KRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 16 para la letra K",
+      "respuesta": "KRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 17 para la letra K",
+      "respuesta": "KRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 18 para la letra K",
+      "respuesta": "KRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 19 para la letra K",
+      "respuesta": "KRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 20 para la letra K",
+      "respuesta": "KRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 21 para la letra K",
+      "respuesta": "KRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 22 para la letra K",
+      "respuesta": "KRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 23 para la letra K",
+      "respuesta": "KRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 24 para la letra K",
+      "respuesta": "KRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 25 para la letra K",
+      "respuesta": "KRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 26 para la letra K",
+      "respuesta": "KRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 27 para la letra K",
+      "respuesta": "KRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 28 para la letra K",
+      "respuesta": "KRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 29 para la letra K",
+      "respuesta": "KRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 30 para la letra K",
+      "respuesta": "KRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 31 para la letra K",
+      "respuesta": "KRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 32 para la letra K",
+      "respuesta": "KRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 33 para la letra K",
+      "respuesta": "KRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 34 para la letra K",
+      "respuesta": "KRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 35 para la letra K",
+      "respuesta": "KRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 36 para la letra K",
+      "respuesta": "KRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 37 para la letra K",
+      "respuesta": "KRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 38 para la letra K",
+      "respuesta": "KRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 39 para la letra K",
+      "respuesta": "KRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 40 para la letra K",
+      "respuesta": "KRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 41 para la letra K",
+      "respuesta": "KRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 42 para la letra K",
+      "respuesta": "KRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 43 para la letra K",
+      "respuesta": "KRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 44 para la letra K",
+      "respuesta": "KRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 45 para la letra K",
+      "respuesta": "KRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 46 para la letra K",
+      "respuesta": "KRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 47 para la letra K",
+      "respuesta": "KRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 48 para la letra K",
+      "respuesta": "KRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 49 para la letra K",
+      "respuesta": "KRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por K: Pregunta 50 para la letra K",
+      "respuesta": "KRESPUESTA50"
+    }
+  ],
+  "L": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 1 para la letra L",
+      "respuesta": "LRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 2 para la letra L",
+      "respuesta": "LRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 3 para la letra L",
+      "respuesta": "LRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 4 para la letra L",
+      "respuesta": "LRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 5 para la letra L",
+      "respuesta": "LRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 6 para la letra L",
+      "respuesta": "LRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 7 para la letra L",
+      "respuesta": "LRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 8 para la letra L",
+      "respuesta": "LRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 9 para la letra L",
+      "respuesta": "LRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 10 para la letra L",
+      "respuesta": "LRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 11 para la letra L",
+      "respuesta": "LRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 12 para la letra L",
+      "respuesta": "LRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 13 para la letra L",
+      "respuesta": "LRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 14 para la letra L",
+      "respuesta": "LRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 15 para la letra L",
+      "respuesta": "LRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 16 para la letra L",
+      "respuesta": "LRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 17 para la letra L",
+      "respuesta": "LRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 18 para la letra L",
+      "respuesta": "LRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 19 para la letra L",
+      "respuesta": "LRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 20 para la letra L",
+      "respuesta": "LRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 21 para la letra L",
+      "respuesta": "LRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 22 para la letra L",
+      "respuesta": "LRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 23 para la letra L",
+      "respuesta": "LRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 24 para la letra L",
+      "respuesta": "LRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 25 para la letra L",
+      "respuesta": "LRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 26 para la letra L",
+      "respuesta": "LRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 27 para la letra L",
+      "respuesta": "LRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 28 para la letra L",
+      "respuesta": "LRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 29 para la letra L",
+      "respuesta": "LRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 30 para la letra L",
+      "respuesta": "LRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 31 para la letra L",
+      "respuesta": "LRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 32 para la letra L",
+      "respuesta": "LRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 33 para la letra L",
+      "respuesta": "LRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 34 para la letra L",
+      "respuesta": "LRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 35 para la letra L",
+      "respuesta": "LRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 36 para la letra L",
+      "respuesta": "LRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 37 para la letra L",
+      "respuesta": "LRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 38 para la letra L",
+      "respuesta": "LRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 39 para la letra L",
+      "respuesta": "LRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 40 para la letra L",
+      "respuesta": "LRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 41 para la letra L",
+      "respuesta": "LRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 42 para la letra L",
+      "respuesta": "LRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 43 para la letra L",
+      "respuesta": "LRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 44 para la letra L",
+      "respuesta": "LRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 45 para la letra L",
+      "respuesta": "LRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 46 para la letra L",
+      "respuesta": "LRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 47 para la letra L",
+      "respuesta": "LRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 48 para la letra L",
+      "respuesta": "LRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 49 para la letra L",
+      "respuesta": "LRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por L: Pregunta 50 para la letra L",
+      "respuesta": "LRESPUESTA50"
+    }
+  ],
+  "M": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 1 para la letra M",
+      "respuesta": "MRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 2 para la letra M",
+      "respuesta": "MRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 3 para la letra M",
+      "respuesta": "MRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 4 para la letra M",
+      "respuesta": "MRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 5 para la letra M",
+      "respuesta": "MRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 6 para la letra M",
+      "respuesta": "MRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 7 para la letra M",
+      "respuesta": "MRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 8 para la letra M",
+      "respuesta": "MRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 9 para la letra M",
+      "respuesta": "MRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 10 para la letra M",
+      "respuesta": "MRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 11 para la letra M",
+      "respuesta": "MRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 12 para la letra M",
+      "respuesta": "MRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 13 para la letra M",
+      "respuesta": "MRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 14 para la letra M",
+      "respuesta": "MRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 15 para la letra M",
+      "respuesta": "MRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 16 para la letra M",
+      "respuesta": "MRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 17 para la letra M",
+      "respuesta": "MRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 18 para la letra M",
+      "respuesta": "MRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 19 para la letra M",
+      "respuesta": "MRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 20 para la letra M",
+      "respuesta": "MRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 21 para la letra M",
+      "respuesta": "MRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 22 para la letra M",
+      "respuesta": "MRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 23 para la letra M",
+      "respuesta": "MRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 24 para la letra M",
+      "respuesta": "MRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 25 para la letra M",
+      "respuesta": "MRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 26 para la letra M",
+      "respuesta": "MRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 27 para la letra M",
+      "respuesta": "MRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 28 para la letra M",
+      "respuesta": "MRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 29 para la letra M",
+      "respuesta": "MRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 30 para la letra M",
+      "respuesta": "MRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 31 para la letra M",
+      "respuesta": "MRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 32 para la letra M",
+      "respuesta": "MRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 33 para la letra M",
+      "respuesta": "MRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 34 para la letra M",
+      "respuesta": "MRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 35 para la letra M",
+      "respuesta": "MRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 36 para la letra M",
+      "respuesta": "MRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 37 para la letra M",
+      "respuesta": "MRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 38 para la letra M",
+      "respuesta": "MRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 39 para la letra M",
+      "respuesta": "MRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 40 para la letra M",
+      "respuesta": "MRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 41 para la letra M",
+      "respuesta": "MRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 42 para la letra M",
+      "respuesta": "MRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 43 para la letra M",
+      "respuesta": "MRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 44 para la letra M",
+      "respuesta": "MRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 45 para la letra M",
+      "respuesta": "MRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 46 para la letra M",
+      "respuesta": "MRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 47 para la letra M",
+      "respuesta": "MRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 48 para la letra M",
+      "respuesta": "MRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 49 para la letra M",
+      "respuesta": "MRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por M: Pregunta 50 para la letra M",
+      "respuesta": "MRESPUESTA50"
+    }
+  ],
+  "N": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 1 para la letra N",
+      "respuesta": "NRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 2 para la letra N",
+      "respuesta": "NRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 3 para la letra N",
+      "respuesta": "NRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 4 para la letra N",
+      "respuesta": "NRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 5 para la letra N",
+      "respuesta": "NRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 6 para la letra N",
+      "respuesta": "NRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 7 para la letra N",
+      "respuesta": "NRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 8 para la letra N",
+      "respuesta": "NRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 9 para la letra N",
+      "respuesta": "NRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 10 para la letra N",
+      "respuesta": "NRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 11 para la letra N",
+      "respuesta": "NRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 12 para la letra N",
+      "respuesta": "NRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 13 para la letra N",
+      "respuesta": "NRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 14 para la letra N",
+      "respuesta": "NRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 15 para la letra N",
+      "respuesta": "NRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 16 para la letra N",
+      "respuesta": "NRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 17 para la letra N",
+      "respuesta": "NRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 18 para la letra N",
+      "respuesta": "NRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 19 para la letra N",
+      "respuesta": "NRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 20 para la letra N",
+      "respuesta": "NRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 21 para la letra N",
+      "respuesta": "NRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 22 para la letra N",
+      "respuesta": "NRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 23 para la letra N",
+      "respuesta": "NRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 24 para la letra N",
+      "respuesta": "NRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 25 para la letra N",
+      "respuesta": "NRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 26 para la letra N",
+      "respuesta": "NRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 27 para la letra N",
+      "respuesta": "NRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 28 para la letra N",
+      "respuesta": "NRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 29 para la letra N",
+      "respuesta": "NRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 30 para la letra N",
+      "respuesta": "NRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 31 para la letra N",
+      "respuesta": "NRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 32 para la letra N",
+      "respuesta": "NRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 33 para la letra N",
+      "respuesta": "NRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 34 para la letra N",
+      "respuesta": "NRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 35 para la letra N",
+      "respuesta": "NRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 36 para la letra N",
+      "respuesta": "NRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 37 para la letra N",
+      "respuesta": "NRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 38 para la letra N",
+      "respuesta": "NRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 39 para la letra N",
+      "respuesta": "NRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 40 para la letra N",
+      "respuesta": "NRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 41 para la letra N",
+      "respuesta": "NRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 42 para la letra N",
+      "respuesta": "NRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 43 para la letra N",
+      "respuesta": "NRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 44 para la letra N",
+      "respuesta": "NRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 45 para la letra N",
+      "respuesta": "NRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 46 para la letra N",
+      "respuesta": "NRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 47 para la letra N",
+      "respuesta": "NRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 48 para la letra N",
+      "respuesta": "NRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 49 para la letra N",
+      "respuesta": "NRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por N: Pregunta 50 para la letra N",
+      "respuesta": "NRESPUESTA50"
+    }
+  ],
+  "Ñ": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 1 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 2 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 3 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 4 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 5 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 6 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 7 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 8 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 9 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 10 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 11 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 12 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 13 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 14 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 15 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 16 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 17 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 18 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 19 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 20 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 21 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 22 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 23 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 24 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 25 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 26 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 27 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 28 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 29 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 30 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 31 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 32 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 33 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 34 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 35 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 36 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 37 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 38 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 39 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 40 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 41 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 42 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 43 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 44 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 45 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 46 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 47 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 48 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 49 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Ñ: Pregunta 50 para la letra Ñ",
+      "respuesta": "ÑRESPUESTA50"
+    }
+  ],
+  "O": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 1 para la letra O",
+      "respuesta": "ORESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 2 para la letra O",
+      "respuesta": "ORESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 3 para la letra O",
+      "respuesta": "ORESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 4 para la letra O",
+      "respuesta": "ORESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 5 para la letra O",
+      "respuesta": "ORESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 6 para la letra O",
+      "respuesta": "ORESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 7 para la letra O",
+      "respuesta": "ORESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 8 para la letra O",
+      "respuesta": "ORESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 9 para la letra O",
+      "respuesta": "ORESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 10 para la letra O",
+      "respuesta": "ORESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 11 para la letra O",
+      "respuesta": "ORESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 12 para la letra O",
+      "respuesta": "ORESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 13 para la letra O",
+      "respuesta": "ORESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 14 para la letra O",
+      "respuesta": "ORESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 15 para la letra O",
+      "respuesta": "ORESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 16 para la letra O",
+      "respuesta": "ORESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 17 para la letra O",
+      "respuesta": "ORESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 18 para la letra O",
+      "respuesta": "ORESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 19 para la letra O",
+      "respuesta": "ORESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 20 para la letra O",
+      "respuesta": "ORESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 21 para la letra O",
+      "respuesta": "ORESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 22 para la letra O",
+      "respuesta": "ORESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 23 para la letra O",
+      "respuesta": "ORESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 24 para la letra O",
+      "respuesta": "ORESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 25 para la letra O",
+      "respuesta": "ORESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 26 para la letra O",
+      "respuesta": "ORESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 27 para la letra O",
+      "respuesta": "ORESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 28 para la letra O",
+      "respuesta": "ORESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 29 para la letra O",
+      "respuesta": "ORESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 30 para la letra O",
+      "respuesta": "ORESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 31 para la letra O",
+      "respuesta": "ORESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 32 para la letra O",
+      "respuesta": "ORESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 33 para la letra O",
+      "respuesta": "ORESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 34 para la letra O",
+      "respuesta": "ORESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 35 para la letra O",
+      "respuesta": "ORESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 36 para la letra O",
+      "respuesta": "ORESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 37 para la letra O",
+      "respuesta": "ORESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 38 para la letra O",
+      "respuesta": "ORESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 39 para la letra O",
+      "respuesta": "ORESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 40 para la letra O",
+      "respuesta": "ORESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 41 para la letra O",
+      "respuesta": "ORESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 42 para la letra O",
+      "respuesta": "ORESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 43 para la letra O",
+      "respuesta": "ORESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 44 para la letra O",
+      "respuesta": "ORESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 45 para la letra O",
+      "respuesta": "ORESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 46 para la letra O",
+      "respuesta": "ORESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 47 para la letra O",
+      "respuesta": "ORESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 48 para la letra O",
+      "respuesta": "ORESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 49 para la letra O",
+      "respuesta": "ORESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por O: Pregunta 50 para la letra O",
+      "respuesta": "ORESPUESTA50"
+    }
+  ],
+  "P": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 1 para la letra P",
+      "respuesta": "PRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 2 para la letra P",
+      "respuesta": "PRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 3 para la letra P",
+      "respuesta": "PRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 4 para la letra P",
+      "respuesta": "PRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 5 para la letra P",
+      "respuesta": "PRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 6 para la letra P",
+      "respuesta": "PRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 7 para la letra P",
+      "respuesta": "PRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 8 para la letra P",
+      "respuesta": "PRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 9 para la letra P",
+      "respuesta": "PRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 10 para la letra P",
+      "respuesta": "PRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 11 para la letra P",
+      "respuesta": "PRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 12 para la letra P",
+      "respuesta": "PRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 13 para la letra P",
+      "respuesta": "PRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 14 para la letra P",
+      "respuesta": "PRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 15 para la letra P",
+      "respuesta": "PRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 16 para la letra P",
+      "respuesta": "PRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 17 para la letra P",
+      "respuesta": "PRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 18 para la letra P",
+      "respuesta": "PRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 19 para la letra P",
+      "respuesta": "PRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 20 para la letra P",
+      "respuesta": "PRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 21 para la letra P",
+      "respuesta": "PRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 22 para la letra P",
+      "respuesta": "PRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 23 para la letra P",
+      "respuesta": "PRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 24 para la letra P",
+      "respuesta": "PRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 25 para la letra P",
+      "respuesta": "PRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 26 para la letra P",
+      "respuesta": "PRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 27 para la letra P",
+      "respuesta": "PRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 28 para la letra P",
+      "respuesta": "PRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 29 para la letra P",
+      "respuesta": "PRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 30 para la letra P",
+      "respuesta": "PRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 31 para la letra P",
+      "respuesta": "PRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 32 para la letra P",
+      "respuesta": "PRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 33 para la letra P",
+      "respuesta": "PRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 34 para la letra P",
+      "respuesta": "PRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 35 para la letra P",
+      "respuesta": "PRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 36 para la letra P",
+      "respuesta": "PRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 37 para la letra P",
+      "respuesta": "PRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 38 para la letra P",
+      "respuesta": "PRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 39 para la letra P",
+      "respuesta": "PRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 40 para la letra P",
+      "respuesta": "PRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 41 para la letra P",
+      "respuesta": "PRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 42 para la letra P",
+      "respuesta": "PRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 43 para la letra P",
+      "respuesta": "PRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 44 para la letra P",
+      "respuesta": "PRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 45 para la letra P",
+      "respuesta": "PRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 46 para la letra P",
+      "respuesta": "PRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 47 para la letra P",
+      "respuesta": "PRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 48 para la letra P",
+      "respuesta": "PRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 49 para la letra P",
+      "respuesta": "PRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por P: Pregunta 50 para la letra P",
+      "respuesta": "PRESPUESTA50"
+    }
+  ],
+  "Q": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 1 para la letra Q",
+      "respuesta": "QRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 2 para la letra Q",
+      "respuesta": "QRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 3 para la letra Q",
+      "respuesta": "QRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 4 para la letra Q",
+      "respuesta": "QRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 5 para la letra Q",
+      "respuesta": "QRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 6 para la letra Q",
+      "respuesta": "QRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 7 para la letra Q",
+      "respuesta": "QRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 8 para la letra Q",
+      "respuesta": "QRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 9 para la letra Q",
+      "respuesta": "QRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 10 para la letra Q",
+      "respuesta": "QRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 11 para la letra Q",
+      "respuesta": "QRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 12 para la letra Q",
+      "respuesta": "QRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 13 para la letra Q",
+      "respuesta": "QRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 14 para la letra Q",
+      "respuesta": "QRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 15 para la letra Q",
+      "respuesta": "QRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 16 para la letra Q",
+      "respuesta": "QRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 17 para la letra Q",
+      "respuesta": "QRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 18 para la letra Q",
+      "respuesta": "QRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 19 para la letra Q",
+      "respuesta": "QRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 20 para la letra Q",
+      "respuesta": "QRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 21 para la letra Q",
+      "respuesta": "QRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 22 para la letra Q",
+      "respuesta": "QRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 23 para la letra Q",
+      "respuesta": "QRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 24 para la letra Q",
+      "respuesta": "QRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 25 para la letra Q",
+      "respuesta": "QRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 26 para la letra Q",
+      "respuesta": "QRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 27 para la letra Q",
+      "respuesta": "QRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 28 para la letra Q",
+      "respuesta": "QRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 29 para la letra Q",
+      "respuesta": "QRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 30 para la letra Q",
+      "respuesta": "QRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 31 para la letra Q",
+      "respuesta": "QRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 32 para la letra Q",
+      "respuesta": "QRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 33 para la letra Q",
+      "respuesta": "QRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 34 para la letra Q",
+      "respuesta": "QRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 35 para la letra Q",
+      "respuesta": "QRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 36 para la letra Q",
+      "respuesta": "QRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 37 para la letra Q",
+      "respuesta": "QRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 38 para la letra Q",
+      "respuesta": "QRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 39 para la letra Q",
+      "respuesta": "QRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 40 para la letra Q",
+      "respuesta": "QRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 41 para la letra Q",
+      "respuesta": "QRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 42 para la letra Q",
+      "respuesta": "QRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 43 para la letra Q",
+      "respuesta": "QRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 44 para la letra Q",
+      "respuesta": "QRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 45 para la letra Q",
+      "respuesta": "QRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 46 para la letra Q",
+      "respuesta": "QRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 47 para la letra Q",
+      "respuesta": "QRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 48 para la letra Q",
+      "respuesta": "QRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 49 para la letra Q",
+      "respuesta": "QRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Q: Pregunta 50 para la letra Q",
+      "respuesta": "QRESPUESTA50"
+    }
+  ],
+  "R": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 1 para la letra R",
+      "respuesta": "RRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 2 para la letra R",
+      "respuesta": "RRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 3 para la letra R",
+      "respuesta": "RRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 4 para la letra R",
+      "respuesta": "RRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 5 para la letra R",
+      "respuesta": "RRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 6 para la letra R",
+      "respuesta": "RRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 7 para la letra R",
+      "respuesta": "RRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 8 para la letra R",
+      "respuesta": "RRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 9 para la letra R",
+      "respuesta": "RRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 10 para la letra R",
+      "respuesta": "RRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 11 para la letra R",
+      "respuesta": "RRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 12 para la letra R",
+      "respuesta": "RRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 13 para la letra R",
+      "respuesta": "RRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 14 para la letra R",
+      "respuesta": "RRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 15 para la letra R",
+      "respuesta": "RRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 16 para la letra R",
+      "respuesta": "RRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 17 para la letra R",
+      "respuesta": "RRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 18 para la letra R",
+      "respuesta": "RRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 19 para la letra R",
+      "respuesta": "RRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 20 para la letra R",
+      "respuesta": "RRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 21 para la letra R",
+      "respuesta": "RRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 22 para la letra R",
+      "respuesta": "RRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 23 para la letra R",
+      "respuesta": "RRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 24 para la letra R",
+      "respuesta": "RRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 25 para la letra R",
+      "respuesta": "RRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 26 para la letra R",
+      "respuesta": "RRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 27 para la letra R",
+      "respuesta": "RRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 28 para la letra R",
+      "respuesta": "RRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 29 para la letra R",
+      "respuesta": "RRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 30 para la letra R",
+      "respuesta": "RRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 31 para la letra R",
+      "respuesta": "RRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 32 para la letra R",
+      "respuesta": "RRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 33 para la letra R",
+      "respuesta": "RRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 34 para la letra R",
+      "respuesta": "RRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 35 para la letra R",
+      "respuesta": "RRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 36 para la letra R",
+      "respuesta": "RRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 37 para la letra R",
+      "respuesta": "RRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 38 para la letra R",
+      "respuesta": "RRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 39 para la letra R",
+      "respuesta": "RRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 40 para la letra R",
+      "respuesta": "RRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 41 para la letra R",
+      "respuesta": "RRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 42 para la letra R",
+      "respuesta": "RRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 43 para la letra R",
+      "respuesta": "RRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 44 para la letra R",
+      "respuesta": "RRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 45 para la letra R",
+      "respuesta": "RRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 46 para la letra R",
+      "respuesta": "RRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 47 para la letra R",
+      "respuesta": "RRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 48 para la letra R",
+      "respuesta": "RRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 49 para la letra R",
+      "respuesta": "RRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por R: Pregunta 50 para la letra R",
+      "respuesta": "RRESPUESTA50"
+    }
+  ],
+  "S": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 1 para la letra S",
+      "respuesta": "SRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 2 para la letra S",
+      "respuesta": "SRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 3 para la letra S",
+      "respuesta": "SRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 4 para la letra S",
+      "respuesta": "SRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 5 para la letra S",
+      "respuesta": "SRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 6 para la letra S",
+      "respuesta": "SRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 7 para la letra S",
+      "respuesta": "SRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 8 para la letra S",
+      "respuesta": "SRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 9 para la letra S",
+      "respuesta": "SRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 10 para la letra S",
+      "respuesta": "SRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 11 para la letra S",
+      "respuesta": "SRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 12 para la letra S",
+      "respuesta": "SRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 13 para la letra S",
+      "respuesta": "SRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 14 para la letra S",
+      "respuesta": "SRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 15 para la letra S",
+      "respuesta": "SRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 16 para la letra S",
+      "respuesta": "SRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 17 para la letra S",
+      "respuesta": "SRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 18 para la letra S",
+      "respuesta": "SRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 19 para la letra S",
+      "respuesta": "SRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 20 para la letra S",
+      "respuesta": "SRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 21 para la letra S",
+      "respuesta": "SRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 22 para la letra S",
+      "respuesta": "SRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 23 para la letra S",
+      "respuesta": "SRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 24 para la letra S",
+      "respuesta": "SRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 25 para la letra S",
+      "respuesta": "SRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 26 para la letra S",
+      "respuesta": "SRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 27 para la letra S",
+      "respuesta": "SRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 28 para la letra S",
+      "respuesta": "SRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 29 para la letra S",
+      "respuesta": "SRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 30 para la letra S",
+      "respuesta": "SRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 31 para la letra S",
+      "respuesta": "SRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 32 para la letra S",
+      "respuesta": "SRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 33 para la letra S",
+      "respuesta": "SRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 34 para la letra S",
+      "respuesta": "SRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 35 para la letra S",
+      "respuesta": "SRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 36 para la letra S",
+      "respuesta": "SRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 37 para la letra S",
+      "respuesta": "SRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 38 para la letra S",
+      "respuesta": "SRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 39 para la letra S",
+      "respuesta": "SRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 40 para la letra S",
+      "respuesta": "SRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 41 para la letra S",
+      "respuesta": "SRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 42 para la letra S",
+      "respuesta": "SRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 43 para la letra S",
+      "respuesta": "SRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 44 para la letra S",
+      "respuesta": "SRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 45 para la letra S",
+      "respuesta": "SRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 46 para la letra S",
+      "respuesta": "SRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 47 para la letra S",
+      "respuesta": "SRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 48 para la letra S",
+      "respuesta": "SRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 49 para la letra S",
+      "respuesta": "SRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por S: Pregunta 50 para la letra S",
+      "respuesta": "SRESPUESTA50"
+    }
+  ],
+  "T": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 1 para la letra T",
+      "respuesta": "TRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 2 para la letra T",
+      "respuesta": "TRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 3 para la letra T",
+      "respuesta": "TRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 4 para la letra T",
+      "respuesta": "TRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 5 para la letra T",
+      "respuesta": "TRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 6 para la letra T",
+      "respuesta": "TRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 7 para la letra T",
+      "respuesta": "TRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 8 para la letra T",
+      "respuesta": "TRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 9 para la letra T",
+      "respuesta": "TRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 10 para la letra T",
+      "respuesta": "TRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 11 para la letra T",
+      "respuesta": "TRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 12 para la letra T",
+      "respuesta": "TRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 13 para la letra T",
+      "respuesta": "TRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 14 para la letra T",
+      "respuesta": "TRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 15 para la letra T",
+      "respuesta": "TRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 16 para la letra T",
+      "respuesta": "TRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 17 para la letra T",
+      "respuesta": "TRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 18 para la letra T",
+      "respuesta": "TRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 19 para la letra T",
+      "respuesta": "TRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 20 para la letra T",
+      "respuesta": "TRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 21 para la letra T",
+      "respuesta": "TRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 22 para la letra T",
+      "respuesta": "TRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 23 para la letra T",
+      "respuesta": "TRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 24 para la letra T",
+      "respuesta": "TRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 25 para la letra T",
+      "respuesta": "TRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 26 para la letra T",
+      "respuesta": "TRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 27 para la letra T",
+      "respuesta": "TRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 28 para la letra T",
+      "respuesta": "TRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 29 para la letra T",
+      "respuesta": "TRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 30 para la letra T",
+      "respuesta": "TRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 31 para la letra T",
+      "respuesta": "TRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 32 para la letra T",
+      "respuesta": "TRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 33 para la letra T",
+      "respuesta": "TRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 34 para la letra T",
+      "respuesta": "TRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 35 para la letra T",
+      "respuesta": "TRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 36 para la letra T",
+      "respuesta": "TRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 37 para la letra T",
+      "respuesta": "TRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 38 para la letra T",
+      "respuesta": "TRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 39 para la letra T",
+      "respuesta": "TRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 40 para la letra T",
+      "respuesta": "TRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 41 para la letra T",
+      "respuesta": "TRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 42 para la letra T",
+      "respuesta": "TRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 43 para la letra T",
+      "respuesta": "TRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 44 para la letra T",
+      "respuesta": "TRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 45 para la letra T",
+      "respuesta": "TRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 46 para la letra T",
+      "respuesta": "TRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 47 para la letra T",
+      "respuesta": "TRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 48 para la letra T",
+      "respuesta": "TRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 49 para la letra T",
+      "respuesta": "TRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por T: Pregunta 50 para la letra T",
+      "respuesta": "TRESPUESTA50"
+    }
+  ],
+  "U": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 1 para la letra U",
+      "respuesta": "URESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 2 para la letra U",
+      "respuesta": "URESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 3 para la letra U",
+      "respuesta": "URESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 4 para la letra U",
+      "respuesta": "URESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 5 para la letra U",
+      "respuesta": "URESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 6 para la letra U",
+      "respuesta": "URESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 7 para la letra U",
+      "respuesta": "URESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 8 para la letra U",
+      "respuesta": "URESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 9 para la letra U",
+      "respuesta": "URESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 10 para la letra U",
+      "respuesta": "URESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 11 para la letra U",
+      "respuesta": "URESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 12 para la letra U",
+      "respuesta": "URESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 13 para la letra U",
+      "respuesta": "URESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 14 para la letra U",
+      "respuesta": "URESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 15 para la letra U",
+      "respuesta": "URESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 16 para la letra U",
+      "respuesta": "URESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 17 para la letra U",
+      "respuesta": "URESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 18 para la letra U",
+      "respuesta": "URESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 19 para la letra U",
+      "respuesta": "URESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 20 para la letra U",
+      "respuesta": "URESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 21 para la letra U",
+      "respuesta": "URESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 22 para la letra U",
+      "respuesta": "URESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 23 para la letra U",
+      "respuesta": "URESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 24 para la letra U",
+      "respuesta": "URESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 25 para la letra U",
+      "respuesta": "URESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 26 para la letra U",
+      "respuesta": "URESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 27 para la letra U",
+      "respuesta": "URESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 28 para la letra U",
+      "respuesta": "URESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 29 para la letra U",
+      "respuesta": "URESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 30 para la letra U",
+      "respuesta": "URESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 31 para la letra U",
+      "respuesta": "URESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 32 para la letra U",
+      "respuesta": "URESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 33 para la letra U",
+      "respuesta": "URESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 34 para la letra U",
+      "respuesta": "URESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 35 para la letra U",
+      "respuesta": "URESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 36 para la letra U",
+      "respuesta": "URESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 37 para la letra U",
+      "respuesta": "URESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 38 para la letra U",
+      "respuesta": "URESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 39 para la letra U",
+      "respuesta": "URESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 40 para la letra U",
+      "respuesta": "URESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 41 para la letra U",
+      "respuesta": "URESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 42 para la letra U",
+      "respuesta": "URESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 43 para la letra U",
+      "respuesta": "URESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 44 para la letra U",
+      "respuesta": "URESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 45 para la letra U",
+      "respuesta": "URESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 46 para la letra U",
+      "respuesta": "URESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 47 para la letra U",
+      "respuesta": "URESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 48 para la letra U",
+      "respuesta": "URESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 49 para la letra U",
+      "respuesta": "URESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por U: Pregunta 50 para la letra U",
+      "respuesta": "URESPUESTA50"
+    }
+  ],
+  "V": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 1 para la letra V",
+      "respuesta": "VRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 2 para la letra V",
+      "respuesta": "VRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 3 para la letra V",
+      "respuesta": "VRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 4 para la letra V",
+      "respuesta": "VRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 5 para la letra V",
+      "respuesta": "VRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 6 para la letra V",
+      "respuesta": "VRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 7 para la letra V",
+      "respuesta": "VRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 8 para la letra V",
+      "respuesta": "VRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 9 para la letra V",
+      "respuesta": "VRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 10 para la letra V",
+      "respuesta": "VRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 11 para la letra V",
+      "respuesta": "VRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 12 para la letra V",
+      "respuesta": "VRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 13 para la letra V",
+      "respuesta": "VRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 14 para la letra V",
+      "respuesta": "VRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 15 para la letra V",
+      "respuesta": "VRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 16 para la letra V",
+      "respuesta": "VRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 17 para la letra V",
+      "respuesta": "VRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 18 para la letra V",
+      "respuesta": "VRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 19 para la letra V",
+      "respuesta": "VRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 20 para la letra V",
+      "respuesta": "VRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 21 para la letra V",
+      "respuesta": "VRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 22 para la letra V",
+      "respuesta": "VRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 23 para la letra V",
+      "respuesta": "VRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 24 para la letra V",
+      "respuesta": "VRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 25 para la letra V",
+      "respuesta": "VRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 26 para la letra V",
+      "respuesta": "VRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 27 para la letra V",
+      "respuesta": "VRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 28 para la letra V",
+      "respuesta": "VRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 29 para la letra V",
+      "respuesta": "VRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 30 para la letra V",
+      "respuesta": "VRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 31 para la letra V",
+      "respuesta": "VRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 32 para la letra V",
+      "respuesta": "VRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 33 para la letra V",
+      "respuesta": "VRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 34 para la letra V",
+      "respuesta": "VRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 35 para la letra V",
+      "respuesta": "VRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 36 para la letra V",
+      "respuesta": "VRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 37 para la letra V",
+      "respuesta": "VRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 38 para la letra V",
+      "respuesta": "VRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 39 para la letra V",
+      "respuesta": "VRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 40 para la letra V",
+      "respuesta": "VRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 41 para la letra V",
+      "respuesta": "VRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 42 para la letra V",
+      "respuesta": "VRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 43 para la letra V",
+      "respuesta": "VRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 44 para la letra V",
+      "respuesta": "VRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 45 para la letra V",
+      "respuesta": "VRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 46 para la letra V",
+      "respuesta": "VRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 47 para la letra V",
+      "respuesta": "VRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 48 para la letra V",
+      "respuesta": "VRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 49 para la letra V",
+      "respuesta": "VRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por V: Pregunta 50 para la letra V",
+      "respuesta": "VRESPUESTA50"
+    }
+  ],
+  "W": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 1 para la letra W",
+      "respuesta": "WRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 2 para la letra W",
+      "respuesta": "WRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 3 para la letra W",
+      "respuesta": "WRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 4 para la letra W",
+      "respuesta": "WRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 5 para la letra W",
+      "respuesta": "WRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 6 para la letra W",
+      "respuesta": "WRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 7 para la letra W",
+      "respuesta": "WRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 8 para la letra W",
+      "respuesta": "WRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 9 para la letra W",
+      "respuesta": "WRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 10 para la letra W",
+      "respuesta": "WRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 11 para la letra W",
+      "respuesta": "WRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 12 para la letra W",
+      "respuesta": "WRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 13 para la letra W",
+      "respuesta": "WRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 14 para la letra W",
+      "respuesta": "WRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 15 para la letra W",
+      "respuesta": "WRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 16 para la letra W",
+      "respuesta": "WRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 17 para la letra W",
+      "respuesta": "WRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 18 para la letra W",
+      "respuesta": "WRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 19 para la letra W",
+      "respuesta": "WRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 20 para la letra W",
+      "respuesta": "WRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 21 para la letra W",
+      "respuesta": "WRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 22 para la letra W",
+      "respuesta": "WRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 23 para la letra W",
+      "respuesta": "WRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 24 para la letra W",
+      "respuesta": "WRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 25 para la letra W",
+      "respuesta": "WRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 26 para la letra W",
+      "respuesta": "WRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 27 para la letra W",
+      "respuesta": "WRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 28 para la letra W",
+      "respuesta": "WRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 29 para la letra W",
+      "respuesta": "WRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 30 para la letra W",
+      "respuesta": "WRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 31 para la letra W",
+      "respuesta": "WRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 32 para la letra W",
+      "respuesta": "WRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 33 para la letra W",
+      "respuesta": "WRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 34 para la letra W",
+      "respuesta": "WRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 35 para la letra W",
+      "respuesta": "WRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 36 para la letra W",
+      "respuesta": "WRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 37 para la letra W",
+      "respuesta": "WRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 38 para la letra W",
+      "respuesta": "WRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 39 para la letra W",
+      "respuesta": "WRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 40 para la letra W",
+      "respuesta": "WRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 41 para la letra W",
+      "respuesta": "WRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 42 para la letra W",
+      "respuesta": "WRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 43 para la letra W",
+      "respuesta": "WRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 44 para la letra W",
+      "respuesta": "WRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 45 para la letra W",
+      "respuesta": "WRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 46 para la letra W",
+      "respuesta": "WRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 47 para la letra W",
+      "respuesta": "WRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 48 para la letra W",
+      "respuesta": "WRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 49 para la letra W",
+      "respuesta": "WRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por W: Pregunta 50 para la letra W",
+      "respuesta": "WRESPUESTA50"
+    }
+  ],
+  "X": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 1 para la letra X",
+      "respuesta": "XRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 2 para la letra X",
+      "respuesta": "XRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 3 para la letra X",
+      "respuesta": "XRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 4 para la letra X",
+      "respuesta": "XRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 5 para la letra X",
+      "respuesta": "XRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 6 para la letra X",
+      "respuesta": "XRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 7 para la letra X",
+      "respuesta": "XRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 8 para la letra X",
+      "respuesta": "XRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 9 para la letra X",
+      "respuesta": "XRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 10 para la letra X",
+      "respuesta": "XRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 11 para la letra X",
+      "respuesta": "XRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 12 para la letra X",
+      "respuesta": "XRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 13 para la letra X",
+      "respuesta": "XRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 14 para la letra X",
+      "respuesta": "XRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 15 para la letra X",
+      "respuesta": "XRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 16 para la letra X",
+      "respuesta": "XRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 17 para la letra X",
+      "respuesta": "XRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 18 para la letra X",
+      "respuesta": "XRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 19 para la letra X",
+      "respuesta": "XRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 20 para la letra X",
+      "respuesta": "XRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 21 para la letra X",
+      "respuesta": "XRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 22 para la letra X",
+      "respuesta": "XRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 23 para la letra X",
+      "respuesta": "XRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 24 para la letra X",
+      "respuesta": "XRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 25 para la letra X",
+      "respuesta": "XRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 26 para la letra X",
+      "respuesta": "XRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 27 para la letra X",
+      "respuesta": "XRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 28 para la letra X",
+      "respuesta": "XRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 29 para la letra X",
+      "respuesta": "XRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 30 para la letra X",
+      "respuesta": "XRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 31 para la letra X",
+      "respuesta": "XRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 32 para la letra X",
+      "respuesta": "XRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 33 para la letra X",
+      "respuesta": "XRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 34 para la letra X",
+      "respuesta": "XRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 35 para la letra X",
+      "respuesta": "XRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 36 para la letra X",
+      "respuesta": "XRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 37 para la letra X",
+      "respuesta": "XRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 38 para la letra X",
+      "respuesta": "XRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 39 para la letra X",
+      "respuesta": "XRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 40 para la letra X",
+      "respuesta": "XRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 41 para la letra X",
+      "respuesta": "XRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 42 para la letra X",
+      "respuesta": "XRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 43 para la letra X",
+      "respuesta": "XRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 44 para la letra X",
+      "respuesta": "XRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 45 para la letra X",
+      "respuesta": "XRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 46 para la letra X",
+      "respuesta": "XRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 47 para la letra X",
+      "respuesta": "XRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 48 para la letra X",
+      "respuesta": "XRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 49 para la letra X",
+      "respuesta": "XRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por X: Pregunta 50 para la letra X",
+      "respuesta": "XRESPUESTA50"
+    }
+  ],
+  "Y": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 1 para la letra Y",
+      "respuesta": "YRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 2 para la letra Y",
+      "respuesta": "YRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 3 para la letra Y",
+      "respuesta": "YRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 4 para la letra Y",
+      "respuesta": "YRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 5 para la letra Y",
+      "respuesta": "YRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 6 para la letra Y",
+      "respuesta": "YRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 7 para la letra Y",
+      "respuesta": "YRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 8 para la letra Y",
+      "respuesta": "YRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 9 para la letra Y",
+      "respuesta": "YRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 10 para la letra Y",
+      "respuesta": "YRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 11 para la letra Y",
+      "respuesta": "YRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 12 para la letra Y",
+      "respuesta": "YRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 13 para la letra Y",
+      "respuesta": "YRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 14 para la letra Y",
+      "respuesta": "YRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 15 para la letra Y",
+      "respuesta": "YRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 16 para la letra Y",
+      "respuesta": "YRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 17 para la letra Y",
+      "respuesta": "YRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 18 para la letra Y",
+      "respuesta": "YRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 19 para la letra Y",
+      "respuesta": "YRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 20 para la letra Y",
+      "respuesta": "YRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 21 para la letra Y",
+      "respuesta": "YRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 22 para la letra Y",
+      "respuesta": "YRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 23 para la letra Y",
+      "respuesta": "YRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 24 para la letra Y",
+      "respuesta": "YRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 25 para la letra Y",
+      "respuesta": "YRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 26 para la letra Y",
+      "respuesta": "YRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 27 para la letra Y",
+      "respuesta": "YRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 28 para la letra Y",
+      "respuesta": "YRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 29 para la letra Y",
+      "respuesta": "YRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 30 para la letra Y",
+      "respuesta": "YRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 31 para la letra Y",
+      "respuesta": "YRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 32 para la letra Y",
+      "respuesta": "YRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 33 para la letra Y",
+      "respuesta": "YRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 34 para la letra Y",
+      "respuesta": "YRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 35 para la letra Y",
+      "respuesta": "YRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 36 para la letra Y",
+      "respuesta": "YRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 37 para la letra Y",
+      "respuesta": "YRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 38 para la letra Y",
+      "respuesta": "YRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 39 para la letra Y",
+      "respuesta": "YRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 40 para la letra Y",
+      "respuesta": "YRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 41 para la letra Y",
+      "respuesta": "YRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 42 para la letra Y",
+      "respuesta": "YRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 43 para la letra Y",
+      "respuesta": "YRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 44 para la letra Y",
+      "respuesta": "YRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 45 para la letra Y",
+      "respuesta": "YRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 46 para la letra Y",
+      "respuesta": "YRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 47 para la letra Y",
+      "respuesta": "YRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 48 para la letra Y",
+      "respuesta": "YRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 49 para la letra Y",
+      "respuesta": "YRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Y: Pregunta 50 para la letra Y",
+      "respuesta": "YRESPUESTA50"
+    }
+  ],
+  "Z": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 1 para la letra Z",
+      "respuesta": "ZRESPUESTA1"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 2 para la letra Z",
+      "respuesta": "ZRESPUESTA2"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 3 para la letra Z",
+      "respuesta": "ZRESPUESTA3"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 4 para la letra Z",
+      "respuesta": "ZRESPUESTA4"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 5 para la letra Z",
+      "respuesta": "ZRESPUESTA5"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 6 para la letra Z",
+      "respuesta": "ZRESPUESTA6"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 7 para la letra Z",
+      "respuesta": "ZRESPUESTA7"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 8 para la letra Z",
+      "respuesta": "ZRESPUESTA8"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 9 para la letra Z",
+      "respuesta": "ZRESPUESTA9"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 10 para la letra Z",
+      "respuesta": "ZRESPUESTA10"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 11 para la letra Z",
+      "respuesta": "ZRESPUESTA11"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 12 para la letra Z",
+      "respuesta": "ZRESPUESTA12"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 13 para la letra Z",
+      "respuesta": "ZRESPUESTA13"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 14 para la letra Z",
+      "respuesta": "ZRESPUESTA14"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 15 para la letra Z",
+      "respuesta": "ZRESPUESTA15"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 16 para la letra Z",
+      "respuesta": "ZRESPUESTA16"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 17 para la letra Z",
+      "respuesta": "ZRESPUESTA17"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 18 para la letra Z",
+      "respuesta": "ZRESPUESTA18"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 19 para la letra Z",
+      "respuesta": "ZRESPUESTA19"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 20 para la letra Z",
+      "respuesta": "ZRESPUESTA20"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 21 para la letra Z",
+      "respuesta": "ZRESPUESTA21"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 22 para la letra Z",
+      "respuesta": "ZRESPUESTA22"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 23 para la letra Z",
+      "respuesta": "ZRESPUESTA23"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 24 para la letra Z",
+      "respuesta": "ZRESPUESTA24"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 25 para la letra Z",
+      "respuesta": "ZRESPUESTA25"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 26 para la letra Z",
+      "respuesta": "ZRESPUESTA26"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 27 para la letra Z",
+      "respuesta": "ZRESPUESTA27"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 28 para la letra Z",
+      "respuesta": "ZRESPUESTA28"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 29 para la letra Z",
+      "respuesta": "ZRESPUESTA29"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 30 para la letra Z",
+      "respuesta": "ZRESPUESTA30"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 31 para la letra Z",
+      "respuesta": "ZRESPUESTA31"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 32 para la letra Z",
+      "respuesta": "ZRESPUESTA32"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 33 para la letra Z",
+      "respuesta": "ZRESPUESTA33"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 34 para la letra Z",
+      "respuesta": "ZRESPUESTA34"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 35 para la letra Z",
+      "respuesta": "ZRESPUESTA35"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 36 para la letra Z",
+      "respuesta": "ZRESPUESTA36"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 37 para la letra Z",
+      "respuesta": "ZRESPUESTA37"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 38 para la letra Z",
+      "respuesta": "ZRESPUESTA38"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 39 para la letra Z",
+      "respuesta": "ZRESPUESTA39"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 40 para la letra Z",
+      "respuesta": "ZRESPUESTA40"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 41 para la letra Z",
+      "respuesta": "ZRESPUESTA41"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 42 para la letra Z",
+      "respuesta": "ZRESPUESTA42"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 43 para la letra Z",
+      "respuesta": "ZRESPUESTA43"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 44 para la letra Z",
+      "respuesta": "ZRESPUESTA44"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 45 para la letra Z",
+      "respuesta": "ZRESPUESTA45"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 46 para la letra Z",
+      "respuesta": "ZRESPUESTA46"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 47 para la letra Z",
+      "respuesta": "ZRESPUESTA47"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 48 para la letra Z",
+      "respuesta": "ZRESPUESTA48"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 49 para la letra Z",
+      "respuesta": "ZRESPUESTA49"
+    },
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por Z: Pregunta 50 para la letra Z",
+      "respuesta": "ZRESPUESTA50"
+    }
+  ]
+}

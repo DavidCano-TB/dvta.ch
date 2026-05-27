@@ -1,0 +1,188 @@
+============================================================
+INSTRUCCIONES PARA ARRANQUE AUTOMATICO ULTRA-RAPIDO
+============================================================
+
+OBJETIVO:
+- Windows arranca sin pedir PIN ni codigos
+- DVDcoin se inicia automaticamente
+- Ngrok se inicia automaticamente
+- El navegador se abre con la URL de ngrok
+- Todo en menos de 15 segundos
+
+============================================================
+PASO 1: DESACTIVAR PIN Y CODIGOS DE WINDOWS
+============================================================
+
+1. Haz clic derecho en: DESACTIVAR_PIN_WINDOWS.bat
+2. Selecciona "Ejecutar como administrador"
+3. Sigue las instrucciones en pantalla
+4. Cuando pregunte por inicio de sesion automatico, responde "S"
+5. Ingresa tu usuario y contraseña de Windows
+
+RESULTADO:
+- Windows no pedira PIN al arrancar
+- Windows no pedira contraseña al despertar
+- Windows iniciara sesion automaticamente
+
+============================================================
+PASO 2: CONFIGURAR INICIO AUTOMATICO DE DVDCOIN
+============================================================
+
+1. Ejecuta: CONFIGURAR_INICIO_AUTO_WINDOWS.bat
+2. Presiona cualquier tecla para continuar
+3. Verifica que se creo el acceso directo
+
+RESULTADO:
+- DVDcoin se iniciara automaticamente al arrancar Windows
+- Ngrok se iniciara automaticamente
+- El navegador se abrira con la URL de ngrok
+
+============================================================
+PASO 3: PROBAR EL SISTEMA
+============================================================
+
+OPCION A - Probar sin reiniciar:
+1. Ejecuta: KILL_ALL_AND_RESTART.bat
+2. Espera 10-15 segundos
+3. El navegador se abrira automaticamente
+
+OPCION B - Probar con reinicio:
+1. Reinicia Windows
+2. Windows iniciara sesion automaticamente
+3. DVDcoin se iniciara automaticamente
+4. El navegador se abrira con la URL de ngrok
+
+============================================================
+SCRIPTS DISPONIBLES
+============================================================
+
+KILL_ALL_AND_RESTART.bat
+  - Mata todos los procesos (Python, ngrok)
+  - Libera puertos 8000 y 4040
+  - Arranca servidor DVDcoin
+  - Arranca ngrok
+  - Obtiene URL de ngrok
+  - Abre navegador
+  - Tiempo: ~10-15 segundos
+
+DESACTIVAR_PIN_WINDOWS.bat (REQUIERE ADMIN)
+  - Desactiva PIN al arrancar
+  - Desactiva contraseña al despertar
+  - Desactiva pantalla de bloqueo
+  - Configura inicio de sesion automatico
+
+CONFIGURAR_INICIO_AUTO_WINDOWS.bat
+  - Crea acceso directo en carpeta de inicio
+  - DVDcoin se iniciara automaticamente
+
+KILL_ALL_AND_START_FAST.bat
+  - Version alternativa mas simple
+  - Mismo funcionamiento que KILL_ALL_AND_RESTART.bat
+
+============================================================
+VERIFICAR QUE TODO FUNCIONA
+============================================================
+
+1. Ejecuta: KILL_ALL_AND_RESTART.bat
+2. Espera 10-15 segundos
+3. Verifica:
+   - El navegador se abre automaticamente
+   - La URL es de ngrok (https://xxxxx.ngrok-free.app)
+   - DVDcoin carga correctamente
+   - Puedes iniciar sesion
+
+Si algo falla:
+- Abre http://localhost:4040 para ver la URL de ngrok
+- Verifica que el servidor esta corriendo: http://localhost:8000
+- Revisa que el token de ngrok esta en: config\.ngrok_token
+
+============================================================
+PROBLEMA: NGROK NO ARRANCA
+============================================================
+
+Si ves "Accès refusé" o "Access denied" al arrancar ngrok:
+
+SOLUCION 1 - Configurar token manualmente:
+1. Abre CMD como administrador
+2. Ejecuta: ngrok config add-authtoken TU_TOKEN_AQUI
+3. Ejecuta: KILL_ALL_AND_RESTART.bat
+
+SOLUCION 2 - Verificar archivo de token:
+1. Abre: config\.ngrok_token
+2. Verifica que contiene tu token de ngrok
+3. El token debe estar en una sola linea, sin espacios
+
+SOLUCION 3 - Reinstalar ngrok:
+1. Descarga ngrok desde: https://ngrok.com/download
+2. Extrae ngrok.exe en C:\dvdcoin
+3. Configura el token: ngrok config add-authtoken TU_TOKEN
+4. Ejecuta: KILL_ALL_AND_RESTART.bat
+
+============================================================
+DESACTIVAR INICIO AUTOMATICO
+============================================================
+
+Si quieres desactivar el inicio automatico:
+
+1. Presiona Win+R
+2. Escribe: shell:startup
+3. Presiona Enter
+4. Elimina el archivo: DVDcoin_AutoStart.lnk
+
+============================================================
+REACTIVAR PIN DE WINDOWS
+============================================================
+
+Si quieres reactivar el PIN y las contraseñas:
+
+1. Ve a: Configuracion > Cuentas > Opciones de inicio de sesion
+2. Configura un nuevo PIN
+3. Activa "Requerir inicio de sesion"
+4. Elimina el inicio de sesion automatico:
+   - Presiona Win+R
+   - Escribe: netplwiz
+   - Marca "Los usuarios deben escribir un nombre y contraseña"
+
+============================================================
+RESUMEN DE TIEMPOS
+============================================================
+
+Arranque manual (KILL_ALL_AND_RESTART.bat):
+- Matar procesos: 1-2 segundos
+- Arrancar servidor: 6 segundos
+- Arrancar ngrok: 4 segundos
+- Obtener URL: 1-2 segundos
+- TOTAL: ~10-15 segundos
+
+Arranque automatico (al iniciar Windows):
+- Inicio de sesion: 0 segundos (automatico)
+- Arranque de Windows: 10-30 segundos (depende del PC)
+- Arranque de DVDcoin: 10-15 segundos
+- TOTAL: ~20-45 segundos desde que enciendes el PC
+
+============================================================
+SOPORTE
+============================================================
+
+Si tienes problemas:
+
+1. Verifica que el servidor esta corriendo:
+   - Abre: http://localhost:8000
+   - Debe mostrar DVDcoin Bank
+
+2. Verifica que ngrok esta corriendo:
+   - Abre: http://localhost:4040
+   - Debe mostrar el dashboard de ngrok con la URL
+
+3. Verifica los procesos:
+   - Abre el Administrador de tareas (Ctrl+Shift+Esc)
+   - Busca: python.exe y ngrok.exe
+   - Deben estar corriendo
+
+4. Ejecuta el diagnostico:
+   - python DIAGNOSTICO_OPO.py
+   - Verifica que todos los tests pasan
+
+============================================================
+FIN DE LAS INSTRUCCIONES
+============================================================

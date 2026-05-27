@@ -1,0 +1,180 @@
+{
+  "A": [
+    {"tipo": "empieza", "definicion": "Empieza por A: Acción de aumentar la velocidad de un vehículo", "respuesta": "ACELERAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por A: Acción de acercarse a algo o alguien", "respuesta": "APROXIMAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por A: Ciencia que estudia los astros y el universo", "respuesta": "ASTRONOMÍA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por A: Persona que viaja al espacio exterior", "respuesta": "ASTRONAUTA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por A: Acción de juntar o reunir cosas", "respuesta": "ACUMULAR", "usada": false}
+  ],
+  "B": [
+    {"tipo": "empieza", "definicion": "Empieza por B: Ciencia que estudia los seres vivos", "respuesta": "BIOLOGÍA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por B: Lugar donde se guardan y prestan libros", "respuesta": "BIBLIOTECA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por B: Vehículo de dos ruedas que se mueve pedaleando", "respuesta": "BICICLETA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por B: Recipiente para depositar desperdicios", "respuesta": "BASURA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por B: Acción de buscar algo con cuidado", "respuesta": "BUSCAR", "usada": false}
+  ],
+  "C": [
+    {"tipo": "empieza", "definicion": "Empieza por C: Órgano muscular que bombea sangre", "respuesta": "CORAZÓN", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por C: Acción de preparar alimentos con calor", "respuesta": "COCINAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por C: Acción de adquirir algo pagando", "respuesta": "COMPRAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por C: Acción de entender el significado", "respuesta": "COMPRENDER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por C: Acción de transmitir información", "respuesta": "COMUNICAR", "usada": false}
+  ],
+  "D": [
+    {"tipo": "empieza", "definicion": "Empieza por D: Acción de dar a conocer información", "respuesta": "DECLARAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por D: Explicación del significado de una palabra", "respuesta": "DEFINICIÓN", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por D: Acción de destruir o echar abajo un edificio", "respuesta": "DEMOLER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por D: Conjunto de piezas dentales de la boca", "respuesta": "DENTADURA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por D: Acción de mostrar o exhibir algo", "respuesta": "DEMOSTRAR", "usada": false}
+  ],
+  "E": [
+    {"tipo": "empieza", "definicion": "Empieza por E: Conjunto de personas que trabajan juntas", "respuesta": "EQUIPO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por E: Construcción de varios pisos para viviendas", "respuesta": "EDIFICIO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por E: Acción de elegir mediante votación", "respuesta": "ELECCIÓN", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por E: Corriente eléctrica que fluye por un conductor", "respuesta": "ELECTRICIDAD", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por E: Persona que tiene conocimientos especializados", "respuesta": "EXPERTO", "usada": false}
+  ],
+  "F": [
+    {"tipo": "empieza", "definicion": "Empieza por F: Ciencia que estudia los fenómenos naturales", "respuesta": "FÍSICA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por F: Persona que forma parte de una familia", "respuesta": "FAMILIAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por F: Establecimiento donde se fabrican productos", "respuesta": "FÁBRICA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por F: Acción de poner una firma o rúbrica", "respuesta": "FIRMAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por F: Acción de establecer o crear algo", "respuesta": "FUNDAR", "usada": false}
+  ],
+  "G": [
+    {"tipo": "empieza", "definicion": "Empieza por G: Ciencia que estudia la Tierra y su superficie", "respuesta": "GEOGRAFÍA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por G: Acción de dirigir o administrar algo", "respuesta": "GESTIÓN", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por G: Conjunto de personas con un objetivo común", "respuesta": "GRUPO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por G: Acción de proteger o conservar algo", "respuesta": "GUARDAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por G: Conflicto armado entre naciones", "respuesta": "GUERRA", "usada": false}
+  ],
+  "H": [
+    {"tipo": "empieza", "definicion": "Empieza por H: Relato de acontecimientos pasados", "respuesta": "HISTORIA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por H: Establecimiento donde se atiende a enfermos", "respuesta": "HOSPITAL", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por H: Persona que se aloja en un hotel", "respuesta": "HUÉSPED", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por H: Acción de hacer un agujero en algo", "respuesta": "HORADAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por H: Capacidad de hacer algo con facilidad", "respuesta": "HABILIDAD", "usada": false}
+  ],
+  "I": [
+    {"tipo": "empieza", "definicion": "Empieza por I: Acción de comenzar algo", "respuesta": "INICIAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por I: Acción de crear algo nuevo o inventar", "respuesta": "IDEAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por I: Acción de presentar a una persona a otra", "respuesta": "INTRODUCIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por I: Acción de crear algo nuevo", "respuesta": "INVENTAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por I: Acción de examinar o revisar algo", "respuesta": "INSPECCIONAR", "usada": false}
+  ],
+  "J": [
+    {"tipo": "empieza", "definicion": "Empieza por J: Persona que administra justicia", "respuesta": "JUEZ", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por J: Acción de unir dos cosas", "respuesta": "JUNTAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por J: Acción de participar en un juego", "respuesta": "JUGAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por J: Acción de evaluar o valorar algo", "respuesta": "JUZGAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por J: Acción de prometer solemnemente", "respuesta": "JURAR", "usada": false}
+  ],
+  "K": [
+    {"tipo": "empieza", "definicion": "Empieza por K: Unidad de medida de mil metros", "respuesta": "KILÓMETRO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por K: Unidad de medida de mil gramos", "respuesta": "KILOGRAMO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por K: Puesto de venta en mercados", "respuesta": "KIOSCO", "usada": false}
+  ],
+  "L": [
+    {"tipo": "empieza", "definicion": "Empieza por L: Acción de limpiar con agua", "respuesta": "LAVAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por L: Conjunto de palabras de un idioma", "respuesta": "LÉXICO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por L: Acción de leer un texto", "respuesta": "LECTURA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por L: Norma establecida por la autoridad", "respuesta": "LEY", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por L: Acción de conseguir algo deseado", "respuesta": "LOGRAR", "usada": false}
+  ],
+  "M": [
+    {"tipo": "empieza", "definicion": "Empieza por M: Ciencia que estudia los números", "respuesta": "MATEMÁTICAS", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por M: Acción de cambiar de lugar", "respuesta": "MOVER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por M: Profesional que cura enfermedades", "respuesta": "MÉDICO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por M: Acción de hacer algo mejor", "respuesta": "MEJORAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por M: Acción de recordar algo", "respuesta": "MEMORIZAR", "usada": false}
+  ],
+  "N": [
+    {"tipo": "empieza", "definicion": "Empieza por N: Acción de contar un suceso", "respuesta": "NARRAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por N: Acción de moverse en el agua", "respuesta": "NADAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por N: Conjunto de personas de un país", "respuesta": "NACIÓN", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por N: Acción de decir que no", "respuesta": "NEGAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por N: Acción de hacer negocios", "respuesta": "NEGOCIAR", "usada": false}
+  ],
+  "Ñ": [
+    {"tipo": "empieza", "definicion": "Empieza por Ñ: Ave corredora sudamericana parecida al avestruz", "respuesta": "ÑANDÚ", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Ñ: Tubérculo comestible tropical", "respuesta": "ÑAME", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Ñ: Animal herbívoro de los Andes similar a la llama", "respuesta": "ÑU", "usada": false}
+  ],
+  "O": [
+    {"tipo": "empieza", "definicion": "Empieza por O: Acción de mirar con atención", "respuesta": "OBSERVAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por O: Acción de conseguir algo", "respuesta": "OBTENER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por O: Acción de tapar o cerrar el paso", "respuesta": "OBSTRUIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por O: Acción de dar trabajo a alguien", "respuesta": "OCUPAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por O: Acción de proponer algo", "respuesta": "OFRECER", "usada": false}
+  ],
+  "P": [
+    {"tipo": "empieza", "definicion": "Empieza por P: Acción de sufrir dolor físico", "respuesta": "PADECER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por P: Acción de dar dinero por algo", "respuesta": "PAGAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por P: Conjunto de palabras con sentido", "respuesta": "PÁRRAFO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por P: Acción de dividir en partes", "respuesta": "PARTIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por P: Acción de atravesar de un lado a otro", "respuesta": "PASAR", "usada": false}
+  ],
+  "Q": [
+    {"tipo": "empieza", "definicion": "Empieza por Q: Ciencia que estudia las sustancias", "respuesta": "QUÍMICA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Q: Acción de eliminar algo", "respuesta": "QUITAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Q: Acción de desear tener algo", "respuesta": "QUERER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Q: Acción de protestar o lamentarse", "respuesta": "QUEJAR", "usada": false}
+  ],
+  "R": [
+    {"tipo": "empieza", "definicion": "Empieza por R: Acción de pensar lógicamente", "respuesta": "RAZONAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por R: Acción de recibir algo", "respuesta": "RECOGER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por R: Acción de disminuir el tamaño", "respuesta": "REDUCIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por R: Acción de mostrar una imagen", "respuesta": "REFLEJAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por R: Acción de volver al punto inicial", "respuesta": "REGRESAR", "usada": false}
+  ],
+  "S": [
+    {"tipo": "empieza", "definicion": "Empieza por S: Acción de conocer algo", "respuesta": "SABER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por S: Acción de ir de un lugar a otro", "respuesta": "SALIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por S: Acción de curar a un enfermo", "respuesta": "SANAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por S: Acción de dividir en partes", "respuesta": "SEPARAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por S: Acción de estar debajo de algo", "respuesta": "SUBYACER", "usada": false}
+  ],
+  "T": [
+    {"tipo": "empieza", "definicion": "Empieza por T: Acción de llevar algo de un lugar a otro", "respuesta": "TRANSPORTAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por T: Acción de realizar un trabajo", "respuesta": "TRABAJAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por T: Acción de pasar de un idioma a otro", "respuesta": "TRADUCIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por T: Acción de mover algo de sitio", "respuesta": "TRASLADAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por T: Acción de dar un trato a alguien", "respuesta": "TRATAR", "usada": false}
+  ],
+  "U": [
+    {"tipo": "empieza", "definicion": "Empieza por U: Acción de emplear algo", "respuesta": "USAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por U: Acción de juntar cosas", "respuesta": "UNIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por U: Acción de hacer uso de algo", "respuesta": "UTILIZAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por U: Acción de situar algo en un lugar", "respuesta": "UBICAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por U: Que está en todas partes", "respuesta": "UNIVERSAL", "usada": false}
+  ],
+  "V": [
+    {"tipo": "empieza", "definicion": "Empieza por V: Acción de ir de un lugar a otro", "respuesta": "VIAJAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por V: Acción de estar vivo", "respuesta": "VIVIR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por V: Acción de regresar al punto de partida", "respuesta": "VOLVER", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por V: Acción de elegir mediante voto", "respuesta": "VOTAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por V: Acción de comprobar si algo es cierto", "respuesta": "VERIFICAR", "usada": false}
+  ],
+  "W": [
+    {"tipo": "empieza", "definicion": "Empieza por W: Deporte acuático con tabla y vela", "respuesta": "WINDSURF", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por W: Aplicación de mensajería instantánea", "respuesta": "WHATSAPP", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por W: Página o sitio en internet", "respuesta": "WEB", "usada": false}
+  ],
+  "X": [
+    {"tipo": "empieza", "definicion": "Empieza por X: Instrumento musical de percusión", "respuesta": "XILÓFONO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por X: Que rechaza lo extranjero", "respuesta": "XENÓFOBO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por X: Copia de un documento", "respuesta": "XEROCOPIA", "usada": false}
+  ],
+  "Y": [
+    {"tipo": "empieza", "definicion": "Empieza por Y: Embarcación de recreo", "respuesta": "YATE", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Y: Producto lácteo fermentado", "respuesta": "YOGUR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Y: Parte del huevo de color amarillo", "respuesta": "YEMA", "usada": false}
+  ],
+  "Z": [
+    {"tipo": "empieza", "definicion": "Empieza por Z: Acción de partir en un viaje", "respuesta": "ZARPAR", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Z: Ciencia que estudia los animales", "respuesta": "ZOOLOGÍA", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Z: Líquido extraído de frutas", "respuesta": "ZUMO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Z: Calzado que cubre el pie", "respuesta": "ZAPATO", "usada": false},
+    {"tipo": "empieza", "definicion": "Empieza por Z: Acción de sumergirse bajo el agua", "respuesta": "ZAMBULLIR", "usada": false}
+  ]
+}

@@ -1,0 +1,49 @@
+============================================
+ URL NGROK PARA APUESTAS
+============================================
+
+URL BASE: https://striking-symphony-mummify.ngrok-free.dev
+
+URLS COMPLETAS:
+---------------
+
+Lista de Porras:
+https://striking-symphony-mummify.ngrok-free.dev/apuestas
+
+Porra 1:
+https://striking-symphony-mummify.ngrok-free.dev/apuestas/porra/1
+
+Porra 2:
+https://striking-symphony-mummify.ngrok-free.dev/apuestas/porra/2
+
+Porra 3:
+https://striking-symphony-mummify.ngrok-free.dev/apuestas/porra/3
+
+============================================
+ CORRECCIONES APLICADAS
+============================================
+
+✓ Llave extra } eliminada en loadData()
+✓ Fetch corregido: ${PORRA_ID} en lugar de $1
+✓ Función selectOption() completa y funcional
+✓ CSS .optCard.selected presente
+✓ onclick en todas las tarjetas
+✓ Ngrok reiniciado y funcionando
+
+============================================
+ COMO FUNCIONA
+============================================
+
+1. Abre la URL de la porra en el navegador
+2. Haz clic en una opción (se marcará con borde dorado)
+3. Introduce la cantidad en DVDcoins
+4. El botón "Apostar Ahora" se habilitará automáticamente
+5. Haz clic en "Apostar Ahora"
+6. Confirma la apuesta
+7. ¡Apuesta registrada!
+
+NOTA: Si pide autenticación, abre desde la aplicación
+principal o usa el token JWT del usuario.
+
+Estado: ✅ COMPLETADO Y FUNCIONANDO
+Fecha: 2026-05-02 21:25

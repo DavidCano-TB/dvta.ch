@@ -1,0 +1,185 @@
+2026-05-11 17:45:47 | INFO     | ================================================================================
+2026-05-11 17:45:47 | INFO     | 🧪 INICIANDO TEST: AUTENTICACION
+2026-05-11 17:45:47 | INFO     | ================================================================================
+2026-05-11 17:45:47 | INFO     | 
+2026-05-11 17:45:47 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:47 | INFO     | 📋 1. HEALTH CHECK
+2026-05-11 17:45:47 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:47 | DEBUG    | 🔍 GET http://localhost:8000/api/health
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: 200
+2026-05-11 17:45:49 | INFO     | ✅ Health check: Status 200 ✓
+2026-05-11 17:45:49 | INFO     | ℹ️  Estado del servidor: ok
+2026-05-11 17:45:49 | INFO     | ℹ️  Timestamp: 2026-05-11T15:45:49.703681
+2026-05-11 17:45:49 | INFO     | 
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | INFO     | 📋 2. LOGIN EXITOSO
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:49 | ERROR    | ❌ Login exitoso: Status 401, esperado 200
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: {"detail":"Invalid credentials"}
+2026-05-11 17:45:49 | INFO     | 
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | INFO     | 📋 3. LOGIN FALLIDO - CONTRASEÑA INCORRECTA
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:49 | ERROR    | ❌ Se permitió login con contraseña incorrecta
+2026-05-11 17:45:49 | INFO     | 
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | INFO     | 📋 4. LOGIN FALLIDO - USUARIO INEXISTENTE
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:49 | ERROR    | ❌ Se permitió login con usuario inexistente
+2026-05-11 17:45:49 | INFO     | 
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | INFO     | 📋 5. OBTENER PERFIL (/api/me)
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | DEBUG    | 🔍 GET http://localhost:8000/api/me
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:49 | ERROR    | ❌ Obtener perfil: Status 401, esperado 200
+2026-05-11 17:45:49 | DEBUG    | 🔍 Response: {"detail":"Not authenticated"}
+2026-05-11 17:45:49 | INFO     | 
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | INFO     | 📋 6. ACCESO SIN TOKEN
+2026-05-11 17:45:49 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:49 | DEBUG    | 🔍 GET http://localhost:8000/api/me
+2026-05-11 17:45:51 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:51 | ERROR    | ❌ Se permitió acceso sin token
+2026-05-11 17:45:51 | INFO     | 
+2026-05-11 17:45:51 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:51 | INFO     | 📋 7. ACCESO CON TOKEN INVÁLIDO
+2026-05-11 17:45:51 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:51 | DEBUG    | 🔍 GET http://localhost:8000/api/me
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Se permitió acceso con token inválido
+2026-05-11 17:45:53 | INFO     | 
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | INFO     | 📋 8. REFRESH TOKEN
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | DEBUG    | 🔍 POST http://localhost:8000/api/me/refresh-token
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Refresh token: Status 401, esperado 200
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: {"detail":"Not authenticated"}
+2026-05-11 17:45:53 | INFO     | 
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | INFO     | 📋 9. CAMBIAR CONTRASEÑA
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | DEBUG    | 🔍 POST http://localhost:8000/api/me/change-password
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Cambiar contraseña: Status 401, esperado 200
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: {"detail":"Not authenticated"}
+2026-05-11 17:45:53 | INFO     | 
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | INFO     | 📋 10. CAMBIAR CONTRASEÑA - CONTRASEÑA ACTUAL INCORRECTA
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | DEBUG    | 🔍 POST http://localhost:8000/api/me/change-password
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Se permitió cambio de contraseña con contraseña actual incorrecta
+2026-05-11 17:45:53 | INFO     | 
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | INFO     | 📋 11. PING (MANTENER SESIÓN ACTIVA)
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | DEBUG    | 🔍 POST http://localhost:8000/api/ping
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Ping: Status 401, esperado 200
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: {"detail":"Not authenticated"}
+2026-05-11 17:45:53 | INFO     | 
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | INFO     | 📋 12. PREFERENCIAS DE IDIOMA
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | DEBUG    | 🔍 POST http://localhost:8000/api/me/lang
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Establecer idioma: Status 401, esperado 200
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: {"detail":"Not authenticated"}
+2026-05-11 17:45:53 | DEBUG    | 🔍 GET http://localhost:8000/api/me/lang
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:45:53 | ERROR    | ❌ Obtener idioma: Status 401, esperado 200
+2026-05-11 17:45:53 | DEBUG    | 🔍 Response: {"detail":"Not authenticated"}
+2026-05-11 17:45:53 | INFO     | 
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | INFO     | 📋 13. REGISTRO DE NUEVO USUARIO
+2026-05-11 17:45:53 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:45:53 | DEBUG    | 🔍 POST http://localhost:8000/api/register
+2026-05-11 17:45:54 | DEBUG    | 🔍 Response: 200
+2026-05-11 17:45:54 | INFO     | ✅ Registrar nuevo usuario: Status 200 ✓
+2026-05-11 17:45:54 | INFO     | ✅ Usuario test_reg_1778514353 registrado
+2026-05-11 17:45:57 | INFO     | ✅ Login exitoso como test_reg_1778514353
+2026-05-11 17:45:57 | INFO     | ✅ Login con usuario recién registrado exitoso
+2026-05-11 17:45:59 | INFO     | ✅ Login exitoso como dvd
+2026-05-11 17:45:59 | DEBUG    | 🔍 DELETE http://localhost:8000/api/admin/delete/test_reg_1778514353
+2026-05-11 17:46:00 | DEBUG    | 🔍 Response: 200
+2026-05-11 17:46:00 | INFO     | ✅ Usuario de prueba eliminado
+2026-05-11 17:46:00 | INFO     | 
+2026-05-11 17:46:00 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:46:00 | INFO     | 📋 14. REGISTRO - USUARIO DUPLICADO
+2026-05-11 17:46:00 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:46:00 | DEBUG    | 🔍 POST http://localhost:8000/api/register
+2026-05-11 17:46:03 | DEBUG    | 🔍 Response: 200
+2026-05-11 17:46:03 | ERROR    | ❌ Se permitió registro de usuario duplicado
+2026-05-11 17:46:03 | INFO     | 
+2026-05-11 17:46:03 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:46:03 | INFO     | 📋 15. RATE LIMITING EN LOGIN
+2026-05-11 17:46:03 | INFO     | --------------------------------------------------------------------------------
+2026-05-11 17:46:03 | INFO     | ℹ️  Probando rate limiting (20/minuto)...
+2026-05-11 17:46:03 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:03 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:03 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:03 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:04 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:04 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:04 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:04 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:04 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:04 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:04 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:04 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:04 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:05 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:05 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:05 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:05 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:05 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:05 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:06 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:06 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:07 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:07 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:07 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:07 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:07 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:07 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:07 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:07 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:07 | DEBUG    | 🔍 Response: 401
+2026-05-11 17:46:07 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:08 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:08 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:08 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:08 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:08 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:08 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:08 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:08 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:08 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:08 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:09 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:09 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:09 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:09 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:09 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:09 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:09 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:09 | DEBUG    | 🔍 POST http://localhost:8000/api/login
+2026-05-11 17:46:09 | DEBUG    | 🔍 Response: 429
+2026-05-11 17:46:09 | WARNING  | ⚠️  No se alcanzó el rate limit en 25 intentos
+2026-05-11 17:46:09 | INFO     | 
+2026-05-11 17:46:09 | INFO     | ================================================================================
+2026-05-11 17:46:09 | INFO     | 📊 RESUMEN DEL TEST
+2026-05-11 17:46:09 | INFO     | ================================================================================
+2026-05-11 17:46:09 | INFO     | ✅ Tests exitosos:  7
+2026-05-11 17:46:09 | INFO     | ❌ Tests fallidos:  13
+2026-05-11 17:46:09 | INFO     | ⚠️  Advertencias:    1
+2026-05-11 17:46:09 | INFO     | 📈 Tasa de éxito:   35.0%
+2026-05-11 17:46:09 | INFO     | ================================================================================

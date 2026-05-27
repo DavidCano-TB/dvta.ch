@@ -1,0 +1,75 @@
+========================================
+  CORRECCION PANTALLA NEGRA
+========================================
+
+PROBLEMA:
+  La pantalla de juego se veia casi en negro
+  El juego estaba ahi pero no se veia
+
+CAUSA ENCONTRADA:
+  Los modales (videoModal y victoryModal) tenian
+  estilos CSS conflictivos en el HTML:
+  
+  display:none; display:flex;
+  
+  Esto causaba que los modales se quedaran
+  visibles tapando la pantalla del juego
+
+SOLUCION APLICADA:
+
+1. MODAL DE VIDEO (videoModal)
+   Antes: display:none;...;display:flex;
+   Ahora: display:none;...;align-items:center;
+   
+   El display:flex se aplica via JavaScript
+   cuando se necesita mostrar el modal
+
+2. MODAL DE VICTORIA (victoryModal)
+   Antes: display:none;...;display:flex;
+   Ahora: display:none;...;align-items:center;
+   
+   El display:flex se aplica via JavaScript
+   cuando se necesita mostrar el modal
+
+========================================
+
+CAMBIOS EN CODIGO:
+
+Linea 134 (videoModal):
+  - Eliminado: display:flex;
+  + Mantiene: display:none; (inicial)
+  + JavaScript controla: modal.style.display = 'flex'
+
+Linea 139 (victoryModal):
+  - Eliminado: display:flex;
+  + Mantiene: display:none; (inicial)
+  + JavaScript controla: modal.style.display = 'flex'
+
+========================================
+
+ARCHIVO MODIFICADO:
+  game_pages/hundirlaflota/game.html
+
+========================================
+
+RESULTADO:
+  [OK] Pantalla visible correctamente
+  [OK] Modales ocultos por defecto
+  [OK] Modales se muestran solo cuando necesario
+  [OK] No mas pantalla negra
+
+========================================
+
+PARA VERIFICAR:
+  1. Abre el juego en el navegador
+  2. Verifica que la pantalla se ve correctamente
+  3. Los tableros deben ser visibles
+  4. Los botones deben ser visibles
+  5. Todo debe tener colores normales
+
+========================================
+
+ESTADO: CORREGIDO
+Fecha: 16.05.2026 09:35
+
+========================================

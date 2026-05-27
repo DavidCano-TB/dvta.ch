@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>¿Quién soy?</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;--noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;--glass:rgba(255,255,255,.04);--border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);--text:#EAE6D8;--text2:#9A9070;--text3:#504430;--green:#38B87A;--red:#C83060;--blue:#4878D8;--r:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:15px;}
+body{background:var(--noir);color:var(--text);font-family:'DM Mono',monospace;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:24px;}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(4,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;height:52px;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);}
+.hdrLogo{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);flex:1;}
+.connDot{width:8px;height:8px;border-radius:50%;background:var(--text3);flex-shrink:0;}
+.connDot.on{background:var(--green);box-shadow:0 0 6px rgba(56,184,122,.6);}
+.overlay{position:fixed;inset:0;background:rgba(4,4,10,.97);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;}
+.ovTitle{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);}
+.ovSub{font-size:.8rem;color:var(--text2);max-width:360px;line-height:1.6;}
+.wrap{max-width:680px;margin:0 auto;padding:14px;}
+/* Secret character (admin only) */
+.charCard{background:linear-gradient(135deg,rgba(212,168,67,.14),rgba(212,168,67,.04));border:1.5px solid var(--gold);border-radius:var(--r);padding:12px 16px;margin-bottom:12px;text-align:center;box-shadow:0 0 24px rgba(212,168,67,.15);}
+.charLabel{font-size:.56rem;color:var(--gold3);text-transform:uppercase;letter-spacing:.14em;margin-bottom:3px;}
+.charName{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold2);}
+/* Players */
+.players{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;}
+.pchip{display:flex;align-items:center;gap:5px;padding:4px 9px;border-radius:18px;border:1px solid var(--border);background:var(--glass);font-size:.68rem;transition:all .2s;}
+.pchip.active{border-color:var(--gold);background:rgba(212,168,67,.1);color:var(--gold2);}
+.pchip.winner{border-color:var(--green);background:rgba(56,184,122,.1);color:var(--green);}
+.pchip.elim{opacity:.4;text-decoration:line-through;}
+/* History */
+.history{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;max-height:300px;overflow-y:auto;}
+.hitem{display:flex;gap:8px;align-items:flex-start;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:7px 10px;}
+.hitem.gcorr{border-color:rgba(56,184,122,.35);background:rgba(56,184,122,.06);}
+.hitem.gwrong{border-color:rgba(200,48,96,.25);}
+.hitem.forced{border-left:3px solid var(--gold);}
+.hwho{font-size:.58rem;color:var(--text3);min-width:56px;flex-shrink:0;}
+.hq{flex:1;font-size:.76rem;color:var(--text);}
+.hq .corrected{color:var(--text3);font-size:.68rem;text-decoration:line-through;display:block;margin-bottom:2px;}
+.ha{font-size:.76rem;font-weight:600;flex-shrink:0;}
+.ha.si{color:var(--green);}
+.ha.no{color:var(--red);}
+.ha.corr{color:var(--green);}
+.ha.wrong{color:var(--red);}
+/* Pending */
+.pending{text-align:center;font-size:.72rem;color:var(--gold3);padding:8px;animation:blink 1.2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+/* Input */
+.inputPanel{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
+.tabs{display:flex;gap:5px;margin-bottom:9px;}
+.tab{flex:1;padding:6px;background:var(--glass);border:1px solid var(--border);border-radius:8px;font-size:.66rem;font-family:'DM Mono',monospace;cursor:pointer;text-align:center;transition:all .18s;}
+.tab.on{background:rgba(212,168,67,.14);border-color:var(--gold);color:var(--gold2);}
+.inp{width:100%;background:rgba(212,168,67,.05);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.88rem;outline:none;transition:all .2s;}
+.inp:focus{border-color:var(--gold);background:rgba(212,168,67,.1);}
+.inp::placeholder{color:var(--text3);}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid;border-radius:var(--r);padding:8px 14px;font-size:.7rem;font-family:'DM Mono',monospace;letter-spacing:.05em;transition:all .2s;cursor:pointer;font-weight:500;}
+.btnG{background:rgba(56,184,122,.12);border-color:rgba(56,184,122,.4);color:var(--green);}
+.btnG:hover{background:rgba(56,184,122,.22);border-color:var(--green);}
+.btnO{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.3);color:var(--gold2);}
+.btnN{background:var(--glass);border-color:var(--border);color:var(--text2);}
+.btnSm{padding:5px 10px;font-size:.65rem;}
+.sendRow{display:flex;justify-content:flex-end;margin-top:7px;}
+.adminPanel{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:10px;margin-top:10px;}
+.adminTitle{font-size:.58rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;}
+/* Character photo */
+.charPhoto{width:120px;height:120px;object-fit:cover;border-radius:var(--r);border:2px solid var(--gold);margin:8px auto;display:block;}
+/* Suggestions modal */
+.modal{position:fixed;inset:0;background:rgba(4,4,10,.95);z-index:300;display:none;align-items:center;justify-content:center;padding:24px;}
+.modalContent{background:var(--n2);border:1.5px solid var(--gold);border-radius:var(--r);padding:20px;max-width:400px;width:100%;}
+.modalTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:12px;text-align:center;}
+.modalText{font-size:.8rem;color:var(--text2);margin-bottom:16px;text-align:center;}
+.suggestionItem{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:10px;margin-bottom:8px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px;}
+.suggestionItem:hover{border-color:var(--gold);background:rgba(212,168,67,.1);}
+.suggestionPhoto{width:50px;height:50px;object-fit:cover;border-radius:6px;}
+.suggestionName{flex:1;font-size:.85rem;color:var(--text);}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <span style="font-size:1.3rem">🎭</span>
+  <div class="hdrLogo">¿Quién soy?</div>
+  <div class="connDot" id="connDot"></div>
+</div>
+<div class="overlay" id="overlay">
+  <div class="ovTitle" id="ovTitle">🎭 ¿Quién soy?</div>
+  <div class="ovSub" id="ovSub">Conectando…</div>
+</div>
+<div class="wrap" id="wrap" style="display:none">
+  <div id="charCard" class="charCard" style="display:none">
+    <div class="charLabel">Personaje secreto</div>
+    <div class="charName" id="charName">—</div>
+    <img id="charPhoto" class="charPhoto" style="display:none" alt="Foto del personaje">
+  </div>
+  <div id="roundInfo" style="text-align:center;font-size:.7rem;color:var(--text3);margin-bottom:8px;display:none">
+    Ronda <span id="roundNum">1</span> • <span id="turnInfo">Turno de...</span>
+  </div>
+  <div class="players" id="players"></div>
+  <div class="history" id="history"></div>
+  <div class="pending" id="pending" style="display:none">⏳ Esperando respuesta de la IA…</div>
+  <div class="inputPanel" id="inputPanel" style="display:none">
+    <div class="tabs">
+      <button class="tab on" id="tabQ" onclick="setTab('q')">🔍 Pregunta sí/no</button>
+      <button class="tab"    id="tabG" onclick="setTab('g')">🎯 Adivinar quién soy</button>
+    </div>
+    <input id="inp" class="inp" type="text" autocomplete="off" spellcheck="false"
+      placeholder="Escribe tu pregunta sí/no…" onkeydown="if(event.key==='Enter')send()">
+    <div class="sendRow"><button class="btn btnG" onclick="send()">Enviar →</button></div>
+  </div>
+  <div id="adminPanel" class="adminPanel" style="display:none">
+    <div class="adminTitle">Control del host</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+      <button class="btn btnO btnSm" onclick="ws.send(JSON.stringify({action:'next_turn'}))">→ Saltar turno</button>
+      <button class="btn btnN btnSm" onclick="ws.send(JSON.stringify({action:'reveal'}))">👁 Revelar</button>
+      <button class="btn btnN btnSm" onclick="ws.send(JSON.stringify({action:'reset'}))">↺ Reiniciar</button>
+    </div>
+    <div style="font-size:.65rem;color:var(--text3);margin-bottom:4px">Forzar pregunta de:</div>
+    <div id="forceButtons" style="display:flex;gap:4px;flex-wrap:wrap"></div>
+  </div>
+</div>
+<!-- Suggestions Modal -->
+<div id="suggestionsModal" class="modal">
+  <div class="modalContent">
+    <div class="modalTitle">¿Quisiste decir...?</div>
+    <div class="modalText">Selecciona el personaje correcto:</div>
+    <div id="suggestionsList"></div>
+    <button class="btn btnN" style="width:100%;margin-top:8px" onclick="closeSuggestions()">Cancelar</button>
+  </div>
+</div>
+<script>
+'use strict';
+const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const ps=new URLSearchParams(location.search);
+const tok=ps.get('token')||localStorage.getItem('dvd_token')||'';
+const WSB=location.protocol==='https:'?'wss://'+location.host:'ws://'+location.host;
+let ws,st=null,me=null,isAdmin=false,tab='q';
+
+async function init(){
+  if(!tok){showOv('Sin sesión','Abre el juego desde la aplicación.');return;}
+  try{const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});if(r.ok){me=await r.json();isAdmin=!!me.is_admin;}}catch(_){}
+  connect();
+}
+function connect(){
+  ws=new WebSocket(WSB+'/ws/quiensoy?token='+encodeURIComponent(tok));
+  ws.onopen=()=>document.getElementById('connDot').className='connDot on';
+  ws.onmessage=ev=>{try{if(JSON.parse(ev.data).type==='state'){st=JSON.parse(ev.data);render();}}catch(_){}};
+  ws.onclose=()=>{document.getElementById('connDot').className='connDot';setTimeout(connect,3000);};
+}
+function render(){
+  if(!st)return;
+  if(!st.enabled){
+    if(isAdmin){
+      showOv('🎭 ¿Quién soy?','Configura el juego desde el panel de administración.');
+    }else{
+      showOv('🎭 ¿Quién soy?','El juego no ha sido iniciado por el host.');
+    }
+    return;
+  }
+  if(st.status==='waiting'&&!isAdmin){showOv('🎭 ¿Quién soy?','Esperando a que el host configure la partida…');return;}
+  if(st.status==='finished'){
+    const char=st.character?` El personaje era: ${st.character}`:'';
+    if(st.winner)showOv('🎉 ¡'+st.winner+' lo adivinó!',char);
+    else showOv('😔 Nadie lo adivinó',char);
+    return;
+  }
+  hideOv();
+  document.getElementById('wrap').style.display='';
+  // Character (admin only)
+  const cc=document.getElementById('charCard');
+  if(st.character&&isAdmin){
+    cc.style.display='';
+    document.getElementById('charName').textContent=st.character;
+    // Show photo if available
+    const photo=st.character_photo;
+    const photoEl=document.getElementById('charPhoto');
+    if(photo){
+      photoEl.src=photo;
+      photoEl.style.display='block';
+    }else{
+      photoEl.style.display='none';
+    }
+  }else cc.style.display='none';
+  // Round info
+  const ri=document.getElementById('roundInfo');
+  if(st.status==='playing'){
+    ri.style.display='';
+    document.getElementById('roundNum').textContent=st.round_number||1;
+    const curP=st.players[st.current_idx];
+    const forcedP=st.forced_player;
+    if(forcedP){
+      document.getElementById('turnInfo').textContent='Turno forzado de @'+forcedP;
+    }else if(curP){
+      document.getElementById('turnInfo').textContent='Turno de @'+curP.username;
+    }
+  }else ri.style.display='none';
+  // Players
+  const pl=st.players||[],curI=st.current_idx??0;
+  const forcedP=st.forced_player;
+  document.getElementById('players').innerHTML=pl.map((p,i)=>{
+    const isForced=forcedP===p.username;
+    const act=(i===curI||isForced)&&!p.eliminated;
+    const cls=p.eliminated?'elim':st.winner===p.username?'winner':act?'active':'';
+    const hearts='❤'.repeat(p.guesses_left)+'🖤'.repeat(3-p.guesses_left);
+    const badge=isForced?' 🎯':'';
+    return`<div class="pchip ${cls}">@${e(p.username)}${badge} <span style="font-size:.58rem">${hearts}</span></div>`;
+  }).join('');
+  // History
+  const hist=st.history||[];
+  const hel=document.getElementById('history');
+  hel.innerHTML=hist.map(h=>{
+    const gc=h.type==='guess'&&h.correct,gw=h.type==='guess'&&!h.correct;
+    const si=h.type==='question'&&(h.answer?.toLowerCase().includes('sí')||h.answer?.toLowerCase().includes('si'));
+    const no=h.type==='question'&&!si;
+    const forced=h.forced?' forced':'';
+    let qText=e(h.question);
+    if(h.question_original){
+      qText=`<span class="corrected">${e(h.question_original)}</span>${qText}`;
+    }
+    return`<div class="hitem ${gc?'gcorr':gw?'gwrong':''}${forced}">
+      <span class="hwho">@${e(h.player)}</span>
+      <span class="hq">${h.type==='guess'?'<em>Adivina:</em> ':''}${qText}</span>
+      <span class="ha ${si?'si':no?'no':gc?'corr':'wrong'}">${e(h.answer||'')}</span>
+    </div>`;
+  }).join('');
+  hel.scrollTop=hel.scrollHeight;
+  // Pending
+  document.getElementById('pending').style.display=st.question_pending?'':'none';
+  // Input (my turn, forced turn, or admin)
+  const curP=pl[curI],myTurn=me&&curP&&curP.username===me.username&&!curP.eliminated;
+  const myForcedTurn=me&&forcedP===me.username;
+  const ip=document.getElementById('inputPanel');
+  if(((myTurn||myForcedTurn)||isAdmin)&&!st.question_pending&&st.status==='playing'){
+    ip.style.display='';
+    if(myTurn||myForcedTurn)setTimeout(()=>document.getElementById('inp')?.focus(),60);
+  }else ip.style.display='none';
+  // Admin panel
+  if(isAdmin){
+    document.getElementById('adminPanel').style.display='';
+    // Force buttons
+    const fb=document.getElementById('forceButtons');
+    fb.innerHTML=pl.filter(p=>!p.eliminated).map(p=>{
+      return`<button class="btn btnN btnSm" onclick="ws.send(JSON.stringify({action:'force_question',username:'${e(p.username)}'}))">@${e(p.username)}</button>`;
+    }).join('');
+  }else document.getElementById('adminPanel').style.display='none';
+}
+function setTab(t){
+  tab=t;
+  document.getElementById('tabQ').className='tab'+(t==='q'?' on':'');
+  document.getElementById('tabG').className='tab'+(t==='g'?' on':'');
+  document.getElementById('inp').placeholder=t==='q'?'Escribe tu pregunta sí/no…':'¿Quién eres? (adivina el personaje)';
+  document.getElementById('inp').focus();
+}
+function send(){
+  const v=(document.getElementById('inp').value||'').trim();if(!v)return;
+  ws.send(JSON.stringify(tab==='q'?{action:'ask',question:v}:{action:'guess',guess:v}));
+  document.getElementById('inp').value='';
+}
+function showOv(t,m){document.getElementById('ovTitle').textContent=t;document.getElementById('ovSub').textContent=m;document.getElementById('overlay').style.display='';document.getElementById('wrap').style.display='none';}
+function hideOv(){document.getElementById('overlay').style.display='none';}
+function closeSuggestions(){document.getElementById('suggestionsModal').style.display='none';}
+function selectSuggestion(name){
+  closeSuggestions();
+  // Use the suggested name
+  document.getElementById('inp').value=name;
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>Cifras y Letras</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&family=Oswald:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;--noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;--glass:rgba(255,255,255,.04);--border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);--text:#EAE6D8;--text2:#9A9070;--text3:#504430;--green:#38B87A;--red:#C83060;--blue:#4878D8;--orange:#E07840;--r:10px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:15px;}
+body{background:var(--noir);color:var(--text);font-family:'DM Mono',monospace;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:24px;will-change:transform;}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;}
+*{transition-duration:.1s!important;animation-duration:.15s!important;}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(4,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;height:52px;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);}
+.hdrLogo{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);flex:1;}
+.hdrRound{font-size:.62rem;color:var(--text3);}
+.connDot{width:8px;height:8px;border-radius:50%;background:var(--text3);flex-shrink:0;}
+.connDot.on{background:var(--green);box-shadow:0 0 6px rgba(56,184,122,.6);}
+.overlay{position:fixed;inset:0;background:rgba(4,4,10,.97);z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;}
+.ovTitle{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);}
+.ovSub{font-size:.8rem;color:var(--text2);max-width:360px;line-height:1.6;}
+.wrap{max-width:680px;margin:0 auto;padding:14px;}
+/* Tiles */
+.tilesBox{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-bottom:14px;}
+.tile{width:54px;height:54px;display:flex;align-items:center;justify-content:center;background:var(--n3);border:1px solid var(--border2);border-radius:var(--r);font-family:'Oswald',sans-serif;font-weight:700;font-size:1.5rem;color:var(--gold2);box-shadow:0 2px 10px rgba(0,0,0,.5);}
+.tile.num{font-size:1.05rem;}
+/* Target */
+.target{text-align:center;margin-bottom:14px;}
+.targetNum{font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);line-height:1;}
+.targetLabel{font-size:.58rem;color:var(--text2);text-transform:uppercase;letter-spacing:.14em;margin-top:3px;}
+/* Timer */
+.timerBox{margin-bottom:14px;}
+.timerBar{height:4px;background:rgba(212,168,67,.1);border-radius:2px;overflow:hidden;}
+.timerFill{height:100%;background:var(--gold);border-radius:2px;transition:width .5s linear;}
+.timerTxt{text-align:center;font-size:.7rem;color:var(--text3);margin-top:4px;font-variant-numeric:tabular-nums;}
+/* Scores */
+.scores{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px;margin-bottom:14px;}
+.scoreCard{background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:7px 10px;}
+.scName{font-size:.76rem;color:var(--text);}
+.scScore{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold2);}
+/* Input */
+.inputBox{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:10px;}
+.ansRow{display:flex;gap:6px;margin-top:8px;}
+.inp{flex:1;background:rgba(212,168,67,.05);border:1px solid var(--border2);border-radius:var(--r);padding:9px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.88rem;outline:none;}
+.inp:focus{border-color:var(--gold);background:rgba(212,168,67,.1);}
+.inp::placeholder{color:var(--text3);}
+.sentMsg{font-size:.66rem;color:var(--green);margin-top:5px;}
+/* Results */
+.results{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;margin-bottom:10px;}
+.resTitle{font-family:'Playfair Display',serif;color:var(--gold2);font-size:.9rem;margin-bottom:8px;}
+.resRow{display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:.76rem;}
+.resRow:last-child{border-bottom:none;}
+.resName{flex:1;color:var(--text);}
+.resAns{color:var(--gold2);}
+.resPts{color:var(--green);font-family:'Playfair Display',serif;}
+/* Admin */
+.adminBox{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
+.adminTitle{font-size:.58rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid;border-radius:var(--r);padding:7px 12px;font-size:.68rem;font-family:'DM Mono',monospace;letter-spacing:.04em;cursor:pointer;font-weight:500;}
+.btnG{background:rgba(56,184,122,.12);border-color:rgba(56,184,122,.4);color:var(--green);}
+.btnG:hover{background:rgba(56,184,122,.22);border-color:var(--green);}
+.btnD{background:rgba(200,48,96,.12);border-color:rgba(200,48,96,.35);color:#e05080;}
+.btnO{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.3);color:var(--gold2);}
+.btnS{background:rgba(72,120,216,.1);border-color:rgba(72,120,216,.3);color:var(--blue);}
+.btnN{background:var(--glass);border-color:var(--border);color:var(--text2);}
+.btnSm{padding:5px 9px;font-size:.63rem;}
+.btnRow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px;}
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+<div class="hdr">
+  <span style="font-size:1.3rem">🔤</span>
+  <div class="hdrLogo">Cifras y Letras</div>
+  <span class="hdrRound" id="roundTxt">—</span>
+  <div class="connDot" id="connDot"></div>
+</div>
+<div class="overlay" id="overlay">
+  <div class="ovTitle" id="ovTitle">🔤 Cifras y Letras</div>
+  <div class="ovSub" id="ovSub">Esperando partida…</div>
+</div>
+<div class="wrap" id="wrap" style="display:none">
+  <div id="tilesBox" class="tilesBox" style="display:none"></div>
+  <div id="targetBox" class="target"   style="display:none"><div class="targetNum" id="targetNum">—</div><div class="targetLabel">Objetivo</div></div>
+  <div id="timerBox" class="timerBox"  style="display:none">
+    <div class="timerBar"><div class="timerFill" id="timerFill" style="width:100%"></div></div>
+    <div class="timerTxt" id="timerTxt">—</div>
+  </div>
+  <div class="scores" id="scores"></div>
+  <div class="inputBox" id="inputBox" style="display:none">
+    <div style="font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1em" id="inputLabel">Tu respuesta</div>
+    <div class="ansRow">
+      <input id="inp" class="inp" type="text" autocomplete="off" spellcheck="false" placeholder="Tu mejor palabra / cálculo…" onkeydown="if(event.key==='Enter')submit()">
+      <button class="btn btnG btnSm" onclick="submit()">▶ Enviar</button>
+    </div>
+    <div class="sentMsg" id="sentMsg" style="display:none">✓ Respuesta enviada</div>
+  </div>
+  <div id="resultsBox" class="results" style="display:none">
+    <div class="resTitle">Respuestas</div>
+    <div id="resList"></div>
+  </div>
+  <div id="adminBox" class="adminBox" style="display:none">
+    <div class="adminTitle" id="adminTitle">Control del host</div>
+    <div class="btnRow" id="adminStartRow" style="display:none">
+      <button class="btn btnG btnSm" onclick="ws.send(JSON.stringify({action:'start_letters'}))">🔤 Ronda letras</button>
+      <button class="btn btnS btnSm" onclick="ws.send(JSON.stringify({action:'start_numbers'}))">🔢 Ronda números</button>
+      <button class="btn btnD btnSm" onclick="ws.send(JSON.stringify({action:'finish'}))">■ Terminar</button>
+    </div>
+    <div class="btnRow" id="adminTimerRow" style="display:none">
+      <button class="btn btnG" onclick="ws.send(JSON.stringify({action:'start_timer'}))">▶ ¡Empezar! (iniciar temporizador)</button>
+    </div>
+    <div class="btnRow" id="adminRevealRow" style="display:none">
+      <button class="btn btnO btnSm" onclick="ws.send(JSON.stringify({action:'reveal'}))">👁 Revelar respuestas</button>
+    </div>
+    <div id="adminWinRow" style="display:none;margin-top:6px">
+      <div style="font-size:.58rem;color:var(--text2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px">Declarar ganador</div>
+      <div id="winBtns" class="btnRow"></div>
+    </div>
+    <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">
+      <button class="btn btnN btnSm" onclick="ws.send(JSON.stringify({action:'reset'}))">↺ Reiniciar partida</button>
+    </div>
+  </div>
+</div>
+<script>
+'use strict';
+const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const ps=new URLSearchParams(location.search);
+const tok=ps.get('token')||localStorage.getItem('dvd_token')||'';
+const WSB=location.protocol==='https:'?'wss://'+location.host:'ws://'+location.host;
+let ws,st=null,me=null,isAdmin=false,timerIv=null,localT=0,maxT=30;
+
+async function init(){
+  if(!tok){showOv('Sin sesión','Abre el juego desde la aplicación.');return;}
+  try{const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});if(r.ok){me=await r.json();isAdmin=!!me.is_admin;}}catch(_){}
+  connect();
+}
+function connect(){
+  ws=new WebSocket(WSB+'/ws/cifrasletras?token='+encodeURIComponent(tok));
+  ws.onopen=()=>document.getElementById('connDot').className='connDot on';
+  ws.onmessage=ev=>{try{if(JSON.parse(ev.data).type==='state'){st=JSON.parse(ev.data);render();}}catch(_){}};
+  ws.onclose=()=>{document.getElementById('connDot').className='connDot';setTimeout(connect,1000);};
+}
+function render(){
+  if(!st)return;
+  if(!st.enabled||st.status==='waiting'){showOv('🔤 Cifras y Letras','Esperando a que comience la partida…');return;}
+  if(st.status==='finished'){
+    const top=[...(st.players||[])].sort((a,b)=>b.score-a.score)[0];
+    showOv('🏆 Fin de partida',top?`@${top.username} gana con ${top.score} pts`:'Fin del juego');return;
+  }
+  hideOv();
+  document.getElementById('wrap').style.display='';
+  // Round badge
+  document.getElementById('roundTxt').textContent=st.round?`R${st.round}/${st.max_rounds}`:'—';
+  // Tiles
+  const tb=document.getElementById('tilesBox'),tx=document.getElementById('targetBox');
+  if(st.mode==='letters'&&st.letters?.length){
+    tb.style.display='flex';tb.innerHTML=st.letters.map(l=>`<div class="tile">${e(l)}</div>`).join('');tx.style.display='none';
+  }else if(st.mode==='numbers'&&st.numbers?.length){
+    tb.style.display='flex';tb.innerHTML=st.numbers.map(n=>`<div class="tile num">${n}</div>`).join('');
+    tx.style.display='';document.getElementById('targetNum').textContent=st.target;
+  }else{tb.style.display='none';tx.style.display='none';}
+  // Timer
+  const isActive=['letters','numbers'].includes(st.status);
+  const timerBox=document.getElementById('timerBox');
+  if(isActive){timerBox.style.display='';maxT=st.round_time||30;startTimer(maxT);}
+  else{timerBox.style.display='none';stopTimer();}
+  // Scores
+  document.getElementById('scores').innerHTML=(st.players||[]).map(p=>
+    `<div class="scoreCard"><div class="scName">@${e(p.username)}</div><div class="scScore">${p.score} pts</div></div>`
+  ).join('');
+  // Player input
+  const isPlayer=me&&(st.players||[]).some(p=>p.username===me.username);
+  const hasSub=me&&st.submissions?.[me.username]!==undefined;
+  const ib=document.getElementById('inputBox');
+  if(isActive&&isPlayer&&!isAdmin){
+    ib.style.display='';
+    document.getElementById('inputLabel').textContent=st.mode==='letters'?'🔤 Mejor palabra':'🔢 Cálculo para llegar al objetivo';
+    document.getElementById('sentMsg').style.display=hasSub?'':'none';
+    document.getElementById('inp').disabled=!!hasSub;
+    if(!hasSub)setTimeout(()=>document.getElementById('inp')?.focus(),20);
+  }else ib.style.display='none';
+  // Results
+  const rb=document.getElementById('resultsBox');
+  if(st.status==='reviewing'&&st.results?.length){
+    rb.style.display='';
+    document.getElementById('resList').innerHTML=st.results.map(r=>
+      `<div class="resRow"><span class="resName">@${e(r.username)}</span><span class="resAns">${e(r.answer)}</span><span class="resPts">${r.score?'+'+r.score:'—'}</span></div>`
+    ).join('');
+  }else rb.style.display='none';
+  // Admin
+  const ab=document.getElementById('adminBox');
+  ab.style.display=isAdmin?'':'none';
+  if(isAdmin){
+    const rdy=st.status==='ready',wait=st.status==='waiting'||st.status==='reviewing',rev=st.status==='reviewing';
+    document.getElementById('adminStartRow').style.display=wait?'':'none';
+    document.getElementById('adminTimerRow').style.display=rdy?'':'none';
+    document.getElementById('adminRevealRow').style.display=isActive?'':'none';
+    const wr=document.getElementById('adminWinRow'),wb=document.getElementById('winBtns');
+    if(rev&&st.results?.length){wr.style.display='';wb.innerHTML=st.results.map(r=>`<button class="btn btnG btnSm" onclick="ws.send(JSON.stringify({action:'declare_winner',winners:['${e(r.username)}'],pts:1}))">🏆 @${e(r.username)}</button>`).join('');}
+    else wr.style.display='none';
+  }
+}
+function startTimer(max){stopTimer();localT=max;updateTimer(max);timerIv=setInterval(()=>{if(localT>0){localT--;updateTimer(localT);}else stopTimer();},1000);}
+function stopTimer(){clearInterval(timerIv);timerIv=null;}
+function updateTimer(t){
+  document.getElementById('timerTxt').textContent=t+' s';
+  const pct=Math.max(0,t/maxT*100),fill=document.getElementById('timerFill');
+  if(fill){fill.style.width=pct+'%';fill.style.background=pct<25?'var(--red)':pct<50?'var(--orange)':'var(--gold)';}
+}
+function submit(){
+  const v=(document.getElementById('inp').value||'').trim();if(!v||!me)return;
+  ws.send(JSON.stringify({action:'submit',username:me.username,answer:v}));
+  document.getElementById('sentMsg').style.display='';document.getElementById('inp').disabled=true;
+}
+function showOv(t,m){document.getElementById('ovTitle').textContent=t;document.getElementById('ovSub').textContent=m;document.getElementById('overlay').style.display='';document.getElementById('wrap').style.display='none';stopTimer();}
+function hideOv(){document.getElementById('overlay').style.display='none';}
+init();
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

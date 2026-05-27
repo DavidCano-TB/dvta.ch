@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OPO · DVDcoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
+  --noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;
+  --border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --green:#38B87A;--red:#C83060;--blue:#4878D8;
+  --r:10px;--rL:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:15px}
+body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px}
+
+/* Header */
+#hdr{position:sticky;top:0;z-index:200;background:var(--n3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;gap:12px}
+.hLeft{display:flex;align-items:center;gap:12px}
+.backBtn{background:none;border:1px solid var(--border);color:var(--text3);cursor:pointer;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;padding:6px 10px;border-radius:var(--r);transition:all .18s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.backBtn:hover{color:var(--gold2);border-color:var(--border2)}
+.hTitle{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase}
+.hSub{font-size:.5rem;color:var(--text3);letter-spacing:.2em;text-transform:uppercase}
+.connBadge{font-size:.6rem;padding:3px 10px;border-radius:20px;letter-spacing:.06em;border:1px solid;transition:all .3s}
+.connBadge.ok{color:var(--green);border-color:rgba(56,184,122,.3)}
+.connBadge.err{color:var(--red);border-color:rgba(200,48,96,.3)}
+.badge{font-size:.6rem;color:var(--text3);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;padding:4px 10px}
+
+/* Screens */
+.screen{display:none;min-height:calc(100vh - 52px)}
+.screen.on{display:flex}
+.flex{flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.centerCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:32px;max-width:460px;width:100%;text-align:center}
+.bigIcon{font-size:2.5rem;margin-bottom:14px;opacity:.6}
+.cardTitle{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:8px}
+.cardSub{font-size:.72rem;color:var(--text3);line-height:1.6;margin-bottom:14px}
+.goldenLine{height:1px;margin:16px 0;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent)}
+
+/* Buttons */
+.btn{border:none;border-radius:22px;padding:8px 20px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .18s;white-space:nowrap;text-decoration:none;display:inline-block}
+.btnG{background:var(--green);color:#000}.btnG:hover:not(:disabled){opacity:.85}
+.btnD{background:var(--red);color:#fff}.btnD:hover:not(:disabled){opacity:.85}
+.btnO{background:rgba(212,168,67,.15);border:1px solid var(--border2);color:var(--gold2)}.btnO:hover:not(:disabled){background:rgba(212,168,67,.25)}
+.btnN{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text2)}.btnN:hover:not(:disabled){border-color:var(--border2);color:var(--text)}
+.btnSm{padding:5px 14px;font-size:.63rem}
+.btn:disabled{opacity:.35;cursor:default}
+.btnGold{background:var(--gold);color:#000;border:none;border-radius:24px;padding:10px 24px;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .18s}.btnGold:hover{opacity:.85}
+
+/* Participants */
+.partRow{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--n4);border:1px solid var(--border);border-radius:8px;font-size:.72rem;margin-bottom:5px}
+.onlineDot{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+/* Game layout */
+#screen-game{flex-direction:column;padding:0}
+.gameWrap{max-width:860px;width:100%;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:1fr 250px;gap:16px;align-items:start}
+@media(max-width:680px){.gameWrap{grid-template-columns:1fr;padding:12px 12px 60px}}
+
+/* DVD bar */
+.dvdBar{background:rgba(212,168,67,.04);border:1px solid var(--border);border-radius:var(--r);padding:8px 14px;margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dvdTag{font-size:.55rem;color:var(--gold3);letter-spacing:.1em;text-transform:uppercase;background:rgba(212,168,67,.1);border:1px solid var(--border);padding:2px 7px;border-radius:20px}
+
+/* Progress */
+.progressRow{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.blockBadge{font-family:'Oswald',sans-serif;font-size:.85rem;color:var(--gold2)}
+.qDots{display:flex;gap:3px;flex-wrap:wrap}
+.qDot{width:9px;height:9px;border-radius:50%;background:var(--border);border:1px solid var(--border2);flex-shrink:0;transition:all .3s}
+.qDot.current{background:var(--gold);border-color:var(--gold2);box-shadow:0 0 6px var(--gold)}
+.qDot.ok{background:var(--green);border-color:var(--green)}
+.qDot.fail{background:var(--red);border-color:var(--red)}
+
+/* Player badge */
+.playerBadge{font-size:.62rem;color:var(--gold3);letter-spacing:.08em;background:rgba(212,168,67,.08);border:1px solid var(--border);border-radius:20px;padding:3px 10px;margin-bottom:10px;display:inline-block}
+
+/* Question card */
+.qCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:22px;margin-bottom:12px;position:relative;overflow:hidden;transition:border-color .4s,box-shadow .4s}
+.qCard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,67,.25),transparent)}
+.qCard.correct{border-color:rgba(56,184,122,.5);box-shadow:0 0 24px rgba(56,184,122,.1)}
+.qCard.wrong{border-color:rgba(200,48,96,.5);box-shadow:0 0 24px rgba(200,48,96,.1)}
+.qMeta{font-size:.58rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.qText{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text);line-height:1.65}
+
+/* Options */
+.options{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.optBtn{background:none;border:1px solid var(--border);border-radius:var(--r);padding:12px 15px;text-align:left;cursor:pointer;font-family:'DM Mono',monospace;font-size:.77rem;color:var(--text);transition:all .25s;display:flex;align-items:center;gap:11px;width:100%}
+.optBtn:hover:not(:disabled):not(.selected):not(.correct):not(.wrong){border-color:var(--border2);background:rgba(212,168,67,.05)}
+.optBtn.selected{border-color:var(--blue);background:rgba(72,120,216,.15);color:var(--text)}
+.optBtn.correct{border-color:var(--green);background:rgba(56,184,122,.18);color:var(--green);animation:pulseGreen .5s ease}
+.optBtn.wrong{border-color:var(--red);background:rgba(200,48,96,.15);color:var(--red);animation:shake .4s ease}
+.optBtn.correct-hl{border-color:rgba(56,184,122,.5);background:rgba(56,184,122,.06);color:var(--green)}
+.optBtn:disabled{cursor:default}
+.optLetter{width:22px;height:22px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:700;flex-shrink:0}
+@keyframes pulseGreen{0%{transform:scale(1)}40%{transform:scale(1.015)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+
+/* Countdown bar */
+.cdWrap{margin-bottom:10px;display:none}
+.cdWrap.on{display:block}
+.cdTrack{height:3px;border-radius:2px;background:var(--border);overflow:hidden}
+.cdBar{height:100%;border-radius:2px;background:var(--gold);transition:width 1s linear}
+.cdLabel{font-size:.6rem;color:var(--text3);margin-top:4px;letter-spacing:.08em}
+
+/* Scoreboard sidebar */
+.sidePanel{position:sticky;top:68px}
+.scoreCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:14px;margin-bottom:12px}
+.scoreTitle{font-size:.58rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.scoreTitle::after{content:'';flex:1;height:1px;background:var(--border)}
+.scoreRows{display:flex;flex-direction:column;gap:5px}
+.scoreRow{display:grid;grid-template-columns:1fr auto auto auto;gap:6px;align-items:center;padding:7px 10px;background:var(--n4);border-radius:7px;border:1px solid var(--border)}
+.scoreRow.me{border-color:var(--gold3);background:rgba(212,168,67,.05)}
+.sUser{font-size:.7rem;color:var(--text);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sC{font-size:.65rem;color:var(--green)}.sW{font-size:.65rem;color:var(--red)}.sPct{font-size:.58rem;color:var(--text3)}
+
+/* Block end */
+#screen-block-end{flex-direction:column;align-items:center;padding:20px}
+.resultCard{background:var(--n3);border:1px solid var(--border2);border-radius:var(--rL);max-width:520px;width:100%;overflow:hidden;animation:popIn .4s cubic-bezier(.34,1.56,.64,1)}
+.resultHead{padding:22px;text-align:center;border-bottom:1px solid var(--border);background:var(--n2)}
+.resultTitle{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold2);margin-bottom:4px}
+.resultBody{padding:18px}
+.podRow{display:grid;grid-template-columns:auto 1fr auto auto auto;gap:8px;align-items:center;padding:8px 12px;background:var(--n4);border-radius:8px;border:1px solid var(--border);margin-bottom:5px}
+.podRank{font-family:'Oswald',sans-serif;font-size:.9rem;color:var(--gold);min-width:20px}
+@keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* Finished */
+#screen-finished{flex-direction:column;align-items:center;padding:20px}
+.finCard{background:var(--n3);border:1px solid var(--border2);border-radius:var(--rL);max-width:560px;width:100%;overflow:hidden}
+.finHead{padding:28px;text-align:center;border-bottom:1px solid var(--border)}
+.finTitle{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold2);margin-bottom:6px}
+
+/* CORRECT overlay */
+#correctOverlay{position:fixed;inset:0;z-index:8500;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,14,4,.96);backdrop-filter:blur(14px)}
+#correctOverlay.on{display:flex;animation:ovIn .3s ease}
+.correctTitle{font-family:'Oswald',sans-serif;font-size:3.8rem;font-weight:900;color:var(--green);letter-spacing:.15em;text-transform:uppercase;text-shadow:0 0 40px rgba(56,184,122,.6);margin-bottom:14px}
+.ovRespuesta{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;text-align:center;padding:10px 24px;border-radius:8px;max-width:520px;margin-bottom:10px}
+.ovRespuesta.ok{color:var(--green);border:1.5px solid rgba(56,184,122,.35);background:rgba(56,184,122,.06)}
+.ovBar{position:absolute;bottom:0;left:0;height:3px;animation:barShrink 3s linear forwards}
+.ovBar.ok{background:rgba(56,184,122,.7)}
+.ovBar.fail{background:rgba(200,48,96,.7)}
+@keyframes ovIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes barShrink{from{width:100%}to{width:0%}}
+
+/* WRONG overlay */
+#wrongOverlay{position:fixed;inset:0;z-index:8500;display:none;flex-direction:column;align-items:center;justify-content:center;background:rgba(14,0,4,.96);backdrop-filter:blur(14px)}
+#wrongOverlay.on{display:flex;animation:ovIn .3s ease}
+.wrongTitle{font-family:'Oswald',sans-serif;font-size:3.8rem;font-weight:900;color:var(--red);letter-spacing:.15em;text-transform:uppercase;text-shadow:0 0 40px rgba(200,48,96,.6);margin-bottom:14px}
+.ovPregunta{font-size:.88rem;color:var(--text2);text-align:center;max-width:560px;line-height:1.65;padding:0 24px;margin-bottom:12px}
+.ovRespuesta.fail{color:var(--gold2);border:1.5px solid rgba(240,200,102,.35);background:rgba(240,200,102,.06)}
+
+/* CELEBRATION */
+#celebOverlay{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(4,4,10,.92);backdrop-filter:blur(6px)}
+#celebOverlay.on{display:flex;animation:celebFadeIn .4s ease}
+@keyframes celebFadeIn{from{opacity:0}to{opacity:1}}
+#billsCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#celebBox{position:relative;z-index:1;text-align:center;padding:32px 20px;max-width:500px;width:90%;background:linear-gradient(135deg,rgba(212,168,67,.12),rgba(4,4,10,.85));border:2px solid var(--gold);border-radius:20px;box-shadow:0 0 80px rgba(212,168,67,.35);animation:celebPop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes celebPop{from{transform:scale(.6);opacity:0}to{transform:scale(1);opacity:1}}
+#celebEmoji{font-size:3.6rem;line-height:1;margin-bottom:10px;animation:celebBounce 1s ease-in-out infinite}
+@keyframes celebBounce{0%,100%{transform:scale(1) rotate(-5deg)}50%{transform:scale(1.12) rotate(5deg)}}
+#celebTitle{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,5.5vw,2rem);font-weight:900;color:var(--gold2);margin-bottom:8px;text-shadow:0 0 24px rgba(212,168,67,.55)}
+#celebSub{font-size:.82rem;color:var(--text2);line-height:1.5;margin-bottom:12px}
+#celebPodium{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;text-align:left}
+.celebPod{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center;padding:7px 12px;background:rgba(255,255,255,.04);border-radius:8px;border:1px solid rgba(212,168,67,.12);font-size:.72rem}
+.celebRank{font-family:'Oswald',sans-serif;font-size:.95rem;color:var(--gold)}
+.celebC{color:var(--green)}.celebW{color:var(--red)}
+#celebCd{display:inline-block;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--text3);letter-spacing:.11em;text-transform:uppercase;border:1px solid var(--text3);border-radius:20px;padding:3px 10px}
+
+/* Audio banner */
+#audioBanner{position:fixed;top:58px;left:50%;transform:translateX(-50%);z-index:9000;background:var(--n3);border:1px solid var(--border2);border-radius:var(--r);padding:8px 16px;font-size:.68rem;color:var(--gold2);white-space:nowrap;display:flex;align-items:center;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+#audioBanner.hidden{display:none}
+
+.empty{text-align:center;padding:14px;color:var(--text3);font-size:.7rem}
+
+/* Block buttons */
+.blockBtn{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--gold2);font-weight:600;min-height:80px;position:relative;overflow:hidden}
+.blockBtn:hover{border-color:var(--gold);background:rgba(212,168,67,.1);transform:translateY(-2px);box-shadow:0 4px 12px rgba(212,168,67,.2)}
+.blockBtn:active{transform:translateY(0);box-shadow:none}
+.blockBtn.completed{border-color:var(--green);background:rgba(56,184,122,.08)}
+.blockBtn.completed::after{content:'✓';position:absolute;top:4px;right:6px;font-size:.7rem;color:var(--green)}
+.blockBtn.in-progress{border-color:var(--blue);background:rgba(72,120,216,.08)}
+.blockBtn.in-progress::after{content:'▶';position:absolute;top:4px;right:6px;font-size:.6rem;color:var(--blue)}
+.bNum{display:block;font-size:1.3rem;margin-bottom:4px}
+.bScore{font-size:.6rem;color:var(--text3);font-weight:400;letter-spacing:.05em}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <div class="hLeft">
+    <a href="/" class="backBtn">← Banco</a>
+    <div>
+      <div class="hTitle">📝 OPO</div>
+      <div class="hSub">FEA Radiodiagnóstico</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+    <span class="connBadge err" id="connBadge">Conectando…</span>
+    <span class="badge" id="userBadge">—</span>
+  </div>
+</div>
+
+<div id="audioBanner" class="hidden">
+  🔇 Toca para activar el audio
+  <button onclick="_activateAudio()" style="background:var(--gold);color:#000;border:none;border-radius:12px;padding:3px 10px;font-family:'DM Mono',monospace;font-size:.63rem;font-weight:700;cursor:pointer">🔊 Activar</button>
+</div>
+
+<!-- Auth -->
+<div class="screen flex" id="screen-auth">
+  <div class="centerCard">
+    <div class="bigIcon">🔒</div>
+    <div class="cardTitle">Acceso requerido</div>
+    <div class="cardSub">Conéctate al DVDcoin Bank para acceder.</div>
+    <a href="/" class="btnGold" style="margin-top:8px">← Ir al banco</a>
+  </div>
+</div>
+
+<!-- Waiting / Block Management -->
+<div class="screen flex" id="screen-waiting">
+  <div style="max-width:900px;width:100%;padding:20px">
+    
+    <!-- Header -->
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:2.5rem;margin-bottom:10px">📚</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold2);margin-bottom:6px">Gestión de Tests OPO</div>
+      <div style="font-size:.75rem;color:var(--text3);letter-spacing:.08em">FEA Radiodiagnóstico · <span id="waitTotal">30</span> simulacros disponibles</div>
+    </div>
+
+    <!-- Stats Summary -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto">
+      <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center">
+        <div style="font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--gold2)" id="totalTests">30</div>
+        <div style="font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Tests Totales</div>
+      </div>
+      <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center">
+        <div style="font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--green)" id="completedTests">0</div>
+        <div style="font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Completados</div>
+      </div>
+      <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center">
+        <div style="font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--blue)" id="avgScore">0%</div>
+        <div style="font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Media Aciertos</div>
+      </div>
+    </div>
+
+    <!-- Block Grid -->
+    <div style="margin-bottom:20px">
+      <div style="font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;text-align:center">Selecciona un test para comenzar</div>
+      <div id="waitBlockGrid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px"></div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button class="btn btnN btnSm" id="audioBtn" onclick="_activateAudio()">🔊 Activar audio</button>
+      <button class="btn btnN btnSm" onclick="openStatsScreen()">📊 Ver estadísticas</button>
+      <button class="btn btnO btnSm" onclick="resetAllProgress()">🔄 Reiniciar progreso</button>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Block selector -->
+<div class="screen flex" id="screen-block-select">
+  <div style="max-width:580px;width:100%;padding:16px">
+    <div style="text-align:center;margin-bottom:18px">
+      <div style="font-size:2rem;margin-bottom:8px">📋</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold2);margin-bottom:4px">Elige el siguiente bloque</div>
+      <div style="font-size:.68rem;color:var(--text3);letter-spacing:.08em"><span id="bsTotal">30</span> simulacros · 10 preguntas cada uno</div>
+    </div>
+    <div id="blockGrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px"></div>
+    <div id="bsScoreRows" style="max-width:340px;margin:0 auto"></div>
+  </div>
+</div>
+
+<!-- Game -->
+<div class="screen" id="screen-game">
+  <div class="gameWrap">
+    <div>
+      <!-- dvd controls -->
+      <div class="dvdBar" id="dvdBar" style="display:none">
+        <span class="dvdTag">dvd</span>
+        <button class="btn btnO btnSm" id="btnForceReveal" onclick="sendAction({action:'force_reveal'})">🔍 Revelar ya</button>
+        <button class="btn btnD btnSm" style="margin-left:auto" onclick="if(confirm('¿Reiniciar el simulacro?'))sendAction({action:'reset'})">↺ Reset</button>
+      </div>
+
+      <!-- Active player badge -->
+      <div class="playerBadge" id="playerBadge">Jugador: —</div>
+
+      <!-- Progress -->
+      <div class="progressRow">
+        <div class="blockBadge" id="blockBadge">Bloque 1 / 60</div>
+        <div class="qDots" id="qDots"></div>
+        <div style="font-size:.65rem;color:var(--text3)" id="qLabel">1 / 10</div>
+      </div>
+
+      <!-- Countdown bar (auto-next) -->
+      <div class="cdWrap" id="cdWrap" style="display:none">
+        <div class="cdTrack"><div class="cdBar" id="cdBar"></div></div>
+        <div class="cdLabel" id="cdLabel"></div>
+      </div>
+
+      <!-- Question -->
+      <div class="qCard" id="qCard">
+        <div class="qMeta" id="qMeta">Pregunta 1</div>
+        <div class="qText" id="qText">Cargando…</div>
+      </div>
+
+      <!-- Options -->
+      <div class="options" id="options"></div>
+
+      <!-- Siguiente button: appears after reveal, dvd press it -->
+      <button id="btnNext"
+        class="btn btnG"
+        style="display:none;width:100%;margin-top:10px;font-size:.85rem;padding:12px"
+        onclick="sendAction({action:'next'})">▶ Siguiente pregunta</button>
+    </div>
+
+    <!-- Scoreboard -->
+    <div class="sidePanel">
+      <div class="scoreCard">
+        <div class="scoreTitle">Bloque actual</div>
+        <div class="scoreRows" id="blockRows"><div class="empty">—</div></div>
+      </div>
+      <div class="scoreCard">
+        <div class="scoreTitle">Total acumulado</div>
+        <div class="scoreRows" id="totalRows"><div class="empty">—</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Block end -->
+<div class="screen flex" id="screen-block-end">
+  <div class="resultCard">
+    <div class="resultHead">
+      <div style="font-size:1.8rem;margin-bottom:8px">📊</div>
+      <div class="resultTitle" id="brTitle">Bloque completado</div>
+      <div style="font-size:.62rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:4px" id="brSub"></div>
+      <div style="margin-top:12px">
+        </div>
+    </div>
+    <div class="resultBody">
+      <div id="brRows"></div>
+      <div class="goldenLine"></div>
+      <div style="text-align:center;margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button id="dvdSkipBlock" class="btn btnG" style="display:none"
+          onclick="sendAction({action:'next_block'})">▶ Siguiente test</button>
+        <button id="btnReviewWrong" class="btn btnD btnSm" style="display:none"
+          onclick="showWrongReview()">📋 Ver fallos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Finished -->
+<div class="screen flex" id="screen-finished">
+  <div class="finCard">
+    <div class="finHead">
+      <div style="font-size:2.5rem;margin-bottom:10px">🏆</div>
+      <div class="finTitle">¡Simulacro completado!</div>
+      <div style="font-size:.62rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:6px" id="finSub"></div>
+    </div>
+    <div style="padding:20px">
+      <div class="scoreTitle" style="margin-bottom:10px">Clasificación final</div>
+      <div id="finRows"></div>
+      <div class="goldenLine"></div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a href="/" class="backBtn">← Banco</a>
+        <button class="btn btnD btnSm" id="dvdResetBtn" onclick="sendAction({action:'reset'})" style="display:none">↺ Nuevo simulacro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Wrong questions review screen -->
+<div class="screen flex" id="screen-wrong-review">
+  <div style="max-width:680px;width:100%;padding:16px">
+    <div style="text-align:center;margin-bottom:16px">
+      <div style="font-size:1.8rem;margin-bottom:6px">📋</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--red);margin-bottom:4px">
+        Preguntas falladas</div>
+      <div style="font-size:.65rem;color:var(--text3)" id="wrTestLabel"></div>
+    </div>
+    <div id="wrongReviewList" style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px"></div>
+    <div style="text-align:center">
+      <button class="btn btnG" onclick="sendAction({action:'select_block_after_review'});showScreen('block-select')">
+        ✓ OK · Siguiente test</button>
+    </div>
+  </div>
+</div>
+
+<!-- OPO Stats screen -->
+<div class="screen flex" id="screen-stats">
+  <div style="max-width:780px;width:100%;padding:16px">
+
+    <!-- Header -->
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px;flex-wrap:wrap">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--gold2)">📊 Resultados OPO</div>
+        <div style="font-size:.62rem;color:var(--text3);margin-top:2px" id="statsSubtitle">Todos los jugadores</div>
+      </div>
+      <button class="btn btnN btnSm" onclick="showScreen('waiting')">← Volver</button>
+    </div>
+
+    <!-- Leaderboard: all OPO players (dvd always) -->
+    <div style="font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.09em;margin-bottom:6px">Clasificación general</div>
+    <div id="statsLeaderboard" style="display:flex;flex-direction:column;gap:5px;margin-bottom:18px">
+      <div style="color:var(--text3);font-size:.72rem;padding:8px">Cargando…</div>
+    </div>
+
+    <!-- Detail: individual test history (shown when clicking a player) -->
+    <div id="statsDetailWrap" style="display:none">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;flex-wrap:wrap;gap:8px">
+        <div style="font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.09em">
+          Historial de <span id="statsDetailUser" style="color:var(--gold2)"></span>
+        </div>
+        <button class="btn btnN btnSm" style="font-size:.6rem;padding:3px 8px"
+          onclick="document.getElementById('statsDetailWrap').style.display='none'">✕ Cerrar</button>
+      </div>
+      <!-- Summary mini-cards -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:10px">
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center">
+          <div style="font-size:1.2rem;font-family:'Oswald',sans-serif;color:var(--gold2)" id="statsTotalTests">—</div>
+          <div style="font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em">Tests</div>
+        </div>
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center">
+          <div style="font-size:1.2rem;font-family:'Oswald',sans-serif;color:var(--green)" id="statsCorrect">—</div>
+          <div style="font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em">Aciertos</div>
+        </div>
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center">
+          <div style="font-size:1.2rem;font-family:'Oswald',sans-serif;color:var(--red)" id="statsWrong">—</div>
+          <div style="font-size:.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:.07em">Fallos</div>
+        </div>
+      </div>
+      <!-- Individual test rows -->
+      <div id="statsResultsList" style="display:flex;flex-direction:column;gap:4px;max-height:40vh;overflow-y:auto"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CORRECT overlay -->
+<div id="correctOverlay">
+  <div class="correctTitle">✓ ¡CORRECTO!</div>
+  <div class="ovRespuesta ok" id="correctText"></div>
+  <div class="ovBar ok" id="correctBar"></div>
+</div>
+
+<!-- WRONG overlay -->
+<div id="wrongOverlay">
+  <div class="wrongTitle">✗ INCORRECTO</div>
+  <div class="ovPregunta" id="wrongPregunta"></div>
+  <div style="font-size:.65rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px">Respuesta correcta</div>
+  <div class="ovRespuesta fail" id="wrongLetra"></div>
+  <div class="ovBar fail" id="wrongBar"></div>
+</div>
+
+<!-- CELEBRATION -->
+<div id="celebOverlay">
+  <canvas id="billsCanvas"></canvas>
+  <div id="celebBox">
+    <div id="celebEmoji">🏆</div>
+    <div id="celebTitle">¡SIMULACRO COMPLETADO!</div>
+    <div id="celebSub"></div>
+    <div id="celebPodium"></div>
+    <div id="celebCd">cerrando en 10</div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const OPO_USERS = new Set(['dvd']);  // always have access
+let ws = null, state = null, me = null, _prev = null;
+let _localAnswer = null;  // local answer for instant visual feedback
+
+// ── Audio Engine ──────────────────────────────────────────────────────────────
+let _ctx = null, _unlocked = false, _queue = [];
+
+function _activateAudio() {
+  try {
+    if (!_ctx) _ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const go = () => {
+      _unlocked = true;
+      document.getElementById('audioBanner').classList.add('hidden');
+      const b = document.getElementById('audioBtn');
+      if (b) { b.textContent = '🔊 Audio activado'; b.disabled = true; }
+      try {
+        const buf = _ctx.createBuffer(1,1,22050);
+        const s   = _ctx.createBufferSource();
+        s.buffer = buf; s.connect(_ctx.destination); s.start(0);
+      } catch(e){}
+      _queue.splice(0).forEach(fn => { try { fn(); } catch(e){} });
+    };
+    _ctx.state === 'suspended' ? _ctx.resume().then(go).catch(()=>{}) : go();
+  } catch(e){}
+}
+document.addEventListener('click',      () => { if(!_unlocked) _activateAudio(); }, {capture:true});
+document.addEventListener('touchstart', () => { if(!_unlocked) _activateAudio(); }, {capture:true});
+
+function _safe(fn) {
+  if (_unlocked) {
+    if (_ctx?.state==='suspended') _ctx.resume().then(()=>{try{fn();}catch(e){}}).catch(()=>{});
+    else try{fn();}catch(e){}
+  } else {
+    if (_queue.length < 4) _queue.push(fn);
+    document.getElementById('audioBanner').classList.remove('hidden');
+  }
+}
+
+function _notes(notes, vol) {
+  _safe(() => {
+    if (!_ctx) try{ _ctx=new(window.AudioContext||window.webkitAudioContext)(); }catch(e){return;}
+    const play = () => {
+      try {
+        const now=_ctx.currentTime;
+        const m=_ctx.createGain(), c=_ctx.createDynamicsCompressor();
+        c.threshold.value=-10; c.ratio.value=4;
+        m.gain.setValueAtTime(vol,now); m.connect(c); c.connect(_ctx.destination);
+        notes.forEach(([f,s,d,t,v])=>{
+          const o=_ctx.createOscillator(),g=_ctx.createGain();
+          o.type=t||'sine'; o.frequency.setValueAtTime(f,now+s);
+          g.gain.setValueAtTime(0,now+s);
+          g.gain.linearRampToValueAtTime(v,now+s+0.015);
+          g.gain.setValueAtTime(v,now+s+d*0.7);
+          g.gain.exponentialRampToValueAtTime(0.0001,now+s+d);
+          o.connect(g); g.connect(m); o.start(now+s); o.stop(now+s+d+0.05);
+        });
+      } catch(e){}
+    };
+    _ctx.state==='suspended' ? _ctx.resume().then(play).catch(()=>{}) : play();
+  });
+}
+
+// SHORT correct sound (2s)
+function sndCorrect() {
+  _notes([
+    [523,0.00,0.55,'triangle',0.90],[659,0.00,0.55,'triangle',0.80],
+    [784,0.00,0.55,'triangle',0.75],[1047,0.00,0.50,'triangle',0.65],
+    [1568,0.55,0.60,'triangle',0.80],[2093,0.55,0.58,'triangle',0.70],
+    [523,0.55,0.65,'sine',0.40],[131,0.00,0.55,'sine',0.45],
+    [2637,1.20,0.14,'sine',0.50],[3136,1.36,0.12,'sine',0.45],
+  ], 0.34);
+}
+
+// Wrong sound (1.2s)
+function sndWrong() {
+  _notes([
+    [220,0.00,0.18,'sawtooth',1.00],[185,0.16,0.18,'sawtooth',1.00],
+    [156,0.32,0.20,'sawtooth',0.95],[131,0.50,0.50,'sawtooth',0.90],
+    [98,0.45,0.60,'sine',0.55],[65,0.50,0.55,'sine',0.40],
+  ], 0.32);
+}
+
+// Win fanfare (7s)
+function sndWin() {
+  _notes([
+    [523,0.00,0.14,'triangle',1.00],[523,0.16,0.14,'triangle',1.00],[523,0.32,0.14,'triangle',1.00],
+    [659,0.50,0.26,'triangle',1.05],[131,0.00,0.65,'sine',0.55],[196,0.00,0.65,'sine',0.42],
+    [784,0.90,0.22,'triangle',1.00],[880,1.14,0.22,'triangle',1.00],[988,1.38,0.22,'triangle',1.05],
+    [1047,1.62,0.42,'triangle',1.20],[523,0.90,0.80,'sine',0.38],[659,0.90,0.80,'sine',0.32],
+    [523,2.10,0.14,'triangle',0.90],[659,2.42,0.14,'triangle',0.95],[784,2.58,0.14,'triangle',1.00],
+    [1047,2.74,0.14,'triangle',1.05],[1319,2.90,0.14,'triangle',1.10],[1568,3.06,0.26,'triangle',1.20],
+    [1047,3.40,1.60,'triangle',1.20],[1319,3.44,1.55,'triangle',1.00],[1568,3.48,1.50,'triangle',0.90],
+    [523,3.40,1.60,'sine',0.50],[659,3.40,1.60,'sine',0.44],[784,3.40,1.60,'sine',0.36],
+    [65,3.40,1.60,'sine',0.58],[131,3.40,1.60,'sine',0.52],[262,3.40,1.60,'sine',0.44],
+    [2093,3.42,0.11,'sine',0.50],[2637,3.52,0.11,'sine',0.46],[3136,3.62,0.11,'sine',0.42],
+    [1047,5.10,0.18,'triangle',1.05],[1319,5.30,0.18,'triangle',1.05],[1568,5.50,0.18,'triangle',1.10],
+    [2093,6.54,0.60,'triangle',1.25],[523,6.52,0.80,'sine',0.48],[65,6.52,0.80,'sine',0.55],
+  ], 0.26);
+}
+
+// ── Overlays ──────────────────────────────────────────────────────────────────
+let _ovTimer = null;
+function resetBar(id, dur) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.style.animation = 'none'; el.offsetHeight;
+  el.style.animation = `barShrink ${dur}s linear forwards`;
+}
+function showCorrect(text, dur) {
+  dur = dur || 3;
+  clearTimeout(_ovTimer);
+  document.getElementById('correctText').textContent = text;
+  resetBar('correctBar', dur);
+  document.getElementById('correctOverlay').classList.add('on');
+  document.getElementById('wrongOverlay').classList.remove('on');
+  _ovTimer = setTimeout(hideOv, dur * 1000);
+}
+function showWrong(pregunta, correctLetter, correctText, dur) {
+  dur = dur || 5;
+  clearTimeout(_ovTimer);
+  // Show: ✗ INCORRECTO + pregunta + 'Respuesta correcta: X) texto'
+  document.getElementById('wrongPregunta').textContent = pregunta;
+  document.getElementById('wrongLetra').textContent = correctLetter + ')  ' + correctText;
+  resetBar('wrongBar', dur);
+  document.getElementById('wrongOverlay').classList.add('on');
+  document.getElementById('correctOverlay').classList.remove('on');
+  _ovTimer = setTimeout(hideOv, dur * 1000);
+}
+function hideOv() {
+  document.getElementById('correctOverlay').classList.remove('on');
+  document.getElementById('wrongOverlay').classList.remove('on');
+}
+document.getElementById('correctOverlay').addEventListener('click', hideOv);
+document.getElementById('wrongOverlay').addEventListener('click', hideOv);
+
+// ── Bills rain & celebration ──────────────────────────────────────────────────
+let _billsRaf = null;
+function startBills() {
+  const cv = document.getElementById('billsCanvas'); if (!cv) return;
+  cv.width = innerWidth; cv.height = innerHeight;
+  const ctx = cv.getContext('2d');
+  const C = ['#D4A843','#F0C866','#8B6010','#E8C048','#38B87A','#2A9A60','#C4982A'];
+  const bills = Array.from({length:55},()=>({
+    x:Math.random()*cv.width, y:-Math.random()*cv.height,
+    w:32+Math.random()*22, h:15+Math.random()*10,
+    vx:(Math.random()-.5)*1.2, vy:1.8+Math.random()*2.5,
+    rot:Math.random()*Math.PI*2, vr:(Math.random()-.5)*.06,
+    color:C[Math.floor(Math.random()*C.length)], op:.7+Math.random()*.3
+  }));
+  const draw = () => {
+    ctx.clearRect(0,0,cv.width,cv.height);
+    bills.forEach(b=>{
+      ctx.save(); ctx.translate(b.x+b.w/2,b.y+b.h/2); ctx.rotate(b.rot);
+      ctx.globalAlpha=b.op; ctx.fillStyle=b.color;
+      ctx.beginPath(); ctx.roundRect(-b.w/2,-b.h/2,b.w,b.h,3); ctx.fill();
+      ctx.strokeStyle='rgba(0,0,0,.22)'; ctx.lineWidth=.8; ctx.stroke();
+      ctx.fillStyle='rgba(0,0,0,.35)'; ctx.font=`bold ${b.h*.55}px monospace`;
+      ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('◆',0,0);
+      ctx.restore();
+      b.x+=b.vx; b.y+=b.vy; b.rot+=b.vr;
+      if(b.y>cv.height+40){b.y=-30;b.x=Math.random()*cv.width;}
+    });
+    _billsRaf=requestAnimationFrame(draw);
+  };
+  draw();
+}
+function stopBills(){if(_billsRaf){cancelAnimationFrame(_billsRaf);_billsRaf=null;}}
+
+let _celebTimer=null, _celebN=10;
+function showCelebration(scores){
+  clearTimeout(_celebTimer); stopBills(); sndWin(); startBills();
+  const entries=Object.entries(scores).sort((a,b)=>(b[1].correct-b[1].wrong)-(a[1].correct-a[1].wrong));
+  const medals=['🥇','🥈','🥉'];
+  const top=entries[0];
+  document.getElementById('celebSub').textContent = top
+    ? `@${top[0]} · ${top[1].correct} aciertos de ${top[1].correct+top[1].wrong}`:'';
+  document.getElementById('celebPodium').innerHTML=entries.map(([u,sc],i)=>{
+    const t=sc.correct+sc.wrong,p=t>0?Math.round(sc.correct/t*100):0;
+    return `<div class="celebPod"><div class="celebRank">${medals[i]||i+1+'.'}</div><div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.72rem;color:var(--text)">@${esc(u)}</div><div class="celebC">✓${sc.correct}</div><div class="celebW">✗${sc.wrong}</div></div>`;
+  }).join('');
+  _celebN=10;
+  document.getElementById('celebCd').textContent=`cerrando en ${_celebN}`;
+  document.getElementById('celebOverlay').classList.add('on');
+  const tick=()=>{_celebN--;document.getElementById('celebCd').textContent=`cerrando en ${_celebN}`;if(_celebN<=0)hideCeleb();else _celebTimer=setTimeout(tick,1000);};
+  _celebTimer=setTimeout(tick,1000);
+}
+function hideCeleb(){clearTimeout(_celebTimer);stopBills();document.getElementById('celebOverlay').classList.remove('on');}
+document.getElementById('celebOverlay').addEventListener('click',hideCeleb);
+
+// ── WebSocket ─────────────────────────────────────────────────────────────────
+async function init() {
+  const token = localStorage.getItem('dvd_token');
+  if (!token) {
+    showScreen('auth');
+    return;
+  }
+  try {
+    const r = await fetch('/api/me',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
+    if (!r.ok) {
+      showScreen('auth');
+      return;
+    }
+    me = await r.json();
+    document.getElementById('userBadge').textContent = '@'+me.username;
+    showScreen('waiting');
+    connectWS(token);
+  } catch(e){
+    showScreen('auth');
+  }
+}
+function connectWS(token){
+  const proto=location.protocol==='https:'?'wss:':'ws:';
+  ws=new WebSocket(`${proto}//${location.host}/ws/opo?token=${encodeURIComponent(token)}`);
+  ws.onopen=()=>{cb('Conectado','ok');};
+  ws.onclose=(e)=>{
+    console.log('WebSocket closed:', e.code, e.reason);
+    if(e.code===4003){
+      // Access denied - user not in OPO_USERS
+      cb('Sin acceso OPO','err');
+      showScreen('auth');
+      return;
+    }
+    if(e.code===4001){
+      // Auth required or blocked
+      cb('Sesión inválida','err');
+      showScreen('auth');
+      return;
+    }
+    // Normal disconnect - try to reconnect
+    cb('Reconectando…','err');
+    setTimeout(()=>connectWS(token),3000);
+  };
+  ws.onerror=(e)=>{console.error('WebSocket error:',e);};
+  ws.onmessage=e=>{try{applyState(JSON.parse(e.data));}catch(err){console.error(err);}};
+}
+function cb(t,c){const el=document.getElementById('connBadge');el.textContent=t;el.className='connBadge '+c;}
+function sendAction(obj){if(ws&&ws.readyState===1)ws.send(JSON.stringify(obj));}
+
+// ── State machine ─────────────────────────────────────────────────────────────
+function applyState(data){
+  if(data.type!=='state') return;
+  const prev=_prev; _prev=data; state=data;
+  const isDvd=OPO_USERS.has(me?.username);
+
+
+  // Detect reveal moment: phase changed from question → reveal
+  if(prev&&prev.phase==='question'&&data.phase==='reveal'&&data.current_q){
+    const myAns   = _localAnswer || data.player_answer;
+    const correct = data.correct;
+    const delay   = data.reveal_delay || (myAns===correct ? 3 : 5);
+        showCorrect(correct+') '+data.current_q[correct], delay);
+      } else {
+        sndWrong();
+        showWrong(data.current_q.p, correct, data.current_q[correct], delay);
+      }
+    }
+    _localAnswer=null;
+  }
+
+  // Detect finished
+  if(data.phase==='finished'&&prev?.phase!=='finished'){
+    showCelebration(data.all_scores||{});
+  }
+
+  switch(data.phase){
+    case 'waiting':      renderWaiting(data);     showScreen('waiting');       break;
+    case 'block_select': renderBlockSelect(data); showScreen('block-select'); break;
+    case 'stats':        /* handled by button */;                    break;
+    case 'question':
+    case 'reveal':       renderGame(data);         showScreen('game');          break;
+    case 'block_end':    renderBlockEnd(data);     showScreen('block-end');    break;
+    case 'finished':     renderFinished(data);     showScreen('finished');      break;
+    default:             renderWaiting(data);      showScreen('waiting');       break;
+  }
+}
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  document.getElementById('screen-'+name)?.classList.add('on');
+}
+
+// ── Waiting ────────────────────────────────────────────────────────────────────
+function renderBlockSelect(data){
+  const total = data.total_blocks || 30;
+  const scores = data.all_scores || {};
+  const completedBlock = (data.block_result||{}).block || null;
+
+  document.getElementById('bsTotal').textContent = total;
+
+  // Build grid
+  const grid = document.getElementById('blockGrid');
+  grid.innerHTML = '';
+  for(let i=0; i<total; i++){
+    const btn = document.createElement('button');
+    btn.className='blockBtn';
+    btn.innerHTML='<span class="bNum">'+(i+1)+'</span>';
+    btn.onclick=()=>sendAction({action:'select_block', block:i});
+    grid.appendChild(btn);
+  }
+
+  // Show cumulative score
+  renderScoreRows('bsScoreRows', scores);
+}
+
+function renderWaiting(data){
+  const total = data.total_blocks || 30;
+  const grid = document.getElementById('waitBlockGrid');
+  const totalEl = document.getElementById('waitTotal');
+  if(!grid) return;
+  
+  // Update total display
+  if(totalEl) totalEl.textContent = total;
+  document.getElementById('totalTests').textContent = total;
+  
+  // Get user stats from localStorage
+  const userStats = JSON.parse(localStorage.getItem('opo_user_stats_' + (me?.username || 'guest')) || '{}');
+  const blockResults = userStats.blocks || {};
+  
+  // Calculate stats
+  let completed = 0;
+  let totalCorrect = 0;
+  let totalQuestions = 0;
+  
+  Object.values(blockResults).forEach(result => {
+    if(result.completed) {
+      completed++;
+      totalCorrect += result.correct || 0;
+      totalQuestions += (result.correct || 0) + (result.wrong || 0);
+    }
+  });
+  
+  const avgScore = totalQuestions > 0 ? Math.round((totalCorrect / totalQuestions) * 100) : 0;
+  
+  // Update summary stats
+  document.getElementById('completedTests').textContent = completed;
+  document.getElementById('avgScore').textContent = avgScore + '%';
+  
+  // Build grid with enhanced blocks
+  grid.innerHTML = '';
+  for(let i=0; i<total; i++){
+    const btn = document.createElement('button');
+    const blockResult = blockResults[i] || {};
+    
+    let className = 'blockBtn';
+    let scoreText = '';
+    
+    if(blockResult.completed) {
+      className += ' completed';
+      const blockTotal = (blockResult.correct || 0) + (blockResult.wrong || 0);
+      const blockPct = blockTotal > 0 ? Math.round((blockResult.correct / blockTotal) * 100) : 0;
+      scoreText = `<span class="bScore">${blockResult.correct}/${blockTotal} (${blockPct}%)</span>`;
+    } else if(blockResult.inProgress) {
+      className += ' in-progress';
+      scoreText = `<span class="bScore">En progreso</span>`;
+    }
+    
+    btn.className = className;
+    btn.innerHTML = `<span class="bNum">${i+1}</span>${scoreText}`;
+    btn.onclick = () => { 
+      _activateAudio(); 
+      sendAction({action:'start', block:i}); 
+    };
+    btn.title = blockResult.completed 
+      ? `Test ${i+1} completado: ${blockResult.correct} aciertos, ${blockResult.wrong} fallos`
+      : `Test ${i+1}: 10 preguntas`;
+    
+    grid.appendChild(btn);
+  }
+}
+
+// Reset all progress
+function resetAllProgress() {
+  if(!confirm('¿Estás seguro de que quieres reiniciar todo tu progreso? Esta acción no se puede deshacer.')) return;
+  const username = me?.username || 'guest';
+  localStorage.removeItem('opo_user_stats_' + username);
+  location.reload();
+}
+
+// Save block result to localStorage
+function saveBlockResult(blockIndex, correct, wrong) {
+  const username = me?.username || 'guest';
+  const stats = JSON.parse(localStorage.getItem('opo_user_stats_' + username) || '{}');
+  if(!stats.blocks) stats.blocks = {};
+  
+  stats.blocks[blockIndex] = {
+    completed: true,
+    correct: correct,
+    wrong: wrong,
+    date: new Date().toISOString()
+  };
+  
+  localStorage.setItem('opo_user_stats_' + username, JSON.stringify(stats));
+}
+
+// ── Game ───────────────────────────────────────────────────────────────────────
+function renderGame(data){
+  // Each user plays their own game — isPlayer = they are the active_player
+  const isReveal  = data.phase === 'reveal';
+  const isPlayer  = me?.username === data.active_player;
+  const isDvd     = !isPlayer;  // control bar for non-players (watchers)
+  const q=data.current_q; if(!q) return;
+
+  // Player badge — show actual player
+  const pb=document.getElementById('playerBadge');
+  if(pb) pb.textContent='🎓 @'+(data.active_player||me?.username||'—');
+
+  // dvd bar
+  const db=document.getElementById('dvdBar');
+  if(db) db.style.display=isDvd?'':'none';
+  const bfr=document.getElementById('btnForceReveal');
+  if(bfr&&isDvd) bfr.disabled=isReveal;
+  const bsk=document.getElementById('btnSkip');
+  if(bsk&&isDvd) bsk.style.display=isReveal?'':'none';
+
+  // Progress
+  const bi=data.block_index,qi=data.q_index;
+  document.getElementById('blockBadge').textContent=`${bi+1} / ${data.total_blocks}`;
+  document.getElementById('qLabel').textContent=`${qi+1} / 10`;
+  document.getElementById('qMeta').textContent=`Pregunta ${q.n}`;
+  document.getElementById('qDots').innerHTML=Array.from({length:10},(_,i)=>`<div class="qDot${i<qi?' ok':i===qi?' current':''}"></div>`).join('');
+  document.getElementById('qText').textContent=q.p;
+
+  // Card highlight
+  const displayAns=_localAnswer||data.player_answer;
+  const card=document.getElementById('qCard');
+  if(isReveal&&isPlayer&&displayAns){
+    card.className='qCard '+(displayAns===data.correct?'correct':'wrong');
+  } else { card.className='qCard'; }
+
+  // No countdown — manual advance
+  const cw=document.getElementById('cdWrap');
+  cw.classList.remove('on');  // always hidden
+
+  // Auto-advance — Siguiente button hidden (server auto-advances)
+  const nextBtn=document.getElementById('btnNext');
+  if(nextBtn) nextBtn.style.display='none';
+
+  // Options
+  const opts=document.getElementById('options');
+  opts.innerHTML='';
+  ['A','B','C','D'].forEach(L=>{
+    const btn=document.createElement('button');
+    let cls='optBtn';
+    if(isReveal){
+      if(data.correct===L) cls='optBtn correct';
+      else if(displayAns===L) cls='optBtn wrong';
+    } else {
+      if(displayAns===L) cls='optBtn selected';
+    }
+    btn.className=cls;
+    // Only the active player can answer, only during question phase
+    btn.disabled = !isPlayer || !!displayAns || isReveal;
+    if(isPlayer && !displayAns && !isReveal){
+      btn.onclick=()=>{
+        _activateAudio();
+        _localAnswer=L;
+        renderGame(data);  // instant visual feedback
+        sendAction({action:'answer',letter:L});
+      };
+    }
+    btn.innerHTML=`<span class="optLetter">${L}</span>${esc(q[L])}`;
+    opts.appendChild(btn);
+  });
+
+  renderScoreRows('blockRows',data.block_scores||{});
+  renderScoreRows('totalRows',data.all_scores||{});
+}
+
+function showWrongReview(){
+  const qs = window._lastWrongQs || [];
+  const testN = window._lastTestN || '?';
+  document.getElementById('wrTestLabel').textContent = 'Test ' + testN + ' · ' + qs.length + ' pregunta' + (qs.length!==1?'s':'') + ' fallada' + (qs.length!==1?'s':'');
+  const list = document.getElementById('wrongReviewList');
+  if(!list) return;
+  list.innerHTML = qs.map((q,i) => {
+    const opts = ['A','B','C','D'];
+    return `<div style="background:var(--n3);border:1px solid rgba(200,48,96,.3);border-radius:10px;padding:14px">
+      <div style="font-size:.58rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Pregunta ${q.n}</div>
+      <div style="font-family:'Playfair Display',serif;font-size:.9rem;color:var(--text);margin-bottom:10px;line-height:1.6">${esc(q.p)}</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        ${opts.map(L => {
+          const isCorrect = L === q.r;
+          const isGiven   = L === q.given;
+          const bg = isCorrect ? 'rgba(56,184,122,.15)' : (isGiven ? 'rgba(200,48,96,.12)' : 'transparent');
+          const border = isCorrect ? 'rgba(56,184,122,.5)' : (isGiven ? 'rgba(200,48,96,.4)' : 'var(--border)');
+          const col = isCorrect ? 'var(--green)' : (isGiven ? 'var(--red)' : 'var(--text3)');
+          const mark = isCorrect ? ' ✓' : (isGiven ? ' ✗' : '');
+          return `<div style="display:flex;gap:8px;padding:6px 10px;border-radius:6px;
+            background:${bg};border:1px solid ${border};font-size:.74rem;color:${col}">
+            <span style="font-weight:700;flex-shrink:0">${L}${mark}</span>
+            <span>${esc(q[L] || '')}</span></div>`;
+        }).join('')}
+      </div></div>`;
+  }).join('');
+  showScreen('wrong-review');
+}
+
+function renderScoreRows(id,scores){
+  const el=document.getElementById(id); if(!el) return;
+  const entries=Object.entries(scores).sort((a,b)=>(b[1].correct-b[1].wrong)-(a[1].correct-a[1].wrong));
+  if(!entries.length){el.innerHTML='<div class="empty">—</div>';return;}
+  el.innerHTML=entries.map(([u,sc])=>{
+    const t=sc.correct+sc.wrong,p=t>0?Math.round(sc.correct/t*100):0;
+    return `<div class="scoreRow${u===me?.username?' me':''}"><div class="sUser">@${esc(u)}</div><div class="sC">✓${sc.correct}</div><div class="sW">✗${sc.wrong}</div><div class="sPct">${p}%</div></div>`;
+  }).join('');
+}
+
+// ── Block end ─────────────────────────────────────────────────────────────────
+function renderBlockEnd(data){
+  const isDvd=OPO_USERS.has(me?.username);
+  const br=data.block_result||{};
+  const blockIndex = (br.block || 1) - 1; // Convert to 0-based index
+  
+  document.getElementById('brTitle').textContent=`Test ${br.block||'?'}`;
+  document.getElementById('brSub').textContent='10 preguntas · resultados';
+  const medals=['🥇','🥈','🥉'];
+  const entries=Object.entries(br.scores||{}).sort((a,b)=>(b[1].correct-b[1].wrong)-(a[1].correct-a[1].wrong));
+  document.getElementById('brRows').innerHTML=entries.map(([u,sc],i)=>{
+    const t=sc.correct+sc.wrong,p=t>0?Math.round(sc.correct/t*100):0;
+    return `<div class="podRow"><div class="podRank">${medals[i]||i+1+'.'}</div><div class="sUser">@${esc(u)}</div><div class="sC">✓${sc.correct}</div><div class="sW">✗${sc.wrong}</div><div class="sPct">${p}%</div></div>`;
+  }).join('');
+  
+  // Save current user's result to localStorage
+  if(me?.username && br.scores && br.scores[me.username]) {
+    const myScore = br.scores[me.username];
+    saveBlockResult(blockIndex, myScore.correct, myScore.wrong);
+  }
+  
+  // No countdown — manual advance
+  document.getElementById('brCdBar').style.width='100%';
+  document.getElementById('brCdLabel').style.display='none';
+  document.getElementById('dvdSkipBlock').style.display=OPO_USERS.has(me?.username)?'':'none';
+  // Show 'ver fallos' button if there were wrong answers
+  const brWrong = (data.wrong_qs_block||[]).length;
+  const btnRev = document.getElementById('btnReviewWrong');
+  if(btnRev) btnRev.style.display = brWrong > 0 ? '' : 'none';
+  // Store wrong_qs for review
+  window._lastWrongQs = data.wrong_qs_block || [];
+  window._lastTestN   = (data.block_result||{}).block || '?';
+}
+
+// ── Finished ──────────────────────────────────────────────────────────────────
+function renderFinished(data){
+  document.getElementById('finSub').textContent=`${data.total_qs||300} preguntas · ${data.total_blocks||30} tests`;
+  const medals=['🥇','🥈','🥉'];
+  const entries=Object.entries(data.all_scores||{}).sort((a,b)=>(b[1].correct-b[1].wrong)-(a[1].correct-a[1].wrong));
+  document.getElementById('finRows').innerHTML=entries.map(([u,sc],i)=>{
+    const t=sc.correct+sc.wrong,p=t>0?Math.round(sc.correct/t*100):0;
+    return `<div class="podRow"><div class="podRank">${medals[i]||i+1+'.'}</div><div class="sUser">@${esc(u)}</div><div class="sC">✓${sc.correct}</div><div class="sW">✗${sc.wrong}</div><div class="sPct">${p}%</div></div>`;
+  }).join('');
+  document.getElementById('dvdResetBtn').style.display=OPO_USERS.has(me?.username)?'':'none';
+}
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmtDate(s){
+  if(!s) return '—';
+  try {
+    const d = new Date((s.includes('T')?s:s.replace(' ','T'))+'Z');
+    return d.toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+  } catch(e){ return s; }
+}
+function fmtDuration(sec){
+  if(!sec||sec<=0) return '—';
+  if(sec<60) return sec+'s';
+  if(sec<3600) return Math.floor(sec/60)+'m '+Math.round(sec%60)+'s';
+  return Math.floor(sec/3600)+'h '+Math.floor((sec%3600)/60)+'m';
+}
+
+init();
+
+/* ── OPO Stats ─────────────────────────────────────────── */
+let _statsViewUser = null;
+
+async function openStatsScreen() {
+  showScreen('stats');
+  await loadAllOpoStats();
+}
+
+// ── All players leaderboard ───────────────────────────────────────────────────
+async function loadAllOpoStats() {
+  const lb = document.getElementById('statsLeaderboard');
+  if (lb) lb.innerHTML = '<div style="color:var(--text3);font-size:.72rem;padding:8px">Cargando…</div>';
+
+  const token = localStorage.getItem('dvd_token');
+  const hdrs  = {'Authorization':'Bearer '+token, 'ngrok-skip-browser-warning':'1'};
+  const isSA  = !!(me && me.is_superadmin);
+  const myU   = me ? me.username : null;
+
+  try {
+    // 1. Get player list
+    // superadmins call /api/opo/players; others get basic list from status
+    let players = [];
+    if (isSA) {
+      const pr = await fetch('/api/opo/players', {headers: hdrs});
+      if (pr.ok) players = await pr.json();
+    }
+    // Always ensure own user in list
+    if (myU && !players.find(p => p.username === myU)) {
+      players.push({username: myU, tests_done: 0, total_s: 0, last_conn: null});
+    }
+    // Superadmin: always show dvd even if not in list
+    if (isSA) {
+      ['dvd'].forEach(u => {
+        if (!players.find(p => p.username === u))
+          players.unshift({username: u, tests_done: 0, total_s: 0, last_conn: null});
+      });
+    }
+
+    // 2. Get results
+    // superadmins get ALL results; others only own
+    let allResults = [];
+    const urlRes = isSA ? '/api/opo/results' : '/api/opo/results';
+    const rr = await fetch(urlRes, {headers: hdrs});
+    if (rr.ok) {
+      allResults = await rr.json();
+      if (!isSA) allResults = allResults.filter(r => r.username === myU);
+    }
+
+    // 3. Aggregate per player
+    const agg = {};
+    allResults.forEach(r => {
+      if (!agg[r.username]) agg[r.username] = {tests:0, correct:0, wrong:0, last:''};
+      agg[r.username].tests++;
+      agg[r.username].correct += (r.correct||0);
+      agg[r.username].wrong   += (r.wrong||0);
+      if (!agg[r.username].last || (r.played_at||'') > agg[r.username].last)
+        agg[r.username].last = r.played_at || '';
+    });
+
+    // 4. Sort by % correct desc
+    const rows = players.map(p => {
+      const a   = agg[p.username] || {tests:0, correct:0, wrong:0, last:''};
+      const tot = a.correct + a.wrong;
+      const pct = tot > 0 ? Math.round(a.correct / tot * 100) : 0;
+      return {...p, _agg: a, _pct: pct};
+    }).sort((a,b) => b._pct - a._pct || b._agg.tests - a._agg.tests);
+
+    if (!rows.length) {
+      if (lb) lb.innerHTML = '<div style="color:var(--text3);font-size:.72rem;padding:8px">Sin jugadores todavía.</div>';
+      return;
+    }
+
+    if (lb) lb.innerHTML = rows.map((p, i) => {
+      const a   = p._agg;
+      const pct = p._pct;
+      const tot = a.correct + a.wrong;
+      const medal = i===0 ? '🥇' : i===1 ? '🥈' : i===2 ? '🥉' : `<span style="font-size:.72rem;color:var(--text3)">${i+1}.</span>`;
+      const bar   = tot > 0
+        ? `<div style="flex:1;height:5px;background:var(--n4);border-radius:3px;overflow:hidden;min-width:50px">
+             <div style="width:${pct}%;height:100%;background:${pct>=70?'var(--green)':pct>=50?'var(--gold2)':'var(--red)'};border-radius:3px"></div>
+           </div>`
+        : '<div style="flex:1"></div>';
+      const canClick = isSA || p.username === myU;
+      const rowClick = canClick ? `style="cursor:pointer" onclick="loadUserStats('${esc(p.username)}')"` : '';
+      const lastStr  = a.last ? fmtDate(a.last).split(',')[0] : '—';
+      return `<div ${rowClick} style="background:var(--n3);border:1px solid var(--border);border-radius:9px;
+          padding:10px 14px;display:grid;grid-template-columns:28px 1fr auto;gap:8px;align-items:center;
+          ${canClick?'':'opacity:.7'}">
+        <span style="text-align:center;font-size:.8rem">${medal}</span>
+        <div>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+            <span style="font-size:.8rem;font-weight:500;color:var(--text)">@${esc(p.username)}</span>
+            ${pct>0?`<span style="font-size:.65rem;font-weight:700;color:${pct>=70?'var(--green)':pct>=50?'var(--gold2)':'var(--red)'}">${pct}%</span>`:''}
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            ${bar}
+            <span style="font-size:.6rem;color:var(--text3);white-space:nowrap">✓${a.correct} ✗${a.wrong}</span>
+          </div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:.72rem;color:var(--gold3)">${a.tests} tests</div>
+          <div style="font-size:.58rem;color:var(--text3)">${lastStr}</div>
+        </div>
+      </div>`;
+    }).join('');
+
+    // Non-superadmin: auto-open own detail
+    if (!isSA && myU) loadUserStats(myU);
+
+  } catch(err) {
+    if (lb) lb.innerHTML = `<div style="color:var(--red);font-size:.72rem;padding:8px">Error cargando stats: ${esc(String(err))}</div>`;
+    console.error('loadAllOpoStats error:', err);
+  }
+}
+
+
+async function loadUserStats(username) {
+  const wrap = document.getElementById('statsDetailWrap');
+  const list = document.getElementById('statsResultsList');
+  const userEl = document.getElementById('statsDetailUser');
+  if (!wrap || !list) return;
+
+  wrap.style.display = '';
+  if (userEl) userEl.textContent = '@' + (username || me?.username || '—');
+  list.innerHTML = '<div style="color:var(--text3);font-size:.72rem;padding:8px">Cargando…</div>';
+
+  try {
+    const token = localStorage.getItem('dvd_token');
+    const hdrs  = {'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'};
+    const isDvdNeb = me?.username === 'dvd';
+    let url = '/api/opo/results';
+    if (isDvdNeb && username) url += '?username=' + encodeURIComponent(username);
+
+    const r = await fetch(url, {headers: hdrs});
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    let results = await r.json();
+    if (!isDvdNeb) results = results.filter(r => r.username === me?.username);
+
+    // Update summary cards
+    const totalC = results.reduce((s,r)=>s+r.correct,0);
+    const totalW = results.reduce((s,r)=>s+r.wrong,0);
+    document.getElementById('statsTotalTests').textContent = results.length;
+    document.getElementById('statsCorrect').textContent = totalC;
+    document.getElementById('statsWrong').textContent = totalW;
+
+    if (!results.length) {
+      list.innerHTML = '<div style="color:var(--text3);font-size:.72rem;padding:8px">Sin resultados — ¡a jugar!</div>';
+      return;
+    }
+
+    list.innerHTML = results.map(r => {
+      const tot = r.correct + r.wrong;
+      const pct = tot>0 ? Math.round(r.correct/tot*100) : 0;
+      const dt = fmtDate(r.played_at);
+      return `<div style="background:var(--n3);border:1px solid var(--border);border-radius:9px;padding:10px 12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+          <span style="font-family:'Oswald',sans-serif;color:var(--gold2);font-size:.88rem">Test ${r.block_n}</span>
+          <span style="font-size:.6rem;color:var(--text3)">${dt}</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <div style="flex:1;height:6px;background:var(--n4);border-radius:3px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;background:${pct>=70?'var(--green)':pct>=50?'var(--gold2)':'var(--red)'};border-radius:3px;transition:width .4s"></div>
+          </div>
+          <span style="font-size:.68rem;color:var(--green)">✓ ${r.correct}</span>
+          <span style="font-size:.68rem;color:var(--red)">✗ ${r.wrong}</span>
+          <span style="font-size:.68rem;font-weight:700;color:${pct>=70?'var(--green)':pct>=50?'var(--gold2)':'var(--red)'}">${pct}%</span>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    list.innerHTML = `<div style="color:var(--red);font-size:.72rem;padding:8px">Error: ${esc(e.message)}</div>`;
+  }
+}
+
+
+</script>
+</body>
+</html>

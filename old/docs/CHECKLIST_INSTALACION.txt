@@ -1,0 +1,189 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║         DVDCOIN - CHECKLIST DE INSTALACIÓN                   ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+ANTES DE REINICIAR
+══════════════════════════════════════════════════════════════
+
+[ ] 1. He leído LEER_ANTES_DE_REINICIAR.txt
+
+[ ] 2. He guardado todo mi trabajo
+
+[ ] 3. He cerrado todas las aplicaciones importantes
+
+[ ] 4. Tengo conexión a Internet
+
+[ ] 5. Tengo una cuenta de Cloudflare (o puedo crear una gratis)
+
+[ ] 6. He ejecutado PREPARAR_PARA_REINICIO.bat como administrador
+
+[ ] 7. La tarea "DVDcoin-Instalador" está creada
+        (Verificar en: Programador de tareas)
+
+
+DURANTE LA INSTALACIÓN (DESPUÉS DEL REINICIO)
+══════════════════════════════════════════════════════════════
+
+[ ] PASO 1: Python verificado
+
+[ ] PASO 2: cloudflared instalado
+
+[ ] PASO 3: Autenticado con Cloudflare
+            (Se abrió el navegador y autoricé el acceso)
+
+[ ] PASO 4: Túnel "dvdcoin" creado
+
+[ ] PASO 5: Dominio configurado
+            (Elegí dominio propio o subdominio gratuito)
+
+[ ] PASO 6: Archivo cloudflare-config.yml creado
+
+[ ] PASO 7: Autostart instalado
+
+
+DESPUÉS DE LA INSTALACIÓN
+══════════════════════════════════════════════════════════════
+
+[ ] El servidor se inició correctamente
+
+[ ] Puedo acceder localmente: http://localhost:8000
+
+[ ] Tengo la URL pública de Cloudflare
+
+[ ] Puedo acceder desde Internet con la URL pública
+
+[ ] El panel OPO funciona: http://localhost:8000/opo
+
+[ ] Los juegos funcionan (Pasapalabra, etc.)
+
+[ ] Las votaciones funcionan
+
+[ ] Las apuestas funcionan
+
+
+VERIFICACIÓN FINAL
+══════════════════════════════════════════════════════════════
+
+[ ] He ejecutado: VERIFICAR_INSTALACION.bat
+
+[ ] El servidor se inicia automáticamente al encender Windows
+
+[ ] La URL pública es fija (no cambia)
+
+[ ] No hay límites de conexiones
+
+[ ] Todo funciona correctamente
+
+
+ARCHIVOS IMPORTANTES
+══════════════════════════════════════════════════════════════
+
+Scripts de inicio:
+  ✓ ARRANCAR.bat
+  ✓ INICIAR_CON_CLOUDFLARE.bat
+  ✓ DETENER_SERVIDOR.bat
+
+Configuración:
+  ✓ cloudflare-config.yml
+  ✓ conf/.jwt_secret
+  ✓ conf/.ngrok_token (ya no se usa)
+
+Bases de datos (INTACTAS):
+  ✓ dvdcoin.db
+  ✓ users.db
+  ✓ apuestas.db
+  ✓ votaciones.db
+  ✓ oposiciones.db
+  ✓ opo.db
+  ✓ messages.db
+  ✓ transactions.db
+  ✓ stats.db
+  ✓ rights.db
+
+Logs:
+  ✓ server.log
+  ✓ cloudflare_tunnel.log
+
+
+COMANDOS DE VERIFICACIÓN
+══════════════════════════════════════════════════════════════
+
+Ver versión de cloudflared:
+  cloudflared version
+
+Ver túneles creados:
+  cloudflared tunnel list
+
+Ver información del túnel:
+  cloudflared tunnel info dvdcoin
+
+Ver logs del servidor:
+  type server.log
+
+Ver logs del túnel:
+  type cloudflare_tunnel.log
+
+Ver procesos activos:
+  tasklist | findstr python
+  tasklist | findstr cloudflared
+
+
+SOLUCIÓN DE PROBLEMAS
+══════════════════════════════════════════════════════════════
+
+Si algo falla durante la instalación:
+  → Ejecuta manualmente: INSTALACION_AUTOMATICA_CLOUDFLARE.bat
+
+Si el servidor no inicia:
+  → Revisa: server.log
+  → Verifica que Python esté instalado: python --version
+
+Si el túnel no funciona:
+  → Revisa: cloudflare_tunnel.log
+  → Verifica cloudflared: cloudflared version
+  → Verifica autenticación: dir %USERPROFILE%\.cloudflared\cert.pem
+
+Si necesitas ayuda:
+  → Lee: TUTORIAL_CLOUDFLARE_TUNNEL.md
+  → Lee: README_CLOUDFLARE.md
+
+
+CONTACTOS Y RECURSOS
+══════════════════════════════════════════════════════════════
+
+Documentación de Cloudflare Tunnel:
+  https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/
+
+Dashboard de Cloudflare:
+  https://dash.cloudflare.com
+
+Descargar cloudflared:
+  https://github.com/cloudflare/cloudflared/releases/latest
+
+
+NOTAS
+══════════════════════════════════════════════════════════════
+
+• Este checklist es para tu referencia personal
+• Marca cada casilla [ ] con una X cuando completes el paso
+• Guarda este archivo para futuras referencias
+• Si algo no funciona, consulta la documentación
+
+
+══════════════════════════════════════════════════════════════
+
+FECHA DE INSTALACIÓN: _______________
+
+NOTAS PERSONALES:
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+_________________________________________________________________
+
+══════════════════════════════════════════════════════════════

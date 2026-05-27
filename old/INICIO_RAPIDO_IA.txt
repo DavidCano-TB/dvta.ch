@@ -1,0 +1,180 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                                                                          ║
+║          🤖 CONFIGURAR IA (CLAUDE) EN 3 PASOS - 5 MINUTOS              ║
+║                                                                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ PASO 1: OBTENER API KEY (2 minutos)                                     │
+└──────────────────────────────────────────────────────────────────────────┘
+
+1. Ve a: https://console.anthropic.com/
+2. Crea cuenta (gratis)
+3. Click en "API Keys" → "Create Key"
+4. Copia la clave (empieza con sk-ant-api03-...)
+5. Añade créditos: https://console.anthropic.com/settings/billing
+   → Recomendado: $20 USD (te duran meses)
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ PASO 2: CONFIGURAR (1 minuto)                                           │
+└──────────────────────────────────────────────────────────────────────────┘
+
+Ejecuta:
+   CONFIGURAR_ANTHROPIC_API.bat
+
+Pega tu API key cuando te lo pida.
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ PASO 3: VERIFICAR (2 minutos)                                           │
+└──────────────────────────────────────────────────────────────────────────┘
+
+Ejecuta:
+   python test_ai_simple.py
+
+Debería mostrar: ✅ TODO FUNCIONA CORRECTAMENTE
+
+┌──────────────────────────────────────────────────────────────────────────┐
+│ ¡LISTO! AHORA PRUEBA EL JUEGO                                           │
+└──────────────────────────────────────────────────────────────────────────┘
+
+1. Ejecuta: ARRANCAR.bat
+2. Ve a: http://localhost:8000/quiensoy.html
+3. Inicia sesión como admin
+4. Crea un juego con personaje: "Mickey Mouse"
+5. Pregunta: "¿Es un ratón?"
+6. Debería responder: "Sí" ✅
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         ARCHIVOS CREADOS                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📄 GUIAS:
+   ✅ README_IA_CLAUDE.md ................. Guía principal completa
+   ✅ GUIA_CONFIGURAR_CLAUDE_API.md ....... Guía detallada paso a paso
+   ✅ RESUMEN_CONFIGURAR_IA.md ............ Resumen rápido 5 minutos
+   ✅ INICIO_RAPIDO_IA.txt ................ Este archivo
+
+📄 CODIGO:
+   ✅ ai_helper.py ........................ Módulo de IA mejorado
+   ✅ test_ai_simple.py ................... Test de verificación
+   ✅ EJEMPLOS_USO_IA.py .................. Ejemplos para negocios
+   ✅ main.py ............................. Modificado para usar IA
+
+📄 SCRIPTS:
+   ✅ CONFIGURAR_ANTHROPIC_API.bat ........ Script de configuración
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         COSTES (Mayo 2026)                               ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Claude 3.5 Sonnet (RECOMENDADO):
+   • $3 por millón de tokens input
+   • $15 por millón de tokens output
+
+Estimación práctica:
+   • 1 pregunta "¿Quién soy?" ≈ $0.002 (0.2 céntimos)
+   • 1.000 preguntas ≈ $2 USD
+   • Con $20 USD → ~10.000 preguntas
+
+Conclusión: MUY BARATO. $20 USD te duran meses.
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    SOLUCIÓN DE PROBLEMAS                                 ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+❌ "API key not found"
+   → Verifica: cat config/.groq_key
+   → Si no existe: echo "tu-api-key" > config/.groq_key
+
+❌ "Invalid API key"
+   → Ve a: https://console.anthropic.com/settings/keys
+   → Crea una NUEVA key
+   → Ejecuta de nuevo: CONFIGURAR_ANTHROPIC_API.bat
+
+❌ "Insufficient credits"
+   → Ve a: https://console.anthropic.com/settings/billing
+   → Añade $20+ USD
+   → Espera 1-2 minutos
+
+❌ "Rate limit exceeded"
+   → Espera 1 minuto
+   → O añade más créditos
+
+❌ La IA responde siempre "Ni sí ni no"
+   → Ejecuta: python test_ai_simple.py
+   → Mira los logs del servidor para ver el error
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    CASOS DE USO (TUS NEGOCIOS)                           ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+1. ✅ Juego "¿Quién soy?" (YA IMPLEMENTADO)
+   → Respuestas inteligentes con Claude
+
+2. 📚 Plataforma de oposiciones
+   → Generar preguntas de examen automáticamente
+   → Explicar respuestas a estudiantes
+   → Predictor de nota con IA
+
+3. 🎮 Trivias para restaurantes
+   → Generar preguntas de trivia
+   → Multilingüe (DE/FR/IT/EN)
+   → Personalizable por tema
+
+4. 🎓 Tutor personalizado
+   → Chatbot educativo 24/7
+   → Explicaciones paso a paso
+   → Adaptado al nivel del estudiante
+
+Ver ejemplos completos en: EJEMPLOS_USO_IA.py
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         DOCUMENTACIÓN                                    ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+📖 Guía principal:
+   README_IA_CLAUDE.md
+
+📖 Guía detallada:
+   GUIA_CONFIGURAR_CLAUDE_API.md
+
+📖 Resumen rápido:
+   RESUMEN_CONFIGURAR_IA.md
+
+📖 Ejemplos de código:
+   EJEMPLOS_USO_IA.py
+
+📖 Docs oficiales:
+   https://docs.anthropic.com/
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                         CHECKLIST FINAL                                  ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+□ Cuenta creada en Anthropic Console
+□ API Key obtenida
+□ Créditos añadidos ($20+ recomendado)
+□ API Key guardada en config/.groq_key
+□ Test ejecutado: python test_ai_simple.py ✅
+□ Servidor reiniciado: ARRANCAR.bat
+□ Juego probado: http://localhost:8000/quiensoy.html ✅
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║                    ¡LISTO! CLAUDE CONFIGURADO ✅                         ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+Ahora puedes:
+   ✅ Usar el juego "¿Quién soy?" con IA inteligente
+   ✅ Generar preguntas de examen automáticamente
+   ✅ Crear explicaciones personalizadas
+   ✅ Desarrollar tus negocios con IA
+
+¿Necesitas ayuda? Revisa: README_IA_CLAUDE.md
+
+═══════════════════════════════════════════════════════════════════════════
+
+Creado por: Kiro AI Assistant
+Fecha: Mayo 2026
+Versión: 1.0
+
+═══════════════════════════════════════════════════════════════════════════

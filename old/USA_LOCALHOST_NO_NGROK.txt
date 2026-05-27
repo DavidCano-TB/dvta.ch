@@ -1,0 +1,53 @@
+═══════════════════════════════════════════════════════════════
+  ⚠️⚠️⚠️ IMPORTANTE: NO USES NGROK ⚠️⚠️⚠️
+═══════════════════════════════════════════════════════════════
+
+PROBLEMA:
+  ERR_NGROK_3200 - Ngrok está OFFLINE
+
+URL INCORRECTA:
+  ✗ https://unhidden-patient-cradling.ngrok-free.dev/opo
+
+URL CORRECTA:
+  ✓ http://localhost:8000/opo
+
+═══════════════════════════════════════════════════════════════
+
+CÓMO USAR OPO:
+
+1. Ejecuta: ABRIR_OPO_LOCALHOST.bat
+   O abre manualmente: http://localhost:8000/opo
+
+2. Loguéate si no lo estás
+
+3. Verás 30 bloques de test
+
+4. Haz clic en cualquier bloque para empezar
+
+═══════════════════════════════════════════════════════════════
+
+SI NO VES LOS BLOQUES:
+
+1. Verifica que estás en localhost (no ngrok)
+2. Recarga con Ctrl+Shift+R
+3. Abre la consola (F12) y busca errores
+4. Verifica que estás logueado
+
+═══════════════════════════════════════════════════════════════
+
+SCRIPTS ÚTILES:
+
+- ABRIR_OPO_LOCALHOST.bat (abre OPO en localhost)
+- REINICIAR_OPO_LIMPIO.bat (reinicia servidor)
+- VERIFICAR_OPO_FUNCIONA.bat (verifica todo)
+
+═══════════════════════════════════════════════════════════════
+
+ESTADO ACTUAL:
+  ✓ Servidor corriendo en http://localhost:8000
+  ✓ 300 preguntas cargadas
+  ✓ 30 bloques disponibles
+  ✓ 9 usuarios con acceso
+  ✓ OPO funcional
+
+═══════════════════════════════════════════════════════════════

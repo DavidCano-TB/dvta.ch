@@ -1,0 +1,1232 @@
+{
+  "1": [
+    {
+      "p": "¿Cuándo se utiliza por primera vez el término 'bioética'?",
+      "A": "En 1970 en el Informe Belmont",
+      "B": "En 1970 por Van Rensselaer Potter",
+      "C": "En 1964 en la Declaración de Helsinki",
+      "D": "En 1947 en el Código de Núremberg",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se enuncian los tres primeros principios de la bioética en el Informe Belmont?",
+      "A": "1964",
+      "B": "1972",
+      "C": "1979",
+      "D": "1985",
+      "r": "C"
+    },
+    {
+      "p": "Según el Informe Belmont, ¿cuáles son los tres primeros principios de la bioética?",
+      "A": "Respeto a las personas, beneficencia y justicia",
+      "B": "Autonomía, beneficencia y no maleficencia",
+      "C": "Autonomía, justicia y no maleficencia",
+      "D": "Respeto a las personas, no maleficencia y justicia",
+      "r": "A"
+    },
+    {
+      "p": "El principio de autonomía en bioética implica:",
+      "A": "Obligación de respetar la libertad y creencias particulares de las personas",
+      "B": "Obligación de 'primum non nocere'",
+      "C": "Obligación de tratar a todos por igual con equidad",
+      "D": "Obligación de respetar la confidencialidad de datos de salud",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué describe correctamente la definición de Bioética?",
+      "A": "Conjunto de deberes morales de los profesionales de una materia",
+      "B": "Estudio sistemático de la conducta humana examinada a la luz de los valores y principios morales",
+      "C": "Estudio de la conducta humana examinada a la luz de las obligaciones morales",
+      "D": "Problema o cuestión materia de discusión con distintas posibilidades de resolución",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién propuso el Método Deliberativo en Ética clínica?",
+      "A": "Diego Gracia Guillén",
+      "B": "Van Rensselaer Potter",
+      "C": "La OMS",
+      "D": "La UNESCO",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuáles son los pasos del Método Deliberativo en Ética clínica?",
+      "A": "Análisis de los hechos y de los deberes",
+      "B": "Análisis de los valores, de las normas y de las obligaciones",
+      "C": "Análisis de los valores, de los hechos y de las obligaciones",
+      "D": "Análisis de los hechos, de los valores y de los deberes",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos tipos de certificado médico oficial existen?",
+      "A": "Uno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Ninguna es correcta",
+      "r": "B"
+    },
+    {
+      "p": "Señale la opción INCORRECTA sobre el Consentimiento Informado:",
+      "A": "No será necesario si el paciente no quiere ser informado o existe riesgo vital para la salud pública",
+      "B": "Será verbal excepto en intervención quirúrgica, procedimientos diagnósticos invasores y procedimientos con riesgos notorios",
+      "C": "Se define como la conformidad libre, voluntaria y consciente del paciente tras recibir información adecuada",
+      "D": "El paciente no tiene derecho a revocar su consentimiento en ningún momento",
+      "r": "D"
+    },
+    {
+      "p": "La ética de la virtud fue desarrollada por:",
+      "A": "Hipócrates",
+      "B": "Aristóteles",
+      "C": "Kant",
+      "D": "Bentham",
+      "r": "B"
+    }
+  ],
+  "2": [
+    {
+      "p": "¿Cuál es la finalidad de la Ley 41/2002, básica reguladora de la autonomía del paciente?",
+      "A": "Constituye el primer reconocimiento formal de derechos de los pacientes en España",
+      "B": "Ha actualizado y ampliado los derechos reconocidos en la Ley General de Sanidad",
+      "C": "Ha instaurado nuevos derechos como voluntades anticipadas y segunda opinión",
+      "D": "Reforzar y dar trato preferencial al derecho a la autonomía de la persona",
+      "r": "A"
+    },
+    {
+      "p": "Según la Carta de Derechos y Deberes de los Pacientes de Canarias (Orden 28-feb-2005), ¿hasta qué edad se puede elegir pediatra?",
+      "A": "Trece años",
+      "B": "Doce años",
+      "C": "Catorce años",
+      "D": "Dieciséis años",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál de los siguientes NO es un derecho de los usuarios del sistema canario de salud?",
+      "A": "Derecho al respeto de su personalidad, dignidad humana e intimidad",
+      "B": "Derecho a la confidencialidad de toda la información relacionada con su proceso",
+      "C": "Derecho a la promoción y educación para la salud",
+      "D": "Derecho a las prestaciones conforme a los recursos disponibles en el sistema europeo de salud",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuáles de los siguientes es un DEBER de los pacientes del sistema canario de salud?",
+      "A": "Facilitar datos sobre su estado físico salvaguardando su identidad",
+      "B": "Observar el tratamiento prescrito en cualquier circunstancia",
+      "C": "Cumplir las prescripciones y órdenes sanitarias conforme a lo establecido legalmente",
+      "D": "Tolerancia y resignación ante las amenazas a la salud pública",
+      "r": "C"
+    },
+    {
+      "p": "Según el Decreto 13/2006 de Canarias sobre manifestaciones anticipadas de voluntad, ¿cuál es INCORRECTA?",
+      "A": "Permite a una persona mayor de edad dejar constancia de instrucciones sobre su salud",
+      "B": "El Registro es único para toda la CA de Canarias",
+      "C": "La sustitución revocará las anteriores en su totalidad",
+      "D": "El Registro tiene carácter administrativo, privado y oneroso",
+      "r": "D"
+    },
+    {
+      "p": "Las manifestaciones anticipadas de voluntad deben tenerse en cuenta cuando:",
+      "A": "Una persona mayor de edad no pueda expresar su voluntad de forma libre, personal, actual, consciente e informada",
+      "B": "A los tres meses de su inscripción en el registro",
+      "C": "Una persona sea menor o mayor de edad en situación de extremo peligro vital",
+      "D": "Al celebrarse el acto de aceptación de herencia ante notario",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el plazo para inscribir manifestaciones anticipadas de voluntad otorgadas ante testigos una vez presentada la documentación completa?",
+      "A": "Dos semanas",
+      "B": "Un mes",
+      "C": "Tres meses",
+      "D": "Cuatro semanas",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué describe la manifestación anticipada de voluntad?",
+      "A": "Instrucciones sobre la administración de bienes",
+      "B": "Instrucciones sobre la educación de los hijos",
+      "C": "Instrucciones sobre cuidados, tratamiento de salud o destino del cuerpo y órganos",
+      "D": "Instrucciones sobre la herencia física e inmobiliaria",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuáles son los requisitos formales de un documento de manifestación anticipada de voluntad?",
+      "A": "Datos de identificación y lugar de trabajo de la persona otorgante",
+      "B": "Datos de identificación, nº de tarjeta sanitaria, declaración expresa y firmas de personas involucradas",
+      "C": "Datos de identificación, nº tarjeta sanitaria, lugar y fecha de nacimiento",
+      "D": "Datos de identificación, nº tarjeta sanitaria y firma del otorgante y testigos",
+      "r": "B"
+    },
+    {
+      "p": "La Oficina de Defensa de los Derechos de los Usuarios Sanitarios se encargará de elaborar:",
+      "A": "Los soportes informáticos y documentales de la Carta y su difusión en los centros del SCS",
+      "B": "Solo los soportes documentales de la Carta y su difusión",
+      "C": "Los soportes publicitarios de la Carta y su difusión",
+      "D": "Los soportes hospitalarios de la Carta y su difusión",
+      "r": "A"
+    }
+  ],
+  "3": [
+    {
+      "p": "¿Cuál es la clasificación del personal estatutario sanitario según el nivel del título exigido?",
+      "A": "Personal de formación universitaria y personal de formación profesional",
+      "B": "Personal de formación universitaria, de formación profesional y otro personal",
+      "C": "Personal estatutario universitario y personal estatutario sin titulación específica",
+      "D": "Personal estatutario fijo y personal estatutario temporal",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué obtiene el personal estatutario fijo al superar el proceso selectivo?",
+      "A": "Un nombramiento para el desempeño con carácter permanente de las funciones derivadas",
+      "B": "Un contrato fijo para el desempeño de funciones propias de su especialidad",
+      "C": "Un puesto de trabajo en el SNS conforme a sus competencias",
+      "D": "Un nombramiento permanente para tareas encomendadas por superiores jerárquicos",
+      "r": "A"
+    },
+    {
+      "p": "¿Cómo se adquiere la condición de personal estatutario fijo?",
+      "A": "Superación de pruebas de selección, nombramiento por órgano competente e incorporación en plazo de la convocatoria",
+      "B": "Superación de pruebas, nombramiento e incorporación por orden de nota",
+      "C": "Aprobación de oposición y concurso, adjudicación por nota e incorporación",
+      "D": "Aprobación de oposición, adjudicación por prelación y preferencia del adjudicatario",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué supuesto NO se pierde la condición de personal estatutario?",
+      "A": "Renuncia",
+      "B": "Movilidad voluntaria",
+      "C": "Sanción disciplinaria firme de separación del servicio",
+      "D": "Jubilación",
+      "r": "B"
+    },
+    {
+      "p": "El personal estatutario de los servicios de salud viene obligado a:",
+      "A": "Cumplir instrucciones recibidas por los pacientes y colaborar lealmente",
+      "B": "Informar a todos los familiares sobre el proceso asistencial",
+      "C": "Cumplir el régimen sobre incompatibilidades",
+      "D": "Utilizar medios e instalaciones de los servicios protegerlos del paciente",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuáles son los planes de ordenación de recursos humanos?",
+      "A": "El instrumento básico de planificación en el ámbito insular",
+      "B": "El instrumento básico de planificación global dentro del servicio de salud",
+      "C": "El instrumento básico de planificación en el ámbito hospitalario",
+      "D": "El instrumento básico de planificación disciplinaria",
+      "r": "B"
+    },
+    {
+      "p": "¿Cómo se pueden clasificar las faltas disciplinarias del personal estatutario?",
+      "A": "Graves, leves y muy leves",
+      "B": "Graves y leves",
+      "C": "Graves, moderadas y leves",
+      "D": "Muy graves, graves y leves",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál de las siguientes es una falta GRAVE del personal estatutario?",
+      "A": "Grave agresión a cualquier persona con la que se relacione en el ejercicio de sus funciones",
+      "B": "Acoso sexual con agresión o chantaje",
+      "C": "Exceso arbitrario en uso de autoridad que cause perjuicio grave a subordinados",
+      "D": "Acoso sexual que cree entorno laboral intimidatorio, hostil o humillante",
+      "r": "D"
+    },
+    {
+      "p": "NO es un derecho COLECTIVO del personal estatutario:",
+      "A": "Derecho a la libre sindicación",
+      "B": "Derecho a la reunión",
+      "C": "Derecho a la huelga garantizando servicios esenciales",
+      "D": "Derecho a la jubilación en los términos y condiciones establecidas",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué indica la clasificación del personal estatutario de gestión y servicios atendiendo al nivel del título?",
+      "A": "Personal de formación universitaria y personal de formación profesional",
+      "B": "Personal estatutario sanitario y personal de gestión",
+      "C": "Personal de formación universitaria, formación profesional y otro personal",
+      "D": "Personal estatutario fijo y temporal",
+      "r": "C"
+    }
+  ],
+  "4": [
+    {
+      "p": "Según el Plan de Salud de Canarias 2016-2017, ¿qué factores constituyen la principal amenaza para la salud de la población canaria?",
+      "A": "Sobrepeso",
+      "B": "Problemas de adicciones",
+      "C": "Salud mental",
+      "D": "Todas las respuestas son correctas",
+      "r": "D"
+    },
+    {
+      "p": "Según el Plan de Salud de Canarias 2016-2017, ¿cuál es la tercera sustancia más consumida en la encuesta EDADES?",
+      "A": "Alcohol",
+      "B": "Ansiolíticos e hipnóticos",
+      "C": "Tabaco",
+      "D": "Cannabis",
+      "r": "B"
+    },
+    {
+      "p": "¿En cuántas áreas de impacto y colaboración se desarrollan los ámbitos de intervención del Plan de Salud de Canarias 2016-2017?",
+      "A": "10 áreas de impacto y 4 de colaboración",
+      "B": "8 áreas de impacto y 4 de colaboración",
+      "C": "10 áreas de impacto y 2 de colaboración",
+      "D": "1 área de impacto y 4 de colaboración",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la línea de actuación en el Área de impacto 3 del Ámbito de intervención I del Plan de Salud de Canarias 2016-2017?",
+      "A": "Profundizar en la gestión de la oferta asistencial",
+      "B": "Optimizar la eficiencia y calidad de servicios sanitarios públicos",
+      "C": "Establecer protocolos ante contingencias y alertas sanitarias",
+      "D": "Favorecer la participación ciudadana y los Consejos de Salud",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el objetivo general del ámbito de colaboración con otras instituciones del Plan de Salud de Canarias 2016-2017?",
+      "A": "Potenciar la colaboración con otras instituciones y departamentos del Gobierno de Canarias y del Estado",
+      "B": "Promover el establecimiento de objetivos comunes entre esferas de la atención sociosanitaria",
+      "C": "Reforzar relaciones con la Consejería de Educación",
+      "D": "Promover el desarrollo de la salud en el ámbito poblacional y territorial",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué Real Decreto establece la cartera de servicios comunes del Sistema Nacional de Salud?",
+      "A": "Real Decreto 1030/2006, de 15 de septiembre",
+      "B": "Real Decreto legislativo 1/1994, de 20 de junio",
+      "C": "Real Decreto 1030/2010, de 15 de septiembre",
+      "D": "Ninguna respuesta es correcta",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué técnicas NO se incluirán en la cartera de servicios comunes del SNS?",
+      "A": "Las que se encuentren en fase de investigación clínica, salvo los autorizados para uso compasivo",
+      "B": "Las que no guarden relación con enfermedad, accidente o malformación congénita",
+      "C": "Las que tengan como finalidad actividades de ocio, deporte o mejora estética",
+      "D": "Ninguna respuesta es correcta",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuáles son las Áreas de Colaboración del Ámbito de Colaboración del Plan de Salud de Canarias 2016-2017?",
+      "A": "Solo Sociosanitaria",
+      "B": "Solo Educación",
+      "C": "Solo Corporaciones locales",
+      "D": "Sociosanitaria, Educación, Corporaciones locales y Universidades",
+      "r": "D"
+    },
+    {
+      "p": "Elige la opción INCORRECTA del Plan de Salud de Canarias 2016-2017 - Comité de Dirección:",
+      "A": "Director del Servicio Canario de la Salud",
+      "B": "Secretaria General Técnica de la Consejería de Sanidad",
+      "C": "Directores Generales del SCS y Directores de las Áreas de Salud",
+      "D": "Director de Zona Básica de Salud",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál NO es una línea de colaboración del Área Universidades y Otras Instituciones del Plan de Salud de Canarias 2016-2017?",
+      "A": "Potenciar la colaboración con las oficinas de farmacia",
+      "B": "Reforzar la colaboración con asociaciones de pacientes",
+      "C": "Desarrollar la Red Canaria de Municipios Saludables",
+      "D": "Reforzar la colaboración entre Universidades",
+      "r": "C"
+    }
+  ],
+  "5": [
+    {
+      "p": "¿A quién debe estar dirigido el Plan Estatal de Sensibilización y Prevención de la Violencia de Género según la LO 1/2004?",
+      "A": "A las mujeres",
+      "B": "A las mujeres y a sus hijas e hijos",
+      "C": "A hombres y mujeres",
+      "D": "A las personas",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué tipo de atención sanitaria garantiza el artículo 19 bis de la LO 1/2004 a las mujeres víctimas de violencia de género?",
+      "A": "Atención sanitaria básica",
+      "B": "Atención con especial atención psicológica y psiquiátrica y seguimiento hasta su total recuperación",
+      "C": "Atención solo para las secuelas físicas",
+      "D": "Atención especializada en enfermedades crónicas",
+      "r": "B"
+    },
+    {
+      "p": "¿Quiénes están sujetos a las obligaciones de la LO 3/2007 para la igualdad efectiva de mujeres y hombres?",
+      "A": "Solo personas físicas ciudadanas españolas",
+      "B": "Toda persona, física o jurídica, que actúe en territorio español independientemente de su nacionalidad",
+      "C": "Solo instituciones gubernamentales en territorio español",
+      "D": "Personas físicas o jurídicas con nacionalidad española y domicilio en territorio español",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el principal objetivo de la LO 3/2007 para la igualdad efectiva de mujeres y hombres?",
+      "A": "Garantizar que las mujeres tengan más derechos que los hombres",
+      "B": "Alcanzar la igualdad de trato y oportunidades eliminando cualquier discriminación hacia las mujeres",
+      "C": "Fomentar la discriminación positiva en el ámbito laboral",
+      "D": "Limitar los derechos de los hombres para equilibrar la igualdad",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ámbitos busca lograr la igualdad la LO 3/2007?",
+      "A": "En todos los ámbitos incluyendo el laboral, sanitario y comunitario",
+      "B": "En todos los ámbitos incluyendo lo político, civil, laboral, económico, social y cultural",
+      "C": "En todos los ámbitos incluyendo lo político, civil, laboral, económico, social y sanitario",
+      "D": "En todos los ámbitos incluyendo afectividad y adaptaciones laborales",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es uno de los derechos de la funcionaria víctima de violencia de género?",
+      "A": "Acceso a programas de rehabilitación para agresores",
+      "B": "Reducción o reordenación de su tiempo de trabajo",
+      "C": "Asignación de un salario adicional",
+      "D": "Derecho a ocupar un cargo de mayor responsabilidad",
+      "r": "B"
+    },
+    {
+      "p": "¿Cómo se considerarán las ausencias al trabajo por situación de violencia de género de una funcionaria?",
+      "A": "Faltas injustificadas",
+      "B": "Faltas justificadas en los términos que determine su legislación específica",
+      "C": "Faltas graves",
+      "D": "Faltas leves",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué servicios se deben reforzar según la LO 1/2004 de Violencia de Género?",
+      "A": "Centros sanitarios, atención ciudadana, emergencia policial, apoyo y recuperación integral",
+      "B": "Servicios comunitarios, atención telefónica, emergencia sanitaria, apoyo emocional y recuperación integral",
+      "C": "Servicios sociales autonómicos, atención, emergencia, apoyo y recuperación integral",
+      "D": "Servicios sociales de información, atención, emergencia, apoyo y recuperación integral",
+      "r": "D"
+    },
+    {
+      "p": "Según la LO 1/2004, ¿qué elemento clave debe contener el Plan Estatal de Sensibilización respecto a la formación de profesionales?",
+      "A": "La inclusión de un programa de formación continua y reciclaje",
+      "B": "La participación activa de las víctimas en el diseño de programas",
+      "C": "La creación de una Comisión para supervisar la formación",
+      "D": "La promoción de la capacitación en primeros auxilios",
+      "r": "A"
+    },
+    {
+      "p": "Según la LO 1/2004, ¿cómo deben garantizarse las campañas de sensibilización para personas con discapacidad?",
+      "A": "Adaptadas a los distintos tipos de discapacidad",
+      "B": "Disponibles en formatos digitales accesibles",
+      "C": "Con intérpretes de lenguaje de signos",
+      "D": "Traducidas a múltiples idiomas",
+      "r": "B"
+    }
+  ],
+  "6": [
+    {
+      "p": "El BOLCAN es un boletín farmacoterapéutico editado desde noviembre de 2008 con periodicidad:",
+      "A": "Bimestral",
+      "B": "Semestral",
+      "C": "Trimestral",
+      "D": "Anual",
+      "r": "C"
+    },
+    {
+      "p": "Según la OMS, Guía de la buena prescripción, para comparar alternativas terapéuticas se debe considerar:",
+      "A": "Problema referido, conveniencia y coste",
+      "B": "Perfil farmacológico, eficacia, seguridad, conveniencia y coste",
+      "C": "Diagnóstico médico, seguridad, vía de administración y coste",
+      "D": "Ninguna de las anteriores",
+      "r": "B"
+    },
+    {
+      "p": "Entre los criterios para el uso racional de antibióticos, señale la opción CORRECTA:",
+      "A": "Tratar con antibióticos las infecciones de presumible etiología bacteriana",
+      "B": "Dosis, frecuencia y vías de administración adecuadas",
+      "C": "Tratar por tiempos adecuados",
+      "D": "Todas las respuestas anteriores son correctas",
+      "r": "D"
+    },
+    {
+      "p": "Entre las estrategias para prevenir errores de medicación en la prescripción, señale la FALSA:",
+      "A": "Especificar la enfermedad que se está tratando",
+      "B": "Revisar la dosis y frecuencia cuando no se tenga claro",
+      "C": "Utilizar abreviaturas siempre que sea posible",
+      "D": "Revisar función renal y hepática antes de prescribir",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué fase de absorción durante el embarazo es FALSO que aumente la velocidad del vaciado gástrico?",
+      "A": "Se produce enlentecimiento del vaciado gástrico",
+      "B": "Disminuye la motilidad gastrointestinal",
+      "C": "Aumenta el flujo sanguíneo intestinal",
+      "D": "Aumenta la velocidad del vaciado gástrico",
+      "r": "D"
+    },
+    {
+      "p": "El Plan de Uso Responsable de Medicamentos para paciente polimedicado indica que estudios han encontrado que solo el __ % de los mayores de 65 años que toman 8 o más medicamentos recuerdan las instrucciones:",
+      "A": "30%",
+      "B": "50%",
+      "C": "70%",
+      "D": "90%",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál de los siguientes NO es un objetivo específico del Plan de Uso Responsable de Medicamentos para paciente polimedicado?",
+      "A": "Mejorar el cumplimiento terapéutico",
+      "B": "Promover el desecho inadecuado de medicamentos caducados",
+      "C": "Incrementar el conocimiento de los pacientes respecto a su medicación",
+      "D": "Detectar problemas relacionados con el medicamento",
+      "r": "B"
+    },
+    {
+      "p": "Señale la opción FALSA sobre la prevalencia:",
+      "A": "Es la proporción de pacientes que presentan una enfermedad de entre la población estudiada",
+      "B": "Se calcula midiendo el número de casos nuevos de enfermedad en una población y periodo determinados",
+      "C": "Influye en los valores de algunas pruebas diagnósticas",
+      "D": "La probabilidad pre-prueba es la prevalencia que se supone existe antes de realizar una prueba diagnóstica",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál de estos parámetros de una prueba diagnóstica se ve afectado por la prevalencia?",
+      "A": "Sensibilidad",
+      "B": "Especificidad",
+      "C": "Valor predictivo positivo",
+      "D": "Cociente de probabilidad positivo",
+      "r": "C"
+    },
+    {
+      "p": "Las pruebas de sensibilidad muy alta son útiles para:",
+      "A": "Confirmar la presencia de una enfermedad",
+      "B": "Descartar que el paciente tenga una enfermedad",
+      "C": "Valorar la fiabilidad de una prueba diagnóstica",
+      "D": "Indicar la realización de una prueba con alta especificidad",
+      "r": "B"
+    }
+  ],
+  "7": [
+    {
+      "p": "¿Qué indica el signo de la 'S de Golden' en radiología?",
+      "A": "Atelectasia en LSD por masa hiliar",
+      "B": "Neumonía con atelectasia en LSD",
+      "C": "TBC",
+      "D": "Masa mediastínica",
+      "r": "A"
+    },
+    {
+      "p": "Patrón alveolar con signo de la silueta con aurícula derecha no presente hace 1 mes. ¿Diagnóstico más probable?",
+      "A": "Lesión extrapulmonar",
+      "B": "Carcinoma broncopulmonar",
+      "C": "Opacidad alveolar en lóbulo medio",
+      "D": "Opacidad alveolar en LID",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál de las siguientes afirmaciones sobre la RX de tórax es FALSA?",
+      "A": "La silueta cardiaca normal tiene localización preferentemente izquierda en proyección PA",
+      "B": "La posición de los arcos costales posteriores es horizontal",
+      "C": "Las proyecciones estándar en la Rx de tórax son la AP y lateral",
+      "D": "La Rx en espiración está indicada para diagnosticar el neumotórax",
+      "r": "C"
+    },
+    {
+      "p": "En la Rx de tórax, ¿cuál es el hallazgo más característico de atrapamiento aéreo?",
+      "A": "Aplanamiento de diafragmas",
+      "B": "Disminución de vasos periféricos",
+      "C": "Morfología de tórax en tonel",
+      "D": "Aumento de espacio retrocardiaco",
+      "r": "A"
+    },
+    {
+      "p": "El signo del 'borde incompleto' en la Rx de tórax indica:",
+      "A": "Lesión pleural",
+      "B": "Lesión en pared torácica por fuera de la pleura parietal",
+      "C": "Lesión extraparenquimatosa",
+      "D": "Engrosamiento pleural crónico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál de los siguientes NO es un signo de la atelectasia en Rx de tórax?",
+      "A": "Elevación del diafragma",
+      "B": "Desplazamiento hiliar",
+      "C": "Desplazamiento mediastínico",
+      "D": "Relleno broncovascular",
+      "r": "D"
+    },
+    {
+      "p": "Los hallazgos del patrón de ocupación del espacio aéreo incluyen todos EXCEPTO:",
+      "A": "Nódulos acinares",
+      "B": "Opacidades alveolares coalescentes",
+      "C": "Broncograma aéreo",
+      "D": "Cavitación",
+      "r": "D"
+    },
+    {
+      "p": "Una neumonía en LID puede presentar todos los siguientes hallazgos EXCEPTO:",
+      "A": "Signo de la silueta con el diafragma derecho",
+      "B": "Signo de la silueta con la aurícula derecha",
+      "C": "En la Rx lateral se sitúa detrás del corazón",
+      "D": "En la Rx lateral se encuentra superpuesta al corazón",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la causa más frecuente de nódulo pulmonar calcificado?",
+      "A": "Hamartoma",
+      "B": "Tumor carcinoide",
+      "C": "Granuloma",
+      "D": "Quiste hidatídico",
+      "r": "C"
+    },
+    {
+      "p": "La etiología más frecuente de adenopatías mediastínicas e hiliares simétricas bilaterales calcificadas es:",
+      "A": "Hidatidosis",
+      "B": "Tuberculosis",
+      "C": "Sarcoidosis",
+      "D": "Silicosis",
+      "r": "C"
+    }
+  ],
+  "8": [
+    {
+      "p": "En TCAR, los hallazgos característicos de bronquiolitis son:",
+      "A": "Bronquiolectasias y engrosamiento de paredes bronquiales",
+      "B": "Signo del broncograma aéreo",
+      "C": "Bronquiolectasias, engrosamiento de paredes bronquiales y relleno de vía aérea",
+      "D": "Bronquiolectasias, engrosamiento de paredes bronquiales, relleno de vía aérea y atrapamiento aéreo",
+      "r": "D"
+    },
+    {
+      "p": "La presencia de engrosamiento retículo-nodular interlobulillar se ve en:",
+      "A": "TBC miliar",
+      "B": "Linfangitis carcinomatosa",
+      "C": "Insuficiencia cardiaca",
+      "D": "Bronquiolitis",
+      "r": "B"
+    },
+    {
+      "p": "El triple patrón en mosaico (parénquima normal, atrapamiento y ocupación vía aérea) se ve en:",
+      "A": "Neumonitis por hipersensibilidad (NHC)",
+      "B": "Probable NIU",
+      "C": "Patrón de NIU típica",
+      "D": "Patrón de bronquiectasias",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál de las siguientes enfermedades NUNCA presenta calcificaciones?",
+      "A": "Sarcoidosis pulmonar",
+      "B": "Hamartoma",
+      "C": "NIU",
+      "D": "NINE",
+      "r": "D"
+    },
+    {
+      "p": "En las EPID, es VERDADERO:",
+      "A": "El patrón de aumento de densidad podrá verse como quistes, nódulos alveolares o consolidación",
+      "B": "El nódulo aleatorio tiene una distribución ordenada en el parénquima pulmonar",
+      "C": "El nódulo centrilobulillar indica ocupación de la vía aérea distal más allá del bronquiolo terminal",
+      "D": "El 'árbol en gemación' es una variante del nódulo perilinfático",
+      "r": "C"
+    },
+    {
+      "p": "Nódulo pulmonar con contenido graso y calcificación. ¿Diagnóstico más probable?",
+      "A": "Hamartoma",
+      "B": "Granuloma",
+      "C": "Carcinoma de pulmón",
+      "D": "Tumor carcinoide",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál de las siguientes afirmaciones sobre la HTAP es FALSA?",
+      "A": "En la HTAP existe dilatación proximal de las arterias pulmonares",
+      "B": "En la HTAP las arterias pulmonares están disminuidas de calibre",
+      "C": "El TEP es una causa de HTAP",
+      "D": "En la HTAP secundaria al TEP podemos ver crecimiento de cavidades derechas",
+      "r": "B"
+    },
+    {
+      "p": "El hallazgo radiológico más precoz de la hipertensión arterial pulmonar es:",
+      "A": "Signos de revascularización pulmonar",
+      "B": "Dilatación de la vena cava",
+      "C": "Dilatación de arterias pulmonares",
+      "D": "Edema alveolar",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál de las siguientes afirmaciones sobre la TBC es FALSA?",
+      "A": "La TBC presenta mayor incidencia en pacientes VIH",
+      "B": "En aproximadamente el 5% de la población infectada se desarrolla reactivación de la infección latente",
+      "C": "Suele presentarse con afectación en segmentos apical y posterior de LSD e inferiores de LII",
+      "D": "Tiene baja incidencia en países africanos",
+      "r": "D"
+    },
+    {
+      "p": "Las manifestaciones radiológicas de la TB pueden ser:",
+      "A": "Consolidación apical, más frecuente unilateral",
+      "B": "Adenopatías hiliares asimétricas",
+      "C": "Atelectasia obstructiva",
+      "D": "Todas las respuestas son correctas",
+      "r": "D"
+    }
+  ],
+  "9": [
+    {
+      "p": "Señale la opción CORRECTA respecto a la ecografía abdominal:",
+      "A": "La ecogenicidad del hígado normal es menor que la de la cortical renal",
+      "B": "El grosor normal de la pared de la vesícula biliar es menor o igual a 3 mm",
+      "C": "El diámetro del conducto pancreático principal normal es mayor de 4 mm",
+      "D": "El diámetro longitudinal de la vesícula biliar no excede los 4 cm",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la secuencia de RMN más sensible para detectar esteatosis hepática?",
+      "A": "Secuencias de desplazamiento químico (imágenes en fase y fase opuesta)",
+      "B": "Eco de gradiente T1 con supresión grasa en 3D",
+      "C": "Secuencias STIR",
+      "D": "Secuencias potenciadas en difusión",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el tipo de imagen más habitual en los estudios de colangioRM?",
+      "A": "Eco gradiente potenciadas en T1 con adquisición 3D",
+      "B": "Imágenes spin eco rápido muy potenciadas en T2",
+      "C": "Imágenes potenciadas en difusión",
+      "D": "Estudio dinámico con gadolinio de distribución extracelular",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la técnica más sensible para detectar neumoperitoneo?",
+      "A": "Rx de abdomen",
+      "B": "Rx de tórax en bipedestación",
+      "C": "Ecografía abdominal",
+      "D": "TC de abdomen sin contraste intravenoso",
+      "r": "D"
+    },
+    {
+      "p": "En la nefropatía inducida por medios de contraste, señale la opción FALSA:",
+      "A": "El factor de riesgo más importante es la alteración previa de la función renal",
+      "B": "Los agentes hiperosmolares son más nefrotóxicos",
+      "C": "La administración intraarterial es menos nefrotóxica",
+      "D": "El riesgo es proporcional a la dosis de contraste administrada",
+      "r": "C"
+    },
+    {
+      "p": "En relación con los contrastes, señale la opción FALSA:",
+      "A": "Los contrastes yodados atraviesan la barrera placentaria",
+      "B": "El gadolinio es un metal pesado muy tóxico que debe ligarse a quelantes orgánicos",
+      "C": "Los contrastes con gadolinio tienen tasas de reacciones leves y graves menores que los yodados",
+      "D": "La diálisis es eficaz para evitar la fibrosis sistémica nefrogénica",
+      "r": "D"
+    },
+    {
+      "p": "En las reacciones adversas a los medios de contraste, señale la opción FALSA:",
+      "A": "Pueden producirse por naturaleza hiperosmolar, toxicidad directa o reacciones anafilactoides",
+      "B": "Son menos frecuentes con contrastes no iónicos e hipoosmolares o isoosmolares",
+      "C": "Que un paciente no haya sufrido efecto adverso previo excluye reacción grave en la siguiente inyección",
+      "D": "El 95% de las reacciones adversas aparecen durante los primeros 20 minutos tras la inyección",
+      "r": "C"
+    },
+    {
+      "p": "En cuanto a los contrastes ecográficos, señale la opción FALSA:",
+      "A": "Atraviesan el lecho capilar pulmonar pero no cruzan el endotelio, manteniéndose en el espacio intravascular",
+      "B": "Los efectos secundarios son raros, transitorios y leves",
+      "C": "Están contraindicados si existe insuficiencia renal",
+      "D": "Están contraindicados si existe insuficiencia cardiaca grave",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué secuencia de RM es más sensible para detectar esteatosis hepática?",
+      "A": "Secuencias de desplazamiento químico en fase y fase opuesta",
+      "B": "Secuencias T1 con supresión grasa 3D",
+      "C": "Secuencias STIR",
+      "D": "Secuencias DWI",
+      "r": "A"
+    },
+    {
+      "p": "Los valores de píxel en TC para el hueso compacto son:",
+      "A": "Aire del orden de -1000 UH",
+      "B": "Agua de 0 UH",
+      "C": "Tejidos grasos entre -80 y -100 UH",
+      "D": "Hueso compacto entre 20 y 70 UH",
+      "r": "D"
+    }
+  ],
+  "10": [
+    {
+      "p": "La cisura de Rolando separa:",
+      "A": "El lóbulo frontal del temporal",
+      "B": "El lóbulo parietal del occipital",
+      "C": "El lóbulo occipital del temporal",
+      "D": "El lóbulo frontal del parietal",
+      "r": "D"
+    },
+    {
+      "p": "El área auditiva primaria se sitúa en:",
+      "A": "Circunvolución temporal transversal",
+      "B": "Circunvolución temporal superior",
+      "C": "Circunvolución post-central",
+      "D": "Circunvolución supramarginal",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál de los siguientes pares craneales representa una extensión extracraneal del parénquima cerebral?",
+      "A": "Estato-acústico",
+      "B": "Glosofaríngeo",
+      "C": "Olfatorio",
+      "D": "Óptico",
+      "r": "D"
+    },
+    {
+      "p": "En relación con el área de Broca, señale la opción VERDADERA:",
+      "A": "Se sitúa en la circunvolución frontal inferior",
+      "B": "Representa el área de comprensión del lenguaje",
+      "C": "Se sitúa en la circunvolución pre-central",
+      "D": "Se sitúa en la circunvolución temporal superior",
+      "r": "A"
+    },
+    {
+      "p": "En relación con el lóbulo posterior de la hipófisis, señale la opción VERDADERA:",
+      "A": "Deriva de la bolsa de Rathke",
+      "B": "Constituye una extensión directa del hipotálamo",
+      "C": "Forma los dos tercios posteriores de la hipófisis",
+      "D": "Produce y libera la hormona del crecimiento",
+      "r": "B"
+    },
+    {
+      "p": "En relación con la producción y absorción del LCR, señale la opción VERDADERA:",
+      "A": "Se produce mayoritariamente en los plexos coroideos",
+      "B": "El volumen total aproximado de LCR en el adulto es de unos 30 cc",
+      "C": "Su producción es dependiente de la presión intracraneal",
+      "D": "Se absorbe mayoritariamente por el sistema linfático nasal",
+      "r": "A"
+    },
+    {
+      "p": "En relación con las meninges, señale la opción VERDADERA:",
+      "A": "Entre la duramadre y la aracnoides se dispone el espacio subdural",
+      "B": "Entre la superficie interna del canal óseo y externa de la duramadre se sitúa el espacio epidural",
+      "C": "Los nervios raquídeos son todos nervios mixtos, sensitivos y motores",
+      "D": "Todas las opciones son verdaderas",
+      "r": "D"
+    },
+    {
+      "p": "En relación con los ligamentos amarillos, señale la opción VERDADERA:",
+      "A": "Unen los pedículos vertebrales",
+      "B": "Su grosor disminuye en los segmentos distales de la columna lumbar",
+      "C": "Unen las láminas vertebrales",
+      "D": "Se sitúan por detrás de los cuerpos vertebrales",
+      "r": "C"
+    },
+    {
+      "p": "La vascularización de la médula espinal se produce a partir de:",
+      "A": "Dos arterias espinales anteriores y una arteria espinal posterior",
+      "B": "Una arteria espinal anterior y dos arterias espinales posteriores",
+      "C": "Una arteria espinal anterior y una arteria espinal posterior",
+      "D": "Ramas intercostales con origen en la arteria aorta",
+      "r": "B"
+    },
+    {
+      "p": "El agujero redondo mayor permite la salida de:",
+      "A": "El tronco común del trigémino",
+      "B": "La primera rama del trigémino",
+      "C": "La segunda rama del trigémino",
+      "D": "La primera y segunda rama del trigémino",
+      "r": "C"
+    }
+  ],
+  "11": [
+    {
+      "p": "¿Cuál de las siguientes características topográficas apoya el diagnóstico de esclerosis múltiple en RM?",
+      "A": "Sustancia blanca subcortical hemisférica",
+      "B": "Sustancia blanca central de la protuberancia",
+      "C": "Región central de la médula espinal",
+      "D": "Cuerpo calloso",
+      "r": "D"
+    },
+    {
+      "p": "La encefalitis aguda diseminada es característica por:",
+      "A": "Que la médula espinal raramente se ve afectada",
+      "B": "Ser propia de adultos varones",
+      "C": "Su desarrollo tras proceso gripal o vacunación",
+      "D": "Afectar predominantemente la sustancia blanca periventricular",
+      "r": "C"
+    },
+    {
+      "p": "En relación con la enfermedad de Alzheimer, señale la opción VERDADERA:",
+      "A": "El diagnóstico definitivo se basa en hallazgos clínico-radiológicos",
+      "B": "Se caracteriza por acumulación de ovillos neurofibrilares y placas seniles",
+      "C": "Radiológicamente es característica la atrofia frontal anterior",
+      "D": "Los estudios de medicina nuclear son imprescindibles para el diagnóstico",
+      "r": "B"
+    },
+    {
+      "p": "La alteración más frecuente detectada por RM en epilepsias farmacorresistentes es:",
+      "A": "Esclerosis mesial temporal",
+      "B": "Tumores de estirpe neuronal",
+      "C": "Displasias corticales",
+      "D": "Túbers corticales",
+      "r": "A"
+    },
+    {
+      "p": "La hidrocefalia normotensiva idiopática se caracteriza por:",
+      "A": "Ser una forma de hidrocefalia crónica no comunicante",
+      "B": "Presentarse habitualmente en adultos jóvenes",
+      "C": "Ser una causa tratable de deterioro cognitivo",
+      "D": "Tener mala respuesta al tratamiento derivativo de LCR",
+      "r": "C"
+    },
+    {
+      "p": "En relación con la encefalitis por virus herpes simple tipo 1, señale la opción CORRECTA:",
+      "A": "Es una causa poco frecuente de encefalitis en el adulto",
+      "B": "Es característica la afectación bilateral de los lóbulos temporales y núcleos pálidos",
+      "C": "La restricción en la difusión puede identificarse en las fases iniciales",
+      "D": "No se asocia a hemorragia cerebral",
+      "r": "C"
+    },
+    {
+      "p": "En relación con la infección del SNC por M. tuberculosis, señale la opción CORRECTA:",
+      "A": "El granuloma tuberculoso se localiza en la sustancia blanca profunda",
+      "B": "El infarto por oclusión de las arterias lenticulo-estriadas es complicación frecuente",
+      "C": "El granuloma tuberculoso no tiene realce en anillo",
+      "D": "Tiene predilección por meninges basales con borramiento de cisternas perimesencefálicas en TC",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el hallazgo radiológico más característico de la leucoencefalopatía multifocal progresiva?",
+      "A": "Acusado efecto de masa",
+      "B": "Localización lesional en la médula espinal",
+      "C": "Hiperseñal lesional en difusión por RM",
+      "D": "Realce con el contraste",
+      "r": "C"
+    },
+    {
+      "p": "En relación con las secuencias de difusión por RM en infecciones del SNC, señale la opción VERDADERA:",
+      "A": "La cerebritis en fase precoz no es hiperintensa en la secuencia de difusión",
+      "B": "El absceso piógeno es hiperintenso en los mapas de ADC",
+      "C": "El absceso por toxoplasma es característicamente hiperintenso en difusión e hipointenso en ADC",
+      "D": "La cerebritis y el absceso piógeno muestran restricción a la difusión",
+      "r": "D"
+    },
+    {
+      "p": "El n-acetil aspartato (NAA) en espectroscopia RM:",
+      "A": "Su cuantificación requiere tiempos de eco cortos",
+      "B": "Es un marcador de la integridad funcional y estructural neuroaxonal",
+      "C": "Su cuantificación es altamente reproducible",
+      "D": "Está generalmente aumentado en las placas agudas de esclerosis múltiple",
+      "r": "B"
+    }
+  ],
+  "12": [
+    {
+      "p": "¿Cuál de estos tumores presenta mayor restricción a la difusión?",
+      "A": "Astrocitoma anaplásico",
+      "B": "Linfoma",
+      "C": "Glioblastoma",
+      "D": "Metástasis",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál de estos signos es definitivo de localización extraparenquimatosa de un tumor cerebral?",
+      "A": "Signo de cola dural",
+      "B": "Localización periférica",
+      "C": "Presencia de vasos entre la lesión y el parénquima cerebral",
+      "D": "Realce intenso y homogéneo tras contraste",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál de los siguientes tumores intracraneales calcifica con mayor frecuencia?",
+      "A": "Oligodendroglioma",
+      "B": "Astrocitoma",
+      "C": "Linfoma",
+      "D": "Meduloblastoma",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál de estos signos debe hacer pensar que una hemorragia cerebral tiene origen tumoral?",
+      "A": "Aspecto homogéneo",
+      "B": "Reborde de hemosiderina completo",
+      "C": "Localización periférica",
+      "D": "Abundante edema vasogénico perilesional",
+      "r": "D"
+    },
+    {
+      "p": "Los infartos frontera:",
+      "A": "Afectan a la unión distal de al menos dos territorios arteriales",
+      "B": "Representan el 1% de todos los ictus isquémicos",
+      "C": "Se atribuyen a enfermedad cerebrovascular de pequeño vaso",
+      "D": "No se asocian a estenosis de las arterias cervicales",
+      "r": "A"
+    },
+    {
+      "p": "Ante un paciente con déficit neurológico focal de instauración aguda (menos de 3 horas), ¿cuál es el examen neurorradiológico de primera elección?",
+      "A": "TC simple",
+      "B": "TC simple + perfusión",
+      "C": "RM difusión",
+      "D": "RM difusión + perfusión",
+      "r": "A"
+    },
+    {
+      "p": "La escala ASPECTS:",
+      "A": "Se utiliza para analizar la extensión de infartos del territorio arterial posterior",
+      "B": "Solo es aplicable en estudios de TC perfusión",
+      "C": "Es una escala numérica entre 0 y 30",
+      "D": "Se basa en la detección visual de áreas hipodensas en TC",
+      "r": "D"
+    },
+    {
+      "p": "En relación con la hemorragia subaracnoidea, señale la opción VERDADERA:",
+      "A": "La TC cerebral detecta el 50% en las primeras 12 horas",
+      "B": "La causa más frecuente es el traumatismo craneal",
+      "C": "Las de localización perimesencefálica tienen mal pronóstico",
+      "D": "La RM no está indicada en su diagnóstico cuando la TC sea negativa",
+      "r": "B"
+    },
+    {
+      "p": "Las anomalías del desarrollo venoso:",
+      "A": "Corresponden a malformaciones vasculares que se tratan quirúrgicamente",
+      "B": "Con frecuencia producen hematomas intraparenquimatosos",
+      "C": "Son generalmente sintomáticas",
+      "D": "Se asocian a cavernomas",
+      "r": "D"
+    },
+    {
+      "p": "Indicar cuál es una complicación aguda tras el tratamiento endovascular de los aneurismas cerebrales:",
+      "A": "Hidrocefalia obstructiva",
+      "B": "Vasoespasmo arterial",
+      "C": "Resangrado",
+      "D": "Ruptura del aneurisma",
+      "r": "D"
+    }
+  ],
+  "13": [
+    {
+      "p": "¿Cuál de las siguientes fracturas cervicales se produce por mecanismo de hiperflexión?",
+      "A": "Fractura en cuña simple",
+      "B": "Fractura del arco neural anterior o posterior del atlas",
+      "C": "Fractura de Jefferson del atlas",
+      "D": "Fractura en estallido de vértebras cervicales medias e inferiores",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuáles son los signos de inestabilidad en un traumatismo vertebral?",
+      "A": "Anterolistesis mayor de 3,5 mm",
+      "B": "Angulación focal mayor de 11º",
+      "C": "Pérdida de altura mayor del 25%",
+      "D": "Todos los anteriores son correctos",
+      "r": "D"
+    },
+    {
+      "p": "En relación con las lesiones traumáticas secundarias:",
+      "A": "Las hemorragias de Duret se localizan predominantemente en los ganglios de la base",
+      "B": "La fístula carótido-cavernosa es la lesión traumática vascular más frecuente",
+      "C": "La herniación del uncus temporal puede causar infarto de la arteria cerebral posterior",
+      "D": "La causa más frecuente de infarto postraumático es el vasoespasmo arterial",
+      "r": "C"
+    },
+    {
+      "p": "El protocolo de RM en traumatismo craneoencefálico agudo debe incluir:",
+      "A": "Secuencias T2-FLAIR y perfusión cerebral",
+      "B": "Secuencias T2-FLAIR, T2 con eco de gradiente y difusión",
+      "C": "Secuencias T2-FLAIR y espectroscopia",
+      "D": "Secuencias T2 con eco de gradiente y T1",
+      "r": "B"
+    },
+    {
+      "p": "En la interpretación del TC en traumatismo craneoencefálico:",
+      "A": "El desplazamiento de línea media solo es importante a partir de 15 mm",
+      "B": "El desplazamiento de línea media solo es importante a partir de 10 mm",
+      "C": "La obliteración de cisternas perimesencefálicas y colapso de III ventrículo son signos de riesgo de HTIC",
+      "D": "Una lesión focal mayor de 10 cc indica mayor riesgo de hipertensión intracraneal",
+      "r": "C"
+    },
+    {
+      "p": "De los hallazgos de las fracturas en estallido 'blow-out', señale el MENOS CARACTERÍSTICO:",
+      "A": "Fractura del suelo de la órbita",
+      "B": "Fractura de la lámina papirácea del etmoides",
+      "C": "Fractura malar",
+      "D": "Atrapamiento del músculo recto inferior",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el segmento de columna vertebral lesionado con mayor frecuencia en politraumatizados?",
+      "A": "Cervical",
+      "B": "Dorsal",
+      "C": "Lumbar",
+      "D": "Aleatorio",
+      "r": "A"
+    },
+    {
+      "p": "En las fracturas por estallido (Burst) de la columna dorsolumbar, señale la opción FALSA:",
+      "A": "Son fracturas inestables",
+      "B": "El 50% se asocia a lesiones neurológicas",
+      "C": "La localización típica es la unión dorsolumbar D11-L1",
+      "D": "Hay cuatro tipos de fracturas de Burst",
+      "r": "D"
+    },
+    {
+      "p": "Respecto al protocolo de exploración radiológica en politraumatizado con TCE:",
+      "A": "TC cráneo sin contraste incluyendo columna cervical, Rx tórax y pelvis y eco FAST",
+      "B": "Rx columna cervical lateral y transbucal, Rx tórax y pelvis y eco FAST",
+      "C": "Eco FAST inmediata y si negativa, Rx columna cervical lateral, tórax y pelvis",
+      "D": "TC cráneo sin contraste y TC cuerpo completo con contraste",
+      "r": "D"
+    },
+    {
+      "p": "La radiología convencional de cráneo en TCE: ¿en qué situación está indicada?",
+      "A": "En todo paciente que ha sufrido TCE con pérdida de conocimiento",
+      "B": "Porque la detección de fractura predice bien la lesión intracraneal",
+      "C": "En los traumatismos no accidentales",
+      "D": "No debe realizarse ante sospecha de maltrato infantil",
+      "r": "C"
+    }
+  ],
+  "14": [
+    {
+      "p": "El tumor benigno hepático más frecuente es:",
+      "A": "Hiperplasia nodular focal",
+      "B": "Hemangioma",
+      "C": "Adenoma",
+      "D": "Lipoma",
+      "r": "B"
+    },
+    {
+      "p": "En el TC dinámico del hepatocarcinoma, ¿cuál es la opción CORRECTA?",
+      "A": "Es hiperdenso en fase de equilibrio",
+      "B": "Es hiperdenso en fase arterial",
+      "C": "Es hiperdenso en fase portal",
+      "D": "Es isodenso en fase arterial",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál NO se considera un factor de riesgo de colangiocarcinoma?",
+      "A": "Cirrosis de causa viral",
+      "B": "Infecciones parasitarias",
+      "C": "Litiasis intrahepática",
+      "D": "Hipertensión arterial",
+      "r": "D"
+    },
+    {
+      "p": "En el hepatocarcinoma fibrolamelar, señale la opción FALSA:",
+      "A": "Es rara la cicatriz central y las calcificaciones",
+      "B": "Suele verse una masa grande bien delimitada",
+      "C": "Son frecuentes las obulaciones superficiales",
+      "D": "Si tiene cicatriz central no realza con el contraste",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la principal causa de pancreatitis crónica?",
+      "A": "Alcohol",
+      "B": "Hiperlipidemia",
+      "C": "Hiperparatiroidismo",
+      "D": "Traumatismo",
+      "r": "A"
+    },
+    {
+      "p": "En la pancreatitis aguda, señale la afirmación FALSA sobre la pancreatitis edematosa intersticial:",
+      "A": "Nunca se afecta el tejido peripancreático",
+      "B": "En TC se observa realce homogéneo del parénquima",
+      "C": "No se evidencia necrosis pancreática",
+      "D": "Puede verse líquido peripancreático",
+      "r": "A"
+    },
+    {
+      "p": "Sobre las características radiológicas del cáncer de páncreas, señale la opción FALSA:",
+      "A": "El aspecto típico es una lesión hipodensa respecto al parénquima en TC con contraste",
+      "B": "El signo del doble conducto es característico de las neoplasias de cuerpo pancreático",
+      "C": "La localización más frecuente es en la cabeza pancreática",
+      "D": "La RM puede ser útil para la detección de tumores pequeños no identificables en TC",
+      "r": "B"
+    },
+    {
+      "p": "En relación con la uropatía obstructiva, ¿cuál de las siguientes afirmaciones es CIERTA?",
+      "A": "Puede existir obstrucción sin hidronefrosis (hasta 35% de falsos negativos) y dilataciones no obstructivas",
+      "B": "La sobre distensión vesical es causa de falso positivo",
+      "C": "La deshidratación es causa de falso negativo",
+      "D": "Todas las anteriores son correctas",
+      "r": "D"
+    },
+    {
+      "p": "La Uro-TC sin contraste es la técnica de elección en:",
+      "A": "El cólico nefrítico complicado",
+      "B": "El seguimiento de transplante renal",
+      "C": "La valoración de estenosis de arteria renal",
+      "D": "El diagnóstico de hidronefrosis leve",
+      "r": "A"
+    },
+    {
+      "p": "En la estadificación de los tumores renales, ¿cuál de las siguientes afirmaciones es FALSA?",
+      "A": "La TC es la prueba diagnóstica más fiable",
+      "B": "La supervivencia a 5 años en tumores órgano-confinados es del 60-90%",
+      "C": "La clasificación más utilizada es la WHO",
+      "D": "Los objetivos de la TC incluyen delimitar el tumor y valorar diseminación venosa y metástasis",
+      "r": "C"
+    }
+  ],
+  "15": [
+    {
+      "p": "¿Cuál es el diagnóstico más probable de lesión lítica con margen escleroso en la cortical póstero medial distal del fémur?",
+      "A": "Granuloma eosinófilo",
+      "B": "Avulsión del tendón aductor largo",
+      "C": "Displasia fibrosa",
+      "D": "Defecto fibroso cortical / Fibroma no osificante",
+      "r": "D"
+    },
+    {
+      "p": "En relación con el Osteosarcoma, ¿cuál de las siguientes afirmaciones es la CORRECTA?",
+      "A": "Es el sarcoma óseo más frecuente, y tras el mieloma el 2º tumor óseo primario maligno",
+      "B": "Más del 50% se localizan alrededor de la rodilla y son diafisarios en el 95%",
+      "C": "La TC es la técnica de elección para el estudio diagnóstico del Osteosarcoma",
+      "D": "Solo se localiza en extremidades inferiores",
+      "r": "A"
+    },
+    {
+      "p": "En relación con la artritis reumatoide, señale la opción CORRECTA:",
+      "A": "Las erosiones o desmineralización yuxtaarticular en Rx son criterio diagnóstico del ACR",
+      "B": "El patrón de distribución es bilateral y simétrico, con afectación de pequeñas articulaciones de manos, pies y columna cervical",
+      "C": "La tumefacción de partes blandas periarticulares es infrecuente",
+      "D": "Las erosiones marginales del hueso periarticular solo aparecen en fases muy tardías",
+      "r": "B"
+    },
+    {
+      "p": "En relación con el hombro y el manguito rotador, señale la CORRECTA:",
+      "A": "El manguito rotador está formado por subescapular, supraespinoso, infraespinoso y porción larga del bíceps",
+      "B": "El músculo supraespinoso es el principal aductor del hombro",
+      "C": "El espacio entre subescapular, supraespinoso, coracoides y cápsula es el intervalo rotador y contiene el tendón del bíceps, ligamento coracohumeral y glenohumeral superior",
+      "D": "La bursa subacromio-subdeltoidea es una bursa comunicante",
+      "r": "C"
+    },
+    {
+      "p": "En relación con las inestabilidades anteriores del hombro, señale la afirmación INCORRECTA:",
+      "A": "Las lesiones del labrum anteroinferior son las que más se asocian con inestabilidad",
+      "B": "Se producen por una luxación posterior de la cabeza humeral",
+      "C": "La lesión ósea de la cabeza humeral se denomina Hill-Sachs",
+      "D": "La avulsión clásica del Labrum antero inferior es la lesión de Bankart",
+      "r": "B"
+    },
+    {
+      "p": "En relación con las espóndilodiscitis, señale la VERDADERA:",
+      "A": "Representan el 2-5% de las infecciones óseas con S. Aureus como patógeno más frecuente",
+      "B": "En la espóndilodiscitis piógena del adulto existe afectación de plataformas y disco",
+      "C": "La RM es la técnica de elección para el diagnóstico",
+      "D": "Todas las afirmaciones son correctas",
+      "r": "D"
+    },
+    {
+      "p": "Respecto a los tumores malignos de las glándulas salivares, señale la opción CORRECTA:",
+      "A": "Casi el 70% corresponde a carcinomas mucoepidermoides",
+      "B": "La TC y RM permiten diagnóstico diferencial con tumores benignos con alta especificidad",
+      "C": "La presencia de señal heterogénea con áreas hipointensas en T2 sugiere malignidad",
+      "D": "Todas las opciones son ciertas",
+      "r": "C"
+    },
+    {
+      "p": "En relación con el TIPS (shunt portosistémico intrahepático transyugular), señale la afirmación CORRECTA:",
+      "A": "Siempre está indicado en hemorragia por varices esofágicas",
+      "B": "Puede ser opción terapéutica en encefalopatía hepática",
+      "C": "El riesgo de muerte disminuye significativamente en pacientes con Child-Pugh > 12",
+      "D": "Está indicado en hemorragia por varices gastroesofágicas si fracasa el tratamiento endoscópico y médico",
+      "r": "D"
+    },
+    {
+      "p": "En relación con la estadificación loco-regional del ca. de mama, señale la opción FALSA:",
+      "A": "La RM es el método más sensible para detectar multifocalidad y multicentricidad",
+      "B": "Los hallazgos adicionales detectados con RM deben biopsiarse",
+      "C": "La ecografía de 'second look' puede localizar lesiones adicionales detectadas en RM",
+      "D": "La RM es el método de elección para caracterizar ganglios linfáticos regionales en el cáncer de mama",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál de las siguientes afirmaciones sobre el feocromocitoma es la CORRECTA?",
+      "A": "Es un tumor poco frecuente que secreta catecolaminas con confirmación BQ previa a los estudios de imagen",
+      "B": "Supone menos del 1% de las causas de HTA y el tratamiento es quirúrgico",
+      "C": "La regla del 10%: 10% extra-adrenales, bilaterales, malignos, pediátricos, no asociados a HTA y con calcificaciones",
+      "D": "Todas las afirmaciones son correctas",
+      "r": "D"
+    }
+  ]
+}

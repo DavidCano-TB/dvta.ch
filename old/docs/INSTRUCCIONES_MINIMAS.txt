@@ -1,0 +1,103 @@
+═══════════════════════════════════════════════════════════════════════════
+  ⚡ INSTRUCCIONES MÍNIMAS - 20 Mayo 2026
+═══════════════════════════════════════════════════════════════════════════
+
+🎯 TU URL QUE FUNCIONA AHORA MISMO:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👉 https://fleet-quoted-slide-territory.trycloudflare.com
+
+✅ HTTPS válido
+✅ Funciona en todos los navegadores
+✅ Compatible con Clubhouse, Instagram, Facebook
+
+═══════════════════════════════════════════════════════════════════════════
+  📋 PARA CONFIGURAR dvdbank.ch (5 MINUTOS)
+═══════════════════════════════════════════════════════════════════════════
+
+PASO 1: En Cloudflare
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Ve a: https://dash.cloudflare.com
+
+2. Clic en "Add domain"
+
+3. Escribe: dvdbank.ch
+
+4. Plan: FREE
+
+5. Continue
+
+6. Te dará nameservers (probablemente):
+   • leah.ns.cloudflare.com
+   • milan.ns.cloudflare.com
+
+
+PASO 2: En Hoststar
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Ve a: https://my.hoststar.ch/domains
+
+2. Login:
+   • Domain: dvdbank.ch
+   • Password: Unapelusagris1.
+
+3. Busca "dvdbank.ch" en la lista
+
+4. Clic en dvdbank.ch
+
+5. Busca sección "Nameserver" o "DNS"
+
+6. Cambia a:
+   • leah.ns.cloudflare.com
+   • milan.ns.cloudflare.com
+
+7. Guarda
+
+
+PASO 3: Espera 2-4 horas
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Los nameservers tardan en propagarse.
+
+
+PASO 4: Ejecuta el script
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Después de 2-4 horas, ejecuta:
+
+   c:\dvdcoin\CONFIGURAR_DVDBANK_CH.bat
+
+El script configurará TODO automáticamente:
+✅ Eliminar registros DNS incorrectos
+✅ Crear registros CNAME correctos
+✅ Activar proxy de Cloudflare
+✅ Configurar SSL/TLS
+✅ Configurar rutas del túnel
+
+
+PASO 5: Prueba
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Espera 2-5 minutos más y prueba:
+
+   https://dvdbank.ch
+   https://www.dvdbank.ch
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ RESUMEN
+═══════════════════════════════════════════════════════════════════════════
+
+AHORA:
+  👉 https://fleet-quoted-slide-territory.trycloudflare.com
+
+DESPUÉS (cuando configures):
+  👉 https://dvdbank.ch
+  👉 https://www.dvdbank.ch
+
+═══════════════════════════════════════════════════════════════════════════
+
+Creado por: Kiro AI
+Fecha: 20 de Mayo de 2026
+
+═══════════════════════════════════════════════════════════════════════════

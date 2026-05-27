@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videollamadas - DVDcoin Bank</title>
+    <link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ── NAVEGACIÓN UNIFICADA ─────────────────────────────── */
+        .unified-nav {
+          position: sticky; top: 0; z-index: 101;
+          background: rgba(4,4,10,.97); backdrop-filter: blur(24px);
+          border-bottom: 1px solid rgba(212,168,67,.14);
+        }
+        .unified-nav::after {
+          content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+          background: linear-gradient(90deg,transparent,rgba(139,96,16,.5) 30%,rgba(212,168,67,1) 50%,rgba(139,96,16,.5) 70%,transparent);
+        }
+        .nav-tabs {
+          display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+          scrollbar-width: none; gap: 2px; padding: 6px 12px;
+        }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .nav-tab {
+          padding: 6px 12px; background: none; border: none;
+          color: rgba(80,68,48,1); font-family: 'DM Mono', monospace;
+          font-size: .62rem; cursor: pointer; letter-spacing: .06em;
+          text-transform: uppercase; transition: all .2s; position: relative;
+          white-space: nowrap; flex-shrink: 0; border-radius: 6px;
+          text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+        }
+        .nav-tab:hover { color: rgba(240,200,102,1); background: rgba(212,168,67,.08); }
+        .nav-tab.active { color: rgba(240,200,102,1); background: rgba(212,168,67,.12); border-bottom: 2px solid rgba(212,168,67,1); }
+        .nav-tab span { font-size: .9rem; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #0a0a0f;
+            color: #eee;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: #1a1a2e;
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 16px;
+            color: #d4a843;
+            margin: 0;
+        }
+
+        .header button {
+            background: #c83060;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .header button:hover {
+            background: #e84080;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            overflow: hidden;
+            min-height: 0;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #333;
+            font-weight: bold;
+            font-size: 13px;
+            background: #0f0f1a;
+        }
+
+        .create-room {
+            padding: 12px;
+            background: #0f0f1a;
+            border-bottom: 1px solid #333;
+            flex-shrink: 0;
+        }
+
+        .create-room input {
+            width: 100%;
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #eee;
+            padding: 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .create-room button {
+            width: 100%;
+            background: #d4a843;
+            color: #000;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .create-room button:hover {
+            background: #e8c856;
+        }
+
+        .rooms-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px;
+            min-height: 0;
+        }
+
+        .room-item {
+            background: #0f0f1a;
+            padding: 10px;
+            margin-bottom: 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .room-item:hover {
+            background: #1a1a2e;
+            border-color: #d4a843;
+        }
+
+        .room-item.active {
+            background: #2a2a3e;
+            border-color: #d4a843;
+        }
+
+        .room-title {
+            font-weight: bold;
+            margin-bottom: 2px;
+            font-size: 12px;
+        }
+
+        .room-info {
+            font-size: 11px;
+            color: #999;
+        }
+
+        .empty-state {
+            padding: 20px;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* VIDEO CONTAINER */
+        .video-container {
+            flex: 1;
+            background: #0f0f1a;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        #jitsi-container {
+            width: 100%;
+            height: 100%;
+            flex: 1;
+        }
+
+        /* Ocultar barra de idiomas y elementos innecesarios de Jitsi */
+        #jitsi-container iframe {
+            border: none;
+        }
+
+        /* CSS para ocultar elementos de Jitsi */
+        .jitsi-watermark,
+        .subject,
+        .watermark {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+                gap: 8px;
+                padding: 8px;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 150px;
+                flex-shrink: 0;
+            }
+
+            .video-container {
+                flex: 1;
+                min-height: 300px;
+                width: 100%;
+            }
+
+            .header h1 {
+                font-size: 14px;
+            }
+
+            .header button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            #jitsi-container {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            html, body {
+                width: 100vw;
+                height: 100vh;
+                overflow: hidden;
+            }
+
+            .header {
+                padding: 8px 10px;
+                height: auto;
+            }
+
+            .header h1 {
+                font-size: 12px;
+            }
+
+            .header button {
+                padding: 5px 8px;
+                font-size: 10px;
+            }
+
+            .main-content {
+                padding: 4px;
+                gap: 4px;
+                flex: 1;
+                overflow: hidden;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: 100px;
+                flex-shrink: 0;
+                overflow-y: auto;
+            }
+
+            .video-container {
+                flex: 1;
+                min-height: 200px;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            #jitsi-container {
+                width: 100% !important;
+                height: 100% !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .create-room {
+                padding: 6px;
+                display: flex;
+                gap: 4px;
+            }
+
+            .create-room input {
+                flex: 1;
+                padding: 4px;
+                font-size: 10px;
+                margin-bottom: 0;
+            }
+
+            .create-room button {
+                padding: 4px 8px;
+                font-size: 10px;
+                white-space: nowrap;
+            }
+
+            .rooms-list {
+                flex: 1;
+                overflow-y: auto;
+                padding: 4px;
+                min-height: 0;
+            }
+
+            .room-item {
+                padding: 6px;
+                margin-bottom: 3px;
+                font-size: 10px;
+            }
+
+            .room-title {
+                font-size: 10px;
+                margin-bottom: 1px;
+            }
+
+            .room-info {
+                font-size: 9px;
+            }
+
+            .empty-state {
+                padding: 10px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+
+
+    <div class="main-content">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="sidebar-header">📋 Salas</div>
+
+            <div class="create-room">
+                <input type="text" id="roomName" placeholder="Nombre..." maxlength="40">
+                <button onclick="createRoom()">Crear</button>
+            </div>
+
+            <div class="rooms-list" id="roomsList">
+                <div class="empty-state">Cargando...</div>
+            </div>
+        </div>
+
+        <!-- VIDEO CONTAINER -->
+        <div class="video-container">
+            <div id="jitsi-container" class="loading">
+                Selecciona una sala
+            </div>
+        </div>
+    </div>
+
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script>
+        // DIAGNOSTIC LOGGING
+        console.log('=== DVDcoin Video Diagnostics ===');
+        console.log('User Agent:', navigator.userAgent);
+        console.log('HTTPS:', location.protocol === 'https:' ? 'YES' : 'NO');
+        console.log('WebRTC Support:', typeof RTCPeerConnection !== 'undefined' ? 'YES' : 'NO');
+        console.log('getUserMedia Support:', typeof navigator.mediaDevices !== 'undefined' ? 'YES' : 'NO');
+
+        // Test Jitsi API loading
+        fetch('https://meet.jit.si/external_api.js')
+            .then(r => {
+                console.log('Jitsi API Load:', r.status === 200 ? 'SUCCESS' : 'FAILED (' + r.status + ')');
+            })
+            .catch(e => console.error('Jitsi API Load Error:', e));
+
+        // Test STUN servers
+        ['stun:stun.l.google.com:19302', 'stun:stun1.l.google.com:19302'].forEach(stun => {
+            fetch(stun).then(() => console.log(stun + ': OK')).catch(() => console.warn(stun + ': BLOCKED'));
+        });
+
+        let currentRoom = null;
+        let jitsiApi = null;
+        let username = null;
+        let rooms = [];
+        let loadingRooms = false;
+        let roomTitle = null;
+
+        // Inicializar
+        window.addEventListener('load', () => {
+            username = localStorage.getItem('dvd_username') || 'Usuario';
+            loadRooms();
+            setInterval(loadRooms, 3000);
+        });
+
+        // Cargar salas
+        async function loadRooms() {
+            if (loadingRooms) return;
+            loadingRooms = true;
+
+            try {
+                const token = localStorage.getItem('dvd_token');
+                if (!token) {
+                    console.error('No token found');
+                    loadingRooms = false;
+                    return;
+                }
+
+                const response = await fetch('/api/rooms/list', {
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+
+                if (response.status === 401) {
+                    // Token expired, try to refresh
+                    await refreshToken();
+                    loadingRooms = false;
+                    return;
+                }
+
+                if (response.ok) {
+                    const newRooms = await response.json();
+                    // Handle both array and {rooms: array} formats
+                    const roomsArray = Array.isArray(newRooms) ? newRooms : (newRooms.rooms || []);
+                    if (JSON.stringify(roomsArray) !== JSON.stringify(rooms)) {
+                        rooms = roomsArray;
+                        renderRooms();
+                    }
+                }
+            } catch (e) {
+                console.error('Error cargando salas:', e);
+            } finally {
+                loadingRooms = false;
+            }
+        }
+
+        // Refrescar token si está próximo a expirar
+        async function refreshToken() {
+            try {
+                const token = localStorage.getItem('dvd_token');
+                if (!token) return;
+
+                const response = await fetch('/api/me/refresh-token', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('dvd_token', data.token);
+                    localStorage.setItem('dvd_token_refreshed_at', Date.now().toString());
+                    console.log('Token refreshed');
+                }
+            } catch (e) {
+                console.error('Error refrescando token:', e);
+            }
+        }
+
+        // Renderizar salas
+        function renderRooms() {
+            const list = document.getElementById('roomsList');
+
+            if (!rooms || rooms.length === 0) {
+                list.innerHTML = '<div class="empty-state">No hay salas</div>';
+                return;
+            }
+
+            list.innerHTML = '';
+            rooms.forEach(room => {
+                const item = document.createElement('div');
+                item.className = 'room-item' + (room.room_key === currentRoom ? ' active' : '');
+                item.onclick = () => joinRoom(room.room_key, room.title);
+
+                const memberCount = room.members_csv ? room.members_csv.split(',').filter(m => m).length : 0;
+                item.innerHTML = `
+                    <div class="room-title">${room.title}</div>
+                    <div class="room-info">👤 ${memberCount}</div>
+                `;
+
+                list.appendChild(item);
+            });
+        }
+
+        // Crear sala
+        function createRoom() {
+            const name = document.getElementById('roomName').value.trim();
+            if (!name) {
+                alert('Ingresa un nombre');
+                return;
+            }
+
+            const roomKey = name.toLowerCase().replace(/\s+/g, '-').substring(0, 30);
+
+            // Call API to create room
+            fetch('/api/rooms/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('dvd_token')
+                },
+                body: JSON.stringify({
+                    room: roomKey,
+                    title: name,
+                    mode: 'public'
+                })
+            })
+            .then(r => {
+                if (r.status === 401) {
+                    alert('Sesión expirada. Por favor, recarga la página.');
+                    return;
+                }
+                return r.json();
+            })
+            .then(d => {
+                if (d && d.ok) {
+                    joinRoom(d.room, d.title);
+                    document.getElementById('roomName').value = '';
+                }
+            })
+            .catch(e => console.error('Error creando sala:', e));
+        }
+
+        // Unirse a sala - NOTIFICAR AL BACKEND
+        function joinRoom(roomKey, roomTitleParam) {
+            currentRoom = roomKey;
+            roomTitle = roomTitleParam;
+
+            if (jitsiApi) {
+                try {
+                    jitsiApi.dispose();
+                } catch (e) {}
+                jitsiApi = null;
+            }
+
+            const container = document.getElementById('jitsi-container');
+            container.innerHTML = '';
+            container.classList.add('loading');
+
+            // NOTIFICAR AL BACKEND QUE ESTE USUARIO SE UNE A LA SALA
+            const token = localStorage.getItem('dvd_token');
+            fetch('/api/rooms/join', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify({
+                    room: roomKey,
+                    title: roomTitleParam
+                })
+            })
+            .then(r => r.json())
+            .then(d => console.log('Backend notificado:', d))
+            .catch(e => console.error('Error notificando backend:', e));
+
+            setTimeout(() => {
+                try {
+                    // REQUEST PERMISSIONS FIRST
+                    navigator.mediaDevices.getUserMedia({ audio: true, video: true })
+                        .then(() => {
+                            console.log('Permisos de cámara/micrófono otorgados');
+                            initializeJitsi();
+                        })
+                        .catch(e => {
+                            console.error('Permisos denegados:', e);
+                            alert('Se requieren permisos de cámara y micrófono para usar videollamadas');
+                            container.innerHTML = '<div class="loading">Permisos requeridos</div>';
+                        });
+
+                    function initializeJitsi() {
+                        const options = {
+                            roomName: roomKey,
+                            width: '100%',
+                            height: '100%',
+                            parentNode: container,
+                            userInfo: {
+                                displayName: username
+                            },
+                            configOverwrite: {
+                                startWithAudioMuted: false,
+                                startWithVideoMuted: false,
+                                disableSimulcast: false,
+                                enableLayerSuspension: true,
+                                enableLipSync: true,
+                                disableAudioLevels: false,
+                                enableTalkWhileMuted: false,
+                                prejoinPageEnabled: false,
+                                webrtcIceUdpDisable: false,
+                                webrtcIceTcpDisable: false,
+                                webrtcIceTransportPolicy: 'all',
+                                maxFullResolutionParticipants: 10,
+                                videoQuality: {
+                                    maxBitratesVideo: {
+                                        h2160: 4500,
+                                        h1080: 2500,
+                                        h720: 1500,
+                                        h360: 500
+                                    }
+                                },
+                                p2p: {
+                                    enabled: false
+                                },
+                                iceServers: [
+                                    { urls: ['stun:stun.l.google.com:19302'] },
+                                    { urls: ['stun:stun1.l.google.com:19302'] },
+                                    { urls: ['stun:stun2.l.google.com:19302'] },
+                                    { urls: ['stun:stun3.l.google.com:19302'] },
+                                    { urls: ['stun:stun4.l.google.com:19302'] },
+                                    // TURN servers para relay cuando STUN no funciona
+                                    { urls: ['turn:turnserver.twilio.com:443?transport=tcp'], username: 'user', credential: 'pass' },
+                                    { urls: ['turn:numb.viagenie.ca'], username: 'webrtc@live.com', credential: 'webrtc' }
+                                ]
+                            },
+                            interfaceConfigOverwrite: {
+                                SHOW_JITSI_WATERMARK: false,
+                                SHOW_WATERMARK_FOR_GUESTS: false,
+                                MOBILE_APP_PROMO: false,
+                                SHOW_CHROME_EXTENSION_BANNER: false,
+                                TOOLBAR_BUTTONS: [
+                                    'microphone',
+                                    'camera',
+                                    'desktop',
+                                    'fullscreen',
+                                    'hangup',
+                                    'chat',
+                                    'settings',
+                                    'raisehand',
+                                    'videoquality',
+                                    'filmstrip',
+                                    'invite',
+                                    'stats',
+                                    'shortcuts',
+                                    'tileview',
+                                    'help'
+                                ],
+                                LANG_DETECTION: false,
+                                DEFAULT_LANGUAGE: 'es',
+                                HIDE_INVITE_MORE_HEADER: true,
+                                DISABLE_TRANSCRIPTION_SUBTITLES: true
+                            },
+                            configOverwrite: {
+                                disableDeepLinking: true,
+                                prejoinPageEnabled: false,
+                                startWithAudioMuted: false,
+                                startWithVideoMuted: false,
+                                enableWelcomePage: false,
+                                enableClosePage: false,
+                                toolbarConfig: {
+                                    alwaysVisible: false
+                                }
+                            }
+                        };
+
+                        jitsiApi = new JitsiMeetExternalAPI('meet.jit.si', options);
+                        container.classList.remove('loading');
+
+                        // Ocultar barra de idiomas y elementos innecesarios
+                        setTimeout(() => {
+                            try {
+                                const iframe = container.querySelector('iframe');
+                                if (iframe && iframe.contentWindow) {
+                                    const style = iframe.contentWindow.document.createElement('style');
+                                    style.textContent = `
+                                        .jitsi-watermark,
+                                        .subject,
+                                        .watermark,
+                                        [class*="language"],
+                                        [class*="Language"],
+                                        [class*="lang"],
+                                        [id*="language"],
+                                        [id*="Language"],
+                                        .toolbox-button[aria-label*="language" i],
+                                        .toolbox-button[aria-label*="idioma" i] {
+                                            display: none !important;
+                                            visibility: hidden !important;
+                                            opacity: 0 !important;
+                                        }
+                                    `;
+                                    iframe.contentWindow.document.head.appendChild(style);
+                                }
+                            } catch (e) {
+                                console.log('No se pudo inyectar CSS en iframe (CORS)');
+                            }
+                        }, 2000);
+
+                        jitsiApi.addEventListener('videoConferenceJoined', () => {
+                            console.log('Unido a conferencia Jitsi');
+                            loadRooms();
+                        });
+
+                        jitsiApi.addEventListener('videoConferenceLeft', () => {
+                            console.log('Salido de conferencia Jitsi');
+                            const token = localStorage.getItem('dvd_token');
+                            fetch('/api/rooms/leave', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + token
+                                },
+                                body: JSON.stringify({
+                                    room: currentRoom
+                                })
+                            })
+                            .then(r => r.json())
+                            .then(d => console.log('Backend notificado de salida:', d))
+                            .catch(e => console.error('Error notificando salida:', e));
+
+                            currentRoom = null;
+                            loadRooms();
+                        });
+
+                        jitsiApi.addEventListener('participantJoined', (participant) => {
+                            console.log('Participante se unió:', participant);
+                            loadRooms();
+                        });
+
+                        jitsiApi.addEventListener('participantLeft', (participant) => {
+                            console.log('Participante se fue:', participant);
+                            loadRooms();
+                        });
+
+                        renderRooms();
+                    }
+
+                    jitsiApi.addEventListener('videoConferenceJoined', () => {
+                        console.log('Unido a conferencia Jitsi');
+                        // Recargar salas para mostrar miembros actualizados
+                        loadRooms();
+                    });
+
+                    jitsiApi.addEventListener('videoConferenceLeft', () => {
+                        console.log('Salido de conferencia Jitsi');
+                        // Notificar al backend que se fue
+                        const token = localStorage.getItem('dvd_token');
+                        fetch('/api/rooms/leave', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + token
+                            },
+                            body: JSON.stringify({
+                                room: currentRoom
+                            })
+                        })
+                        .then(r => r.json())
+                        .then(d => console.log('Backend notificado de salida:', d))
+                        .catch(e => console.error('Error notificando salida:', e));
+
+                        currentRoom = null;
+                        loadRooms();
+                    });
+
+                    jitsiApi.addEventListener('participantJoined', (participant) => {
+                        console.log('Participante se unió:', participant);
+                        // Recargar salas para actualizar conteo
+                        loadRooms();
+                    });
+
+                    jitsiApi.addEventListener('participantLeft', (participant) => {
+                        console.log('Participante se fue:', participant);
+                        // Recargar salas para actualizar conteo
+                        loadRooms();
+                    });
+
+                    renderRooms();
+                } catch (e) {
+                    console.error('Error iniciando Jitsi:', e);
+                    container.innerHTML = '<div class="loading">Error al iniciar videollamada</div>';
+                }
+            }, 100);
+        }
+
+        // Volver
+        function goBack() {
+            if (jitsiApi) {
+                try {
+                    jitsiApi.dispose();
+                } catch (e) {}
+                jitsiApi = null;
+            }
+            window.location.href = '/';
+        }
+
+        // Limpiar al cerrar
+        window.addEventListener('beforeunload', () => {
+            if (jitsiApi) {
+                try {
+                    jitsiApi.dispose();
+                } catch (e) {}
+            }
+        });
+    </script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

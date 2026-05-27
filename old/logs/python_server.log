@@ -1,0 +1,13 @@
+INFO:     Started server process [12100]
+INFO:     Waiting for application startup.
+2026-05-19 23:04:25,678 INFO dvdcoin: DVDcoin Bank v4.0 starting ... build=1779224665
+2026-05-19 23:04:29,828 INFO dvdcoin: ============================================================
+2026-05-19 23:04:29,828 INFO dvdcoin: \U0001f511 MASTER PASSWORD (dvd/nebulosa emergency login): dvd_aGGDdCWQ5Bh3
+2026-05-19 23:04:29,828 INFO dvdcoin:    (stored in conf/master.txt — delete to regenerate)
+2026-05-19 23:04:29,828 INFO dvdcoin: ============================================================
+2026-05-19 23:04:29,828 INFO dvdcoin: Ready. Admins: ['admin', 'aitor', 'dvd', 'nebulosa', 'nina', 'roy', 'victor', 'yu'] | OPO users: ['aitor', 'dvd', 'dvdrec', 'nebulosa']
+2026-05-19 23:04:29,845 INFO dvdcoin: Database connections warmed up
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:56276 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56301 - "GET / HTTP/1.1" 200 OK

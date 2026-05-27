@@ -1,0 +1,224 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║         INSTALACION AUTOMATICA AL REINICIAR WINDOWS          ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+🎯 ¿QUÉ ES ESTO?
+═══════════════════════════════════════════════════════════════
+
+Un sistema de instalación automática que configura Cloudflare
+Tunnel completamente al reiniciar Windows.
+
+El instalador te guiará paso a paso a través de ventanas CMD.
+
+
+🚀 CÓMO USAR (2 PASOS)
+═══════════════════════════════════════════════════════════════
+
+PASO 1: Configurar instalación al reinicio
+───────────────────────────────────────────────────────────────
+
+  Doble clic en:
+
+    📄 CONFIGURAR_INSTALACION_AL_REINICIO.bat
+
+  Este script:
+    ✓ Elimina instalaciones previas
+    ✓ Configura tarea de Windows
+    ✓ Pregunta si quieres reiniciar ahora
+
+
+PASO 2: Reiniciar Windows
+───────────────────────────────────────────────────────────────
+
+  Reinicia tu PC (si no lo hiciste en el paso 1)
+
+  Al iniciar sesión:
+    ✓ Espera 5 segundos
+    ✓ Se abrirá una ventana CMD
+    ✓ Sigue las instrucciones del instalador
+
+
+📋 QUÉ HARÁ EL INSTALADOR
+═══════════════════════════════════════════════════════════════
+
+El instalador te guiará a través de 7 pasos:
+
+  [1/7] Verificar Python
+        - Verifica que Python esté instalado
+        - Si no está, te indica cómo instalarlo
+
+  [2/7] Instalar cloudflared
+        - Intenta instalar con winget
+        - Si falla, te indica descarga manual
+
+  [3/7] Autenticar con Cloudflare
+        - Abre tu navegador
+        - Inicias sesión en Cloudflare
+        - Autorizas el acceso
+
+  [4/7] Crear túnel
+        - Crea el túnel "dvdcoin"
+        - Obtiene el TUNNEL-ID
+
+  [5/7] Configurar dominio
+        - Pregunta si tienes dominio propio
+        - Configura DNS si es necesario
+        - O usa subdominio gratis de Cloudflare
+
+  [6/7] Crear archivo de configuración
+        - Genera cloudflare-config.yml
+        - Configura todos los parámetros
+
+  [7/7] Instalar autostart
+        - Pregunta si quieres autostart
+        - Configura inicio automático de DVDcoin
+
+
+⏱️ TIEMPO ESTIMADO
+═══════════════════════════════════════════════════════════════
+
+  Configuración:  1 minuto
+  Reinicio:       2 minutos
+  Instalación:    10 minutos
+  ─────────────────────────
+  TOTAL:          ~13 minutos
+
+
+✅ REQUISITOS PREVIOS
+═══════════════════════════════════════════════════════════════
+
+  ✓ Python instalado
+    (Si no está, el instalador te lo indicará)
+
+  ✓ Cuenta de Cloudflare (gratis)
+    https://dash.cloudflare.com/sign-up
+
+  ✓ (Opcional) Dominio propio
+    Si no tienes, Cloudflare te da uno gratis
+
+
+🔄 CANCELAR INSTALACIÓN
+═══════════════════════════════════════════════════════════════
+
+Si configuraste la instalación pero cambias de opinión:
+
+  📄 CANCELAR_INSTALACION_AL_REINICIO.bat
+
+Esto eliminará la tarea de Windows y la instalación
+NO se ejecutará al reiniciar.
+
+
+🔁 REINSTALAR
+═══════════════════════════════════════════════════════════════
+
+Si ya instalaste Cloudflare Tunnel y quieres reinstalar:
+
+  1. Ejecuta: CONFIGURAR_INSTALACION_AL_REINICIO.bat
+  2. Reinicia Windows
+  3. El instalador detectará la instalación previa
+  4. Preguntará si quieres reinstalar
+
+
+📁 ARCHIVOS RELACIONADOS
+═══════════════════════════════════════════════════════════════
+
+  CONFIGURAR_INSTALACION_AL_REINICIO.bat
+    → Configura la instalación automática
+
+  CANCELAR_INSTALACION_AL_REINICIO.bat
+    → Cancela la instalación automática
+
+  INSTALACION_AUTOMATICA_CLOUDFLARE.bat
+    → El instalador (se ejecuta automáticamente)
+
+  .cloudflare_instalado
+    → Marca que indica instalación completada
+
+
+🆘 SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+Problema: El instalador no se ejecuta al reiniciar
+───────────────────────────────────────────────────────────────
+Solución:
+  1. Verifica que ejecutaste como Administrador
+  2. Ejecuta manualmente:
+     INSTALACION_AUTOMATICA_CLOUDFLARE.bat
+
+
+Problema: Python no está instalado
+───────────────────────────────────────────────────────────────
+Solución:
+  1. Descarga Python desde:
+     https://www.python.org/downloads/
+  2. Instala Python
+  3. Reinicia Windows
+  4. El instalador continuará automáticamente
+
+
+Problema: cloudflared no se instala
+───────────────────────────────────────────────────────────────
+Solución:
+  1. Descarga desde:
+     https://github.com/cloudflare/cloudflared/releases
+  2. Descarga: cloudflared-windows-amd64.exe
+  3. Renombra a: cloudflared.exe
+  4. Coloca en: c:\dvdcoin\cloudflared.exe
+  5. Continúa con el instalador
+
+
+Problema: Quiero instalar manualmente
+───────────────────────────────────────────────────────────────
+Solución:
+  Ejecuta directamente:
+    INSTALACION_AUTOMATICA_CLOUDFLARE.bat
+
+  No necesitas reiniciar Windows.
+
+
+📊 VENTAJAS DE LA INSTALACIÓN AUTOMÁTICA
+═══════════════════════════════════════════════════════════════
+
+  ✓ Proceso guiado paso a paso
+  ✓ Verificaciones automáticas
+  ✓ Instalación de dependencias
+  ✓ Configuración completa
+  ✓ Sin necesidad de comandos manuales
+  ✓ Detección de errores
+  ✓ Instrucciones claras en cada paso
+
+
+🎯 DESPUÉS DE LA INSTALACIÓN
+═══════════════════════════════════════════════════════════════
+
+Una vez completada la instalación:
+
+  Iniciar servidor:
+    📄 ARRANCAR.bat
+
+  Detener servidor:
+    📄 DETENER_SERVIDOR.bat
+
+  Verificar instalación:
+    📄 VERIFICAR_INSTALACION.bat
+
+
+═══════════════════════════════════════════════════════════════
+
+          ¡Instalación automática lista! 🚀
+
+═══════════════════════════════════════════════════════════════
+
+
+INICIO RÁPIDO:
+═══════════════════════════════════════════════════════════════
+
+1. CONFIGURAR_INSTALACION_AL_REINICIO.bat
+2. Reiniciar Windows
+3. Seguir instrucciones del instalador
+4. ¡Listo!
+
+═══════════════════════════════════════════════════════════════

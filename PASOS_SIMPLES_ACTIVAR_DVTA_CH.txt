@@ -1,0 +1,92 @@
+═══════════════════════════════════════════════════════════════════════════
+  🚀 PASOS SIMPLES PARA ACTIVAR dvta.ch
+═══════════════════════════════════════════════════════════════════════════
+
+📊 ESTADO ACTUAL:
+───────────────────────────────────────────────────────────────────────────
+✅ cloudflared.exe instalado (versión 2026.5.0)
+❌ NO autenticado con Cloudflare
+❌ Túnel NO creado
+⚠️  Configuración incompleta
+❌ DNS NO activo
+
+═══════════════════════════════════════════════════════════════════════════
+
+🔧 SIGUE ESTOS PASOS EN ORDEN:
+
+═══════════════════════════════════════════════════════════════════════════
+PASO 1: AUTENTICAR CON CLOUDFLARE
+═══════════════════════════════════════════════════════════════════════════
+
+Abre CMD o PowerShell en c:\dvdcoin y ejecuta:
+
+    cloudflared.exe tunnel login
+
+Esto hará:
+1. ✅ Abrirá tu navegador automáticamente
+2. ✅ Te pedirá iniciar sesión en Cloudflare
+3. ✅ Mostrará lista de dominios
+4. ✅ DEBES SELECCIONAR: dvta.ch
+5. ✅ Hacer clic en: "Authorize"
+
+Después verás: "You have successfully logged in"
+
+═══════════════════════════════════════════════════════════════════════════
+PASO 2: CREAR Y CONFIGURAR EL TÚNEL
+═══════════════════════════════════════════════════════════════════════════
+
+Ejecuta este archivo BAT:
+
+    CONFIGURAR_TUNNEL_DVTA_CH.bat
+
+Este script hace TODO automáticamente:
+✅ Crea el túnel "dvta-tunnel"
+✅ Configura las rutas DNS para dvta.ch y www.dvta.ch
+✅ Actualiza el archivo de configuración
+
+═══════════════════════════════════════════════════════════════════════════
+PASO 3: INICIAR EL SISTEMA
+═══════════════════════════════════════════════════════════════════════════
+
+Ejecuta:
+
+    INICIAR_DVDBANK_DVTA.bat
+
+Esto iniciará:
+✅ Servidor Python en puerto 8000
+✅ Túnel Cloudflare para dvta.ch
+✅ Abrirá navegador en https://dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+PASO 4 (OPCIONAL): CONFIGURAR INICIO AUTOMÁTICO CON WINDOWS
+═══════════════════════════════════════════════════════════════════════════
+
+Ejecuta:
+
+    CONFIGURAR_INICIO_AUTOMATICO_COMPLETO.bat
+
+Esto hará que el sistema se inicie automáticamente al encender Windows.
+
+═══════════════════════════════════════════════════════════════════════════
+
+🔍 VERIFICAR QUE TODO FUNCIONA:
+
+Ejecuta:
+
+    VERIFICAR_DNS_Y_TUNNEL.bat
+
+Este script verifica TODO y te dice si hay problemas.
+
+═══════════════════════════════════════════════════════════════════════════
+
+🌐 URLS DE ACCESO (después de completar los pasos):
+
+• https://dvta.ch
+• https://www.dvta.ch
+• http://localhost:8000 (local)
+
+═══════════════════════════════════════════════════════════════════════════
+
+⏱️ TIEMPO ESTIMADO: 5-10 minutos
+
+═══════════════════════════════════════════════════════════════════════════

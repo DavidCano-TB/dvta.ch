@@ -1,0 +1,51 @@
+============================================
+ URLS DEL SISTEMA DE APUESTAS
+============================================
+
+SERVIDOR: http://127.0.0.1:8000
+
+CORRECCIONES APLICADAS:
+✓ Eliminada llave extra } en loadData()
+✓ Corregido fetch de /api/porras/$1 a ${PORRA_ID}
+✓ 3 páginas HTML corregidas manualmente
+✓ Función selectOption() funcional
+✓ CSS .optCard.selected presente
+
+URLS PRINCIPALES:
+-----------------
+
+1. Lista de Porras:
+   http://127.0.0.1:8000/apuestas
+
+2. Porra Individual 1:
+   http://127.0.0.1:8000/apuestas/porra/1
+
+3. Porra Individual 2:
+   http://127.0.0.1:8000/apuestas/porra/2
+
+4. Porra Individual 3:
+   http://127.0.0.1:8000/apuestas/porra/3
+
+NOTA: Si necesitas token, abre desde la aplicación
+principal o usa el botón de Apuestas en el menú.
+
+FLUJO COMPLETO CORREGIDO:
+-------------------------
+1. Abrir URL de porra individual
+2. Hacer clic en una opción (se marca con borde dorado)
+3. Introducir cantidad en DVDcoins
+4. Botón "Apostar Ahora" se habilita automáticamente
+5. Hacer clic en "Apostar Ahora"
+6. Confirmar apuesta
+7. Apuesta registrada
+
+VERIFICACIÓN:
+-------------
+✓ Servidor funcionando en puerto 8000
+✓ 3 procesos Python activos
+✓ Fetch corregido en las 3 páginas
+✓ JavaScript sin errores de sintaxis
+✓ CSS completo con clase .selected
+
+Estado: ✅ COMPLETADO
+Fecha: 2026-05-02 21:15

@@ -1,0 +1,384 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    VOTING SYSTEM ARCHITECTURE                                ║
+║                         (Sistema de Votaciones)                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                              USER INTERFACE                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────────────────────────────────────┐
+    │  static/index.html (Main Application)                       │
+    │  ┌───────────────────────────────────────────────────────┐  │
+    │  │  Navigation Buttons                                   │  │
+    │  │  • Desktop: "Votaciones" button                       │  │
+    │  │  • Mobile: "Votaciones" button                        │  │
+    │  │                                                        │  │
+    │  │  openVotaciones() function:                           │  │
+    │  │  • Gets token from localStorage                       │  │
+    │  │  • Opens /votaciones?token=XXX in new tab            │  │
+    │  └───────────────────────────────────────────────────────┘  │
+    └─────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ Opens new tab
+                                    ▼
+    ┌─────────────────────────────────────────────────────────────┐
+    │  game_pages/votaciones/votaciones.html                      │
+    │  ┌───────────────────────────────────────────────────────┐  │
+    │  │  VOTING INTERFACE                                     │  │
+    │  │                                                        │  │
+    │  │  1. List View                                         │  │
+    │  │     • Grid of voting cards                            │  │
+    │  │     • Title, description, status, vote count          │  │
+    │  │     • Click to open details                           │  │
+    │  │                                                        │  │
+    │  │  2. Create Modal                                      │  │
+    │  │     • Title input (required)                          │  │
+    │  │     • Description textarea (optional)                 │  │
+    │  │     • Dynamic options list (min 2)                    │  │
+    │  │     • ☑ Anonymous voting (default: checked)           │  │
+    │  │     • ☐ Multiple votes per user                       │  │
+    │  │                                                        │  │
+    │  │  3. Detail Modal                                      │  │
+    │  │     • Vote options with progress bars                 │  │
+    │  │     • Statistics (votes, percentages)                 │  │
+    │  │     • Vote buttons                                    │  │
+    │  │     • Results (if finalized)                          │  │
+    │  │     • Management buttons (finalize, delete)           │  │
+    │  │                                                        │  │
+    │  │  JavaScript Functions:                                │  │
+    │  │  • loadVotaciones()                                   │  │
+    │  │  • createVotacion()                                   │  │
+    │  │  • showDetail(id)                                     │  │
+    │  │  • vote(id, option)                                   │  │
+    │  │  • removeVote(id)                                     │  │
+    │  │  • finalizeVotacion(id)                               │  │
+    │  │  • deleteVotacion(id)                                 │  │
+    │  └───────────────────────────────────────────────────────┘  │
+    └─────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ API Calls
+                                    ▼
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                              BACKEND API                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────────────────────────────────────┐
+    │  main.py (FastAPI Server)                                   │
+    │  ┌───────────────────────────────────────────────────────┐  │
+    │  │  ROUTES                                               │  │
+    │  │                                                        │  │
+    │  │  GET /votaciones                                      │  │
+    │  │  └─> Serves votaciones.html file                     │  │
+    │  │                                                        │  │
+    │  │  GET /api/votaciones/list                             │  │
+    │  │  └─> Returns all votaciones for user                 │  │
+    │  │      • Filters by user permissions                    │  │
+    │  │      • Includes vote counts                           │  │
+    │  │      • Marks user's votes                             │  │
+    │  │                                                        │  │
+    │  │  GET /api/votaciones/{votacion_id}                    │  │
+    │  │  └─> Returns detailed info + statistics              │  │
+    │  │      • All options with vote counts                   │  │
+    │  │      • Percentages and progress                       │  │
+    │  │      • Voter names (if DVD or not anonymous)          │  │
+    │  │      • User's votes                                   │  │
+    │  │                                                        │  │
+    │  │  POST /api/votaciones/create                          │  │
+    │  │  └─> Creates new votacion                            │  │
+    │  │      • Validates title and options                    │  │
+    │  │      • Stores in database                             │  │
+    │  │      • Returns created votacion                       │  │
+    │  │                                                        │  │
+    │  │  POST /api/votaciones/votar                           │  │
+    │  │  └─> Registers a vote                                 │  │
+    │  │      • Validates votacion is open                     │  │
+    │  │      • Checks if user already voted (if not multiple) │  │
+    │  │      • Stores vote in database                        │  │
+    │  │                                                        │  │
+    │  │  POST /api/votaciones/finalizar                       │  │
+    │  │  └─> Finalizes votacion and calculates results       │  │
+    │  │      • Only creator or DVD can finalize               │  │
+    │  │      • Counts votes per option                        │  │
+    │  │      • Identifies winners (handles ties)              │  │
+    │  │      • Creates complete ranking                       │  │
+    │  │      • Stores results in database                     │  │
+    │  │                                                        │  │
+    │  │  DELETE /api/votaciones/{votacion_id}                 │  │
+    │  │  └─> Deletes votacion completely                      │  │
+    │  │      • Only creator or DVD can delete                 │  │
+    │  │      • Removes all votes (CASCADE)                    │  │
+    │  │                                                        │  │
+    │  │  DELETE /api/votaciones/{votacion_id}/voto            │  │
+    │  │  └─> Removes user's vote(s)                           │  │
+    │  │      • Only if votacion is still open                 │  │
+    │  │      • Removes all user's votes from that votacion    │  │
+    │  └───────────────────────────────────────────────────────┘  │
+    └─────────────────────────────────────────────────────────────┘
+                                    │
+                                    │ Database Operations
+                                    ▼
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                              DATABASE LAYER                                  │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────────────────────────────────────┐
+    │  db_votaciones() Function                                   │
+    │  ┌───────────────────────────────────────────────────────┐  │
+    │  │  Creates/Opens: data/apuestas.db                      │  │
+    │  │                                                        │  │
+    │  │  TABLE: votaciones                                    │  │
+    │  │  ┌──────────────────────────────────────────────────┐ │  │
+    │  │  │ id              INTEGER PRIMARY KEY              │ │  │
+    │  │  │ creador         TEXT NOT NULL                    │ │  │
+    │  │  │ titulo          TEXT NOT NULL                    │ │  │
+    │  │  │ descripcion     TEXT                             │ │  │
+    │  │  │ opciones_json   TEXT NOT NULL                    │ │  │
+    │  │  │ multiple        INTEGER DEFAULT 0                │ │  │
+    │  │  │ anonima         INTEGER DEFAULT 1                │ │  │
+    │  │  │ estado          TEXT DEFAULT 'abierta'           │ │  │
+    │  │  │ resultado_json  TEXT                             │ │  │
+    │  │  │ created_at      TEXT DEFAULT CURRENT_TIMESTAMP   │ │  │
+    │  │  │ finalizada_at   TEXT                             │ │  │
+    │  │  └──────────────────────────────────────────────────┘ │  │
+    │  │                                                        │  │
+    │  │  TABLE: votos                                         │  │
+    │  │  ┌──────────────────────────────────────────────────┐ │  │
+    │  │  │ id              INTEGER PRIMARY KEY              │ │  │
+    │  │  │ votacion_id     INTEGER NOT NULL                 │ │  │
+    │  │  │ username        TEXT NOT NULL                    │ │  │
+    │  │  │ opcion          TEXT NOT NULL                    │ │  │
+    │  │  │ fecha           TEXT DEFAULT CURRENT_TIMESTAMP   │ │  │
+    │  │  │ FOREIGN KEY (votacion_id) REFERENCES votaciones  │ │  │
+    │  │  │   ON DELETE CASCADE                              │ │  │
+    │  │  └──────────────────────────────────────────────────┘ │  │
+    │  └───────────────────────────────────────────────────────┘  │
+    └─────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          ANONYMITY LOGIC                                     │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────────────────────────────────────────────────────┐
+    │  Permission System                                          │
+    │                                                              │
+    │  IF user is DVD (SUPERADMIN):                               │
+    │    ✅ See ALL voter names                                    │
+    │    ✅ See ALL vote amounts                                   │
+    │    ✅ Manage ANY votacion (finalize, delete)                │
+    │    ✅ Special "DVD view" section                             │
+    │                                                              │
+    │  ELSE IF votacion.anonima == TRUE:                          │
+    │    ❌ Cannot see voter names                                 │
+    │    ✅ Can see vote counts                                    │
+    │    ✅ Can see percentages                                    │
+    │    ✅ Can see progress bars                                  │
+    │    ✅ Can vote                                                │
+    │    ✅ Can remove own vote                                    │
+    │    ✅ Creator can manage own votacion                        │
+    │                                                              │
+    │  ELSE (votacion.anonima == FALSE):                          │
+    │    ✅ Can see voter names                                    │
+    │    ✅ Can see all statistics                                 │
+    │    ✅ Can vote                                                │
+    │    ✅ Can remove own vote                                    │
+    │    ✅ Creator can manage own votacion                        │
+    └─────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          DATA FLOW EXAMPLE                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    CREATE VOTE FLOW:
+    ─────────────────
+    User clicks "Create New Vote"
+         │
+         ▼
+    Fills form (title, options, anonymous=true)
+         │
+         ▼
+    JavaScript: createVotacion()
+         │
+         ▼
+    POST /api/votaciones/create
+         │
+         ▼
+    Backend validates data
+         │
+         ▼
+    INSERT INTO votaciones (...)
+         │
+         ▼
+    Returns created votacion
+         │
+         ▼
+    Frontend refreshes list
+         │
+         ▼
+    New vote appears in grid
+
+
+    VOTE FLOW:
+    ──────────
+    User clicks on vote card
+         │
+         ▼
+    JavaScript: showDetail(id)
+         │
+         ▼
+    GET /api/votaciones/{id}
+         │
+         ▼
+    Backend fetches votacion + stats
+         │
+         ▼
+    IF anonymous AND not DVD:
+         │
+         ▼
+    Hide voter names in stats
+         │
+         ▼
+    Returns data to frontend
+         │
+         ▼
+    Modal shows options with progress bars
+         │
+         ▼
+    User clicks "Vote for this option"
+         │
+         ▼
+    JavaScript: vote(id, option)
+         │
+         ▼
+    POST /api/votaciones/votar
+         │
+         ▼
+    Backend validates (open? already voted?)
+         │
+         ▼
+    INSERT INTO votos (votacion_id, username, opcion)
+         │
+         ▼
+    Returns success
+         │
+         ▼
+    Frontend refreshes detail view
+         │
+         ▼
+    Progress bars update, button shows "✓ You voted"
+
+
+    FINALIZE FLOW:
+    ──────────────
+    Creator/DVD clicks "Finalize Vote"
+         │
+         ▼
+    JavaScript: finalizeVotacion(id)
+         │
+         ▼
+    POST /api/votaciones/finalizar
+         │
+         ▼
+    Backend checks permissions
+         │
+         ▼
+    SELECT all votes, count by option
+         │
+         ▼
+    Calculate percentages
+         │
+         ▼
+    Identify winners (max votes, handles ties)
+         │
+         ▼
+    Create ranking (all options sorted)
+         │
+         ▼
+    UPDATE votaciones SET estado='finalizada', resultado_json=...
+         │
+         ▼
+    Returns results
+         │
+         ▼
+    Frontend shows winners 🏆 and complete ranking
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          SECURITY FEATURES                                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    ✅ JWT Token Authentication
+       • All API calls require valid token
+       • Token passed via Authorization header
+       • Token extracted from localStorage
+
+    ✅ Permission Checks
+       • Only creator or DVD can finalize
+       • Only creator or DVD can delete
+       • Only authenticated users can vote
+
+    ✅ Anonymity Protection
+       • Voter names hidden if anonymous=true AND not DVD
+       • Database stores all data, but API filters response
+       • Frontend respects is_dvd flag
+
+    ✅ Data Validation
+       • Title required
+       • Minimum 2 options
+       • Cannot vote on finalized votacion
+       • Cannot vote twice (unless multiple=true)
+
+    ✅ Database Integrity
+       • Foreign key constraints
+       • CASCADE delete (removing votacion removes all votes)
+       • Timestamps for audit trail
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                          FILES SUMMARY                                       │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+    Backend:
+    ────────
+    main.py                                  [COMPLETE ✅]
+    └─> db_votaciones() function
+    └─> 8 routes (1 HTML + 7 API)
+    └─> Permission logic
+    └─> Winner calculation
+
+    Frontend:
+    ─────────
+    game_pages/votaciones/votaciones.html    [COMPLETE ✅]
+    └─> List view
+    └─> Create modal
+    └─> Detail modal
+    └─> All JavaScript functions
+    └─> Professional styling
+
+    Navigation:
+    ───────────
+    static/index.html                        [COMPLETE ✅]
+    └─> Desktop button
+    └─> Mobile button
+    └─> openVotaciones() function
+
+    Database:
+    ─────────
+    data/apuestas.db                         [AUTO-CREATED ✅]
+    └─> votaciones table
+    └─> votos table
+
+    Documentation:
+    ──────────────
+    VOTING_SYSTEM_READY.md                   [CREATED ✅]
+    SOLUCION_VOTACIONES.md                   [CREATED ✅]
+    VOTING_ARCHITECTURE.txt                  [THIS FILE ✅]
+
+    Utilities:
+    ──────────
+    START_SERVER.bat                         [CREATED ✅]
+    test_voting_system.py                    [CREATED ✅]
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                          STATUS: READY TO USE ✅                             ║
+╚══════════════════════════════════════════════════════════════════════════════╝

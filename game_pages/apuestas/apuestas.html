@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>Betting DVDcoin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;--noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;--glass:rgba(255,255,255,.04);--border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);--text:#EAE6D8;--text2:#9A9070;--text3:#504430;--green:#38B87A;--red:#C83060;--blue:#4878D8;--orange:#E07840;--r:12px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;font-size:15px;}
+body{background:var(--noir);color:var(--text);font-family:'DM Mono',monospace;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:24px;}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;}
+.hdr{position:sticky;top:0;z-index:50;background:rgba(4,4,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 14px;height:52px;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);}
+.hdrLogo{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--gold2);flex:1;}
+.connDot{width:8px;height:8px;border-radius:50%;background:var(--text3);flex-shrink:0;}
+.connDot.on{background:var(--green);box-shadow:0 0 6px rgba(56,184,122,.6);}
+.wrap{max-width:1200px;margin:0 auto;padding:14px;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;border:1px solid;border-radius:var(--r);padding:8px 14px;font-size:.7rem;font-family:'DM Mono',monospace;letter-spacing:.05em;transition:all .2s;cursor:pointer;font-weight:500;}
+.btnG{background:rgba(56,184,122,.12);border-color:rgba(56,184,122,.4);color:var(--green);}
+.btnG:hover{background:rgba(56,184,122,.22);border-color:var(--green);}
+.btnO{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.3);color:var(--gold2);}
+.btnO:hover{background:rgba(212,168,67,.2);}
+.btnD{background:rgba(200,48,96,.12);border-color:rgba(200,48,96,.35);color:#e05080;}
+.btnD:hover{background:rgba(200,48,96,.22);}
+.btnN{background:var(--glass);border-color:var(--border);color:var(--text2);}
+.btnN:hover{border-color:var(--border2);color:var(--text);}
+.tabs{display:flex;gap:6px;margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:8px;}
+.tab{background:transparent;border:none;color:var(--text3);padding:6px 12px;font-size:.75rem;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;}
+.tab.on{color:var(--gold2);border-bottom-color:var(--gold);}
+.tab:hover{color:var(--text);}
+.porraCard{background:var(--n3);border:1px solid var(--border2);border-radius:var(--r);padding:16px;margin-bottom:12px;cursor:pointer;transition:all .25s;}
+.porraCard:hover{border-color:var(--gold);box-shadow:0 0 20px rgba(212,168,67,.1);}
+.porraTitle{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold2);margin-bottom:6px;}
+.porraDesc{font-size:.78rem;color:var(--text2);margin-bottom:10px;line-height:1.4;}
+.porraInfo{display:flex;gap:12px;flex-wrap:wrap;font-size:.68rem;color:var(--text3);}
+.porraInfo span{display:flex;align-items:center;gap:4px;}
+.badge{display:inline-block;padding:3px 8px;border-radius:5px;font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.badge.abierta{background:rgba(56,184,122,.15);color:var(--green);}
+.badge.cerrada{background:rgba(72,120,216,.15);color:var(--blue);}
+.badge.finalizada{background:rgba(200,48,96,.15);color:var(--red);}
+.badge.cancelada{background:rgba(90,106,128,.15);color:var(--text3);}
+.modal{position:fixed;inset:0;background:rgba(4,4,10,.95);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+.modal.on{display:flex;}
+.modalBox{background:var(--n2);border:1px solid var(--border2);border-radius:var(--r);padding:24px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;}
+.modalTitle{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold2);margin-bottom:16px;}
+.formGroup{margin-bottom:14px;}
+.formLabel{display:block;font-size:.7rem;color:var(--text2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em;}
+.formInput,.formTextarea,.formSelect{width:100%;background:rgba(212,168,67,.05);border:1px solid var(--border2);border-radius:var(--r);padding:10px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.85rem;outline:none;transition:all .2s;}
+.formInput:focus,.formTextarea:focus,.formSelect:focus{border-color:var(--gold);background:rgba(212,168,67,.1);}
+.formTextarea{resize:vertical;min-height:80px;}
+.opcionesWrap{display:flex;flex-direction:column;gap:8px;}
+.opcionItem{display:flex;gap:8px;align-items:center;}
+.opcionItem input{flex:1;}
+.btnRow{display:flex;gap:8px;margin-top:16px;justify-content:flex-end;}
+.statsGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;}
+.statCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;}
+.statVal{font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);}
+.statLbl{font-size:.65rem;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:.08em;}
+.apuestasList{margin-top:16px;}
+.apuestaItem{background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;}
+.apuestaUser{font-size:.8rem;color:var(--text);font-weight:500;}
+.apuestaOpt{font-size:.72rem;color:var(--text2);}
+.apuestaCant{font-size:.85rem;color:var(--gold2);font-weight:600;}
+.distBar{height:24px;background:var(--n4);border-radius:6px;overflow:hidden;display:flex;margin-bottom:8px;}
+.distSeg{display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;font-weight:600;transition:all .3s;}
+.empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:.85rem;}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <span style="font-size:1.3rem">🎲</span>
+  <div class="hdrLogo">Apuestas DVDcoin</div>
+  <div class="connDot on" id="connDot"></div>
+</div>
+
+<!-- Navegación completa -->
+<div id="simpleNav" style="background:var(--n3);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none">
+  <a href="/" class="sNavBtn" style="background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">⌂ Home</a>
+  <a href="/social" id="sNavSocial" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">💬 Social</a>
+  <span class="sNavBtn" style="background:none;border:none;color:var(--gold2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid var(--gold);transition:all .18s;white-space:nowrap;text-decoration:none">🎲 Betting</span>
+  <a href="/votaciones" class="sNavBtn" style="background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🗳️ Voting</a>
+  <a href="/millonario" id="sNavMillonario" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">💰 Millionaire</a>
+  <a href="/quiensoy" id="sNavQuienSoy" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🎭 Who am I?</a>
+  <a href="/cifrasletras" id="sNavCifrasLetras" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🔤 Numbers & Letters</a>
+  <a href="/pasapalabra" id="sNavPasapalabra" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🔡 Pasapalabra</a>
+  <a href="/cuentos" id="sNavCuentos" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">📖 Stories</a>
+  <a href="/stats" id="sNavStats" class="sNavBtn" style="display:none;background:none;border:none;color:var(--text2);cursor:pointer;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">📊 Stats</a>
+</div>
+<style>
+  #simpleNav::-webkit-scrollbar{display:none}
+  .sNavBtn:hover{color:var(--gold2) !important}
+</style>
+
+<div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+    <h1 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);">Apuestas Deportivas</h1>
+    <button class="btn btnG" onclick="openCreateModal()">+ Nueva Apuesta</button>
+  </div>
+
+  <!-- Panel de Estadísticas Generales - SOLO DVD -->
+  <div id="dvdGeneralStatsPanel" style="display:none;"></div>
+
+  <div id="userStats" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px;"></div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="filterPorras('abierta',this)">Abiertas</button>
+    <button class="tab" onclick="filterPorras('cerrada',this)">Cerradas</button>
+    <button class="tab" onclick="filterPorras('finalizada',this)">Finalizadas</button>
+    <button class="tab" onclick="filterPorras('mis',this)">Mis Apuestas</button>
+    <button class="tab" onclick="filterPorras('todas',this)">Todas</button>
+    <button class="tab" id="deletedTab" onclick="filterPorras('deleted',this)" style="display:none;">🗑️ Eliminadas</button>
+    <button class="tab" id="adminTab" onclick="filterPorras('admin',this)" style="display:none;">👑 Admin Panel</button>
+  </div>
+
+  <div id="porrasList"></div>
+</div>
+
+<!-- Modal: Create Bet -->
+<div class="modal" id="modalCreate">
+  <div class="modalBox">
+    <div class="modalTitle">Crear Nueva Apuesta</div>
+    <div class="formGroup">
+      <label class="formLabel">Título *</label>
+      <input class="formInput" id="createTitulo" placeholder="Ej: España vs Alemania - Mundial 2026" required>
+    </div>
+    <div class="formGroup">
+      <label class="formLabel">Descripción (opcional)</label>
+      <textarea class="formTextarea" id="createDesc" placeholder="Detalles del evento..."></textarea>
+    </div>
+    <!-- Tipo de apuesta oculto, siempre será "resultado" (1X2) -->
+    <input type="hidden" id="createTipo" value="resultado">
+    <div class="formGroup">
+      <label class="formLabel">Fecha Límite (opcional - por defecto 24h)</label>
+      <input class="formInput" type="datetime-local" id="createLimite">
+      <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">Si no se especifica, cierra en 24 horas</div>
+    </div>
+    <div class="formGroup">
+      <label class="formLabel">Fecha del Evento (opcional - por defecto 48h)</label>
+      <input class="formInput" type="datetime-local" id="createEvento">
+      <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">Si no se especifica, el evento es en 48 horas</div>
+    </div>
+    <div class="formGroup">
+      <label class="formLabel">Opciones de Apuesta (mínimo 2, máximo 20) *</label>
+      <div class="opcionesWrap" id="opcionesWrap">
+        <div class="opcionItem">
+          <input class="formInput" placeholder="Nombre de la opción (Ej: España gana)" data-idx="0" style="flex:1;">
+          <button class="btn btnD" style="padding:8px;display:none;" onclick="this.parentElement.remove()">✕</button>
+        </div>
+        <div class="opcionItem">
+          <input class="formInput" placeholder="Nombre de la opción (Ej: Empate)" data-idx="1" style="flex:1;">
+          <button class="btn btnD" style="padding:8px;display:none;" onclick="this.parentElement.remove()">✕</button>
+        </div>
+      </div>
+      <button class="btn btnN" style="margin-top:8px;font-size:.65rem;" onclick="addOpcion()">+ Agregar Opción</button>
+    </div>
+    <div class="btnRow">
+      <button class="btn btnN" onclick="closeModal('modalCreate')">Cancelar</button>
+      <button class="btn btnG" onclick="createPorra()">Crear Apuesta</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const e=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+// Get token from URL params OR localStorage
+function getToken() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlToken = urlParams.get('token');
+    
+    // Priority: URL token > localStorage token
+    if (urlToken) {
+        // Save to localStorage for future use
+        localStorage.setItem('dvd_token', urlToken);
+        // Clean URL (remove token from address bar for security)
+        window.history.replaceState({}, document.title, window.location.pathname);
+        return urlToken;
+    }
+    
+    const storedToken = localStorage.getItem('dvd_token');
+    if (storedToken) {
+        return storedToken;
+    }
+    
+    return null;
+}
+
+const tok = getToken() || '';
+let porras=[],me=null,currentFilter='abierta';
+
+async function init(){
+  if(!tok){alert('No session');return;}
+  try{
+    const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(r.ok){
+      me=await r.json();
+      // Show deleted tab and admin panel only for DVD
+      if(me.username==='dvd'){
+        document.getElementById('deletedTab').style.display='';
+        document.getElementById('adminTab').style.display='';
+        // Load general stats for DVD
+        loadDvdGeneralStats();
+      }
+      
+      // Mostrar pestañas de navegación según permisos del usuario
+      if(me.is_admin){
+        document.getElementById('navStats').style.display='';
+      }
+      // Verificar qué juegos están habilitados
+      try{
+        const statusChecks = [
+          {endpoint:'/api/cuentos/status', navId:'navCuentos'},
+          {endpoint:'/api/millonario/status', navId:'navMillonario'},
+          {endpoint:'/api/quiensoy/status', navId:'navQuienSoy'},
+          {endpoint:'/api/cifrasletras/status', navId:'navCifrasLetras'},
+          {endpoint:'/api/pasapalabra/status', navId:'navPasapalabra'}
+        ];
+        for(const check of statusChecks){
+          try{
+            const resp=await fetch(check.endpoint,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+            if(resp.ok){
+              const data=await resp.json();
+              if(data.enabled){
+                document.getElementById(check.navId).style.display='';
+              }
+            }
+          }catch(_){}
+        }
+      }catch(_){}
+    }
+  }catch(_){}
+  loadPorras();
+  loadUserStats();
+  setInterval(loadPorras,30000);
+}
+
+async function loadDvdGeneralStats(){
+  try{
+    const r=await fetch('/api/porras/admin/stats',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(!r.ok) return;
+    
+    const data=await r.json();
+    const resumen=data.resumen_global;
+    
+    let html=`
+      <div style="background:linear-gradient(135deg,var(--n2),var(--n3));border:2px solid var(--gold);border-radius:var(--r);padding:20px;margin-bottom:24px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold2);margin-bottom:16px;text-align:center;">
+          👑 ESTADÍSTICAS GENERALES DEL SISTEMA (Solo DVD)
+        </h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+          <div style="background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--gold2);font-weight:700;">${resumen.total_porras}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">TOTAL PORRAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--green);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--green);font-weight:700;">${resumen.porras_abiertas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">ABIERTAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--blue);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--blue);font-weight:700;">${resumen.porras_cerradas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">CERRADAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--red);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--red);font-weight:700;">${resumen.porras_finalizadas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">FINALIZADAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--text);font-weight:700;">${resumen.total_usuarios}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">USUARIOS ACTIVOS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--gold);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--gold2);font-weight:700;">${resumen.total_bote_sistema.toFixed(1)}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">BOTE TOTAL SISTEMA</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--orange);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:1.8rem;color:var(--orange);font-weight:700;">${resumen.total_comision_sistema.toFixed(1)}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:4px;">COMISIÓN TOTAL</div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    document.getElementById('dvdGeneralStatsPanel').innerHTML=html;
+    document.getElementById('dvdGeneralStatsPanel').style.display='';
+  }catch(e){
+    console.error('Error loading DVD general stats:',e);
+  }
+}
+
+async function loadUserStats(){
+  try{
+    const r=await fetch(`/api/porras/stats/${me.username}`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(r.ok){
+      const stats=await r.json();
+      const el=document.getElementById('userStats');
+      el.innerHTML=`
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;color:var(--gold2);font-weight:700;">${stats.total_apostado.toFixed(1)}</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Total Apostado</div>
+        </div>
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;color:${stats.beneficio>=0?'var(--green)':'var(--red)'};font-weight:700;">${stats.beneficio>=0?'+':''}${stats.beneficio.toFixed(1)}</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Beneficio</div>
+        </div>
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;color:var(--green);font-weight:700;">${stats.porras_ganadas}</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Ganadas</div>
+        </div>
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;color:var(--red);font-weight:700;">${stats.porras_perdidas}</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Perdidas</div>
+        </div>
+        <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+          <div style="font-size:1.3rem;color:${stats.roi>=0?'var(--green)':'var(--red)'};font-weight:700;">${stats.roi.toFixed(1)}%</div>
+          <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">ROI</div>
+        </div>
+      `;
+    }
+  }catch(e){console.error(e);}
+}
+
+async function loadPorras(){
+  try{
+    const r=await fetch('/api/porras/list',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(r.ok){
+      const data=await r.json();
+      porras=data.porras;
+      renderPorras();
+    }
+  }catch(e){console.error(e);}
+}
+
+function renderPorras(){
+  const list=document.getElementById('porrasList');
+  let filtered=porras;
+  if(currentFilter!=='todas'){
+    if(currentFilter==='mis'){
+      filtered=porras.filter(p=>p.mis_apuestas);
+    }else{
+      filtered=porras.filter(p=>p.estado===currentFilter);
+    }
+  }
+  if(!filtered.length){
+    list.innerHTML='<div class="empty">No hay porras disponibles</div>';
+    return;
+  }
+  
+  const isDvd=me&&me.username==='dvd';
+  const isAdmin=me&&me.is_admin; // Admin del DVDBank
+  
+  // Función para traducir estados
+  const traducirEstado = (estado) => {
+    const traducciones = {
+      'abierta': 'Abierta',
+      'cerrada': 'Cerrada',
+      'finalizada': 'Finalizada',
+      'cancelada': 'Cancelada'
+    };
+    return traducciones[estado] || estado;
+  };
+  
+  list.innerHTML=filtered.map(p=>{
+    const limite=new Date(p.fecha_limite).toLocaleString('es-ES');
+    const evento=new Date(p.fecha_evento).toLocaleString('es-ES');
+    
+    // Admin buttons
+    let adminBtns='';
+    if(isDvd){
+      // DVD tiene todos los controles
+      adminBtns=`<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;">`;
+      
+      if(p.estado==='abierta'){
+        adminBtns+=`<button class="btn btnO" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();cerrarPorra(${p.id})">🔒 Cerrar</button>`;
+      }
+      
+      if(p.estado==='cerrada'){
+        adminBtns+=`<button class="btn btnG" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();resolverPorra(${p.id})">✓ Resolver</button>`;
+      }
+      
+      if(p.estado!=='finalizada'){
+        adminBtns+=`<button class="btn btnD" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();cancelarPorra(${p.id})">✕ Cancelar</button>`;
+      }
+      
+      if(p.estado==='cerrada'||p.estado==='finalizada'){
+        adminBtns+=`<button class="btn btnO" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();relanzarPorra(${p.id})">🔄 Relanzar</button>`;
+      }
+      
+      adminBtns+=`<button class="btn btnN" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();enmascararPorra(${p.id},${p.enmascarada?'false':'true'})">${p.enmascarada?'👁️ Mostrar':'👁️ Ocultar'}</button>`;
+      adminBtns+=`<button class="btn btnD" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();borrarPorra(${p.id})">🗑 Borrar</button>`;
+      adminBtns+=`</div>`;
+    } else if(isAdmin){
+      // Admins del DVDBank solo pueden cerrar y resolver con contraseña
+      adminBtns=`<div style="display:flex;gap:6px;margin-top:12px;flex-wrap:wrap;">`;
+      
+      if(p.estado==='abierta' || p.estado==='cerrada'){
+        adminBtns+=`<button class="btn btnG" style="padding:6px 10px;font-size:.65rem;" onclick="event.stopPropagation();cerrarYResolverAdmin(${p.id})">🔐 Cerrar y Resolver (Admin)</button>`;
+      }
+      
+      adminBtns+=`</div>`;
+    }
+    
+    // Construir porraInfo - OCULTAR CREADOR Y TIPO para usuarios no-DVD
+    let porraInfoHTML = '<div class="porraInfo">';
+    if(isDvd){
+      porraInfoHTML += `<span>👤 ${e(p.creador)}</span>`;
+    }
+    porraInfoHTML += `<span>📅 ${evento}</span>
+      <span>⏰ Cierre: ${limite}</span>
+    </div>`;
+    
+    return`<div class="porraCard" onclick="openPorraPage(${p.id})">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
+        <div class="porraTitle">${e(p.titulo)}</div>
+        <span class="badge ${p.estado}">${traducirEstado(p.estado)}</span>
+      </div>
+      <div class="porraDesc">${e(p.descripcion)}</div>
+      ${porraInfoHTML}
+      ${adminBtns}
+    </div>`;
+  }).join('');
+}
+
+function openPorraPage(id){
+  // NO pasar token en URL - usar cookies
+  window.location.href = `/apuestas/porra/${id}`;
+}
+
+function filterPorras(filter,btn){
+  currentFilter=filter;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  if(filter==='mis'){
+    loadMisApuestas();
+  }else if(filter==='deleted'){
+    loadDeletedPorras();
+  }else if(filter==='admin'){
+    loadAdminPanel();
+  }else{
+    renderPorras();
+  }
+}
+
+async function loadMisApuestas(){
+  try{
+    const r=await fetch('/api/porras/mis-apuestas',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(r.ok){
+      const data=await r.json();
+      const list=document.getElementById('porrasList');
+      if(!data.apuestas.length){
+        list.innerHTML='<div class="empty">No has realizado apuestas aún</div>';
+        return;
+      }
+      
+      // Show summary statistics
+      const resumen = data.resumen;
+      let html = `
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px;">
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:var(--gold2);font-weight:700;">${resumen.total_apuestas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Total Bets</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:var(--text);font-weight:700;">${resumen.total_apostado.toFixed(1)}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Total Wagered</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:${resumen.beneficio_total>=0?'var(--green)':'var(--red)'};font-weight:700;">${resumen.beneficio_total>=0?'+':''}${resumen.beneficio_total.toFixed(1)}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Profit/Loss</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:${resumen.roi_total>=0?'var(--green)':'var(--red)'};font-weight:700;">${resumen.roi_total.toFixed(1)}%</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">ROI</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:var(--green);font-weight:700;">${resumen.porras_ganadas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Won</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:var(--red);font-weight:700;">${resumen.porras_perdidas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Lost</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:var(--blue);font-weight:700;">${resumen.porras_activas}</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Active</div>
+          </div>
+          <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center;">
+            <div style="font-size:1.3rem;color:var(--text);font-weight:700;">${resumen.tasa_acierto.toFixed(1)}%</div>
+            <div style="font-size:.65rem;color:var(--text3);margin-top:3px;">Win Rate</div>
+          </div>
+        </div>
+      `;
+      
+      // Show all bets with detailed information
+      html += data.apuestas.map(a=>{
+        const fecha=new Date(a.fecha_apuesta).toLocaleString('en-GB');
+        const statusColor = a.es_ganador ? 'var(--green)' : a.es_perdedor ? 'var(--red)' : 'var(--blue)';
+        const statusIcon = a.es_ganador ? '🏆' : a.es_perdedor ? '❌' : '⏳';
+        const statusText = a.es_ganador ? 'WON' : a.es_perdedor ? 'LOST' : a.estado.toUpperCase();
+        
+        return`<div class="porraCard" onclick="openPorraPage(${a.porra_id})" style="border-left:3px solid ${statusColor};">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
+            <div class="porraTitle">${e(a.titulo)}</div>
+            <span class="badge ${a.estado}" style="background:${statusColor}20;color:${statusColor};">${statusIcon} ${statusText}</span>
+          </div>
+          <div class="porraDesc">${e(a.descripcion)}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;padding:10px;background:var(--n4);border-radius:8px;">
+            <div>
+              <div style="font-size:.65rem;color:var(--text3);margin-bottom:3px;">YOUR BET</div>
+              <div style="font-size:.85rem;color:var(--gold2);font-weight:600;">${e(a.opcion_nombre)}</div>
+              <div style="font-size:.75rem;color:var(--text2);margin-top:2px;">${a.cantidad_apostada.toFixed(1)} DVDc</div>
+            </div>
+            <div>
+              <div style="font-size:.65rem;color:var(--text3);margin-bottom:3px;">POT INFO</div>
+              <div style="font-size:.75rem;color:var(--text2);">Total: ${a.bote_total.toFixed(1)} DVDc</div>
+              <div style="font-size:.75rem;color:var(--text2);">Your %: ${a.porcentaje_bote.toFixed(1)}%</div>
+            </div>
+          </div>
+          ${a.estado === 'abierta' || a.estado === 'cerrada' ? `
+            <div style="padding:8px;background:var(--glass);border-radius:6px;margin-top:8px;">
+              <div style="font-size:.7rem;color:var(--text3);margin-bottom:4px;">POTENTIAL WINNINGS</div>
+              <div style="display:flex;justify-content:space-between;font-size:.75rem;">
+                <span>Odds: <strong style="color:var(--gold2);">${a.cuota.toFixed(2)}x</strong></span>
+                <span>Win: <strong style="color:var(--green);">${a.ganancia_potencial.toFixed(1)} DVDc</strong></span>
+                <span>ROI: <strong style="color:${a.roi_potencial>=0?'var(--green)':'var(--red)'};">${a.roi_potencial.toFixed(1)}%</strong></span>
+              </div>
+            </div>
+          ` : ''}
+          ${a.pagado ? `
+            <div style="padding:8px;background:${a.es_ganador?'rgba(56,184,122,.1)':'rgba(200,48,96,.1)'};border-radius:6px;margin-top:8px;border:1px solid ${a.es_ganador?'rgba(56,184,122,.3)':'rgba(200,48,96,.3)'};">
+              <div style="font-size:.7rem;color:var(--text3);margin-bottom:4px;">FINAL RESULT</div>
+              <div style="display:flex;justify-content:space-between;font-size:.75rem;">
+                <span>Winner: <strong style="color:var(--gold2);">${e(a.resultado)}</strong></span>
+                <span>Payout: <strong style="color:${a.es_ganador?'var(--green)':'var(--red)'};">${a.ganancia_real.toFixed(1)} DVDc</strong></span>
+                <span>P/L: <strong style="color:${a.beneficio>=0?'var(--green)':'var(--red)'};">${a.beneficio>=0?'+':''}${a.beneficio.toFixed(1)}</strong></span>
+                <span>ROI: <strong style="color:${a.roi_real>=0?'var(--green)':'var(--red)'};">${a.roi_real.toFixed(1)}%</strong></span>
+              </div>
+            </div>
+          ` : ''}
+          <div class="porraInfo" style="margin-top:10px;">
+            <span>📅 ${fecha}</span>
+            <span>👥 ${a.total_apostantes} bettors</span>
+            <span>🎯 ${a.total_en_mi_opcion.toFixed(1)} on your option</span>
+          </div>
+        </div>`;
+      }).join('');
+      
+      list.innerHTML = html;
+    }
+  }catch(e){console.error(e);}
+}
+
+async function loadDeletedPorras(){
+  try{
+    const r=await fetch('/api/porras/deleted',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(r.ok){
+      const data=await r.json();
+      const list=document.getElementById('porrasList');
+      if(!data.porras.length){
+        list.innerHTML='<div class="empty">No hay porras eliminadas</div>';
+        return;
+      }
+      list.innerHTML=data.porras.map(p=>{
+        const deletedAt=new Date(p.deleted_at).toLocaleString('es-ES');
+        const createdAt=new Date(p.created_at).toLocaleString('es-ES');
+        return`<div class="porraCard" style="border-color:var(--red);opacity:0.8;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
+            <div class="porraTitle">${e(p.titulo)}</div>
+            <span class="badge cancelada">DELETED</span>
+          </div>
+          <div class="porraDesc">${e(p.descripcion)}</div>
+          <div class="porraInfo">
+            <span>👤 ${e(p.creador)}</span>
+            <span>🗑️ Deleted: ${deletedAt}</span>
+            <span>📅 Created: ${createdAt}</span>
+            <span>🎯 ${p.tipo}</span>
+            <span>Estado: ${p.estado}</span>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px;">
+            <button class="btn btnG" style="padding:6px 12px;font-size:.7rem;" onclick="event.stopPropagation();restorePorra(${p.id})">🔄 Restore</button>
+            <button class="btn btnN" style="padding:6px 12px;font-size:.7rem;" onclick="event.stopPropagation();showDeletedPorraDetails(${p.id})">👁️ View Details</button>
+          </div>
+        </div>`;
+      }).join('');
+    }else{
+      const err=await r.json();
+      alert(err.detail||'Error loading deleted bets');
+    }
+  }catch(e){
+    console.error('Error loading deleted porras:',e);
+    alert('Connection error');
+  }
+}
+
+async function restorePorra(porraId){
+  if(!confirm('Restore this bet? It will be visible again to all users.'))return;
+  try{
+    const r=await fetch(`/api/porras/${porraId}/restore`,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
+    });
+    if(r.ok){
+      alert('Bet restored successfully!');
+      loadDeletedPorras();
+      loadPorras();
+    }else{
+      const err=await r.json();
+      alert(err.detail||'Error restoring bet');
+    }
+  }catch(e){
+    console.error('Error restoring porra:',e);
+    alert('Connection error');
+  }
+}
+
+function showDeletedPorraDetails(porraId){
+  // Fetch and show full details of deleted porra
+  fetch(`/api/porras/deleted`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}})
+    .then(r=>r.json())
+    .then(data=>{
+      const porra=data.porras.find(p=>p.id===porraId);
+      if(!porra)return;
+      
+      let msg=`📋 DELETED BET DETAILS\n\n`;
+      msg+=`ID: ${porra.id}\n`;
+      msg+=`Title: ${porra.titulo}\n`;
+      msg+=`Description: ${porra.descripcion}\n`;
+      msg+=`Creator: ${porra.creador}\n`;
+      msg+=`Type: ${porra.tipo}\n`;
+      msg+=`Status: ${porra.estado}\n`;
+      msg+=`Created: ${new Date(porra.created_at).toLocaleString('es-ES')}\n`;
+      msg+=`Deleted: ${new Date(porra.deleted_at).toLocaleString('es-ES')}\n\n`;
+      msg+=`Options:\n`;
+      porra.opciones.forEach((o,i)=>msg+=`${i+1}. ${o.nombre}\n`);
+      
+      alert(msg);
+    })
+    .catch(e=>alert('Error loading details'));
+}
+
+async function loadAdminPanel(){
+  try{
+    const r=await fetch('/api/porras/admin/stats',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    if(!r.ok){
+      const err=await r.json();
+      alert(err.detail||'Error loading admin panel');
+      return;
+    }
+    const data=await r.json();
+    const list=document.getElementById('porrasList');
+    
+    // Global summary
+    const resumen=data.resumen_global;
+    let html=`
+      <div style="background:linear-gradient(135deg,var(--n2),var(--n3));border:2px solid var(--gold);border-radius:var(--r);padding:20px;margin-bottom:24px;">
+        <h2 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);margin-bottom:16px;text-align:center;">👑 ADMIN PANEL - COMPLETE STATISTICS</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
+          <div style="background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--gold2);font-weight:700;">${resumen.total_porras}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">TOTAL PORRAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--green);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--green);font-weight:700;">${resumen.porras_abiertas}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">ABIERTAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--blue);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--blue);font-weight:700;">${resumen.porras_cerradas}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">CERRADAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--red);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--red);font-weight:700;">${resumen.porras_finalizadas}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">FINALIZADAS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--text);font-weight:700;">${resumen.total_usuarios}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">USUARIOS</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--gold);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--gold2);font-weight:700;">${resumen.total_bote_sistema.toFixed(1)}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">TOTAL BOTE</div>
+          </div>
+          <div style="background:var(--n4);border:1px solid var(--orange);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:2rem;color:var(--orange);font-weight:700;">${resumen.total_comision_sistema.toFixed(1)}</div>
+            <div style="font-size:.7rem;color:var(--text3);margin-top:4px;">COMISIÓN</div>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    // User statistics
+    html+=`
+      <div style="background:var(--n3);border:1px solid var(--border2);border-radius:var(--r);padding:20px;margin-bottom:24px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold2);margin-bottom:16px;">📊 USER STATISTICS</h3>
+        <div style="overflow-x:auto;">
+          <table style="width:100%;border-collapse:collapse;">
+            <thead>
+              <tr style="border-bottom:2px solid var(--border2);">
+                <th style="text-align:left;padding:10px;font-size:.75rem;color:var(--text3);">USER</th>
+                <th style="text-align:center;padding:10px;font-size:.75rem;color:var(--text3);">PORRAS</th>
+                <th style="text-align:center;padding:10px;font-size:.75rem;color:var(--text3);">APUESTAS</th>
+                <th style="text-align:right;padding:10px;font-size:.75rem;color:var(--text3);">APOSTADO</th>
+                <th style="text-align:right;padding:10px;font-size:.75rem;color:var(--text3);">GANADO</th>
+                <th style="text-align:right;padding:10px;font-size:.75rem;color:var(--text3);">BENEFICIO</th>
+                <th style="text-align:right;padding:10px;font-size:.75rem;color:var(--text3);">ROI</th>
+              </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    data.usuarios.forEach(u=>{
+      html+=`
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:10px;font-size:.85rem;color:var(--text);font-weight:600;">${e(u.username)}</td>
+          <td style="text-align:center;padding:10px;font-size:.8rem;color:var(--text2);">${u.total_porras}</td>
+          <td style="text-align:center;padding:10px;font-size:.8rem;color:var(--text2);">${u.total_apuestas}</td>
+          <td style="text-align:right;padding:10px;font-size:.8rem;color:var(--gold2);">${u.total_apostado.toFixed(1)}</td>
+          <td style="text-align:right;padding:10px;font-size:.8rem;color:var(--text2);">${u.total_ganado.toFixed(1)}</td>
+          <td style="text-align:right;padding:10px;font-size:.8rem;color:${u.beneficio>=0?'var(--green)':'var(--red)'};">${u.beneficio>=0?'+':''}${u.beneficio.toFixed(1)}</td>
+          <td style="text-align:right;padding:10px;font-size:.8rem;color:${u.roi>=0?'var(--green)':'var(--red)'};">${u.roi.toFixed(1)}%</td>
+        </tr>
+      `;
+    });
+    
+    html+=`
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+    
+    // Detailed porra statistics
+    html+=`
+      <div style="background:var(--n3);border:1px solid var(--border2);border-radius:var(--r);padding:20px;">
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold2);margin-bottom:16px;">🎯 DETAILED PORRA STATISTICS</h3>
+    `;
+    
+    data.porras.forEach(p=>{
+      const statusColor=p.estado==='abierta'?'var(--green)':p.estado==='cerrada'?'var(--blue)':'var(--red)';
+      html+=`
+        <div style="background:var(--n4);border-left:4px solid ${statusColor};border-radius:8px;padding:16px;margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
+            <div>
+              <div style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold2);margin-bottom:4px;">${e(p.titulo)}</div>
+              <div style="font-size:.75rem;color:var(--text3);">ID: ${p.id} | Creator: ${e(p.creador)} | Type: ${p.tipo}</div>
+            </div>
+            <span class="badge ${p.estado}" style="background:${statusColor}20;color:${statusColor};">${p.estado.toUpperCase()}</span>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px;">
+            <div style="background:var(--glass);padding:10px;border-radius:6px;text-align:center;">
+              <div style="font-size:1.2rem;color:var(--gold2);font-weight:700;">${p.bote_total.toFixed(1)}</div>
+              <div style="font-size:.65rem;color:var(--text3);">BOTE TOTAL</div>
+            </div>
+            <div style="background:var(--glass);padding:10px;border-radius:6px;text-align:center;">
+              <div style="font-size:1.2rem;color:var(--orange);font-weight:700;">${p.comision_generada.toFixed(1)}</div>
+              <div style="font-size:.65rem;color:var(--text3);">COMISIÓN (${(p.comision*100).toFixed(0)}%)</div>
+            </div>
+            <div style="background:var(--glass);padding:10px;border-radius:6px;text-align:center;">
+              <div style="font-size:1.2rem;color:var(--green);font-weight:700;">${p.bote_neto.toFixed(1)}</div>
+              <div style="font-size:.65rem;color:var(--text3);">BOTE NETO</div>
+            </div>
+            <div style="background:var(--glass);padding:10px;border-radius:6px;text-align:center;">
+              <div style="font-size:1.2rem;color:var(--text);font-weight:700;">${p.total_apostantes}</div>
+              <div style="font-size:.65rem;color:var(--text3);">APOSTANTES</div>
+            </div>
+            <div style="background:var(--glass);padding:10px;border-radius:6px;text-align:center;">
+              <div style="font-size:1.2rem;color:var(--text);font-weight:700;">${p.total_apuestas}</div>
+              <div style="font-size:.65rem;color:var(--text3);">APUESTAS</div>
+            </div>
+            ${p.estado==='finalizada'?`
+            <div style="background:var(--glass);padding:10px;border-radius:6px;text-align:center;">
+              <div style="font-size:1.2rem;color:var(--red);font-weight:700;">${p.total_pagado.toFixed(1)}</div>
+              <div style="font-size:.65rem;color:var(--text3);">PAGADO</div>
+            </div>
+            `:''}
+          </div>
+          
+          <div style="margin-bottom:12px;">
+            <div style="font-size:.75rem;color:var(--text3);margin-bottom:6px;font-weight:600;">DISTRIBUTION BY OPTION:</div>
+      `;
+      
+      Object.entries(p.distribucion).forEach(([nombre,dist])=>{
+        const pct=dist.porcentaje;
+        html+=`
+          <div style="margin-bottom:6px;">
+            <div style="display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:3px;">
+              <span style="color:var(--text2);">${e(nombre)}</span>
+              <span style="color:var(--gold2);">${dist.total.toFixed(1)} DVDc (${pct.toFixed(1)}%) - ${dist.count} bets</span>
+            </div>
+            <div style="height:8px;background:var(--n2);border-radius:4px;overflow:hidden;">
+              <div style="height:100%;background:linear-gradient(90deg,var(--gold3),var(--gold2));width:${pct}%;transition:width .3s;"></div>
+            </div>
+          </div>
+        `;
+      });
+      
+      html+=`
+          </div>
+          
+          <div style="margin-top:12px;">
+            <div style="cursor:pointer;font-size:.75rem;color:var(--gold2);font-weight:600;padding:8px;background:var(--glass);border-radius:6px;margin-bottom:10px;">📋 ALL BETS (${p.apuestas.length}) - ALWAYS VISIBLE FOR DVD</div>
+            <div style="max-height:400px;overflow-y:auto;border:1px solid var(--border);border-radius:6px;padding:8px;">
+      `;
+      
+      // Sort bets by date (most recent first)
+      const sortedBets = p.apuestas.sort((a,b) => new Date(b.fecha) - new Date(a.fecha));
+      
+      sortedBets.forEach(a=>{
+        const fecha=new Date(a.fecha).toLocaleString('es-ES', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        const statusIcon = a.pagado ? (a.ganancia > a.cantidad ? '🏆' : '❌') : '⏳';
+        const statusColor = a.pagado ? (a.ganancia > a.cantidad ? 'var(--green)' : 'var(--red)') : 'var(--blue)';
+        
+        html+=`
+          <div style="background:var(--n2);padding:10px 14px;margin-bottom:8px;border-radius:6px;border-left:3px solid ${statusColor};">
+            <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:6px;">
+              <div>
+                <span style="font-size:.85rem;color:var(--text);font-weight:700;">${statusIcon} ${e(a.username)}</span>
+                <span style="font-size:.72rem;color:var(--text3);margin-left:10px;">📅 ${fecha}</span>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size:.9rem;color:var(--gold2);font-weight:700;">${a.cantidad.toFixed(1)} DVDc</div>
+                ${a.pagado?`<div style="font-size:.7rem;color:${statusColor};font-weight:600;">Paid: ${a.ganancia.toFixed(1)} DVDc</div>`:'<div style="font-size:.7rem;color:var(--text3);">Pending</div>'}
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+              <div style="background:var(--glass);padding:6px 10px;border-radius:4px;font-size:.75rem;">
+                <span style="color:var(--text3);">Option:</span>
+                <span style="color:var(--gold2);font-weight:600;margin-left:4px;">${e(a.opcion)}</span>
+              </div>
+              ${a.pagado ? `
+                <div style="background:${a.ganancia > a.cantidad ? 'rgba(56,184,122,.1)' : 'rgba(200,48,96,.1)'};padding:6px 10px;border-radius:4px;font-size:.75rem;border:1px solid ${a.ganancia > a.cantidad ? 'rgba(56,184,122,.3)' : 'rgba(200,48,96,.3)'};">
+                  <span style="color:var(--text3);">Result:</span>
+                  <span style="color:${statusColor};font-weight:700;margin-left:4px;">${a.ganancia > a.cantidad ? 'WON' : 'LOST'}</span>
+                  <span style="color:${statusColor};font-weight:600;margin-left:6px;">${(a.ganancia - a.cantidad >= 0 ? '+' : '')}${(a.ganancia - a.cantidad).toFixed(1)} DVDc</span>
+                </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      });
+      
+      html+=`
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    html+=`</div>`;
+    
+    list.innerHTML=html;
+  }catch(e){
+    console.error('Error loading admin panel:',e);
+    alert('Error loading admin panel');
+  }
+}
+
+function openCreateModal(){
+  console.log('Opening modal...');
+  const modal = document.getElementById('modalCreate');
+  console.log('Modal element:', modal);
+  if(modal){
+    modal.classList.add('on');
+    console.log('Modal classes:', modal.className);
+  }else{
+    console.error('Modal not found!');
+  }
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove('on');
+}
+
+function addOpcion(){
+  const wrap=document.getElementById('opcionesWrap');
+  const idx=wrap.children.length;
+  if(idx>=20){alert('Maximum 20 options allowed');return;}
+  const div=document.createElement('div');
+  div.className='opcionItem';
+  div.innerHTML=`<input class="formInput" placeholder="Nombre de la opción" data-idx="${idx}" style="flex:1;">
+    <button class="btn btnD" style="padding:8px;" onclick="this.parentElement.remove()">✕</button>`;
+  wrap.appendChild(div);
+  // Show delete buttons when there are more than 2 options
+  updateDeleteButtons();
+}
+
+function updateDeleteButtons(){
+  const items=document.querySelectorAll('#opcionesWrap .opcionItem');
+  items.forEach((item,idx)=>{
+    const btn=item.querySelector('.btnD');
+    if(btn){
+      btn.style.display=items.length>2?'':'none';
+    }
+  });
+}
+
+async function createPorra(){
+  const titulo=document.getElementById('createTitulo').value.trim();
+  const desc=document.getElementById('createDesc').value.trim();
+  const tipo=document.getElementById('createTipo').value;
+  const limite=document.getElementById('createLimite').value;
+  const evento=document.getElementById('createEvento').value;
+  
+  if(!titulo){alert('Title is required');return;}
+  
+  // Dates are optional now - backend will generate defaults
+  
+  const opciones=[];
+  const inputs=document.querySelectorAll('#opcionesWrap .opcionItem');
+  for(let item of inputs){
+    const input=item.querySelector('input[data-idx]');
+    const nombre=input?input.value.trim():'';
+    if(nombre){
+      opciones.push({nombre});  // Only send nombre, valor will be auto-generated
+    }
+  }
+  
+  if(opciones.length<2){alert('Add at least 2 options');return;}
+  if(opciones.length>20){alert('Maximum 20 options allowed');return;}
+  
+  try{
+    const body={
+      titulo,
+      descripcion:desc,
+      tipo,
+      fecha_limite:limite||'',
+      fecha_evento:evento||'',
+      opciones
+    };
+    
+    console.log('Sending:', body);
+    
+    const r=await fetch('/api/porras/create',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+      body:JSON.stringify(body)
+    });
+    
+    const contentType=r.headers.get('content-type');
+    if(!contentType||!contentType.includes('application/json')){
+      const text=await r.text();
+      console.error('Non-JSON response:', text);
+      alert('Server error: '+text.substring(0,100));
+      return;
+    }
+    
+    if(r.ok){
+      const data=await r.json();
+      alert('Bet created successfully');
+      closeModal('modalCreate');
+      loadPorras();
+      // Open the new porra page
+      setTimeout(()=>openPorraPage(data.porra_id),500);
+    }else{
+      const err=await r.json();
+      alert(err.detail||'Error creating bet');
+    }
+  }catch(e){
+    console.error('Error creating porra:',e);
+    alert('Connection error: '+e.message);
+  }
+}
+
+// ============================================================================
+// FUNCIONES DE ADMINISTRACIÓN (solo DVD)
+// ============================================================================
+
+async function cerrarPorra(porraId){
+  console.log('🔒 Cerrando porra:', porraId);
+  
+  // Get porra details first
+  const porra=porras.find(p=>p.id===porraId);
+  if(!porra){alert('Apuesta no encontrada');return;}
+  
+  // Ask if user wants to close and resolve immediately or just close
+  const action=confirm('¿Quieres SELECCIONAR EL GANADOR ahora?\n\nSÍ = Cerrar y seleccionar ganador (recomendado)\nNO = Solo cerrar apuestas (puedes resolver después)');
+  
+  if(action){
+    // Close and resolve immediately
+    let msg='🏆 SELECCIONA LA OPCIÓN GANADORA:\n\n';
+    porra.opciones.forEach((o,i)=>msg+=`${i+1}. ${o.nombre}\n`);
+    msg+='\nIntroduce el número de la opción ganadora:';
+    
+    const idx=prompt(msg);
+    if(!idx||isNaN(idx)||idx<1||idx>porra.opciones.length)return;
+    
+    const resultado=porra.opciones[idx-1].valor;
+    const nombreGanador=porra.opciones[idx-1].nombre;
+    
+    if(!confirm(`✅ CONFIRMAR GANADOR:\n\n"${nombreGanador}"\n\nEl bote se distribuirá automáticamente entre todos los apostadores que eligieron esta opción.\n\nEsta acción es IRREVERSIBLE. ¿Continuar?`))return;
+    
+    try{
+      const r=await fetch(`/api/porras/cerrar-y-resolver/${porraId}`,{
+        method:'POST',
+        headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+        body:JSON.stringify({resultado})
+      });
+      console.log('Respuesta cerrar-y-resolver:', r.status);
+      if(r.ok){
+        const data=await r.json();
+        alert(`✅ ¡APUESTA CERRADA Y RESUELTA!\n\n🏆 Ganadores: ${data.ganadores} de ${data.total_apostantes} apostadores\n💰 Bote distribuido: ${data.bote_repartido.toFixed(1)} DVDc\n\nLas ganancias han sido acreditadas automáticamente en las cuentas de los ganadores.`);
+        loadPorras();
+        loadUserStats();
+      }else{
+        const err=await r.json();
+        console.error('Error cerrar-y-resolver:', err);
+        alert(err.detail||'Error al cerrar y resolver la apuesta');
+      }
+    }catch(e){
+      console.error('Excepción cerrar-y-resolver:', e);
+      alert('Error de conexión: ' + e.message);
+    }
+  }else{
+    // Just close (old behavior)
+    if(!confirm('¿Cerrar apuestas? No se podrán realizar más apuestas. Podrás resolver el ganador después.'))return;
+    try{
+      const r=await fetch(`/api/porras/cerrar/${porraId}`,{
+        method:'POST',
+        headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
+      });
+      console.log('Respuesta cerrar:', r.status);
+      if(r.ok){
+        alert('Apuesta cerrada exitosamente. Puedes resolver el ganador después.');
+        loadPorras();
+      }else{
+        const err=await r.json();
+        console.error('Error cerrar:', err);
+        alert(err.detail||'Error al cerrar la apuesta');
+      }
+    }catch(e){
+      console.error('Excepción cerrar:', e);
+      alert('Error de conexión: ' + e.message);
+    }
+  }
+}
+
+async function resolverPorra(porraId){
+  console.log('✓ Resolviendo porra:', porraId);
+  // Get porra details first
+  const porra=porras.find(p=>p.id===porraId);
+  if(!porra){alert('Apuesta no encontrada');return;}
+  
+  let msg='Selecciona el resultado ganador:\n\n';
+  porra.opciones.forEach((o,i)=>msg+=`${i+1}. ${o.nombre}\n`);
+  const idx=prompt(msg);
+  if(!idx||isNaN(idx)||idx<1||idx>porra.opciones.length)return;
+  
+  const resultado=porra.opciones[idx-1].valor;
+  if(!confirm(`¿Confirmar resultado: ${porra.opciones[idx-1].nombre}?\nLas ganancias se pagarán automáticamente.`))return;
+  
+  try{
+    const r=await fetch('/api/porras/resolver',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+      body:JSON.stringify({porra_id:porraId,resultado})
+    });
+    console.log('Respuesta resolver:', r.status);
+    if(r.ok){
+      const data=await r.json();
+      alert(`Apuesta resuelta. ${data.ganadores} ganadores. Bote: ${data.bote_repartido.toFixed(1)} DVDc`);
+      loadPorras();
+    }else{
+      const err=await r.json();
+      console.error('Error resolver:', err);
+      alert(err.detail||'Error al resolver la apuesta');
+    }
+  }catch(e){
+    console.error('Excepción resolver:', e);
+    alert('Error de conexión: ' + e.message);
+  }
+}
+
+async function cancelarPorra(porraId){
+  console.log('✕ Cancelando porra:', porraId);
+  if(!confirm('¿Cancelar apuesta? El dinero será devuelto ÍNTEGRAMENTE a todos los apostadores.'))return;
+  try{
+    const r=await fetch(`/api/porras/cancelar/${porraId}`,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
+    });
+    console.log('Respuesta cancelar:', r.status);
+    if(r.ok){
+      const data=await r.json();
+      console.log('Datos cancelar:', data);
+      alert(`Apuesta cancelada. ${data.refunded} apuestas devueltas íntegramente.`);
+      loadPorras();
+    }else{
+      const err=await r.json();
+      console.error('Error cancelar:', err);
+      alert(err.detail||'Error al cancelar la apuesta');
+    }
+  }catch(e){
+    console.error('Excepción cancelar:', e);
+    alert('Error de conexión: ' + e.message);
+  }
+}
+
+async function relanzarPorra(porraId){
+  const nuevaFechaLimite=prompt('Nueva fecha límite (formato: YYYY-MM-DD HH:MM):');
+  if(!nuevaFechaLimite)return;
+  const nuevaFechaEvento=prompt('Nueva fecha del evento (formato: YYYY-MM-DD HH:MM):');
+  if(!nuevaFechaEvento)return;
+  
+  if(!confirm(`¿Relanzar apuesta con nuevas fechas?\nFecha límite: ${nuevaFechaLimite}\nEvento: ${nuevaFechaEvento}`))return;
+  
+  try{
+    const r=await fetch(`/api/porras/relanzar/${porraId}`,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+      body:JSON.stringify({
+        fecha_limite:nuevaFechaLimite,
+        fecha_evento:nuevaFechaEvento
+      })
+    });
+    if(r.ok){
+      alert('Apuesta relanzada exitosamente');
+      loadPorras();
+    }else{
+      const err=await r.json();
+      alert(err.detail||'Error al relanzar la apuesta');
+    }
+  }catch(e){
+    alert('Error de conexión');
+  }
+}
+
+async function enmascararPorra(porraId,enmascarar){
+  console.log('👁️ Enmascarando porra:', porraId, 'enmascarar:', enmascarar);
+  try{
+    const r=await fetch(`/api/porras/enmascarar/${porraId}`,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+      body:JSON.stringify({enmascarada:enmascarar})
+    });
+    console.log('Respuesta enmascarar:', r.status);
+    if(r.ok){
+      alert(enmascarar?'Apuesta enmascarada (oculta)':'Apuesta visible');
+      loadPorras();
+    }else{
+      const err=await r.json();
+      console.error('Error enmascarar:', err);
+      alert(err.detail||'Error al enmascarar la apuesta');
+    }
+  }catch(e){
+    console.error('Excepción enmascarar:', e);
+    alert('Connection error: ' + e.message);
+  }
+}
+
+async function cerrarYResolverAdmin(porraId){
+  console.log('🔐 Admin cerrando y resolviendo porra:', porraId);
+  
+  // Get porra details first
+  const porra=porras.find(p=>p.id===porraId);
+  if(!porra){alert('Porra no encontrada');return;}
+  
+  // Pedir contraseña de admin
+  const password=prompt('🔐 CÓDIGO DE ADMIN:\n\nIntroduce el código de admin para cerrar y resolver esta porra:');
+  if(!password){return;}
+  
+  // Mostrar opciones
+  let msg='🏆 SELECCIONA LA OPCIÓN GANADORA:\n\n';
+  porra.opciones.forEach((o,i)=>msg+=`${i+1}. ${o.nombre}\n`);
+  msg+='\nIntroduce el número de la opción ganadora:';
+  
+  const idx=prompt(msg);
+  if(!idx||isNaN(idx)||idx<1||idx>porra.opciones.length)return;
+  
+  const resultado=porra.opciones[idx-1].valor;
+  const nombreGanador=porra.opciones[idx-1].nombre;
+  
+  if(!confirm(`✅ CONFIRMAR GANADOR:\n\n"${nombreGanador}"\n\nEl bote se distribuirá automáticamente entre todos los apostadores que eligieron esta opción.\n\nEsta acción es IRREVERSIBLE. ¿Continuar?`))return;
+  
+  try{
+    const r=await fetch(`/api/porras/cerrar-y-resolver-admin/${porraId}`,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
+      body:JSON.stringify({resultado, admin_password: password})
+    });
+    console.log('Respuesta cerrar-y-resolver-admin:', r.status);
+    if(r.ok){
+      const data=await r.json();
+      alert(`✅ ¡PORRA CERRADA Y RESUELTA!\n\n🏆 Ganadores: ${data.ganadores} de ${data.total_apostantes} apostadores\n💰 Bote distribuido: ${data.bote_repartido.toFixed(1)} DVDc\n👤 Resuelto por: ${data.resuelto_por}\n\nLas ganancias han sido acreditadas automáticamente en las cuentas de los ganadores.`);
+      loadPorras();
+      loadUserStats();
+    }else{
+      const err=await r.json();
+      console.error('Error cerrar-y-resolver-admin:', err);
+      alert(err.detail||'Error al cerrar y resolver la porra');
+    }
+  }catch(e){
+    console.error('Excepción cerrar-y-resolver-admin:', e);
+    alert('Error de conexión: ' + e.message);
+  }
+}
+
+async function borrarPorra(porraId){
+  console.log('🗑 Borrando porra:', porraId);
+  if(!confirm('DELETE bet permanently? This action cannot be undone.'))return;
+  if(!confirm('Are you COMPLETELY SURE? This action is IRREVERSIBLE.'))return;
+  try{
+    const r=await fetch(`/api/porras/${porraId}`,{
+      method:'DELETE',
+      headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
+    });
+    console.log('Respuesta borrar:', r.status);
+    if(r.ok){
+      alert('Bet deleted successfully');
+      loadPorras();
+    }else{
+      const err=await r.json();
+      console.error('Error borrar:', err);
+      alert(err.detail||'Error deleting bet');
+    }
+  }catch(e){
+    console.error('Excepción borrar:', e);
+    alert('Connection error: ' + e.message);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║              🚀 INICIO RÁPIDO EN 3 PASOS 🚀                  ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+┌──────────────────────────────────────────────────────────────┐
+│ PASO 1: CONFIGURAR (Solo la primera vez - 10 minutos)       │
+└──────────────────────────────────────────────────────────────┘
+
+  Doble clic en:
+
+    📄 CONFIGURAR_CLOUDFLARE.bat
+
+  Sigue el asistente:
+    ✓ Instala cloudflared
+    ✓ Autentica con Cloudflare
+    ✓ Crea el túnel
+    ✓ Configura automáticamente
+
+
+┌──────────────────────────────────────────────────────────────┐
+│ PASO 2: INICIAR SERVIDOR                                     │
+└──────────────────────────────────────────────────────────────┘
+
+  Doble clic en:
+
+    📄 ARRANCAR.bat
+
+  Espera a que aparezca:
+    ✓ Servidor iniciado
+    ✓ Túnel establecido
+    ✓ URL pública
+
+
+┌──────────────────────────────────────────────────────────────┐
+│ PASO 3: ACCEDER                                              │
+└──────────────────────────────────────────────────────────────┘
+
+  Abre tu navegador y ve a:
+
+    🌐 Tu URL fija de Cloudflare
+       (Ejemplo: https://dvdcoin.tudominio.com)
+
+
+═══════════════════════════════════════════════════════════════
+
+¡Listo! DVDcoin funcionando sin límites 🎉
+
+═══════════════════════════════════════════════════════════════
+
+
+📋 COMANDOS ADICIONALES
+═══════════════════════════════════════════════════════════════
+
+Detener servidor:
+  📄 DETENER_SERVIDOR.bat
+
+Verificar instalación:
+  📄 VERIFICAR_INSTALACION.bat
+
+Instalar autostart (como Admin):
+  📄 INSTALAR_AUTOSTART.bat
+
+
+🆘 ¿PROBLEMAS?
+═══════════════════════════════════════════════════════════════
+
+Lee:
+  📄 README_IMPORTANTE.txt
+  📄 LEEME_MIGRACION_COMPLETA.txt
+
+
+═══════════════════════════════════════════════════════════════
+
+          ¡Disfruta de DVDcoin! 🚀
+
+═══════════════════════════════════════════════════════════════

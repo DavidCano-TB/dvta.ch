@@ -1,0 +1,905 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Helper para integración con Gemini (Google) API
+Versión optimizada para DVDBank
+"""
+
+import os
+import json
+import urllib.request
+import urllib.error
+import logging
+from typing import Optional, Dict, Any
+
+logger = logging.getLogger(__name__)
+
+class GeminiAI:
+    """Cliente para Gemini API con manejo de errores y fallbacks"""
+    
+    def __init__(self):
+        self.api_key = self._load_api_key()
+        self.model = "gemini-2.5-flash"  # Modelo Flash 2.5 gratuito con alta cuota
+        self.api_url_base = "https://generativelanguage.googleapis.com/v1/models"  # API v1
+        self.timeout = 30
+        self.max_retries = 3
+        
+    def _load_api_key(self) -> Optional[str]:
+        """Carga la API key desde diferentes ubicaciones"""
+        locations = [
+            "config/.gemini_key",
+            "config/.google_key",
+            ".gemini_key",
+            os.environ.get("GEMINI_API_KEY"),
+            os.environ.get("GOOGLE_API_KEY")
+        ]
+        
+        for loc in locations:
+            if not loc:
+                continue
+            if os.path.exists(str(loc)):
+                try:
+                    with open(loc, 'r') as f:
+                        key = f.read().strip()
+                        if key:
+                            logger.info(f"Gemini API key loaded from: {loc}")
+                            return key
+                except Exception as e:
+                    logger.warning(f"Error reading {loc}: {e}")
+        
+        logger.warning("Gemini API key not found. AI features will use fallback.")
+        return None
+    
+    def ask(self, 
+            prompt: str, 
+            system: Optional[str] = None,
+            max_tokens: int = 100,
+            temperature: float = 1.0) -> Optional[str]:
+        """
+        Hace una pregunta a Gemini y devuelve la respuesta.
+        
+        Args:
+            prompt: La pregunta o prompt
+            system: Instrucciones del sistema (opcional)
+            max_tokens: Máximo de tokens en la respuesta
+            temperature: Creatividad (0.0 = determinista, 2.0 = muy creativo)
+            
+        Returns:
+            La respuesta de Gemini, o None si hay error
+        """
+        if not self.api_key:
+            logger.warning("No API key available")
+            return None
+        
+        for attempt in range(self.max_retries):
+            try:
+                # Construir el prompt completo
+                full_prompt = prompt
+                if system:
+                    full_prompt = f"{system}\n\n{prompt}"
+                
+                # Preparar payload para Gemini
+                # IMPORTANTE: gemini-2.5-flash usa "thoughts" (pensamiento interno) que consume tokens
+                # Por eso necesitamos un mínimo de 500 tokens para respuestas cortas
+                payload_dict = {
+                    "contents": [{
+                        "parts": [{
+                            "text": full_prompt
+                        }]
+                    }],
+                    "generationConfig": {
+                        "temperature": temperature,
+                        "maxOutputTokens": max(max_tokens, 500),  # Mínimo 500 tokens por los "thoughts"
+                        "topP": 0.95,
+                        "topK": 40
+                    },
+                    "safetySettings": [
+                        {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
+                        {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"}
+                    ]
+                }
+                
+                payload = json.dumps(payload_dict).encode('utf-8')
+                
+                # Construir URL con API key
+                url = f"{self.api_url_base}/{self.model}:generateContent?key={self.api_key}"
+                
+                # Crear request
+                req = urllib.request.Request(
+                    url,
+                    data=payload,
+                    headers={
+                        "Content-Type": "application/json"
+                    },
+                    method="POST"
+                )
+                
+                # Enviar request
+                with urllib.request.urlopen(req, timeout=self.timeout) as response:
+                    result = json.loads(response.read().decode('utf-8'))
+                    
+                    # Extraer respuesta de Gemini
+                    if result.get("candidates"):
+                        candidate = result["candidates"][0]
+                        content = candidate.get("content", {})
+                        parts = content.get("parts", [])
+                        
+                        if parts and "text" in parts[0]:
+                            answer = parts[0]["text"].strip()
+                            
+                            # Log de uso (opcional)
+                            usage = result.get("usageMetadata", {})
+                            logger.debug(f"Gemini response: {answer[:50]}... "
+                                       f"(tokens: {usage.get('promptTokenCount', 0)}/"
+                                       f"{usage.get('candidatesTokenCount', 0)})")
+                            
+                            return answer
+                        else:
+                            # Caso especial: respuesta sin parts (puede ser por MAX_TOKENS o filtros)
+                            finish_reason = candidate.get("finishReason", "UNKNOWN")
+                            logger.warning(f"Empty response from Gemini. Finish reason: {finish_reason}")
+                            
+                            if finish_reason == "MAX_TOKENS":
+                                logger.error("Response truncated due to MAX_TOKENS. Increase maxOutputTokens.")
+                            elif finish_reason == "SAFETY":
+                                logger.error("Response blocked by safety filters.")
+                            
+                            return None
+                    
+                    logger.warning("No candidates in Gemini response")
+                    return None
+                        
+            except urllib.error.HTTPError as e:
+                error_body = e.read().decode('utf-8')
+                logger.error(f"Gemini API HTTP error {e.code}: {e.reason}")
+                
+                try:
+                    error_json = json.loads(error_body)
+                    error_msg = error_json.get('error', {}).get('message', error_body)
+                    logger.error(f"Error details: {error_msg}")
+                except:
+                    logger.error(f"Error body: {error_body}")
+                
+                # No reintentar en ciertos errores
+                if e.code in [400, 401, 403]:  # Auth/validation errors
+                    logger.error("Authentication or validation error. Check your API key.")
+                    return None
+                elif e.code == 429:  # Rate limit
+                    if attempt < self.max_retries - 1:
+                        import time
+                        wait_time = 2 ** attempt  # Exponential backoff
+                        logger.warning(f"Rate limit hit. Waiting {wait_time}s...")
+                        time.sleep(wait_time)
+                        continue
+                    else:
+                        return None
+                else:
+                    return None
+                    
+            except urllib.error.URLError as e:
+                logger.error(f"Network error: {e.reason}")
+                if attempt < self.max_retries - 1:
+                    continue
+                return None
+                
+            except Exception as e:
+                logger.error(f"Unexpected error: {str(e)}")
+                return None
+        
+        return None
+    
+    def verify_character(self, character: str) -> Dict[str, Any]:
+        """
+        Verifica si un personaje existe y obtiene información detallada sobre él.
+        100% GESTIONADO POR IA: Sin casos específicos hardcodeados, la IA maneja TODO.
+        Incluye corrección ortográfica inteligente y sugerencias de personajes similares.
+        
+        Args:
+            character: El nombre del personaje a verificar
+            
+        Returns:
+            Dict con: exists (bool), corrected_name (str), is_real (bool), 
+                     is_fictional (bool), main_known_for (str), confidence (str),
+                     suggestions (list), photo_url (str), category (str)
+        """
+        system_prompt = """You are an EXPERT character validator with COMPREHENSIVE knowledge of ALL characters worldwide.
+
+Your knowledge includes:
+✓ Real people: scientists, athletes, musicians, politicians, actors, historical figures
+✓ Fictional characters: movies, TV, books, comics, video games, anime
+✓ Cartoon/animated: Disney, Pixar, DreamWorks, Looney Tunes, Warner Bros, Hanna-Barbera, anime
+✓ Mythological: Greek, Roman, Norse, Egyptian, Aztec, etc.
+✓ Video games: Mario, Sonic, Pokémon, Zelda, Final Fantasy, etc.
+✓ Comic books: Marvel, DC, manga characters
+✓ Toys/brands: Glow Worm, Barbie, G.I. Joe, etc.
+
+CRITICAL RULES:
+1. Be EXTREMELY FLEXIBLE with spelling - humans make typos
+2. Consider phonetic spellings in multiple languages (English, Spanish, etc.)
+3. If you can identify the character with >50% confidence, ACCEPT IT
+4. Search your ENTIRE knowledge base before rejecting
+
+Respond ONLY with valid JSON. No markdown, no explanations."""
+        
+        prompt = f"""Character to verify: "{character}"
+
+TASK: Determine if this is a valid, recognizable character for a guessing game.
+
+SEARCH PROCESS:
+1. Check exact match in your knowledge base
+2. Check common spelling variations and typos
+3. Check phonetic spellings (English, Spanish, other languages)
+4. Check if it's a nickname or alternate name
+5. Consider ALL categories: real people, fictional, cartoons, mythology, video games, etc.
+
+ACCEPTANCE CRITERIA:
+✓ Famous enough that most people would recognize the name
+✓ Has distinctive characteristics that can be described
+✓ Can be identified through yes/no questions
+
+EXAMPLES OF VALID CHARACTERS (even with errors):
+- "bugs buny" → Bugs Bunny (Looney Tunes rabbit)
+- "gusiluz" → Glow Worm / Gusano de Luz (toy character with light)
+- "dedpol" → Deadpool (Marvel antihero)
+- "pato donald" → Donald Duck (Disney duck)
+- "mickey mause" → Mickey Mouse (Disney mouse)
+- "spiderman" → Spider-Man (Marvel superhero)
+- "harry poter" → Harry Potter (wizard from books/movies)
+- "pikachu" → Pikachu (Pokémon character)
+- "mario bross" → Mario Bros (Nintendo character)
+- "elsa frozen" → Elsa (Disney Frozen character)
+
+Respond with this EXACT JSON structure:
+{{
+  "exists": true or false,
+  "corrected_name": "Correct Full Name",
+  "is_real": true or false,
+  "is_fictional": true or false,
+  "is_mythological": true or false,
+  "is_other": true or false,
+  "category": "specific category",
+  "main_known_for": "Brief description of what makes them famous/recognizable",
+  "confidence": "high" or "medium" or "low",
+  "suggestions": [],
+  "photo_url": null
+}}
+
+FIELD GUIDELINES:
+- exists: true if you recognize this character (even with spelling errors)
+- corrected_name: The proper, official name of the character
+- category: Use specific categories like "cartoon", "superhero", "scientist", "athlete", "musician", "movie_character", "video_game", "toy", "mythological", etc.
+- main_known_for: 10-30 words describing their most recognizable traits or achievements
+- confidence: "high" if very sure, "medium" if somewhat sure, "low" if guessing
+- suggestions: Empty array if exists=true, or 5 famous characters if exists=false
+
+RESPOND WITH ONLY THE JSON OBJECT, NO MARKDOWN, NO EXPLANATIONS.
+        
+        response = self.ask(
+            prompt=prompt,
+            system=system_prompt,
+            max_tokens=2000,  # Aumentado a 2000 para respuestas completas con personajes complejos
+            temperature=0.3  # Baja pero con algo de creatividad para reconocer variaciones
+        )
+        
+        if not response:
+            logger.error("Gemini API failed for character verification - NO FALLBACK")
+            # NO usar fallback - devolver error para que el usuario sepa que la IA no funciona
+            return {
+                "exists": False,
+                "corrected_name": character.title(),
+                "is_real": False,
+                "is_fictional": False,
+                "is_mythological": False,
+                "is_other": False,
+                "category": "error",
+                "main_known_for": "Error: IA no disponible. Verifica la configuración de Gemini API.",
+                "confidence": "low",
+                "suggestions": [],
+                "photo_url": None,
+                "error": "AI_NOT_AVAILABLE"
+            }
+        
+        # LOG: Ver qué responde la IA
+        logger.info(f"Gemini response for '{character}': {response[:500]}")
+        
+        try:
+            # Limpiar respuesta: eliminar markdown code blocks si existen
+            cleaned_response = response.strip()
+            
+            # Si la respuesta está en un code block de markdown, extraerlo
+            if cleaned_response.startswith('```'):
+                # Eliminar ```json o ``` del inicio
+                lines = cleaned_response.split('\n')
+                if lines[0].startswith('```'):
+                    lines = lines[1:]  # Eliminar primera línea
+                if lines and lines[-1].strip() == '```':
+                    lines = lines[:-1]  # Eliminar última línea
+                cleaned_response = '\n'.join(lines).strip()
+            
+            # Extraer JSON de la respuesta limpia
+            start = cleaned_response.find('{')
+            end = cleaned_response.rfind('}') + 1
+            if start >= 0 and end > start:
+                json_str = cleaned_response[start:end]
+                
+                # Intentar parsear el JSON
+                try:
+                    result = json.loads(json_str)
+                except json.JSONDecodeError as parse_error:
+                    # Si el JSON está incompleto (truncado), intentar completarlo
+                    logger.warning(f"JSON parsing failed, attempting to fix: {parse_error}")
+                    logger.debug(f"Problematic JSON: {json_str[:200]}...")
+                    
+                    # Si el JSON está incompleto, devolver error
+                    return {
+                        "exists": False,
+                        "corrected_name": character.title(),
+                        "is_real": False,
+                        "is_fictional": False,
+                        "is_mythological": False,
+                        "is_other": False,
+                        "category": "error",
+                        "main_known_for": "Error: Respuesta JSON incompleta de la IA.",
+                        "confidence": "low",
+                        "suggestions": [],
+                        "photo_url": None,
+                        "error": "JSON_INCOMPLETE"
+                    }
+                
+                # Validar campos requeridos
+                required_fields = ["exists", "corrected_name", "main_known_for", "confidence"]
+                for field in required_fields:
+                    if field not in result:
+                        logger.warning(f"Missing field '{field}' in verification response")
+                        result[field] = "" if field != "exists" else True
+                
+                # Si corrected_name es null, usar el nombre original
+                if result.get("corrected_name") is None:
+                    result["corrected_name"] = character.title()
+                
+                # Si main_known_for es null, usar string vacío
+                if result.get("main_known_for") is None:
+                    result["main_known_for"] = "Información no disponible"
+                
+                # Asegurar que suggestions es una lista
+                if "suggestions" not in result or not isinstance(result["suggestions"], list):
+                    result["suggestions"] = []
+                
+                logger.info(f"Character verified: {result['corrected_name']} (exists: {result['exists']}, confidence: {result.get('confidence', 'unknown')})")
+                return result
+            else:
+                logger.error("No JSON found in character verification response - NO FALLBACK")
+                # NO usar fallback - devolver error
+                return {
+                    "exists": False,
+                    "corrected_name": character.title(),
+                    "is_real": False,
+                    "is_fictional": False,
+                    "is_mythological": False,
+                    "is_other": False,
+                    "category": "error",
+                    "main_known_for": "Error: Respuesta inválida de la IA.",
+                    "confidence": "low",
+                    "suggestions": [],
+                    "photo_url": None,
+                    "error": "INVALID_RESPONSE"
+                }
+                
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse character verification JSON: {e}")
+            logger.error(f"Response was: {response[:200]}")
+            # NO usar fallback - devolver error
+            return {
+                "exists": False,
+                "corrected_name": character.title(),
+                "is_real": False,
+                "is_fictional": False,
+                "is_mythological": False,
+                "is_other": False,
+                "category": "error",
+                "main_known_for": f"Error: No se pudo parsear respuesta JSON. Response: {response[:100]}",
+                "confidence": "low",
+                "suggestions": [],
+                "photo_url": None,
+                "error": "JSON_PARSE_ERROR"
+            }
+    
+    def _fallback_verification(self, character: str) -> Dict[str, Any]:
+        """Fallback cuando la verificación por IA falla"""
+        return {
+            "exists": True,
+            "corrected_name": character,
+            "is_real": False,
+            "is_fictional": False,
+            "is_mythological": False,
+            "is_other": True,
+            "category": "desconocido",
+            "main_known_for": "Información no disponible",
+            "confidence": "low",
+            "suggestions": [],
+            "photo_search_term": character
+        }
+    
+    def _fallback_verification_with_suggestions(self, character: str) -> Dict[str, Any]:
+        """
+        Fallback mejorado con sugerencias inteligentes basadas en similitud de texto.
+        Usa una base de datos local de personajes famosos.
+        """
+        # Base de datos expandida de personajes famosos para sugerencias
+        famous_characters = {
+            # Científicos
+            "einstein": "Albert Einstein",
+            "curie": "Marie Curie",
+            "newton": "Isaac Newton",
+            "darwin": "Charles Darwin",
+            "hawking": "Stephen Hawking",
+            "tesla": "Nikola Tesla",
+            "galileo": "Galileo Galilei",
+            "edison": "Thomas Edison",
+            
+            # Personajes ficticios de terror/monstruos
+            "frankenstein": "Frankenstein",
+            "dracula": "Drácula",
+            "jekyll": "Dr. Jekyll",
+            "hyde": "Mr. Hyde",
+            "wolfman": "El Hombre Lobo",
+            "mummy": "La Momia",
+            "zombie": "Zombie",
+            "vampire": "Vampiro",
+            
+            # Detectives y personajes literarios
+            "sherlock": "Sherlock Holmes",
+            "watson": "Dr. Watson",
+            "poirot": "Hercule Poirot",
+            "holmes": "Sherlock Holmes",
+            
+            # Harry Potter
+            "harry potter": "Harry Potter",
+            "hermione": "Hermione Granger",
+            "ron": "Ron Weasley",
+            "dumbledore": "Albus Dumbledore",
+            "voldemort": "Lord Voldemort",
+            
+            # Superhéroes DC
+            "superman": "Superman",
+            "batman": "Batman",
+            "wonder woman": "Wonder Woman",
+            "flash": "The Flash",
+            "aquaman": "Aquaman",
+            
+            # Superhéroes Marvel
+            "spiderman": "Spider-Man",
+            "ironman": "Iron Man",
+            "hulk": "Hulk",
+            "thor": "Thor",
+            "captain america": "Capitán América",
+            
+            # Disney/Animación
+            "mickey": "Mickey Mouse",
+            "minnie": "Minnie Mouse",
+            "donald": "Donald Duck",
+            "goofy": "Goofy",
+            "elsa": "Elsa",
+            "anna": "Anna",
+            "simba": "Simba",
+            
+            # Videojuegos
+            "mario": "Super Mario",
+            "luigi": "Luigi",
+            "sonic": "Sonic",
+            "pikachu": "Pikachu",
+            "link": "Link",
+            "zelda": "Zelda",
+            
+            # Deportistas fútbol
+            "messi": "Lionel Messi",
+            "ronaldo": "Cristiano Ronaldo",
+            "neymar": "Neymar",
+            "pele": "Pelé",
+            "maradona": "Diego Maradona",
+            "beckham": "David Beckham",
+            
+            # Deportistas otros
+            "jordan": "Michael Jordan",
+            "nadal": "Rafael Nadal",
+            "federer": "Roger Federer",
+            "bolt": "Usain Bolt",
+            "ali": "Muhammad Ali",
+            "tyson": "Mike Tyson",
+            
+            # Actores/Actrices
+            "chaplin": "Charlie Chaplin",
+            "monroe": "Marilyn Monroe",
+            "cruise": "Tom Cruise",
+            "dicaprio": "Leonardo DiCaprio",
+            "depp": "Johnny Depp",
+            "jolie": "Angelina Jolie",
+            
+            # Músicos clásicos
+            "mozart": "Wolfgang Amadeus Mozart",
+            "beethoven": "Ludwig van Beethoven",
+            "bach": "Johann Sebastian Bach",
+            "chopin": "Frédéric Chopin",
+            
+            # Músicos modernos
+            "elvis": "Elvis Presley",
+            "beatles": "The Beatles",
+            "jackson": "Michael Jackson",
+            "madonna": "Madonna",
+            "queen": "Queen",
+            "freddie": "Freddie Mercury",
+            
+            # Políticos/Históricos
+            "napoleon": "Napoleón Bonaparte",
+            "cleopatra": "Cleopatra",
+            "lincoln": "Abraham Lincoln",
+            "washington": "George Washington",
+            "gandhi": "Mahatma Gandhi",
+            "mandela": "Nelson Mandela",
+            "churchill": "Winston Churchill",
+            "kennedy": "John F. Kennedy",
+            
+            # Mitología griega
+            "zeus": "Zeus",
+            "poseidon": "Poseidón",
+            "hades": "Hades",
+            "athena": "Atenea",
+            "apollo": "Apolo",
+            "hercules": "Hércules",
+            
+            # Mitología nórdica
+            "odin": "Odín",
+            "loki": "Loki",
+            
+            # Escritores
+            "shakespeare": "William Shakespeare",
+            "cervantes": "Miguel de Cervantes",
+            "tolkien": "J.R.R. Tolkien",
+            "rowling": "J.K. Rowling",
+            "king": "Stephen King",
+            
+            # Pintores
+            "picasso": "Pablo Picasso",
+            "dali": "Salvador Dalí",
+            "van gogh": "Vincent van Gogh",
+            "gogh": "Vincent van Gogh",
+            "monet": "Claude Monet",
+            "frida": "Frida Kahlo",
+        }
+        
+        # Función para calcular similitud entre dos strings
+        def similarity_score(s1, s2):
+            s1 = s1.lower().strip()
+            s2 = s2.lower().strip()
+            
+            # Coincidencia exacta
+            if s1 == s2:
+                return 1000
+            
+            # Substring completo
+            if s1 in s2 or s2 in s1:
+                return 500
+            
+            # Palabras en común (más peso)
+            words1 = set(s1.split())
+            words2 = set(s2.split())
+            common_words = len(words1 & words2)
+            if common_words > 0:
+                # Dar más peso si las palabras son largas (más específicas)
+                avg_word_len = sum(len(w) for w in (words1 & words2)) / common_words
+                return 300 + common_words * 50 + int(avg_word_len * 10)
+            
+            # Inicio similar (primeras 4 letras)
+            if len(s1) >= 4 and len(s2) >= 4 and s1[:4] == s2[:4]:
+                return 250
+            
+            # Caracteres en común (similitud de Jaccard)
+            chars1 = set(s1.replace(" ", ""))
+            chars2 = set(s2.replace(" ", ""))
+            if len(chars1 | chars2) > 0:
+                jaccard = len(chars1 & chars2) / len(chars1 | chars2)
+                # Penalizar si la diferencia de longitud es muy grande
+                len_diff = abs(len(s1) - len(s2))
+                penalty = max(0, 1 - (len_diff / max(len(s1), len(s2))))
+                return int(jaccard * 200 * penalty)
+            
+            return 0
+        
+        # Intentar encontrar coincidencias similares
+        char_lower = character.lower().strip()
+        matches = []
+        
+        # Calcular similitud con cada personaje
+        for key, name in famous_characters.items():
+            score_key = similarity_score(char_lower, key)
+            score_name = similarity_score(char_lower, name.lower())
+            max_score = max(score_key, score_name)
+            
+            if max_score > 0:
+                matches.append({
+                    "name": name,
+                    "score": max_score
+                })
+        
+        # Ordenar por similitud
+        matches.sort(key=lambda x: x["score"], reverse=True)
+        
+        # Si hay una coincidencia muy alta (>= 500), considerarlo como válido
+        if matches and matches[0]["score"] >= 500:
+            return {
+                "exists": True,
+                "corrected_name": matches[0]["name"],
+                "is_real": False,
+                "is_fictional": True,
+                "is_mythological": False,
+                "is_other": False,
+                "category": "personaje",
+                "main_known_for": f"Personaje famoso: {matches[0]['name']}",
+                "confidence": "high",
+                "suggestions": [],
+                "photo_search_term": matches[0]["name"]
+            }
+        
+        # Si hay coincidencias buenas (>= 150), dar sugerencias
+        if matches and matches[0]["score"] >= 150:
+            suggestions = [m["name"] for m in matches[:5]]
+            return {
+                "exists": False,
+                "corrected_name": character.title(),
+                "is_real": False,
+                "is_fictional": False,
+                "is_mythological": False,
+                "is_other": False,
+                "category": "desconocido",
+                "main_known_for": "Personaje no reconocido. ¿Quisiste decir alguno de estos?",
+                "confidence": "low",
+                "suggestions": suggestions,
+                "photo_search_term": ""
+            }
+        
+        # Si no hay sugerencias similares, dar las más populares
+        popular = [
+            "Mickey Mouse", "Albert Einstein", "Harry Potter", 
+            "Cristiano Ronaldo", "Superman", "Frankenstein",
+            "Sherlock Holmes", "Lionel Messi", "Batman", "Pikachu"
+        ]
+        
+        return {
+            "exists": False,
+            "corrected_name": character.title(),
+            "is_real": False,
+            "is_fictional": False,
+            "is_mythological": False,
+            "is_other": False,
+            "category": "desconocido",
+            "main_known_for": "Personaje no reconocido",
+            "confidence": "low",
+            "suggestions": popular,
+            "photo_search_term": ""
+        }
+    
+    def ask_quien_soy(self, character: str, question: str) -> str:
+        """
+        Pregunta específica para el juego ¿Quién soy?
+        Verifica el personaje y responde basándose en sus características principales.
+        
+        Args:
+            character: El personaje secreto
+            question: La pregunta del jugador
+            
+        Returns:
+            "Sí", "No", o "Ni sí ni no"
+        """
+        # Primero verificar el personaje para obtener información completa
+        char_info = self.verify_character(character)
+        
+        if not char_info.get("exists", True):
+            logger.warning(f"Character '{character}' does not exist in AI knowledge")
+            return "Ni sí ni no"
+        
+        # Usar el nombre corregido y toda la información disponible
+        corrected_name = char_info.get("corrected_name", character)
+        main_known_for = char_info.get("main_known_for", "")
+        category = char_info.get("category", "")
+        is_real = char_info.get("is_real", False)
+        is_fictional = char_info.get("is_fictional", False)
+        is_mythological = char_info.get("is_mythological", False)
+        
+        system_prompt = """You are an expert assistant for the "¿Quién Soy?" (Who Am I?) guessing game.
+
+Your job: Answer yes/no questions about a secret character based on their MAIN characteristics.
+
+CRITICAL RULES:
+1. Respond with ONLY: "Sí", "No", or "Ni sí ni no"
+2. NO explanations, NO punctuation, NO extra text
+3. Base answers on the character's PRIMARY/MAIN characteristics
+4. Ignore secondary or trivial details
+5. Use your FULL knowledge of the character, not just the brief description provided
+
+RESPONSE GUIDELINES:
+- "Sí" = The answer is clearly YES based on the character's main traits
+- "No" = The answer is clearly NO based on the character's main traits  
+- "Ni sí ni no" = Question is ambiguous, doesn't apply, makes no sense, or refers to secondary/irrelevant details
+
+EXAMPLES:
+Character: Albert Einstein (scientist, theory of relativity)
+  Q: "¿Es científico?" → "Sí" (main trait)
+  Q: "¿Es alemán?" → "Sí" (well-known fact)
+  Q: "¿Tocaba el violín?" → "Ni sí ni no" (secondary detail, not relevant for game)
+  Q: "¿Es real?" → "Sí" (factual)
+  
+Character: Mickey Mouse (Disney cartoon mouse)
+  Q: "¿Es un ratón?" → "Sí" (main trait)
+  Q: "¿Es de Disney?" → "Sí" (main trait)
+  Q: "¿Es de dibujos animados?" → "Sí" (main trait)
+  Q: "¿Tiene novia?" → "Ni sí ni no" (secondary detail)
+  Q: "¿Es real?" → "No" (fictional character)
+  
+Character: Bugs Bunny (Looney Tunes rabbit)
+  Q: "¿Es un conejo?" → "Sí" (main trait)
+  Q: "¿Es de dibujos animados?" → "Sí" (main trait)
+  Q: "¿Come zanahorias?" → "Sí" (iconic trait)
+  Q: "¿Es gris?" → "Sí" (well-known appearance)
+  
+Character: Deadpool (Marvel antihero)
+  Q: "¿Es un superhéroe?" → "Sí" (main category, even if antihero)
+  Q: "¿Es de Marvel?" → "Sí" (main trait)
+  Q: "¿Usa máscara roja?" → "Sí" (iconic appearance)
+  Q: "¿Es real?" → "No" (fictional)"""
+        
+        prompt = f"""SECRET CHARACTER: {corrected_name}
+Category: {category}
+Main known for: {main_known_for}
+Is real person: {is_real}
+Is fictional: {is_fictional}
+Is mythological: {is_mythological}
+
+PLAYER'S QUESTION: {question}
+
+INSTRUCTIONS:
+1. Use your COMPLETE knowledge of {corrected_name}
+2. Consider if the question relates to their MAIN characteristics
+3. Answer based on what makes them famous/recognizable
+4. Respond with ONLY: "Sí", "No", or "Ni sí ni no"
+
+RESPOND NOW:
+        
+        response = self.ask(
+            prompt=prompt,
+            system=system_prompt,
+            max_tokens=20,  # Aumentado ligeramente para asegurar respuesta completa
+            temperature=0.1  # Muy baja temperatura para respuestas consistentes y precisas
+        )
+        
+        if not response:
+            logger.warning("Gemini API failed, using fallback")
+            return "Ni sí ni no"
+        
+        # Normalizar respuesta
+        response_lower = response.lower().strip().rstrip('.')
+        
+        if response_lower in ['sí', 'si', 'yes', 'oui', 'ja']:
+            return "Sí"
+        elif response_lower in ['no', 'non', 'nein']:
+            return "No"
+        else:
+            return "Ni sí ni no"
+    
+    def generate_exam_question(self, 
+                               subject: str, 
+                               topic: str, 
+                               difficulty: str = "medium") -> Optional[Dict[str, Any]]:
+        """
+        Genera una pregunta de examen con IA
+        
+        Args:
+            subject: Asignatura (ej: "Matemáticas", "Física")
+            topic: Tema específico (ej: "Derivadas", "Cinemática")
+            difficulty: Dificultad ("easy", "medium", "hard")
+            
+        Returns:
+            Dict con: question, options (list), correct_answer, explanation
+        """
+        system_prompt = """Eres un generador de preguntas de examen universitario.
+Genera preguntas tipo test con 4 opciones (A, B, C, D).
+Responde en formato JSON válido."""
+        
+        prompt = f"""Genera una pregunta de examen sobre:
+Asignatura: {subject}
+Tema: {topic}
+Dificultad: {difficulty}
+
+Formato JSON:
+{{
+  "question": "texto de la pregunta",
+  "options": ["A) opción 1", "B) opción 2", "C) opción 3", "D) opción 4"],
+  "correct_answer": "A",
+  "explanation": "explicación de por qué es correcta"
+}}"""
+        
+        response = self.ask(
+            prompt=prompt,
+            system=system_prompt,
+            max_tokens=500,
+            temperature=0.8
+        )
+        
+        if not response:
+            return None
+        
+        try:
+            # Extraer JSON de la respuesta
+            start = response.find('{')
+            end = response.rfind('}') + 1
+            if start >= 0 and end > start:
+                json_str = response[start:end]
+                return json.loads(json_str)
+            else:
+                logger.warning("No JSON found in response")
+                return None
+        except json.JSONDecodeError as e:
+            logger.error(f"Failed to parse JSON: {e}")
+            return None
+    
+    def explain_answer(self, 
+                      question: str, 
+                      user_answer: str, 
+                      correct_answer: str) -> Optional[str]:
+        """
+        Explica por qué una respuesta es correcta o incorrecta
+        
+        Args:
+            question: La pregunta del examen
+            user_answer: La respuesta del usuario
+            correct_answer: La respuesta correcta
+            
+        Returns:
+            Explicación detallada
+        """
+        prompt = f"""Pregunta: {question}
+
+Respuesta del estudiante: {user_answer}
+Respuesta correcta: {correct_answer}
+
+Explica de forma clara y pedagógica:
+1. Por qué la respuesta correcta es {correct_answer}
+2. Si el estudiante se equivocó, dónde está el error
+3. Cómo recordar esto para el futuro
+
+Máximo 3 párrafos."""
+        
+        return self.ask(
+            prompt=prompt,
+            max_tokens=300,
+            temperature=0.7
+        )
+
+
+# Instancia global (singleton)
+_gemini_instance = None
+
+def get_gemini() -> GeminiAI:
+    """Obtiene la instancia global de GeminiAI"""
+    global _gemini_instance
+    if _gemini_instance is None:
+        _gemini_instance = GeminiAI()
+    return _gemini_instance
+
+
+# Funciones de conveniencia
+def ask_gemini(prompt: str, **kwargs) -> Optional[str]:
+    """Atajo para hacer una pregunta a Gemini"""
+    return get_gemini().ask(prompt, **kwargs)
+
+
+def ask_quien_soy(character: str, question: str) -> str:
+    """Atajo para preguntas del juego ¿Quién soy?"""
+    return get_gemini().ask_quien_soy(character, question)
+
+
+# Aliases para compatibilidad con código antiguo
+get_claude = get_gemini
+ask_claude = ask_gemini
+ClaudeAI = GeminiAI

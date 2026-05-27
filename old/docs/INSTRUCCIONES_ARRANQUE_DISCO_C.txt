@@ -1,0 +1,161 @@
+================================================================================
+INSTRUCCIONES: CONFIGURAR ARRANQUE PERMANENTE DESDE DISCO C:
+================================================================================
+
+OBJETIVO:
+---------
+Configurar Windows para que SIEMPRE arranque desde el disco C: a menos que
+cambies manualmente la configuración en la BIOS.
+
+
+PARTE 1: CONFIGURACIÓN EN WINDOWS
+==================================
+
+1. Ejecuta como ADMINISTRADOR:
+   
+   CONFIGURAR_ARRANQUE_COMPLETO.bat
+   
+   (Clic derecho → "Ejecutar como administrador")
+
+2. El script hará:
+   - Configurar BCD (Boot Configuration Data)
+   - Establecer disco C: como predeterminado
+   - Ajustar registro de Windows
+   - Crear backups automáticos
+
+
+PARTE 2: CONFIGURACIÓN EN BIOS (OBLIGATORIO)
+=============================================
+
+La configuración definitiva del orden de arranque se hace en la BIOS/UEFI.
+Windows NO puede cambiar esto por seguridad.
+
+PASOS:
+
+1. REINICIA el ordenador
+
+2. PRESIONA REPETIDAMENTE la tecla de BIOS al iniciar:
+   
+   Teclas comunes según fabricante:
+   - ASUS, MSI, Gigabyte: DEL o F2
+   - HP: F10 o ESC
+   - Dell: F12 o F2
+   - Lenovo: F1 o F2
+   - Acer: F2 o DEL
+   - Sony: F2 o F3
+   
+   Si no funciona, busca en Google: "tecla BIOS [tu marca de PC]"
+
+3. NAVEGA hasta la sección "Boot" o "Arranque"
+   (Usa las flechas del teclado)
+
+4. CONFIGURA EL ORDEN DE ARRANQUE:
+   
+   Primera opción: Windows Boot Manager (disco C:)
+                   o "Hard Drive" / "HDD"
+   
+   Mueve al final o DESHABILITA:
+   - USB Boot / USB Storage
+   - CD/DVD Boot / Optical Drive
+   - Network Boot / PXE Boot
+   - External Devices
+
+5. CONFIGURACIÓN ADICIONAL RECOMENDADA:
+   
+   a) Activa "Secure Boot" (Arranque Seguro)
+      - Previene arranque de sistemas no autorizados
+   
+   b) Establece contraseña de BIOS (opcional)
+      - Evita que otros cambien la configuración
+   
+   c) Deshabilita "Fast Boot" si da problemas
+      - Algunos sistemas tienen conflictos
+
+6. GUARDA LOS CAMBIOS:
+   - Normalmente: F10
+   - Confirma con "Yes" o "Sí"
+   - El PC se reiniciará
+
+
+VERIFICACIÓN:
+=============
+
+Después de configurar:
+
+1. El PC debe arrancar directamente desde C:
+
+2. Para verificar en Windows, ejecuta:
+   
+   bcdedit /enum
+   
+   Debe mostrar el disco C: como dispositivo predeterminado
+
+3. Intenta reiniciar con un USB conectado:
+   - Si arranca desde C: → Configuración correcta ✓
+   - Si arranca desde USB → Revisa BIOS
+
+
+SOLUCIÓN DE PROBLEMAS:
+======================
+
+Problema: No encuentro la opción "Boot" en BIOS
+Solución: Puede llamarse "Startup", "Arranque", o estar en "Advanced"
+
+Problema: No puedo cambiar el orden de arranque
+Solución: Puede estar bloqueado. Busca "Boot Option Lock" y desactívalo
+
+Problema: Sigue arrancando desde USB
+Solución: 
+  1. Verifica que "USB Boot" esté DESHABILITADO (no solo al final)
+  2. Algunos BIOS tienen "Boot Override" - desactívalo
+  3. Activa "Secure Boot"
+
+Problema: No sé qué tecla presionar para entrar en BIOS
+Solución: 
+  1. Busca en Google: "BIOS key [marca de tu PC]"
+  2. Prueba todas estas al reiniciar: DEL, F2, F10, F12, ESC
+  3. En Windows 10/11: Configuración → Actualización y seguridad 
+     → Recuperación → Inicio avanzado → Reiniciar ahora
+     → Solucionar problemas → Opciones avanzadas → Configuración de firmware UEFI
+
+
+IMPORTANTE:
+===========
+
+- Los cambios en BIOS son PERMANENTES hasta que los cambies manualmente
+- Guarda las instrucciones de tu BIOS específica para futuras referencias
+- Si tienes dual boot, asegúrate de no deshabilitar el gestor de arranque
+- Algunos PC empresariales tienen BIOS bloqueada por contraseña
+
+
+RESTAURAR CONFIGURACIÓN:
+========================
+
+Si necesitas volver atrás:
+
+1. Windows: Los backups están en c:\dvdcoin\backup_registro\
+
+2. BIOS: Entra en BIOS y restaura "Load Default Settings" o "Optimized Defaults"
+
+
+ARCHIVOS CREADOS:
+=================
+
+- CONFIGURAR_ARRANQUE_COMPLETO.bat    → Script principal (ejecutar este)
+- CONFIGURAR_ARRANQUE_DISCO_C.bat     → Configuración BCD
+- CONFIGURAR_REGISTRO_ARRANQUE.bat    → Configuración registro
+- INSTRUCCIONES_ARRANQUE_DISCO_C.txt  → Este archivo
+- backup_registro\                     → Backups automáticos
+
+
+================================================================================
+¿NECESITAS AYUDA?
+================================================================================
+
+Si tienes problemas, anota:
+1. Marca y modelo de tu PC
+2. Mensaje de error exacto (si hay)
+3. Qué tecla usaste para entrar en BIOS
+4. Qué opciones ves en la sección Boot
+
+================================================================================

@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<title>Who Wants to Be a Millionaire? — DVDcoin</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#020818;
+  --gold:#e8c840;--gold2:#f5e070;--gold3:#a08010;
+  --green:#28c878;--red:#e03040;--orange:#f08020;
+  --white:#eef4ff;--grey:#8899cc;--dim:#44558a;
+  --safe-b:env(safe-area-inset-bottom,0px);--r:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow-x:hidden}
+body{
+  background:var(--bg);color:var(--white);font-family:'DM Mono',monospace;
+  min-height:100%;-webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(ellipse at 20% 30%,rgba(26,58,143,.35) 0%,transparent 60%),
+    radial-gradient(ellipse at 80% 70%,rgba(26,58,143,.25) 0%,transparent 60%);
+}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;border:none}
+input{-webkit-appearance:none;appearance:none;font-family:inherit}
+
+/* ── HDR ─────────────────────────────── */
+#hdr{position:sticky;top:0;z-index:200;height:50px;
+  background:rgba(2,8,24,.96);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(232,200,64,.2);
+  display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+.hTitle{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;
+  color:var(--gold2);letter-spacing:.12em;text-transform:uppercase}
+.hSub{font-size:.5rem;color:var(--grey);letter-spacing:.2em;text-transform:uppercase;margin-top:1px}
+.hRight{display:flex;align-items:center;gap:8px}
+.connBadge{font-size:.58rem;color:var(--dim)}.connBadge.ok{color:var(--green)}.connBadge.err{color:var(--red)}
+.userBadge{font-size:.6rem;color:var(--grey);background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2px 9px}
+.liveDot{display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--red);margin-right:4px;animation:blink 1.2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+
+/* ── SCREENS ─────────────────────────── */
+.screen{display:none;min-height:calc(100vh - 50px);
+  padding:20px 14px;padding-bottom:calc(20px + var(--safe-b))}
+.screen.flex{display:flex;align-items:center;justify-content:center}
+.centerCard{max-width:420px;width:100%;text-align:center;
+  background:rgba(6,15,42,.9);border:1px solid rgba(232,200,64,.3);border-radius:16px;
+  padding:36px 28px;box-shadow:0 40px 100px rgba(0,0,0,.9),0 0 60px rgba(26,58,143,.3)}
+.bigIcon{font-size:3.5rem;margin-bottom:14px}
+.cardTitle{font-family:'Oswald',sans-serif;font-size:1.5rem;color:var(--gold2);
+  letter-spacing:.08em;margin-bottom:8px}
+.cardSub{font-size:.7rem;color:var(--grey);line-height:1.6;margin-bottom:18px}
+.floatAnim{animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* ── BUTTONS ─────────────────────────── */
+.btn{padding:10px 20px;border-radius:var(--r);font-family:'DM Mono',monospace;
+  font-size:.72rem;font-weight:500;letter-spacing:.09em;text-transform:uppercase;
+  transition:all .2s;cursor:pointer;border:none}
+.btnG{background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#050200}
+.btnG:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.btnS{background:rgba(255,255,255,.06);color:var(--grey);border:1px solid rgba(255,255,255,.12)}
+.btnS:hover{border-color:var(--gold3);color:var(--gold2)}
+.btn.w100{width:100%}
+.btn:disabled{opacity:.3;cursor:not-allowed;transform:none!important}
+.btnLink{background:none;border:none;color:var(--gold);font-family:inherit;
+  font-size:.68rem;text-decoration:underline;padding:4px;cursor:pointer}
+
+/* ── SETUP ───────────────────────────── */
+#screen-setup{max-width:500px;margin:0 auto}
+.setupTitle{font-family:'Oswald',sans-serif;font-size:1.3rem;color:var(--gold2);
+  letter-spacing:.1em;margin-bottom:18px}
+.setupPanel{background:rgba(6,15,42,.8);border:1px solid rgba(232,200,64,.15);
+  border-radius:12px;padding:16px;margin-bottom:12px}
+.setupPanel h3{font-size:.58rem;color:var(--dim);text-transform:uppercase;
+  letter-spacing:.14em;margin-bottom:12px}
+.acWrap{position:relative}
+.acInput{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r);padding:9px 12px;color:var(--white);
+  font-family:'DM Mono',monospace;font-size:.82rem;outline:none}
+.acInput:focus{border-color:var(--gold);background:rgba(232,200,64,.04)}
+.acInput::placeholder{color:var(--dim)}
+.acDropdown{position:absolute;top:calc(100% + 3px);left:0;right:0;z-index:400;
+  background:#080e24;border:1px solid rgba(232,200,64,.25);border-radius:var(--r);
+  max-height:180px;overflow-y:auto;display:none;box-shadow:0 12px 40px rgba(0,0,0,.8)}
+.acDropdown.open{display:block}
+.acItem{padding:8px 12px;font-size:.76rem;color:var(--grey);cursor:pointer;transition:background .12s}
+.acItem:hover,.acItem.focused{background:rgba(232,200,64,.07);color:var(--white)}
+.acClear{position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--dim);font-size:.9rem;cursor:pointer;display:none}
+.acClear:hover{color:var(--red)}
+.selectedPlayer{display:none;align-items:center;gap:8px;margin-top:6px;
+  background:rgba(232,200,64,.07);border:1px solid rgba(232,200,64,.2);
+  border-radius:var(--r);padding:7px 11px}
+.selectedPlayer.show{display:flex}
+.spName{font-size:.8rem;color:var(--gold2);flex:1}
+.spClear{background:none;border:none;color:var(--dim);cursor:pointer;font-size:.8rem}
+.spClear:hover{color:var(--red)}
+
+/* ── GAME LAYOUT ─────────────────────── */
+#screen-game{max-width:1060px;margin:0 auto;padding-top:10px}
+.gameLayout{display:grid;grid-template-columns:1fr 220px;gap:14px;align-items:start}
+.qArea{display:flex;flex-direction:column;gap:10px}
+
+/* Player strip */
+.playerStrip{display:flex;align-items:center;justify-content:space-between;
+  background:rgba(6,15,42,.8);border:1px solid rgba(232,200,64,.15);
+  border-radius:var(--r);padding:10px 16px}
+.psName{font-family:'Oswald',sans-serif;font-size:1rem;color:var(--gold2);letter-spacing:.06em}
+.psLevel{font-size:.62rem;color:var(--grey)}
+
+/* Question box */
+.qBox{background:linear-gradient(135deg,rgba(10,21,64,.95),rgba(6,15,42,.95));
+  border:1.5px solid rgba(232,200,64,.3);border-radius:14px;
+  padding:22px 24px 18px;text-align:center;min-height:90px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 40px rgba(26,58,143,.2)}
+.qText{font-size:.98rem;color:var(--white);line-height:1.6;font-weight:500}
+
+/* ── OPTIONS ─────────────────────────── */
+.optGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+/* Base option button — always visible, never truly disabled-looking */
+.optBtn{
+  display:flex;align-items:center;gap:10px;padding:12px 14px;
+  background:linear-gradient(135deg,rgba(10,21,64,.9),rgba(20,40,100,.7));
+  border:1.5px solid rgba(42,90,191,.5);border-radius:10px;
+  font-family:'DM Mono',monospace;font-size:.82rem;color:var(--white);
+  transition:background .25s,border-color .25s,box-shadow .25s;
+  text-align:left;width:100%;cursor:default}
+
+/* dvd: options are clickable to mark them */
+.optBtn.clickable{cursor:pointer}
+.optBtn.clickable:hover{
+  border-color:rgba(232,200,64,.45);
+  background:linear-gradient(135deg,rgba(26,50,130,.9),rgba(36,66,148,.7))}
+
+/* Letter badge */
+.optLetter{font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:600;
+  color:var(--gold2);background:rgba(232,200,64,.12);
+  border:1px solid rgba(232,200,64,.25);border-radius:50%;
+  width:28px;height:28px;min-width:28px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .25s,border-color .25s,color .25s}
+.optText{flex:1;line-height:1.35}
+
+/* ── OPTION STATES ───────────────────── */
+
+/* Eliminated by 50:50 */
+.optBtn.eliminated{opacity:.14;pointer-events:none}
+
+/* Selected (dvd marked it) — SOLID GREEN, readable for everyone */
+.optBtn.selected{
+  background:#186b3a !important;
+  border-color:#28c878 !important;
+  box-shadow:0 0 18px rgba(40,200,120,.4) !important;
+  color:#ffffff !important}
+.optBtn.selected .optLetter{
+  background:rgba(255,255,255,.22) !important;
+  border-color:#fff !important;
+  color:#fff !important}
+.optBtn.selected .optText{color:#fff !important}
+
+/* Revealed: correct answer (green) */
+.optBtn.reveal-correct{
+  background:linear-gradient(135deg,rgba(40,200,120,.35),rgba(20,100,60,.35)) !important;
+  border-color:var(--green) !important;
+  box-shadow:0 0 22px rgba(40,200,120,.5) !important;
+  animation:pulseGreen .5s ease-out}
+.optBtn.reveal-correct .optLetter{
+  background:rgba(40,200,120,.3) !important;
+  border-color:var(--green) !important;
+  color:var(--green) !important}
+
+/* Revealed: wrong selected answer (red) */
+.optBtn.reveal-wrong{
+  background:linear-gradient(135deg,rgba(224,48,64,.35),rgba(140,20,30,.35)) !important;
+  border-color:var(--red) !important;
+  box-shadow:0 0 22px rgba(224,48,64,.5) !important;
+  animation:pulseRed .5s ease-out}
+.optBtn.reveal-wrong .optLetter{
+  background:rgba(224,48,64,.3) !important;
+  border-color:var(--red) !important;
+  color:var(--red) !important}
+
+@keyframes pulseGreen{0%{transform:scale(1)}30%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes pulseRed  {0%{transform:scale(1)}30%{transform:scale(1.025)}100%{transform:scale(1)}}
+
+/* dvd-only hint: correct answer dimly highlighted before reveal */
+.optBtn.dvd-correct{
+  background:linear-gradient(135deg,rgba(40,200,120,.28),rgba(20,100,60,.22)) !important;
+  border-color:rgba(40,200,120,.9) !important;
+  box-shadow:0 0 12px rgba(40,200,120,.35) !important}
+.optBtn.dvd-correct .optLetter{
+  background:rgba(40,200,120,.3) !important;
+  border-color:var(--green) !important;
+  color:var(--green) !important}
+.optBtn.dvd-correct .optText{color:rgba(255,255,255,.9) !important}
+
+/* ── REVEAL OVERLAY ──────────────────── */
+.revealOverlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(0,0,0,.82);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .35s}
+.revealOverlay.show{opacity:1;pointer-events:auto}
+.revealOverlay.celebrate{animation:celebrateBg 3s ease-out forwards}
+@keyframes celebrateBg{
+  0%  {background:rgba(0,0,0,.82)}
+  15% {background:rgba(20,80,40,.90)}
+  55% {background:rgba(10,60,30,.86)}
+  100%{background:rgba(0,0,0,.82)}}
+
+.revealCard{text-align:center;padding:40px;max-width:440px;width:100%}
+.revealCard.pop{animation:revealPop .5s cubic-bezier(.175,.885,.32,1.275)}
+@keyframes revealPop{from{transform:scale(.2) rotate(-8deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+
+.revealBigIcon{font-size:5rem;margin-bottom:12px;display:block;line-height:1}
+.revealBigIcon.bounce{animation:iconBounce 3s ease-out forwards}
+@keyframes iconBounce{
+  0%  {transform:scale(1)}
+  10% {transform:scale(1.6) rotate(-12deg)}
+  22% {transform:scale(1.35) rotate(8deg)}
+  34% {transform:scale(1.5) rotate(-5deg)}
+  46% {transform:scale(1.4) rotate(2deg)}
+  62% {transform:scale(1.35)}
+  80% {transform:scale(1.18)}
+  100%{transform:scale(1)}}
+
+.revealTitle{font-family:'Oswald',sans-serif;font-size:2.4rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.revealTitle.ok{color:var(--green);text-shadow:0 0 30px rgba(40,200,120,.5)}
+.revealTitle.ok.glow{animation:titleGlow 3s ease-out forwards}
+@keyframes titleGlow{
+  0%  {text-shadow:0 0 10px rgba(40,200,120,.3)}
+  20% {text-shadow:0 0 70px rgba(40,200,120,1),0 0 140px rgba(40,200,120,.6)}
+  60% {text-shadow:0 0 45px rgba(40,200,120,.75)}
+  100%{text-shadow:0 0 30px rgba(40,200,120,.5)}}
+.revealTitle.fail{color:var(--red);text-shadow:0 0 30px rgba(224,48,64,.5)}
+
+.revealSub{font-size:.76rem;color:var(--grey);line-height:1.7;margin-bottom:18px}
+
+/* "Respuesta acertada" badge */
+.acertadaBadge{
+  display:none;margin:0 auto 20px;
+  padding:8px 20px;border-radius:20px;width:fit-content;
+  background:rgba(40,200,120,.16);border:1.5px solid rgba(40,200,120,.55);
+  color:var(--green);font-size:.74rem;letter-spacing:.09em;font-weight:500}
+.acertadaBadge.show{display:block;animation:badgePop .45s cubic-bezier(.175,.885,.32,1.275) both}
+@keyframes badgePop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+
+.revealNextBtn{display:none;padding:12px 28px;border-radius:var(--r);
+  font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#050200;
+  cursor:pointer;border:none;transition:all .2s}
+.revealNextBtn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+
+/* ── LIFELINE ────────────────────────── */
+.lifelines{display:flex;gap:8px;justify-content:center}
+.lifeBtn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;
+  font-family:'DM Mono',monospace;font-size:.68rem;font-weight:500;
+  letter-spacing:.07em;text-transform:uppercase;
+  background:rgba(240,128,32,.12);border:1.5px solid rgba(240,128,32,.35);
+  color:var(--orange);transition:all .2s;cursor:pointer}
+.lifeBtn:hover:not(:disabled){background:rgba(240,128,32,.22);transform:translateY(-1px)}
+.lifeBtn:disabled,.lifeBtn.used{opacity:.25;cursor:not-allowed;transform:none!important;filter:grayscale(.8)}
+
+/* ── ADMIN CONTROLS ──────────────────── */
+.adminCtrls{display:none;flex-direction:column;gap:7px;
+  background:rgba(2,8,24,.7);border:1px solid rgba(255,255,255,.07);
+  border-radius:var(--r);padding:12px}
+.adminCtrls.show{display:flex}
+.aCtrlRow{display:flex;gap:7px}
+.aBtn{flex:1;padding:10px 6px;border-radius:var(--r);font-family:'DM Mono',monospace;
+  font-size:.7rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+  transition:all .18s;cursor:pointer;border:none}
+.aBtn:disabled{opacity:.28;cursor:not-allowed}
+.aBtnOK{background:rgba(40,200,120,.14);color:var(--green);border:1px solid rgba(40,200,120,.3)}
+.aBtnOK:hover:not(:disabled){background:rgba(40,200,120,.25);transform:translateY(-1px)}
+.aBtnFail{background:rgba(224,48,64,.14);color:var(--red);border:1px solid rgba(224,48,64,.3)}
+.aBtnFail:hover:not(:disabled){background:rgba(224,48,64,.25);transform:translateY(-1px)}
+.aBtnReset{background:rgba(255,255,255,.04);color:var(--dim);
+  border:1px solid rgba(255,255,255,.08);flex:.5}
+.aBtnReset:hover:not(:disabled){border-color:var(--red);color:var(--red)}
+.selHint{font-size:.58rem;color:var(--dim);text-align:center;margin-top:2px}
+
+/* ── WAIT BOX ────────────────────────── */
+.waitBox{display:none;align-items:center;justify-content:center;gap:8px;
+  background:rgba(232,200,64,.05);border:1.5px dashed rgba(232,200,64,.2);
+  border-radius:var(--r);padding:14px;text-align:center;flex-direction:column}
+.waitBox.show{display:flex}
+.waitBoxTitle{font-family:'Oswald',sans-serif;font-size:.95rem;color:var(--gold2)}
+.waitBoxSub{font-size:.6rem;color:var(--grey)}
+
+/* ── PROGRESS LADDER ─────────────────── */
+.prizePanel{background:rgba(6,15,42,.85);border:1px solid rgba(232,200,64,.15);
+  border-radius:14px;padding:10px;position:sticky;top:60px}
+.prizeTitle{font-size:.58rem;color:var(--dim);text-transform:uppercase;
+  letter-spacing:.14em;margin-bottom:8px;text-align:center}
+.prizeList{display:flex;flex-direction:column-reverse;gap:2px}
+.prizeRow{display:flex;align-items:center;justify-content:center;
+  padding:5px 8px;border-radius:6px;transition:all .2s;font-size:.68rem;color:var(--dim)}
+.prizeRow .pNum{font-size:.72rem;font-family:'Oswald',sans-serif;font-weight:600}
+.prizeRow.active{background:rgba(232,200,64,.15);color:var(--gold2)}
+.prizeRow.done{color:rgba(40,200,120,.6)}
+
+/* ── RESULT SCREENS ──────────────────── */
+.resultIcon{font-size:5rem;margin-bottom:14px}
+.resultTitle{font-family:'Oswald',sans-serif;font-size:2rem;letter-spacing:.1em;margin-bottom:8px}
+.resultTitle.win{color:var(--gold2)}.resultTitle.lose{color:var(--red)}
+.resultSub{font-size:.8rem;color:var(--grey);margin-bottom:22px}
+
+/* ── CONFETTI ────────────────────────── */
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:9998}
+
+@media(max-width:680px){
+  .gameLayout{grid-template-columns:1fr}
+  .prizePanel{display:none}
+  .optGrid{grid-template-columns:1fr}
+}
+
+/* ── FAIL OVERLAY ─────────────────────────── */
+.failOverlay{position:fixed;inset:0;z-index:600;display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(8px);
+  opacity:0;pointer-events:none;transition:opacity .35s}
+.failOverlay.show{opacity:1;pointer-events:auto}
+.failCard{text-align:center;padding:40px 36px;max-width:500px;width:90%;
+  background:linear-gradient(135deg,rgba(160,20,40,.28),rgba(60,5,15,.22));
+  border:2px solid rgba(224,48,64,.7);border-radius:20px;
+  box-shadow:0 0 80px rgba(224,48,64,.45),0 30px 80px rgba(0,0,0,.9);
+  animation:failCardIn .5s cubic-bezier(.175,.885,.32,1.275) both}
+@keyframes failCardIn{from{transform:scale(.2) rotate(6deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+.failBigIcon{font-size:5rem;display:block;margin-bottom:12px;animation:failShake .65s ease-out}
+@keyframes failShake{
+  0%,100%{transform:translateX(0)}15%{transform:translateX(-18px) rotate(-4deg)}
+  30%{transform:translateX(18px) rotate(4deg)}45%{transform:translateX(-12px) rotate(-2deg)}
+  60%{transform:translateX(12px) rotate(2deg)}75%{transform:translateX(-6px)}}
+.failTitle{font-family:'Oswald',sans-serif;font-size:2.4rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--red);
+  text-shadow:0 0 30px rgba(224,48,64,.6);margin-bottom:12px}
+.failCorrect{font-size:.82rem;color:var(--grey);line-height:1.8;margin-bottom:24px}
+.failCorrect strong{color:var(--green);font-size:.95rem}
+.failCloseBtn{display:none;padding:11px 28px;border-radius:var(--r);
+  font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(255,255,255,.09);color:var(--white);border:1px solid rgba(255,255,255,.22);
+  cursor:pointer;transition:all .2s}
+.failCloseBtn:hover{background:rgba(255,255,255,.16);transform:translateY(-1px)}
+
+
+/* ── AUDIO UNLOCK BANNER ─────────────────────────────────── */
+#audioBanner{
+  position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(0);
+  z-index:9990;
+  background:rgba(10,18,50,.97);border:1.5px solid rgba(232,200,64,.55);
+  border-radius:50px;padding:11px 22px 11px 16px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(0,0,0,.7),0 0 18px rgba(232,200,64,.15);
+  cursor:pointer;user-select:none;
+  transition:opacity .4s,transform .4s;
+  animation:audioBannerPop .45s cubic-bezier(.34,1.56,.64,1);
+}
+#audioBanner.hidden{opacity:0;transform:translateX(-50%) translateY(20px);pointer-events:none}
+@keyframes audioBannerPop{
+  from{opacity:0;transform:translateX(-50%) translateY(30px)}
+  to  {opacity:1;transform:translateX(-50%) translateY(0)}
+}
+#audioBanner .abIcon{font-size:1.3rem;flex-shrink:0}
+#audioBanner .abText{font-family:'DM Mono',monospace;font-size:.68rem;
+  letter-spacing:.05em;color:#c8d8f0;line-height:1.35}
+#audioBanner .abText strong{color:#f5e070;display:block;font-size:.75rem}
+#audioBanner .abBtn{
+  background:linear-gradient(135deg,#e8c840,#a08010);
+  color:#050200;border:none;border-radius:20px;
+  padding:6px 14px;font-family:'DM Mono',monospace;
+  font-size:.65rem;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;cursor:pointer;flex-shrink:0;
+}
+</style>
+</head>
+<body>
+
+<!-- AUDIO UNLOCK BANNER -->
+<div id="audioBanner" onclick="_activateAudio()" title="Tap to enable audio">
+  <span class="abIcon">🔇</span>
+  <div class="abText">
+    <strong>Enable game audio</strong>
+    Tap here to hear sounds
+  </div>
+  <button class="abBtn" onclick="_activateAudio();event.stopPropagation()">Enable</button>
+</div>
+<!-- FLOATING AUDIO BUTTON — appears whenever audio needs unlocking -->
+<button id="audioFab" onclick="_activateAudio()" title="Enable audio"
+  style="display:none;position:fixed;bottom:16px;right:16px;z-index:9991;
+  width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(232,200,64,.6);
+  background:rgba(10,18,50,.95);color:#f5e070;font-size:1.2rem;cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.6);transition:opacity .3s;">🔇</button>
+
+<!-- FAIL OVERLAY — visible to everyone -->
+<div class="failOverlay" id="failOverlay">
+  <div class="failCard">
+    <span class="failBigIcon" id="failBigIcon">✗</span>
+     <div class="failTitle">Wrong answer!</div>
+    <div class="failCorrect" id="failCorrect"></div>
+    <button class="failCloseBtn" id="failCloseBtn" onclick="closeFail()">Continuar →</button>
+  </div>
+</div>
+
+<canvas id="confettiCanvas" style="display:none"></canvas>
+
+<!-- REVEAL OVERLAY -->
+<div class="revealOverlay" id="revealOverlay">
+  <div class="revealCard" id="revealCard">
+    <span class="revealBigIcon" id="revealIcon">✓</span>
+     <div class="revealTitle" id="revealTitle">CORRECT!</div>
+    <div class="revealSub"   id="revealSub"></div>
+    <div class="acertadaBadge" id="acertadaBadge">✓ Respuesta acertada</div>
+    <button class="revealNextBtn" id="revealNextBtn" onclick="advance()"></button>
+  </div>
+</div>
+
+<!-- HDR -->
+<div id="hdr">
+  <div>
+     <div class="hTitle" id="hTitle">Millionaire?</div>
+    <div class="hSub">DVDcoin Clubhouse</div>
+  </div>
+  <div class="hRight">
+    <span id="liveIndicator" style="display:none"><span class="liveDot"></span></span>
+    <span class="connBadge" id="connBadge">Conectando...</span>
+    <span class="userBadge" id="userBadge">—</span>
+  </div>
+</div>
+
+<!-- AUTH -->
+<div class="screen flex" id="screen-auth">
+  <div class="centerCard">
+    <div class="bigIcon">🔐</div>
+    <div class="cardTitle">Acceso requerido</div>
+    <div class="cardSub">Necesitas estar conectado a DVDcoin Bank.</div>
+    <a href="/" class="btn btnG">Ir al Banco</a>
+  </div>
+</div>
+
+<!-- DISABLED -->
+<div class="screen flex" id="screen-disabled">
+  <div class="centerCard">
+    <div class="bigIcon floatAnim">💰</div>
+     <div class="cardTitle">Who Wants to Be a Millionaire?</div>
+     <div class="cardSub">The host will enable the game shortly.</div>
+    <button class="btnLink" onclick="location.href='/'">← Volver al Banco</button>
+  </div>
+</div>
+
+<!-- WAITING -->
+<div class="screen flex" id="screen-waiting">
+  <div class="centerCard">
+    <div class="bigIcon floatAnim">⏳</div>
+    <div class="cardTitle">Sala de espera</div>
+     <div class="cardSub">The host will set up the game shortly.</div>
+    <button class="btnLink" onclick="location.href='/'">← Volver al Banco</button>
+  </div>
+</div>
+
+<!-- SETUP (dvd) -->
+<div class="screen" id="screen-setup">
+  <div style="max-width:480px;margin:0 auto">
+    <div class="setupTitle">🎮 Nueva partida</div>
+    <div class="setupPanel">
+      <h3>Seleccionar jugador</h3>
+      <div class="acWrap">
+        <input class="acInput" id="acInput" type="text" autocomplete="off"
+          spellcheck="false" placeholder="Buscar jugador registrado…"
+          oninput="acOnInput()" onkeydown="acOnKey(event)" onfocus="acOnFocus()">
+        <button class="acClear" id="acClear" onclick="acReset()">✕</button>
+        <div class="acDropdown" id="acDropdown"></div>
+      </div>
+      <input type="hidden" id="acValue">
+      <div class="selectedPlayer" id="selectedPlayer">
+        <span class="spName" id="selectedName"></span>
+        <button class="spClear" onclick="acReset()">✕</button>
+      </div>
+    </div>
+    <button class="btn btnG w100" id="btnStart" onclick="startGame()" disabled>▶ Comenzar partida</button>
+  </div>
+</div>
+
+<!-- GAME -->
+<div class="screen" id="screen-game">
+  <div class="gameLayout">
+    <div class="qArea">
+
+      <div class="playerStrip">
+        <div>
+          <div class="psName" id="psName">—</div>
+          <div class="psLevel" id="psLevel">Pregunta 1 de 15</div>
+        </div>
+      </div>
+
+      <div class="lifelines">
+        <button class="lifeBtn" id="btnComodin" onclick="useComodin()">
+          <span style="font-size:1rem">½</span> 50:50
+        </button>
+      </div>
+
+      <div class="qBox">
+        <div class="qText" id="qText">Cargando...</div>
+      </div>
+
+      <div class="optGrid" id="optGrid"></div>
+
+      <!-- Admin controls -->
+      <div class="adminCtrls" id="adminCtrls">
+         <div class="selHint" id="selHint">Click a player's option to select it</div>
+        <div class="aCtrlRow">
+          <button class="aBtn aBtnOK"   id="btnOK"   onclick="sendAction('correct')">✓ Correcto</button>
+          <button class="aBtn aBtnFail" id="btnFail" onclick="sendAction('wrong')">✗ Incorrecto</button>
+        </div>
+        <div class="aCtrlRow">
+          <button class="aBtn aBtnReset" onclick="confirmReset()">⟳ Reset</button>
+        </div>
+      </div>
+
+      <!-- Player wait box -->
+      <div class="waitBox" id="waitBox">
+         <div class="waitBoxTitle" id="waitBoxTitle">The host will confirm the answer</div>
+         <div class="waitBoxSub">No time limit — take your time</div>
+      </div>
+
+    </div>
+
+    <!-- Progress ladder -->
+    <div class="prizePanel">
+      <div class="prizeTitle">Preguntas</div>
+      <div class="prizeList" id="prizeList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- WRONG -->
+<div class="screen flex" id="screen-wrong">
+  <div class="centerCard">
+    <div class="resultIcon">😢</div>
+     <div class="resultTitle lose">Game over!</div>
+    <div class="resultSub" id="wrongSub">Ha fallado la pregunta.</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btnG" id="btnNewGame" style="display:none" onclick="confirmReset()">⟳ Nueva partida</button>
+      <button class="btn btnS" onclick="location.href='/'">← Volver al Banco</button>
+    </div>
+  </div>
+</div>
+
+<!-- WINNER -->
+<div class="screen flex" id="screen-finished">
+  <div class="centerCard">
+    <div class="resultIcon">🏆</div>
+     <div class="resultTitle win">ONE MILLION!!</div>
+     <div class="resultSub" id="finishedName">Congratulations!</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btnG" id="btnNewGame2" style="display:none" onclick="confirmReset()">⟳ Nueva partida</button>
+      <button class="btn btnS" onclick="location.href='/'">← Volver al Banco</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const ADMINS = new Set(['dvd','nina','victor','yu']);
+let myUsername=null, isDvd=false, isAdmin=false;
+let ws=null, state=null;
+let acUsers=[], acFocIdx=-1, acSel=null;
+let _revealTimeout=null;
+
+/* ═══ AUTH ════════════════════════════════════ */
+async function init(){
+  const token=localStorage.getItem('dvd_token');
+  if(!token){showScreen('auth');return;}
+  try{
+    const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
+    if(!r.ok)throw 0;
+    const me=await r.json();
+    myUsername=me.username;
+    isAdmin=ADMINS.has(myUsername);
+    isDvd=(myUsername==='dvd');
+    document.getElementById('userBadge').textContent='@'+myUsername;
+    connectWS(token);
+  }catch{showScreen('auth');}
+}
+
+/* ═══ WEBSOCKET ═══════════════════════════════ */
+function connectWS(token){
+  const proto=location.protocol==='https:'?'wss:':'ws:';
+  ws=new WebSocket(`${proto}//${location.host}/ws/millonario?token=${encodeURIComponent(token)}`);
+  ws.onopen=()=>{
+    document.getElementById('connBadge').textContent='Conectado';
+    document.getElementById('connBadge').className='connBadge ok';
+  };
+  ws.onclose=()=>{
+    document.getElementById('connBadge').textContent='Reconectando...';
+    document.getElementById('connBadge').className='connBadge err';
+    setTimeout(()=>connectWS(token),3000);
+  };
+  ws.onerror=()=>{};
+  ws.onmessage=e=>{try{applyState(JSON.parse(e.data));}catch{}};
+}
+function sendAction(action,extra={}){
+  if(ws?.readyState===WebSocket.OPEN)
+    ws.send(JSON.stringify({action,...extra}));
+}
+
+/* ═══ STATE ROUTER ════════════════════════════ */
+function applyState(data){
+  if(data.type!=='state')return;
+  const prevNivel = state ? state.nivel : 0;  // save BEFORE overwriting
+  state=data;
+  // Sync local selection with the server (broadcast to all clients)
+  if(data.selected_option !== undefined){
+    _localSelected = data.selected_option || '';
+  }
+  const live=['playing','revealing','wrong','finished'].includes(data.status);
+  document.getElementById('liveIndicator').style.display=live?'':'none';
+  if(!data.enabled&&!isAdmin){showScreen('disabled');return;}
+  switch(data.status){
+    case 'waiting':
+      hideReveal();
+      { const h=document.getElementById('hTitle'); if(h) h.textContent='Millionaire?'; }
+      { const u=document.getElementById('userBadge'); if(u) u.textContent='@'+myUsername; }
+      if(isAdmin){showScreen('setup');loadAcUsers();}
+      else showScreen('waiting');
+      break;
+    case 'playing':
+      // If nivel increased, the previous answer was correct — play applause for ALL
+      if(data.nivel > prevNivel && prevNivel > 0){
+        const cKey = data.player+'|'+(data.nivel-1)+'|correct';
+        if(_lastRevealResult !== cKey){
+          _lastRevealResult = cKey;
+          sndApplause();
+        }
+      }
+      hideReveal();
+      showScreen('game');
+      renderGame(data);
+      break;
+    case 'revealing':
+      showScreen('game');
+      renderGame(data);
+      triggerReveal(data);
+      break;
+    case 'wrong':
+      // Show fail overlay to everyone, THEN transition to wrong screen
+      _localSelected='';
+      showScreen('game');
+      renderGame(data);
+      _showFailOverlay(data);
+      break;
+    case 'finished':
+      hideReveal();
+      renderFinished(data);showScreen('finished');
+      break;
+    default:
+      if(isAdmin)showScreen('setup');else showScreen('waiting');
+  }
+}
+
+/* ═══ SETUP AUTOCOMPLETE ══════════════════════ */
+async function loadAcUsers(){
+  if(acUsers.length)return;
+  try{
+    const token=localStorage.getItem('dvd_token');
+    const r=await fetch('/api/millonario/users',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
+    acUsers=r.ok?await r.json():[];
+  }catch{acUsers=[];}
+}
+function acOnInput(){
+  const q=document.getElementById('acInput').value.trim();
+  acSel=null;
+  document.getElementById('acValue').value='';
+  document.getElementById('acClear').style.display=q?'':'none';
+  document.getElementById('btnStart').disabled=true;
+  document.getElementById('selectedPlayer').classList.remove('show');
+  acFocIdx=-1;
+  if(!q){acClose();return;}
+  const m=acUsers.filter(u=>u.toLowerCase().includes(q.toLowerCase())).slice(0,8);
+  const dd=document.getElementById('acDropdown');
+  dd.innerHTML=m.length
+    ?m.map((u,i)=>`<div class="acItem" data-idx="${i}" onmousedown="acSelect('${esc(u)}')">@${esc(u)}</div>`).join('')
+    :'<div class="acItem" style="color:var(--dim);font-style:italic">Sin resultados</div>';
+  dd.classList.add('open');
+}
+function acOnFocus(){if(document.getElementById('acInput').value.trim())acOnInput();}
+function acOnKey(e){
+  const dd=document.getElementById('acDropdown');
+  const items=dd.querySelectorAll('.acItem');
+  if(e.key==='ArrowDown'){e.preventDefault();acFocIdx=Math.min(acFocIdx+1,items.length-1);acHL(items);}
+  else if(e.key==='ArrowUp'){e.preventDefault();acFocIdx=Math.max(acFocIdx-1,0);acHL(items);}
+  else if(e.key==='Enter'){e.preventDefault();if(acFocIdx>=0)items[acFocIdx]?.dispatchEvent(new Event('mousedown'));}
+  else if(e.key==='Escape')acClose();
+}
+function acHL(items){
+  items.forEach((it,i)=>it.classList.toggle('focused',i===acFocIdx));
+  items[acFocIdx]?.scrollIntoView({block:'nearest'});
+}
+function acSelect(u){
+  acSel=u;
+  document.getElementById('acInput').value='@'+u;
+  document.getElementById('acValue').value=u;
+  document.getElementById('acClear').style.display='';
+  document.getElementById('selectedName').textContent='@'+u;
+  document.getElementById('selectedPlayer').classList.add('show');
+  document.getElementById('btnStart').disabled=false;
+  acClose();
+}
+function acReset(){
+  acSel=null;
+  document.getElementById('acInput').value='';
+  document.getElementById('acValue').value='';
+  document.getElementById('acClear').style.display='none';
+  document.getElementById('selectedPlayer').classList.remove('show');
+  document.getElementById('btnStart').disabled=true;
+  acClose();
+  document.getElementById('acInput').focus();
+}
+function acClose(){document.getElementById('acDropdown').classList.remove('open');acFocIdx=-1;}
+function startGame(){
+  const player=document.getElementById('acValue').value;
+  if(!player)return;
+  sendAction('setup',{player});
+}
+
+/* ═══ RENDER GAME ═════════════════════════════ */
+function renderGame(data){
+  const{nivel,pregunta,comodin_50,eliminadas,selected_option,reveal_result,status}=data;
+  const revealing=(status==='revealing');
+
+  document.getElementById('psName').textContent='@'+(data.player||'—');
+  // Show contestant name in header badge (replace logged-in user name)
+  const hTitle = document.getElementById('hTitle');
+  if (hTitle) hTitle.textContent = data.player ? '@'+data.player : 'Millionaire?';
+  const uBadge = document.getElementById('userBadge');
+  if (uBadge) uBadge.textContent = data.player ? '@'+data.player : '@'+myUsername;
+  document.getElementById('psLevel').textContent=`Pregunta ${nivel} de 15`;
+  document.getElementById('qText').textContent=pregunta?pregunta.pregunta:'…';
+
+  /* ── Build option buttons ── */
+  const grid=document.getElementById('optGrid');
+  if(pregunta){
+    const all=pregunta.opciones_all||pregunta.opciones||{};
+    grid.innerHTML=['A','B','C','D'].map(k=>{
+      const txt=all[k]||'';
+      if(!txt)return'';
+
+      const elim   = eliminadas.includes(k);
+      const sel    = selected_option===k;
+      const correct= pregunta.respuesta===k;
+
+      // Classes to apply
+      const classes=['optBtn'];
+      if(elim){
+        classes.push('eliminated');
+      } else if(revealing){
+        // During reveal: show correct green, show selected-wrong red
+        if(correct)       classes.push('reveal-correct');
+        else if(sel)      classes.push('reveal-wrong');
+        // else stays default
+      } else {
+        // Playing state
+        // selected_option del servidor: visible para TODOS
+        // _localSelected: feedback inmediato de dvd (antes de que llegue el WS)
+        const isSelected = (selected_option===k) || (isDvd && _localSelected===k);
+        if(isSelected) classes.push('selected');
+        // dvd-correct: solo visible para dvd
+        if(isDvd && correct) classes.push('dvd-correct');
+      }
+
+      // Only dvd can click (and only during playing, not revealing, not eliminated)
+      const clickable=isDvd&&!revealing&&!elim;
+      if(clickable) classes.push('clickable');
+
+      return`<button class="${classes.join(' ')}"${clickable?` onclick="selectOption('${k}')"`:''}>
+        <span class="optLetter">${k}</span>
+        <span class="optText">${esc(txt)}</span>
+      </button>`;
+    }).join('');
+  }
+
+  /* ── 50:50 joker (dvd only) ── */
+  const btnC=document.getElementById('btnComodin');
+  if(isDvd&&!revealing){
+    btnC.style.display='';
+    btnC.disabled=comodin_50;
+    comodin_50?btnC.classList.add('used'):btnC.classList.remove('used');
+  }else{
+    btnC.style.display='none';
+  }
+
+  /* ── Admin controls ── */
+  const ac=document.getElementById('adminCtrls');
+  if(isDvd&&!revealing){
+    ac.classList.add('show');
+    document.getElementById('btnOK').disabled=false;
+    document.getElementById('btnFail').disabled=false;
+    const hint=document.getElementById('selHint');
+    if(selected_option){
+      hint.textContent=`Marcada: ${selected_option} — Pulsa ✓ o ✗ para confirmar`;
+      hint.style.color='var(--green)';
+    }else{
+      hint.textContent='Haz clic en la respuesta del jugador para marcarla';
+      hint.style.color='var(--dim)';
+    }
+  }else{
+    ac.classList.remove('show');
+  }
+
+  /* ── Player wait box ── */
+  const wb=document.getElementById('waitBox');
+  if(!isDvd&&!revealing){
+    wb.classList.add('show');
+    const isPlayer=(myUsername===data.player);
+     let title=isPlayer?'It\'s your turn! Say your answer out loud':`@${data.player}'s turn`;
+    if(selected_option) title+=`  •  Marcada: ${selected_option}`;
+    document.getElementById('waitBoxTitle').textContent=title;
+  }else{
+    wb.classList.remove('show');
+  }
+
+  renderProgressLadder(nivel);
+}
+
+let _localSelected = '';
+function selectOption(letter){
+  if(!isDvd||state?.status!=='playing')return;
+  // Toggle: mismo click = deseleccionar
+  _localSelected = (_localSelected === letter) ? '' : letter;
+  // Feedback visual inmediato para dvd
+  _renderSelection(_localSelected);
+  // Send to server → broadcast to all other clients
+  sendAction('select_option', {letter: _localSelected});
+}
+function _renderSelection(sel){
+  document.querySelectorAll('#optGrid .optBtn').forEach(btn=>{
+    const k = btn.querySelector('.optLetter')?.textContent;
+    if(!k) return;
+    btn.classList.toggle('selected', k === sel);
+  });
+  const hint = document.getElementById('selHint');
+  if(hint){
+    if(sel){
+      hint.textContent = `Marcada: ${sel} — Pulsa ✓ o ✗ para confirmar`;
+      hint.style.color = 'var(--green)';
+    } else {
+      hint.textContent = 'Haz clic en la respuesta del jugador para marcarla';
+      hint.style.color = 'var(--dim)';
+    }
+  }
+}
+
+/* ═══ REVEAL ANIMATION ════════════════════════ */
+let _lastRevealResult = null;
+function triggerReveal(data){
+  clearTimeout(_revealTimeout);
+  const isCorrect=(data.reveal_result==='correct');
+
+  // ── Play audio (for ALL users — triggered by WS state change) ──
+  const revealKey = data.nivel + '|' + data.reveal_result;
+  if(_lastRevealResult !== revealKey){
+    _lastRevealResult = revealKey;
+    if(isCorrect) sndApplause(); else sndWrong();
+  }
+
+  if(isCorrect){
+    // ── CORRECT: celebration overlay ──
+    const overlay=document.getElementById('revealOverlay');
+    const card   =document.getElementById('revealCard');
+    const icon   =document.getElementById('revealIcon');
+    const title  =document.getElementById('revealTitle');
+    const sub    =document.getElementById('revealSub');
+    const badge  =document.getElementById('acertadaBadge');
+    const nextBtn=document.getElementById('revealNextBtn');
+
+    // Close fail overlay if open
+    document.getElementById('failOverlay').classList.remove('show');
+
+    icon.textContent='✓';
+    title.className='revealTitle ok';
+     title.textContent=data.nivel<15?'CORRECT!':'THEY\'VE DONE IT!!';
+     sub.textContent=data.nivel<15?'Keep going!':'All 15 questions answered!';
+
+    badge.classList.remove('show');
+    void badge.offsetWidth;
+    badge.classList.add('show');
+
+    nextBtn.style.display='none';
+    if(isDvd){
+      _revealTimeout=setTimeout(()=>{
+        nextBtn.style.display='';
+        nextBtn.textContent=data.nivel<15?'▶ Siguiente pregunta':'🏆 Fin victorioso';
+      },3000);
+    }
+
+    overlay.classList.remove('celebrate');
+    void overlay.offsetWidth;
+    overlay.classList.add('show');
+    card.classList.remove('pop');
+    void card.offsetWidth;
+    card.classList.add('pop');
+
+    icon.classList.remove('bounce');
+    title.classList.remove('glow');
+    void icon.offsetWidth;
+    icon.classList.add('bounce');
+    title.classList.add('glow');
+    overlay.classList.add('celebrate');
+    startConfetti();
+
+  }else{
+    // ── WRONG: fail overlay (visible to EVERYONE) ──
+    document.getElementById('revealOverlay').classList.remove('show','celebrate');
+
+    const q=data.pregunta;
+    const correctTxt=(q&&q.opciones_all)?q.opciones_all[q.respuesta]:'';
+    document.getElementById('failCorrect').innerHTML=
+      `La respuesta correcta era:<br><strong>${q?q.respuesta:''} — ${esc(correctTxt)}</strong>`;
+
+    const fo=document.getElementById('failOverlay');
+    const icon=document.getElementById('failBigIcon');
+    const btn=document.getElementById('failCloseBtn');
+
+    icon.className='failBigIcon'; // reset shake
+    void icon.offsetWidth;        // force reflow to replay animation
+    icon.className='failBigIcon'; // shake applied via @keyframes
+    fo.classList.add('show');
+
+    btn.style.display='none';
+    if(isDvd){
+      _revealTimeout=setTimeout(()=>{ btn.style.display=''; }, 2500);
+    }
+  }
+}
+
+function _showFailOverlay(data){
+  // Build fail overlay content from current question
+  const q = data.pregunta;
+  const correctTxt = (q && q.opciones_all) ? q.opciones_all[q.respuesta] : '';
+  document.getElementById('failCorrect').innerHTML =
+    q ? `La respuesta correcta era:<br><strong>${q.respuesta} — ${esc(correctTxt)}</strong>` : '';
+
+  const fo   = document.getElementById('failOverlay');
+  const icon = document.getElementById('failBigIcon');
+  const btn  = document.getElementById('failCloseBtn');
+
+  icon.className = 'failBigIcon';
+  void icon.offsetWidth;
+  fo.classList.add('show');
+  btn.style.display = 'none';
+
+  // Play wrong sound for ALL users (key: player+nivel so it fires once)
+  const wKey = (data.player||'')+'|'+(data.nivel||'')+'|wrong';
+  if(_lastRevealResult !== wKey){
+    _lastRevealResult = wKey;
+    sndWrong();
+  }
+
+  // Auto-close after 2 seconds for EVERYONE, then go to wrong screen
+  clearTimeout(_revealTimeout);
+  _revealTimeout = setTimeout(()=>{
+    fo.classList.remove('show');
+    _lastRevealResult = null;
+    _localSelected = '';
+    if(state){ renderWrong(state); showScreen('wrong'); }
+  }, 2000);
+}
+
+function advance(){
+  _lastRevealResult=null;
+  sendAction('advance');
+}
+function closeFail(){
+  _lastRevealResult=null;
+  _localSelected='';
+  document.getElementById('failOverlay').classList.remove('show');
+  // In millonario, 'wrong' is a terminal state — go straight to wrong screen
+  if(state) { renderWrong(state); showScreen('wrong'); }
+}
+function hideReveal(){
+  clearTimeout(_revealTimeout);
+  _lastRevealResult=null;
+  document.getElementById('revealOverlay').classList.remove('show','celebrate');
+  document.getElementById('revealNextBtn').style.display='none';
+  document.getElementById('acertadaBadge').classList.remove('show');
+  document.getElementById('failOverlay').classList.remove('show');
+}
+
+/* ═══ PROGRESS LADDER ════════════════════════ */
+function renderProgressLadder(currentLevel){
+  const list=document.getElementById('prizeList');
+  list.innerHTML=Array.from({length:15},(_,i)=>{
+    const lvl=i+1;
+    const cls=lvl<currentLevel?'done':lvl===currentLevel?'active':'';
+    return`<div class="prizeRow${cls?' '+cls:''}">\
+<span class="pNum">${lvl}</span></div>`;
+  }).join('');
+}
+
+/* ═══ WRONG / FINISHED ═══════════════════════ */
+function renderWrong(data){
+  document.getElementById('wrongSub').textContent=
+    `@${data.player} ha fallado en la pregunta ${data.nivel}.`;
+  document.getElementById('btnNewGame').style.display=isAdmin?'inline-block':'none';
+}
+function renderFinished(data){
+  document.getElementById('finishedName').textContent=
+     `@${data.player} becomes a MILLIONAIRE!`;
+  document.getElementById('btnNewGame2').style.display=isAdmin?'inline-block':'none';
+  startConfetti();
+  sndWin();
+}
+
+/* ═══ LIFELINE ═══════════════════════════════ */
+function useComodin(){
+  if(!isDvd||state?.comodin_50)return;
+   if(confirm('Use the 50:50 joker? You can only use it once per game.'))
+    sendAction('comodin_50');
+}
+
+/* ═══ CONFETTI ═══════════════════════════════ */
+let _confAF=null;
+function startConfetti(){
+  const canvas=document.getElementById('confettiCanvas');
+  canvas.style.display='';
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  const ctx=canvas.getContext('2d');
+  const COLS=['#e8c840','#f5e070','#28c878','#4070df','#e03040','#ffffff','#f08020'];
+  const parts=Array.from({length:260},()=>({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height-canvas.height,
+    w:Math.random()*10+4,h:Math.random()*5+2,
+    r:Math.random()*Math.PI*2,dr:(Math.random()-.5)*.2,
+    dx:(Math.random()-.5)*1.5,dy:Math.random()*3+2,
+    color:COLS[Math.floor(Math.random()*COLS.length)]
+  }));
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    let alive=false;
+    parts.forEach(p=>{
+      p.x+=p.dx;p.y+=p.dy;p.r+=p.dr;
+      if(p.y<canvas.height+20)alive=true;
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);
+      ctx.fillStyle=p.color;ctx.globalAlpha=.85;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    if(alive)_confAF=requestAnimationFrame(frame);
+    else{ctx.clearRect(0,0,canvas.width,canvas.height);canvas.style.display='none';}
+  }
+  cancelAnimationFrame(_confAF);
+  _confAF=requestAnimationFrame(frame);
+}
+
+/* ═══ UTILS ══════════════════════════════════ */
+function confirmReset(){
+   if(confirm('Reset the game?')){
+    sendAction('reset');acReset();acUsers=[];
+  }
+}
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>{
+    s.style.display='none';s.classList.remove('flex');
+  });
+  const el=document.getElementById('screen-'+name);
+  if(!el)return;
+  const FLEX=['auth','disabled','waiting','wrong','finished'];
+  el.style.display=FLEX.includes(name)?'flex':'block';
+  if(FLEX.includes(name))el.classList.add('flex');
+}
+function esc(s){
+  return String(s).replace(/[&<>"']/g,
+    c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+/* ================================================================
+   DVDcoin Audio Engine v6 — cola de sonidos, desbloqueo robusto
+   El navegador bloquea el audio hasta gesto del usuario.
+    Solution: visible banner + queue that plays on audio unlock.
+================================================================ */
+let _audioCtx      = null;
+let _audioUnlocked = false;
+let _pendingAudio  = [];   // funciones encoladas antes del unlock
+
+function _activateAudio() {
+  try {
+    if (!_audioCtx)
+      _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const go = () => {
+      _audioUnlocked = true;
+      _hideBanner();
+      // Hide FAB too
+      const fab = document.getElementById('audioFab');
+      if (fab) fab.style.display = 'none';
+      // Silent pip to warm up the audio context
+      try {
+        const b = _audioCtx.createBuffer(1,1,22050);
+        const s = _audioCtx.createBufferSource();
+        s.buffer = b; s.connect(_audioCtx.destination); s.start(0);
+      } catch(e){}
+      // Flush pending queue
+      const q = _pendingAudio.splice(0);
+      q.forEach(fn => { try { fn(); } catch(e){} });
+    };
+    _audioCtx.state === 'suspended'
+      ? _audioCtx.resume().then(go).catch(()=>{})
+      : go();
+  } catch(e) {}
+}
+
+function _hideBanner() {
+  const b = document.getElementById('audioBanner');
+  if (b) b.classList.add('hidden');
+}
+function _showBanner() {
+  // Show compact FAB instead of full banner if game already started
+  const fab = document.getElementById('audioFab');
+  if (fab && !_audioUnlocked) fab.style.display = 'flex';
+}
+
+function _unlockAudio() { if (!_audioUnlocked) _activateAudio(); }
+document.addEventListener('click',      _unlockAudio, { capture: true });
+document.addEventListener('touchstart', _unlockAudio, { capture: true });
+document.addEventListener('keydown',    _unlockAudio, { capture: true });
+
+function _getCtx() {
+  if (!_audioCtx)
+    try { _audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){ return null; }
+  return _audioCtx;
+}
+
+ /* Run fn now if audio is unlocked, otherwise queue it */
+function _playSafe(fn) {
+  if (_audioUnlocked) {
+    const ctx = _getCtx();
+    if (ctx && ctx.state === 'suspended') {
+      ctx.resume().then(() => { try { fn(); } catch(e){} }).catch(() => {});
+    } else {
+      try { fn(); } catch(e){}
+    }
+  } else {
+    if (_pendingAudio.length < 4) _pendingAudio.push(fn);
+    _showBanner();   // re-show banner if user hasn't activated audio yet
+  }
+}
+
+
+
+function _playNotes(notes, masterVol) {
+  _playSafe(() => _playNotesNow(notes, masterVol));
+}
+function _playNotesNow(notes, masterVol) {
+  const ctx = _getCtx();
+  if (!ctx) return;
+  const play = () => {
+    try {
+      const now = ctx.currentTime;
+      const m = ctx.createGain();
+      const c = ctx.createDynamicsCompressor();
+      c.threshold.value = -10; c.ratio.value = 4;
+      m.gain.setValueAtTime(masterVol, now);
+      m.connect(c); c.connect(ctx.destination);
+      notes.forEach(([freq, start, dur, type, vol]) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = type || 'sine';
+        o.frequency.setValueAtTime(freq, now + start);
+        g.gain.setValueAtTime(0, now + start);
+        g.gain.linearRampToValueAtTime(vol, now + start + 0.015);
+        g.gain.setValueAtTime(vol, now + start + dur * 0.7);
+        g.gain.exponentialRampToValueAtTime(0.0001, now + start + dur);
+        o.connect(g); g.connect(m);
+        o.start(now + start); o.stop(now + start + dur + 0.05);
+      });
+    } catch(e) {}
+  };
+  if (ctx.state === 'suspended') {
+    ctx.resume().then(play).catch(() => {});
+  } else {
+    play();
+  }
+}
+
+/* APPLAUSE — simulated clapping crowd (2.5s) */
+function sndApplause() {
+  _playSafe(_sndApplauseInner);
+}
+function _sndApplauseInner() {
+  const ctx = _getCtx(); if (!ctx) return;
+  const play = () => {
+    try {
+      const now = ctx.currentTime;
+      const m = ctx.createGain(); const c = ctx.createDynamicsCompressor();
+      c.threshold.value = -12; c.ratio.value = 4;
+      m.gain.setValueAtTime(0.30, now); m.connect(c); c.connect(ctx.destination);
+      // Warm chord bed
+      [[523,0,2.5,'sine',0.15],[659,0,2.5,'sine',0.12],[784,0,2.5,'sine',0.09]].forEach(([f,s,d,t,v])=>{
+        const o=ctx.createOscillator(),g=ctx.createGain();
+        o.type=t;o.frequency.value=f;
+        g.gain.setValueAtTime(v,now+s);g.gain.exponentialRampToValueAtTime(0.001,now+s+d);
+        o.connect(g);g.connect(m);o.start(now+s);o.stop(now+s+d+0.1);
+      });
+      // Clap bursts
+      const claps=[0.05,0.20,0.37,0.55,0.70,0.83,0.95,1.06,1.16,1.25,
+                   1.33,1.40,1.47,1.53,1.58,1.63,1.67,1.71,1.75,1.79,
+                   1.82,1.85,1.88,1.91,1.94,1.97,2.00,2.04,2.08,2.13];
+      claps.forEach((t,i) => {
+        const buf=ctx.createBuffer(1,Math.floor(ctx.sampleRate*0.07),ctx.sampleRate);
+        const d=buf.getChannelData(0);
+        for(let j=0;j<d.length;j++) d[j]=(Math.random()*2-1)*Math.max(0,1-j/d.length*2.5);
+        const src=ctx.createBufferSource(); src.buffer=buf;
+        const f1=ctx.createBiquadFilter(); f1.type='bandpass'; f1.frequency.value=2200+i*30; f1.Q.value=0.9;
+        const f2=ctx.createBiquadFilter(); f2.type='highpass'; f2.frequency.value=900;
+        const g=ctx.createGain();
+        const vel = i<12 ? 0.45+i*0.055 : 1.1-(i-12)*0.015;
+        g.gain.setValueAtTime(Math.max(0.2, vel), now+t);
+        src.connect(f1);f1.connect(f2);f2.connect(g);g.connect(m);
+        src.start(now+t); src.stop(now+t+0.1);
+      });
+      // Sparkle at peak
+      [[1047,1.8,0.10,'sine',0.45],[1319,1.9,0.10,'sine',0.40],[1568,2.0,0.12,'sine',0.38],[2093,2.1,0.18,'sine',0.50]].forEach(([f,s,d,t,v])=>{
+        const o=ctx.createOscillator(),g=ctx.createGain();
+        o.type='sine';o.frequency.value=f;
+        g.gain.setValueAtTime(0,now+s);g.gain.linearRampToValueAtTime(v,now+s+0.01);
+        g.gain.exponentialRampToValueAtTime(0.001,now+s+d);
+        o.connect(g);g.connect(m);o.start(now+s);o.stop(now+s+d+0.05);
+      });
+    } catch(e) {}
+  };
+  play();
+}
+
+/* WRONG — dramatic descending doom (1.2s) */
+function sndWrong() {
+  _playNotes([
+    [466, 0.00, 0.24, 'sawtooth', 0.95],
+    [392, 0.20, 0.24, 'sawtooth', 0.95],
+    [330, 0.40, 0.24, 'sawtooth', 0.95],
+    [262, 0.60, 0.55, 'sawtooth', 1.00],
+    [131, 0.55, 0.70, 'sine',     0.55],
+    [65,  0.60, 0.65, 'sine',     0.40],
+    [185, 0.00, 0.35, 'sine',     0.28],
+    [370, 0.00, 0.30, 'sine',     0.22],
+  ], 0.30);
+}
+
+/* WIN — full orchestral fanfare (7s) */
+function sndWin() {
+  _playNotes([
+    // Call
+    [523,0.00,0.14,'triangle',1.00],[523,0.16,0.14,'triangle',1.00],[523,0.32,0.14,'triangle',1.00],
+    [659,0.50,0.26,'triangle',1.05],[131,0.00,0.65,'sine',0.55],[196,0.00,0.65,'sine',0.42],
+    // Response
+    [784,0.90,0.22,'triangle',1.00],[880,1.14,0.22,'triangle',1.00],[988,1.38,0.22,'triangle',1.05],
+    [1047,1.62,0.42,'triangle',1.20],[523,0.90,0.80,'sine',0.38],[659,0.90,0.80,'sine',0.32],[784,0.90,0.80,'sine',0.26],
+    // Build
+    [523,2.10,0.14,'triangle',0.90],[523,2.26,0.14,'triangle',0.90],[659,2.42,0.14,'triangle',0.95],
+    [784,2.58,0.14,'triangle',1.00],[1047,2.74,0.14,'triangle',1.05],[1319,2.90,0.14,'triangle',1.10],[1568,3.06,0.26,'triangle',1.20],
+    [131,2.10,0.48,'sine',0.55],[196,2.58,0.48,'sine',0.55],[262,3.04,0.48,'sine',0.58],
+    // Climax
+    [1047,3.40,1.60,'triangle',1.20],[1319,3.44,1.55,'triangle',1.00],[1568,3.48,1.50,'triangle',0.90],[2093,3.52,1.45,'triangle',0.80],
+    [523,3.40,1.60,'sine',0.50],[659,3.40,1.60,'sine',0.44],[784,3.40,1.60,'sine',0.36],
+    [65,3.40,1.60,'sine',0.58],[131,3.40,1.60,'sine',0.52],[262,3.40,1.60,'sine',0.44],
+    // Sparkles
+    [2093,3.42,0.11,'sine',0.50],[2637,3.52,0.11,'sine',0.46],[3136,3.62,0.11,'sine',0.42],
+    [2637,3.72,0.12,'sine',0.44],[2093,3.84,0.14,'sine',0.42],[2637,4.00,0.14,'sine',0.40],
+    [3136,4.16,0.16,'sine',0.38],[2637,4.34,0.18,'sine',0.36],[2093,4.54,0.20,'sine',0.34],
+    // Coda
+    [1047,5.10,0.18,'triangle',1.05],[1319,5.30,0.18,'triangle',1.05],[1568,5.50,0.18,'triangle',1.10],[2093,5.70,0.22,'triangle',1.20],
+    [1568,5.94,0.18,'triangle',1.05],[1047,6.14,0.18,'triangle',1.00],[1319,6.34,0.18,'triangle',1.05],[2093,6.54,0.60,'triangle',1.25],
+    [523,6.52,0.80,'sine',0.48],[659,6.52,0.80,'sine',0.42],[784,6.52,0.80,'sine',0.36],
+    [65,6.52,0.80,'sine',0.55],[131,6.52,0.80,'sine',0.50],
+    [3136,6.54,0.10,'sine',0.55],[4186,6.62,0.12,'sine',0.50],[3136,6.72,0.14,'sine',0.46],[2093,6.86,0.35,'sine',0.40],
+  ], 0.26);
+}
+
+/* PASA WRONG — soft descending thud (0.7s) */
+function sndPasaWrong() {
+  _playNotes([
+    [440,0.00,0.20,'triangle',0.90],[370,0.18,0.20,'triangle',0.90],
+    [311,0.36,0.22,'triangle',0.95],[262,0.56,0.38,'triangle',1.00],
+    [131,0.52,0.50,'sine',0.48],[65,0.58,0.40,'sine',0.32],[185,0.00,0.24,'sine',0.26],
+  ], 0.28);
+}
+
+/* PASA WIN — epic anthem (10s matches celebration panel) */
+function sndPasaWin() {
+  _playNotes([
+    // Intro
+    [392,0.00,0.20,'triangle',1.00],[392,0.22,0.20,'triangle',1.00],[523,0.46,0.32,'triangle',1.05],[659,0.80,0.44,'triangle',1.10],
+    [131,0.00,0.75,'sine',0.52],[196,0.00,0.75,'sine',0.40],[262,0.46,0.65,'sine',0.33],
+    // Theme
+    [784,1.30,0.26,'triangle',1.10],[880,1.58,0.26,'triangle',1.10],[988,1.86,0.26,'triangle',1.10],
+    [1047,2.14,0.46,'triangle',1.20],[880,2.62,0.26,'triangle',1.05],[784,2.90,0.26,'triangle',1.00],[659,3.18,0.46,'triangle',0.95],
+    [392,1.30,1.15,'sine',0.38],[523,1.30,1.15,'sine',0.32],[659,1.30,1.15,'sine',0.26],[784,1.30,1.15,'sine',0.20],
+    [65,1.30,1.15,'sine',0.48],[131,1.30,1.15,'sine',0.40],
+    // Rise
+    [523,3.72,0.18,'triangle',0.95],[659,3.92,0.18,'triangle',1.00],[784,4.12,0.18,'triangle',1.05],
+    [1047,4.32,0.20,'triangle',1.10],[1175,4.54,0.20,'triangle',1.10],[1319,4.76,0.20,'triangle',1.15],[1568,4.98,0.38,'triangle',1.22],
+    [262,3.72,0.85,'sine',0.38],[392,3.72,0.85,'sine',0.32],[523,3.72,0.85,'sine',0.26],
+    [65,4.40,0.75,'sine',0.48],[131,4.40,0.75,'sine',0.40],
+    // Sparkles at rise peak
+    [2093,4.98,0.11,'sine',0.46],[2637,5.08,0.11,'sine',0.42],[3136,5.18,0.11,'sine',0.38],[2637,5.28,0.11,'sine',0.36],
+    // Climax
+    [1047,5.46,1.70,'triangle',1.20],[1319,5.50,1.65,'triangle',1.05],[1568,5.54,1.60,'triangle',0.90],[2093,5.58,1.55,'triangle',0.78],
+    [523,5.46,1.70,'sine',0.50],[659,5.46,1.70,'sine',0.44],[784,5.46,1.70,'sine',0.37],[1047,5.46,1.70,'sine',0.30],
+    [65,5.46,1.70,'sine',0.58],[131,5.46,1.70,'sine',0.52],[262,5.46,1.70,'sine',0.44],
+    // Sparkle cascade
+    [2093,5.48,0.10,'sine',0.52],[2637,5.57,0.10,'sine',0.48],[3136,5.66,0.10,'sine',0.44],[4186,5.75,0.10,'sine',0.38],
+    [3136,5.84,0.12,'sine',0.44],[2637,5.96,0.14,'sine',0.42],[2093,6.10,0.16,'sine',0.40],
+    [2637,6.26,0.16,'sine',0.38],[3136,6.44,0.18,'sine',0.36],[4186,6.64,0.14,'sine',0.34],
+    [3136,6.80,0.18,'sine',0.36],[2637,6.99,0.20,'sine',0.34],[2093,7.20,0.22,'sine',0.32],
+    // Coda
+    [1047,7.50,0.18,'triangle',1.05],[1319,7.70,0.18,'triangle',1.05],[1568,7.90,0.18,'triangle',1.10],
+    [2093,8.10,0.22,'triangle',1.20],[1568,8.34,0.18,'triangle',1.05],[1047,8.54,0.18,'triangle',1.00],
+    [1319,8.74,0.18,'triangle',1.05],[2093,8.94,0.58,'triangle',1.25],
+    [523,8.92,0.85,'sine',0.48],[659,8.92,0.85,'sine',0.42],[784,8.92,0.85,'sine',0.36],
+    [65,8.92,0.85,'sine',0.55],[131,8.92,0.85,'sine',0.50],
+    [3136,8.94,0.10,'sine',0.58],[4186,9.03,0.12,'sine',0.52],[3136,9.13,0.14,'sine',0.48],
+    [2637,9.25,0.18,'sine',0.44],[2093,9.45,0.50,'sine',0.38],
+  ], 0.24);
+}
+
+document.querySelectorAll('.screen').forEach(s=>{s.style.display='none';});
+init();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+================================================================================
+  NEBULOSA - RESTAURACIÓN DE PRIVILEGIOS DE SUPERADMIN
+================================================================================
+
+FECHA: 11 de Mayo de 2026
+ESTADO: ✅ COMPLETADO Y VERIFICADO
+
+================================================================================
+  CAMBIOS REALIZADOS
+================================================================================
+
+1. BACKEND (main.py)
+   ✅ SUPERADMINS = {"dvd", "nebulosa"}
+   ✅ ADMINS incluye "nebulosa"
+   ✅ OPO_USERS incluye "nebulosa" por defecto
+
+2. BASE DE DATOS (rights.db)
+   ✅ Tabla 'roles': nebulosa con rol 'admin'
+   ✅ Tabla 'opo_players': nebulosa con acceso permanente
+
+3. FRONTEND (6 archivos)
+   ✅ static/opo/game.html - isDvdNeb incluye nebulosa
+   ✅ static/pasapalabra/index.html - isDvdNeb incluye nebulosa
+   ✅ static/pages/index.html - isDvdNeb incluye nebulosa
+   ✅ static/index.html - isDvdNeb incluye nebulosa
+   ✅ static/webrtc-video.html - ADMINS incluye nebulosa
+   ✅ static/pages/webrtc-video.html - ADMINS incluye nebulosa
+
+================================================================================
+  PRIVILEGIOS DE NEBULOSA
+================================================================================
+
+✅ SUPERADMIN COMPLETO
+   - Gestión de administradores (añadir/eliminar)
+   - Gestión de usuarios (ver todos, bloquear, desbloquear)
+   - Modificación de balances
+   - Acceso a estadísticas avanzadas
+   - Acceso a logs del sistema
+
+✅ ACCESO PERMANENTE A OPO
+   - Jugar simulacro de examen
+   - Ver resultados de TODOS los usuarios
+   - Añadir/eliminar jugadores
+   - Gestionar preguntas y bloques
+   - Protección: No puede ser eliminada
+
+✅ GESTIÓN DE CONEXIONES
+   - Ver usuarios online en tiempo real
+   - Crear y gestionar salas de videollamada
+   - Controlar permisos de acceso
+
+✅ GESTIÓN DE PORRAS
+   - Crear y resolver porras
+   - Ver estadísticas globales
+
+✅ ACCESO A TODOS LOS JUEGOS
+   - Pasapalabra, Cifras y Letras, OPO, Millonario, etc.
+
+================================================================================
+  INSTRUCCIONES DE USO
+================================================================================
+
+APLICAR CAMBIOS:
+   1. Ejecutar: python restore_nebulosa_superadmin.py
+   2. Reiniciar el servidor
+   3. Iniciar sesión como nebulosa
+
+VERIFICAR:
+   python verificar_nebulosa_superadmin.py
+
+REVERTIR (si necesario):
+   python remove_nebulosa_privileges.py
+
+================================================================================
+  ARCHIVOS CREADOS
+================================================================================
+
+Scripts:
+   - restore_nebulosa_superadmin.py
+   - verificar_nebulosa_superadmin.py
+   - RESTAURAR_NEBULOSA_SUPERADMIN.bat
+
+Documentación:
+   - NEBULOSA_SUPERADMIN_RESTAURADO.md (completa)
+   - INSTRUCCIONES_NEBULOSA.md (guía de uso)
+   - RESUMEN_CAMBIOS_NEBULOSA_SUPERADMIN.txt (este archivo)
+
+================================================================================
+  VERIFICACIÓN COMPLETADA
+================================================================================
+
+✅ Backend: SUPERADMINS incluye nebulosa
+✅ Base de datos: roles y opo_players actualizados
+✅ Frontend: 6 archivos actualizados con nebulosa
+✅ Scripts: Ejecutados sin errores
+✅ Verificación: Todos los checks en verde
+
+================================================================================
+  IMPORTANTE
+================================================================================
+
+⚠️  REINICIAR EL SERVIDOR para aplicar todos los cambios
+⚠️  Nebulosa tiene PRIVILEGIOS MÁXIMOS (igual que DVD)
+⚠️  Nebulosa NO puede ser eliminada de superadmins ni de OPO
+
+================================================================================
+  RESUMEN FINAL
+================================================================================
+
+Nebulosa es ahora SUPERADMIN con:
+   ✅ Acceso total al sistema
+   ✅ Gestión completa de usuarios y administradores
+   ✅ Acceso permanente al juego OPO
+   ✅ Control de conexiones y salas de video
+   ✅ Privilegios iguales a DVD
+
+Estado: ✅ COMPLETADO Y VERIFICADO
+Fecha: 11 de Mayo de 2026
+
+================================================================================

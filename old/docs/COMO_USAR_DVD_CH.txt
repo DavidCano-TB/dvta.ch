@@ -1,0 +1,167 @@
+═══════════════════════════════════════════════════════════
+  🌐 CÓMO CONFIGURAR DVD.CH COMO TU URL
+═══════════════════════════════════════════════════════════
+
+📅 Creado: 19 Mayo 2026
+🎯 Objetivo: Usar https://dvd.ch como URL permanente
+
+═══════════════════════════════════════════════════════════
+  📚 DOCUMENTACIÓN DISPONIBLE
+═══════════════════════════════════════════════════════════
+
+1️⃣  CONFIGURAR_DVD_CH.md ⭐ EMPIEZA AQUÍ
+   → Guía completa paso a paso con todos los detalles
+   → Incluye capturas de pantalla conceptuales
+   → Solución de problemas
+
+2️⃣  GUIA_RAPIDA_DVD_CH.txt
+   → Resumen rápido de los pasos
+   → Comandos útiles
+   → Timeline esperado
+
+3️⃣  CONFIGURAR_DOMINIO_DVD_CH.bat
+   → Script automático que hace todo por ti
+   → Solo necesitas haber configurado el DNS primero
+
+═══════════════════════════════════════════════════════════
+  🚀 PROCESO RESUMIDO (3 PASOS PRINCIPALES)
+═══════════════════════════════════════════════════════════
+
+PASO 1: AÑADIR DOMINIO A CLOUDFLARE
+────────────────────────────────────
+1. Ve a https://dash.cloudflare.com
+2. Añade dvd.ch
+3. Anota los nameservers que te dan
+
+PASO 2: CAMBIAR NAMESERVERS
+────────────────────────────────────
+1. Ve a tu registrador (donde compraste dvd.ch)
+2. Cambia los nameservers a los de Cloudflare
+3. Espera 2-24 horas (normalmente 2-4 horas)
+
+PASO 3: CONFIGURAR TÚNEL
+────────────────────────────────────
+Ejecuta:
+  CONFIGURAR_DOMINIO_DVD_CH.bat
+
+O manualmente:
+  cloudflared tunnel route dns dvdcoin dvd.ch
+
+═══════════════════════════════════════════════════════════
+  ⏱️ TIMELINE ESPERADO
+═══════════════════════════════════════════════════════════
+
+Hora 0:00  → Añades dvd.ch a Cloudflare
+Hora 0:05  → Cambias nameservers
+Hora 2:00  → DNS empieza a propagarse ⏳
+Hora 4:00  → DNS propagado ✅
+Hora 4:05  → Ejecutas CONFIGURAR_DOMINIO_DVD_CH.bat
+Hora 4:10  → ✅ https://dvd.ch FUNCIONANDO
+
+═══════════════════════════════════════════════════════════
+  🔍 VERIFICACIÓN
+═══════════════════════════════════════════════════════════
+
+Verificar DNS propagado:
+  nslookup dvd.ch
+  
+  Debe mostrar IPs de Cloudflare (104.x.x.x o 172.x.x.x)
+
+Verificar túnel:
+  cloudflared tunnel info dvdcoin
+
+Probar en navegador:
+  https://dvd.ch
+
+═══════════════════════════════════════════════════════════
+  ❓ PREGUNTAS FRECUENTES
+═══════════════════════════════════════════════════════════
+
+P: ¿Cuánto tarda en funcionar?
+R: 2-4 horas normalmente (máximo 24 horas)
+
+P: ¿Es gratis?
+R: Sí, Cloudflare Tunnel es 100% gratuito
+
+P: ¿Necesito pagar por SSL/HTTPS?
+R: No, Cloudflare lo proporciona gratis
+
+P: ¿Puedo usar subdominios?
+R: Sí, puedes configurar admin.dvd.ch, api.dvd.ch, etc.
+
+P: ¿Qué pasa si apago mi PC?
+R: El sitio dejará de funcionar (el servidor corre en tu PC)
+   Para 24/7, necesitas un VPS/Cloud (ver SISTEMA_CICD.md)
+
+P: ¿Puedo cambiar la URL después?
+R: Sí, puedes añadir más dominios o subdominios
+
+═══════════════════════════════════════════════════════════
+  🆘 PROBLEMAS COMUNES
+═══════════════════════════════════════════════════════════
+
+❌ "DNS_PROBE_FINISHED_NXDOMAIN"
+   Solución: Espera más tiempo, el DNS no se ha propagado
+
+❌ "502 Bad Gateway"
+   Solución: Inicia el servidor → python main.py
+
+❌ "ERR_SSL_VERSION_OR_CIPHER_MISMATCH"
+   Solución: Cloudflare Dashboard → SSL/TLS → Modo "Full"
+
+❌ Túnel no conecta
+   Solución: Ver logs → type cloudflare_tunnel.log
+
+═══════════════════════════════════════════════════════════
+  📞 COMANDOS ÚTILES
+═══════════════════════════════════════════════════════════
+
+Configurar dominio (automático):
+  CONFIGURAR_DOMINIO_DVD_CH.bat
+
+Configurar dominio (manual):
+  cloudflared tunnel route dns dvdcoin dvd.ch
+
+Verificar DNS:
+  nslookup dvd.ch
+
+Verificar túnel:
+  cloudflared tunnel info dvdcoin
+
+Ver logs:
+  type cloudflare_tunnel.log
+
+Reiniciar túnel:
+  taskkill /F /IM cloudflared.exe
+  INICIAR_CON_CLOUDFLARE.bat
+
+Verificar sistema completo:
+  VERIFICAR_SISTEMA.bat
+
+═══════════════════════════════════════════════════════════
+  ✅ RESULTADO FINAL
+═══════════════════════════════════════════════════════════
+
+Una vez completado, tendrás:
+
+✅ URL permanente: https://dvd.ch
+✅ SSL/HTTPS automático (candado verde)
+✅ Sin límites de conexiones
+✅ Protección DDoS de Cloudflare
+✅ CDN global (carga rápida en todo el mundo)
+✅ Gratis para siempre
+
+═══════════════════════════════════════════════════════════
+  🎯 PRÓXIMO PASO
+═══════════════════════════════════════════════════════════
+
+LEE: CONFIGURAR_DVD_CH.md
+
+Ese archivo tiene la guía completa paso a paso con todos
+los detalles que necesitas.
+
+═══════════════════════════════════════════════════════════
+
+¡Buena suerte con la configuración! 🚀
+
+═══════════════════════════════════════════════════════════

@@ -1,0 +1,245 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║         DVDCOIN - INSTRUCCIONES ANTES DE REINICIAR           ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+RESUMEN DE LO QUE SE HA HECHO
+══════════════════════════════════════════════════════════════
+
+✓ Sistema de instalación automática creado
+✓ Migración completa de ngrok a Cloudflare Tunnel preparada
+✓ Scripts de inicio actualizados
+✓ Documentación completa generada
+✓ Sistema de autostart configurado
+
+
+ARCHIVOS CREADOS
+══════════════════════════════════════════════════════════════
+
+SCRIPTS PRINCIPALES:
+  • INSTALACION_AUTOMATICA_CLOUDFLARE.bat
+    → Instalador guiado en 7 pasos
+  
+  • PREPARAR_PARA_REINICIO.bat  ⭐ EJECUTAR ESTE
+    → Prepara el sistema para instalación automática
+  
+  • INICIAR_CON_CLOUDFLARE.bat
+    → Nuevo script de inicio (reemplaza ngrok)
+  
+  • DETENER_SERVIDOR.bat
+    → Para detener el servidor y túnel
+
+SCRIPTS DE CONFIGURACIÓN:
+  • CONFIGURAR_CLOUDFLARE.bat
+    → Configuración manual si es necesario
+  
+  • VERIFICAR_INSTALACION.bat
+    → Verifica que todo esté instalado
+  
+  • CANCELAR_INSTALACION_AL_REINICIO.bat
+    → Cancela la instalación automática
+
+DOCUMENTACIÓN:
+  • TUTORIAL_CLOUDFLARE_TUNNEL.md
+    → Tutorial completo paso a paso
+  
+  • README_CLOUDFLARE.md
+    → Guía rápida de uso
+  
+  • COMPARACION_NGROK_VS_CLOUDFLARE.md
+    → Ventajas del nuevo sistema
+  
+  • INSTRUCCIONES_INSTALACION_AUTOMATICA.txt
+    → Detalles de la instalación automática
+
+
+CAMBIOS REALIZADOS EN ARCHIVOS EXISTENTES
+══════════════════════════════════════════════════════════════
+
+✓ ARRANCAR.bat
+  → Ahora llama a INICIAR_CON_CLOUDFLARE.bat
+
+✓ INSTALAR_AUTOSTART.bat
+  → Actualizado para usar Cloudflare Tunnel
+
+✓ INICIAR_COMO_ADMIN.bat
+  → Renombrado a INICIAR_COMO_ADMIN_NGROK_OLD.bat (backup)
+
+
+PASOS PARA COMPLETAR LA INSTALACIÓN
+══════════════════════════════════════════════════════════════
+
+1. PREPARAR EL SISTEMA
+   ────────────────────
+   
+   a) Clic derecho en: PREPARAR_PARA_REINICIO.bat
+   b) Seleccionar: "Ejecutar como administrador"
+   c) Seguir las instrucciones en pantalla
+   d) Elegir "S" para reiniciar ahora (o reinicia manualmente después)
+
+
+2. DESPUÉS DEL REINICIO
+   ─────────────────────
+   
+   a) Windows iniciará normalmente
+   b) 5 segundos después del login
+   c) Se abrirá automáticamente una ventana CMD
+   d) El instalador te guiará paso a paso
+
+
+3. PROCESO DE INSTALACIÓN (7 PASOS)
+   ─────────────────────────────────
+   
+   PASO 1: Verificar Python
+           → Comprueba que Python esté instalado
+   
+   PASO 2: Instalar cloudflared
+           → Descarga e instala cloudflared automáticamente
+           → O te indica cómo hacerlo manualmente
+   
+   PASO 3: Autenticar con Cloudflare
+           → Se abre tu navegador
+           → Inicia sesión en Cloudflare (o crea cuenta gratis)
+           → Autoriza el acceso
+   
+   PASO 4: Crear túnel
+           → Crea el túnel "dvdcoin" automáticamente
+   
+   PASO 5: Configurar dominio
+           → Puedes usar tu propio dominio
+           → O usar un subdominio gratuito de Cloudflare
+   
+   PASO 6: Crear archivo de configuración
+           → Genera cloudflare-config.yml automáticamente
+   
+   PASO 7: Instalar autostart
+           → Configura inicio automático en Windows
+
+
+4. DESPUÉS DE LA INSTALACIÓN
+   ──────────────────────────
+   
+   a) El instalador preguntará si quieres iniciar el servidor
+   b) Si dices "S", el servidor se iniciará automáticamente
+   c) Accede a tu aplicación desde:
+      • Local: http://localhost:8000
+      • Público: La URL que te muestre el instalador
+
+
+VENTAJAS DEL NUEVO SISTEMA
+══════════════════════════════════════════════════════════════
+
+✓ SIN LÍMITES de conexiones (ngrok tiene límite de 40/min)
+✓ URL FIJA que no cambia (ngrok cambia cada vez)
+✓ SSL/HTTPS automático y seguro
+✓ Protección DDoS incluida
+✓ GRATIS para siempre
+✓ Más rápido y estable
+✓ Panel de control profesional
+
+
+QUÉ NO SE HA TOCADO (INTACTO)
+══════════════════════════════════════════════════════════════
+
+✓ Bases de datos (dvdcoin.db, users.db, etc.)
+✓ Sistema de votaciones
+✓ Sistema de apuestas
+✓ Código Python (main.py, src/*)
+✓ Juegos (Pasapalabra, etc.)
+✓ Usuarios y contraseñas
+✓ Configuración de OPO
+
+
+SOLUCIÓN DE PROBLEMAS
+══════════════════════════════════════════════════════════════
+
+Si la instalación automática NO se ejecuta al reiniciar:
+─────────────────────────────────────────────────────────
+
+1. Ejecuta manualmente:
+   INSTALACION_AUTOMATICA_CLOUDFLARE.bat
+   (Clic derecho → Ejecutar como administrador)
+
+2. O sigue el tutorial manual:
+   TUTORIAL_CLOUDFLARE_TUNNEL.md
+
+
+Si quieres cancelar la instalación automática:
+───────────────────────────────────────────────
+
+1. Ejecuta:
+   CANCELAR_INSTALACION_AL_REINICIO.bat
+
+
+Si necesitas volver a ngrok temporalmente:
+───────────────────────────────────────────
+
+1. Los archivos de ngrok están en:
+   • INICIAR_COMO_ADMIN_NGROK_OLD.bat
+   • actualizar_url_ngrok.py
+   • ACTUALIZAR_URL_NGROK.bat
+
+
+COMANDOS ÚTILES
+══════════════════════════════════════════════════════════════
+
+Iniciar servidor:
+  ARRANCAR.bat
+
+Detener servidor:
+  DETENER_SERVIDOR.bat
+
+Ver estado del túnel:
+  cloudflared tunnel info dvdcoin
+
+Ver logs:
+  type server.log
+  type cloudflare_tunnel.log
+
+Verificar instalación:
+  VERIFICAR_INSTALACION.bat
+
+
+SOPORTE Y DOCUMENTACIÓN
+══════════════════════════════════════════════════════════════
+
+Tutorial completo:
+  TUTORIAL_CLOUDFLARE_TUNNEL.md
+
+Guía rápida:
+  README_CLOUDFLARE.md
+
+Comparación ngrok vs Cloudflare:
+  COMPARACION_NGROK_VS_CLOUDFLARE.md
+
+Documentación oficial de Cloudflare:
+  https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/
+
+
+NOTAS IMPORTANTES
+══════════════════════════════════════════════════════════════
+
+• La instalación requiere conexión a Internet
+• Necesitas una cuenta de Cloudflare (gratis)
+• El proceso toma aproximadamente 5-10 minutos
+• Guarda todo tu trabajo antes de reiniciar
+• Ten el navegador listo para autenticar con Cloudflare
+
+
+══════════════════════════════════════════════════════════════
+
+¿LISTO PARA EMPEZAR?
+
+1. Ejecuta como administrador:
+   PREPARAR_PARA_REINICIO.bat
+
+2. Reinicia Windows
+
+3. Sigue las instrucciones del instalador
+
+══════════════════════════════════════════════════════════════
+
+¡Buena suerte! El nuevo sistema es mucho mejor que ngrok.
+
+══════════════════════════════════════════════════════════════

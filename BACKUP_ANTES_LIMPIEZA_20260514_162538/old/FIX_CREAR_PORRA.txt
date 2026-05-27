@@ -1,0 +1,320 @@
+================================================================================
+  FIX: ERROR AL CREAR PORRAS - CAMPOS OPCIONALES
+================================================================================
+
+📅 Fecha: 2 de Mayo de 2026
+🐛 Error: 'sqlite3.Connection' object has no attribute 'lastrowid'
+
+================================================================================
+  PROBLEMA IDENTIFICADO
+================================================================================
+
+ERROR ORIGINAL:
+  Error al crear la porra: 'sqlite3.Connection' object has no attribute 'lastrowid'
+
+CAUSA:
+  Se intentaba acceder a 'lastrowid' directamente en el objeto Connection
+  en lugar de usar un Cursor. En SQLite, 'lastrowid' es un atributo del
+  Cursor, no de la Connection.
+
+CÓDIGO PROBLEMÁTICO:
+  c = db_bets()
+  c.execute("INSERT INTO porras ...")
+  c.commit()
+  porra_id = c.lastrowid  # ❌ ERROR: c es Connection, no Cursor
+
+================================================================================
+  SOLUCIÓN APLICADA
+================================================================================
+
+CÓDIGO CORREGIDO:
+  conn = db_bets()
+  cursor = conn.cursor()
+  cursor.execute("INSERT INTO porras ...")
+  conn.commit()
+  porra_id = cursor.lastrowid  # ✅ CORRECTO: cursor tiene lastrowid
+  conn.close()
+
+MEJORAS ADICIONALES:
+  1. Manejo robusto de campos opcionales (None, '', espacios)
+  2. Validación mejorada de todos los campos
+  3. Mensajes de error más descriptivos
+  4. Try-catch completo con logging detallado
+  5. Valores por defecto automáticos para fechas
+  6. Auto-generación de valores de opciones
+
+================================================================================
+  CAMPOS OPCIONALES - COMPORTAMIENTO
+================================================================================
+
+CAMPO: descripcion
+  - Tipo: Optional[str]
+  - Default: '' (string vacío)
+  - Si viene None o vacío: se usa ''
+
+CAMPO: tipo
+  - Tipo: Optional[str]
+  - Default: 'resultado'
+  - Si viene None o vacío: se usa 'resultado'
+  - Valores válidos: 'resultado', 'marcador', 'torneo', 'mas_menos', 'ambos_marcan'
+
+CAMPO: fecha_limite
+  - Tipo: Optional[str]
+  - Default: '' (se auto-genera)
+  - Si viene None o vacío: se genera automáticamente (ahora + 24 horas)
+  - Formato esperado: 'YYYY-MM-DD HH:MM'
+  - Validación: debe ser fecha futura
+
+CAMPO: fecha_evento
+  - Tipo: Optional[str]
+  - Default: '' (se auto-genera)
+  - Si viene None o vacío: se genera automáticamente (ahora + 48 horas)
+  - Formato esperado: 'YYYY-MM-DD HH:MM'
+  - Validación: debe ser posterior a fecha_limite
+
+CAMPO: opciones[].valor
+  - Tipo: Optional[str]
+  - Si viene None o vacío: se auto-genera desde el nombre
+  - Generación: lowercase, espacios → _, sin caracteres especiales
+  - Ejemplo: "España gana" → "espaa_gana"
+  - Si falla: se usa "opcion_1", "opcion_2", etc.
+  - Validación: valores únicos (se añade sufijo si hay duplicados)
+
+================================================================================
+  EJEMPLOS DE USO
+================================================================================
+
+EJEMPLO 1: Porra completa (todos los campos)
+{
+  "titulo": "¿Quién gana el partido?",
+  "descripcion": "España vs Francia - Final",
+  "tipo": "resultado",
+  "fecha_limite": "2026-05-10 20:00",
+  "fecha_evento": "2026-05-11 21:00",
+  "opciones": [
+    {"nombre": "España gana", "valor": "espana"},
+    {"nombre": "Empate", "valor": "empate"},
+    {"nombre": "Francia gana", "valor": "francia"}
+  ]
+}
+
+EJEMPLO 2: Porra mínima (solo campos obligatorios)
+{
+  "titulo": "¿Sí o No?",
+  "opciones": [
+    {"nombre": "Sí"},
+    {"nombre": "No"}
+  ]
+}
+→ descripcion: ''
+→ tipo: 'resultado'
+→ fecha_limite: auto (ahora + 24h)
+→ fecha_evento: auto (ahora + 48h)
+→ valores: 's', 'no' (auto-generados)
+
+EJEMPLO 3: Porra con campos vacíos (se usan defaults)
+{
+  "titulo": "Test",
+  "descripcion": "",
+  "tipo": "",
+  "fecha_limite": "",
+  "fecha_evento": "",
+  "opciones": [
+    {"nombre": "Opción A"},
+    {"nombre": "Opción B"}
+  ]
+}
+→ Todos los campos vacíos se reemplazan por defaults
+
+EJEMPLO 4: Opciones sin valor (auto-generación)
+{
+  "titulo": "Ganador del torneo",
+  "opciones": [
+    {"nombre": "Real Madrid"},
+    {"nombre": "Barcelona"},
+    {"nombre": "Atlético"}
+  ]
+}
+→ valores: 'real_madrid', 'barcelona', 'atltico' (auto-generados)
+
+================================================================================
+  VALIDACIONES IMPLEMENTADAS
+================================================================================
+
+VALIDACIÓN 1: Título obligatorio
+  - No puede ser None
+  - No puede ser string vacío
+  - Se hace strip() para eliminar espacios
+
+VALIDACIÓN 2: Mínimo 2 opciones
+  - Debe haber al menos 2 opciones para apostar
+  - Máximo 20 opciones permitidas
+
+VALIDACIÓN 3: Nombres de opciones obligatorios
+  - Cada opción debe tener un nombre no vacío
+  - Se hace strip() en cada nombre
+
+VALIDACIÓN 4: Fechas futuras
+  - fecha_limite debe ser posterior a ahora
+  - fecha_evento debe ser posterior a fecha_limite
+
+VALIDACIÓN 5: Formato de fechas
+  - Formato esperado: 'YYYY-MM-DD HH:MM'
+  - Se acepta también formato ISO con 'Z'
+  - Error descriptivo si el formato es inválido
+
+VALIDACIÓN 6: Valores únicos
+  - Los valores de opciones deben ser únicos
+  - Si hay duplicados, se añade sufijo automáticamente
+  - Ejemplo: 'opcion', 'opcion_1', 'opcion_2'
+
+================================================================================
+  MANEJO DE ERRORES
+================================================================================
+
+ERROR 400 - Bad Request:
+  - Título vacío
+  - Menos de 2 opciones
+  - Más de 20 opciones
+  - Nombre de opción vacío
+  - Fecha límite no es futura
+  - Fecha evento no es posterior a límite
+  - Formato de fecha inválido
+
+ERROR 404 - Not Found:
+  - Usuario no encontrado (no debería ocurrir)
+
+ERROR 500 - Internal Server Error:
+  - Error de base de datos
+  - Error al crear página HTML
+  - Cualquier error inesperado
+  - Se registra en logs con traceback completo
+
+LOGGING:
+  - Todos los errores se registran con logger.error()
+  - Se incluye traceback completo (exc_info=True)
+  - Warnings para errores no críticos (HTML, notificaciones)
+
+================================================================================
+  ARCHIVOS MODIFICADOS
+================================================================================
+
+1. main.py
+   - Línea ~7256: Endpoint /api/porras/create completamente reescrito
+   - Línea ~7089: Modelo PorraCreateRequest con Optional
+   - Manejo robusto de campos opcionales
+   - Validaciones mejoradas
+   - Logging detallado
+
+2. test_crear_porra.py (NUEVO)
+   - Script de prueba para verificar creación
+   - 4 casos de prueba diferentes
+   - Ejemplos de uso del endpoint
+
+3. FIX_CREAR_PORRA.txt (ESTE ARCHIVO)
+   - Documentación completa del fix
+   - Ejemplos de uso
+   - Guía de validaciones
+
+================================================================================
+  CÓMO PROBAR
+================================================================================
+
+PASO 1: Reiniciar el servidor
+  > APLICAR_CAMBIOS.bat
+
+PASO 2: Obtener un token válido
+  - Login en la aplicación
+  - Copiar el token JWT
+
+PASO 3: Probar creación de porra
+  Opción A - Desde la interfaz web:
+    - Ir a /apuestas
+    - Clic en "Crear Nueva Porra"
+    - Llenar formulario
+    - Enviar
+
+  Opción B - Desde script de prueba:
+    - Editar test_crear_porra.py
+    - Reemplazar TOKEN con tu token
+    - Descomentar los tests
+    - Ejecutar: python test_crear_porra.py
+
+  Opción C - Desde curl/Postman:
+    curl -X POST http://127.0.0.1:8000/api/porras/create \
+      -H "Authorization: Bearer TU_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "titulo": "Test",
+        "opciones": [
+          {"nombre": "Sí"},
+          {"nombre": "No"}
+        ]
+      }'
+
+PASO 4: Verificar resultado
+  - Status 200: Porra creada correctamente
+  - Response: {"ok": true, "porra_id": 3, "message": "Porra creada correctamente"}
+  - Verificar en /apuestas que aparece la nueva porra
+  - Verificar que se creó el archivo porra_X.html
+
+================================================================================
+  CASOS DE PRUEBA RECOMENDADOS
+================================================================================
+
+TEST 1: Porra completa
+  ✅ Todos los campos proporcionados
+  ✅ Fechas válidas
+  ✅ Valores de opciones explícitos
+
+TEST 2: Porra mínima
+  ✅ Solo título y opciones
+  ✅ Fechas auto-generadas
+  ✅ Valores auto-generados
+
+TEST 3: Campos vacíos
+  ✅ Campos opcionales como ""
+  ✅ Debe usar defaults
+
+TEST 4: Campos None
+  ✅ Campos opcionales como null
+  ✅ Debe usar defaults
+
+TEST 5: Opciones sin valor
+  ✅ Solo nombre en opciones
+  ✅ Valores auto-generados
+
+TEST 6: Validaciones
+  ❌ Título vacío → Error 400
+  ❌ 1 opción → Error 400
+  ❌ 21 opciones → Error 400
+  ❌ Fecha pasada → Error 400
+  ❌ Formato fecha inválido → Error 400
+
+================================================================================
+  PRÓXIMAS MEJORAS SUGERIDAS
+================================================================================
+
+1. Validación de tipos de porra
+   - Validar que 'tipo' sea uno de los valores permitidos
+   - Validaciones específicas por tipo
+
+2. Límites configurables
+   - Máximo de opciones configurable
+   - Apuesta mínima/máxima configurable
+
+3. Plantillas de porras
+   - Plantillas predefinidas para tipos comunes
+   - "Sí/No", "1X2", "Ganador torneo", etc.
+
+4. Duplicación de porras
+   - Copiar una porra existente
+   - Modificar fechas y opciones
+
+5. Borrador de porras
+   - Guardar porra sin publicar
+   - Editar antes de publicar
+
+================================================================================
+  FIN DEL DOCUMENTO
+================================================================================

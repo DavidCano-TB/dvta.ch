@@ -1,0 +1,247 @@
+═══════════════════════════════════════════════════════════════════════════
+  📦 INSTRUCCIONES PARA PUBLICAR EN GITHUB
+═══════════════════════════════════════════════════════════════════════════
+
+Fecha: 27 Mayo 2026
+Proyecto: DVDBank v4.0
+Estado: ✅ Repositorio Git limpio y listo para push
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ CORRECCIONES APLICADAS
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Repositorios Git embebidos eliminados
+✅ Archivo .gitattributes creado (manejo de finales de línea)
+✅ Configuración Git establecida (autocrlf=true, safecrlf=false)
+✅ Archivo .gitignore actualizado
+✅ Archivos de log excluidos del tracking
+✅ Working tree limpio (sin cambios pendientes)
+
+═══════════════════════════════════════════════════════════════════════════
+  📋 COMMITS REALIZADOS
+═══════════════════════════════════════════════════════════════════════════
+
+1. 3b5c8af - Initial commit: DVDBank v4.0
+   Sistema completo de gestión bancaria con juegos, apuestas, votaciones
+   y chat. Configurado para dvta.ch con Cloudflare Tunnel
+
+2. 72abe30 - Add .gitattributes for proper line ending handling
+   Configuración para manejar correctamente los finales de línea en
+   diferentes sistemas operativos
+
+3. c2a5e24 - Update .gitignore to exclude problematic backup folders
+   Exclusión de carpetas de backup con repositorios Git embebidos
+
+4. 212efa1 - Add no_sleep.log to gitignore
+   Exclusión de archivos de log del tracking
+
+5. 4172113 - Remove no_sleep.log from tracking
+   Eliminación de archivo de log del repositorio
+
+═══════════════════════════════════════════════════════════════════════════
+  🚀 PASOS PARA PUBLICAR EN GITHUB
+═══════════════════════════════════════════════════════════════════════════
+
+PASO 1: CREAR REPOSITORIO EN GITHUB
+────────────────────────────────────
+
+1. Ve a: https://github.com/new
+
+2. Configuración del repositorio:
+   • Repository name: dvdbank
+   • Description: Sistema completo de gestión bancaria con juegos,
+                  apuestas, votaciones y chat en tiempo real
+   • Visibility: Private (recomendado) o Public
+   • ❌ NO marques "Initialize this repository with a README"
+   • ❌ NO agregues .gitignore (ya lo tienes)
+   • ❌ NO agregues license (puedes hacerlo después)
+
+3. Clic en [Create repository]
+
+4. Copia la URL del repositorio que aparece
+   Ejemplo: https://github.com/tu-usuario/dvdbank.git
+
+PASO 2: CONECTAR REPOSITORIO LOCAL CON GITHUB
+──────────────────────────────────────────────
+
+Abre PowerShell en c:\dvdcoin\ y ejecuta:
+
+# Agregar el remote de GitHub (reemplaza con tu URL)
+git remote add origin https://github.com/TU-USUARIO/dvdbank.git
+
+# Verificar que se agregó correctamente
+git remote -v
+
+# Deberías ver:
+# origin  https://github.com/TU-USUARIO/dvdbank.git (fetch)
+# origin  https://github.com/TU-USUARIO/dvdbank.git (push)
+
+PASO 3: HACER PUSH AL REPOSITORIO
+──────────────────────────────────
+
+# Push de la rama master
+git push -u origin master
+
+# Si te pide autenticación:
+# - Usuario: tu-usuario-github
+# - Password: tu-token-personal (NO tu contraseña)
+
+# Para crear un token personal:
+# 1. Ve a: https://github.com/settings/tokens
+# 2. Clic en [Generate new token] → [Generate new token (classic)]
+# 3. Nombre: DVDBank Push Token
+# 4. Expiration: 90 days (o el que prefieras)
+# 5. Scopes: Marca "repo" (acceso completo a repositorios)
+# 6. Clic en [Generate token]
+# 7. Copia el token (solo se muestra una vez)
+# 8. Usa ese token como contraseña al hacer push
+
+PASO 4: VERIFICAR QUE SE SUBIÓ CORRECTAMENTE
+─────────────────────────────────────────────
+
+1. Ve a: https://github.com/TU-USUARIO/dvdbank
+
+2. Deberías ver:
+   ✅ Todos los archivos del proyecto
+   ✅ README.md visible en la página principal
+   ✅ 5 commits en el historial
+   ✅ Última actualización: hace unos segundos
+
+═══════════════════════════════════════════════════════════════════════════
+  🔐 CONFIGURAR CREDENCIALES (OPCIONAL)
+═══════════════════════════════════════════════════════════════════════════
+
+Para no tener que ingresar usuario y token cada vez:
+
+# Opción 1: Guardar credenciales en Windows Credential Manager
+git config --global credential.helper wincred
+
+# Opción 2: Guardar credenciales en cache por 1 hora
+git config --global credential.helper cache
+
+# Opción 3: Usar SSH en lugar de HTTPS (más seguro)
+# 1. Generar clave SSH:
+ssh-keygen -t ed25519 -C "davidcano.ch@gmail.com"
+
+# 2. Agregar clave a GitHub:
+#    https://github.com/settings/keys
+#    Clic en [New SSH key]
+#    Pega el contenido de: C:\Users\PC\.ssh\id_ed25519.pub
+
+# 3. Cambiar remote a SSH:
+git remote set-url origin git@github.com:TU-USUARIO/dvdbank.git
+
+═══════════════════════════════════════════════════════════════════════════
+  📝 COMANDOS ÚTILES DE GIT
+═══════════════════════════════════════════════════════════════════════════
+
+# Ver estado del repositorio
+git status
+
+# Ver historial de commits
+git log --oneline
+
+# Ver remotes configurados
+git remote -v
+
+# Hacer cambios y commit
+git add .
+git commit -m "Descripción del cambio"
+git push
+
+# Crear una nueva rama
+git checkout -b nombre-rama
+
+# Cambiar de rama
+git checkout master
+
+# Ver diferencias
+git diff
+
+# Deshacer cambios no commiteados
+git restore archivo.txt
+
+# Ver información del último commit
+git show
+
+═══════════════════════════════════════════════════════════════════════════
+  ⚠️ ARCHIVOS EXCLUIDOS DEL REPOSITORIO
+═══════════════════════════════════════════════════════════════════════════
+
+Por seguridad y buenas prácticas, estos archivos NO se suben a GitHub:
+
+🔒 DATOS SENSIBLES:
+   • data/*.db (bases de datos con información de usuarios)
+   • backup/ (backups de bases de datos)
+   • backup_30min/ (backups frecuentes)
+   • conf/jwt_secret.txt (secreto JWT)
+   • conf/master.txt (contraseña maestra)
+   • config/jwt_secret.txt (secreto JWT)
+   • config/master.txt (contraseña maestra)
+
+📁 ARCHIVOS TEMPORALES:
+   • __pycache__/ (cache de Python)
+   • venv/ (entorno virtual)
+   • logs/*.log (archivos de log)
+   • no_sleep.log (log de actividad)
+
+🖥️ ARCHIVOS DEL SISTEMA:
+   • .vscode/ (configuración de VS Code)
+   • .vs/ (configuración de Visual Studio)
+   • .DS_Store (macOS)
+   • Thumbs.db (Windows)
+
+📦 BACKUPS PROBLEMÁTICOS:
+   • BACKUP_ANTES_LIMPIEZA_*/old/dvdcoin*
+   • old/dvdcoin* (backups con repositorios Git embebidos)
+
+═══════════════════════════════════════════════════════════════════════════
+  📚 INFORMACIÓN DEL PROYECTO
+═══════════════════════════════════════════════════════════════════════════
+
+Nombre: DVDBank v4.0
+Descripción: Sistema completo de gestión bancaria con juegos, apuestas,
+             votaciones y chat en tiempo real
+Dominio: https://dvta.ch
+Tecnologías: Python, FastAPI, SQLite, JavaScript, HTML, CSS
+Túnel: Cloudflare Tunnel (ID: 6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33)
+
+Características:
+• 💰 Transacciones entre usuarios
+• 🎮 Juegos (Oposiciones, Hundir la Flota, Pasapalabra, Scooby Doo)
+• 🎲 Sistema de apuestas (porras)
+• 🗳️ Sistema de votaciones
+• 💬 Chat en tiempo real
+• 📹 Videollamadas
+• 📊 Estadísticas y rankings
+• 🌐 Multiidioma (ES, EN, FR, IT, CA, EU, DE)
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ CHECKLIST FINAL
+═══════════════════════════════════════════════════════════════════════════
+
+Antes de hacer push, verifica:
+
+□ Repositorio Git limpio (git status)
+□ Commits realizados correctamente (git log)
+□ .gitignore configurado correctamente
+□ .gitattributes creado
+□ Archivos sensibles excluidos
+□ README.md actualizado
+□ Documentación completa
+
+Después de hacer push, verifica:
+
+□ Repositorio visible en GitHub
+□ README.md se muestra correctamente
+□ Todos los commits aparecen
+□ Archivos sensibles NO están en GitHub
+□ Estructura de carpetas correcta
+
+═══════════════════════════════════════════════════════════════════════════
+
+Creado por: Kiro AI
+Fecha: 27 Mayo 2026
+Estado: ✅ LISTO PARA PUSH
+
+═══════════════════════════════════════════════════════════════════════════

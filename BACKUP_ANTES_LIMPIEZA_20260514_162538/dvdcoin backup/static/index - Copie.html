@@ -1,0 +1,2313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#04040A">
+<title>DVDcoin Bank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DVDcoin Bank v5.1
+   - Auth: single panel (right form only, no left showcase)
+   - Logo: bill image instead of SVG coin
+   - Gallery: photos only, no instructions panel
+   - i18n: all text translated in all 4 languages
+   Design: Art-deco noir. Liquid gold on obsidian.
+============================================================ */
+:root {
+  --gold:   #D4A843; --gold2:  #F0C866; --gold3:  #8B6010; --gold4:  #5A3A06;
+  --glow:   rgba(212,168,67,.28);
+  --noir:   #04040A; --n2:     #08080F; --n3:     #0C0C1A; --n4:     #111120;
+  --glass:  rgba(255,255,255,.04); --glass2: rgba(255,255,255,.07);
+  --border: rgba(212,168,67,.13);  --border2:rgba(212,168,67,.30);
+  --text:   #EAE6D8; --text2:  #9A9070; --text3:  #504430;
+  --green:  #38B87A; --red:    #C83060; --blue:   #4878D8;
+  --r: 10px; --rL: 16px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --hdr-h:  60px;
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+html { font-size:15px; scroll-behavior:smooth; height:100%; }
+body {
+  background:var(--noir); color:var(--text);
+  font-family:'DM Mono',monospace; min-height:100%;
+  overflow-x:hidden; -webkit-font-smoothing:antialiased;
+  padding-bottom:var(--safe-b);
+  padding-top:38px; /* always leave room for fixed langBar */
+}
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-thumb { background:var(--gold4); border-radius:2px; }
+img { display:block; max-width:100%; height:auto; }
+button { -webkit-appearance:none; appearance:none; font-family:inherit; }
+
+/* ── Film grain overlay ─────────────────────────────────── */
+body::after {
+  content:''; position:fixed; inset:0; z-index:998; pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+  opacity:.45; mix-blend-mode:overlay;
+}
+
+
+/* ══════════════════════════════════════════════════════════
+   ROMAN COLUMNS — stone grey, visible from mid-screen down
+══════════════════════════════════════════════════════════ */
+#bankColumns {
+  position: fixed;
+  /* Columns in the lower half: top=50vh, bottom=0 */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bCol-L { position:absolute; left:0;  top:0; bottom:0; }
+.bCol-R { position:absolute; right:0; top:0; bottom:0; }
+@media (max-width:520px) { #bankColumns { display:none; } }
+
+/* ── Animated background canvas ────────────────────────── */
+#bgCanvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
+#authWrap, #app { position:relative; z-index:2; }
+
+/* ============================================================
+   LANGUAGE SWITCHER — fixed top-right, always visible
+============================================================ */
+/* ============================================================
+   LANG BAR — full-width fixed strip at very top, always visible
+   Height: 38px. Everything else sits below it.
+============================================================ */
+#langBar {
+  position:fixed; top:0; left:0; right:0; z-index:1001;
+  height:38px;
+  display:flex; justify-content:center; align-items:center; gap:6px;
+  background:rgba(4,4,10,.96); backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(212,168,67,.1);
+}
+.langBtn {
+  background:rgba(212,168,67,.07); border:1px solid rgba(212,168,67,.18);
+  color:var(--text3); border-radius:5px; padding:3px 9px;
+  font-family:'DM Mono',monospace; font-size:.62rem;
+  cursor:pointer; transition:all .2s; letter-spacing:.06em;
+}
+.langBtn:hover, .langBtn.on {
+  background:rgba(212,168,67,.16); border-color:var(--gold); color:var(--gold2);
+}
+
+/* ============================================================
+   AUTH HEADER BAR — fixed below langBar, shows logo on auth screens
+   Same visual style as #hdr. Hidden once app loads.
+============================================================ */
+#authHdr {
+  position:fixed; top:38px; left:0; right:0; z-index:100; height:55px;
+  background:rgba(4,4,10,.92); backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; padding:0 20px;
+}
+#authHdr::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);
+}
+
+/* ============================================================
+   AUTH SCREEN — centered card, sits below the two fixed bars
+============================================================ */
+#authWrap {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  /* 38px langBar + 55px authHdr + 16px breathing room */
+  padding:109px 16px 24px;
+  background:radial-gradient(ellipse 100% 60% at 50% 0%,rgba(212,168,67,.07) 0%,transparent 60%);
+}
+
+/* Single-column card — no logo inside, logo is in authHdr */
+.authCard {
+  width:100%; max-width:460px;
+  border:1px solid var(--border2); border-radius:22px; overflow:hidden;
+  box-shadow:0 0 0 1px rgba(212,168,67,.04), 0 60px 140px rgba(0,0,0,.9), 0 0 80px var(--glow);
+  animation:riseIn .85s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes riseIn { from{opacity:0;transform:translateY(26px) scale(.97)} to{opacity:1;transform:none} }
+
+/* Form area */
+.authForm {
+  background:var(--n3); padding:28px 32px 34px;
+  display:flex; flex-direction:column;
+}
+.authFormH {
+  font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700;
+  color:var(--text); margin-bottom:3px;
+}
+.authFormSub { font-size:.66rem; color:var(--text3); letter-spacing:.1em; margin-bottom:20px; }
+
+/* Auth tabs (Login / Register) */
+.tabs { display:flex; border-bottom:1px solid var(--border); margin-bottom:20px; }
+.tab {
+  flex:1; padding:9px; background:none; border:none; color:var(--text3);
+  font-family:'DM Mono',monospace; font-size:.66rem; cursor:pointer;
+  letter-spacing:.14em; text-transform:uppercase; transition:all .2s; position:relative;
+}
+.tab.on { color:var(--gold2); }
+.tab.on::after {
+  content:''; position:absolute; bottom:-1px; left:0; right:0; height:1px;
+  background:var(--gold); box-shadow:0 0 8px var(--gold);
+}
+
+/* ── Registration warning — prominent, gold-bordered ─── */
+.regNote {
+  background:linear-gradient(135deg,rgba(212,168,67,.15),rgba(212,168,67,.06));
+  border:1.5px solid var(--gold);
+  border-radius:var(--r); padding:14px 16px; margin-bottom:16px;
+  box-shadow:0 0 20px rgba(212,168,67,.14);
+}
+.regNoteTitle {
+  font-family:'Playfair Display',serif; font-size:.9rem; font-weight:700;
+  color:var(--gold2); margin-bottom:7px; letter-spacing:.03em;
+}
+.regNoteBody { font-size:.69rem; color:var(--text2); line-height:1.55; letter-spacing:.03em; }
+.regNoteExample {
+  margin-top:8px; background:rgba(0,0,0,.35); border-radius:5px;
+  padding:5px 10px; font-size:.66rem; color:var(--gold2);
+  letter-spacing:.05em; font-family:'DM Mono',monospace;
+}
+
+/* ============================================================
+   SHARED FORM ELEMENTS
+============================================================ */
+.fg { margin-bottom:14px; }
+label {
+  display:block; font-size:.61rem; color:var(--text2);
+  text-transform:uppercase; letter-spacing:.14em; margin-bottom:6px;
+}
+input, select {
+  width:100%; background:var(--glass); border:1px solid var(--border);
+  border-radius:var(--r); padding:11px 14px; color:var(--text);
+  font-family:'DM Mono',monospace; font-size:.88rem; outline:none;
+  transition:all .2s; -webkit-appearance:none; appearance:none;
+}
+input:focus, select:focus {
+  border-color:var(--gold); background:rgba(212,168,67,.05);
+  box-shadow:0 0 0 3px rgba(212,168,67,.07);
+}
+input::placeholder { color:var(--text3); }
+select option { background:var(--n4); color:var(--text); }
+
+/* Buttons */
+.btn {
+  width:100%; padding:13px; border:none; border-radius:var(--r);
+  font-family:'DM Mono',monospace; font-size:.76rem; font-weight:500;
+  cursor:pointer; transition:all .25s; letter-spacing:.1em;
+  text-transform:uppercase; position:relative; overflow:hidden; min-height:46px;
+}
+.btn::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg,rgba(255,255,255,.09) 0%,transparent 100%); }
+.btnG { background:linear-gradient(135deg,var(--gold2) 0%,var(--gold3) 100%); color:#060400; }
+.btnG:hover { background:linear-gradient(135deg,#FFE080 0%,var(--gold) 100%); box-shadow:0 8px 28px rgba(212,168,67,.4); transform:translateY(-1px); }
+.btnG:active { transform:none; }
+.btnS { background:var(--glass2); color:var(--text2); border:1px solid var(--border); }
+.btnS:hover { border-color:var(--gold3); color:var(--gold2); }
+.btnD { background:rgba(200,48,96,.1); color:var(--red); border:1px solid rgba(200,48,96,.28); }
+.btnD:hover { background:rgba(200,48,96,.18); }
+.btnO { background:rgba(212,168,67,.1); color:var(--gold); border:1px solid rgba(212,168,67,.28); }
+.btnO:hover { background:rgba(212,168,67,.18); }
+.btnSm { width:auto; padding:5px 12px; font-size:.64rem; min-height:30px; letter-spacing:.08em; }
+.btn:disabled { opacity:.38; cursor:not-allowed; transform:none !important; }
+
+/* Alerts */
+.alert {
+  padding:11px 14px; border-radius:var(--r); font-size:.74rem;
+  margin-bottom:14px; display:none; letter-spacing:.04em; line-height:1.5;
+}
+.alert.on { display:block; animation:alertIn .3s ease; }
+@keyframes alertIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:none} }
+.ae { background:rgba(200,48,96,.1); border-left:3px solid var(--red); color:#E06080; }
+.as { background:rgba(56,184,122,.09); border-left:3px solid var(--green); color:#60D095; }
+.ai { background:rgba(72,120,216,.09); border-left:3px solid var(--blue); color:#80A8F8; }
+
+/* Loading spinner */
+.sp {
+  display:inline-block; width:11px; height:11px;
+  border:1.5px solid rgba(212,168,67,.18); border-top-color:var(--gold);
+  border-radius:50%; animation:spin .7s linear infinite;
+  vertical-align:middle; margin-right:7px;
+}
+@keyframes spin { to { transform:rotate(360deg) } }
+
+/* ============================================================
+   APP — HEADER
+============================================================ */
+#app { min-height:100vh; display:flex; flex-direction:column; }
+#hdr {
+  position:sticky; top:38px; z-index:100;
+  background:rgba(4,4,10,.92); backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; height:var(--hdr-h); gap:10px;
+}
+#hdr::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);
+}
+
+/* Logo — bill image + stacked centred text */
+.logo { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.logoBill {
+  height:36px; width:auto;
+  border-radius:5px;
+  border:1px solid rgba(212,168,67,.35);
+  box-shadow:0 0 8px rgba(212,168,67,.18);
+  object-fit:cover;
+  filter:saturate(1.1) contrast(1.05);
+}
+/* Stacked title: DVDcoin (line 1) / Bank (line 2) — centred, tight */
+.logoTextWrap { display:flex; flex-direction:column; align-items:center; line-height:1; }
+.logoTitle {
+  font-family:'Playfair Display',serif; font-size:.95rem; font-weight:900;
+  color:var(--gold2); letter-spacing:.08em; line-height:1;
+}
+.logoSub { font-size:.6rem; color:var(--text3); letter-spacing:.25em; text-transform:uppercase; margin-top:2px; }
+
+#hdrR { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; min-width:0; flex:1; justify-content:flex-end; }
+.chip { border-radius:20px; padding:4px 10px; font-size:.68rem; font-family:'DM Mono',monospace; letter-spacing:.05em; white-space:nowrap; }
+.chipGold  { background:rgba(212,168,67,.1); border:1px solid var(--border2); color:var(--gold2); }
+.chipAdm   { background:linear-gradient(135deg,rgba(212,168,67,.18),rgba(212,168,67,.06)); border:1px solid var(--gold); color:var(--gold2); font-size:.58rem; text-transform:uppercase; letter-spacing:.12em; }
+/* chipUser: wider, bigger font so username is readable */
+.chipUser  { background:var(--glass); border:1px solid var(--border); color:var(--text); overflow:hidden; text-overflow:ellipsis; max-width:160px; font-size:.68rem; }
+.btnLo { background:rgba(200,48,96,.12); border:1.5px solid rgba(200,48,96,.55); color:rgba(220,80,110,1); padding:5px 13px; border-radius:7px; cursor:pointer; font-family:'DM Mono',monospace; font-size:.64rem; letter-spacing:.1em; text-transform:uppercase; transition:all .2s; white-space:nowrap; flex-shrink:0; }
+.btnLo:hover { background:rgba(200,48,96,.28); border-color:var(--red); color:#fff; transform:translateY(-1px); }
+.btnDel { background:rgba(200,48,96,.10); border:1px solid rgba(200,48,96,.35) !important; color:var(--red) !important; }
+.btnDel:hover { background:rgba(200,48,96,.24); border-color:var(--red) !important; }
+.onlineDot  { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--green); margin-right:5px; flex-shrink:0; vertical-align:middle; }
+.offlineDot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--border2); margin-right:5px; flex-shrink:0; vertical-align:middle; }
+.tbl th.sortable { cursor:pointer; user-select:none; white-space:nowrap; }
+.tbl th.sortable:hover { color:var(--gold2); }
+.tbl th.sortable .sortArrow { display:inline-block; margin-left:4px; opacity:.35; font-style:normal; font-size:.7em; }
+.tbl th.sortable.asc  .sortArrow { opacity:1; content:"↑"; }
+.tbl th.sortable.desc .sortArrow { opacity:1; }
+.tbl th.sort-asc  .sortArrow::after { content:" ↑"; }
+.tbl th.sort-desc .sortArrow::after { content:" ↓"; }
+.tbl th.sortable  .sortArrow::after { content:" ↕"; }
+
+/* ============================================================
+   APP — NAVIGATION
+============================================================ */
+.wrap { max-width:1020px; margin:0 auto; padding:20px 16px; width:100%; flex:1; }
+
+/* Desktop nav tabs */
+.navTabs {
+  display:flex; border-bottom:1px solid var(--border); margin-bottom:22px;
+  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.navTabs::-webkit-scrollbar { display:none; }
+.navTab {
+  padding:10px 18px; background:none; border:none; color:var(--text3);
+  font-family:'DM Mono',monospace; font-size:.64rem; cursor:pointer;
+  letter-spacing:.1em; text-transform:uppercase; transition:all .2s;
+  position:relative; white-space:nowrap; flex-shrink:0;
+}
+.navTab:hover { color:var(--text2); }
+.navTab.on { color:var(--gold2); }
+.navTab.on::after {
+  content:''; position:absolute; bottom:-1px; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  box-shadow:0 0 6px var(--gold);
+}
+
+/* Mobile bottom nav */
+#mobileNav {
+  display:none; position:fixed; bottom:0; left:0; right:0; z-index:200;
+  background:rgba(4,4,10,.96); backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+  padding:6px 0 calc(6px + var(--safe-b));
+  grid-template-columns:repeat(4,1fr);
+}
+.mNavBtn {
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  background:none; border:none; color:var(--text3); cursor:pointer;
+  font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.06em;
+  text-transform:uppercase; padding:6px 4px; transition:all .2s;
+}
+.mNavBtn .icon { font-size:1.2rem; line-height:1; }
+.mNavBtn.on { color:var(--gold2); }
+.mNavBtn.on .icon { filter:drop-shadow(0 0 4px var(--gold)); }
+
+/* ============================================================
+   SECTION HEADINGS
+============================================================ */
+.secHead { margin-bottom:20px; }
+.secTitle { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--text); letter-spacing:.03em; }
+.secSub   { font-size:.62rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+
+/* ============================================================
+   DASHBOARD CARDS
+============================================================ */
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:24px; }
+.card {
+  background:linear-gradient(145deg,var(--n4) 0%,var(--n3) 100%);
+  border:1px solid var(--border); border-radius:var(--rL); padding:20px 22px;
+  position:relative; overflow:hidden; transition:all .3s;
+}
+.card:hover { border-color:var(--border2); transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,0,0,.4),0 0 18px var(--glow); }
+.card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(212,168,67,.3),transparent); }
+.card.hero { border-color:rgba(212,168,67,.22); background:linear-gradient(145deg,#0E0A02 0%,#08080C 100%); }
+.card.hero::before { background:linear-gradient(90deg,transparent,var(--gold),transparent); box-shadow:0 0 8px var(--gold); }
+.cLbl { font-size:.59rem; color:var(--text3); text-transform:uppercase; letter-spacing:.16em; margin-bottom:9px; }
+.cVal { font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:700; color:var(--gold2); line-height:1; }
+.card.hero .cVal { font-size:2.3rem; background:linear-gradient(135deg,var(--gold2) 0%,var(--gold) 60%,#C8900C 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.cSub { font-size:.61rem; color:var(--text3); margin-top:5px; letter-spacing:.07em; }
+.cIco { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-family:'Playfair Display',serif; font-size:3rem; color:var(--gold); opacity:.07; line-height:1; }
+
+/* ============================================================
+   PANEL
+============================================================ */
+.panel {
+  background:var(--n3); border:1px solid var(--border); border-radius:var(--rL);
+  padding:22px; margin-bottom:16px; position:relative; overflow:hidden;
+}
+.panel::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(212,168,67,.22),transparent); }
+.pHead { margin-bottom:16px; }
+.pTitle { font-family:'Playfair Display',serif; font-size:.95rem; font-weight:700; color:var(--gold2); display:flex; align-items:center; gap:8px; }
+.pDot   { width:5px; height:5px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px var(--gold); flex-shrink:0; }
+.pSub   { font-size:.61rem; color:var(--text3); letter-spacing:.1em; text-transform:uppercase; margin-top:4px; }
+.row2   { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.adminBanner {
+  background:linear-gradient(135deg,rgba(212,168,67,.07),rgba(212,168,67,.03));
+  border:1px solid rgba(212,168,67,.17); border-radius:var(--r);
+  padding:10px 14px; font-size:.68rem; color:var(--text2);
+  margin-bottom:16px; letter-spacing:.04em; line-height:1.5;
+  display:flex; align-items:flex-start; gap:9px;
+}
+.adminBanner::before { content:'◆'; color:var(--gold); flex-shrink:0; font-size:.6rem; margin-top:1px; }
+
+/* ============================================================
+   TRANSACTION LIST
+============================================================ */
+.txList {
+  border:1px solid var(--border);
+  border-radius:var(--rL);
+  background:var(--n3);
+  overflow-y:auto;
+  max-height:380px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold4) transparent;
+}
+.txList::-webkit-scrollbar { width:4px; }
+.txList::-webkit-scrollbar-track { background:transparent; }
+.txList::-webkit-scrollbar-thumb { background:var(--gold4); border-radius:2px; }
+/* ── Ledger filter bar ── */
+.ldgBar {
+  display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  padding:10px 12px; border-bottom:1px solid var(--border);
+  background:var(--n4); border-radius:var(--rL) var(--rL) 0 0;
+}
+.ldgBar input {
+  background:var(--glass); border:1px solid var(--border2);
+  border-radius:6px; padding:5px 9px; color:var(--text);
+  font-family:'DM Mono',monospace; font-size:.7rem; outline:none;
+  width:110px; transition:border-color .2s;
+}
+.ldgBar input:focus { border-color:var(--gold4); }
+.ldgBar input::placeholder { color:var(--text3); }
+.ldgBar .ldgSep { color:var(--text3); font-size:.7rem; }
+.ldgAmtRow { display:flex; align-items:center; gap:6px; }
+.ldgAmtRow input { width:72px; }
+/* Sort pills */
+.ldgSort { display:flex; gap:4px; margin-left:auto; flex-wrap:wrap; }
+.sortPill {
+  font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.06em;
+  text-transform:uppercase; padding:4px 9px; border-radius:20px;
+  border:1px solid var(--border2); background:transparent;
+  color:var(--text3); cursor:pointer; transition:all .18s; white-space:nowrap;
+}
+.sortPill:hover { border-color:var(--gold4); color:var(--text2); }
+.sortPill.on { background:rgba(212,168,67,.12); border-color:var(--gold4); color:var(--gold2); }
+/* Clear button */
+.ldgClear {
+  font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.06em;
+  padding:4px 9px; border-radius:20px; border:1px solid var(--border2);
+  background:transparent; color:var(--text3); cursor:pointer; transition:all .18s;
+}
+.ldgClear:hover { border-color:var(--red); color:var(--red); }
+.ldgCount { font-size:.65rem; color:var(--text3); margin-left:2px; white-space:nowrap; }
+.txItem {
+  display:grid; grid-template-columns:36px 1fr auto; gap:10px; align-items:center;
+  padding:12px 16px; border-bottom:1px solid rgba(212,168,67,.04); transition:background .15s;
+}
+.txItem:last-child { border-bottom:none; }
+.txItem:hover { background:rgba(212,168,67,.025); }
+.txBadge { width:34px; height:34px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:.78rem; }
+.txBadge.in  { background:rgba(56,184,122,.1);  color:var(--green); border:1px solid rgba(56,184,122,.18); }
+.txBadge.out { background:rgba(200,48,96,.1);   color:var(--red);   border:1px solid rgba(200,48,96,.18); }
+.txBadge.adm { background:rgba(212,168,67,.1);  color:var(--gold);  border:1px solid rgba(212,168,67,.18); }
+.txInfo { min-width:0; }
+.txPair { font-size:.75rem; color:var(--text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; letter-spacing:.02em; }
+.txArrow { color:var(--text3); margin:0 5px; font-size:.7em; }
+.txCon  { font-size:.75rem; color:var(--text3); margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-family:'Cormorant Garamond',serif; font-style:italic; }
+.txDt   { font-size:.58rem; color:var(--text3); margin-top:2px; }
+.txAmt  { font-family:'Playfair Display',serif; font-size:.95rem; font-weight:700; text-align:right; white-space:nowrap; }
+.txAmt.in { color:var(--green); } .txAmt.out { color:var(--red); } .txAmt.adm { color:var(--gold); }
+
+/* ============================================================
+   USER AUTOCOMPLETE — transfer recipient search
+============================================================ */
+.acWrap {
+  position:relative;
+}
+/* Search input — identical style to other inputs */
+.acInput {
+  width:100%; background:var(--glass); border:1px solid var(--border);
+  border-radius:var(--r); padding:11px 36px 11px 14px;
+  color:var(--text); font-family:'DM Mono',monospace; font-size:.88rem;
+  outline:none; transition:all .2s; -webkit-appearance:none; appearance:none;
+}
+.acInput:focus {
+  border-color:var(--gold); background:rgba(212,168,67,.05);
+  box-shadow:0 0 0 3px rgba(212,168,67,.07);
+}
+.acInput::placeholder { color:var(--text3); }
+/* Clear button inside the input */
+.acClear {
+  position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  background:none; border:none; color:var(--text3); cursor:pointer;
+  font-size:1rem; padding:2px 4px; line-height:1; display:none;
+  transition:color .15s;
+}
+.acClear:hover { color:var(--gold2); }
+/* Selected badge — shown when a user is confirmed */
+.acSelected {
+  display:none; align-items:center; gap:8px;
+  background:rgba(212,168,67,.09); border:1px solid var(--gold3);
+  border-radius:var(--r); padding:9px 12px; margin-top:6px;
+}
+.acSelectedName {
+  font-family:'DM Mono',monospace; font-size:.85rem; color:var(--gold2);
+  font-weight:500; flex:1;
+}
+.acSelectedAdmin {
+  font-size:.6rem; background:rgba(212,168,67,.15); color:var(--gold);
+  border:1px solid rgba(212,168,67,.3); border-radius:12px; padding:1px 7px;
+  letter-spacing:.08em;
+}
+.acSelectedClear {
+  background:none; border:none; color:var(--text3); cursor:pointer;
+  font-size:.9rem; padding:2px; line-height:1; transition:color .15s;
+  flex-shrink:0;
+}
+.acSelectedClear:hover { color:var(--red); }
+/* Dropdown results list */
+.acDropdown {
+  display:none; position:absolute; top:calc(100% + 4px); left:0; right:0;
+  background:var(--n4); border:1px solid var(--border2);
+  border-radius:var(--r); overflow:hidden; z-index:500;
+  box-shadow:0 8px 32px rgba(0,0,0,.7), 0 0 12px rgba(212,168,67,.08);
+  max-height:220px; overflow-y:auto;
+}
+.acDropdown.open { display:block; animation:alertIn .15s ease; }
+.acItem {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 14px; cursor:pointer;
+  border-bottom:1px solid rgba(212,168,67,.04);
+  transition:background .12s;
+}
+.acItem:last-child { border-bottom:none; }
+.acItem:hover, .acItem.focused {
+  background:rgba(212,168,67,.08);
+}
+.acItemAt {
+  color:var(--text3); font-size:.75rem; flex-shrink:0;
+}
+.acItemName {
+  font-family:'DM Mono',monospace; font-size:.82rem; color:var(--text); flex:1;
+}
+/* Highlight matching characters */
+.acItemName mark {
+  background:none; color:var(--gold2); font-weight:600;
+}
+.acItemBadge {
+  font-size:.58rem; background:rgba(212,168,67,.12); color:var(--gold);
+  border:1px solid rgba(212,168,67,.25); border-radius:10px; padding:1px 6px;
+  letter-spacing:.07em; flex-shrink:0;
+}
+.acNoResult {
+  padding:14px; text-align:center;
+  font-family:'Cormorant Garamond',serif; font-style:italic;
+  font-size:.85rem; color:var(--text3);
+}
+
+/* ============================================================
+   ADMIN TABLE
+============================================================ */
+.tblWrap {
+  overflow-x:auto;
+  overflow-y:auto;
+  max-height:420px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  scrollbar-width:thin;
+  scrollbar-color:var(--gold4) transparent;
+}
+.tblWrap::-webkit-scrollbar { width:4px; height:4px; }
+.tblWrap::-webkit-scrollbar-track { background:transparent; }
+.tblWrap::-webkit-scrollbar-thumb { background:var(--gold4); border-radius:2px; }
+.tbl thead th {
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:var(--n4);
+}
+.tbl { width:100%; border-collapse:collapse; font-size:.71rem; }
+.tbl th { text-align:left; padding:10px 13px; background:var(--n4); color:var(--text3); font-size:.58rem; text-transform:uppercase; letter-spacing:.15em; font-weight:400; white-space:nowrap; }
+.tbl td { padding:10px 13px; border-bottom:1px solid rgba(212,168,67,.04); vertical-align:middle; }
+.tbl tr:hover td { background:rgba(212,168,67,.02); }
+.tbl tr:last-child td { border-bottom:none; }
+.bdg  { font-size:.6rem; padding:2px 8px; border-radius:20px; display:inline-block; letter-spacing:.07em; }
+.bdgG { background:rgba(56,184,122,.1);  color:var(--green); }
+.bdgR { background:rgba(200,48,96,.1);   color:var(--red); }
+.bdgY { background:rgba(212,168,67,.1);  color:var(--gold2); }
+
+/* ============================================================
+   IN-APP GALLERY — photos only, no instructions
+============================================================ */
+/* Outer wrapper — no overflow:hidden so border-radius never clips the animation */
+.gc { position:relative; border:1px solid var(--border); border-radius:var(--rL); background:var(--n3); }
+
+.gcFrame {
+  position:relative; aspect-ratio:16/9; background:#000;
+  cursor:grab; user-select:none;
+  overflow:hidden; /* clips only here, inside the rounded frame */
+  border-radius:calc(var(--rL) - 1px) calc(var(--rL) - 1px) 0 0;
+}
+.gcFrame:active { cursor:grabbing; }
+
+/* Track: MUST NOT have width:100% — it grows to fit all slides side by side */
+.gcTrack {
+  display:flex; flex-direction:row;
+  height:100%;
+  /* no width set — natural flex width = n × 100% of frame */
+  transition:transform .6s ease-in-out;
+  will-change:transform;
+}
+/* Each slide is exactly the frame width. flex-shrink:0 prevents compression. */
+.gcSlide {
+  width:100%;        /* 100% of gcFrame */
+  min-width:100%;    /* never narrower */
+  flex:0 0 100%;     /* flex-grow:0 flex-shrink:0 flex-basis:100% — iron-clad */
+  height:100%;
+  background:#000;
+  display:flex; align-items:center; justify-content:center;
+}
+/* contain: full image always visible, never cropped */
+.gcSlide img {
+  display:block;
+  max-width:100%; max-height:100%;
+  width:auto; height:auto;
+  object-fit:contain;
+}
+
+/* Empty state */
+.gcEmptyState {
+  position:absolute; inset:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:12px; padding:32px;
+}
+
+/* Navigation arrows */
+.gcArrow {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,.6); border:1px solid rgba(212,168,67,.3);
+  color:var(--gold); width:42px; height:42px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; font-size:1.1rem; z-index:10; transition:all .2s;
+  backdrop-filter:blur(8px);
+}
+.gcArrow:hover { background:rgba(212,168,67,.28); border-color:var(--gold); transform:translateY(-50%) scale(1.08); }
+.gcPrev { left:12px; } .gcNext { right:12px; }
+
+.gcCounter {
+  position:absolute; top:12px; right:12px; z-index:10;
+  background:rgba(0,0,0,.6); border:1px solid rgba(212,168,67,.2);
+  color:var(--gold2); font-size:.63rem; padding:3px 10px; border-radius:20px;
+  backdrop-filter:blur(6px); letter-spacing:.08em;
+}
+.gcProgress {
+  position:absolute; bottom:0; left:0; height:2px; z-index:10;
+  background:linear-gradient(90deg,var(--gold3),var(--gold2));
+  box-shadow:0 0 5px var(--gold);
+}
+
+/* Dot indicators */
+.gcDots { display:flex; justify-content:center; gap:5px; padding:10px; background:var(--n3); }
+.gcDot  { width:6px; height:6px; border-radius:3px; background:rgba(212,168,67,.3); cursor:pointer; transition:all .3s; flex-shrink:0; }
+.gcDot.on { width:20px; background:var(--gold); box-shadow:0 0 6px var(--gold); }
+
+/* Thumbnail strip */
+.gcThumbs {
+  display:flex; gap:8px; padding:10px 14px; border-top:1px solid var(--border);
+  overflow-x:auto; -webkit-overflow-scrolling:touch; scrollbar-width:none; background:var(--n3);
+}
+.gcThumbs::-webkit-scrollbar { display:none; }
+.gcThumb { width:64px; height:44px; border-radius:6px; overflow:hidden; flex-shrink:0; border:2px solid transparent; cursor:pointer; transition:all .2s; background:var(--n4); }
+.gcThumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.gcThumb.on { border-color:var(--gold); box-shadow:0 0 8px var(--gold); }
+.gcThumb:hover:not(.on) { border-color:var(--border2); }
+
+/* ============================================================
+   VIEW TRANSITIONS
+============================================================ */
+.hidden { display:none !important; }
+.view   { display:none; }
+.view.on { display:block; animation:viewIn .38s cubic-bezier(.16,1,.3,1); }
+@keyframes viewIn { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:none} }
+.empty { padding:40px; text-align:center; color:var(--text3); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:.95rem; }
+
+/* ============================================================
+   RESPONSIVE — TABLET
+============================================================ */
+@media (max-width:720px) {
+  .authCard { max-width:400px; }
+  .row2 { grid-template-columns:1fr; }
+  .cards { grid-template-columns:1fr 1fr; }
+  .card.hero { grid-column:1/-1; }
+  .gcFrame { aspect-ratio:4/3; }
+}
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+============================================================ */
+@media (max-width:480px) {
+  /* langBar stays fixed full-width centered — no override needed */
+  .langBtn { padding:3px 7px; font-size:.58rem; }
+  /* authWrap: 38px langBar + 44px authHdr (smaller on mobile) + 16px gap */
+  #authWrap { padding:98px 0 0; align-items:flex-start; }
+  .authCard { max-width:100%; border-radius:0; border-left:none; border-right:none; }
+  .authForm { padding:20px 18px 28px; border-radius:0; }
+  .authFormH { font-size:1.3rem; }
+  #authHdr { height:44px; padding:0 12px; top:38px; }
+  #hdr { padding:0 12px; height:54px; top:38px; }
+  .logoSub { display:none; }
+  .logoBill { height:26px; }
+  .chipAdm { display:none; }
+  .chipGold { font-size:.62rem; padding:4px 9px; }
+  .chipUser { max-width:80px; font-size:.62rem; }
+  .btnLo { font-size:.6rem; padding:4px 9px; }
+  #mobileNav { display:grid; }
+  .navTabs { display:none; }
+  .wrap { padding:14px 12px; padding-bottom:calc(70px + var(--safe-b)); }
+  .secTitle { font-size:1.2rem; }
+  .cards { grid-template-columns:1fr; }
+  .card.hero .cVal { font-size:2rem; }
+  .panel { padding:16px; }
+  .gcArrow { width:36px; height:36px; font-size:.95rem; }
+  .gcThumb { width:52px; height:36px; }
+  .txItem { padding:10px 12px; grid-template-columns:30px 1fr auto; }
+  .txBadge { width:28px; height:28px; font-size:.68rem; }
+  .txPair { font-size:.7rem; }
+  .txAmt  { font-size:.85rem; }
+  .tbl    { font-size:.68rem; }
+  .tbl th, .tbl td { padding:8px 10px; }
+}
+</style>
+</head>
+<body>
+<!-- ── Stone-grey Roman columns, lower half of screen ────── -->
+<div id="bankColumns" aria-hidden="true">
+  <div class="bCol-L" id="bcL"></div>
+  <div class="bCol-R" id="bcR"></div>
+</div>
+<script>
+(function(){
+  /* ═══════════════════════════════════════════════════════
+     Classic bank column — Ionic order
+     Stone grey, starts at mid-screen, fades softly upward.
+  ═══════════════════════════════════════════════════════ */
+  var VH  = window.innerHeight;
+  var W   = 88;          // column width
+  var H   = VH;          // total SVG height = full viewport
+  var cx  = W / 2;
+  var ns  = "http://www.w3.org/2000/svg";
+
+  /* Column starts at 50% of the screen and extends to the bottom */
+  var startY = Math.round(VH * 0.50);  // column start Y position
+  var colH   = H - startY;             // effective column height
+
+  /* Proportions within colH */
+  var plinH  = Math.round(colH * 0.038);
+  var baseH  = Math.round(colH * 0.082);
+  var capH   = Math.round(colH * 0.130);
+  var shaftH = colH - plinH - baseH - capH;
+
+  /* Shaft radius */
+  var rBot = W * 0.330, rTop = W * 0.258;
+  function shaftR(t) {
+    return rTop + (rBot - rTop) * t + rBot * 0.042 * Math.sin(t * Math.PI);
+  }
+
+  /* ── Stone grey palette ──────────────────────────────── */
+  /* Base: cold bluish grey, like granite or limestone */
+  function stoneA(op) { return "rgba(180,185,195," + op + ")"; }
+  function lightA(op) { return "rgba(220,225,232," + op + ")"; }
+  function darkA(op)  { return "rgba(110,115,128," + op + ")"; }
+  function shadowA(op){ return "rgba(0,0,0,"        + op + ")"; }
+
+  function buildColumn(flip) {
+    var svg = document.createElementNS(ns,"svg");
+    svg.setAttribute("width",  W);
+    svg.setAttribute("height", H);
+    svg.setAttribute("viewBox","0 0 " + W + " " + H);
+    svg.style.cssText = "display:block;";
+    var defs = document.createElementNS(ns,"defs");
+    svg.appendChild(defs);
+
+    /* ── Gradients ───────────────────────────────────── */
+    function mkLG(id, x1,y1,x2,y2, stops) {
+      var lg = document.createElementNS(ns,"linearGradient");
+      lg.setAttribute("id",id);
+      lg.setAttribute("gradientUnits","userSpaceOnUse");
+      lg.setAttribute("x1",x1); lg.setAttribute("y1",y1);
+      lg.setAttribute("x2",x2); lg.setAttribute("y2",y2);
+      stops.forEach(function(s){
+        var st = document.createElementNS(ns,"stop");
+        st.setAttribute("offset",   s[0]);
+        st.setAttribute("stop-color",s[1]);
+        lg.appendChild(st);
+      });
+      defs.appendChild(lg);
+      return "url(#"+id+")";
+    }
+
+    var side = flip ? "r" : "l";
+
+    /* Horizontal shaft gradient — light from the inside */
+    var gS = mkLG("gs"+side, 0,0,W,0, flip ? [
+      ["0%",   stoneA(.95)],
+      ["15%",  lightA(1.0)],
+      ["38%",  stoneA(.80)],
+      ["62%",  stoneA(.55)],
+      ["82%",  darkA(.45)],
+      ["100%", shadowA(.12)]
+    ] : [
+      ["0%",   shadowA(.12)],
+      ["18%",  darkA(.45)],
+      ["38%",  stoneA(.55)],
+      ["62%",  stoneA(.80)],
+      ["85%",  lightA(1.0)],
+      ["100%", stoneA(.95)]
+    ]);
+
+    /* Moulding gradient — more opaque */
+    var gM = mkLG("gm"+side, 0,0,W,0, flip ? [
+      ["0%",   stoneA(1.0)],
+      ["18%",  lightA(1.0)],
+      ["42%",  stoneA(.85)],
+      ["70%",  darkA(.65)],
+      ["100%", shadowA(.18)]
+    ] : [
+      ["0%",   shadowA(.18)],
+      ["30%",  darkA(.65)],
+      ["58%",  stoneA(.85)],
+      ["82%",  lightA(1.0)],
+      ["100%", stoneA(1.0)]
+    ]);
+
+    /* Fluting shadow gradient */
+    var gF = mkLG("gf"+side, 0,0,W,0, [
+      ["0%",   "rgba(0,0,0,.22)"],
+      ["50%",  "rgba(0,0,0,0)"],
+      ["100%", "rgba(0,0,0,.22)"]
+    ]);
+
+    /* Vertical fade gradient (fade-in from startY) */
+    var fadeH = Math.round(colH * 0.22);  // fade zone height
+    var gFade = mkLG("fade"+side, 0, startY, 0, startY+fadeH, [
+      ["0%",   "rgba(0,0,0,0)"],   // transparente arriba
+      ["100%", "rgba(0,0,0,1)"]    // opaco abajo
+    ]);
+    /* Fade mask */
+    var mask = document.createElementNS(ns,"mask");
+    mask.id = "mask"+side;
+    var mRect = document.createElementNS(ns,"rect");
+    mRect.setAttribute("x",0); mRect.setAttribute("y",startY);
+    mRect.setAttribute("width",W); mRect.setAttribute("height",colH);
+    mRect.setAttribute("fill","url(#fade"+side+")");
+    mask.appendChild(mRect);
+    defs.appendChild(mask);
+
+    /* Masked group — everything visible */
+    var g = document.createElementNS(ns,"g");
+    g.setAttribute("mask","url(#mask"+side+")");
+    svg.appendChild(g);
+
+    /* ── Drawing helpers (operate on the masked group) ── */
+    function R(x,y,w,h,fill){ var el=document.createElementNS(ns,"rect"); el.setAttribute("x",x);el.setAttribute("y",y);el.setAttribute("width",w);el.setAttribute("height",h);el.setAttribute("fill",fill);g.appendChild(el);return el; }
+    function L(x1,y1,x2,y2,stroke,sw){ var el=document.createElementNS(ns,"line");el.setAttribute("x1",x1);el.setAttribute("y1",y1);el.setAttribute("x2",x2);el.setAttribute("y2",y2);el.setAttribute("stroke",stroke);el.setAttribute("stroke-width",sw||1);g.appendChild(el); }
+    function P(d,fill,stroke,sw){ var el=document.createElementNS(ns,"path");el.setAttribute("d",d);el.setAttribute("fill",fill||"none");if(stroke){el.setAttribute("stroke",stroke);el.setAttribute("stroke-width",sw||1);}g.appendChild(el);return el; }
+    function E(cx2,cy,rx,ry,fill,stroke,sw){ var el=document.createElementNS(ns,"ellipse");el.setAttribute("cx",cx2);el.setAttribute("cy",cy);el.setAttribute("rx",rx);el.setAttribute("ry",ry);el.setAttribute("fill",fill||"none");if(stroke){el.setAttribute("stroke",stroke);el.setAttribute("stroke-width",sw||1);}g.appendChild(el); }
+
+    var y = startY;
+
+    /* ════ IONIC CAPITAL ══════════════════════════════ */
+    var capY = y;
+
+    /* Abacus */
+    var abH = Math.round(capH * 0.14);
+    R(0, capY, W, abH, gM);
+    L(0,capY,W,capY,lightA(.9),1.8);
+    L(0,capY+abH,W,capY+abH,stoneA(.6),1);
+
+    /* Ovolo (curved moulding) */
+    var ovH = Math.round(capH * 0.11);
+    var ovY = capY + abH;
+    P("M0,"+(ovY+ovH)+" Q"+cx+","+ovY+" "+W+","+(ovY+ovH)+" L"+W+","+(ovY+ovH)+" L0,"+(ovY+ovH)+" Z", gM, stoneA(.5),.8);
+
+    /* Channel */
+    var chH = Math.round(capH * 0.07);
+    var chY = ovY + ovH;
+    R(Math.round(W*.05), chY, Math.round(W*.90), chH, darkA(.35));
+
+    /* Ionic volutes */
+    var volH = Math.round(capH * 0.46);
+    var volY = chY + chH;
+    var vW   = Math.round(W * 0.44);
+
+    var vd  = "M0,"+(volY+volH);
+    vd += " C"+(vW*.55)+","+(volY+volH)+" "+vW+","+(volY+volH*.65)+" "+vW+","+volY;
+    vd += " C"+vW+","+(volY-volH*.08)+" "+(vW*.55)+","+(volY-volH*.02)+" "+(vW*.42)+","+(volY+volH*.25);
+    vd += " C"+(vW*.35)+","+(volY+volH*.42)+" "+(vW*.40)+","+(volY+volH*.60)+" "+(vW*.50)+","+(volY+volH*.60);
+    vd += " L"+(W-vW*.50)+","+(volY+volH*.60);
+    vd += " C"+(W-vW*.40)+","+(volY+volH*.60)+" "+(W-vW*.35)+","+(volY+volH*.42)+" "+(W-vW*.42)+","+(volY+volH*.25);
+    vd += " C"+(W-vW*.55)+","+(volY-volH*.02)+" "+(W-vW)+","+(volY-volH*.08)+" "+(W-vW)+","+volY;
+    vd += " C"+(W-vW)+","+(volY+volH*.65)+" "+(W-vW*.55)+","+(volY+volH)+" "+W+","+(volY+volH)+" Z";
+    P(vd, gS, stoneA(.45), .8);
+
+    /* Spirals */
+    [[vW*.38, volY+volH*.32, vW*.27, volH*.30],
+     [vW*.38, volY+volH*.38, vW*.16, volH*.19],
+     [vW*.38, volY+volH*.42, vW*.08, volH*.10]
+    ].forEach(function(sp,k){
+      E(sp[0],sp[1],sp[2],sp[3],null,lightA(.45-.10*k),.9);
+      E(W-sp[0],sp[1],sp[2],sp[3],null,lightA(.45-.10*k),.9);
+    });
+
+    /* Neck */
+    var nkH = Math.round(capH * 0.22);
+    var nkY = volY + volH;
+    var nkR0= rTop*1.05, nkR1=rTop*1.18;
+    P("M"+(cx-nkR1)+","+(nkY+nkH)+" L"+(cx-nkR0)+","+nkY+" L"+(cx+nkR0)+","+nkY+" L"+(cx+nkR1)+","+(nkY+nkH)+" Z", gM, stoneA(.45),.8);
+    [.28,.54,.78].forEach(function(f){ var ry=nkY+nkH*f,rx=nkR0+(nkR1-nkR0)*f; L(cx-rx,ry,cx+rx,ry,stoneA(.35),.9); });
+
+    y += capH;
+
+    /* ════ SHAFT ═══════════════════════════════════════ */
+    var shY = y, shBot = y + shaftH;
+    var STEPS=80, NFLUTES=24;
+    var lP=[],rP=[];
+    for(var i=0;i<=STEPS;i++){
+      var t=i/STEPS, r=shaftR(t);
+      lP.push([cx-r, shY+shaftH*t]);
+      rP.push([cx+r, shY+shaftH*t]);
+    }
+    var shD="M"+lP[0][0]+","+lP[0][1];
+    lP.slice(1).forEach(function(p){shD+=" L"+p[0]+","+p[1];});
+    shD+=" L"+rP[rP.length-1][0]+","+rP[rP.length-1][1];
+    for(var i=rP.length-2;i>=0;i--) shD+=" L"+rP[i][0]+","+rP[i][1]; shD+=" Z";
+
+    /* Clip path */
+    var cid="cl"+side;
+    var cl=document.createElementNS(ns,"clipPath"); cl.id=cid;
+    var cp=document.createElementNS(ns,"path"); cp.setAttribute("d",shD); cl.appendChild(cp); defs.appendChild(cl);
+    var cu="url(#"+cid+")";
+
+    P(shD, gS);
+    R(0,shY,W,shaftH,gF);
+
+    /* Flutes */
+    for(var f=0;f<NFLUTES;f++){
+      var ang=(f+.5)/NFLUTES*Math.PI;
+      var fx=cx-Math.cos(ang)*(rTop*.88+(rBot*.88-rTop*.88)*.5);
+      if(fx<1||fx>W-1) continue;
+      var fl=document.createElementNS(ns,"line");
+      fl.setAttribute("x1",fx);fl.setAttribute("y1",shY+5);fl.setAttribute("x2",fx);fl.setAttribute("y2",shBot-5);
+      fl.setAttribute("stroke",stoneA(.13));fl.setAttribute("stroke-width","0.9");fl.setAttribute("clip-path",cu);
+      g.appendChild(fl);
+    }
+    /* Highlight */
+    var hlid="hl"+side;
+    mkLG(hlid,cx-W*.11,0,cx+W*.11,0,[["0%","rgba(220,225,232,0)"],["50%","rgba(220,225,232,.18)"],["100%","rgba(220,225,232,0)"]]);
+    R(cx-W*.11,shY,W*.22,shaftH,"url(#"+hlid+")");
+
+    /* Edges */
+    var dL="M"+lP[0][0]+","+lP[0][1]; lP.slice(1).forEach(function(p){dL+=" L"+p[0]+","+p[1];}); P(dL,null,lightA(.55),1.3);
+    var dR="M"+rP[0][0]+","+rP[0][1]; rP.slice(1).forEach(function(p){dR+=" L"+p[0]+","+p[1];}); P(dR,null,darkA(.45),1.3);
+
+    y += shaftH;
+
+    /* ════ ATTIC BASE ══════════════════════════════════ */
+    var baY=y;
+    var t1H=Math.round(baseH*.30), scH=Math.round(baseH*.26), t2H=Math.round(baseH*.36);
+    var scY=baY+t1H, t2Y=scY+scH;
+    E(cx,baY+t1H/2,rBot*1.09,t1H/2,gM,lightA(.8),1.4);
+    P("M"+(cx-rBot*1.06)+","+scY+" Q"+(cx-rBot*1.17)+","+(scY+scH/2)+" "+(cx-rBot*1.17)+","+(scY+scH)+" L"+(cx+rBot*1.17)+","+(scY+scH)+" Q"+(cx+rBot*1.17)+","+(scY+scH/2)+" "+(cx+rBot*1.06)+","+scY+" Z",gS,stoneA(.4),.8);
+    L(cx-rBot*1.06,scY,cx+rBot*1.06,scY,stoneA(.6),1);
+    L(cx-rBot*1.17,scY+scH,cx+rBot*1.17,scY+scH,stoneA(.6),1);
+    E(cx,t2Y+t2H/2,rBot*1.23,t2H/2,gM,lightA(.75),1.4);
+    L(cx-rBot*1.23,t2Y+t2H,cx+rBot*1.23,t2Y+t2H,lightA(.75),1.5);
+
+    y += baseH;
+
+    /* ════ PLINTH ══════════════════════════════════════ */
+    R(0,y,W,plinH,gM);
+    L(0,y,W,y,lightA(.9),2);
+    R(Math.round(W*.05),y+Math.round(plinH*.55),Math.round(W*.90),Math.round(plinH*.32),darkA(.25));
+    L(0,y+plinH,W,y+plinH,stoneA(.65),1.5);
+
+    return svg;
+  }
+
+  var eL=document.getElementById("bcL");
+  var eR=document.getElementById("bcR");
+  if(eL) eL.appendChild(buildColumn(false));
+  if(eR) eR.appendChild(buildColumn(true));
+})();
+</script>
+
+<canvas id="bgCanvas"></canvas>
+
+<!-- Language switcher — fixed full-width strip at very top -->
+<div id="langBar">
+  <button class="langBtn"    onclick="setLang('es')" data-lang="es">🇪🇸 ES</button>
+  <button class="langBtn"    onclick="setLang('fr')" data-lang="fr">🇫🇷 FR</button>
+  <button class="langBtn on" onclick="setLang('en')" data-lang="en">🇬🇧 EN</button>
+  <button class="langBtn"    onclick="setLang('it')" data-lang="it">🇮🇹 IT</button>
+</div>
+
+<!-- Auth header bar — same logo as app header, hidden once logged in -->
+<div id="authHdr">
+  <div class="logo">
+    <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+      onerror="this.style.display='none'">
+    <div class="logoTextWrap">
+      <div class="logoTitle">DVDcoin</div>
+      <div class="logoSub">Bank</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     AUTH SCREEN — centered single card
+============================================================ -->
+<div id="authWrap">
+  <div class="authCard">
+
+    <!-- Login / Register form — logo is in authHdr above, not inside the card -->
+    <div class="authForm">
+      <div class="authFormH" id="formTitle"></div>
+      <div class="authFormSub" id="formSub"></div>
+
+      <div class="tabs">
+        <button class="tab on" onclick="authTab('login',this)" data-i18n="loginTab">Login</button>
+        <button class="tab"    onclick="authTab('reg',this)"   data-i18n="registerTab">Register</button>
+      </div>
+
+      <div id="authAlert" class="alert"></div>
+
+      <!-- Login form -->
+      <div id="fLogin">
+        <div class="fg">
+          <label data-i18n="labelUsername">Username</label>
+          <input id="lU" type="text" autocomplete="username"
+            data-i18n-placeholder="placeholderUsername"
+            onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <div class="fg">
+          <label data-i18n="labelPassword">Password</label>
+          <input id="lP" type="password" autocomplete="current-password"
+            data-i18n-placeholder="placeholderPassword"
+            onkeydown="if(event.key==='Enter')doLogin()">
+        </div>
+        <button class="btn btnG" id="btnL" onclick="doLogin()" data-i18n="btnLogin">Login</button>
+      </div>
+
+      <!-- Register form -->
+      <div id="fReg" class="hidden">
+        <!-- Prominent registration warning — gold box, very visible -->
+        <div class="regNote">
+          <div class="regNoteTitle"   data-i18n="regNoteTitle">⚠ Important</div>
+          <div class="regNoteBody"    data-i18n="regNoteBody">Enter your exact Clubhouse username.</div>
+          <div class="regNoteExample" data-i18n="regNoteExample">✓ john_doe &nbsp;✗ @john_doe</div>
+        </div>
+        <div class="fg">
+          <label data-i18n="labelUsername">Username</label>
+          <input id="rU" type="text" autocomplete="username"
+            data-i18n-placeholder="placeholderUsername">
+        </div>
+        <div class="fg">
+          <label data-i18n="labelPasswordNew">Password</label>
+          <input id="rP" type="password" autocomplete="new-password"
+            data-i18n-placeholder="placeholderPasswordNew"
+            onkeydown="if(event.key==='Enter')doReg()">
+        </div>
+        <button class="btn btnG" id="btnR" onclick="doReg()" data-i18n="btnRegister">Register</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     APP
+============================================================ -->
+<div id="app" class="hidden">
+
+  <!-- Header -->
+  <div id="hdr">
+    <div class="logo">
+      <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+        onerror="this.style.display='none'">
+      <div class="logoTextWrap">
+        <div class="logoTitle">DVDcoin</div>
+        <div class="logoSub">Bank</div>
+      </div>
+    </div>
+    <div id="hdrR">
+      <span class="chip chipGold" id="hBal">0 ◆</span>
+      <span class="chip chipAdm hidden" id="hAdm">◆ Admin</span>
+      <span class="chip chipUser" id="hUser"></span>
+      <button class="btnLo" onclick="doLogout()" title="Sign out">⏻ Sign out</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- Desktop nav tabs -->
+    <div class="navTabs">
+      <button class="navTab on"           onclick="nav('dash',this)"    data-i18n="navOverview">Overview</button>
+      <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
+      <button class="navTab" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
+      <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
+      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
+      <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 Millonario</button>
+      <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">Admin</button>
+    </div>
+
+    <!-- ── OVERVIEW ──────────────────────────────────────────── -->
+    <div id="view-dash" class="view on">
+      <div class="secHead">
+        <div class="secTitle" id="dashGreet">—</div>
+        <div class="secSub" data-i18n="dashRecentSub">Latest movements</div>
+      </div>
+      <div class="cards">
+        <div class="card hero">
+          <div class="cLbl" data-i18n="dashBalance">Balance</div>
+          <div class="cVal" id="dBal">0</div>
+          <div class="cSub" data-i18n="dashUnit">DVDcoins</div>
+          <div class="cIco">◈</div>
+        </div>
+        <div class="card">
+          <div class="cLbl" data-i18n="dashAccount">Account</div>
+          <div class="cVal" id="dUser" style="font-size:1.1rem;line-height:1.2">—</div>
+          <div class="cSub" id="dType"></div>
+          <div class="cIco">◆</div>
+        </div>
+        <div class="card">
+          <div class="cLbl" data-i18n="dashMember">Member since</div>
+          <div class="cVal" id="dSince" style="font-size:.95rem">—</div>
+          <div class="cIco">◇</div>
+        </div>
+      </div>
+      <div id="dashRecentSection" style="margin-top:4px">
+        <div class="secHead">
+          <div class="secTitle" style="font-size:1.1rem" data-i18n="dashRecent">Recent</div>
+        </div>
+        <div id="dashH" class="txList"><div class="empty" data-i18n="histEmpty">No transactions</div></div>
+      </div>
+    </div>
+
+    <!-- ── TRANSFER ───────────────────────────────────────────── -->
+    <div id="view-tx" class="view">
+      <div class="secHead">
+        <div class="secTitle" data-i18n="txTitle">Transfer</div>
+        <div class="secSub"   data-i18n="txSub">Send DVDcoins</div>
+      </div>
+      <div class="panel">
+        <div class="pHead">
+          <div class="pTitle"><span class="pDot"></span><span data-i18n="txPanelTitle">New transfer</span></div>
+          <div class="pSub" data-i18n="txPanelSub">Instant · No fees</div>
+        </div>
+        <div id="txAlert" class="alert"></div>
+        <div class="row2">
+          <div class="fg">
+            <label data-i18n="txLabelTo">Recipient</label>
+            <!-- Autocomplete search — replaces old <select> -->
+            <div class="acWrap" id="acWrap">
+              <input class="acInput" id="acInput" type="text" autocomplete="off"
+                spellcheck="false"
+                data-i18n-placeholder="txPlaceholderSearch"
+                oninput="acOnInput()"
+                onkeydown="acOnKey(event)"
+                onfocus="acOnFocus()"
+              >
+              <button class="acClear" id="acClear" tabindex="-1"
+                onclick="acReset()" title="Clear">✕</button>
+              <div class="acDropdown" id="acDropdown"></div>
+            </div>
+            <!-- Confirmed selection badge -->
+            <div class="acSelected" id="acSelected">
+              <span class="acSelectedName" id="acSelectedName"></span>
+              <button class="acSelectedClear" onclick="acReset()" title="Change">✕</button>
+            </div>
+            <!-- Hidden value field read by doTransfer() -->
+            <input type="hidden" id="txTo" value="">
+          </div>
+          <div class="fg">
+            <label data-i18n="txLabelAmount">Amount</label>
+            <input id="txAmt" type="number" min="0.01" step="0.01" data-i18n-placeholder="txPlaceholderAmount">
+          </div>
+        </div>
+        <div class="fg">
+          <label data-i18n="txLabelConcept">Reference</label>
+          <input id="txCon" type="text" maxlength="200" data-i18n-placeholder="txPlaceholderConcept">
+        </div>
+        <button class="btn btnG" id="btnTx" onclick="doTransfer()" data-i18n="txBtn">Confirm</button>
+      </div>
+    </div>
+
+    <!-- ── HISTORY ────────────────────────────────────────────── -->
+    <div id="view-hist" class="view">
+      <div class="secHead">
+        <div class="secTitle" data-i18n="histTitle">History</div>
+        <div class="secSub"   data-i18n="histSub">Complete record · max. 1000</div>
+      </div>
+      <div class="panel">
+        <div class="pHead">
+          <div class="pTitle"><span class="pDot"></span><span data-i18n="histTitle">History</span></div>
+          <div class="pSub" data-i18n="histSub">Complete record · max. 1000</div>
+        </div>
+        <div id="fullH" class="txList"><div class="empty" data-i18n="histEmpty">No transactions</div></div>
+      </div>
+    </div>
+
+    <!-- ── GALLERY — photos only, no instructions ─────────────── -->
+    <div id="view-gallery" class="view">
+      <div class="secHead">
+        <div class="secTitle" data-i18n="galleryTitle">Gallery</div>
+        <div class="secSub"   data-i18n="gallerySub">Community moments</div>
+      </div>
+      <div class="gc">
+        <div class="gcFrame" id="gcFrame">
+          <div class="gcTrack" id="gcTrack"></div>
+          <!-- Empty state -->
+          <div class="gcEmptyState" id="gcEmpty">
+            <div style="font-size:3rem;opacity:.3">🖼</div>
+            <div style="font-family:'Playfair Display',serif;font-size:1rem;color:var(--text2);margin-top:10px"
+              data-i18n="galleryEmpty">No images</div>
+          </div>
+          <button class="gcArrow gcPrev" id="gcPrev" onclick="gcNav(-1)">&#8592;</button>
+          <button class="gcArrow gcNext" id="gcNext" onclick="gcNav(+1)">&#8594;</button>
+          <div class="gcCounter" id="gcCounter"></div>
+          <div class="gcProgress" id="gcProgress" style="width:0%;transition:none"></div>
+        </div>
+        <div class="gcDots"   id="gcDots"></div>
+        <div class="gcThumbs" id="gcThumbs"></div>
+        <!-- No instructions section — removed intentionally -->
+      </div>
+    </div>
+
+    <!-- ── ADMINISTRATION ─────────────────────────────────────── -->
+    <div id="view-adm" class="view">
+      <div class="secHead">
+        <div class="secTitle" data-i18n="admTitle">Administration</div>
+        <div class="secSub"   data-i18n="admSub">Member management</div>
+      </div>
+      <div class="panel">
+        <div class="pHead">
+          <div class="pTitle"><span class="pDot"></span><span data-i18n="admMembersTitle">Members</span></div>
+          <div class="pSub" data-i18n="admMembersSub">All registered</div>
+        </div>
+        <div id="admAlert" class="alert"></div>
+        <div class="tblWrap">
+          <table class="tbl">
+            <thead><tr>
+              <th style="width:18px;padding:4px 2px" title="Online status"></th>
+              <th class="sortable" data-col="username" onclick="admSort('username')">Member<span class="sortArrow"></span></th>
+              <th class="sortable" data-col="balance"  onclick="admSort('balance')" >Balance<span class="sortArrow"></span></th>
+              <th class="sortable" data-col="role"     onclick="admSort('role')"    >Role<span class="sortArrow"></span></th>
+              <th class="sortable" data-col="status"   onclick="admSort('status')"  >Status<span class="sortArrow"></span></th>
+              <th class="sortable" data-col="failed"   onclick="admSort('failed')"  >Failed<span class="sortArrow"></span></th>
+              <th class="sortable" data-col="joined"   onclick="admSort('joined')"  >Joined<span class="sortArrow"></span></th>
+              <th id="thLastSeen" class="sortable" data-col="lastseen" onclick="admSort('lastseen')" style="display:none">Last seen<span class="sortArrow"></span></th>
+              <th>Actions</th>
+            </tr></thead>
+            <tbody id="admTbl"><tr><td colspan="9" class="empty">...</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="panel" id="panelPasapalabra" style="display:none">
+        <div class="pHead">
+          <div class="pTitle"><span class="pDot"></span>Pasapalabra</div>
+          <div class="pSub" id="gameStatusSub">Game disabled</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <button class="btn btnG btnSm" id="btnGameOn"  onclick="toggleGame(true)"  style="display:none">▶ Enable game</button>
+          <button class="btn btnD btnSm" id="btnGameOff" onclick="toggleGame(false)" style="display:none">■ Disable</button>
+          <button class="btn btnS btnSm" id="btnGameOpen" onclick="openGame()" style="display:none">↗ Open game</button>
+        </div>
+        <div id="gameAlert" class="alert" style="margin-top:10px"></div>
+      </div>
+      <div class="panel" id="panelMillonario" style="display:none">
+        <div class="pHead">
+          <div class="pTitle"><span class="pDot"></span>Millonario?</div>
+          <div class="pSub" id="millonarioStatusSub">Game disabled</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <button class="btn btnG btnSm" id="btnMillonarioOn"  onclick="toggleMillonario(true)"  style="display:none">▶ Enable</button>
+          <button class="btn btnD btnSm" id="btnMillonarioOff" onclick="toggleMillonario(false)" style="display:none">■ Disable</button>
+          <button class="btn btnS btnSm" id="btnMillonarioOpen" onclick="openMillonario()"       style="display:none">↗ Open game</button>
+        </div>
+        <div id="millonarioAlert" class="alert" style="margin-top:10px"></div>
+      </div>
+      <div class="panel">
+        <div class="pHead">
+          <div class="pTitle"><span class="pDot"></span><span data-i18n="admLedgerTitle">Ledger</span></div>
+          <div class="pSub" data-i18n="admLedgerSub">All transactions · max. 1000</div>
+        </div>
+        <!-- Filter & sort bar -->
+        <div class="ldgBar">
+          <input id="ldgFrom"  type="text"   placeholder="Sender"   oninput="ldgApply()" title="Filter by sender">
+          <span  class="ldgSep">→</span>
+          <input id="ldgTo"    type="text"   placeholder="Recipient" oninput="ldgApply()" title="Filter by recipient">
+          <div   class="ldgAmtRow">
+            <input id="ldgMin" type="number" placeholder="Min ◆"   oninput="ldgApply()" min="0" step="any" title="Minimum amount">
+            <span  class="ldgSep">–</span>
+            <input id="ldgMax" type="number" placeholder="Max ◆"   oninput="ldgApply()" min="0" step="any" title="Maximum amount">
+          </div>
+          <div class="ldgSort">
+            <button class="sortPill on" id="ldgSortDate" onclick="ldgSortBy('date')"   title="Sort by date">Date ↕</button>
+            <button class="sortPill"    id="ldgSortAmt"  onclick="ldgSortBy('amount')" title="Sort by amount">Amount ↕</button>
+            <button class="sortPill"    id="ldgSortFrom" onclick="ldgSortBy('from')"   title="Sort by sender">Sender ↕</button>
+            <button class="sortPill"    id="ldgSortTo"   onclick="ldgSortBy('to')"     title="Sort by recipient">Recipient ↕</button>
+          </div>
+          <button class="ldgClear" onclick="ldgClear()" title="Clear all filters">✕ Clear</button>
+          <span   class="ldgCount" id="ldgCount"></span>
+        </div>
+        <div id="ledger" class="txList" style="border-radius:0 0 var(--rL) var(--rL)"><div class="empty">...</div></div>
+      </div>
+    </div>
+
+  </div><!-- /wrap -->
+
+  <!-- Mobile bottom navigation -->
+  <nav id="mobileNav">
+    <button class="mNavBtn on" onclick="nav('dash',this)" data-view="dash">
+      <span class="icon">⌂</span><span data-i18n="navOverview">Home</span>
+    </button>
+    <button class="mNavBtn" onclick="nav('tx',this)" data-view="tx">
+      <span class="icon">⇄</span><span data-i18n="navTransfer">Send</span>
+    </button>
+    <button class="mNavBtn" id="mobileNavHist" onclick="nav('hist',this)" data-view="hist">
+      <span class="icon">≡</span><span data-i18n="navHistory">History</span>
+    </button>
+    <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery">
+      <span class="icon">◫</span><span data-i18n="navGallery">Gallery</span>
+    </button>
+    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game">
+      <span class="icon">🎯</span><span data-i18n="navGame">Games</span>
+    </button>
+    <button class="mNavBtn hidden" id="mobileNavMillonario" onclick="openMillonario()" data-view="millonario">
+      <span class="icon">💰</span><span>Millonario</span>
+    </button>
+    <button class="mNavBtn hidden" id="mobileNavAdm" onclick="nav('adm',this)" data-view="adm">
+      <span class="icon">⚙</span><span data-i18n="navAdmin">Admin</span>
+    </button>
+  </nav>
+
+</div><!-- /app -->
+
+<script>
+'use strict';
+/* ============================================================
+   DVDcoin Bank v5.1 — Application JavaScript
+   1. Background canvas animation
+   2. i18n
+   3. In-app gallery carousel (reads /api/gallery — directory scan)
+   4. API helper
+   5. Auth (login / register / logout)
+   6. App loader
+   7. Transfer
+   8. Transaction renderer + history
+   9. Admin panel
+  10. Navigation
+  11. Boot sequence
+============================================================ */
+
+/* ── 1. Background canvas — particles + glow ────────────── */
+(function () {
+  const c = document.getElementById('bgCanvas'), ctx = c.getContext('2d');
+  let W, H, pts = [];
+  const resize = () => { W = c.width = innerWidth; H = c.height = innerHeight; };
+  const mkPt = () => ({
+    x: Math.random() * W, y: H + Math.random() * 60,
+    r: Math.random() * 1.3 + .2,
+    vx: (Math.random() - .5) * .22, vy: -(Math.random() * .45 + .12),
+    o: Math.random() * .32 + .05,
+    life: Math.random() * 260 + 110, age: 0,
+    gold: Math.random() > .38
+  });
+  const init = () => { pts = Array.from({ length: 90 }, mkPt); pts.forEach(p => { p.y = Math.random() * H; }); };
+  let af;
+  const frame = () => {
+    ctx.clearRect(0, 0, W, H);
+    const g = ctx.createRadialGradient(W*.5, H*.22, 0, W*.5, H*.22, H*.72);
+    g.addColorStop(0, 'rgba(212,168,67,.05)');
+    g.addColorStop(.7, 'rgba(50,25,0,.015)');
+    g.addColorStop(1, 'transparent');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    pts.forEach((p, i) => {
+      p.x += p.vx; p.y += p.vy; p.age++;
+      const fade = p.age < 25 ? p.age/25 : p.age > p.life-25 ? (p.life-p.age)/25 : 1;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = p.gold ? `rgba(212,168,67,${p.o*fade})` : `rgba(140,90,15,${p.o*.4*fade})`;
+      ctx.fill();
+      if (p.age >= p.life || p.y < -8) pts[i] = mkPt();
+    });
+    for (let y = 0; y < H; y += 4) { ctx.fillStyle = 'rgba(0,0,0,.01)'; ctx.fillRect(0, y, W, 1); }
+    af = requestAnimationFrame(frame);
+  };
+  window.addEventListener('resize', () => { resize(); init(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(af); else frame(); });
+  resize(); init(); frame();
+})();
+
+/* ── 2. i18n ─────────────────────────────────────────────── */
+let T = {}, curLang = localStorage.getItem('dvd_lang') || 'en';
+
+async function loadLang(lang) {
+  try {
+    const r = await fetch(`/static/i18n/${lang}.json?v=5`, { headers: { 'ngrok-skip-browser-warning': '1' } });
+    if (!r.ok) throw new Error();
+    T = await r.json();
+    curLang = lang;
+    localStorage.setItem('dvd_lang', lang);
+    applyTranslations();
+    updateLangButtons();
+  } catch (e) {
+    if (lang !== 'en') await loadLang('en');
+  }
+}
+
+function t(key, vars) {
+  let s = T[key] || key;
+  if (vars) Object.entries(vars).forEach(([k, v]) => { s = s.replace(`{${k}}`, v); });
+  return s;
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[el.dataset.i18n];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const v = T[el.dataset.i18nPlaceholder];
+    if (v !== undefined) el.placeholder = v;
+  });
+  // Set form title/subtitle (always reflects login state on load)
+  const ft = document.getElementById('formTitle');
+  const fs = document.getElementById('formSub');
+  if (ft && !ft.dataset.manuallySet) {
+    ft.textContent = t('formTitleLogin');
+    fs.textContent = t('formSubLogin');
+  }
+  // Update autocomplete search placeholder
+  const acIn = document.getElementById('acInput');
+  if (acIn) acIn.placeholder = t('txPlaceholderSearch');
+  // Update dashboard greeting if logged in
+  if (me) {
+    document.getElementById('dashGreet').textContent = t('dashGreet') + ', ' + me.username;
+    document.getElementById('dType').textContent = me.is_admin ? t('dashTypeAdmin') : t('dashTypeStandard');
+  }
+}
+
+function updateLangButtons() {
+  document.querySelectorAll('.langBtn').forEach(b => b.classList.toggle('on', b.dataset.lang === curLang));
+}
+function setLang(lang) { loadLang(lang); }
+
+/* ── 3. Gallery carousel — reads /api/gallery (directory scan) */
+let gcImages = [], gcCur = 0, gcAuto;
+
+async function loadGallery() {
+  try {
+    const r = await fetch('/api/gallery', { headers: { 'ngrok-skip-browser-warning': '1' } });
+    if (!r.ok) throw new Error();
+    gcImages = await r.json();
+  } catch (e) {
+    gcImages = [];
+  }
+  buildGallery();
+}
+
+function buildGallery() {
+  const track   = document.getElementById('gcTrack');
+  const emptyEl = document.getElementById('gcEmpty');
+  const dots    = document.getElementById('gcDots');
+  const thumbs  = document.getElementById('gcThumbs');
+  const prevBtn = document.getElementById('gcPrev');
+  const nextBtn = document.getElementById('gcNext');
+  const counter = document.getElementById('gcCounter');
+
+  if (!gcImages.length) {
+    if (track)   track.innerHTML = '';
+    if (emptyEl) emptyEl.style.display = '';
+    if (dots)    dots.innerHTML = '';
+    if (thumbs)  thumbs.innerHTML = '';
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    if (counter) counter.style.display = 'none';
+    return;
+  }
+
+  if (emptyEl) emptyEl.style.display = 'none';
+  if (counter) counter.style.display = '';
+
+  // Slides — object-fit:contain shows full image without cropping
+  track.innerHTML = gcImages.map((img, i) => `
+    <div class="gcSlide" data-idx="${i}">
+      <img src="${img.url}" alt=""
+        loading="${i === 0 ? 'eager' : 'lazy'}" decoding="async">
+    </div>
+  `).join('');
+
+  // Dot indicators
+  dots.innerHTML = gcImages.map((_, i) =>
+    `<div class="gcDot ${i === 0 ? 'on' : ''}" onclick="gcGoTo(${i})"></div>`
+  ).join('');
+
+  // Thumbnail strip
+  thumbs.innerHTML = gcImages.map((img, i) => `
+    <div class="gcThumb ${i === 0 ? 'on' : ''}" onclick="gcGoTo(${i})" data-idx="${i}">
+      <img src="${img.url}" alt="" loading="lazy" decoding="async">
+    </div>
+  `).join('');
+
+  if (prevBtn) prevBtn.style.display = gcImages.length > 1 ? '' : 'none';
+  if (nextBtn) nextBtn.style.display = gcImages.length > 1 ? '' : 'none';
+
+  // Touch swipe
+  const frame = document.getElementById('gcFrame');
+  if (frame) {
+    let tx = 0;
+    frame.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    frame.addEventListener('touchend',   e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 40) gcNav(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  }
+
+  // Keyboard arrows (only when gallery tab is active)
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('view-gallery')?.classList.contains('on')) return;
+    if (e.key === 'ArrowLeft')  gcNav(-1);
+    if (e.key === 'ArrowRight') gcNav(1);
+  });
+
+  gcGoTo(0, true);
+  if (gcImages.length > 1) gcStartAuto();
+}
+
+function gcGoTo(idx, immediate) {
+  gcCur = (idx + gcImages.length) % gcImages.length;
+  const track = document.getElementById('gcTrack');
+  const frame = document.getElementById('gcFrame');
+  if (track && frame) {
+    // Use the frame's actual pixel width — slides are 100% of the FRAME,
+    // so offset = index × frameWidth in px. This is immune to any CSS width ambiguity.
+    const frameW = frame.offsetWidth;
+    if (immediate) { track.style.transition = 'none'; }
+    track.style.transform = `translateX(-${gcCur * frameW}px)`;
+    if (immediate) requestAnimationFrame(() => { track.style.transition = ''; });
+  }
+  const ctr = document.getElementById('gcCounter');
+  if (ctr) ctr.textContent = `${gcCur + 1} / ${gcImages.length}`;
+  document.querySelectorAll('.gcDot').forEach((d, i) => d.classList.toggle('on', i === gcCur));
+  document.querySelectorAll('.gcThumb').forEach((th, i) => {
+    th.classList.toggle('on', i === gcCur);
+    if (i === gcCur) th.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  });
+  gcStartProgress();
+  gcStartAuto();
+}
+
+function gcNav(dir) { gcGoTo(gcCur + dir); }
+
+// Recalculate position on window resize (pixel-based offset must stay correct)
+window.addEventListener('resize', () => {
+  if (gcImages.length > 0) gcGoTo(gcCur, true);
+});
+
+function gcStartProgress() {
+  const bar = document.getElementById('gcProgress');
+  if (!bar || gcImages.length <= 1) return;
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  requestAnimationFrame(() => {
+    bar.style.transition = 'width 6s linear';
+    bar.style.width = '100%';
+  });
+}
+
+function gcStartAuto() {
+  clearInterval(gcAuto);
+  if (gcImages.length > 1) gcAuto = setInterval(() => gcNav(1), 6000); // 4.5s + 1.5s = 6s
+}
+
+/* ── 4. API helper ──────────────────────────────────────── */
+const API = location.origin;
+let token = localStorage.getItem('dvd_token');
+let me    = null;
+const ADMINS = new Set(['dvd', 'nina', 'victor', 'yu']);
+
+async function req(method, path, body) {
+  const r = await fetch(API + path, {
+    method,
+    headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1', ...(token ? { 'Authorization': 'Bearer ' + token } : {}) },
+    ...(body ? { body: JSON.stringify(body) } : {})
+  });
+  const d = await r.json();
+  if (!r.ok) throw new Error(d.detail || t('errorLoading'));
+  return d;
+}
+
+function showAlert(id, msg, type) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'alert on a' + (type || 'e');
+  el.textContent = msg;
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove('on'), 6500);
+}
+
+const fmtDate = s => !s ? '—' : new Date(s + 'Z').toLocaleString('fr-FR', {
+  day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit'
+});
+const fmtC = n => (+n).toLocaleString('fr-FR', { minimumFractionDigits: 0, maximumFractionDigits: 4 });
+
+function setLoading(id, label) {
+  const b = document.getElementById(id);
+  if (!b) return () => {};
+  b.disabled = true;
+  b.innerHTML = `<span class="sp"></span>${t('btnProcessing')}`;
+  return () => { b.disabled = false; b.textContent = label; };
+}
+
+/* ── 5. Auth functions ──────────────────────────────────── */
+function authTab(which, el) {
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('fLogin').classList.toggle('hidden', which !== 'login');
+  document.getElementById('fReg').classList.toggle('hidden', which !== 'reg');
+  document.getElementById('authAlert').classList.remove('on');
+  const ft = document.getElementById('formTitle');
+  const fs = document.getElementById('formSub');
+  ft.textContent = t(which === 'login' ? 'formTitleLogin' : 'formTitleRegister');
+  fs.textContent = t(which === 'login' ? 'formSubLogin'   : 'formSubRegister');
+  ft.dataset.manuallySet = '1';
+}
+
+async function doLogin() {
+  const u = (document.getElementById('lU').value || '').trim().toLowerCase();
+  const p = document.getElementById('lP').value || '';
+  if (!u || !p) return showAlert('authAlert', t('errorUsernamePassword'));
+  const done = setLoading('btnL', t('btnLogin'));
+  try {
+    const d = await req('POST', '/api/login', { username: u, password: p });
+    token = d.token;
+    localStorage.setItem('dvd_token', token);
+    await loadApp();
+  } catch (e) { showAlert('authAlert', e.message); }
+  finally { done(); }
+}
+
+async function doReg() {
+  const u = (document.getElementById('rU').value || '').trim().toLowerCase();
+  const p = document.getElementById('rP').value || '';
+  if (!u || !p)   return showAlert('authAlert', t('errorFillAll'));
+  if (p.length < 4) return showAlert('authAlert', t('errorPasswordMin'));
+  const done = setLoading('btnR', t('btnRegister'));
+  try {
+    const d = await req('POST', '/api/register', { username: u, password: p });
+    token = d.token;
+    localStorage.setItem('dvd_token', token);
+    await loadApp();
+  } catch (e) { showAlert('authAlert', e.message); }
+  finally { done(); }
+}
+
+function doLogout() {
+  stopHeartbeat(); stopAdmRefresh();
+  token = null; me = null;
+  localStorage.removeItem('dvd_token');
+  document.getElementById('authWrap').classList.remove('hidden');
+  document.getElementById('authHdr').classList.remove('hidden');  // show auth header
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('lU').value = '';
+  document.getElementById('lP').value = '';
+  const ft = document.getElementById('formTitle');
+  if (ft) { ft.textContent = t('formTitleLogin'); delete ft.dataset.manuallySet; }
+}
+
+/* ── 6. App loader ──────────────────────────────────────── */
+async function loadApp() {
+  try {
+    me = await req('GET', '/api/me');
+    document.getElementById('authWrap').classList.add('hidden');
+    document.getElementById('authHdr').classList.add('hidden');   // hide auth header
+    document.getElementById('app').classList.remove('hidden');
+    document.getElementById('hUser').textContent   = '@' + me.username;
+    document.getElementById('hBal').textContent    = fmtC(me.balance) + ' ◆';
+    document.getElementById('dBal').textContent    = fmtC(me.balance);
+    document.getElementById('dUser').textContent   = me.username;
+    document.getElementById('dSince').textContent  = fmtDate(me.created_at).split(',')[0];
+    document.getElementById('dType').textContent   = me.is_admin ? t('dashTypeAdmin') : t('dashTypeStandard');
+    document.getElementById('dashGreet').textContent = t('dashGreet') + ', ' + me.username;
+
+    const mn = document.getElementById('mobileNav');
+    if (me.is_admin) {
+      // Admin: show admin tab, hide history tab, hide recent activity on dashboard
+      ['hAdm', 'navAdm', 'mobileNavAdm'].forEach(id => {
+        document.getElementById(id)?.classList.remove('hidden');
+      });
+      document.getElementById('navHist')?.classList.add('hidden');
+      document.getElementById('mobileNavHist')?.classList.add('hidden');
+      document.getElementById('dashRecentSection')?.classList.add('hidden');
+      // Mobile: home, transfer, gallery, admin = 4 cols (no history)
+      if (mn) mn.style.gridTemplateColumns = 'repeat(4,1fr)';
+    } else {
+      // Member: hide history tab and mobile history button
+      document.getElementById('navHist')?.classList.add('hidden');
+      document.getElementById('mobileNavHist')?.classList.add('hidden');
+      // Mobile: home, transfer, gallery = 3 cols (no history, no admin)
+      if (mn) mn.style.gridTemplateColumns = 'repeat(3,1fr)';
+    }
+    startHeartbeat();
+    if (me.is_admin) startAdmRefresh();
+    await Promise.all([loadDropdown(), checkGameStatus(), checkMillonarioStatus(), ...(me.is_admin ? [] : [loadHist('dashH', 10)])]);
+    // Game panels: only dvd can see and manage them
+    if (me.username === 'dvd') {
+      document.getElementById('panelPasapalabra').style.display = '';
+      document.getElementById('panelMillonario').style.display  = '';
+    }
+  } catch (e) { doLogout(); }
+}
+
+/* ── 7. Transfer ────────────────────────────────────────── */
+/* ── 7. Transfer — autocomplete recipient search ─────────── */
+
+// In-memory user list, loaded once per session and refreshed after each transfer
+let acAllUsers = [];   // [{name, isAdmin}]
+let acFocusIdx = -1;   // keyboard navigation index in dropdown
+
+// Load all users into memory (called on nav to transfer tab and after transfers)
+async function loadDropdown() {
+  try {
+    const users = await req('GET', '/api/users');
+    acAllUsers = users.map(u => ({ name: u, isAdmin: ADMINS.has(u) }));
+  } catch (e) { /* silent — list stays stale */ }
+}
+
+// Highlight matching substring inside a name
+function acHighlight(name, query) {
+  if (!query) return name;
+  const idx = name.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) return name;
+  return name.slice(0, idx)
+    + '<mark>' + name.slice(idx, idx + query.length) + '</mark>'
+    + name.slice(idx + query.length);
+}
+
+// Render dropdown results for current input value
+function acRender() {
+  const query   = (document.getElementById('acInput').value || '').trim().toLowerCase();
+  const dropdown = document.getElementById('acDropdown');
+  acFocusIdx = -1;
+
+  if (!query) { dropdown.classList.remove('open'); return; }
+
+  const matches = acAllUsers.filter(u => u.name.toLowerCase().includes(query));
+
+  if (!matches.length) {
+    dropdown.innerHTML = `<div class="acNoResult">${t('txNoResults') || 'No users found'}</div>`;
+    dropdown.classList.add('open');
+    return;
+  }
+
+  dropdown.innerHTML = matches.map((u, i) => `
+    <div class="acItem" data-idx="${i}" data-name="${u.name}"
+      onmousedown="acPick('${u.name}')"
+      onmouseover="acHover(${i})">
+      <span class="acItemAt">@</span>
+      <span class="acItemName">${acHighlight(u.name, query)}</span>
+      ${u.isAdmin ? `<span class="acItemBadge">Admin ◆</span>` : ''}
+    </div>
+  `).join('');
+  dropdown.classList.add('open');
+}
+
+// Called every time the user types
+function acOnInput() {
+  const input = document.getElementById('acInput');
+  const clear = document.getElementById('acClear');
+  // If there's a confirmed selection, reset it when user starts typing again
+  acClearSelection(false);
+  clear.style.display = input.value ? 'block' : 'none';
+  acRender();
+}
+
+// Called on input focus — re-show dropdown if text is present
+function acOnFocus() {
+  if (document.getElementById('acInput').value) acRender();
+}
+
+// Keyboard navigation: arrows move focus, Enter selects, Escape closes
+function acOnKey(e) {
+  const dropdown = document.getElementById('acDropdown');
+  const items = dropdown.querySelectorAll('.acItem');
+  if (!items.length) return;
+
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    acFocusIdx = Math.min(acFocusIdx + 1, items.length - 1);
+    acUpdateFocus(items);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    acFocusIdx = Math.max(acFocusIdx - 1, 0);
+    acUpdateFocus(items);
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (acFocusIdx >= 0 && items[acFocusIdx]) {
+      acPick(items[acFocusIdx].dataset.name);
+    } else if (items.length === 1) {
+      acPick(items[0].dataset.name); // auto-pick if only one result
+    }
+  } else if (e.key === 'Escape') {
+    acClose();
+  }
+}
+
+function acHover(idx) {
+  acFocusIdx = idx;
+  const items = document.getElementById('acDropdown').querySelectorAll('.acItem');
+  acUpdateFocus(items);
+}
+
+function acUpdateFocus(items) {
+  items.forEach((item, i) => item.classList.toggle('focused', i === acFocusIdx));
+  if (items[acFocusIdx]) items[acFocusIdx].scrollIntoView({ block: 'nearest' });
+}
+
+// Confirm a user selection
+function acPick(name) {
+  document.getElementById('txTo').value = name;
+
+  // Show confirmed badge
+  const user = acAllUsers.find(u => u.name === name);
+  const selectedEl   = document.getElementById('acSelected');
+  const selectedName = document.getElementById('acSelectedName');
+  selectedName.innerHTML = '@' + name
+    + (user?.isAdmin ? ' <span class="acSelectedAdmin">Admin ◆</span>' : '');
+  selectedEl.style.display = 'flex';
+
+  // Hide and clear the search input
+  const input = document.getElementById('acInput');
+  input.value = '';
+  input.style.display = 'none';
+  document.getElementById('acClear').style.display = 'none';
+  acClose();
+
+  // Move focus to amount field
+  setTimeout(() => document.getElementById('txAmt').focus(), 50);
+}
+
+// Clear the confirmed selection and restore search input
+function acReset() {
+  acClearSelection(true);
+  document.getElementById('acInput').focus();
+}
+
+function acClearSelection(restoreInput) {
+  document.getElementById('txTo').value = '';
+  document.getElementById('acSelected').style.display = 'none';
+  if (restoreInput) {
+    const input = document.getElementById('acInput');
+    input.style.display = '';
+    input.value = '';
+    document.getElementById('acClear').style.display = 'none';
+  }
+}
+
+function acClose() {
+  document.getElementById('acDropdown').classList.remove('open');
+  acFocusIdx = -1;
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', e => {
+  if (!document.getElementById('acWrap')?.contains(e.target)) acClose();
+});
+
+async function doTransfer() {
+  const to  = (document.getElementById('txTo').value || '').trim();
+  const amt = parseFloat(document.getElementById('txAmt').value);
+  const con = (document.getElementById('txCon').value || '').trim();
+  if (!to)              return showAlert('txAlert', t('errorSelectRecipient'));
+  if (!amt || amt <= 0) return showAlert('txAlert', t('errorValidAmount'));
+  const done = setLoading('btnTx', t('txBtn'));
+  try {
+    const d = await req('POST', '/api/transfer', { to_user: to, amount: amt, concept: con });
+    showAlert('txAlert', d.message, 's');
+    // Clear fields and reset autocomplete
+    document.getElementById('txAmt').value = '';
+    document.getElementById('txCon').value = '';
+    acReset();
+    document.getElementById('acInput').style.display = '';
+    document.getElementById('hBal').textContent = fmtC(d.new_balance) + ' ◆';
+    document.getElementById('dBal').textContent = fmtC(d.new_balance);
+    if (d.auto_created) await loadDropdown(); // refresh user list if new user was created
+  } catch (e) { showAlert('txAlert', e.message); }
+  finally { done(); }
+}
+
+/* ── 8. Transactions ────────────────────────────────────── */
+function renderTx(id, txs) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (!txs?.length) { el.innerHTML = `<div class="empty">${t('histEmpty')}</div>`; return; }
+  el.innerHTML = txs.map(tx => {
+    const fromAdmin = ADMINS.has(tx.from_user);
+    const isIn = tx.to_user === me.username;
+    const cls  = fromAdmin && !isIn ? 'adm' : isIn ? 'in' : 'out';
+    const ico  = cls === 'adm' ? '◆' : cls === 'in' ? '↙' : '↗';
+    const sign = isIn ? '+' : '−';
+    return `<div class="txItem">
+      <div class="txBadge ${cls}">${ico}</div>
+      <div class="txInfo">
+        <div class="txPair">${tx.from_user}<span class="txArrow">→</span>${tx.to_user}</div>
+        <div class="txCon">${tx.concept || t('histNoRef')}</div>
+        <div class="txDt">${fmtDate(tx.created_at)}</div>
+      </div>
+      <div class="txAmt ${cls}">${sign}${fmtC(tx.amount)} ◆</div>
+    </div>`;
+  }).join('');
+}
+
+async function loadHist(id, limit) {
+  try {
+    const txs = await req('GET', '/api/history?limit=' + Math.min(limit || 100, 1000));
+    renderTx(id, txs);
+  } catch (e) {
+    document.getElementById(id).innerHTML = `<div class="empty">${t('errorLoading')}</div>`;
+  }
+}
+
+/* ── 9. Admin panel ─────────────────────────────────────── */
+/* ── Heartbeat: POST /api/ping every 30 s ─────────────────────────────── */
+let _pingIv = null;
+function startHeartbeat() {
+  if (_pingIv) return;
+  const doPing = () => { if (me) req('POST', '/api/ping').catch(() => {}); };
+  doPing();
+  _pingIv = setInterval(doPing, 30000);
+}
+function stopHeartbeat() { if (_pingIv) { clearInterval(_pingIv); _pingIv = null; } }
+
+/* ── Auto-refresh admin table every 30 s ──────────────────────────────── */
+let _admIv = null;
+function startAdmRefresh() {
+  if (_admIv) return;
+  _admIv = setInterval(() => {
+    if (document.getElementById('view-adm')?.classList.contains('on')) loadAdmin();
+  }, 30000);
+}
+function stopAdmRefresh() { if (_admIv) { clearInterval(_admIv); _admIv = null; } }
+
+/* ── Admin table sort state ─────────────────────────────────────────────── */
+let _admUsers   = [];   // full user list from last fetch
+let _admSortCol = 'username';
+let _admSortDir = 1;    // 1 = asc, -1 = desc
+
+function admSort(col) {
+  if (_admSortCol === col) {
+    _admSortDir = -_admSortDir;
+  } else {
+    _admSortCol = col;
+    _admSortDir = col === 'balance' ? -1 : 1;  // balance defaults desc
+  }
+  _admRender();
+  // Update header arrows
+  document.querySelectorAll('.tbl th.sortable').forEach(th => {
+    th.classList.remove('sort-asc', 'sort-desc');
+    if (th.dataset.col === col) th.classList.add(_admSortDir === 1 ? 'sort-asc' : 'sort-desc');
+  });
+}
+
+function _admSortValue(u, col) {
+  switch (col) {
+    case 'username':  return u.username.toLowerCase();
+    case 'balance':   return u.balance;
+    case 'role':      return u.is_admin ? 0 : 1;
+    case 'status':    return u.is_blocked ? 2 : (u.locked_until && new Date(u.locked_until+'Z') > new Date() ? 1 : 0);
+    case 'failed':    return u.failed_attempts || 0;
+    case 'joined':    return u.created_at || '';
+    case 'lastseen':  return u.last_ping_at || 0;
+    default:          return '';
+  }
+}
+
+function fmtLastSeen(epoch) {
+  if (!epoch) return '<span style="color:var(--text3);font-size:.7rem">—</span>';
+  const diff = Math.floor((Date.now()/1000) - epoch);
+  const d = new Date(epoch * 1000);
+  const time = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const date = d.toLocaleDateString([], { day: '2-digit', month: '2-digit' });
+  const isToday = new Date().toDateString() === d.toDateString();
+  const label   = isToday ? time : `${date} ${time}`;
+  if (diff < 90)   return `<span style="color:var(--green);font-size:.72rem">● ${label}</span>`;
+  if (diff < 3600) return `<span style="font-size:.72rem;color:var(--text2)">${label} <span style="opacity:.6">(${Math.floor(diff/60)}m)</span></span>`;
+  return `<span style="font-size:.72rem;color:var(--text3)">${label}</span>`;
+}
+
+function _admRender() {
+  const sorted = [..._admUsers].sort((a, b) => {
+    const av = _admSortValue(a, _admSortCol);
+    const bv = _admSortValue(b, _admSortCol);
+    if (av < bv) return -_admSortDir;
+    if (av > bv) return  _admSortDir;
+    return 0;
+  });
+
+  const isDvd = me.username === 'dvd';
+
+  document.getElementById('admTbl').innerHTML = sorted.map(u => {
+    const isBlocked  = !!u.is_blocked;
+    const isLocked   = !isBlocked && u.locked_until && new Date(u.locked_until + 'Z') > new Date();
+    const canUnblock = isBlocked || isLocked;
+    const isReg      = u.registered !== false;
+
+    const dot = u.online
+      ? `<span class="onlineDot"  title="Online"></span>`
+      : `<span class="offlineDot" title="Offline"></span>`;
+
+    const nameCell = isReg
+      ? `<td style="color:var(--text);font-weight:500">${u.username}</td>`
+      : `<td style="color:var(--text3);font-style:italic">${u.username} <span style="font-size:.68rem">(unregistered)</span></td>`;
+
+    const statusBadge = isBlocked
+      ? `<span class="bdg bdgR">${t('admStatusBlocked')}</span>`
+      : isLocked
+        ? `<span class="bdg bdgR">${t('admStatusLocked')}</span>`
+        : `<span class="bdg bdgG">${t('admStatusActive')}</span>`;
+
+    const notSelf  = u.username !== me.username;
+    const blockBtn = isDvd && canUnblock
+      ? `<button class="btn btnO btnSm" onclick="admAct('unblock','${u.username}')">${t('admBtnUnblock')}</button>`
+      : isDvd && notSelf
+        ? `<button class="btn btnD btnSm" onclick="admAct('block','${u.username}')">${t('admBtnBlock')}</button>`
+        : '';
+    const resetBtn  = isDvd && notSelf
+      ? `<button class="btn btnS btnSm" onclick="admAct('reset-pwd','${u.username}')">${t('admBtnResetPwd')}</button>`
+      : '';
+    const deleteBtn = isDvd && !u.is_admin && notSelf
+      ? `<button class="btn btnDel btnSm" onclick="admDelete('${u.username}')">Delete</button>`
+      : '';
+
+    return `<tr style="${isReg ? '' : 'opacity:.5'}">
+      <td style="padding:4px 2px;text-align:center">${dot}</td>
+      ${nameCell}
+      <td style="font-family:'Playfair Display',serif;color:var(--gold2)">${fmtC(u.balance)} ◆</td>
+      <td>${u.is_admin ? `<span class="bdg bdgY">${t('admRoleAdmin')}</span>` : `<span class="bdg bdgG">${t('admRoleMember')}</span>`}</td>
+      <td>${statusBadge}</td>
+      <td style="color:var(--text3);text-align:center">${u.failed_attempts || 0}</td>
+      <td style="color:var(--text3)">${fmtDate(u.created_at).split(',')[0]}</td>
+      ${isDvd ? `<td>${fmtLastSeen(u.last_ping_at)}</td>` : ''}
+      <td style="display:flex;gap:5px;flex-wrap:wrap">${blockBtn}${resetBtn}${deleteBtn}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function loadAdmin() {
+  try {
+    _admUsers = await req('GET', '/api/admin/users');
+    // Show/hide Last seen column + fix colspan (dvd only)
+    const isDvdUser = me.username === 'dvd';
+    const thLS = document.getElementById('thLastSeen');
+    if (thLS) thLS.style.display = isDvdUser ? '' : 'none';
+    const emptyRow = document.querySelector('#admTbl td[colspan]');
+    if (emptyRow) emptyRow.setAttribute('colspan', isDvdUser ? '9' : '8');
+    _admRender();
+    // Restore sort arrow after re-render
+    document.querySelectorAll('.tbl th.sortable').forEach(th => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (th.dataset.col === _admSortCol)
+        th.classList.add(_admSortDir === 1 ? 'sort-asc' : 'sort-desc');
+    });
+    _ldgAll = await req('GET', '/api/admin/ledger?limit=1000');
+    ldgApply();
+  } catch (e) { showAlert('admAlert', e.message); }
+}
+
+/* ── Ledger filter + sort ─────────────────────────────────────── */
+let _ldgAll    = [];          // full ledger from last fetch
+let _ldgSortCol = 'date';     // 'date' | 'amount' | 'from' | 'to'
+let _ldgSortDir = -1;         // -1 = desc (newest first), 1 = asc
+
+function ldgSortBy(col) {
+  if (_ldgSortCol === col) {
+    _ldgSortDir = -_ldgSortDir;
+  } else {
+    _ldgSortCol = col;
+    // Default directions
+    _ldgSortDir = col === 'date' ? -1 : col === 'amount' ? -1 : 1;
+  }
+  // Update pill styles
+  ['Date','Amt','From','To'].forEach(n => {
+    const el = document.getElementById('ldgSort' + n.charAt(0).toUpperCase() + n.slice(1).toLowerCase());
+    if (el) el.classList.toggle('on', el.id === 'ldgSort' + col.charAt(0).toUpperCase() + col.slice(1).toLowerCase());
+  });
+  // Easier: just update all pills
+  document.querySelectorAll('.sortPill').forEach(p => p.classList.remove('on'));
+  const active = {date:'ldgSortDate', amount:'ldgSortAmt', from:'ldgSortFrom', to:'ldgSortTo'}[col];
+  if (active) document.getElementById(active)?.classList.add('on');
+  ldgApply();
+}
+
+function ldgApply() {
+  const fromF = (document.getElementById('ldgFrom')?.value  || '').trim().toLowerCase();
+  const toF   = (document.getElementById('ldgTo')?.value    || '').trim().toLowerCase();
+  const minF  = parseFloat(document.getElementById('ldgMin')?.value) || 0;
+  const maxF  = parseFloat(document.getElementById('ldgMax')?.value) || Infinity;
+
+  let filtered = _ldgAll.filter(tx => {
+    if (fromF && !tx.from_user.toLowerCase().includes(fromF)) return false;
+    if (toF   && !tx.to_user.toLowerCase().includes(toF))     return false;
+    if (tx.amount < minF || tx.amount > maxF)                  return false;
+    return true;
+  });
+
+  filtered.sort((a, b) => {
+    let av, bv;
+    switch (_ldgSortCol) {
+      case 'date':   av = a.created_at; bv = b.created_at; break;
+      case 'amount': av = a.amount;     bv = b.amount;     break;
+      case 'from':   av = a.from_user;  bv = b.from_user;  break;
+      case 'to':     av = a.to_user;    bv = b.to_user;    break;
+      default:       av = a.created_at; bv = b.created_at;
+    }
+    if (av < bv) return -_ldgSortDir;
+    if (av > bv) return  _ldgSortDir;
+    return 0;
+  });
+
+  // Render with ledger mode (always show from→to, no "me" context)
+  const el = document.getElementById('ledger');
+  if (!el) return;
+  const count = document.getElementById('ldgCount');
+  if (count) count.textContent = filtered.length
+    ? `${filtered.length} / ${_ldgAll.length}`
+    : _ldgAll.length ? '0 results' : '';
+
+  if (!filtered.length) {
+    el.innerHTML = `<div class="empty">${_ldgAll.length ? 'No matches' : t('histEmpty')}</div>`;
+    return;
+  }
+
+  el.innerHTML = filtered.map(tx => {
+    const fromAdmin = ADMINS.has(tx.from_user);
+    const cls  = fromAdmin ? 'adm' : 'out';
+    const ico  = fromAdmin ? '◆' : '↗';
+    return `<div class="txItem">
+      <div class="txBadge ${cls}">${ico}</div>
+      <div class="txInfo">
+        <div class="txPair"><strong style="color:var(--text)">${tx.from_user}</strong><span class="txArrow">→</span><strong style="color:var(--text)">${tx.to_user}</strong></div>
+        <div class="txCon">${tx.concept || t('histNoRef')}</div>
+        <div class="txDt">${fmtDate(tx.created_at)}</div>
+      </div>
+      <div class="txAmt ${cls}">${fmtC(tx.amount)} ◆</div>
+    </div>`;
+  }).join('');
+}
+
+function ldgClear() {
+  ['ldgFrom','ldgTo','ldgMin','ldgMax'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  _ldgSortCol = 'date';
+  _ldgSortDir = -1;
+  document.querySelectorAll('.sortPill').forEach(p => p.classList.remove('on'));
+  document.getElementById('ldgSortDate')?.classList.add('on');
+  ldgApply();
+}
+
+async function admAct(action, username) {
+  if (action === 'reset-pwd' && !confirm(t('admConfirmReset', { user: username }))) return;
+  try {
+    const d = await req('POST', `/api/admin/${action}/${username}`);
+    showAlert('admAlert', d.message, 's');
+    await Promise.all([loadAdmin(), loadDropdown()]);
+  } catch (e) { showAlert('admAlert', e.message); }
+}
+
+async function admDelete(username) {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;';
+  overlay.dataset.delOverlay = '1';
+  overlay.innerHTML = `
+    <div style="background:var(--n3);border:1.5px solid rgba(200,48,96,.55);border-radius:16px;padding:28px 26px;max-width:380px;width:92%;box-shadow:0 0 60px rgba(200,48,96,.25);">
+      <div style="font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--red);margin-bottom:6px;">Delete account</div>
+      <div style="font-size:.74rem;color:var(--text2);margin-bottom:16px;line-height:1.65;">
+        You are about to permanently delete <strong style="color:var(--text)">@${username}</strong>
+        and all their transactions.<br>This action <strong style="color:var(--red)">cannot be undone</strong>.<br><br>
+        Enter <strong style="color:var(--gold2)">dvd</strong>'s password to confirm:
+      </div>
+      <input id="dvdPwdInput" type="password" placeholder="dvd's password" autocomplete="current-password"
+        style="width:100%;background:var(--glass);border:1px solid var(--border2);border-radius:8px;padding:9px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.82rem;outline:none;box-sizing:border-box;margin-bottom:6px;"
+        onkeydown="if(event.key==='Enter')document.getElementById('_delConfBtn').click()">
+      <div id="_delErr" style="color:var(--red);font-size:.68rem;min-height:18px;margin-bottom:10px;"></div>
+      <div style="display:flex;gap:8px;justify-content:flex-end;">
+        <button onclick="document.querySelector('[data-del-overlay]').remove()"
+          style="background:var(--glass2);border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--text2);font-family:'DM Mono',monospace;font-size:.69rem;cursor:pointer;letter-spacing:.07em;text-transform:uppercase;">
+          Cancel
+        </button>
+        <button id="_delConfBtn"
+          style="background:rgba(200,48,96,.16);border:1.5px solid rgba(200,48,96,.6);border-radius:8px;padding:8px 16px;color:var(--red);font-family:'DM Mono',monospace;font-size:.69rem;cursor:pointer;letter-spacing:.07em;text-transform:uppercase;font-weight:500;"
+          onclick="doDeleteConfirm('${username}',this)">
+          Delete account
+        </button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+  overlay.addEventListener('click', e => { if(e.target===overlay) overlay.remove(); });
+  setTimeout(() => document.getElementById('dvdPwdInput')?.focus(), 60);
+}
+
+async function doDeleteConfirm(username, btn) {
+  const pwd = (document.getElementById('dvdPwdInput')?.value || '').trim();
+  const errEl = document.getElementById('_delErr');
+  if (!pwd) { errEl.textContent = "Enter dvd's password"; return; }
+  btn.disabled = true;
+  btn.textContent = 'Deleting...';
+  try {
+    const d = await req('POST', `/api/admin/delete/${username}`, { dvd_password: pwd });
+    document.querySelector('[data-del-overlay]')?.remove();
+    showAlert('admAlert', d.message, 's');
+    await Promise.all([loadAdmin(), loadDropdown()]);
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Delete account';
+    errEl.textContent = e.message || 'Incorrect password';
+  }
+}
+
+/* ── 9b. Pasapalabra game ───────────────────────────────── */
+let gameEnabled = false;
+
+async function checkGameStatus() {
+  try {
+    const d = await req('GET', '/api/pasapalabra/status');
+    gameEnabled = !!d.enabled;
+  } catch (_) { gameEnabled = false; }
+  // Show/hide Juegos tab for all users
+  ['navGame', 'mobileNavGame'].forEach(id => {
+    document.getElementById(id)?.classList.toggle('hidden', !gameEnabled);
+  });
+  // Adjust mobile nav column count
+  const mn = document.getElementById('mobileNav');
+  if (mn && me) {
+    const base = me.is_admin ? 4 : 3;   // home+transfer+gallery + (admin or not)
+    const cols = base + (gameEnabled ? 1 : 0);
+    mn.style.gridTemplateColumns = `repeat(${cols},1fr)`;
+  }
+  // Update admin panel controls
+  if (me?.is_admin) {
+    document.getElementById('btnGameOn').style.display  = gameEnabled ? 'none' : '';
+    document.getElementById('btnGameOff').style.display = gameEnabled ? '' : 'none';
+    document.getElementById('btnGameOpen').style.display = gameEnabled ? '' : 'none';
+    const sub = document.getElementById('gameStatusSub');
+    if (sub) sub.textContent = gameEnabled ? '🟢 Game active — players can access it' : '⚫ Game disabled';
+  }
+}
+
+async function toggleGame(enable) {
+  try {
+    await req('POST', '/api/pasapalabra/toggle', { enabled: enable });
+    await checkGameStatus();
+    showAlert('gameAlert', enable ? 'Game enabled — the Games tab is now visible to all users.' : 'Game disabled.', 's');
+  } catch (e) { showAlert('gameAlert', e.message); }
+}
+
+function openGame() {
+  window.open('/pasapalabra', '_blank');
+}
+
+/* ── 9c. Millonario game ────────────────────────────────── */
+let millonarioEnabled = false;
+
+async function checkMillonarioStatus() {
+  try {
+    const d = await req('GET', '/api/millonario/status');
+    millonarioEnabled = !!d.enabled;
+  } catch (_) { millonarioEnabled = false; }
+  ['navMillonario', 'mobileNavMillonario'].forEach(id => {
+    document.getElementById(id)?.classList.toggle('hidden', !millonarioEnabled);
+  });
+  if (me?.is_admin) {
+    document.getElementById('btnMillonarioOn').style.display   = millonarioEnabled ? 'none' : '';
+    document.getElementById('btnMillonarioOff').style.display  = millonarioEnabled ? '' : 'none';
+    document.getElementById('btnMillonarioOpen').style.display = millonarioEnabled ? '' : 'none';
+    const sub = document.getElementById('millonarioStatusSub');
+    if (sub) sub.textContent = millonarioEnabled ? '🟢 Game active' : '⚫ Game disabled';
+  }
+}
+
+async function toggleMillonario(enable) {
+  try {
+    await req('POST', '/api/millonario/toggle', { enabled: enable });
+    await checkMillonarioStatus();
+    showAlert('millonarioAlert', enable ? 'Millonario enabled.' : 'Millonario disabled.', 's');
+  } catch (e) { showAlert('millonarioAlert', e.message); }
+}
+
+function openMillonario() {
+  window.open('/millonario', '_blank');
+}
+
+/* ── 10. Navigation ─────────────────────────────────────── */
+function nav(name, el) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  document.getElementById('view-' + name)?.classList.add('on');
+  document.querySelectorAll('.navTab').forEach(tab => tab.classList.remove('on'));
+  document.querySelectorAll('.mNavBtn').forEach(b => b.classList.toggle('on', b.dataset.view === name));
+  if (el?.classList.contains('navTab')) {
+    el.classList.add('on');
+  } else {
+    document.querySelectorAll('.navTab').forEach(tab => {
+      if (tab.getAttribute('onclick')?.includes(`'${name}'`)) tab.classList.add('on');
+    });
+  }
+  if (name === 'hist')    loadHist('fullH', 1000);
+  if (name === 'adm')     loadAdmin();
+  if (name === 'dash')    loadHist('dashH', 10);
+  if (name === 'tx')      loadDropdown();
+  if (name === 'gallery') loadGallery();
+}
+
+/* ── 11. Boot sequence ──────────────────────────────────── */
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadLang(curLang);   // Language must load first (all text depends on it)
+  if (token) loadApp();       // Resume session if token exists in localStorage
+});
+</script>
+</body>
+</html>

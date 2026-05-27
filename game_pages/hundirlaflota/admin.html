@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>⚓ Admin — Hundir la Flota</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚓</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
+  --noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;
+  --glass:rgba(255,255,255,.04);
+  --border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --green:#38B87A;--red:#C83060;--blue:#4878D8;
+  --navy:#1E3A5F;--water:#2E5C8A;
+  --r:10px;--rL:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{font-size:15px;height:100%;}
+body{background:var(--noir);color:var(--text);font-family:'DM Mono',monospace;min-height:100%;-webkit-font-smoothing:antialiased;padding-bottom:40px;}
+::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px;}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;}
+.hdr{position:sticky;top:0;z-index:100;background:rgba(4,4,10,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;padding:0 20px;height:60px;}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--blue) 30%,var(--water) 50%,var(--blue) 70%,transparent);}
+.hdrBack{color:var(--text2);text-decoration:none;font-size:.72rem;letter-spacing:.08em;padding:5px 10px;border:1px solid var(--border);border-radius:6px;transition:all .2s;}
+.hdrBack:hover{border-color:var(--blue);color:var(--blue);}
+.hdrIcon{font-size:1.4rem;}
+.hdrTitle{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);flex:1;}
+.badge{padding:3px 10px;border-radius:20px;font-size:.62rem;letter-spacing:.1em;font-weight:600;border:1px solid var(--border);color:var(--text3);}
+.badge.on{background:rgba(56,184,122,.12);border-color:rgba(56,184,122,.4);color:var(--green);}
+.badge.off{background:rgba(255,255,255,.04);border-color:var(--border);}
+.wrap{max-width:700px;margin:0 auto;padding:24px 16px;}
+.section{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:20px;margin-bottom:16px;box-shadow:0 4px 24px rgba(0,0,0,.4);}
+.sTitle{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--blue);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);letter-spacing:.03em;}
+.statusRow{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.statusDot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:var(--text3);transition:all .3s;}
+.statusDot.on{background:var(--green);box-shadow:0 0 8px rgba(56,184,122,.5);}
+.statusText{font-size:.78rem;color:var(--text2);}
+.btnRow{display:flex;gap:8px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid;border-radius:var(--r);padding:9px 18px;font-size:.72rem;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:.06em;transition:all .2s;cursor:pointer;text-decoration:none;}
+.btnG{background:rgba(56,184,122,.12);border-color:rgba(56,184,122,.4);color:var(--green);}
+.btnG:hover:not(:disabled){background:rgba(56,184,122,.22);border-color:var(--green);box-shadow:0 0 16px rgba(56,184,122,.2);}
+.btnR{background:rgba(200,48,96,.12);border-color:rgba(200,48,96,.4);color:#e05080;}
+.btnR:hover:not(:disabled){background:rgba(200,48,96,.22);border-color:var(--red);}
+.btnS{background:rgba(72,120,216,.12);border-color:rgba(72,120,216,.4);color:var(--blue);}
+.btnS:hover:not(:disabled){background:rgba(72,120,216,.22);border-color:var(--blue);}
+.btnO{background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.35);color:var(--gold2);}
+.btnO:hover:not(:disabled){background:rgba(212,168,67,.2);border-color:var(--gold);}
+.btn:disabled{opacity:.35;cursor:not-allowed;}
+.w100{width:100%;}
+.btnSm{padding:6px 12px;font-size:.68rem;}
+.lbl{font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:.12em;margin-bottom:6px;}
+.inp{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;color:var(--text);font-family:'DM Mono',monospace;font-size:.85rem;outline:none;transition:all .2s;}
+.inp:focus{border-color:var(--blue);background:rgba(72,120,216,.05);box-shadow:0 0 0 3px rgba(72,120,216,.07);}
+.inp::placeholder{color:var(--text3);}
+.sel{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;color:var(--text);font-family:'DM Mono',monospace;font-size:.82rem;outline:none;-webkit-appearance:none;appearance:none;cursor:pointer;}
+.sel:focus{border-color:var(--blue);}
+.sel option{background:var(--n4);}
+.acWrap{position:relative;margin-bottom:8px;}
+.acDrop{display:none;position:absolute;top:100%;left:0;right:0;z-index:300;background:var(--n2);border:1px solid var(--border2);border-top:none;border-radius:0 0 var(--r) var(--r);max-height:180px;overflow-y:auto;box-shadow:0 8px 24px rgba(0,0,0,.7);}
+.acDrop.open{display:block;}
+.acItem{padding:8px 12px;font-size:.75rem;color:var(--text2);cursor:pointer;transition:background .15s;border-bottom:1px solid var(--border);}
+.acItem:last-child{border-bottom:none;}
+.acItem:hover,.acItem.hi{background:rgba(72,120,216,.08);color:var(--text);}
+.acItem b{color:var(--blue);font-weight:600;}
+.pills{display:flex;flex-wrap:wrap;gap:5px;min-height:30px;margin:6px 0;align-items:center;}
+.pill{display:inline-flex;align-items:center;gap:5px;background:rgba(72,120,216,.1);border:1px solid rgba(72,120,216,.25);border-radius:20px;padding:3px 10px;font-size:.68rem;color:var(--blue);}
+.pillX{background:none;border:none;color:var(--navy);padding:0 0 0 2px;font-size:.8rem;cursor:pointer;line-height:1;}
+.pillX:hover{color:var(--red);}
+.pillCount{font-size:.58rem;color:var(--text3);margin-bottom:8px;}
+.alert{font-size:.72rem;min-height:0;max-height:0;overflow:hidden;border-radius:var(--r);transition:all .3s;margin-top:0;}
+.alert.on{padding:9px 12px;max-height:60px;margin-top:8px;}
+.alert.ok{background:rgba(56,184,122,.1);border:1px solid rgba(56,184,122,.3);color:var(--green);}
+.alert.err{background:rgba(200,48,96,.1);border:1px solid rgba(200,48,96,.3);color:#e05080;}
+.gameCard{background:var(--glass);border:1px solid var(--border2);border-radius:var(--r);padding:14px 16px;margin-bottom:8px;}
+.gcPlayer{font-family:'Playfair Display',serif;font-size:1rem;color:var(--blue);margin-bottom:4px;}
+.gcStatus{font-size:.72rem;color:var(--text2);}
+.gcShips{font-size:.68rem;color:var(--text3);margin-top:4px;}
+.shipConfigRow{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <a class="hdrBack" href="/">← Admin</a>
+  <span class="hdrIcon">⚓</span>
+  <div class="hdrTitle">Hundir la Flota</div>
+  <span class="badge off" id="badge">—</span>
+</div>
+
+<div class="wrap">
+
+  <div class="section">
+    <div class="sTitle">⚙️ Control del juego</div>
+    <div class="statusRow">
+      <div class="statusDot off" id="dot"></div>
+      <div class="statusText"><strong id="statusText">Cargando…</strong></div>
+    </div>
+    <div class="btnRow">
+      <button class="btn btnG btnSm" id="btnOn"    onclick="toggle(true)">▶ Activar</button>
+      <button class="btn btnR btnSm" id="btnOff"   onclick="toggle(false)">■ Desactivar</button>
+      <button class="btn btnO btnSm" id="btnReset" onclick="resetGame()">↺ Reiniciar</button>
+      <button class="btn btnS btnSm" id="btnOpen"  onclick="openGame()">↗ Abrir juego</button>
+    </div>
+    <div class="alert" id="alert1"></div>
+  </div>
+
+  <div class="section" id="secPlayers" style="display:none">
+    <div class="sTitle">🎮 Partida en curso</div>
+    <div id="playersGrid"></div>
+  </div>
+
+  <div class="section" id="secConfig">
+    <div class="sTitle">⚙️ Configurar nueva partida</div>
+    <div style="margin-bottom:14px">
+      <div class="lbl">🎯 Tamaño del tablero</div>
+      <select class="sel" id="boardSize">
+        <option value="8">8x8 — Rápido</option>
+        <option value="10" selected>10x10 — Clásico</option>
+        <option value="12">12x12 — Épico</option>
+      </select>
+    </div>
+    <div style="margin-bottom:14px">
+      <div class="lbl">⏱ Tiempo por turno (segundos)</div>
+      <select class="sel" id="turnTime">
+        <option value="30">30 s</option>
+        <option value="60" selected>60 s</option>
+        <option value="90">90 s</option>
+        <option value="120">120 s</option>
+        <option value="0">Sin límite</option>
+      </select>
+    </div>
+    
+    <div style="margin-bottom:14px">
+      <div class="lbl">🚢 Configuración de flota</div>
+      <div id="shipConfig" style="display:grid;gap:8px;margin-top:8px;">
+        <div class="shipConfigRow">
+          <span style="font-size:.75rem;color:var(--text);">🚢 Portaaviones (5)</span>
+          <input type="number" class="inp" id="ship_carrier" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
+        </div>
+        <div class="shipConfigRow">
+          <span style="font-size:.75rem;color:var(--text);">⛴️ Acorazado (4)</span>
+          <input type="number" class="inp" id="ship_battleship" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
+        </div>
+        <div class="shipConfigRow">
+          <span style="font-size:.75rem;color:var(--text);">🚤 Submarino (3)</span>
+          <input type="number" class="inp" id="ship_submarine" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
+        </div>
+        <div class="shipConfigRow">
+          <span style="font-size:.75rem;color:var(--text);">🛥️ Destructor (2)</span>
+          <input type="number" class="inp" id="ship_destroyer" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
+        </div>
+        <div class="shipConfigRow">
+          <span style="font-size:.75rem;color:var(--text);">⛵ Patrullera (1)</span>
+          <input type="number" class="inp" id="ship_patrol" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
+        </div>
+      </div>
+    </div>
+    
+    <div class="lbl">👥 Jugadores (2-4)</div>
+    <div class="acWrap">
+      <input class="inp" id="acIn" type="text" autocomplete="off"
+        placeholder="🔍 Buscar usuario…"
+        oninput="acFilter()" onkeydown="acKey(event)" onfocus="acFilter()">
+      <div class="acDrop" id="acDrop"></div>
+    </div>
+    <div class="pills" id="pills"><span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span></div>
+    <div class="pillCount" id="pillCount">0 / 4</div>
+    <button class="btn btnG w100" id="btnStart" onclick="startGame()" disabled style="margin-top:14px">
+      ▶ Iniciar partida
+    </button>
+    <div class="alert" id="alert2"></div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+const token = localStorage.getItem('dvd_token');
+let allUsers = [], players = [], acIdx = -1, enabled = false;
+let wsConn = null;
+const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
+
+async function api(method, path, body) {
+  const r = await fetch(path, {
+    method,
+    headers: {'Content-Type':'application/json','Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (!r.ok) { const d = await r.json().catch(()=>({})); throw new Error(d.detail || 'Error '+r.status); }
+  return r.json();
+}
+
+function showAlert(id, msg, type='err') {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.className = 'alert on ' + type;
+  setTimeout(() => { el.className = 'alert'; }, 4000);
+}
+
+async function load() {
+  if (!token) { location.href = '/'; return; }
+  try { const me = await api('GET', '/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
+  catch { location.href = '/'; return; }
+  
+  // Limpiar localStorage relacionado con el juego
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.includes('hundirlaflota')) {
+      keysToRemove.push(key);
+    }
+  }
+  keysToRemove.forEach(key => localStorage.removeItem(key));
+  console.log('🔄 Estado local del admin limpiado');
+  
+  try {
+    const [status, users] = await Promise.all([
+      api('GET', '/api/hundirlaflota/status'),
+      api('GET', '/api/hundirlaflota/users'),
+    ]);
+    enabled = !!status.enabled;
+    allUsers = users || [];
+    updateStatus();
+    connectWS();
+  } catch(e) { showAlert('alert1', e.message); }
+}
+
+function updateStatus() {
+  document.getElementById('dot').className = 'statusDot ' + (enabled ? 'on' : 'off');
+  document.getElementById('badge').textContent = enabled ? '🟢 Activo' : '⚫ Desactivado';
+  document.getElementById('badge').className   = 'badge ' + (enabled ? 'on' : 'off');
+  document.getElementById('statusText').textContent = enabled ? 'Juego activo' : 'Juego desactivado';
+  
+  // Mostrar/ocultar botones según estado
+  document.getElementById('btnOn').style.display    = enabled ? 'none' : 'inline-flex';
+  document.getElementById('btnOff').style.display   = enabled ? 'inline-flex' : 'none';
+  document.getElementById('btnReset').style.display = 'inline-flex'; // Siempre visible
+  document.getElementById('btnOpen').style.display  = enabled ? 'inline-flex' : 'none';
+}
+
+function connectWS() {
+  if (wsConn && wsConn.readyState < 2) return;
+  wsConn = new WebSocket(wsBase + '/ws/hundirlaflota?token=' + encodeURIComponent(token));
+  wsConn.onmessage = e => { try { handleState(JSON.parse(e.data)); } catch(_){} };
+  wsConn.onclose   = () => { setTimeout(connectWS, 3000); };
+  wsConn.onerror   = () => {};
+}
+
+function handleState(data) {
+  if (data.type !== 'state') return;
+  enabled = !!data.enabled;
+  updateStatus();
+  const ps = data.players || [];
+  const sec = document.getElementById('secPlayers');
+  const secConfig = document.getElementById('secConfig');
+  const grid = document.getElementById('playersGrid');
+  
+  // Mostrar jugadores si hay partida activa
+  if (ps.length && data.phase !== 'waiting' && enabled) {
+    sec.style.display = '';
+    grid.innerHTML = ps.map(p => {
+      const shipsLeft = Object.values(p.ships || {}).filter(s => !s.sunk).length;
+      const totalShips = Object.keys(p.ships || {}).length;
+      return `<div class="gameCard">
+        <div class="gcPlayer">⚓ @${esc(p.username)}</div>
+        <div class="gcStatus">${p.ready ? '✓ Listo' : '⏳ Colocando barcos'}</div>
+        <div class="gcShips">🚢 Barcos: ${shipsLeft}/${totalShips}</div>
+      </div>`;
+    }).join('');
+  } else {
+    sec.style.display = 'none';
+  }
+  
+  // Mostrar panel de configuración siempre (para poder configurar nuevas partidas)
+  secConfig.style.display = '';
+}
+
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+async function toggle(on) {
+  try {
+    await api('POST', '/api/hundirlaflota/toggle', { enabled: on });
+    enabled = on; updateStatus();
+    showAlert('alert1', on ? '✓ Hundir la Flota activado' : 'Hundir la Flota desactivado', 'ok');
+  } catch(e) { showAlert('alert1', e.message); }
+}
+
+async function resetGame() {
+  if (!confirm('¿Reiniciar la partida? Esto eliminará el juego actual y permitirá configurar uno nuevo.')) return;
+  
+  const btn = document.getElementById('btnReset');
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = '⏳ Reiniciando...';
+  
+  try {
+    // Paso 1: Desactivar el juego
+    await api('POST', '/api/hundirlaflota/toggle', { enabled: false });
+    console.log('✓ Juego desactivado');
+    
+    // Paso 2: Resetear el estado del juego
+    await api('POST', '/api/hundirlaflota/reset');
+    console.log('✓ Estado reseteado');
+    
+    enabled = false;
+    updateStatus();
+    
+    // Limpiar jugadores seleccionados
+    players = [];
+    renderPills();
+    
+    // Resetear configuración de barcos a valores por defecto
+    document.getElementById('ship_carrier').value = 1;
+    document.getElementById('ship_battleship').value = 1;
+    document.getElementById('ship_submarine').value = 1;
+    document.getElementById('ship_destroyer').value = 1;
+    document.getElementById('ship_patrol').value = 1;
+    
+    // Resetear tamaño de tablero y tiempo
+    document.getElementById('boardSize').value = 10;
+    document.getElementById('turnTime').value = 60;
+    
+    showAlert('alert1', '✓ Partida reiniciada — Configura una nueva partida', 'ok');
+    
+    // Recargar la página después de un breve delay para asegurar que todo se resetea
+    setTimeout(() => {
+      location.reload();
+    }, 1500);
+  } catch(e) { 
+    console.error('❌ Error al reiniciar:', e);
+    showAlert('alert1', 'Error: ' + e.message + ' — Recargando página...', 'err');
+    
+    // Recargar de todas formas después de un breve delay
+    setTimeout(() => {
+      location.reload();
+    }, 2000);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+}
+
+function openGame() { window.open('/hundirlaflota/game.html?token=' + encodeURIComponent(token), '_blank'); }
+
+async function startGame() {
+  if (players.length < 2) { showAlert('alert2', 'Se necesitan al menos 2 jugadores'); return; }
+  const boardSize = parseInt(document.getElementById('boardSize').value);
+  const turnTime = parseInt(document.getElementById('turnTime').value);
+  
+  // Obtener configuración de barcos
+  const ships = {
+    carrier: {
+      name: "Portaaviones",
+      size: 5,
+      icon: "🚢",
+      count: parseInt(document.getElementById('ship_carrier').value) || 0
+    },
+    battleship: {
+      name: "Acorazado",
+      size: 4,
+      icon: "⛴️",
+      count: parseInt(document.getElementById('ship_battleship').value) || 0
+    },
+    submarine: {
+      name: "Submarino",
+      size: 3,
+      icon: "🚤",
+      count: parseInt(document.getElementById('ship_submarine').value) || 0
+    },
+    destroyer: {
+      name: "Destructor",
+      size: 2,
+      icon: "🛥️",
+      count: parseInt(document.getElementById('ship_destroyer').value) || 0
+    },
+    patrol: {
+      name: "Patrullera",
+      size: 1,
+      icon: "⛵",
+      count: parseInt(document.getElementById('ship_patrol').value) || 0
+    }
+  };
+  
+  // Verificar que hay al menos un barco
+  const totalShips = Object.values(ships).reduce((sum, ship) => sum + ship.count, 0);
+  if (totalShips === 0) {
+    showAlert('alert2', 'Debes configurar al menos un barco');
+    return;
+  }
+  
+  console.log('🚢 Configuración de barcos:', ships);
+  
+  const btn = document.getElementById('btnStart');
+  btn.disabled = true; btn.textContent = '⏳ Iniciando…';
+  try {
+    const response = await api('POST', '/api/hundirlaflota/setup', { 
+      players: players.slice(), 
+      board_size: boardSize,
+      turn_time: turnTime,
+      ships: ships
+    });
+    console.log('✅ Respuesta del servidor:', response);
+    enabled = true; updateStatus();
+    showAlert('alert2', '✓ Partida iniciada — abriendo juego…', 'ok');
+    setTimeout(openGame, 700);
+  } catch(e) { 
+    console.error('❌ Error al iniciar:', e);
+    showAlert('alert2', e.message); 
+  }
+  finally { btn.disabled = players.length < 2; btn.textContent = '▶ Iniciar partida'; }
+}
+
+function acFilter() {
+  const q = document.getElementById('acIn').value.trim().toLowerCase();
+  const dd = document.getElementById('acDrop'); acIdx = -1;
+  if (!q) { dd.classList.remove('open'); return; }
+  const hits = allUsers.filter(u => !players.includes(u) && u.toLowerCase().includes(q)).slice(0,8);
+  if (!hits.length) { dd.classList.remove('open'); return; }
+  dd.innerHTML = hits.map(u => {
+    const p = u.toLowerCase().indexOf(q);
+    const h = p>=0 ? u.slice(0,p)+'<b>'+u.slice(p,p+q.length)+'</b>'+u.slice(p+q.length) : u;
+    return `<div class="acItem" onmousedown="event.preventDefault();addPlayer('${u}')">@${h}</div>`;
+  }).join('');
+  dd.classList.add('open');
+}
+
+function acKey(e) {
+  const items = document.querySelectorAll('#acDrop .acItem');
+  if (e.key==='ArrowDown')  { e.preventDefault(); acIdx=Math.min(acIdx+1,items.length-1); items.forEach((r,i)=>r.classList.toggle('hi',i===acIdx)); }
+  else if (e.key==='ArrowUp') { e.preventDefault(); acIdx=Math.max(acIdx-1,0); items.forEach((r,i)=>r.classList.toggle('hi',i===acIdx)); }
+  else if (e.key==='Enter') { e.preventDefault(); if(acIdx>=0&&items[acIdx])items[acIdx].dispatchEvent(new Event('mousedown')); }
+  else if (e.key==='Escape') document.getElementById('acDrop').classList.remove('open');
+}
+
+function addPlayer(u) {
+  if (!u||players.includes(u)||players.length>=4) return;
+  players.push(u);
+  document.getElementById('acIn').value = '';
+  document.getElementById('acDrop').classList.remove('open');
+  renderPills();
+}
+function removePlayer(i) { players.splice(i,1); renderPills(); }
+function renderPills() {
+  const el = document.getElementById('pills');
+  el.innerHTML = players.length
+    ? players.map((u,i)=>`<span class="pill">@${u}<button class="pillX" onclick="removePlayer(${i})">✕</button></span>`).join('')
+    : '<span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span>';
+  document.getElementById('pillCount').textContent = players.length+' / 4';
+  document.getElementById('btnStart').disabled = players.length < 2;
+}
+
+load();
+</script>
+</body>
+</html>

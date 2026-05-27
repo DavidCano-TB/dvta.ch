@@ -1,0 +1,6 @@
+@echo off
+echo Generando preguntas de Pasapalabra...
+python generar_preguntas_pasapalabra.py
+echo.
+echo Presiona cualquier tecla para cerrar...
+pause > nul

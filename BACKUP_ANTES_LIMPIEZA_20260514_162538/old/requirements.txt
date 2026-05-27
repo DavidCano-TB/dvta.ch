@@ -1,0 +1,9 @@
+fastapi==0.135.2
+uvicorn[standard]==0.42.0
+bcrypt==5.0.0
+python-jose[cryptography]==3.5.0
+pydantic==2.12.5
+slowapi==0.1.9
+python-multipart==0.0.22
+aiofiles==25.1.0
+graphifyy>=0.1.0

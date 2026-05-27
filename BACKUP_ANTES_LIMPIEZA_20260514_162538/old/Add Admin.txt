@@ -1,0 +1,59 @@
+Añadir un nuevo admin — pasos completos
+Hay exactamente 2 archivos que modificar: el backend y el frontend. Ambos tienen una línea con un Set de nombres de admin. Hay que añadir el nuevo username en los dos.
+
+Archivo	Qué contiene	Línea
+main.py	Lógica del servidor — controla quién tiene privilegios reales	71
+static/index.html	Frontend — controla el badge "Admin ◆" en el desplegable de transferencias	1468
+El username debe estar en minúsculas en ambos archivos. Si el usuario se registra como "Carlos", el servidor lo guarda como "carlos" — tiene que coincidir exactamente.
+📄 main.py — Línea 71
+1
+Abre main.py y busca esta línea (está en la sección CONFIGURATION, cerca del principio):
+
+# Add new admins here (lowercase Clubhouse usernames).
+# Admins can transfer any amount; their balance is always forced to 0.
+ADMINS = {"dvd", "nina", "victor", "yu"}
+2
+Añade el nuevo nombre al Set, en minúsculas, entre comillas dobles:
+
+ADMINS = {"dvd", "nina", "victor", "yu", "carlos"}
+El orden no importa. Puedes añadir varios a la vez separados por comas.
+
+📄 static/index.html — Línea 1468
+3
+En el mismo proyecto abre static/index.html. Busca esta línea en el bloque <script> (al buscar const ADMINS la encuentras de inmediato):
+
+const ADMINS = new Set(['dvd', 'nina', 'victor', 'yu']);
+4
+Añade el mismo username que pusiste en main.py:
+
+const ADMINS = new Set(['dvd', 'nina', 'victor', 'yu', 'carlos']);
+Esto hace que en el desplegable de transferencias aparezca el badge Admin ◆ junto a su nombre.
+
+Si solo modificas main.py y olvidas index.html, el usuario tendrá privilegios reales de admin, pero el frontend no mostrará el badge ni aplicará el estilo dorado en historial de transacciones. Funciona igual pero visualmente parece usuario normal.
+Paso 3 — Reiniciar el servidor
+💻 Windows
+Cierra la ventana del servidor y vuelve a ejecutar:
+
+dvdcoin_bank_windows.bat
+O si tienes el servicio instalado con NSSM:
+
+dvdcoin restart
+🍓 Raspberry Pi
+dvdcoin restart
+Paso 4 — El nuevo admin se registra
+5
+Tras el reinicio, el servidor llama a seed_admins() automáticamente al arrancar. Esto crea una fila vacía en la BD para el nuevo admin si no existe todavía.
+
+El nuevo admin simplemente va a la web y se registra normalmente con ese username. Al hacerlo, el sistema detecta que está en ADMINS y le asigna todos los privilegios de inmediato.
+
+✓ Listo. El nuevo admin puede iniciar sesión con la pestaña Admin visible, transferir cualquier cantidad sin límite de saldo, gestionar usuarios, ver el libro mayor completo y controlar los juegos.
+Resumen en 4 líneas
+#	Qué hacer	Dónde
+1	Añadir "carlos" al set ADMINS = {...}	main.py línea 71
+2	Añadir 'carlos' al new Set([...])	index.html línea 1468
+3	Reiniciar el servidor	Terminal / bat
+4	El nuevo admin se registra en la web	Pestaña Register
+⚠ No se puede añadir un admin desde la interfaz web — es una decisión de seguridad deliberada del diseño. Los privilegios de admin solo se pueden conceder editando el código fuente.
+
+En resumen: 2 archivos, 1 línea cada uno, mismo cambio en los dos.
+La razón por la que hay que tocar index.html además de main.py es que el frontend tiene su propio Set de admins en JavaScript para cosas puramente visuales — el badge dorado en el desplegable de transferencias y el color especial en el historial. Si solo tocas main.py el usuario tiene privilegios reales pero el UI no lo refleja visualmente.

@@ -1,0 +1,1608 @@
+﻿# =============================================================================
+# DVDcoin Bank v4.0 — main.py
+# Backend: FastAPI + SQLite (5-database architecture)
+# WebRTC video rooms: fully fixed (signaling, room list, private rooms,
+#                     dynamic invitations, peer notification)
+# All other features preserved exactly as original.
+# =============================================================================
+
+from __future__ import annotations
+
+import hashlib
+import hmac
+import json
+import logging
+import os
+import random
+import re
+import secrets
+import sqlite3
+import time
+import uuid as _uuid
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Optional
+
+import bcrypt
+from fastapi import (
+    Depends, FastAPI, File, Form, HTTPException,
+    Query, Request, Response, UploadFile, WebSocket, WebSocketDisconnect,
+)
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from jose import JWTError, jwt
+from pydantic import BaseModel
+
+# =============================================================================
+# CONFIGURATION & CONSTANTS
+# =============================================================================
+
+BASE_DIR  = Path(__file__).parent
+DATA_DIR  = BASE_DIR / "data"
+DATA_DIR.mkdir(exist_ok=True)
+
+SECRET_KEY_FILE = DATA_DIR / ".secret_key"
+if SECRET_KEY_FILE.exists():
+    SECRET_KEY = SECRET_KEY_FILE.read_text().strip()
+else:
+    SECRET_KEY = secrets.token_hex(32)
+    SECRET_KEY_FILE.write_text(SECRET_KEY)
+
+ALGORITHM       = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
+
+SUPERADMINS = {"dvd", "nebulosa"}
+ADMINS      = {"dvd", "nebulosa"}   # extended at runtime from DB
+ALL_ADMINS  = ADMINS | SUPERADMINS
+GHOST       = set()                 # usernames hidden from logs
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("dvdcoin")
+
+app = FastAPI(title="DVDcoin Bank", version="4.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# =============================================================================
+# DATABASE HELPERS
+# =============================================================================
+
+DB_USERS  = DATA_DIR / "users.db"
+DB_RIGHTS = DATA_DIR / "rights.db"
+DB_TXN    = DATA_DIR / "transactions.db"
+DB_STATS  = DATA_DIR / "stats.db"
+DB_OPO    = DATA_DIR / "opo.db"
+
+def _open_db(path) -> sqlite3.Connection:
+    conn = sqlite3.connect(str(path), check_same_thread=False)
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("PRAGMA foreign_keys=ON")
+    return conn
+
+def db_connect()  -> sqlite3.Connection: return _open_db(DB_USERS)
+def db_rights()   -> sqlite3.Connection: return _open_db(DB_RIGHTS)
+def db_txn()      -> sqlite3.Connection: return _open_db(DB_TXN)
+def db_stats()    -> sqlite3.Connection: return _open_db(DB_STATS)
+def db_opo()      -> sqlite3.Connection: return _open_db(DB_OPO)
+def db_users()    -> sqlite3.Connection: return _open_db(DB_USERS)
+
+# =============================================================================
+# SCHEMA INITIALISATION
+# =============================================================================
+
+def _init_users_db():
+    c = db_connect()
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS users (
+            id            INTEGER PRIMARY KEY AUTOINCREMENT,
+            username      TEXT    UNIQUE NOT NULL,
+            password_hash TEXT    NOT NULL,
+            balance       REAL    NOT NULL DEFAULT 0,
+            role          TEXT    NOT NULL DEFAULT 'user',
+            status        TEXT    NOT NULL DEFAULT 'active',
+            failed_logins INTEGER NOT NULL DEFAULT 0,
+            joined_at     TEXT    NOT NULL DEFAULT (datetime('now')),
+            last_seen     TEXT
+        );
+        CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
+    """)
+    c.commit(); c.close()
+
+def _init_txn_db():
+    c = db_txn()
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS transactions (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            sender     TEXT    NOT NULL,
+            recipient  TEXT    NOT NULL,
+            amount     REAL    NOT NULL,
+            reference  TEXT    NOT NULL DEFAULT '',
+            created_at TEXT    NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_txn_sender    ON transactions(sender);
+        CREATE INDEX IF NOT EXISTS idx_txn_recipient ON transactions(recipient);
+        CREATE INDEX IF NOT EXISTS idx_txn_date      ON transactions(created_at);
+    """)
+    c.commit(); c.close()
+
+def _init_stats_db():
+    c = db_stats()
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS sessions (
+            id          INTEGER PRIMARY KEY AUTOINCREMENT,
+            username    TEXT    NOT NULL,
+            section     TEXT    NOT NULL,
+            detail      TEXT    NOT NULL DEFAULT '',
+            started_at  TEXT    NOT NULL DEFAULT (datetime('now')),
+            ended_at    TEXT,
+            duration_s  INTEGER
+        );
+        CREATE INDEX IF NOT EXISTS idx_sess_user    ON sessions(username);
+        CREATE INDEX IF NOT EXISTS idx_sess_section ON sessions(section);
+        CREATE INDEX IF NOT EXISTS idx_sess_start   ON sessions(started_at);
+    """)
+    c.commit(); c.close()
+
+def _init_rights_db():
+    c = db_rights()
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS rights (
+            username    TEXT    NOT NULL,
+            feature     TEXT    NOT NULL,
+            granted_by  TEXT    NOT NULL DEFAULT 'system',
+            granted_at  TEXT    NOT NULL DEFAULT (datetime('now')),
+            PRIMARY KEY (username, feature)
+        );
+        CREATE TABLE IF NOT EXISTS settings (
+            key   TEXT PRIMARY KEY,
+            value TEXT NOT NULL DEFAULT ''
+        );
+    """)
+    c.commit(); c.close()
+
+def _init_opo_db():
+    c = db_opo()
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS opo_results (
+            id         INTEGER PRIMARY KEY AUTOINCREMENT,
+            username   TEXT    NOT NULL,
+            score      INTEGER NOT NULL,
+            total      INTEGER NOT NULL,
+            pct        REAL    NOT NULL,
+            created_at TEXT    NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_opo_user ON opo_results(username);
+    """)
+    c.commit(); c.close()
+
+# Initialise all databases on startup
+_init_users_db()
+_init_txn_db()
+_init_stats_db()
+_init_rights_db()
+_init_opo_db()
+
+# =============================================================================
+# MESSAGING SYSTEM
+# Supports group chat (room="group") and direct messages (room="dm:a:b").
+# Audio messages are uploaded via REST, stored in static/audio/messages/.
+# Real-time delivery via WebSocket /ws/messages.
+# =============================================================================
+
+import json  as _json_msg
+
+# ── DB path ────────────────────────────────────────────────────────────────
+DB_MSG      = os.path.join(DATA_DIR, "messages.db")
+MSG_DIR     = os.path.join(BASE_DIR, "static", "audio", "messages")
+MSG_ALLOWED = {".webm", ".mp4", ".ogg", ".m4a", ".aac", ".wav"}
+MSG_MAX_ROWS = 2000  # max messages to keep per room
+
+def db_msg() -> sqlite3.Connection:
+    """Open the messages database."""
+    return _open_db(DB_MSG)
+
+def _msg_db_init():
+    """Create messaging tables. Safe to call on every restart."""
+    os.makedirs(MSG_DIR, exist_ok=True)
+    c = db_msg()
+    c.executescript("""
+        CREATE TABLE IF NOT EXISTS messages (
+            id           INTEGER PRIMARY KEY AUTOINCREMENT,
+            room         TEXT    NOT NULL DEFAULT 'group',
+            from_user    TEXT    NOT NULL,
+            content      TEXT    NOT NULL DEFAULT '',
+            msg_type     TEXT    NOT NULL DEFAULT 'text',
+            reply_to_id  INTEGER,
+            deleted      INTEGER NOT NULL DEFAULT 0,
+            created_at   TEXT    NOT NULL DEFAULT (datetime('now'))
+        );
+        CREATE INDEX IF NOT EXISTS idx_msg_room ON messages(room, created_at);
+        CREATE INDEX IF NOT EXISTS idx_msg_user ON messages(from_user);
+
+        CREATE TABLE IF NOT EXISTS msg_reads (
+            msg_id   INTEGER NOT NULL,
+            username TEXT    NOT NULL,
+            PRIMARY KEY (msg_id, username)
+        );
+
+        CREATE TABLE IF NOT EXISTS msg_reactions (
+            msg_id   INTEGER NOT NULL,
+            username TEXT    NOT NULL,
+            emoji    TEXT    NOT NULL,
+            PRIMARY KEY (msg_id, username)
+        );
+
+        CREATE TABLE IF NOT EXISTS msg_settings (
+            key   TEXT PRIMARY KEY,
+            value TEXT NOT NULL DEFAULT ''
+        );
+        INSERT OR IGNORE INTO msg_settings(key,value) VALUES('enabled','1');
+    """)
+    c.commit(); c.close()
+
+_msg_db_init()
+
+def _msg_enabled() -> bool:
+    c = db_msg()
+    row = c.execute("SELECT value FROM msg_settings WHERE key='enabled'").fetchone()
+    c.close()
+    return (row["value"] == "1") if row else True
+
+def _save_message(room: str, from_user: str, content: str,
+                  msg_type: str = "text", reply_to_id=None) -> dict:
+    c = db_msg()
+    row = c.execute(
+        "INSERT INTO messages(room,from_user,content,msg_type,reply_to_id)"
+        " VALUES(?,?,?,?,?) RETURNING id,created_at",
+        (room, from_user, content, msg_type, reply_to_id)
+    ).fetchone()
+    c.commit()
+    # Trim old messages
+    c.execute(
+        "DELETE FROM messages WHERE room=? AND id NOT IN"
+        " (SELECT id FROM messages WHERE room=? ORDER BY id DESC LIMIT ?)",
+        (room, room, MSG_MAX_ROWS)
+    )
+    c.commit(); c.close()
+    return {
+        "type": "message", "id": row["id"], "room": room,
+        "from_user": from_user, "content": content,
+        "msg_type": msg_type, "reply_to_id": reply_to_id,
+        "created_at": row["created_at"], "deleted": 0,
+    }
+
+def _load_history(room: str, limit: int = 60) -> list:
+    c = db_msg()
+    rows = c.execute(
+        "SELECT id,room,from_user,content,msg_type,reply_to_id,deleted,created_at"
+        " FROM messages WHERE room=? ORDER BY id DESC LIMIT ?",
+        (room, limit)
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in reversed(rows)]
+
+# =============================================================================
+# WEBSOCKET CONNECTION MANAGER
+# =============================================================================
+
+class ConnectionManager:
+    def __init__(self):
+        self.connections: dict[str, WebSocket] = {}
+
+    async def connect(self, username: str, ws: WebSocket):
+        await ws.accept()
+        self.connections[username] = ws
+
+    def disconnect(self, username: str):
+        self.connections.pop(username, None)
+
+    async def send_to(self, username: str, payload: dict):
+        ws = self.connections.get(username)
+        if ws:
+            try:
+                await ws.send_text(_json_msg.dumps(payload))
+            except Exception:
+                pass
+
+    async def deliver(self, msg: dict, room: str):
+        """Deliver a message to all users in the given room."""
+        text = _json_msg.dumps(msg)
+        if room == "group":
+            for ws in list(self.connections.values()):
+                try:
+                    await ws.send_text(text)
+                except Exception:
+                    pass
+        elif room.startswith("dm:"):
+            parts = set(room.split(":")[1:])
+            for u, ws in list(self.connections.items()):
+                if u in parts:
+                    try:
+                        await ws.send_text(text)
+                    except Exception:
+                        pass
+        else:
+            # fallback: broadcast
+            for ws in list(self.connections.values()):
+                try:
+                    await ws.send_text(text)
+                except Exception:
+                    pass
+
+msg_manager = ConnectionManager()
+
+# =============================================================================
+# IN-MEMORY VIDEO ROOM REGISTRY  (FIXED)
+# =============================================================================
+# room_key -> {
+#   host:    str,
+#   title:   str,
+#   mode:    "public" | "private",
+#   invites: set[str],   # usernames allowed into private room
+#   members: set[str],   # currently connected usernames
+# }
+
+_ROOMS: dict = {}
+
+def _room_public_list(username: str) -> list:
+    """
+    Returns rooms visible to `username`:
+      - all public rooms
+      - private rooms where username is host or invited
+    """
+    result = []
+    for k, r in list(_ROOMS.items()):
+        if r["mode"] == "public" or username in r["invites"] or username == r["host"]:
+            result.append({
+                "key":     k,
+                "title":   r["title"],
+                "host":    r["host"],
+                "mode":    r["mode"],
+                "members": list(r["members"]),
+                "invited": username in r["invites"],
+            })
+    return result
+
+async def _broadcast_room_list():
+    """
+    Push an updated room list to every connected user.
+    Each user receives only the rooms they are allowed to see.
+    """
+    for u, ws_u in list(msg_manager.connections.items()):
+        try:
+            visible = _room_public_list(u)
+            await ws_u.send_text(_json_msg.dumps({"type": "rooms-update", "rooms": visible}))
+        except Exception:
+            pass
+
+# =============================================================================
+# AUTH HELPERS
+# =============================================================================
+
+def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
+    to_encode = data.copy()
+    expire = datetime.utcnow() + (expires_delta or timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+def decode_token(token: str) -> str | None:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload.get("sub")
+    except JWTError:
+        return None
+
+def hash_password(password: str) -> str:
+    return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+
+def verify_password(password: str, hashed: str) -> bool:
+    try:
+        return bcrypt.checkpw(password.encode(), hashed.encode())
+    except Exception:
+        return False
+
+# =============================================================================
+# RATE LIMITING
+# =============================================================================
+
+_rate_store: dict[str, list[float]] = {}
+
+def _rate_limit(key: str, max_calls: int = 5, window: int = 60) -> bool:
+    """Returns True if the call is allowed, False if rate-limited."""
+    now = time.time()
+    calls = [t for t in _rate_store.get(key, []) if now - t < window]
+    if len(calls) >= max_calls:
+        return False
+    calls.append(now)
+    _rate_store[key] = calls
+    return True
+
+# =============================================================================
+# SESSION TRACKING
+# =============================================================================
+
+_OPEN_SESSIONS: dict = {}
+
+def _open_session(username: str, section: str, detail: str = "") -> int:
+    if username in GHOST: return 0
+    key = f"{username}:{section}"
+    now = datetime.utcnow().isoformat(timespec="seconds")
+    conn = db_stats()
+    old_id = _OPEN_SESSIONS.get(key)
+    if old_id:
+        conn.execute(
+            "UPDATE sessions SET ended_at=?, duration_s="
+            "CAST((julianday(?)-julianday(started_at))*86400 AS INT)"
+            " WHERE id=?",
+            (now, now, old_id)
+        )
+    row = conn.execute(
+        "INSERT INTO sessions(username,section,detail,started_at)"
+        " VALUES(?,?,?,?) RETURNING id",
+        (username, section, detail, now)
+    ).fetchone()
+    sid = row["id"] if row else 0
+    conn.commit(); conn.close()
+    _OPEN_SESSIONS[key] = sid
+    return sid
+
+def _ping_session(username: str, section: str):
+    """Update last_seen and keep session alive."""
+    _open_session(username, section)
+    c = db_connect()
+    c.execute(
+        "UPDATE users SET last_seen=? WHERE username=?",
+        (datetime.utcnow().isoformat(timespec="seconds"), username)
+    )
+    c.commit(); c.close()
+
+def _close_session(username: str, section: str):
+    key = f"{username}:{section}"
+    sid = _OPEN_SESSIONS.pop(key, None)
+    if not sid: return
+    now = datetime.utcnow().isoformat(timespec="seconds")
+    conn = db_stats()
+    conn.execute(
+        "UPDATE sessions SET ended_at=?, duration_s="
+        "CAST((julianday(?)-julianday(started_at))*86400 AS INT)"
+        " WHERE id=?",
+        (now, now, sid)
+    )
+    conn.commit(); conn.close()
+
+# =============================================================================
+# REST — AUTHENTICATION
+# =============================================================================
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+@app.post("/api/register")
+async def register(req: LoginRequest):
+    username = req.username.strip().lower()
+    if not re.match(r'^[a-z0-9_]{3,32}$', username):
+        raise HTTPException(400, "Invalid username format")
+    if len(req.password) < 6:
+        raise HTTPException(400, "Password too short")
+    c = db_connect()
+    existing = c.execute("SELECT id FROM users WHERE username=?", (username,)).fetchone()
+    if existing:
+        c.close()
+        raise HTTPException(409, "Username already taken")
+    pw_hash = hash_password(req.password)
+    c.execute(
+        "INSERT INTO users(username,password_hash) VALUES(?,?)",
+        (username, pw_hash)
+    )
+    c.commit(); c.close()
+    token = create_access_token({"sub": username})
+    return {"token": token, "username": username}
+
+@app.post("/api/login")
+async def login(req: LoginRequest, request: Request):
+    ip = request.client.host
+    if not _rate_limit(f"login:{ip}", max_calls=10, window=60):
+        raise HTTPException(429, "Too many login attempts")
+    username = req.username.strip().lower()
+    c = db_connect()
+    row = c.execute(
+        "SELECT username,password_hash,status,failed_logins FROM users WHERE username=?",
+        (username,)
+    ).fetchone()
+    if not row:
+        c.close()
+        raise HTTPException(401, "Invalid credentials")
+    if row["status"] == "banned":
+        c.close()
+        raise HTTPException(403, "Account banned")
+    if not verify_password(req.password, row["password_hash"]):
+        c.execute(
+            "UPDATE users SET failed_logins=failed_logins+1 WHERE username=?",
+            (username,)
+        )
+        c.commit(); c.close()
+        raise HTTPException(401, "Invalid credentials")
+    c.execute(
+        "UPDATE users SET failed_logins=0, last_seen=? WHERE username=?",
+        (datetime.utcnow().isoformat(timespec="seconds"), username)
+    )
+    c.commit(); c.close()
+    token = create_access_token({"sub": username})
+    return {"token": token, "username": username}
+
+@app.post("/api/change-password")
+async def change_password(
+    current_password: str = Form(...),
+    new_password: str     = Form(...),
+    token: str            = Form(...),
+):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    if len(new_password) < 6:
+        raise HTTPException(400, "Password too short")
+    c = db_connect()
+    row = c.execute(
+        "SELECT password_hash FROM users WHERE username=?", (username,)
+    ).fetchone()
+    if not row or not verify_password(current_password, row["password_hash"]):
+        c.close()
+        raise HTTPException(401, "Current password incorrect")
+    c.execute(
+        "UPDATE users SET password_hash=? WHERE username=?",
+        (hash_password(new_password), username)
+    )
+    c.commit(); c.close()
+    return {"ok": True}
+
+# =============================================================================
+# REST — USER / BALANCE
+# =============================================================================
+
+@app.get("/api/me")
+async def get_me(token: str = Query(...)):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    c = db_connect()
+    row = c.execute(
+        "SELECT username,balance,role,status,joined_at,last_seen FROM users WHERE username=?",
+        (username,)
+    ).fetchone()
+    c.close()
+    if not row:
+        raise HTTPException(404, "User not found")
+    return dict(row)
+
+@app.get("/api/users")
+async def list_users(
+    token:   str = Query(...),
+    sort_by: str = Query("username"),
+    order:   str = Query("asc"),
+):
+    username = decode_token(token)
+    if not username or username not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    allowed_sorts = {"username", "balance", "role", "status", "joined_at", "last_seen"}
+    col = sort_by if sort_by in allowed_sorts else "username"
+    direction = "DESC" if order == "desc" else "ASC"
+    c = db_connect()
+    rows = c.execute(
+        f"SELECT username,balance,role,status,failed_logins,joined_at,last_seen"
+        f" FROM users ORDER BY {col} {direction}"
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+# =============================================================================
+# REST — TRANSACTIONS
+# =============================================================================
+
+class TransferRequest(BaseModel):
+    recipient: str
+    amount:    float
+    reference: str = ""
+
+@app.post("/api/transfer")
+async def transfer(req: TransferRequest, token: str = Query(...)):
+    sender = decode_token(token)
+    if not sender:
+        raise HTTPException(401, "Unauthorized")
+    if not _rate_limit(f"transfer:{sender}", max_calls=20, window=60):
+        raise HTTPException(429, "Rate limit exceeded")
+    recipient = req.recipient.strip().lower()
+    if sender == recipient:
+        raise HTTPException(400, "Cannot transfer to yourself")
+    if req.amount <= 0:
+        raise HTTPException(400, "Amount must be positive")
+    c = db_connect()
+    s_row = c.execute(
+        "SELECT balance FROM users WHERE username=?", (sender,)
+    ).fetchone()
+    r_row = c.execute(
+        "SELECT username FROM users WHERE username=?", (recipient,)
+    ).fetchone()
+    if not r_row:
+        c.close()
+        raise HTTPException(404, "Recipient not found")
+    if s_row["balance"] < req.amount:
+        c.close()
+        raise HTTPException(400, "Insufficient balance")
+    c.execute(
+        "UPDATE users SET balance=balance-? WHERE username=?",
+        (req.amount, sender)
+    )
+    c.execute(
+        "UPDATE users SET balance=balance+? WHERE username=?",
+        (req.amount, recipient)
+    )
+    c.commit(); c.close()
+    ct = db_txn()
+    ct.execute(
+        "INSERT INTO transactions(sender,recipient,amount,reference) VALUES(?,?,?,?)",
+        (sender, recipient, req.amount, req.reference[:200])
+    )
+    ct.commit(); ct.close()
+    return {"ok": True}
+
+@app.get("/api/transactions")
+async def get_transactions(token: str = Query(...), limit: int = Query(100)):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    limit = min(limit, 1000)
+    c = db_txn()
+    rows = c.execute(
+        "SELECT * FROM transactions WHERE sender=? OR recipient=?"
+        " ORDER BY id DESC LIMIT ?",
+        (username, username, limit)
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+@app.get("/api/ledger")
+async def get_ledger(
+    token:  str = Query(...),
+    limit:  int = Query(1000),
+    offset: int = Query(0),
+):
+    username = decode_token(token)
+    if not username or username not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    limit = min(limit, 1000)
+    c = db_txn()
+    rows = c.execute(
+        "SELECT * FROM transactions ORDER BY id DESC LIMIT ? OFFSET ?",
+        (limit, offset)
+    ).fetchall()
+    total = c.execute("SELECT COUNT(*) FROM transactions").fetchone()[0]
+    c.close()
+    return {"total": total, "rows": [dict(r) for r in rows]}
+
+# =============================================================================
+# REST — ADMIN: USER MANAGEMENT
+# =============================================================================
+
+@app.post("/api/admin/set-balance")
+async def admin_set_balance(
+    target:  str   = Form(...),
+    amount:  float = Form(...),
+    token:   str   = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_connect()
+    c.execute("UPDATE users SET balance=? WHERE username=?", (amount, target))
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.post("/api/admin/set-role")
+async def admin_set_role(
+    target: str = Form(...),
+    role:   str = Form(...),
+    token:  str = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in SUPERADMINS:
+        raise HTTPException(403, "Forbidden")
+    allowed_roles = {"user", "admin", "superadmin"}
+    if role not in allowed_roles:
+        raise HTTPException(400, "Invalid role")
+    c = db_connect()
+    c.execute("UPDATE users SET role=? WHERE username=?", (role, target))
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.post("/api/admin/set-status")
+async def admin_set_status(
+    target: str = Form(...),
+    status: str = Form(...),
+    token:  str = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    allowed = {"active", "banned", "suspended"}
+    if status not in allowed:
+        raise HTTPException(400, "Invalid status")
+    c = db_connect()
+    c.execute("UPDATE users SET status=? WHERE username=?", (status, target))
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.post("/api/admin/create-admin")
+async def admin_create_admin(
+    username: str           = Form(...),
+    password: Optional[str] = Form(None),
+    token:    str           = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in SUPERADMINS:
+        raise HTTPException(403, "Forbidden")
+    uname = username.strip().lower()
+    c = db_connect()
+    existing = c.execute("SELECT id FROM users WHERE username=?", (uname,)).fetchone()
+    if existing:
+        c.execute("UPDATE users SET role='admin' WHERE username=?", (uname,))
+    else:
+        pw = password or secrets.token_urlsafe(12)
+        c.execute(
+            "INSERT INTO users(username,password_hash,role) VALUES(?,?,'admin')",
+            (uname, hash_password(pw))
+        )
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.post("/api/admin/delete-user")
+async def admin_delete_user(
+    target: str = Form(...),
+    token:  str = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in SUPERADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_connect()
+    c.execute("DELETE FROM users WHERE username=?", (target,))
+    c.commit(); c.close()
+    return {"ok": True}
+
+# =============================================================================
+# REST — STATS
+# =============================================================================
+
+@app.get("/api/stats")
+async def get_stats(token: str = Query(...)):
+    caller = decode_token(token)
+    if not caller or caller not in SUPERADMINS:
+        raise HTTPException(403, "Forbidden")
+    cu = db_connect()
+    ct = db_txn()
+    cs = db_stats()
+    total_users  = cu.execute("SELECT COUNT(*) FROM users").fetchone()[0]
+    total_txns   = ct.execute("SELECT COUNT(*) FROM transactions").fetchone()[0]
+    total_volume = ct.execute("SELECT COALESCE(SUM(amount),0) FROM transactions").fetchone()[0]
+    today = datetime.utcnow().date().isoformat()
+    today_txns   = ct.execute(
+        "SELECT COUNT(*) FROM transactions WHERE created_at LIKE ?", (f"{today}%",)
+    ).fetchone()[0]
+    active_sessions = cs.execute(
+        "SELECT COUNT(DISTINCT username) FROM sessions WHERE ended_at IS NULL"
+    ).fetchone()[0]
+    cu.close(); ct.close(); cs.close()
+    return {
+        "total_users":      total_users,
+        "total_txns":       total_txns,
+        "total_volume":     total_volume,
+        "today_txns":       today_txns,
+        "active_sessions":  active_sessions,
+    }
+
+@app.get("/api/sessions")
+async def get_sessions(
+    token: str = Query(...),
+    limit: int = Query(500),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    limit = min(limit, 1000)
+    c = db_stats()
+    rows = c.execute(
+        "SELECT * FROM sessions ORDER BY id DESC LIMIT ?", (limit,)
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+# =============================================================================
+# REST — RIGHTS / FEATURES
+# =============================================================================
+
+@app.get("/api/rights")
+async def get_rights(token: str = Query(...)):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    c = db_rights()
+    rows = c.execute(
+        "SELECT feature FROM rights WHERE username=?", (username,)
+    ).fetchall()
+    c.close()
+    return {"features": [r["feature"] for r in rows]}
+
+@app.post("/api/admin/grant-right")
+async def admin_grant_right(
+    target:  str = Form(...),
+    feature: str = Form(...),
+    token:   str = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_rights()
+    c.execute(
+        "INSERT OR IGNORE INTO rights(username,feature,granted_by) VALUES(?,?,?)",
+        (target, feature, caller)
+    )
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.post("/api/admin/revoke-right")
+async def admin_revoke_right(
+    target:  str = Form(...),
+    feature: str = Form(...),
+    token:   str = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_rights()
+    c.execute(
+        "DELETE FROM rights WHERE username=? AND feature=?", (target, feature)
+    )
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.get("/api/admin/rights-list")
+async def admin_rights_list(token: str = Query(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_rights()
+    rows = c.execute("SELECT * FROM rights ORDER BY username").fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+# =============================================================================
+# REST — SETTINGS
+# =============================================================================
+
+@app.get("/api/settings")
+async def get_settings(token: str = Query(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_rights()
+    rows = c.execute("SELECT key,value FROM settings").fetchall()
+    c.close()
+    return {r["key"]: r["value"] for r in rows}
+
+@app.post("/api/admin/set-setting")
+async def admin_set_setting(
+    key:   str = Form(...),
+    value: str = Form(...),
+    token: str = Form(...),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_rights()
+    c.execute(
+        "INSERT OR REPLACE INTO settings(key,value) VALUES(?,?)", (key, value)
+    )
+    c.commit(); c.close()
+    return {"ok": True}
+
+# =============================================================================
+# REST — MESSAGING: ENABLE/DISABLE + AUDIO UPLOAD + STATS
+# =============================================================================
+
+@app.post("/api/admin/messages/enable")
+async def admin_msg_enable(token: str = Form(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_msg()
+    c.execute("INSERT OR REPLACE INTO msg_settings(key,value) VALUES('enabled','1')")
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.post("/api/admin/messages/disable")
+async def admin_msg_disable(token: str = Form(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_msg()
+    c.execute("INSERT OR REPLACE INTO msg_settings(key,value) VALUES('enabled','0')")
+    c.commit(); c.close()
+    return {"ok": True}
+
+@app.get("/api/admin/messages/status")
+async def admin_msg_status(token: str = Query(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    return {"enabled": _msg_enabled()}
+
+@app.get("/api/admin/messages/stats")
+async def admin_msg_stats(token: str = Query(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_msg()
+    total    = c.execute("SELECT COUNT(*) FROM messages WHERE deleted=0").fetchone()[0]
+    today    = datetime.utcnow().date().isoformat()
+    today_c  = c.execute(
+        "SELECT COUNT(*) FROM messages WHERE deleted=0 AND created_at LIKE ?",
+        (f"{today}%",)
+    ).fetchone()[0]
+    users    = c.execute(
+        "SELECT COUNT(DISTINCT from_user) FROM messages WHERE deleted=0"
+    ).fetchone()[0]
+    convs    = c.execute(
+        "SELECT COUNT(DISTINCT room) FROM messages WHERE deleted=0"
+    ).fetchone()[0]
+    recent   = c.execute(
+        "SELECT from_user,content,created_at FROM messages"
+        " WHERE deleted=0 ORDER BY id DESC LIMIT 20"
+    ).fetchall()
+    c.close()
+    return {
+        "total": total, "today": today_c,
+        "active_users": users, "conversations": convs,
+        "recent": [dict(r) for r in recent],
+    }
+
+@app.post("/api/messages/audio")
+async def upload_audio(
+    file:  UploadFile = File(...),
+    room:  str        = Form("group"),
+    token: str        = Form(...),
+):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    if not _msg_enabled() and username not in ALL_ADMINS:
+        raise HTTPException(403, "Messaging disabled")
+    ext = Path(file.filename).suffix.lower()
+    if ext not in MSG_ALLOWED:
+        raise HTTPException(400, f"File type {ext} not allowed")
+    fname = f"{_uuid.uuid4().hex}{ext}"
+    fpath = os.path.join(MSG_DIR, fname)
+    with open(fpath, "wb") as f:
+        f.write(await file.read())
+    url = f"/static/audio/messages/{fname}"
+    msg = _save_message(room, username, url, "audio")
+    await msg_manager.deliver(msg, room)
+    return {"ok": True, "url": url}
+
+@app.get("/api/admin/messages/all")
+async def admin_all_messages(
+    token: str = Query(...),
+    limit: int = Query(100),
+):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    limit = min(limit, 500)
+    c = db_msg()
+    rows = c.execute(
+        "SELECT * FROM messages ORDER BY id DESC LIMIT ?", (limit,)
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+# =============================================================================
+# REST — OPO RESULTS
+# =============================================================================
+
+class OpoResult(BaseModel):
+    score: int
+    total: int
+
+@app.post("/api/opo/result")
+async def save_opo_result(req: OpoResult, token: str = Query(...)):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    pct = round(req.score / req.total * 100, 2) if req.total else 0
+    c = db_opo()
+    c.execute(
+        "INSERT INTO opo_results(username,score,total,pct) VALUES(?,?,?,?)",
+        (username, req.score, req.total, pct)
+    )
+    c.commit(); c.close()
+    return {"ok": True, "pct": pct}
+
+@app.get("/api/opo/results")
+async def get_opo_results(token: str = Query(...)):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    c = db_opo()
+    rows = c.execute(
+        "SELECT * FROM opo_results WHERE username=? ORDER BY id DESC LIMIT 50",
+        (username,)
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+@app.get("/api/admin/opo/results")
+async def admin_opo_results(token: str = Query(...)):
+    caller = decode_token(token)
+    if not caller or caller not in ALL_ADMINS:
+        raise HTTPException(403, "Forbidden")
+    c = db_opo()
+    rows = c.execute(
+        "SELECT * FROM opo_results ORDER BY id DESC LIMIT 500"
+    ).fetchall()
+    c.close()
+    return [dict(r) for r in rows]
+
+# =============================================================================
+# OPO MANAGER (per-user exam session)
+# =============================================================================
+
+class OpoManager:
+    def __init__(self):
+        self.questions: list = []
+        self.current:   int  = 0
+        self.score:     int  = 0
+        self.active:    bool = False
+
+    def start(self, questions: list):
+        self.questions = questions
+        self.current   = 0
+        self.score     = 0
+        self.active    = True
+
+    def answer(self, index: int) -> dict:
+        if not self.active or self.current >= len(self.questions):
+            return {"error": "No active session"}
+        q = self.questions[self.current]
+        correct = q.get("correct", 0)
+        is_correct = (index == correct)
+        if is_correct:
+            self.score += 1
+        self.current += 1
+        finished = self.current >= len(self.questions)
+        if finished:
+            self.active = False
+        return {
+            "correct":   is_correct,
+            "correct_index": correct,
+            "score":     self.score,
+            "finished":  finished,
+            "total":     len(self.questions),
+        }
+
+_opo_managers: dict = {}
+
+def get_opo_manager(username: str) -> OpoManager:
+    if username not in _opo_managers:
+        _opo_managers[username] = OpoManager()
+    return _opo_managers[username]
+
+# =============================================================================
+# WEBSOCKET — QUIEN SOY GAME MANAGER
+# =============================================================================
+
+class QuienSoyManager:
+    def __init__(self):
+        self.connections: dict[str, WebSocket] = {}
+        self.state: dict = {
+            "active":    False,
+            "players":   [],
+            "character": None,
+            "turn":      0,
+            "questions": [],
+        }
+
+    async def connect(self, username: str, ws: WebSocket):
+        self.connections[username] = ws
+        await self._broadcast_state()
+
+    def disconnect(self, username: str):
+        self.connections.pop(username, None)
+
+    async def _broadcast_state(self):
+        text = _json_msg.dumps({"type": "state", "state": self.state})
+        for ws in list(self.connections.values()):
+            try:
+                await ws.send_text(text)
+            except Exception:
+                pass
+
+    async def handle_action(self, data: dict, username: str):
+        action = data.get("action", "")
+        if action == "setup":
+            self.state["players"]   = data.get("players", [])
+            self.state["character"] = data.get("character")
+            self.state["active"]    = False
+            self.state["turn"]      = 0
+            self.state["questions"] = []
+        elif action == "start":
+            self.state["active"] = True
+            self.state["turn"]   = 0
+        elif action == "next_turn":
+            self.state["turn"] = (self.state["turn"] + 1) % max(len(self.state["players"]), 1)
+        elif action == "ask":
+            self.state["questions"].append({
+                "from": username,
+                "question": data.get("question", ""),
+                "answer": None,
+            })
+        elif action == "answer_q":
+            idx = data.get("index", -1)
+            if 0 <= idx < len(self.state["questions"]):
+                self.state["questions"][idx]["answer"] = data.get("answer", "")
+        elif action == "reveal":
+            self.state["active"] = False
+        elif action == "reset":
+            self.state = {
+                "active":    False,
+                "players":   [],
+                "character": None,
+                "turn":      0,
+                "questions": [],
+            }
+        await self._broadcast_state()
+
+quien_soy_manager = QuienSoyManager()
+
+@app.websocket("/ws/quiensoy")
+async def quien_soy_ws(websocket: WebSocket, token: str = ""):
+    """
+    WebSocket handler for Quien Soy game.
+    Hosts (dvd/nebulosa) control game flow (setup, next_turn, reveal, reset).
+    All authenticated players can send 'ask' and 'guess' actions on their turn.
+    """
+    username = decode_token(token) if token else None
+    if not username:
+        await websocket.close(code=4001, reason="Authentication required")
+        return
+    conn = db_connect()
+    row = conn.execute("SELECT username FROM users WHERE username=?", (username,)).fetchone()
+    conn.close()
+    if not row:
+        await websocket.close(code=4001, reason="User not found")
+        return
+    _open_session(username, "quiensoy")
+    await quien_soy_manager.connect(username, websocket)
+    try:
+        while True:
+            data   = await websocket.receive_json()
+            action = data.get("action", "")
+            # Host actions: full control
+            if username in ADMINS:
+                try:
+                    await quien_soy_manager.handle_action(data, username)
+                except Exception as e:
+                    logger.error("QuienSoy handle_action error: %s", e)
+            # Player actions: only ask and guess (server enforces turn ownership)
+            elif action in ("ask", "guess"):
+                try:
+                    await quien_soy_manager.handle_action(data, username)
+                except Exception as e:
+                    logger.error("QuienSoy player action error: %s", e)
+    except WebSocketDisconnect:
+        pass
+    except Exception as e:
+        logger.error("QuienSoy WS error: %s", e)
+    finally:
+        quien_soy_manager.disconnect(username)
+
+# =============================================================================
+# CIFRAS Y LETRAS
+# =============================================================================
+
+CIFRAS_LETRAS_DIR = os.path.join(BASE_DIR, "static", "cifrasletras")
+
+import random as _cl_random
+
+_CL_VOWELS     = list("AAAAEEEEEIIIOOOOUUU")
+_CL_CONSONANTS = list("BBCCCDDDDFFGGHHHJJKLLLLLMMMMNNNNPPPQRRRRRSSSSTTTTTVWXYZ")
+
+@app.get("/api/cifrasletras/letters")
+async def cl_get_letters(
+    vowels:     int = Query(3),
+    consonants: int = Query(6),
+    token:      str = Query(...),
+):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    vowels     = max(1, min(vowels, 5))
+    consonants = max(1, min(consonants, 8))
+    total      = vowels + consonants
+    if total > 9:
+        consonants = 9 - vowels
+    letters = (
+        _cl_random.sample(_CL_VOWELS, min(vowels, len(_CL_VOWELS)))
+        + _cl_random.sample(_CL_CONSONANTS, min(consonants, len(_CL_CONSONANTS)))
+    )
+    _cl_random.shuffle(letters)
+    return {"letters": letters}
+
+@app.get("/api/cifrasletras/numbers")
+async def cl_get_numbers(token: str = Query(...)):
+    username = decode_token(token)
+    if not username:
+        raise HTTPException(401, "Unauthorized")
+    large  = [25, 50, 75, 100]
+    small  = list(range(1, 11)) * 2
+    chosen = _cl_random.sample(large, 2) + _cl_random.sample(small, 4)
+    target = _cl_random.randint(100, 999)
+    return {"numbers": chosen, "target": target}
+
+# =============================================================================
+# WEBSOCKET — MAIN MESSAGING + WEBRTC (FIXED)
+# =============================================================================
+
+@app.websocket("/ws/messages")
+async def messages_ws(websocket: WebSocket, token: str = ""):
+    """
+    WebSocket endpoint for real-time messaging AND WebRTC signaling.
+
+    Messaging events received:  join | send | typing | read | delete_msg
+    Messaging events sent:      history | message | status | typing | error | deleted
+
+    WebRTC events received:     webrtc-join | webrtc-leave | webrtc-update-invites
+                                webrtc-offer | webrtc-answer | webrtc-ice
+    WebRTC events sent:         rooms-update | room-invite | webrtc-joined
+                                webrtc-left  | webrtc-offer | webrtc-answer | webrtc-ice
+    """
+    username = decode_token(token) if token else None
+    if not username:
+        await websocket.close(code=4001, reason="Authentication required")
+        return
+    # Verify user exists
+    c = db_users()
+    row = c.execute("SELECT username FROM users WHERE username=?", (username,)).fetchone()
+    c.close()
+    if not row:
+        await websocket.close(code=4001, reason="User not found")
+        return
+
+    enabled = _msg_enabled()
+    if not enabled and username not in ALL_ADMINS:
+        await websocket.close(code=4003, reason="Messaging disabled")
+        return
+
+    _ping_session(username, "messages")
+    await msg_manager.connect(username, websocket)
+
+    # Send current room list immediately on connect
+    try:
+        await websocket.send_text(_json_msg.dumps({
+            "type": "rooms-update",
+            "rooms": _room_public_list(username),
+        }))
+    except Exception:
+        pass
+
+    try:
+        while True:
+            raw    = await websocket.receive_text()
+            data   = _json_msg.loads(raw)
+            action = data.get("action", "")
+
+            # ── join: client requests history for a room ───────────────────
+            if action == "join":
+                room = data.get("room", "group")
+                if room.startswith("dm:"):
+                    parts = set(room.split(":")[1:])
+                    if username not in parts and username not in SUPERADMINS:
+                        continue
+                history = _load_history(room, limit=60)
+                await websocket.send_text(_json_msg.dumps({
+                    "type":     "history",
+                    "room":     room,
+                    "messages": history,
+                }))
+
+            # ── send: deliver a new message ────────────────────────────────
+            elif action == "send":
+                if not _msg_enabled() and username not in ALL_ADMINS:
+                    continue
+                room     = data.get("room", "group")
+                content  = str(data.get("content", "")).strip()
+                msg_type = data.get("msg_type", "text")
+
+                if not content:
+                    continue
+                if len(content) > 4000:
+                    content = content[:4000]
+                if msg_type not in ("text", "audio"):
+                    msg_type = "text"
+
+                # Validate DM access
+                if room.startswith("dm:"):
+                    parts = set(room.split(":")[1:])
+                    if username not in parts and username not in SUPERADMINS:
+                        continue
+
+                reply_to_id = data.get("reply_to_id") or None
+                if reply_to_id:
+                    reply_to_id = int(reply_to_id)
+                msg = _save_message(room, username, content, msg_type, reply_to_id)
+                # Attach context for reply preview
+                if reply_to_id:
+                    c2  = db_msg()
+                    ref = c2.execute(
+                        "SELECT from_user, content, msg_type FROM messages WHERE id=?",
+                        (reply_to_id,)
+                    ).fetchone()
+                    c2.close()
+                    if ref:
+                        msg["reply_to"] = {
+                            "id":        reply_to_id,
+                            "from_user": ref["from_user"],
+                            "content":   ref["content"],
+                            "msg_type":  ref["msg_type"],
+                        }
+                await msg_manager.deliver(msg, room)
+
+            # ── typing: broadcast typing indicator ─────────────────────────
+            elif action == "typing":
+                room = data.get("room", "group")
+                if room.startswith("dm:"):
+                    parts = set(room.split(":")[1:])
+                    other = [u for u in parts if u != username]
+                    for u in other:
+                        await msg_manager.send_to(u, {
+                            "type": "typing", "room": room, "from": username
+                        })
+                else:
+                    # Group: broadcast to all except sender
+                    payload = _json_msg.dumps({
+                        "type": "typing", "room": room, "from": username
+                    })
+                    for u, ws in list(msg_manager.connections.items()):
+                        if u != username:
+                            try:
+                                await ws.send_text(payload)
+                            except Exception:
+                                pass
+
+            # ── read: mark messages as read ────────────────────────────────
+            elif action == "read":
+                msg_ids = data.get("msg_ids", [])
+                if msg_ids:
+                    c = db_msg()
+                    c.executemany(
+                        "INSERT OR IGNORE INTO msg_reads(msg_id,username) VALUES(?,?)",
+                        [(mid, username) for mid in msg_ids]
+                    )
+                    c.commit(); c.close()
+
+            # ── delete: soft-delete own message ────────────────────────────
+            elif action == "delete_msg":
+                msg_id = int(data.get("msg_id", 0))
+                if not msg_id:
+                    continue
+                c = db_msg()
+                msg_row = c.execute(
+                    "SELECT room, from_user FROM messages WHERE id=?", (msg_id,)
+                ).fetchone()
+                if msg_row and (msg_row["from_user"] == username or username in SUPERADMINS):
+                    c.execute(
+                        "UPDATE messages SET deleted=1, content='Este mensaje fue eliminado'"
+                        " WHERE id=?",
+                        (msg_id,)
+                    )
+                    c.commit()
+                    room_del = msg_row["room"]
+                    c.close()
+                    await msg_manager.deliver({"type": "deleted", "msg_id": msg_id}, room_del)
+                else:
+                    c.close()
+
+            # ── react: add/toggle emoji reaction ───────────────────────────
+            elif action == "react":
+                msg_id = int(data.get("msg_id", 0))
+                emoji  = str(data.get("emoji", ""))[:8]
+                if msg_id and emoji:
+                    c = db_msg()
+                    existing = c.execute(
+                        "SELECT 1 FROM msg_reactions WHERE msg_id=? AND username=?",
+                        (msg_id, username)
+                    ).fetchone()
+                    if existing:
+                        c.execute(
+                            "DELETE FROM msg_reactions WHERE msg_id=? AND username=?",
+                            (msg_id, username)
+                        )
+                    else:
+                        c.execute(
+                            "INSERT OR REPLACE INTO msg_reactions(msg_id,username,emoji)"
+                            " VALUES(?,?,?)",
+                            (msg_id, username, emoji)
+                        )
+                    c.commit()
+                    # Broadcast updated reactions
+                    reactions = c.execute(
+                        "SELECT emoji, COUNT(*) as cnt FROM msg_reactions"
+                        " WHERE msg_id=? GROUP BY emoji",
+                        (msg_id,)
+                    ).fetchall()
+                    c.close()
+                    await msg_manager.deliver({
+                        "type":      "reactions",
+                        "msg_id":    msg_id,
+                        "reactions": {r["emoji"]: r["cnt"] for r in reactions},
+                    }, "group")
+
+            # ==================================================================
+            # WEBRTC SIGNALING — FIXED
+            # ==================================================================
+
+            # ── webrtc-join: create or join a video room ───────────────────
+            elif action == "webrtc-join":
+                room_key = str(data.get("room") or _uuid.uuid4().hex[:12])
+                title    = str(data.get("title", f"Sala de {username}"))[:80]
+                mode     = data.get("mode", "public")  # "public" | "private"
+                invites  = list(data.get("invites", []))
+
+                if room_key not in _ROOMS:
+                    # Create new room
+                    _ROOMS[room_key] = {
+                        "host":    username,
+                        "title":   title,
+                        "mode":    mode,
+                        "invites": set(invites),
+                        "members": set(),
+                    }
+                else:
+                    # Join existing room — check access for private rooms
+                    r = _ROOMS[room_key]
+                    if (
+                        r["mode"] == "private"
+                        and username != r["host"]
+                        and username not in r["invites"]
+                    ):
+                        await websocket.send_text(_json_msg.dumps({
+                            "type": "error",
+                            "msg":  "No tienes acceso a esta sala",
+                        }))
+                        continue
+
+                _ROOMS[room_key]["members"].add(username)
+
+                # Notify invited users of the new/updated room
+                for inv in invites:
+                    _ROOMS[room_key]["invites"].add(inv)
+                    await msg_manager.send_to(inv, {
+                        "type":     "room-invite",
+                        "room_key": room_key,
+                        "title":    title,
+                        "host":     username,
+                        "msg":      "Has sido invitado a una videollamada",
+                    })
+
+                # Notify existing peers that a new user joined
+                # (triggers offer creation on the peer side)
+                for peer in list(_ROOMS[room_key]["members"]):
+                    if peer != username:
+                        await msg_manager.send_to(peer, {
+                            "type": "webrtc-joined",
+                            "from": username,
+                            "room": room_key,
+                        })
+
+                # Broadcast updated room list to all connected users
+                await _broadcast_room_list()
+
+            # ── webrtc-update-invites: add a guest while room is open ──────
+            elif action == "webrtc-update-invites":
+                room_key  = str(data.get("room", ""))
+                new_guest = str(data.get("guest", "")).strip()
+                if room_key in _ROOMS and _ROOMS[room_key]["host"] == username and new_guest:
+                    _ROOMS[room_key]["invites"].add(new_guest)
+                    await msg_manager.send_to(new_guest, {
+                        "type":     "room-invite",
+                        "room_key": room_key,
+                        "title":    _ROOMS[room_key]["title"],
+                        "host":     username,
+                        "msg":      "Has sido invitado a una videollamada",
+                    })
+                    # Refresh room list so invited user now sees the private room
+                    await _broadcast_room_list()
+
+            # ── webrtc-leave: leave a video room ──────────────────────────
+            elif action == "webrtc-leave":
+                room_key = str(data.get("room", ""))
+                if room_key in _ROOMS:
+                    _ROOMS[room_key]["members"].discard(username)
+                    # Notify remaining peers
+                    for peer in list(_ROOMS[room_key]["members"]):
+                        await msg_manager.send_to(peer, {
+                            "type": "webrtc-left",
+                            "from": username,
+                            "room": room_key,
+                        })
+                    # Destroy room when empty
+                    if not _ROOMS[room_key]["members"]:
+                        del _ROOMS[room_key]
+                    await _broadcast_room_list()
+
+            # ── webrtc-offer / webrtc-answer / webrtc-ice — forward ────────
+            # These are the critical signaling messages that make peers
+            # actually see and hear each other.
+            elif action in ("webrtc-offer", "webrtc-answer", "webrtc-ice"):
+                to = data.get("to")
+                if to:
+                    fwd = dict(data)
+                    fwd["from"] = username   # always stamp the real sender
+                    await msg_manager.send_to(to, fwd)
+
+    except WebSocketDisconnect:
+        pass
+    except Exception as e:
+        logger.error("messages_ws error for %s: %s", username, e)
+    finally:
+        msg_manager.disconnect(username)
+        _close_session(username, "messages")
+        # Clean up any rooms the user was in
+        for room_key in list(_ROOMS.keys()):
+            if username in _ROOMS.get(room_key, {}).get("members", set()):
+                _ROOMS[room_key]["members"].discard(username)
+                for peer in list(_ROOMS[room_key]["members"]):
+                    await msg_manager.send_to(peer, {
+                        "type": "webrtc-left",
+                        "from": username,
+                        "room": room_key,
+                    })
+                if not _ROOMS[room_key]["members"]:
+                    del _ROOMS[room_key]
+        await _broadcast_room_list()
+
+# =============================================================================
+# STATIC FILES & SPA FALLBACK
+# =============================================================================
+
+STATIC_DIR = BASE_DIR / "static"
+STATIC_DIR.mkdir(exist_ok=True)
+
+app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
+
+@app.get("/")
+async def serve_index():
+    return FileResponse(str(STATIC_DIR / "index.html"))
+
+@app.get("/{full_path:path}")
+async def spa_fallback(full_path: str):
+    file_path = STATIC_DIR / full_path
+    if file_path.exists() and file_path.is_file():
+        return FileResponse(str(file_path))
+    return FileResponse(str(STATIC_DIR / "index.html"))
+
+# =============================================================================
+# ENTRY POINT
+# =============================================================================
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
+---
+Created using www.jenova.ai

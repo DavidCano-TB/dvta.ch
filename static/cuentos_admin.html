@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gestión Cuentos · DVDcoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
+  --noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;
+  --border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --green:#38B87A;--red:#C83060;--r:10px;--rL:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
+  min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px}
+
+/* header */
+#hdr{position:sticky;top:0;z-index:200;background:var(--n3);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;height:52px;gap:16px}
+.hLeft{display:flex;align-items:center;gap:14px}
+
+.hTitle{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;
+  color:var(--gold2);letter-spacing:.12em;text-transform:uppercase}
+.hSub{font-size:.5rem;color:var(--text3);letter-spacing:.2em;text-transform:uppercase}
+.badge{font-size:.6rem;color:var(--text3);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:20px;padding:4px 10px;letter-spacing:.06em}
+
+/* wrap */
+.wrap{max-width:720px;margin:0 auto;padding:28px 20px 80px}
+
+/* upload zone */
+.uploadZone{
+  border:2px dashed var(--border2);border-radius:var(--rL);
+  padding:36px 24px;text-align:center;cursor:pointer;
+  transition:all .2s;background:rgba(212,168,67,.03);
+  position:relative;
+}
+.uploadZone:hover,.uploadZone.drag{
+  border-color:var(--gold);background:rgba(212,168,67,.07);
+}
+.uploadZone input[type=file]{
+  position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;
+}
+.uploadIcon{font-size:2.5rem;margin-bottom:12px;opacity:.6}
+.uploadTitle{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text)}
+.uploadSub{font-size:.65rem;color:var(--text3);margin-top:6px;letter-spacing:.06em}
+.uploadFormats{display:inline-block;margin-top:10px;font-size:.58rem;
+  color:var(--text3);background:rgba(255,255,255,.04);
+  border:1px solid var(--border);border-radius:20px;padding:3px 10px;letter-spacing:.08em}
+
+/* progress */
+.progressBar{height:4px;background:var(--border);border-radius:2px;
+  overflow:hidden;margin-top:14px;display:none}
+.progressFill{height:100%;background:linear-gradient(90deg,var(--gold3),var(--gold));
+  border-radius:2px;transition:width .3s;width:0%}
+
+/* alert */
+.alert{border-radius:var(--r);padding:10px 14px;font-size:.72rem;
+  margin-top:12px;display:none}
+.alert.ok{background:rgba(56,184,122,.1);border:1px solid rgba(56,184,122,.3);color:var(--green)}
+.alert.err{background:rgba(200,48,96,.1);border:1px solid rgba(200,48,96,.3);color:var(--red)}
+
+/* section head */
+.secHead{margin:28px 0 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.secTitle{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text)}
+.secSub{font-size:.6rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+
+/* global toggle */
+.toggleRow{display:flex;align-items:center;justify-content:space-between;
+  background:var(--n3);border:1px solid var(--border);
+  border-radius:var(--r);padding:14px 18px;margin-bottom:20px}
+.toggleLabel{font-size:.8rem;color:var(--text)}
+.toggleSub{font-size:.62rem;color:var(--text3);margin-top:2px}
+.toggleBtns{display:flex;gap:8px}
+
+/* buttons */
+.btn{border:none;border-radius:22px;padding:7px 18px;
+  font-family:'DM Mono',monospace;font-size:.68rem;font-weight:700;
+  letter-spacing:.06em;cursor:pointer;transition:all .18s;white-space:nowrap}
+.btnG{background:var(--green);color:#000}
+.btnG:hover{opacity:.85}
+.btnD{background:var(--red);color:#fff}
+.btnD:hover{opacity:.85}
+.btnO{background:rgba(212,168,67,.15);border:1px solid var(--border2);color:var(--gold2)}
+.btnO:hover{background:rgba(212,168,67,.25)}
+.btnN{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text2)}
+.btnN:hover{border-color:var(--border2);color:var(--text)}
+.btnSm{padding:5px 12px;font-size:.62rem}
+
+/* story list */
+.storyList{display:flex;flex-direction:column;gap:6px}
+.storyRow{
+  display:grid;grid-template-columns:1fr auto;
+  align-items:center;gap:12px;
+  background:var(--n3);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px 16px;
+  transition:border-color .18s;
+}
+.storyRow.masked{opacity:.5;border-style:dashed}
+.storyRow:hover{border-color:var(--border2)}
+.storyTitle{font-family:'Playfair Display',serif;font-size:.95rem;
+  color:var(--text);line-height:1.3;word-break:break-word}
+.storyMeta{font-size:.6rem;color:var(--text3);margin-top:4px;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.maskedBadge{display:inline-block;font-size:.55rem;color:var(--red);
+  background:rgba(200,48,96,.1);border:1px solid rgba(200,48,96,.3);
+  border-radius:10px;padding:1px 7px;letter-spacing:.06em;text-transform:uppercase}
+.storyActions{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+
+/* empty */
+.empty{text-align:center;padding:48px 20px;color:var(--text3);font-size:.75rem}
+.emptyIcon{font-size:2rem;margin-bottom:10px;opacity:.3}
+.spinner{width:24px;height:24px;border-radius:50%;
+  border:2px solid var(--border);border-top-color:var(--gold);
+  animation:spin .7s linear infinite;margin:48px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* auth */
+#authScreen{display:none;flex-direction:column;align-items:center;
+  justify-content:center;min-height:60vh;gap:14px;text-align:center;padding:20px}
+.btnGold{background:var(--gold);color:#000;border:none;border-radius:24px;
+  padding:10px 24px;font-family:'DM Mono',monospace;font-size:.72rem;
+  font-weight:700;letter-spacing:.08em;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:opacity .18s}
+.btnGold:hover{opacity:.85}
+
+/* confirm overlay */
+.overlay{display:none;position:fixed;inset:0;z-index:9000;
+  background:rgba(0,0,0,.85);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:20px}
+.overlay.on{display:flex}
+.overlayBox{background:var(--n3);border:1px solid var(--border2);
+  border-radius:var(--rL);padding:28px;max-width:380px;width:100%;text-align:center}
+.overlayTitle{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);margin-bottom:8px}
+.overlaySub{font-size:.72rem;color:var(--text3);margin-bottom:22px;line-height:1.6}
+.overlayBtns{display:flex;gap:10px;justify-content:center}
+
+@media(max-width:540px){
+  .wrap{padding:18px 12px 60px}
+  .storyRow{grid-template-columns:1fr}
+  .storyActions{justify-content:flex-start}
+}
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+      <div class="hSub">Solo admins</div>
+    </div>
+  </div>
+  <span class="badge" id="userBadge">—</span>
+</div>
+
+<div id="authScreen">
+  <div style="font-size:3rem;opacity:.3">🔒</div>
+  <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text2)">Acceso restringido</div>
+  <div style="font-size:.72rem;color:var(--text3)">Solo los administradores pueden acceder.</div>
+  <a href="/" class="btnGold">← Ir al banco</a>
+</div>
+
+<div class="wrap" id="mainWrap" style="display:none">
+
+  <!-- Tab navigation -->
+  <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
+    <button class="tabBtn on" id="tabBtnFiles" onclick="switchTab('files',this)">📚 Archivos</button>
+    <button class="tabBtn" id="tabBtnSessions" onclick="switchTab('sessions',this)">📊 Sesiones</button>
+  </div>
+  <style>
+    .tabBtn{background:var(--n3);border:1px solid var(--border);border-radius:8px;
+      padding:6px 14px;font-size:.72rem;color:var(--text3);cursor:pointer;transition:.18s}
+    .tabBtn.on{background:rgba(212,168,67,.12);border-color:var(--border2);color:var(--gold2)}
+  </style>
+
+  <!-- Files tab -->
+  <div id="tabFiles">
+
+  <!-- Global toggle -->
+  <div class="toggleRow" id="toggleRow">
+    <div>
+      <div class="toggleLabel">📖 Sección Cuentos</div>
+      <div class="toggleSub" id="toggleSub">Cargando…</div>
+    </div>
+    <div class="toggleBtns">
+      <button class="btn btnG btnSm" id="btnOn"  onclick="toggleCuentos(true)"  style="display:none">▶ Activar</button>
+      <button class="btn btnD btnSm" id="btnOff" onclick="toggleCuentos(false)" style="display:none">■ Desactivar</button>
+    </div>
+  </div>
+
+  <!-- Upload zone -->
+  <div class="secHead">
+    <div><div class="secTitle">Subir cuento</div>
+    <div class="secSub">Arrastra el archivo o haz clic para seleccionar</div></div>
+  </div>
+
+  <div class="uploadZone" id="dropZone">
+    <input type="file" id="fileInput" accept=".docx,.odt" multiple onchange="handleFiles(this.files)">
+    <div class="uploadIcon">📄</div>
+    <div class="uploadTitle">Arrastra aquí o toca para seleccionar</div>
+    <div class="uploadSub">Desde móvil, Mac, PC o tablet</div>
+    <div class="uploadFormats">.docx · .odt</div>
+  </div>
+  <div class="progressBar" id="progressBar"><div class="progressFill" id="progressFill"></div></div>
+  <div class="alert" id="uploadAlert"></div>
+
+  <!-- Story list -->
+  <div class="secHead">
+    <div>
+      <div class="secTitle">Cuentos en la sala</div>
+      <div class="secSub" id="listSub">Cargando…</div>
+    </div>
+    <button class="btn btnN btnSm" onclick="loadList()">↻ Actualizar</button>
+  </div>
+  <div id="storyContainer"><div class="spinner"></div></div>
+
+</div>
+
+<!-- Confirm delete overlay -->
+<div class="overlay" id="confirmOverlay">
+  <div class="overlayBox">
+    <div class="overlayTitle">¿Eliminar cuento?</div>
+    <div class="overlaySub" id="confirmText">Esta acción no se puede deshacer.</div>
+    <div class="overlayBtns">
+      <button class="btn btnN" onclick="closeConfirm()">Cancelar</button>
+      <button class="btn btnD" id="confirmBtn">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /tabFiles -->
+
+  <!-- Sessions tab -->
+  <div id="tabSessions" style="display:none">
+
+    <!-- Filters -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:flex-end">
+      <div>
+        <div style="font-size:.6rem;color:var(--text3);margin-bottom:3px;text-transform:uppercase">Cuento / Juego</div>
+        <input id="sfDetail" type="text" placeholder="nombre del cuento…"
+          style="background:var(--n3);border:1px solid var(--border);border-radius:6px;
+            padding:6px 10px;font-size:.72rem;color:var(--text);outline:none;width:180px"
+          oninput="loadSessions()">
+      </div>
+      <div>
+        <div style="font-size:.6rem;color:var(--text3);margin-bottom:3px;text-transform:uppercase">Usuario</div>
+        <input id="sfUser" type="text" placeholder="@usuario…"
+          style="background:var(--n3);border:1px solid var(--border);border-radius:6px;
+            padding:6px 10px;font-size:.72rem;color:var(--text);outline:none;width:140px"
+          oninput="loadSessions()">
+      </div>
+      <div>
+        <div style="font-size:.6rem;color:var(--text3);margin-bottom:3px;text-transform:uppercase">Desde</div>
+        <input id="sfFrom" type="date"
+          style="background:var(--n3);border:1px solid var(--border);border-radius:6px;
+            padding:6px 8px;font-size:.72rem;color:var(--text);outline:none"
+          oninput="loadSessions()">
+      </div>
+      <div>
+        <div style="font-size:.6rem;color:var(--text3);margin-bottom:3px;text-transform:uppercase">Hasta</div>
+        <input id="sfTo" type="date"
+          style="background:var(--n3);border:1px solid var(--border);border-radius:6px;
+            padding:6px 8px;font-size:.72rem;color:var(--text);outline:none"
+          oninput="loadSessions()">
+      </div>
+      <button onclick="clearSessionFilters()"
+        style="background:var(--n3);border:1px solid var(--border);border-radius:6px;
+          padding:6px 12px;font-size:.7rem;color:var(--text3);cursor:pointer">✕ Limpiar</button>
+    </div>
+    <div id="sfStats" style="font-size:.68rem;color:var(--text3);margin-bottom:10px"></div>
+
+    <!-- Results -->
+    <div id="sfList" style="display:flex;flex-direction:column;gap:5px">
+      <div class="empty">Selecciona filtros y espera a que carguen los datos…</div>
+    </div>
+  </div><!-- /tabSessions -->
+
+</div><!-- /mainWrap -->
+
+<script>
+'use strict';
+let _token = null;
+let _pendingDelete = null;
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+async function init() {
+  _token = localStorage.getItem('dvd_token');
+  if (!_token) { showAuth(); return; }
+  try {
+    const r = await api('GET', '/api/me');
+    if (!r.ok) { showAuth(); return; }
+    const me = await r.json();
+    if (!me.is_admin) { showAuth(); return; }
+    document.getElementById('userBadge').textContent = '@' + me.username;
+    document.getElementById('mainWrap').style.display = '';
+    await Promise.all([loadStatus(), loadList()]);
+  } catch { showAuth(); }
+}
+
+function showAuth() {
+  document.getElementById('authScreen').style.display = 'flex';
+}
+
+function api(method, url, body) {
+  const opts = {
+    method,
+    headers: {
+      'Authorization': 'Bearer ' + _token,
+      'ngrok-skip-browser-warning': '1'
+    }
+  };
+  if (body) opts.body = body;
+  return fetch(url, opts);
+}
+
+// ── Global toggle ─────────────────────────────────────────────────────────────
+async function loadStatus() {
+  const r = await fetch('/api/cuentos/status', {headers:{'ngrok-skip-browser-warning':'1'}});
+  const d = await r.json();
+  updateToggleUI(d.enabled);
+}
+
+function updateToggleUI(on) {
+  document.getElementById('toggleSub').textContent =
+    on ? 'Activado — visible para todos los miembros' : 'Desactivado — solo los admins pueden verlos';
+  document.getElementById('btnOn').style.display  = on ? 'none' : '';
+  document.getElementById('btnOff').style.display = on ? '' : 'none';
+}
+
+async function toggleCuentos(enable) {
+  const r = await api('POST', '/api/cuentos/toggle');
+  const d = await r.json();
+  updateToggleUI(d.enabled);
+}
+
+// ── Upload ────────────────────────────────────────────────────────────────────
+const dropZone = document.getElementById('dropZone');
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag');
+  handleFiles(e.dataTransfer.files);
+});
+
+async function handleFiles(files) {
+  if (!files || !files.length) return;
+  const bar   = document.getElementById('progressBar');
+  const fill  = document.getElementById('progressFill');
+  const alert = document.getElementById('uploadAlert');
+  bar.style.display = 'block';
+  fill.style.width  = '0%';
+  alert.style.display = 'none';
+
+  const results = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    fill.style.width = Math.round((i / files.length) * 80) + '%';
+    try {
+      const fd = new FormData();
+      fd.append('file', file);
+      const r = await api('POST', '/api/cuentos/upload', fd);
+      if (!r.ok) {
+        const e = await r.json().catch(() => ({detail: 'Error ' + r.status}));
+        results.push({ ok: false, name: file.name, msg: e.detail || 'Error' });
+      } else {
+        const d = await r.json();
+        results.push({ ok: true, name: file.name, title: d.title });
+      }
+    } catch(e) {
+      results.push({ ok: false, name: file.name, msg: e.message });
+    }
+  }
+
+  fill.style.width = '100%';
+  setTimeout(() => { bar.style.display = 'none'; fill.style.width = '0%'; }, 800);
+
+  const ok  = results.filter(r => r.ok);
+  const err = results.filter(r => !r.ok);
+  let msg = '';
+  if (ok.length)  msg += `✓ ${ok.length} archivo${ok.length>1?'s':''} subido${ok.length>1?'s':''}: ${ok.map(r=>r.title||r.name).join(', ')}. `;
+  if (err.length) msg += `✗ ${err.map(r => r.name + ': ' + r.msg).join('; ')}`;
+
+  showAlert(msg, err.length === 0 ? 'ok' : 'err');
+
+  // Reset input so same file can be re-uploaded
+  document.getElementById('fileInput').value = '';
+  if (ok.length) loadList();
+}
+
+// ── Story list ────────────────────────────────────────────────────────────────
+async function loadList() {
+  const container = document.getElementById('storyContainer');
+  container.innerHTML = '<div class="spinner"></div>';
+  try {
+    const r = await api('GET', '/api/cuentos');
+    if (!r.ok) throw new Error('Error ' + r.status);
+    const stories = await r.json();
+    document.getElementById('listSub').textContent =
+      stories.length + (stories.length === 1 ? ' cuento' : ' cuentos');
+
+    if (!stories.length) {
+      container.innerHTML = `<div class="empty"><div class="emptyIcon">📭</div>No hay cuentos aún.<br><span style="font-size:.65rem">Sube el primero arriba.</span></div>`;
+      return;
+    }
+
+    container.innerHTML = '<div class="storyList">' + stories.map(s => `
+      <div class="storyRow${s.masked ? ' masked' : ''}" id="row_${CSS.escape(s.filename)}">
+        <div>
+          <div class="storyTitle">${esc(s.title)}</div>
+          <div class="storyMeta">
+            ${s.date ? `<span>${esc(s.date)}</span>` : ''}
+            <span style="opacity:.5">${esc(s.filename)}</span>
+            ${s.masked ? '<span class="maskedBadge">👁 oculto</span>' : ''}
+          </div>
+        </div>
+        <div class="storyActions">
+          ${s.masked
+            ? `<button class="btn btnO btnSm" onclick="unmask('${esc(s.filename)}')">👁 Mostrar</button>`
+            : `<button class="btn btnN btnSm" onclick="mask('${esc(s.filename)}')">🙈 Ocultar</button>`
+          }
+          <button class="btn btnD btnSm" onclick="confirmDelete('${esc(s.filename)}','${esc(s.title)}')">✕</button>
+        </div>
+      </div>`).join('') + '</div>';
+  } catch(e) {
+    container.innerHTML = `<div class="empty"><div class="emptyIcon">⚠</div>${e.message}</div>`;
+  }
+}
+
+// ── Mask / Unmask ──────────────────────────────────────────────────────────────
+async function mask(filename) {
+  const r = await api('POST', '/api/cuentos/mask/' + encodeURIComponent(filename));
+  if (r.ok) loadList();
+  else showAlert('Error al ocultar', 'err');
+}
+
+async function unmask(filename) {
+  const r = await api('POST', '/api/cuentos/unmask/' + encodeURIComponent(filename));
+  if (r.ok) loadList();
+  else showAlert('Error al mostrar', 'err');
+}
+
+// ── Delete ─────────────────────────────────────────────────────────────────────
+function confirmDelete(filename, title) {
+  _pendingDelete = filename;
+  document.getElementById('confirmText').textContent = `¿Eliminar "${title}"? Esta acción no se puede deshacer.`;
+  document.getElementById('confirmBtn').onclick = () => doDelete(filename);
+  document.getElementById('confirmOverlay').classList.add('on');
+}
+
+function closeConfirm() {
+  _pendingDelete = null;
+  document.getElementById('confirmOverlay').classList.remove('on');
+}
+
+async function doDelete(filename) {
+  closeConfirm();
+  const r = await api('DELETE', '/api/cuentos/file/' + encodeURIComponent(filename));
+  if (r.ok) {
+    showAlert('Cuento eliminado', 'ok');
+    loadList();
+  } else {
+    const e = await r.json().catch(()=>({detail:'Error'}));
+    showAlert('Error: ' + (e.detail || 'Error'), 'err');
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function showAlert(msg, type) {
+  const el = document.getElementById('uploadAlert');
+  el.textContent = msg;
+  el.className = 'alert ' + (type || 'ok');
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 5000);
+}
+
+function esc(s) {
+  return String(s||'')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function switchTab(name, btn) {
+  document.getElementById('tabFiles').style.display    = name==='files' ? '' : 'none';
+  document.getElementById('tabSessions').style.display = name==='sessions' ? '' : 'none';
+  document.querySelectorAll('.tabBtn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  if (name === 'sessions') loadSessions();
+}
+
+let _sfTimer = null;
+function loadSessions() {
+  clearTimeout(_sfTimer);
+  _sfTimer = setTimeout(_doLoadSessions, 400);
+}
+
+async function _doLoadSessions() {
+  const detail  = document.getElementById('sfDetail')?.value || '';
+  const user    = document.getElementById('sfUser')?.value || '';
+  const from    = document.getElementById('sfFrom')?.value || '';
+  const to      = document.getElementById('sfTo')?.value || '';
+  const list    = document.getElementById('sfList');
+  const stats   = document.getElementById('sfStats');
+  list.innerHTML = '<div style="color:var(--text3);font-size:.72rem;padding:10px">Cargando…</div>';
+
+  const params = new URLSearchParams();
+  if (detail) params.set('detail', detail);
+  if (user)   params.set('username', user);
+  if (from)   params.set('date_from', from);
+  if (to)     params.set('date_to', to);
+  params.set('limit', '300');
+
+  try {
+    const r = await api('GET', '/api/cuentos/sessions?' + params);
+    if (!r.ok) { list.innerHTML = '<div class="empty">Error al cargar</div>'; return; }
+    const rows = await r.json();
+    const totalS = rows.reduce((s,r) => s + (r.duration_s||0), 0);
+    stats.textContent = `${rows.length} sesiones · ${fmtDur(totalS)} total`;
+    if (!rows.length) {
+      list.innerHTML = '<div class="empty">Sin sesiones con estos filtros</div>';
+      return;
+    }
+    list.innerHTML = rows.map(s => {
+      const dur = s.duration_s ? fmtDur(s.duration_s) : '—';
+      const dt  = fmtDt(s.started_at);
+      return `<div style="display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center;
+        padding:8px 10px;background:var(--n3);border:1px solid var(--border);border-radius:8px;font-size:.7rem">
+        <div>
+          <span style="color:var(--text);font-weight:500">@${esc(s.username)}</span>
+          ${s.detail ? `<span style="color:var(--text3);margin-left:6px;font-size:.62rem">📄 ${esc(s.detail)}</span>` : ''}
+        </div>
+        <span style="color:var(--text3);font-size:.62rem;white-space:nowrap">🕐 ${dt}</span>
+        <span style="color:var(--gold2);font-size:.62rem;white-space:nowrap">⏱ ${dur}</span>
+        <span style="color:var(--text3);font-size:.6rem">${s.section}</span>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    list.innerHTML = `<div class="empty">Error: ${esc(e.message)}</div>`;
+  }
+}
+
+function clearSessionFilters() {
+  ['sfDetail','sfUser','sfFrom','sfTo'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('sfList').innerHTML = '<div class="empty">Filtros limpiados</div>';
+  document.getElementById('sfStats').textContent = '';
+}
+
+function fmtDur(s) {
+  if (!s || s < 1) return '<1m';
+  if (s < 60)   return s + 's';
+  if (s < 3600) return Math.floor(s/60) + 'm ' + (s%60) + 's';
+  return Math.floor(s/3600) + 'h ' + Math.floor((s%3600)/60) + 'm';
+}
+
+function fmtDt(iso) {
+  if (!iso) return '—';
+  const d = new Date((iso.includes('T') ? iso : iso.replace(' ','T')) + (iso.includes('Z')?'':'Z'));
+  return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit',year:'2-digit'}) + ' ' +
+         d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+}
+
+init();
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

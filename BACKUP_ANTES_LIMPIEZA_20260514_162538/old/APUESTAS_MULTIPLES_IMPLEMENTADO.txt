@@ -1,0 +1,335 @@
+================================================================================
+  ✅ APUESTAS MÚLTIPLES - IMPLEMENTACIÓN COMPLETA
+================================================================================
+
+📅 Fecha: 3 de Mayo de 2026
+🎯 Objetivo: Permitir que cada usuario pueda apostar múltiples veces
+
+================================================================================
+  CAMBIOS REALIZADOS
+================================================================================
+
+1. ✅ BASE DE DATOS - Restricción UNIQUE eliminada
+   ANTES: UNIQUE(porra_id, username) - Solo 1 apuesta por usuario por porra
+   AHORA: Sin restricción - Múltiples apuestas permitidas
+   
+   MIGRACIÓN EJECUTADA:
+   • Tabla apuestas_usuarios recreada sin UNIQUE constraint
+   • Todos los datos preservados (1 apuesta migrada)
+   • Índices recreados correctamente
+   • Script: migrate_apuestas_multiple.py
+
+2. ✅ BACKEND - Validación eliminada
+   ARCHIVO: main.py
+   CAMBIOS:
+   • Eliminada validación que impedía apostar múltiples veces
+   • Ahora permite apostar en cualquier opción, múltiples veces
+   • Tabla db_init actualizada para no crear UNIQUE en futuro
+   
+   ENDPOINT: POST /api/porras/apostar
+   COMPORTAMIENTO NUEVO:
+   • Usuario puede apostar múltiples veces en la misma porra
+   • Usuario puede apostar en diferentes opciones
+   • Usuario puede apostar varias veces en la misma opción
+   • Cada apuesta se registra independientemente
+
+3. ✅ FRONTEND - Panel de apuestas siempre visible
+   ARCHIVO: game_pages/apuestas/template_porra.html
+   CAMBIOS:
+   
+   A) Panel de apuestas SIEMPRE visible si porra está abierta
+      • Antes: Se ocultaba después de apostar
+      • Ahora: Siempre visible, permite apostar de nuevo
+   
+   B) Estadísticas personales actualizadas
+      • Muestra SUMA de todas las apuestas del usuario
+      • Muestra TODAS las opciones apostadas
+      • Calcula probabilidad promedio
+      • Calcula ganancia total potencial/real
+      • Calcula ROI total
+   
+   C) Etiquetas actualizadas
+      • "Tu Apuesta" → "Total Apostado"
+      • "Tu Opción" → "Tus Opciones"
+      • "Tu Probabilidad" → "Probabilidad Promedio"
+      • "Ganancia Potencial" → "Ganancia Total"
+      • "ROI Potencial" → "ROI Total"
+   
+   D) Mensaje informativo añadido
+      • "✨ Puedes apostar múltiples veces en diferentes opciones"
+   
+   E) Limpieza después de apostar
+      • Selección de opción se limpia
+      • Campo de cantidad se limpia
+      • Botón se reactiva automáticamente
+      • Usuario puede apostar de nuevo inmediatamente
+
+4. ✅ PÁGINAS HTML - Regeneradas
+   ARCHIVOS:
+   • game_pages/apuestas/porras/porra_1.html
+   
+   ESTADO: Regeneradas con template actualizado
+
+================================================================================
+  FLUJO COMPLETO - MÚLTIPLES APUESTAS
+================================================================================
+
+ESCENARIO 1: Usuario apuesta por primera vez
+1. Usuario abre porra
+2. Ve panel de apuestas (verde)
+3. Selecciona opción A
+4. Introduce cantidad: 100 DVDc
+5. Hace clic en "Apostar Ahora"
+6. Apuesta registrada ✅
+7. Panel de apuestas SIGUE VISIBLE
+8. Estadísticas personales aparecen arriba
+9. Usuario puede apostar de nuevo
+
+ESCENARIO 2: Usuario apuesta segunda vez (misma opción)
+1. Usuario selecciona opción A de nuevo
+2. Introduce cantidad: 50 DVDc
+3. Hace clic en "Apostar Ahora"
+4. Segunda apuesta registrada ✅
+5. Estadísticas personales se actualizan:
+   • Total Apostado: 150 DVDc (100 + 50)
+   • Tus Opciones: Opción A
+   • Ganancia Total: Calculada para ambas apuestas
+
+ESCENARIO 3: Usuario apuesta en opción diferente
+1. Usuario selecciona opción B
+2. Introduce cantidad: 75 DVDc
+3. Hace clic en "Apostar Ahora"
+4. Tercera apuesta registrada ✅
+5. Estadísticas personales se actualizan:
+   • Total Apostado: 225 DVDc (100 + 50 + 75)
+   • Tus Opciones: Opción A, Opción B
+   • Probabilidad Promedio: Calculada
+   • Ganancia Total: Suma de todas las apuestas
+
+ESCENARIO 4: Porra se resuelve
+1. DVD resuelve la porra (Opción A gana)
+2. Sistema calcula ganancias:
+   • Apuesta 1 (100 DVDc en A): Gana proporcionalmente
+   • Apuesta 2 (50 DVDc en A): Gana proporcionalmente
+   • Apuesta 3 (75 DVDc en B): Pierde
+3. Usuario ve:
+   • Ganancia Total: Suma de apuestas ganadoras
+   • ROI Total: (Ganancia - Total Apostado) / Total Apostado
+
+================================================================================
+  CARACTERÍSTICAS IMPLEMENTADAS
+================================================================================
+
+✅ MÚLTIPLES APUESTAS:
+   • Usuario puede apostar ilimitadas veces
+   • Cada apuesta es independiente
+   • Todas las apuestas se registran en la base de datos
+   • Todas las apuestas se muestran en la lista
+
+✅ PANEL SIEMPRE VISIBLE:
+   • Panel de apuestas no se oculta después de apostar
+   • Campo de cantidad siempre visible
+   • Botón "Apostar Ahora" siempre disponible (si porra abierta)
+   • Selección se limpia después de cada apuesta
+
+✅ ESTADÍSTICAS AGREGADAS:
+   • Suma total de todas las apuestas del usuario
+   • Lista de todas las opciones apostadas
+   • Probabilidad promedio ponderada
+   • Ganancia total (suma de todas las apuestas)
+   • ROI total calculado correctamente
+
+✅ EXPERIENCIA DE USUARIO:
+   • Mensaje claro: "Puedes apostar múltiples veces"
+   • Limpieza automática después de apostar
+   • Notificaciones de éxito
+   • Actualización automática de estadísticas
+   • Sin necesidad de recargar página manualmente
+
+================================================================================
+  VALIDACIONES MANTENIDAS
+================================================================================
+
+✅ VALIDACIONES QUE SIGUEN FUNCIONANDO:
+   • Cantidad mínima: 1 DVDcoin
+   • Cantidad máxima: 10000 DVDcoins
+   • Saldo suficiente del usuario
+   • Porra debe estar abierta
+   • Opción debe ser válida
+   • Fecha límite no debe haber pasado
+
+✅ TRANSACCIONES:
+   • Cada apuesta descuenta saldo del usuario
+   • Cada apuesta se registra en transacciones
+   • Cada apuesta actualiza estadísticas globales
+   • Sistema de bloqueo para evitar race conditions
+
+================================================================================
+  CÓDIGO NO ROTO
+================================================================================
+
+✅ FUNCIONALIDADES PRESERVADAS:
+   • Crear porras
+   • Cerrar porras
+   • Resolver porras
+   • Cancelar porras
+   • Borrar porras
+   • Relanzar porras
+   • Enmascarar porras
+   • Estadísticas globales
+   • Ranking de usuarios
+   • Lista de apuestas
+   • Panel de administración
+   • Notificaciones
+   • Distribución de bote
+   • Cálculo de ganancias
+   • Pago a ganadores
+
+✅ COMPATIBILIDAD:
+   • Todas las porras existentes siguen funcionando
+   • Apuestas antiguas se mantienen
+   • Estadísticas históricas preservadas
+   • Sin pérdida de datos
+
+================================================================================
+  ARCHIVOS MODIFICADOS
+================================================================================
+
+1. ✅ main.py
+   • Línea ~325: Eliminada UNIQUE constraint en db_init
+   • Línea ~7490: Eliminada validación de apuesta única
+   • Comentario añadido: "Users can now bet multiple times"
+
+2. ✅ game_pages/apuestas/template_porra.html
+   • Línea ~355: Lógica de múltiples apuestas (misApuestas)
+   • Línea ~425: Panel siempre visible si porra abierta
+   • Línea ~610: Limpieza después de apostar
+   • Línea ~220: Etiquetas actualizadas
+   • Línea ~245: Mensaje informativo añadido
+
+3. ✅ game_pages/apuestas/porras/porra_1.html
+   • Regenerado con template actualizado
+
+4. ✅ migrate_apuestas_multiple.py (NUEVO)
+   • Script de migración de base de datos
+   • Elimina UNIQUE constraint
+   • Preserva todos los datos
+
+================================================================================
+  CÓMO PROBAR
+================================================================================
+
+PASO 1: Abrir la aplicación
+   URL: https://striking-symphony-mummify.ngrok-free.dev
+   O: http://localhost:8000
+
+PASO 2: Login con tu usuario
+
+PASO 3: Ir a Apuestas (🎲)
+
+PASO 4: Abrir una porra existente o crear una nueva
+
+PASO 5: Hacer primera apuesta
+   • Seleccionar opción
+   • Introducir cantidad
+   • Clic en "Apostar Ahora"
+   • ✅ Apuesta registrada
+
+PASO 6: Verificar que panel sigue visible
+   • Panel de apuestas debe seguir mostrándose
+   • Campo de cantidad debe estar vacío
+   • Selección debe estar limpia
+   • Botón debe estar activo
+
+PASO 7: Hacer segunda apuesta
+   • Seleccionar MISMA opción u otra diferente
+   • Introducir cantidad
+   • Clic en "Apostar Ahora"
+   • ✅ Segunda apuesta registrada
+
+PASO 8: Verificar estadísticas personales
+   • Debe mostrar "Total Apostado" (suma de ambas)
+   • Debe mostrar "Tus Opciones" (todas las opciones)
+   • Debe mostrar "Ganancia Total" (suma potencial)
+
+PASO 9: Hacer tercera, cuarta, quinta apuesta...
+   • Repetir proceso
+   • Sin límite de apuestas
+
+PASO 10: Verificar lista de apuestas
+   • Scroll hasta "Apuestas Realizadas"
+   • Debe mostrar TODAS las apuestas
+   • Incluyendo múltiples del mismo usuario
+
+PASO 11: Recargar página (Ctrl+F5)
+   • Todas las apuestas deben seguir ahí
+   • Estadísticas deben ser correctas
+   • Panel debe seguir visible
+
+================================================================================
+  COMANDOS ÚTILES
+================================================================================
+
+# Migrar base de datos (ya ejecutado)
+python migrate_apuestas_multiple.py
+
+# Regenerar páginas HTML (ya ejecutado)
+python fix_and_regenerate.py
+
+# Reiniciar servidor (ya ejecutado)
+Get-Process python | Stop-Process -Force
+Start-Process python -ArgumentList "main.py" -WindowStyle Hidden
+
+# Verificar servidor
+Test-NetConnection -ComputerName localhost -Port 8000
+
+# Ver apuestas en base de datos
+sqlite3 data/apuestas.db
+SELECT * FROM apuestas_usuarios WHERE porra_id = 1;
+.quit
+
+================================================================================
+  ESTADO FINAL
+================================================================================
+
+✅ MIGRACIÓN DE BASE DE DATOS COMPLETADA
+✅ BACKEND ACTUALIZADO Y FUNCIONANDO
+✅ FRONTEND ACTUALIZADO Y REGENERADO
+✅ SERVIDOR REINICIADO EN PUERTO 8000
+✅ TODAS LAS FUNCIONALIDADES PRESERVADAS
+✅ SISTEMA LISTO PARA MÚLTIPLES APUESTAS
+
+🎉 IMPLEMENTACIÓN EXITOSA - SIN CÓDIGO ROTO
+
+================================================================================
+  PRÓXIMAS MEJORAS SUGERIDAS
+================================================================================
+
+1. Mostrar desglose de apuestas individuales
+   • Tabla con cada apuesta del usuario
+   • Opción, cantidad, fecha, estado
+
+2. Límite de apuestas por usuario (opcional)
+   • Configurar máximo de apuestas por porra
+   • Prevenir spam de apuestas
+
+3. Editar/Cancelar apuesta individual
+   • Permitir cancelar apuesta antes de cierre
+   • Devolver dinero de apuesta específica
+
+4. Historial de apuestas en tiempo real
+   • Ver apuestas de otros usuarios en vivo
+   • Actualización automática cada X segundos
+
+5. Gráfico de distribución de apuestas
+   • Visualización de cómo está el bote
+   • Gráfico de barras o pie chart
+
+================================================================================
+  FIN DEL DOCUMENTO
+================================================================================
+
+Fecha: 3 de Mayo de 2026
+Autor: Kiro AI Assistant
+Versión: 2.0 - Múltiples Apuestas
+

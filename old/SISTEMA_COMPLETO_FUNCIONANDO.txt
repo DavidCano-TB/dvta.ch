@@ -1,0 +1,215 @@
+============================================
+ SISTEMA DVDCOIN - TODO FUNCIONANDO
+============================================
+
+FECHA: 2026-05-03 23:20
+ESTADO: ✅ COMPLETAMENTE OPERATIVO
+
+============================================
+ URLS ACTIVAS
+============================================
+
+✓ SERVIDOR LOCAL:
+  http://127.0.0.1:8000
+
+✓ URL PÚBLICA (NGROK):
+  https://striking-symphony-mummify.ngrok-free.dev
+
+✓ URLS PRINCIPALES:
+  - Inicio:        https://striking-symphony-mummify.ngrok-free.dev/
+  - Videollamadas: https://striking-symphony-mummify.ngrok-free.dev/video
+  - Apuestas:      https://striking-symphony-mummify.ngrok-free.dev/apuestas
+  - Porra 1:       https://striking-symphony-mummify.ngrok-free.dev/apuestas/porra/1
+  - Porra 2:       https://striking-symphony-mummify.ngrok-free.dev/apuestas/porra/2
+  - Porra 3:       https://striking-symphony-mummify.ngrok-free.dev/apuestas/porra/3
+
+============================================
+ PROCESOS ACTIVOS
+============================================
+
+✓ Servidor Python (TerminalId: 6)
+  - Puerto: 8000
+  - Estado: RUNNING
+  - Comando: python main.py
+
+✓ Ngrok (TerminalId: 8)
+  - Estado: RUNNING
+  - Comando: ngrok http 8000
+  - Túnel: HTTPS público activo
+
+============================================
+ FUNCIONALIDADES VERIFICADAS
+============================================
+
+✅ SISTEMA DE APUESTAS:
+  - Crear nuevas porras (cualquier miembro)
+  - Seleccionar opción de apuesta (borde dorado)
+  - Introducir cantidad en DVDcoins
+  - Realizar apuesta (botón automático)
+  - Ver estadísticas personales (12 métricas)
+  - Ver estadísticas globales
+  - Panel de administración para DVD:
+    * Cerrar apuestas (aunque no sea fecha límite)
+    * Resolver y pagar porras
+    * Cancelar y devolver apuestas
+    * Relanzar porras con nuevas fechas
+    * Enmascarar porras
+    * Borrar porras
+
+✅ VIDEOLLAMADAS WEBRTC:
+  - Múltiples participantes simultáneos
+  - Video y audio en tiempo real
+  - WebRTC P2P puro (sin Jitsi)
+  - STUN + TURN servers configurados
+  - Modo Picture-in-Picture en móvil
+  - Controles de micrófono y cámara
+  - Salas de videollamada con nombres personalizados
+  - Invitar participantes a salas
+  - Panel de administración (cerrar salas)
+  - Diagnóstico integrado: window.videoDiagnostic()
+
+✅ CORRECCIONES APLICADAS:
+  - Fetch corregido en 3 páginas HTML de porras
+  - Función selectOption() completa
+  - CSS .optCard.selected con borde dorado
+  - onclick en todas las tarjetas de opciones
+  - Endpoint /api/ice-servers funcionando
+  - WebRTC con ICE candidates queue
+  - Manejo de tracks de video/audio
+  - Autoplay de video remoto
+
+============================================
+ ARQUITECTURA TÉCNICA
+============================================
+
+BACKEND (Python/FastAPI):
+  - main.py: Servidor principal
+  - WebSocket: /ws/video para videollamadas
+  - REST API: Endpoints de apuestas, usuarios, salas
+  - SQLite: Base de datos (users.db, apuestas.db, etc.)
+  - JWT: Autenticación con tokens
+
+FRONTEND:
+  - static/webrtc-video.html: Videollamadas WebRTC
+  - game_pages/apuestas/: Sistema de apuestas
+  - static/index.html: Página principal
+
+WEBRTC:
+  - RTCPeerConnection con configuración completa
+  - ICE candidates con queue system
+  - STUN servers: Google
+  - TURN servers: OpenRelay (metered.ca)
+  - Signaling: WebSocket custom
+  - Media: getUserMedia con audio/video
+
+============================================
+ ARCHIVOS CLAVE
+============================================
+
+SERVIDOR:
+  - main.py (líneas 1388-1470: endpoint /video)
+  - main.py (líneas 7640-7750: endpoints apuestas)
+
+VIDEOLLAMADAS:
+  - static/webrtc-video.html (1396 líneas)
+  - Funciones principales:
+    * makePeer(): Crear RTCPeerConnection
+    * createOffer(): Iniciar conexión
+    * handleOffer(): Responder a oferta
+    * handleAnswer(): Procesar respuesta
+    * handleIce(): Manejar ICE candidates
+    * attachStream(): Adjuntar stream remoto
+    * window.videoDiagnostic(): Diagnóstico completo
+
+APUESTAS:
+  - game_pages/apuestas/template_porra.html
+  - game_pages/apuestas/porras/porra_1.html
+  - game_pages/apuestas/porras/porra_2.html
+  - game_pages/apuestas/porras/porra_3.html
+  - fix_porras_simple.py (regenerar páginas)
+
+============================================
+ COMANDOS ÚTILES
+============================================
+
+REINICIAR TODO:
+  python _restart_all.py
+
+VERIFICAR SERVIDOR:
+  curl http://127.0.0.1:8000/api/health
+
+OBTENER URL NGROK:
+  curl http://127.0.0.1:4040/api/tunnels
+
+ABRIR APUESTAS:
+  ABRIR_APUESTAS.bat (local)
+  ABRIR_NGROK_APUESTAS.bat (público)
+
+VER LOGS:
+  - Servidor: server.log
+  - Ngrok: ngrok.log
+
+============================================
+ SOLUCIÓN DE PROBLEMAS
+============================================
+
+SI EL SERVIDOR NO RESPONDE:
+  1. Verificar que el proceso Python esté corriendo
+  2. Verificar puerto 8000: netstat -ano | findstr :8000
+  3. Revisar server.log para errores
+  4. Reiniciar con: python _restart_all.py
+
+SI NGROK NO FUNCIONA:
+  1. Verificar que ngrok esté corriendo
+  2. Verificar API: http://127.0.0.1:4040
+  3. Revisar ngrok.log
+  4. Reiniciar ngrok: ngrok http 8000
+
+SI LAS APUESTAS NO FUNCIONAN:
+  1. Verificar que el fetch use ${PORRA_ID}
+  2. Abrir consola del navegador (F12)
+  3. Verificar errores JavaScript
+  4. Recargar con Ctrl+F5 (limpiar caché)
+
+SI LAS VIDEOLLAMADAS NO FUNCIONAN:
+  1. Verificar permisos de cámara/micrófono
+  2. Abrir consola del navegador (F12)
+  3. Ejecutar: window.videoDiagnostic()
+  4. Verificar que WebSocket esté conectado
+  5. Verificar ICE servers: /api/ice-servers
+  6. Probar en navegador diferente (Chrome/Firefox)
+
+============================================
+ NOTAS IMPORTANTES
+============================================
+
+- El sistema usa WebRTC P2P puro (sin Jitsi)
+- Los TURN servers son públicos (OpenRelay)
+- El token JWT se inyecta automáticamente
+- Las videollamadas soportan múltiples participantes
+- El modo PIP se activa automáticamente en móvil
+- DVD puede administrar todas las porras
+- Los miembros pueden crear sus propias porras
+- Las estadísticas se actualizan en tiempo real
+
+============================================
+ ESTADO FINAL
+============================================
+
+✅ Servidor Python: FUNCIONANDO
+✅ Ngrok: FUNCIONANDO  
+✅ Sistema de apuestas: OPERATIVO
+✅ Videollamadas WebRTC: LISTAS
+✅ Todas las correcciones: APLICADAS
+✅ Todos los endpoints: VERIFICADOS
+
+============================================
+ LISTO PARA USAR
+============================================
+
+El sistema está completamente funcional y listo para usar.
+Todas las funcionalidades han sido verificadas y están operativas.
+
+URL principal: https://striking-symphony-mummify.ngrok-free.dev/
+
+============================================

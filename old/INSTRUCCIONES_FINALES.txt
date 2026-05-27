@@ -1,0 +1,272 @@
+================================================================================
+  INSTRUCCIONES FINALES - SISTEMA DE APUESTAS
+================================================================================
+
+📅 Fecha: 2 de Mayo de 2026
+🎯 Objetivo: Arreglar botones de selección y verificar flujo completo
+
+================================================================================
+  PASO 1: EJECUTAR EL SCRIPT DE ARREGLO
+================================================================================
+
+Ejecuta este comando:
+
+  > ARREGLAR_TODO_AHORA.bat
+
+Este script hará automáticamente:
+  1. Regenerar páginas HTML con template corregido
+  2. Detener el servidor actual
+  3. Limpiar el puerto 8000
+  4. Iniciar el servidor de nuevo
+  5. Verificar que funciona
+
+Tiempo estimado: 10-15 segundos
+
+================================================================================
+  PASO 2: VERIFICAR EN EL NAVEGADOR
+================================================================================
+
+1. Abre el navegador
+2. Ve a: http://127.0.0.1:8000/apuestas
+3. Haz login si es necesario
+4. Verás la lista de porras disponibles
+
+================================================================================
+  PASO 3: PROBAR EL FLUJO COMPLETO
+================================================================================
+
+FLUJO DE APUESTA (Usuario Normal):
+  
+  1. Clic en una porra de la lista
+     ✓ Se abre la página de la porra
+     ✓ Se ven las opciones de apuesta
+     ✓ Se ven las estadísticas generales
+  
+  2. Clic en una opción de apuesta
+     ✓ El botón se queda marcado (borde dorado)
+     ✓ El botón "Apostar Ahora" se habilita
+  
+  3. Introducir cantidad (ej: 10)
+     ✓ El input acepta números
+     ✓ Mínimo 1 DVDcoin
+     ✓ Máximo 10000 DVDcoins
+  
+  4. Clic en "Apostar Ahora"
+     ✓ Aparece confirmación
+     ✓ Se registra la apuesta
+     ✓ Se actualiza el saldo
+     ✓ Aparecen estadísticas personales
+     ✓ Aparecen estadísticas globales (si tiene historial)
+  
+  5. Verificar estadísticas
+     ✓ Estadísticas de esta porra (tu apuesta, opción, probabilidad)
+     ✓ Estadísticas globales (total porras, win rate, ROI, etc.)
+
+FLUJO DE ADMINISTRACIÓN (Usuario DVD):
+  
+  1. Abrir una porra
+     ✓ Ver panel de administración
+     ✓ Ver botones: Cerrar, Resolver, Relanzar, Enmascarar, Borrar
+  
+  2. Cerrar apuestas
+     ✓ Clic en "Cerrar Apuestas"
+     ✓ Confirmar
+     ✓ Estado cambia a "cerrada"
+     ✓ No se pueden hacer más apuestas
+  
+  3. Resolver porra
+     ✓ Clic en "Resolver y Pagar"
+     ✓ Seleccionar opción ganadora
+     ✓ Confirmar
+     ✓ Se pagan las ganancias automáticamente
+     ✓ Estado cambia a "finalizada"
+     ✓ Se muestran los ganadores
+
+FLUJO DE CREACIÓN (Cualquier Usuario):
+  
+  1. Ir a /apuestas
+     ✓ Clic en "Crear Nueva Porra"
+  
+  2. Llenar formulario
+     ✓ Título (obligatorio)
+     ✓ Descripción (opcional)
+     ✓ Tipo (opcional, default: resultado)
+     ✓ Fecha límite (opcional, auto: +24h)
+     ✓ Fecha evento (opcional, auto: +48h)
+     ✓ Opciones (mínimo 2, máximo 20)
+  
+  3. Enviar
+     ✓ Se crea la porra
+     ✓ Se genera página HTML
+     ✓ Aparece en la lista
+     ✓ Se puede apostar inmediatamente
+
+================================================================================
+  PASO 4: VERIFICAR ESTADÍSTICAS
+================================================================================
+
+ESTADÍSTICAS GENERALES (siempre visibles):
+  ✓ Bote Total
+  ✓ Apostadores
+  ✓ Total Apuestas
+
+ESTADÍSTICAS PERSONALES DE LA PORRA (si apostó):
+  ✓ Tu Apuesta
+  ✓ Tu Opción
+  ✓ Tu Probabilidad
+  ✓ Ganancia Potencial/Real
+  ✓ ROI Potencial/Real
+
+ESTADÍSTICAS GLOBALES (si tiene historial):
+  ✓ Total Porras participadas
+  ✓ Porras Ganadas
+  ✓ Porras Perdidas
+  ✓ Win Rate (%)
+  ✓ Total Apostado
+  ✓ Total Ganado
+  ✓ Beneficio Neto
+  ✓ ROI Global (%)
+  ✓ Apuesta Promedio
+  ✓ Ganancia Promedio
+  ✓ Mayor Ganancia
+  ✓ Racha Actual
+
+================================================================================
+  PASO 5: VERIFICAR ENDPOINTS
+================================================================================
+
+Puedes verificar los endpoints manualmente:
+
+1. Health Check:
+   GET http://127.0.0.1:8000/api/health
+   Respuesta: {"status": "ok"}
+
+2. Lista de Porras:
+   GET http://127.0.0.1:8000/api/porras/list
+   Headers: Authorization: Bearer TOKEN
+
+3. Detalle de Porra:
+   GET http://127.0.0.1:8000/api/porras/1
+   Headers: Authorization: Bearer TOKEN
+
+4. Estadísticas de Usuario:
+   GET http://127.0.0.1:8000/api/porras/stats/dvd
+   Headers: Authorization: Bearer TOKEN
+
+5. Crear Porra:
+   POST http://127.0.0.1:8000/api/porras/create
+   Headers: Authorization: Bearer TOKEN
+   Body: {"titulo": "Test", "opciones": [{"nombre": "Sí"}, {"nombre": "No"}]}
+
+6. Apostar:
+   POST http://127.0.0.1:8000/api/porras/apostar
+   Headers: Authorization: Bearer TOKEN
+   Body: {"porra_id": 1, "opcion": "si", "cantidad": 10}
+
+================================================================================
+  PROBLEMAS COMUNES Y SOLUCIONES
+================================================================================
+
+PROBLEMA: Los botones no se quedan clicados
+SOLUCIÓN: 
+  - Ejecutar ARREGLAR_TODO_AHORA.bat
+  - Recargar página con Ctrl+F5
+  - Verificar consola del navegador (F12) sin errores
+
+PROBLEMA: Error al crear porra
+SOLUCIÓN:
+  - Verificar que el título no esté vacío
+  - Verificar que haya al menos 2 opciones
+  - Verificar formato de fechas: YYYY-MM-DD HH:MM
+  - Dejar campos opcionales vacíos para usar defaults
+
+PROBLEMA: No se pueden hacer apuestas
+SOLUCIÓN:
+  - Verificar que la porra esté en estado "abierta"
+  - Verificar que no hayas apostado ya
+  - Verificar que tengas saldo suficiente
+  - Verificar que la fecha límite no haya pasado
+
+PROBLEMA: No aparecen estadísticas globales
+SOLUCIÓN:
+  - Las estadísticas globales solo aparecen si has apostado en al menos una porra
+  - Haz una apuesta de prueba para ver las estadísticas
+
+PROBLEMA: El servidor no inicia
+SOLUCIÓN:
+  - Verificar que el puerto 8000 esté libre
+  - Ejecutar: netstat -ano | findstr "8000"
+  - Matar proceso: taskkill /F /PID <pid>
+  - Reiniciar: python main.py
+
+================================================================================
+  ARCHIVOS MODIFICADOS EN ESTA SESIÓN
+================================================================================
+
+BACKEND:
+  ✓ main.py
+    - Endpoint /api/porras/create (lastrowid fix + campos opcionales)
+    - Endpoint /api/porras/stats/{username} (12 métricas completas)
+    - Endpoint /api/porras/relanzar/{porra_id}
+    - Endpoint /api/porras/enmascarar/{porra_id}
+    - Modelo PorraCreateRequest con Optional
+
+FRONTEND:
+  ✓ game_pages/apuestas/template_porra.html
+    - Función render() corregida
+    - Función selectOption() funcional
+    - 3 secciones de estadísticas
+    - Función updateGlobalStats()
+    - Carga asíncrona de stats globales
+
+SCRIPTS:
+  ✓ fix_porras_simple.py - Regenerar páginas
+  ✓ ARREGLAR_TODO_AHORA.bat - Script completo
+  ✓ regenerar_ahora.py - Script detallado
+  ✓ test_crear_porra.py - Tests de creación
+
+DOCUMENTACIÓN:
+  ✓ FIX_CREAR_PORRA.txt - Fix de lastrowid
+  ✓ CAMBIOS_SISTEMA_APUESTAS.txt - Estadísticas
+  ✓ INSTRUCCIONES_FINALES.txt - Este archivo
+
+================================================================================
+  CHECKLIST FINAL
+================================================================================
+
+Antes de dar por terminado, verifica:
+
+  [ ] ARREGLAR_TODO_AHORA.bat ejecutado sin errores
+  [ ] Servidor corriendo en puerto 8000
+  [ ] Página /apuestas carga correctamente
+  [ ] Se pueden ver las porras existentes
+  [ ] Se puede abrir una porra
+  [ ] Los botones de selección funcionan (se quedan clicados)
+  [ ] Se puede introducir cantidad
+  [ ] Se puede hacer una apuesta
+  [ ] Aparecen estadísticas personales después de apostar
+  [ ] Aparecen estadísticas globales (si hay historial)
+  [ ] DVD puede ver panel de administración
+  [ ] DVD puede cerrar/resolver porras
+  [ ] Se puede crear una nueva porra
+  [ ] La nueva porra aparece en la lista
+  [ ] No hay errores en consola del navegador (F12)
+  [ ] No hay errores en logs del servidor
+
+================================================================================
+  CONTACTO Y SOPORTE
+================================================================================
+
+Si algo no funciona después de seguir estos pasos:
+
+1. Revisar logs del servidor (terminal donde corre python main.py)
+2. Revisar consola del navegador (F12 → Console)
+3. Verificar que todos los archivos se hayan modificado correctamente
+4. Reiniciar todo el proceso desde el principio
+
+================================================================================
+  FIN DE LAS INSTRUCCIONES
+================================================================================
+
+¡Buena suerte! El sistema debería funcionar perfectamente después de ejecutar
+ARREGLAR_TODO_AHORA.bat y recargar el navegador.

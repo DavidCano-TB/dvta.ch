@@ -1,0 +1,8202 @@
+{
+  "1": [
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad nació Pablo Picasso?",
+      "A": "Barcelona",
+      "B": "Madrid",
+      "C": "Málaga",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "2": [
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "3": [
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'El mesías'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Haydn",
+      "D": "Mozart",
+      "r": "B"
+    }
+  ],
+  "4": [
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "5": [
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad nació Pablo Picasso?",
+      "A": "Barcelona",
+      "B": "Madrid",
+      "C": "Málaga",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Google?",
+      "A": "1996",
+      "B": "1998",
+      "C": "2000",
+      "D": "2002",
+      "r": "B"
+    }
+  ],
+  "6": [
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'La escuela de Atenas'?",
+      "A": "Leonardo",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Tiziano",
+      "r": "C"
+    }
+  ],
+  "7": [
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas óperas completas compuso Mozart?",
+      "A": "18",
+      "B": "22",
+      "C": "26",
+      "D": "30",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el volcán Cotopaxi?",
+      "A": "Perú",
+      "B": "Colombia",
+      "C": "Ecuador",
+      "D": "Bolivia",
+      "r": "C"
+    }
+  ],
+  "8": [
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué significa CPU?",
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Unit",
+      "D": "Computer Processing Unit",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "9": [
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La escuela de Atenas'?",
+      "A": "Leonardo",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Tiziano",
+      "r": "C"
+    }
+  ],
+  "10": [
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Ser y tiempo'?",
+      "A": "Husserl",
+      "B": "Heidegger",
+      "C": "Sartre",
+      "D": "Jaspers",
+      "r": "B"
+    }
+  ],
+  "11": [
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Moby Dick'?",
+      "A": "1849",
+      "B": "1851",
+      "C": "1853",
+      "D": "1855",
+      "r": "B"
+    }
+  ],
+  "12": [
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "13": [
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se inauguró el Museo Guggenheim de Bilbao?",
+      "A": "1995",
+      "B": "1997",
+      "C": "1999",
+      "D": "2001",
+      "r": "B"
+    }
+  ],
+  "14": [
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se fundó Google?",
+      "A": "1996",
+      "B": "1998",
+      "C": "2000",
+      "D": "2002",
+      "r": "B"
+    }
+  ],
+  "15": [
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió 'Metrópolis'?",
+      "A": "Lang",
+      "B": "Murnau",
+      "C": "Pabst",
+      "D": "Wiene",
+      "r": "A"
+    }
+  ],
+  "16": [
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "17": [
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "18": [
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "19": [
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "20": [
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se fundó Google?",
+      "A": "1996",
+      "B": "1998",
+      "C": "2000",
+      "D": "2002",
+      "r": "B"
+    }
+  ],
+  "21": [
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "22": [
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene el récord de más medallas olímpicas?",
+      "A": "Phelps",
+      "B": "Latynina",
+      "C": "Bjørgen",
+      "D": "Andrianov",
+      "r": "A"
+    }
+  ],
+  "23": [
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad general?",
+      "A": "Lorentz",
+      "B": "Poincaré",
+      "C": "Einstein",
+      "D": "Minkowski",
+      "r": "C"
+    }
+  ],
+  "24": [
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas óperas completas compuso Mozart?",
+      "A": "18",
+      "B": "22",
+      "C": "26",
+      "D": "30",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "25": [
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'Metrópolis'?",
+      "A": "Lang",
+      "B": "Murnau",
+      "C": "Pabst",
+      "D": "Wiene",
+      "r": "A"
+    }
+  ],
+  "26": [
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "27": [
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "28": [
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'La montaña mágica'?",
+      "A": "Mann",
+      "B": "Hesse",
+      "C": "Kafka",
+      "D": "Musil",
+      "r": "A"
+    }
+  ],
+  "29": [
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El nacimiento de una nación'?",
+      "A": "1913",
+      "B": "1915",
+      "C": "1917",
+      "D": "1919",
+      "r": "B"
+    }
+  ],
+  "30": [
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Crítica de la razón pura'?",
+      "A": "Hegel",
+      "B": "Kant",
+      "C": "Fichte",
+      "D": "Schelling",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se fundó Google?",
+      "A": "1996",
+      "B": "1998",
+      "C": "2000",
+      "D": "2002",
+      "r": "B"
+    }
+  ],
+  "31": [
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "32": [
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "33": [
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "34": [
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad nació Pablo Picasso?",
+      "A": "Barcelona",
+      "B": "Madrid",
+      "C": "Málaga",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'Metrópolis'?",
+      "A": "Lang",
+      "B": "Murnau",
+      "C": "Pabst",
+      "D": "Wiene",
+      "r": "A"
+    }
+  ],
+  "35": [
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos conciertos para piano compuso Beethoven?",
+      "A": "3",
+      "B": "5",
+      "C": "7",
+      "D": "9",
+      "r": "B"
+    }
+  ],
+  "36": [
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "37": [
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "38": [
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'Metrópolis'?",
+      "A": "Lang",
+      "B": "Murnau",
+      "C": "Pabst",
+      "D": "Wiene",
+      "r": "A"
+    }
+  ],
+  "39": [
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Crítica de la razón pura'?",
+      "A": "Hegel",
+      "B": "Kant",
+      "C": "Fichte",
+      "D": "Schelling",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad general?",
+      "A": "Lorentz",
+      "B": "Poincaré",
+      "C": "Einstein",
+      "D": "Minkowski",
+      "r": "C"
+    }
+  ],
+  "40": [
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "41": [
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad nació Pablo Picasso?",
+      "A": "Barcelona",
+      "B": "Madrid",
+      "C": "Málaga",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Ser y tiempo'?",
+      "A": "Husserl",
+      "B": "Heidegger",
+      "C": "Sartre",
+      "D": "Jaspers",
+      "r": "B"
+    }
+  ],
+  "42": [
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "43": [
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Ser y tiempo'?",
+      "A": "Husserl",
+      "B": "Heidegger",
+      "C": "Sartre",
+      "D": "Jaspers",
+      "r": "B"
+    }
+  ],
+  "44": [
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se inauguró el Museo Guggenheim de Bilbao?",
+      "A": "1995",
+      "B": "1997",
+      "C": "1999",
+      "D": "2001",
+      "r": "B"
+    }
+  ],
+  "45": [
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas óperas completas compuso Mozart?",
+      "A": "18",
+      "B": "22",
+      "C": "26",
+      "D": "30",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La montaña mágica'?",
+      "A": "Mann",
+      "B": "Hesse",
+      "C": "Kafka",
+      "D": "Musil",
+      "r": "A"
+    }
+  ],
+  "46": [
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué significa CPU?",
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Unit",
+      "D": "Computer Processing Unit",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Crítica de la razón pura'?",
+      "A": "Hegel",
+      "B": "Kant",
+      "C": "Fichte",
+      "D": "Schelling",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se inauguró el Museo Guggenheim de Bilbao?",
+      "A": "1995",
+      "B": "1997",
+      "C": "1999",
+      "D": "2001",
+      "r": "B"
+    }
+  ],
+  "47": [
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "48": [
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Moby Dick'?",
+      "A": "1849",
+      "B": "1851",
+      "C": "1853",
+      "D": "1855",
+      "r": "B"
+    }
+  ],
+  "49": [
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'Metrópolis'?",
+      "A": "Lang",
+      "B": "Murnau",
+      "C": "Pabst",
+      "D": "Wiene",
+      "r": "A"
+    }
+  ],
+  "50": [
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué tratado puso fin a la Guerra de los Treinta Años?",
+      "A": "Paz de Augsburgo",
+      "B": "Paz de Westfalia",
+      "C": "Paz de Utrecht",
+      "D": "Paz de Nimega",
+      "r": "B"
+    }
+  ],
+  "51": [
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El séptimo sello'?",
+      "A": "Fellini",
+      "B": "Bergman",
+      "C": "Kurosawa",
+      "D": "Tarkovski",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué emperador bizantino reconquistó temporalmente Italia en el siglo VI?",
+      "A": "Justiniano I",
+      "B": "Heraclio",
+      "C": "Basilio II",
+      "D": "Constantino VII",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La montaña mágica'?",
+      "A": "Mann",
+      "B": "Hesse",
+      "C": "Kafka",
+      "D": "Musil",
+      "r": "A"
+    }
+  ],
+  "52": [
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió 'Metrópolis'?",
+      "A": "Lang",
+      "B": "Murnau",
+      "C": "Pabst",
+      "D": "Wiene",
+      "r": "A"
+    }
+  ],
+  "53": [
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "54": [
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos conciertos para piano compuso Beethoven?",
+      "A": "3",
+      "B": "5",
+      "C": "7",
+      "D": "9",
+      "r": "B"
+    }
+  ],
+  "55": [
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué significa CPU?",
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Unit",
+      "D": "Computer Processing Unit",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "56": [
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el lago más profundo del mundo?",
+      "A": "Tanganica",
+      "B": "Baikal",
+      "C": "Malawi",
+      "D": "Cráter",
+      "r": "B"
+    }
+  ],
+  "57": [
+    {
+      "p": "¿Qué significa CPU?",
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Unit",
+      "D": "Computer Processing Unit",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué emperador bizantino reconquistó temporalmente Italia en el siglo VI?",
+      "A": "Justiniano I",
+      "B": "Heraclio",
+      "C": "Basilio II",
+      "D": "Constantino VII",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas óperas completas compuso Mozart?",
+      "A": "18",
+      "B": "22",
+      "C": "26",
+      "D": "30",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El nacimiento de una nación'?",
+      "A": "1913",
+      "B": "1915",
+      "C": "1917",
+      "D": "1919",
+      "r": "B"
+    }
+  ],
+  "58": [
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "59": [
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se inauguró el Museo Guggenheim de Bilbao?",
+      "A": "1995",
+      "B": "1997",
+      "C": "1999",
+      "D": "2001",
+      "r": "B"
+    }
+  ],
+  "60": [
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'La escuela de Atenas'?",
+      "A": "Leonardo",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Tiziano",
+      "r": "C"
+    }
+  ],
+  "61": [
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La escuela de Atenas'?",
+      "A": "Leonardo",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Tiziano",
+      "r": "C"
+    }
+  ],
+  "62": [
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué emperador bizantino reconquistó temporalmente Italia en el siglo VI?",
+      "A": "Justiniano I",
+      "B": "Heraclio",
+      "C": "Basilio II",
+      "D": "Constantino VII",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "63": [
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "64": [
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el lago más profundo del mundo?",
+      "A": "Tanganica",
+      "B": "Baikal",
+      "C": "Malawi",
+      "D": "Cráter",
+      "r": "B"
+    }
+  ],
+  "65": [
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Moby Dick'?",
+      "A": "1849",
+      "B": "1851",
+      "C": "1853",
+      "D": "1855",
+      "r": "B"
+    }
+  ],
+  "66": [
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Google?",
+      "A": "1996",
+      "B": "1998",
+      "C": "2000",
+      "D": "2002",
+      "r": "B"
+    }
+  ],
+  "67": [
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos elementos químicos hay en la tabla periódica?",
+      "A": "112",
+      "B": "116",
+      "C": "118",
+      "D": "120",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién tiene el récord de más medallas olímpicas?",
+      "A": "Phelps",
+      "B": "Latynina",
+      "C": "Bjørgen",
+      "D": "Andrianov",
+      "r": "A"
+    }
+  ],
+  "68": [
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La montaña mágica'?",
+      "A": "Mann",
+      "B": "Hesse",
+      "C": "Kafka",
+      "D": "Musil",
+      "r": "A"
+    }
+  ],
+  "69": [
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "70": [
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos conciertos para piano compuso Beethoven?",
+      "A": "3",
+      "B": "5",
+      "C": "7",
+      "D": "9",
+      "r": "B"
+    }
+  ],
+  "71": [
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'El mesías'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Haydn",
+      "D": "Mozart",
+      "r": "B"
+    }
+  ],
+  "72": [
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El nacimiento de una nación'?",
+      "A": "1913",
+      "B": "1915",
+      "C": "1917",
+      "D": "1919",
+      "r": "B"
+    }
+  ],
+  "73": [
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se fundó Google?",
+      "A": "1996",
+      "B": "1998",
+      "C": "2000",
+      "D": "2002",
+      "r": "B"
+    }
+  ],
+  "74": [
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La montaña mágica'?",
+      "A": "Mann",
+      "B": "Hesse",
+      "C": "Kafka",
+      "D": "Musil",
+      "r": "A"
+    }
+  ],
+  "75": [
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué significa CPU?",
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Unit",
+      "D": "Computer Processing Unit",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el punto más bajo de la Tierra?",
+      "A": "Mar Muerto",
+      "B": "Fosa de las Marianas",
+      "C": "Valle de la Muerte",
+      "D": "Depresión de Qattara",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "76": [
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El nacimiento de una nación'?",
+      "A": "1913",
+      "B": "1915",
+      "C": "1917",
+      "D": "1919",
+      "r": "B"
+    }
+  ],
+  "77": [
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La montaña mágica'?",
+      "A": "Mann",
+      "B": "Hesse",
+      "C": "Kafka",
+      "D": "Musil",
+      "r": "A"
+    }
+  ],
+  "78": [
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas óperas completas compuso Mozart?",
+      "A": "18",
+      "B": "22",
+      "C": "26",
+      "D": "30",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La ronda de noche'?",
+      "A": "Vermeer",
+      "B": "Rembrandt",
+      "C": "Hals",
+      "D": "Rubens",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer califa omeya?",
+      "A": "Muawiya I",
+      "B": "Yazid I",
+      "C": "Abd al-Malik",
+      "D": "Marwan I",
+      "r": "A"
+    }
+  ],
+  "79": [
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se inauguró el Museo Guggenheim de Bilbao?",
+      "A": "1995",
+      "B": "1997",
+      "C": "1999",
+      "D": "2001",
+      "r": "B"
+    }
+  ],
+  "80": [
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué emperador bizantino reconquistó temporalmente Italia en el siglo VI?",
+      "A": "Justiniano I",
+      "B": "Heraclio",
+      "C": "Basilio II",
+      "D": "Constantino VII",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos conciertos para piano compuso Beethoven?",
+      "A": "3",
+      "B": "5",
+      "C": "7",
+      "D": "9",
+      "r": "B"
+    }
+  ],
+  "81": [
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "82": [
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué faraón construyó la primera pirámide escalonada?",
+      "A": "Keops",
+      "B": "Zoser",
+      "C": "Snefru",
+      "D": "Micerino",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el volcán Cotopaxi?",
+      "A": "Perú",
+      "B": "Colombia",
+      "C": "Ecuador",
+      "D": "Bolivia",
+      "r": "C"
+    }
+  ],
+  "83": [
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Crítica de la razón pura'?",
+      "A": "Hegel",
+      "B": "Kant",
+      "C": "Fichte",
+      "D": "Schelling",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer califa omeya?",
+      "A": "Muawiya I",
+      "B": "Yazid I",
+      "C": "Abd al-Malik",
+      "D": "Marwan I",
+      "r": "A"
+    }
+  ],
+  "84": [
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el número atómico del wolframio?",
+      "A": "72",
+      "B": "74",
+      "C": "76",
+      "D": "78",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Crítica de la razón pura'?",
+      "A": "Hegel",
+      "B": "Kant",
+      "C": "Fichte",
+      "D": "Schelling",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos de invierno?",
+      "A": "1920",
+      "B": "1924",
+      "C": "1928",
+      "D": "1932",
+      "r": "B"
+    }
+  ],
+  "85": [
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer califa omeya?",
+      "A": "Muawiya I",
+      "B": "Yazid I",
+      "C": "Abd al-Malik",
+      "D": "Marwan I",
+      "r": "A"
+    }
+  ],
+  "86": [
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el último emperador del Sacro Imperio Romano Germánico?",
+      "A": "Carlos V",
+      "B": "Francisco I",
+      "C": "Francisco II",
+      "D": "José II",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó 'El jardín de las delicias'?",
+      "A": "El Bosco",
+      "B": "Brueghel",
+      "C": "Van Eyck",
+      "D": "Memling",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Crítica de la razón pura'?",
+      "A": "Hegel",
+      "B": "Kant",
+      "C": "Fichte",
+      "D": "Schelling",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'El mesías'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Haydn",
+      "D": "Mozart",
+      "r": "B"
+    }
+  ],
+  "87": [
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer califa omeya?",
+      "A": "Muawiya I",
+      "B": "Yazid I",
+      "C": "Abd al-Malik",
+      "D": "Marwan I",
+      "r": "A"
+    }
+  ],
+  "88": [
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el desierto más antiguo del mundo?",
+      "A": "Sahara",
+      "B": "Gobi",
+      "C": "Atacama",
+      "D": "Namib",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la panspermia?",
+      "A": "Arrhenius",
+      "B": "Oparin",
+      "C": "Miller",
+      "D": "Pasteur",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso la banda sonora de 'Psicosis'?",
+      "A": "Herrmann",
+      "B": "Williams",
+      "C": "Morricone",
+      "D": "Goldsmith",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Beethoven?",
+      "A": "7",
+      "B": "9",
+      "C": "11",
+      "D": "13",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer iPhone?",
+      "A": "2005",
+      "B": "2006",
+      "C": "2007",
+      "D": "2008",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se produjo la Batalla de Lepanto?",
+      "A": "1569",
+      "B": "1571",
+      "C": "1573",
+      "D": "1575",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué filósofo escribió 'Ser y tiempo'?",
+      "A": "Husserl",
+      "B": "Heidegger",
+      "C": "Sartre",
+      "D": "Jaspers",
+      "r": "B"
+    }
+  ],
+  "89": [
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck aproximadamente?",
+      "A": "6.626×10⁻³⁴ J·s",
+      "B": "6.626×10⁻²⁴ J·s",
+      "C": "6.626×10⁻¹⁴ J·s",
+      "D": "6.626×10⁻⁴ J·s",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas óperas completas compuso Mozart?",
+      "A": "18",
+      "B": "22",
+      "C": "26",
+      "D": "30",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El nacimiento de una nación'?",
+      "A": "1913",
+      "B": "1915",
+      "C": "1917",
+      "D": "1919",
+      "r": "B"
+    }
+  ],
+  "90": [
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La persistencia de la memoria'?",
+      "A": "Miró",
+      "B": "Magritte",
+      "C": "Dalí",
+      "D": "Ernst",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el verdadero nombre de George Orwell?",
+      "A": "Eric Blair",
+      "B": "David Cornwell",
+      "C": "Charles Dodgson",
+      "D": "Samuel Clemens",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Mundial de fútbol?",
+      "A": "1928",
+      "B": "1930",
+      "C": "1932",
+      "D": "1934",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién inventó el transistor?",
+      "A": "Shockley, Bardeen y Brattain",
+      "B": "Kilby y Noyce",
+      "C": "Turing y von Neumann",
+      "D": "Shannon y Wiener",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "91": [
+    {
+      "p": "¿Quién ostenta el récord mundial de 100 metros lisos?",
+      "A": "Bolt",
+      "B": "Powell",
+      "C": "Gay",
+      "D": "Blake",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué emperador bizantino reconquistó temporalmente Italia en el siglo VI?",
+      "A": "Justiniano I",
+      "B": "Heraclio",
+      "C": "Basilio II",
+      "D": "Constantino VII",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad nació Pablo Picasso?",
+      "A": "Barcelona",
+      "B": "Madrid",
+      "C": "Málaga",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos países forman parte de la ONU?",
+      "A": "191",
+      "B": "193",
+      "C": "195",
+      "D": "197",
+      "r": "B"
+    }
+  ],
+  "92": [
+    {
+      "p": "¿Qué artista fundó el movimiento suprematista?",
+      "A": "Kandinsky",
+      "B": "Malévich",
+      "C": "Mondrian",
+      "D": "Tatlin",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué batalla murió el rey Gustavo II Adolfo de Suecia?",
+      "A": "Breitenfeld",
+      "B": "Lützen",
+      "C": "Nördlingen",
+      "D": "Rocroi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país tiene más islas en el mundo?",
+      "A": "Indonesia",
+      "B": "Filipinas",
+      "C": "Suecia",
+      "D": "Noruega",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso el principio de exclusión?",
+      "A": "Heisenberg",
+      "B": "Pauli",
+      "C": "Schrödinger",
+      "D": "Dirac",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién tiene el récord de más medallas olímpicas?",
+      "A": "Phelps",
+      "B": "Latynina",
+      "C": "Bjørgen",
+      "D": "Andrianov",
+      "r": "A"
+    }
+  ],
+  "93": [
+    {
+      "p": "¿Quién dirigió '2001: Una odisea del espacio'?",
+      "A": "Kubrick",
+      "B": "Spielberg",
+      "C": "Scott",
+      "D": "Lucas",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año ganó España su primer Mundial de fútbol?",
+      "A": "2006",
+      "B": "2008",
+      "C": "2010",
+      "D": "2012",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién desarrolló el lenguaje de programación C?",
+      "A": "Kernighan",
+      "B": "Ritchie",
+      "C": "Thompson",
+      "D": "Stroustrup",
+      "r": "B"
+    }
+  ],
+  "94": [
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1987",
+      "B": "1988",
+      "C": "1989",
+      "D": "1990",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "95": [
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'Los hermanos Karamázov'?",
+      "A": "Tolstói",
+      "B": "Dostoievski",
+      "C": "Chéjov",
+      "D": "Turguénev",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas cuerdas tiene un violonchelo?",
+      "A": "4",
+      "B": "5",
+      "C": "6",
+      "D": "7",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién dirigió 'El acorazado Potemkin'?",
+      "A": "Eisenstein",
+      "B": "Pudovkin",
+      "C": "Vertov",
+      "D": "Dovzhenko",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la vida media del neutrón libre?",
+      "A": "~10 minutos",
+      "B": "~15 minutos",
+      "C": "~20 minutos",
+      "D": "~25 minutos",
+      "r": "B"
+    }
+  ],
+  "96": [
+    {
+      "p": "¿Qué significa CPU?",
+      "A": "Central Processing Unit",
+      "B": "Computer Personal Unit",
+      "C": "Central Program Unit",
+      "D": "Computer Processing Unit",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El padrino'?",
+      "A": "1970",
+      "B": "1972",
+      "C": "1974",
+      "D": "1976",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La divina comedia'?",
+      "A": "Petrarca",
+      "B": "Boccaccio",
+      "C": "Dante",
+      "D": "Ariosto",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién tiene más Grand Slams en tenis masculino?",
+      "A": "Federer",
+      "B": "Nadal",
+      "C": "Djokovic",
+      "D": "Sampras",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué compositor escribió la ópera 'El anillo del nibelungo'?",
+      "A": "Verdi",
+      "B": "Wagner",
+      "C": "Puccini",
+      "D": "Strauss",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad nació Pablo Picasso?",
+      "A": "Barcelona",
+      "B": "Madrid",
+      "C": "Málaga",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El hombre sin atributos'?",
+      "A": "Musil",
+      "B": "Broch",
+      "C": "Roth",
+      "D": "Zweig",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué país se encuentra el volcán Cotopaxi?",
+      "A": "Perú",
+      "B": "Colombia",
+      "C": "Ecuador",
+      "D": "Bolivia",
+      "r": "C"
+    }
+  ],
+  "97": [
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El proceso'?",
+      "A": "Kafka",
+      "B": "Musil",
+      "C": "Hesse",
+      "D": "Mann",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de Burkina Faso?",
+      "A": "Uagadugú",
+      "B": "Bobo-Dioulasso",
+      "C": "Koudougou",
+      "D": "Banfora",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se lanzó el primer satélite artificial?",
+      "A": "1955",
+      "B": "1957",
+      "C": "1959",
+      "D": "1961",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La escuela de Atenas'?",
+      "A": "Leonardo",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Tiziano",
+      "r": "C"
+    }
+  ],
+  "98": [
+    {
+      "p": "¿En qué país se encuentra el lago Titicaca?",
+      "A": "Solo Perú",
+      "B": "Solo Bolivia",
+      "C": "Perú y Bolivia",
+      "D": "Chile y Bolivia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se fundó Microsoft?",
+      "A": "1973",
+      "B": "1975",
+      "C": "1977",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién compuso 'Las cuatro estaciones'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Vivaldi",
+      "D": "Corelli",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué película ganó el Oscar a mejor película en 1994?",
+      "A": "Pulp Fiction",
+      "B": "Forrest Gump",
+      "C": "Cadena perpetua",
+      "D": "El rey león",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos pares de nervios craneales tiene el ser humano?",
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué museo se encuentra 'Las meninas'?",
+      "A": "Louvre",
+      "B": "Prado",
+      "C": "Uffizi",
+      "D": "Hermitage",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién ganó más Tours de Francia?",
+      "A": "Merckx",
+      "B": "Hinault",
+      "C": "Indurain",
+      "D": "Armstrong (anulado)",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se publicó 'Finnegans Wake'?",
+      "A": "1937",
+      "B": "1939",
+      "C": "1941",
+      "D": "1943",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer califa omeya?",
+      "A": "Muawiya I",
+      "B": "Yazid I",
+      "C": "Abd al-Malik",
+      "D": "Marwan I",
+      "r": "A"
+    }
+  ],
+  "99": [
+    {
+      "p": "¿Cuál es la montaña más alta de África?",
+      "A": "Kilimanjaro",
+      "B": "Monte Kenia",
+      "C": "Ruwenzori",
+      "D": "Ras Dashen",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién inventó la World Wide Web?",
+      "A": "Tim Berners-Lee",
+      "B": "Vint Cerf",
+      "C": "Marc Andreessen",
+      "D": "Larry Page",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más caudaloso del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Congo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Flaubert",
+      "B": "Proust",
+      "C": "Balzac",
+      "D": "Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se celebraron los primeros Juegos Olímpicos modernos?",
+      "A": "1892",
+      "B": "1894",
+      "C": "1896",
+      "D": "1900",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó Constantinopla en manos otomanas?",
+      "A": "1453",
+      "B": "1456",
+      "C": "1461",
+      "D": "1468",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué partícula subatómica fue descubierta por James Chadwick?",
+      "A": "Electrón",
+      "B": "Protón",
+      "C": "Neutrón",
+      "D": "Positrón",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso 'El arte de la fuga'?",
+      "A": "Bach",
+      "B": "Handel",
+      "C": "Telemann",
+      "D": "Vivaldi",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año se estrenó 'Ciudadano Kane'?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1943",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó 'La escuela de Atenas'?",
+      "A": "Leonardo",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Tiziano",
+      "r": "C"
+    }
+  ],
+  "100": [
+    {
+      "p": "¿En qué año se firmó el Tratado de Tordesillas?",
+      "A": "1492",
+      "B": "1494",
+      "C": "1498",
+      "D": "1500",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién esculpió 'El pensador'?",
+      "A": "Rodin",
+      "B": "Bernini",
+      "C": "Miguel Ángel",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fundó Tesla Motors?",
+      "A": "Elon Musk",
+      "B": "Martin Eberhard",
+      "C": "JB Straubel",
+      "D": "Marc Tarpenning",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se publicó 'Ulises' de James Joyce?",
+      "A": "1918",
+      "B": "1920",
+      "C": "1922",
+      "D": "1924",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año murió Mozart?",
+      "A": "1789",
+      "B": "1791",
+      "C": "1793",
+      "D": "1795",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores forman un equipo de rugby?",
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "19",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "196",
+      "B": "206",
+      "C": "216",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el isótopo más común del uranio?",
+      "A": "U-233",
+      "B": "U-235",
+      "C": "U-238",
+      "D": "U-239",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué país tiene la mayor reserva de agua dulce del mundo?",
+      "A": "Canadá",
+      "B": "Rusia",
+      "C": "Brasil",
+      "D": "Estados Unidos",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se estrenó 'El nacimiento de una nación'?",
+      "A": "1913",
+      "B": "1915",
+      "C": "1917",
+      "D": "1919",
+      "r": "B"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+================================================================================
+  🚨 URGENTE - LEE ESTO
+================================================================================
+
+EL NAVEGADOR YA SE ABRIÓ CON LA URL CORRECTA
+
+Acabo de abrir el navegador en:
+  ✅ http://localhost:8000/opo
+
+================================================================================
+  ⚡ ACCIÓN INMEDIATA
+================================================================================
+
+EN EL NAVEGADOR QUE SE ACABA DE ABRIR:
+
+1. Presiona estas teclas juntas:
+   
+   Ctrl + Shift + R
+
+2. Espera 5 segundos
+
+3. Deberías ver la lista de bloques de OPO
+
+================================================================================
+  ❌ NO USES ESTA URL
+================================================================================
+
+  ❌ https://unhidden-patient-cradling.ngrok-free.dev/opo
+
+Esta URL NO FUNCIONA porque ngrok no está corriendo.
+
+================================================================================
+  ✅ USA ESTA URL
+================================================================================
+
+  ✅ http://localhost:8000/opo
+
+Guarda esta URL en tus favoritos o escríbela en un papel.
+
+================================================================================
+  🔍 DIFERENCIAS IMPORTANTES
+================================================================================
+
+URL INCORRECTA (ngrok):
+  • https:// (con 's')
+  • unhidden-patient-cradling.ngrok-free.dev
+  • Requiere que ngrok esté corriendo
+  • Cambia cada vez que reinicias ngrok
+  • Más lenta
+  • Da error ERR_NGROK_3200 si ngrok no está activo
+
+URL CORRECTA (localhost):
+  • http:// (sin 's')
+  • localhost:8000
+  • Funciona siempre que el servidor esté corriendo
+  • Nunca cambia
+  • Más rápida
+  • Solo funciona en la misma computadora
+
+================================================================================
+  ✅ QUÉ DEBERÍAS VER AHORA
+================================================================================
+
+Después de presionar Ctrl+Shift+R, deberías ver:
+
+┌────────────────────────────────────────────────────────────┐
+│ 📝 OPO                                                      │
+│ FEA Radiodiagnóstico                                       │
+│                                    [Conectado] [@test_user]│ ← VERDE
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│              📋 Elige el siguiente bloque                  │
+│           30 simulacros · 10 preguntas cada uno            │
+│                                                            │
+│  [Bloque 1] [Bloque 2] [Bloque 3] [Bloque 4] [Bloque 5]  │
+│  [Bloque 6] [Bloque 7] [Bloque 8] [Bloque 9] [Bloque 10] │
+│  ...                                                       │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+
+================================================================================
+  🐛 SI SIGUE SIN FUNCIONAR
+================================================================================
+
+CASO 1: Pantalla vacía o en blanco
+───────────────────────────────────
+→ Presiona: Ctrl + Shift + R
+→ Espera 5 segundos
+→ Presiona: F5
+
+CASO 2: Badge dice "Conectando..." (rojo)
+───────────────────────────────────
+→ Espera 10 segundos más (el servidor está iniciando)
+→ Presiona: F5
+
+CASO 3: Error "ERR_CONNECTION_REFUSED"
+───────────────────────────────────
+→ El servidor no está corriendo
+→ Ejecuta: REINICIO_AUTOMATICO_OPO.bat
+→ Espera 20 segundos
+→ Refresca el navegador
+
+CASO 4: Badge dice "Sin acceso OPO"
+───────────────────────────────────
+→ Tu usuario no tiene permisos
+→ Ejecuta: AGREGAR_USUARIO_Y_REINICIAR.bat test_user
+→ Espera 20 segundos
+→ Refresca el navegador
+
+================================================================================
+  📱 CÓMO ACCEDER DESDE OTRO DISPOSITIVO
+================================================================================
+
+Si quieres acceder desde tu teléfono u otra computadora:
+
+1. Necesitas usar ngrok
+2. Ejecuta: INICIAR_TODO_OPO.bat
+3. Selecciona "S" cuando pregunte si quieres iniciar ngrok
+4. Ve a la ventana de ngrok
+5. Copia la URL que aparece (ejemplo: https://xxxxx.ngrok-free.dev)
+6. Usa esa URL + /opo en tu otro dispositivo
+
+PERO para uso normal en la misma computadora:
+  → USA SIEMPRE: http://localhost:8000/opo
+
+================================================================================
+  📋 RESUMEN
+================================================================================
+
+1. ❌ NO uses: https://unhidden-patient-cradling.ngrok-free.dev/opo
+2. ✅ USA: http://localhost:8000/opo
+3. ⚡ AHORA: Presiona Ctrl+Shift+R en el navegador
+4. ⏱️ ESPERA: 5 segundos
+5. ✅ DEBERÍAS VER: Lista de 30 bloques
+
+================================================================================
+  🎯 PRÓXIMOS PASOS
+================================================================================
+
+1. Ve al navegador que se acaba de abrir
+2. Presiona: Ctrl + Shift + R
+3. Espera 5 segundos
+4. Haz clic en un bloque para empezar a jugar
+
+================================================================================
+
+NOTA: El servidor está corriendo. Solo necesitas refrescar el navegador.
+
+================================================================================

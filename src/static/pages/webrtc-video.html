@@ -1,0 +1,1400 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Videollamadas � DVDcoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:       #1c1c24;
+  --bg2:      #23232e;
+  --bg3:      #2a2a38;
+  --bg4:      #32323f;
+  --bg5:      #3a3a4a;
+  --gold:     #e8b84b;
+  --gold2:    #f5cc6a;
+  --gold-dim: rgba(232,184,75,.15);
+  --red:      #e05260;
+  --red2:     #f06070;
+  --green:    #4caf7d;
+  --blue:     #5b8dee;
+  --border:   rgba(255,255,255,.08);
+  --border2:  rgba(255,255,255,.14);
+  --text:     #e8e8f0;
+  --text2:    #a8a8bc;
+  --text3:    #6a6a80;
+  --shadow:   0 4px 24px rgba(0,0,0,.4);
+  --radius:   12px;
+  --radius-sm:8px;
+}
+html,body{width:100%;height:100%;background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;overflow:hidden;font-size:14px;line-height:1.5}
+body{display:flex;flex-direction:column}
+
+/* -- HEADER -- */
+.hdr{
+  background:var(--bg2);
+  padding:12px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-shrink:0;gap:10px;
+  box-shadow:0 1px 0 var(--border);
+}
+.hdr-left{display:flex;align-items:center;gap:12px;min-width:0}
+.hdr-logo{display:flex;align-items:center;gap:8px}
+.hdr-logo .icon{font-size:20px}
+.hdr h1{font-size:16px;font-weight:600;color:var(--gold);letter-spacing:-.3px;white-space:nowrap}
+.hdr-right{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap}
+.user-chip{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:500;color:var(--text2);white-space:nowrap}
+
+/* -- STATUS BAR -- */
+.sbar{
+  background:var(--bg2);
+  padding:5px 18px;
+  font-size:11px;color:var(--text3);
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;display:flex;align-items:center;gap:8px;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--text3);flex-shrink:0;transition:background .3s}
+.dot.g{background:var(--green)}.dot.r{background:var(--red)}
+
+/* -- BUTTONS -- */
+.btn{border:none;cursor:pointer;border-radius:var(--radius-sm);font-weight:500;font-family:inherit;transition:all .18s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-primary{background:var(--gold);color:#1a1a22;padding:8px 16px;font-size:13px;font-weight:600}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(232,184,75,.3)}
+.btn-danger{background:var(--red);color:#fff;padding:8px 16px;font-size:13px}
+.btn-danger:hover{background:var(--red2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--text2);padding:7px 14px;font-size:12px}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+.btn-sm{padding:5px 12px;font-size:12px}
+.btn-icon{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:7px 11px;font-size:13px;border-radius:var(--radius-sm);cursor:pointer;transition:all .18s}
+.btn-icon:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
+
+/* -- LAYOUT -- */
+.main{flex:1;display:flex;overflow:hidden;min-height:0}
+
+/* -- SIDEBAR -- */
+.sidebar{
+  width:260px;background:var(--bg2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;flex-shrink:0;
+  transition:transform .25s cubic-bezier(.4,0,.2,1);
+}
+.sb-hdr{
+  padding:14px 16px;border-bottom:1px solid var(--border);
+  font-size:12px;font-weight:600;color:var(--text2);letter-spacing:.5px;text-transform:uppercase;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.create-room{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;gap:8px}
+.create-room input{
+  flex:1;background:var(--bg3);border:1px solid var(--border);
+  color:var(--text);padding:8px 11px;border-radius:var(--radius-sm);
+  font-size:13px;font-family:inherit;min-width:0;transition:border .18s;
+}
+.create-room input::placeholder{color:var(--text3)}
+.create-room input:focus{outline:none;border-color:var(--gold);background:var(--bg4)}
+.rooms-list{flex:1;overflow-y:auto;padding:10px}
+.room-item{
+  background:var(--bg3);padding:11px 13px;margin-bottom:6px;
+  border-radius:var(--radius-sm);cursor:pointer;
+  border:1px solid var(--border);transition:all .18s;
+}
+.room-item:hover{border-color:var(--border2);background:var(--bg4);transform:translateX(2px)}
+.room-item.active{border-color:var(--gold);background:var(--gold-dim);cursor:default}
+.room-name{font-size:13px;font-weight:500;margin-bottom:4px;color:var(--text)}
+.room-meta{font-size:11px;color:var(--text3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.room-meta .in-room{color:var(--green);font-weight:500}
+.empty-state{padding:24px 16px;text-align:center;color:var(--text3);font-size:12px;line-height:1.7}
+
+/* -- VIDEO AREA -- */
+.video-area{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.vtoolbar{
+  padding:10px 16px;background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;
+}
+.room-title-bar{
+  font-size:14px;font-weight:600;color:var(--text);
+  flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+/* -- VIDEO GRID -- */
+.video-grid{
+  flex:1;display:grid;gap:10px;padding:12px;
+  overflow:auto;align-content:start;
+  background:var(--bg);
+  position:relative;
+}
+.g1{grid-template-columns:1fr}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(2,1fr)}
+.gn{grid-template-columns:repeat(3,1fr)}
+
+/* Picture-in-Picture para m�vil */
+.video-grid.pip-mode{
+  grid-template-columns:1fr;
+  gap:0;
+  padding:0;
+}
+.video-grid.pip-mode .video-box:not(.local-box){
+  grid-column:1;
+  grid-row:1;
+  height:100%;
+}
+.video-grid.pip-mode .local-box{
+  position:absolute;
+  bottom:80px;
+  right:12px;
+  width:120px;
+  height:160px;
+  z-index:10;
+  min-height:160px;
+  box-shadow:0 4px 20px rgba(0,0,0,.6);
+}
+
+.video-box{
+  background:var(--bg2);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;display:flex;flex-direction:column;
+  position:relative;min-height:180px;
+  box-shadow:var(--shadow);
+  transition:border-color .3s,box-shadow .3s;
+}
+.video-box.local-box{border-color:rgba(232,184,75,.4)}
+.video-box.connected{border-color:rgba(76,175,125,.5);box-shadow:0 0 0 1px rgba(76,175,125,.2),var(--shadow)}
+.vlabel{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(10,10,18,.9));
+  padding:28px 12px 10px;
+  font-size:12px;font-weight:500;color:#fff;
+  display:flex;align-items:center;gap:6px;z-index:2;
+}
+video{width:100%;height:100%;object-fit:cover;background:#0a0a12;display:block;min-height:160px}
+.no-cam{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;background:#0d0d18;
+  color:var(--text3);font-size:12px;gap:10px;min-height:160px;
+}
+.avatar{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--bg3);border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;font-weight:600;color:var(--text2);
+}
+.conn-status{font-size:10px;color:var(--text3);margin-top:2px}
+
+/* -- LOBBY -- */
+.lobby{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:18px;padding:24px;text-align:center;
+  background:var(--bg);
+}
+.lobby-icon{font-size:52px;filter:drop-shadow(0 4px 16px rgba(232,184,75,.3))}
+.lobby h2{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-.4px}
+.lobby p{color:var(--text2);font-size:13px;max-width:320px;line-height:1.7}
+
+/* -- CONTROLS -- */
+.controls{
+  padding:12px 16px;background:var(--bg2);
+  border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;gap:12px;flex-shrink:0;
+}
+.ctrl-btn{
+  width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;font-family:inherit;
+}
+.ctrl-btn.on{background:var(--bg4);color:var(--text);border:1.5px solid var(--border2)}
+.ctrl-btn.on:hover{background:var(--bg5);border-color:var(--border2);transform:scale(1.08)}
+.ctrl-btn.danger{background:var(--red);color:#fff;border:none}
+.ctrl-btn.danger:hover{background:var(--red2);transform:scale(1.08)}
+.ctrl-btn.off{background:rgba(224,82,96,.15);color:var(--red);border:1.5px solid rgba(224,82,96,.3)}
+
+/* -- MODAL -- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);z-index:200;
+  display:flex;align-items:center;justify-content:center;padding:16px;
+}
+.modal{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:var(--radius);padding:22px;width:100%;max-width:380px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.modal h3{color:var(--text);margin-bottom:16px;font-size:16px;font-weight:600}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}
+.user-list{max-height:220px;overflow-y:auto;margin-bottom:4px;border-radius:var(--radius-sm);border:1px solid var(--border)}
+.user-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;cursor:pointer;transition:background .15s;
+  border-bottom:1px solid var(--border);
+}
+.user-item:last-child{border-bottom:none}
+.user-item:hover{background:var(--bg3)}
+.user-item input[type=checkbox]{accent-color:var(--gold);width:15px;height:15px;cursor:pointer}
+.user-item label{font-size:13px;cursor:pointer;flex:1;color:var(--text)}
+.odot{width:7px;height:7px;border-radius:50%;background:var(--text3);flex-shrink:0}
+.odot.on{background:var(--green)}
+
+/* -- MOBILE TOGGLE -- */
+.sb-toggle{
+  display:none;background:var(--bg3);border:1px solid var(--border);
+  color:var(--text2);padding:7px 11px;border-radius:var(--radius-sm);
+  cursor:pointer;font-size:16px;transition:all .18s;
+}
+.sb-toggle:hover{border-color:var(--gold);color:var(--gold)}
+
+/* -- SCROLLBAR -- */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--bg5);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--text3)}
+
+/* -- RESPONSIVE -- */
+@media(max-width:700px){
+  .sidebar{position:absolute;top:0;left:0;bottom:0;z-index:50;transform:translateX(-100%);width:260px;box-shadow:var(--shadow)}
+  .sidebar.open{transform:translateX(0)}
+  .sb-toggle{display:flex}
+  .g2,.g3,.g4,.gn{grid-template-columns:1fr}
+  .hdr h1{font-size:14px}
+  .vtoolbar{gap:6px;flex-wrap:wrap}
+  .vtoolbar .btn-sm{font-size:11px;padding:4px 8px}
+  .room-title-bar{font-size:13px}
+
+  /* Activar modo PIP en m�vil cuando hay m�ltiples participantes */
+  .video-grid.g2,.video-grid.g3,.video-grid.g4,.video-grid.gn{
+    grid-template-columns:1fr;
+  }
+  .video-grid.g2 .local-box,
+  .video-grid.g3 .local-box,
+  .video-grid.g4 .local-box,
+  .video-grid.gn .local-box{
+    position:absolute;
+    bottom:80px;
+    right:12px;
+    width:100px;
+    height:133px;
+    z-index:10;
+    min-height:133px;
+    box-shadow:0 4px 20px rgba(0,0,0,.6);
+  }
+  .video-grid.g2 .local-box video,
+  .video-grid.g3 .local-box video,
+  .video-grid.g4 .local-box video,
+  .video-grid.gn .local-box video{
+    min-height:133px;
+  }
+}
+@media(max-width:400px){
+  .hdr{padding:9px 12px}
+  .hdr h1{font-size:12px}
+  .controls{gap:6px;padding:10px 12px}
+  .ctrl-btn{width:38px;height:38px;font-size:15px}
+  .user-chip{font-size:11px;padding:3px 10px}
+  .btn-ghost{font-size:11px;padding:5px 10px}
+
+  /* Video local a�n m�s peque�o en pantallas muy peque�as */
+  .video-grid.g2 .local-box,
+  .video-grid.g3 .local-box,
+  .video-grid.g4 .local-box,
+  .video-grid.gn .local-box{
+    width:80px;
+    height:107px;
+    min-height:107px;
+    bottom:70px;
+    right:8px;
+  }
+  .vlabel{font-size:10px;padding:20px 8px 6px}
+}
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-left">
+    <button class="sb-toggle" onclick="toggleSB()">?</button>
+    <div class="hdr-logo">
+      <span class="icon">??</span>
+      <h1>Videollamadas</h1>
+    </div>
+  </div>
+  <div class="hdr-right">
+    <span class="user-chip" id="myName"></span>
+    <button class="btn btn-ghost btn-sm" onclick="goBack()">? Salir</button>
+  </div>
+</div>
+
+<!-- STATUS -->
+<div class="sbar">
+  <div class="dot" id="wsDot"></div>
+  <span id="wsStatus">Conectando...</span>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sb-hdr">
+      <span>Salas activas</span>
+      <button class="btn-icon" onclick="loadRooms()" title="Actualizar" style="padding:4px 8px;font-size:12px">?</button>
+    </div>
+    <div class="create-room">
+      <input type="text" id="roomName" placeholder="Nombre de la sala..." maxlength="40"
+             onkeydown="if(event.key==='Enter')createRoom()">
+      <button class="btn btn-primary btn-sm" onclick="createRoom()">+</button>
+    </div>
+    <div class="rooms-list" id="roomsList">
+      <div class="empty-state">Cargando salas...</div>
+    </div>
+  </div>
+
+  <!-- VIDEO AREA -->
+  <div class="video-area">
+
+    <!-- TOOLBAR (in-room) -->
+    <div class="vtoolbar" id="vtoolbar" style="display:none">
+      <span class="room-title-bar" id="roomTitleBar">�</span>
+      <button class="btn-icon btn-sm" onclick="openInvite()" title="Invitar participante">?? Invitar</button>
+      <button class="btn-icon btn-sm" onclick="window.videoDiagnostic()" title="Diagn�stico">??</button>
+      <button id="closeRoomBtn" class="btn btn-danger btn-sm" style="display:none" onclick="closeRoom()">?? Cerrar sala</button>
+      <button class="btn btn-ghost btn-sm" onclick="leaveRoom()">Salir</button>
+    </div>
+
+    <!-- LOBBY -->
+    <div class="lobby" id="lobby">
+      <div class="lobby-icon">??</div>
+      <h2>Videollamadas</h2>
+      <p>Crea una sala nueva o �nete a una existente desde el panel de la izquierda.</p>
+      <button class="btn btn-primary" onclick="document.getElementById('roomName').focus();if(window.innerWidth<=700)openSB()">
+        + Crear sala
+      </button>
+    </div>
+
+    <!-- VIDEO GRID -->
+    <div class="video-grid g1" id="videoGrid" style="display:none"></div>
+
+    <!-- CONTROLS -->
+    <div class="controls" id="controls" style="display:none">
+      <button class="ctrl-btn on" id="micBtn" onclick="toggleMic()" title="Micr�fono">??</button>
+      <button class="ctrl-btn on" id="camBtn" onclick="toggleCam()" title="C�mara">??</button>
+      <button class="ctrl-btn danger" onclick="leaveRoom()" title="Colgar">??</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- INVITE MODAL -->
+<div class="modal-overlay" id="inviteModal" style="display:none" onclick="if(event.target===this)closeInvite()">
+  <div class="modal">
+    <h3>?? Invitar participante</h3>
+    <div class="user-list" id="inviteList">
+      <div class="empty-state">Cargando usuarios...</div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn btn-ghost" onclick="closeInvite()">Cancelar</button>
+      <button class="btn btn-primary" onclick="sendInvites()">Enviar invitaci�n</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// -------------------------------------------------------------------
+// DVDcoin Videollamadas � WebRTC via /ws/video
+// -------------------------------------------------------------------
+
+const ME    = localStorage.getItem('dvd_username') || '';
+const TOKEN = localStorage.getItem('dvd_token') || '';
+const ADMINS = ['dvd', 'nebulosa'];
+
+let currentRoom  = null;
+let currentTitle = '';
+let currentHost  = null;
+let rooms        = [];
+let onlineUsers  = [];
+let allUsers     = [];
+let localStream  = null;
+let micOn = true, camOn = true;
+let peerConns = {};
+let iceQueues = {};
+let ws        = null;
+
+let iceServers = [
+  { urls: 'stun:stun.l.google.com:19302' },
+  { urls: 'stun:stun1.l.google.com:19302' },
+];
+
+// -- INIT ----------------------------------------------------------
+document.getElementById('myName').textContent = ME;
+
+window.addEventListener('load', async () => {
+  // Verificar soporte de WebRTC
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    toast('? Tu navegador no soporta WebRTC. Usa Chrome, Firefox, Safari o Edge.', 8000);
+    console.error('[WEBRTC] Not supported');
+    return;
+  }
+
+  if (!window.RTCPeerConnection) {
+    toast('? Tu navegador no soporta RTCPeerConnection', 8000);
+    console.error('[WEBRTC] RTCPeerConnection not available');
+    return;
+  }
+
+  console.log('[WEBRTC] Browser support OK');
+
+  // Load TURN servers
+  try {
+    const r = await fetch('/api/ice-servers');
+    if (r.ok) {
+      const d = await r.json();
+      if (d.iceServers?.length) {
+        iceServers = d.iceServers;
+        console.log('[ICE] Loaded', iceServers.length, 'servers (STUN+TURN)');
+      }
+    }
+  } catch(e) { console.warn('[ICE] Using defaults:', e.message); }
+
+  const cameraOk = await startCamera();
+  if (!cameraOk) {
+    console.warn('[CAM] No media available, but continuing...');
+  }
+
+  connectWS();
+  loadRooms();
+  loadUsers();
+  setInterval(loadRooms, 6000);
+});
+
+// -- CAMERA --------------------------------------------------------
+async function startCamera() {
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        width:{ideal:1280, max:1920},
+        height:{ideal:720, max:1080},
+        facingMode: 'user'
+      },
+      audio: {
+        echoCancellation: true,
+        noiseSuppression: true,
+        autoGainControl: true
+      }
+    });
+    console.log('[CAM] OK:', localStream.getTracks().map(t=>t.kind));
+    return true;
+  } catch(e) {
+    console.warn('[CAM] No video, trying audio:', e.message);
+    if (e.name === 'NotAllowedError' || e.name === 'PermissionDeniedError') {
+      toast('?? Permisos de c�mara/micr�fono denegados. Por favor, permite el acceso en tu navegador.', 5000);
+    }
+    try {
+      localStream = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true
+        }
+      });
+      toast('?? Solo audio disponible (sin c�mara)', 3000);
+      return true;
+    }
+    catch(e2) {
+      console.warn('[CAM] No media:', e2.message);
+      localStream = null;
+      toast('? No se pudo acceder a c�mara ni micr�fono', 4000);
+      return false;
+    }
+  }
+}
+
+// -- WEBSOCKET -----------------------------------------------------
+function connectWS() {
+  const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${proto}//${location.host}/ws/video?token=${encodeURIComponent(TOKEN)}`);
+
+  ws.onopen = () => {
+    setDot(true, 'Conectado');
+    if (currentRoom) send({ action:'join', room:currentRoom });
+  };
+  ws.onclose = () => {
+    setDot(false, 'Reconectando...');
+    setTimeout(connectWS, 3000);
+  };
+  ws.onerror = () => setDot(false, 'Error de conexi�n');
+  ws.onmessage = async (ev) => {
+    let d; try { d = JSON.parse(ev.data); } catch { return; }
+    await handle(d);
+  };
+}
+
+function send(obj) {
+  if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(obj));
+}
+
+// -- MESSAGE HANDLER -----------------------------------------------
+async function handle(d) {
+  console.log('[WS] 📨 Received:', d.type, 'from:', d.from || 'server');
+
+  switch(d.type) {
+    case 'peer-joined':
+      console.log('[WS] 👤 Peer joined:', d.from);
+      addPeerBox(d.from);
+      // CRÍTICO: Delay para asegurar que ambos peers estén listos
+      await new Promise(resolve => setTimeout(resolve, 150));
+      console.log('[WS] 🚀 Creating offer for', d.from);
+      createOffer(d.from);
+      break;
+
+    case 'peer-left':
+      console.log('[WS] 👋 Peer left:', d.from);
+      closePeer(d.from);
+      toast(`👋 ${d.from} salió de la sala`, 2000);
+      break;
+
+    case 'webrtc-offer':
+      console.log('[WS] 📩 Received offer from:', d.from);
+      await handleOffer(d.from, d.sdp);
+      break;
+
+    case 'webrtc-answer':
+      console.log('[WS] 📬 Received answer from:', d.from);
+      await handleAnswer(d.from, d.sdp);
+      break;
+
+    case 'webrtc-ice':
+      console.log('[WS] 🧊 Received ICE candidate from:', d.from);
+      await handleIce(d.from, d.candidate);
+      break;
+
+    case 'room-closed':
+      toast('🚪 La sala fue cerrada por ' + (d.by || 'el host'), 4000);
+      leaveRoomSilent();
+      break;
+
+    default:
+      console.warn('[WS] ⚠️ Unknown message type:', d.type);
+  }
+}
+
+// -- ROOMS ---------------------------------------------------------
+async function loadRooms() {
+  try {
+    const r = await apiFetch('/api/rooms/list');
+    if (r?.rooms) { rooms = r.rooms; renderRooms(); }
+  } catch {}
+}
+
+async function loadUsers() {
+  try {
+    const r = await apiFetch('/api/users');
+    if (Array.isArray(r)) allUsers = r;
+  } catch {}
+}
+
+function renderRooms() {
+  const list = document.getElementById('roomsList');
+  if (!rooms?.length) {
+    list.innerHTML = '<div class="empty-state">No hay salas activas.<br>Crea una nueva arriba.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  rooms.forEach(room => {
+    const key     = room.key || room.room_key;
+    const members = Array.isArray(room.members) ? room.members : [];
+    const active  = key === currentRoom;
+    const div = document.createElement('div');
+    div.className = 'room-item' + (active ? ' active' : '');
+    div.innerHTML = `
+      <div class="room-name">${esc(room.title || key)}</div>
+      <div class="room-meta">
+        <span>?? ${members.length} participante${members.length !== 1 ? 's' : ''}</span>
+        ${active ? '<span class="in-room">? En sala</span>' : ''}
+      </div>`;
+    if (!active) div.onclick = () => { joinRoom(key, room.title, room.host); closeSB(); };
+    list.appendChild(div);
+  });
+}
+
+function createRoom() {
+  const name = document.getElementById('roomName').value.trim();
+  if (!name) { document.getElementById('roomName').focus(); return; }
+  const key = name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')
+              .substring(0,28) + '-' + Date.now().toString(36).slice(-4);
+  joinRoom(key, name, ME);
+  document.getElementById('roomName').value = '';
+  closeSB();
+}
+
+function joinRoom(key, title, host) {
+  if (currentRoom === key) return;
+  if (currentRoom) leaveRoomSilent();
+  currentRoom  = key;
+  currentTitle = title || key;
+  currentHost  = host || ME;
+  showInRoom();
+  renderRooms();
+  send({ action:'join', room:key });
+  updateCloseBtn();
+}
+
+function leaveRoom() {
+  if (!currentRoom) return;
+  send({ action:'leave', room:currentRoom });
+  leaveRoomSilent();
+}
+
+function leaveRoomSilent() {
+  Object.keys(peerConns).forEach(closePeer);
+  iceQueues = {};
+  currentRoom = null; currentTitle = ''; currentHost = null;
+  showLobby();
+  renderRooms();
+}
+
+// -- CLOSE ROOM (host + dvd) -----------------------------
+function canClose() {
+  return ME === currentHost || ADMINS.includes(ME);
+}
+
+function updateCloseBtn() {
+  const btn = document.getElementById('closeRoomBtn');
+  if (btn) btn.style.display = canClose() ? 'inline-flex' : 'none';
+}
+
+function closeRoom() {
+  if (!currentRoom || !canClose()) return;
+  if (!confirm('�Cerrar la sala para todos los participantes?')) return;
+  send({ action:'close-room', room:currentRoom });
+  leaveRoomSilent();
+}
+
+// -- UI ------------------------------------------------------------
+function showLobby() {
+  document.getElementById('lobby').style.display     = 'flex';
+  document.getElementById('videoGrid').style.display = 'none';
+  document.getElementById('controls').style.display  = 'none';
+  document.getElementById('vtoolbar').style.display  = 'none';
+}
+
+function showInRoom() {
+  document.getElementById('lobby').style.display     = 'none';
+  document.getElementById('videoGrid').style.display = 'grid';
+  document.getElementById('controls').style.display  = 'flex';
+  document.getElementById('vtoolbar').style.display  = 'flex';
+  document.getElementById('roomTitleBar').textContent = '?? ' + (currentTitle || currentRoom);
+  const grid = document.getElementById('videoGrid');
+  grid.innerHTML = '';
+  addLocalBox();
+  updateGrid();
+}
+
+function addLocalBox() {
+  if (document.getElementById('vid-local')) return;
+  const box = mkBox('vid-local', 'local-box');
+  if (localStream?.getVideoTracks().length) {
+    const v = mkVid(true); v.srcObject = localStream; box.appendChild(v);
+  } else {
+    box.appendChild(mkNoCam(ME));
+  }
+  box.appendChild(mkLabel(`<span id="lmic">??</span> ${esc(ME)} <span style="opacity:.6;font-size:10px">(T�)</span>`));
+  document.getElementById('videoGrid').appendChild(box);
+  updateGrid();
+}
+
+function addPeerBox(peer) {
+  if (document.getElementById('vid-' + peer)) return;
+  const box = mkBox('vid-' + peer, '');
+  box.appendChild(mkNoCam(peer));
+  box.appendChild(mkLabel(`<span id="mic-${peer}">??</span> ${esc(peer)}`));
+  document.getElementById('videoGrid').appendChild(box);
+  updateGrid();
+}
+
+function attachStream(peer, stream) {
+  const box = document.getElementById('vid-' + peer);
+  if (!box) {
+    console.error('[STREAM] ✗ No box found for peer:', peer);
+    return;
+  }
+
+  console.log('[STREAM] ═══════════════════════════════════════════════════════');
+  console.log('[STREAM] 🎬 Attaching stream for', peer);
+  console.log('[STREAM]   - Stream id:', stream.id);
+  console.log('[STREAM]   - Stream active:', stream.active);
+  console.log('[STREAM]   - Total tracks:', stream.getTracks().length);
+
+  // Verificar si el stream tiene tracks de video
+  const videoTracks = stream.getVideoTracks();
+  const audioTracks = stream.getAudioTracks();
+  const hasVideo = videoTracks.length > 0 && videoTracks.some(t => t.readyState === 'live');
+  const hasAudio = audioTracks.length > 0 && audioTracks.some(t => t.readyState === 'live');
+
+  console.log('[STREAM]   - Video tracks:', videoTracks.length);
+  videoTracks.forEach((t, i) => {
+    console.log(`[STREAM]     ${i+1}. id=${t.id}, enabled=${t.enabled}, readyState=${t.readyState}, muted=${t.muted}`);
+  });
+
+  console.log('[STREAM]   - Audio tracks:', audioTracks.length);
+  audioTracks.forEach((t, i) => {
+    console.log(`[STREAM]     ${i+1}. id=${t.id}, enabled=${t.enabled}, readyState=${t.readyState}, muted=${t.muted}`);
+  });
+
+  if (hasVideo) {
+    console.log('[STREAM] ✓ Has video, creating/updating video element...');
+    box.querySelector('.no-cam')?.remove();
+    let v = box.querySelector('video');
+    if (!v) {
+      console.log('[STREAM] Creating new video element');
+      v = mkVid(false);
+      box.insertBefore(v, box.querySelector('.vlabel'));
+    } else {
+      console.log('[STREAM] Reusing existing video element');
+    }
+
+    // CRÍTICO: Asignar el stream directamente
+    v.srcObject = stream;
+    console.log('[STREAM] ✓ Stream assigned to video element');
+
+    // Asegurar que el video se reproduce
+    v.onloadedmetadata = () => {
+      console.log('[STREAM] ✓ Video metadata loaded for', peer);
+      console.log('[STREAM]   - Video dimensions:', v.videoWidth, 'x', v.videoHeight);
+      console.log('[STREAM]   - Duration:', v.duration);
+
+      // Intentar reproducir automáticamente
+      const playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          console.log('[STREAM] ✓ Video playing for', peer);
+          box.classList.add('connected');
+        }).catch(e => {
+          console.error('[STREAM] ✗ Autoplay failed for', peer, ':', e.message);
+          // Crear botón de reproducción manual
+          const playBtn = document.createElement('button');
+          playBtn.textContent = '▶️ Reproducir';
+          playBtn.className = 'btn btn-primary btn-sm';
+          playBtn.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10';
+          playBtn.onclick = () => {
+            v.play().then(() => {
+              console.log('[STREAM] ✓ Video playing after user interaction');
+              playBtn.remove();
+              box.classList.add('connected');
+            }).catch(e2 => {
+              console.error('[STREAM] ✗ Still failed:', e2);
+            });
+          };
+          box.appendChild(playBtn);
+        });
+      }
+    };
+
+    v.onerror = (e) => {
+      console.error('[STREAM] ✗ Video error for', peer, ':', e);
+    };
+
+    v.onplay = () => {
+      console.log('[STREAM] ▶️ Video onplay event for', peer);
+    };
+
+    v.onpause = () => {
+      console.log('[STREAM] ⏸️ Video onpause event for', peer);
+    };
+
+  } else if (hasAudio) {
+    console.log('[STREAM] 🔊 Only audio available (no video)');
+    // Solo audio, mantener el avatar pero actualizar estado
+    const noCam = box.querySelector('.no-cam');
+    if (noCam) {
+      const status = noCam.querySelector('.conn-status');
+      if (status) status.textContent = 'Solo audio';
+    }
+    box.classList.add('connected');
+  } else {
+    console.warn('[STREAM] ⚠️ No active video or audio tracks');
+  }
+
+  console.log('[STREAM] ═══════════════════════════════════════════════════════');
+  console.log('[STREAM] ✓ Stream attachment complete for', peer);
+}
+
+function removePeerBox(peer) {
+  document.getElementById('vid-' + peer)?.remove();
+  updateGrid();
+}
+
+function updateGrid() {
+  const grid = document.getElementById('videoGrid');
+  const n = grid.children.length;
+
+  // Determinar clase de grid
+  let gridClass = 'video-grid ';
+  if (n <= 1) gridClass += 'g1';
+  else if (n === 2) gridClass += 'g2';
+  else if (n === 3) gridClass += 'g3';
+  else if (n === 4) gridClass += 'g4';
+  else gridClass += 'gn';
+
+  // En m�vil con m�ltiples participantes, activar modo PIP
+  const isMobile = window.innerWidth <= 700;
+  if (isMobile && n > 1) {
+    gridClass += ' pip-mode';
+  }
+
+  grid.className = gridClass;
+  console.log('[GRID] Updated:', n, 'participants, class:', gridClass);
+}
+
+function mkBox(id, cls) {
+  const d = document.createElement('div');
+  d.className = 'video-box ' + cls; d.id = id; return d;
+}
+function mkVid(muted) {
+  const v = document.createElement('video');
+  v.autoplay = true;
+  v.playsInline = true;
+  v.muted = muted;
+
+  // Atributos adicionales para compatibilidad
+  v.setAttribute('playsinline', '');
+  v.setAttribute('webkit-playsinline', '');
+
+  // Manejar errores de reproducci�n
+  v.onerror = (e) => {
+    console.error('[VIDEO] Error:', e);
+  };
+
+  return v;
+}
+function mkNoCam(name) {
+  const initials = name.substring(0,2).toUpperCase();
+  const d = document.createElement('div'); d.className = 'no-cam';
+  d.innerHTML = `<div class="avatar">${initials}</div><span style="font-weight:500;color:var(--text2)">${esc(name)}</span><span class="conn-status">Conectando...</span>`;
+  return d;
+}
+function mkLabel(html) {
+  const d = document.createElement('div'); d.className = 'vlabel'; d.innerHTML = html; return d;
+}
+
+// -- WEBRTC --------------------------------------------------------
+function makePeer(peer) {
+  if (peerConns[peer]) return peerConns[peer];
+  console.log('[PC] Creating for', peer);
+
+  const pc = new RTCPeerConnection({
+    iceServers,
+    iceTransportPolicy: 'all',
+    bundlePolicy: 'max-bundle',
+    rtcpMuxPolicy: 'require',
+    iceCandidatePoolSize: 10,
+    sdpSemantics: 'unified-plan'
+  });
+  peerConns[peer] = pc;
+  iceQueues[peer] = [];
+
+  // CRÍTICO: Validar que el stream local esté listo antes de añadir tracks
+  if (localStream && localStream.getTracks().length > 0) {
+    console.log('[PC] Adding local tracks to peer', peer);
+    localStream.getTracks().forEach(t => {
+      try {
+        const sender = pc.addTrack(t, localStream);
+        console.log('[PC] ✓ Track', t.kind, '→', peer, '(enabled:', t.enabled, 'readyState:', t.readyState, ')');
+      } catch(e) {
+        console.error('[PC] ✗ Failed to add track:', e);
+      }
+    });
+  } else {
+    console.warn('[PC] ⚠️ No local stream or tracks available when creating PC for', peer);
+  }
+
+  // CRÍTICO: Usar el stream del evento directamente en lugar de construir uno manualmente
+  pc.ontrack = ev => {
+    console.log('[PC] ═══════════════════════════════════════════════════════');
+    console.log('[PC] 📥 ontrack EVENT from', peer);
+    console.log('[PC]   - Track kind:', ev.track.kind);
+    console.log('[PC]   - Track id:', ev.track.id);
+    console.log('[PC]   - Track label:', ev.track.label);
+    console.log('[PC]   - Track readyState:', ev.track.readyState);
+    console.log('[PC]   - Track enabled:', ev.track.enabled);
+    console.log('[PC]   - Track muted:', ev.track.muted);
+    console.log('[PC]   - Streams in event:', ev.streams.length);
+
+    if (ev.streams.length > 0) {
+      const stream = ev.streams[0];
+      console.log('[PC]   - Stream id:', stream.id);
+      console.log('[PC]   - Stream active:', stream.active);
+      console.log('[PC]   - Stream tracks:', stream.getTracks().length);
+      console.log('[PC] ═══════════════════════════════════════════════════════');
+
+      // SOLUCIÓN: Usar el stream del evento directamente
+      console.log('[PC] 🎬 Attaching stream from event for', peer);
+      attachStream(peer, stream);
+
+      // Monitorear el estado del track
+      ev.track.onended = () => {
+        console.log('[PC] 🔴 Track ended for', peer, ev.track.kind);
+      };
+
+      ev.track.onmute = () => {
+        console.log('[PC] 🔇 Track muted for', peer, ev.track.kind);
+      };
+
+      ev.track.onunmute = () => {
+        console.log('[PC] 🔊 Track unmuted for', peer, ev.track.kind);
+      };
+    } else {
+      console.warn('[PC] ⚠️ No streams in ontrack event for', peer);
+      console.log('[PC] ═══════════════════════════════════════════════════════');
+    }
+  };
+
+  pc.onicecandidate = ev => {
+    if (ev.candidate) {
+      console.log('[ICE] Sending candidate to', peer, ':', ev.candidate.type);
+      send({ action:'ice', to:peer, candidate:ev.candidate });
+    } else {
+      console.log('[ICE] All candidates sent to', peer);
+    }
+  };
+
+  pc.onicegatheringstatechange = () => {
+    console.log('[ICE] Gathering state for', peer, ':', pc.iceGatheringState);
+  };
+
+  pc.oniceconnectionstatechange = () => {
+    console.log('[ICE]', peer, pc.iceConnectionState);
+    const st = document.querySelector(`#vid-${peer} .conn-status`);
+    if (st) st.textContent = pc.iceConnectionState;
+
+    if (pc.iceConnectionState === 'failed') {
+      console.warn('[ICE] Connection failed, attempting restart for', peer);
+      setTimeout(() => {
+        if (pc.iceConnectionState === 'failed') {
+          pc.restartIce();
+        }
+      }, 1000);
+    }
+
+    if (pc.iceConnectionState === 'disconnected') {
+      console.warn('[ICE] Disconnected from', peer);
+      // Esperar un poco antes de cerrar, puede reconectarse
+      setTimeout(() => {
+        if (pc.iceConnectionState === 'disconnected') {
+          console.warn('[ICE] Still disconnected, closing peer', peer);
+          closePeer(peer);
+        }
+      }, 5000);
+    }
+  };
+
+  pc.onconnectionstatechange = () => {
+    console.log('[PC]', peer, pc.connectionState);
+    const st = document.querySelector(`#vid-${peer} .conn-status`);
+    if (st) st.textContent = pc.connectionState;
+
+    if (pc.connectionState === 'connected') {
+      document.getElementById('vid-' + peer)?.classList.add('connected');
+      toast(`? Conectado con ${peer}`, 2000);
+    }
+
+    if (pc.connectionState === 'failed') {
+      console.error('[PC] Connection failed for', peer);
+      toast(`? Fall� la conexi�n con ${peer}`, 3000);
+      closePeer(peer);
+    }
+
+    if (pc.connectionState === 'disconnected') {
+      console.warn('[PC] Disconnected from', peer);
+    }
+  };
+
+  pc.onnegotiationneeded = async () => {
+    console.log('[PC] Negotiation needed for', peer);
+  };
+
+  return pc;
+}
+
+async function createOffer(peer) {
+  addPeerBox(peer);
+  const pc = makePeer(peer);
+  try {
+    const offer = await pc.createOffer({
+      offerToReceiveAudio: true,
+      offerToReceiveVideo: true,
+      voiceActivityDetection: true
+    });
+    await pc.setLocalDescription(offer);
+    console.log('[PC] Offer created and set for', peer);
+    console.log('[PC] Local description type:', pc.localDescription.type);
+    send({ action:'offer', to:peer, sdp:offer.sdp });
+  } catch(e) {
+    console.error('[PC] createOffer failed for', peer, ':', e);
+    toast(`? Error al crear oferta para ${peer}`, 3000);
+  }
+}
+
+async function handleOffer(peer, sdp) {
+  addPeerBox(peer);
+  const pc = makePeer(peer);
+  try {
+    console.log('[PC] Setting remote offer from', peer);
+    await pc.setRemoteDescription({ type:'offer', sdp });
+    console.log('[PC] Remote description set, flushing ICE candidates');
+    await flushIce(peer, pc);
+
+    const answer = await pc.createAnswer();
+    await pc.setLocalDescription(answer);
+    console.log('[PC] Answer created and set for', peer);
+    console.log('[PC] Local description type:', pc.localDescription.type);
+    send({ action:'answer', to:peer, sdp:answer.sdp });
+  } catch(e) {
+    console.error('[PC] handleOffer failed for', peer, ':', e);
+    toast(`? Error al procesar oferta de ${peer}`, 3000);
+  }
+}
+
+async function handleAnswer(peer, sdp) {
+  const pc = peerConns[peer];
+  if (!pc) {
+    console.warn('[PC] No peer connection for answer from', peer);
+    return;
+  }
+
+  if (pc.signalingState === 'stable') {
+    console.warn('[PC] Already stable, ignoring answer from', peer);
+    return;
+  }
+
+  try {
+    console.log('[PC] Setting remote answer from', peer);
+    await pc.setRemoteDescription({ type:'answer', sdp });
+    console.log('[PC] Remote answer set, flushing ICE candidates');
+    await flushIce(peer, pc);
+  } catch(e) {
+    console.error('[PC] handleAnswer failed for', peer, ':', e);
+    toast(`? Error al procesar respuesta de ${peer}`, 3000);
+  }
+}
+
+async function handleIce(peer, candidate) {
+  if (!candidate) {
+    console.log('[ICE] Received end-of-candidates from', peer);
+    return;
+  }
+
+  const pc = peerConns[peer];
+  if (!pc) {
+    console.warn('[ICE] No peer connection for candidate from', peer);
+    return;
+  }
+
+  // Si no tenemos remote description, encolar el candidato
+  if (!pc.remoteDescription?.type) {
+    console.log('[ICE] Queueing candidate from', peer, '(no remote description yet)');
+    iceQueues[peer] = iceQueues[peer] || [];
+    iceQueues[peer].push(candidate);
+    return;
+  }
+
+  // Agregar el candidato
+  try {
+    await pc.addIceCandidate(new RTCIceCandidate(candidate));
+    console.log('[ICE] Added candidate from', peer, ':', candidate.type || 'unknown');
+  }
+  catch(e) {
+    console.warn('[ICE] Failed to add candidate from', peer, ':', e.message);
+  }
+}
+
+async function flushIce(peer, pc) {
+  const q = iceQueues[peer] || [];
+  if (q.length === 0) {
+    console.log('[ICE] No queued candidates for', peer);
+    return;
+  }
+
+  console.log('[ICE] Flushing', q.length, 'queued candidates for', peer);
+  iceQueues[peer] = [];
+
+  for (const c of q) {
+    try {
+      await pc.addIceCandidate(new RTCIceCandidate(c));
+      console.log('[ICE] Flushed candidate for', peer);
+    }
+    catch(e) {
+      console.warn('[ICE] Failed to flush candidate for', peer, ':', e.message);
+    }
+  }
+
+  console.log('[ICE] Finished flushing candidates for', peer);
+}
+
+function closePeer(peer) {
+  console.log('[PC] Closing peer connection for', peer);
+  try {
+    const pc = peerConns[peer];
+    if (pc) {
+      // Detener todos los senders
+      pc.getSenders().forEach(sender => {
+        try {
+          if (sender.track) sender.track.stop();
+        } catch(e) {}
+      });
+
+      // Cerrar la conexi�n
+      pc.close();
+    }
+  } catch(e) {
+    console.warn('[PC] Error closing peer', peer, ':', e.message);
+  }
+
+  delete peerConns[peer];
+  delete iceQueues[peer];
+  removePeerBox(peer);
+  console.log('[PC] Peer', peer, 'closed and cleaned up');
+}
+
+// -- MIC / CAM -----------------------------------------------------
+function toggleMic() {
+  if (!localStream) return;
+  micOn = !micOn;
+  localStream.getAudioTracks().forEach(t => t.enabled = micOn);
+  const btn = document.getElementById('micBtn');
+  btn.textContent = micOn ? '??' : '??';
+  btn.className = 'ctrl-btn ' + (micOn ? 'on' : 'off');
+  const lmic = document.getElementById('lmic');
+  if (lmic) lmic.textContent = micOn ? '??' : '??';
+}
+
+function toggleCam() {
+  if (!localStream) return;
+  camOn = !camOn;
+  localStream.getVideoTracks().forEach(t => t.enabled = camOn);
+  const btn = document.getElementById('camBtn');
+  btn.textContent = camOn ? '??' : '??';
+  btn.className = 'ctrl-btn ' + (camOn ? 'on' : 'off');
+}
+
+// -- INVITE --------------------------------------------------------
+function openInvite() {
+  if (!currentRoom) return;
+  document.getElementById('inviteModal').style.display = 'flex';
+  const list = document.getElementById('inviteList');
+  const cands = allUsers.filter(u => u !== ME);
+  if (!cands.length) {
+    list.innerHTML = '<div class="empty-state">No hay otros usuarios disponibles.</div>';
+    return;
+  }
+  list.innerHTML = '';
+  cands.forEach(u => {
+    const on = onlineUsers.includes(u);
+    const d = document.createElement('div'); d.className = 'user-item';
+    d.innerHTML = `
+      <input type="checkbox" id="ci-${u}" value="${u}">
+      <div class="odot ${on?'on':''}"></div>
+      <label for="ci-${u}">${esc(u)}${on?' <span style="font-size:10px;color:var(--green)">? online</span>':''}</label>`;
+    list.appendChild(d);
+  });
+}
+function closeInvite() { document.getElementById('inviteModal').style.display = 'none'; }
+function sendInvites() {
+  const checked = [...document.querySelectorAll('#inviteList input:checked')].map(i=>i.value);
+  checked.forEach(u => send({ action:'room-invite', room:currentRoom, invite:u }));
+  closeInvite();
+  if (checked.length) toast('? Invitaci�n enviada a ' + checked.join(', '));
+}
+
+// -- SIDEBAR -------------------------------------------------------
+function toggleSB() { document.getElementById('sidebar').classList.toggle('open'); }
+function openSB()   { document.getElementById('sidebar').classList.add('open'); }
+function closeSB()  { document.getElementById('sidebar').classList.remove('open'); }
+
+// -- HELPERS -------------------------------------------------------
+function setDot(ok, msg) {
+  document.getElementById('wsDot').className = 'dot ' + (ok?'g':'r');
+  document.getElementById('wsStatus').textContent = msg;
+}
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function toast(msg, dur=3000) {
+  const t = document.createElement('div');
+  t.style.cssText = `
+    position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+    background:var(--bg3);color:var(--text);
+    padding:10px 20px;border-radius:20px;font-size:13px;font-weight:500;
+    z-index:999;pointer-events:none;border:1px solid var(--border2);
+    box-shadow:0 4px 20px rgba(0,0,0,.4);
+  `;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(), dur);
+}
+async function apiFetch(url, opts={}) {
+  const r = await fetch(url, {
+    ...opts,
+    headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/json', ...(opts.headers||{}) }
+  });
+  if (!r.ok) throw new Error(r.status);
+  return r.json();
+}
+function goBack() {
+  leaveRoom();
+  if (localStream) localStream.getTracks().forEach(t=>t.stop());
+  window.location.href = '/';
+}
+window.addEventListener('beforeunload', () => {
+  if (currentRoom) send({ action:'leave', room:currentRoom });
+  if (localStream) localStream.getTracks().forEach(t=>t.stop());
+});
+
+// Actualizar grid al redimensionar ventana (para modo PIP en m�vil)
+window.addEventListener('resize', () => {
+  if (currentRoom) updateGrid();
+});
+
+// -- DIAGN�STICO ---------------------------------------------------
+// Funci�n de diagn�stico para depurar problemas de video
+// Llamar desde la consola: window.videoDiagnostic()
+window.videoDiagnostic = function() {
+  console.log('-------------------------------------------------------');
+  console.log('VIDEO DIAGNOSTIC REPORT');
+  console.log('-------------------------------------------------------');
+
+  console.log('\n[1] BROWSER SUPPORT:');
+  console.log('  - getUserMedia:', !!navigator.mediaDevices?.getUserMedia);
+  console.log('  - RTCPeerConnection:', !!window.RTCPeerConnection);
+  console.log('  - WebSocket:', !!window.WebSocket);
+
+  console.log('\n[2] LOCAL STREAM:');
+  if (localStream) {
+    console.log('  - Active:', localStream.active);
+    console.log('  - Video tracks:', localStream.getVideoTracks().length);
+    console.log('  - Audio tracks:', localStream.getAudioTracks().length);
+    localStream.getTracks().forEach(t => {
+      console.log(`    - ${t.kind}: enabled=${t.enabled}, readyState=${t.readyState}, muted=${t.muted}`);
+    });
+  } else {
+    console.log('  - NO LOCAL STREAM');
+  }
+
+  console.log('\n[3] WEBSOCKET:');
+  if (ws) {
+    console.log('  - State:', ws.readyState, ['CONNECTING','OPEN','CLOSING','CLOSED'][ws.readyState]);
+    console.log('  - URL:', ws.url);
+  } else {
+    console.log('  - NO WEBSOCKET');
+  }
+
+  console.log('\n[4] CURRENT ROOM:');
+  console.log('  - Room:', currentRoom || 'NONE');
+  console.log('  - Title:', currentTitle || 'NONE');
+  console.log('  - Host:', currentHost || 'NONE');
+
+  console.log('\n[5] PEER CONNECTIONS:');
+  const peers = Object.keys(peerConns);
+  console.log('  - Total peers:', peers.length);
+  peers.forEach(peer => {
+    const pc = peerConns[peer];
+    console.log(`\n  [PEER: ${peer}]`);
+    console.log('    - Connection state:', pc.connectionState);
+    console.log('    - ICE connection state:', pc.iceConnectionState);
+    console.log('    - ICE gathering state:', pc.iceGatheringState);
+    console.log('    - Signaling state:', pc.signalingState);
+    console.log('    - Local description:', pc.localDescription?.type || 'NONE');
+    console.log('    - Remote description:', pc.remoteDescription?.type || 'NONE');
+    console.log('    - Queued ICE candidates:', iceQueues[peer]?.length || 0);
+
+    const senders = pc.getSenders();
+    console.log('    - Senders:', senders.length);
+    senders.forEach(s => {
+      if (s.track) {
+        console.log(`      - ${s.track.kind}: enabled=${s.track.enabled}, readyState=${s.track.readyState}`);
+      }
+    });
+
+    const receivers = pc.getReceivers();
+    console.log('    - Receivers:', receivers.length);
+    receivers.forEach(r => {
+      if (r.track) {
+        console.log(`      - ${r.track.kind}: enabled=${r.track.enabled}, readyState=${r.track.readyState}`);
+      }
+    });
+  });
+
+  console.log('\n[6] ICE SERVERS:');
+  console.log('  - Total:', iceServers.length);
+  iceServers.forEach((s, i) => {
+    console.log(`    ${i+1}. ${s.urls}`, s.username ? `(user: ${s.username})` : '');
+  });
+
+  console.log('\n[7] VIDEO BOXES:');
+  const boxes = document.querySelectorAll('.video-box');
+  console.log('  - Total boxes:', boxes.length);
+  boxes.forEach(box => {
+    const id = box.id;
+    const hasVideo = !!box.querySelector('video');
+    const hasNoCam = !!box.querySelector('.no-cam');
+    const isConnected = box.classList.contains('connected');
+    const video = box.querySelector('video');
+    console.log(`    - ${id}:`);
+    console.log(`      - Has video element: ${hasVideo}`);
+    console.log(`      - Has no-cam placeholder: ${hasNoCam}`);
+    console.log(`      - Is connected: ${isConnected}`);
+    if (video) {
+      console.log(`      - Video srcObject: ${!!video.srcObject}`);
+      console.log(`      - Video paused: ${video.paused}`);
+      console.log(`      - Video readyState: ${video.readyState}`);
+      console.log(`      - Video width: ${video.videoWidth}x${video.videoHeight}`);
+      if (video.srcObject) {
+        const stream = video.srcObject;
+        console.log(`      - Stream id: ${stream.id}`);
+        console.log(`      - Stream active: ${stream.active}`);
+        console.log(`      - Stream tracks: ${stream.getTracks().length}`);
+        stream.getTracks().forEach(t => {
+          console.log(`        - ${t.kind}: enabled=${t.enabled}, readyState=${t.readyState}, muted=${t.muted}`);
+        });
+      }
+    }
+  });
+
+  console.log('\n[8] WINDOW INFO:');
+  console.log('  - Width:', window.innerWidth);
+  console.log('  - Height:', window.innerHeight);
+  console.log('  - Is mobile:', window.innerWidth <= 700);
+  console.log('  - User agent:', navigator.userAgent);
+
+  console.log('\n-------------------------------------------------------');
+  console.log('END OF DIAGNOSTIC REPORT');
+  console.log('-------------------------------------------------------\n');
+
+  return {
+    localStream,
+    ws,
+    currentRoom,
+    peerConns,
+    iceQueues,
+    iceServers
+  };
+};
+
+console.log('%c[VIDEO] Diagn�stico disponible: window.videoDiagnostic()', 'color: #4caf7d; font-weight: bold;');
+
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

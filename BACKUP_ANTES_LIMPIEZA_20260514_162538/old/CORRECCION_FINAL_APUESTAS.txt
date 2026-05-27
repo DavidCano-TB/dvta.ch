@@ -1,0 +1,52 @@
+============================================
+ CORRECCION DEFINITIVA - SISTEMA APUESTAS
+============================================
+
+PROBLEMA IDENTIFICADO:
+----------------------
+Había una llave de cierre extra "}" en la función loadData() 
+que causaba que la función render() quedara fuera de scope.
+Esto impedía que:
+- Los botones se quedaran marcados al hacer clic
+- El botón de apostar se desgrisara
+- La página cargara correctamente
+
+SOLUCION APLICADA:
+------------------
+1. Eliminada llave extra en template_porra.html (línea 351)
+2. Regeneradas 3 páginas HTML con el código corregido
+3. Servidor reiniciado
+
+ARCHIVOS CORREGIDOS:
+--------------------
+✓ game_pages/apuestas/template_porra.html
+✓ game_pages/apuestas/porras/porra_1.html
+✓ game_pages/apuestas/porras/porra_2.html
+✓ game_pages/apuestas/porras/porra_3.html
+
+FUNCIONALIDAD VERIFICADA:
+--------------------------
+✓ Función selectOption() correcta
+✓ Función render() correcta
+✓ CSS .optCard.selected presente
+✓ Atributo onclick en tarjetas
+✓ Servidor funcionando (puerto 8000)
+
+FLUJO COMPLETO:
+---------------
+1. Usuario hace clic en opción
+2. selectOption(valor) se ejecuta
+3. Se elimina clase 'selected' de todas las tarjetas
+4. Se añade clase 'selected' a la tarjeta clicada
+5. Se habilita botón de apostar (disabled=false)
+6. Usuario introduce cantidad
+7. Usuario hace clic en "Apostar Ahora"
+8. Se envía petición POST a /api/porras/apostar
+
+IMPORTANTE:
+-----------
+Recarga la página en el navegador con Ctrl+F5
+para ver los cambios aplicados.
+
+Estado: ✅ COMPLETADO
+Fecha: 2026-05-02 20:53

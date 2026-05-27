@@ -1,0 +1,25 @@
+# ═══════════════════════════════════════════════════════════════════════════
+# CONFIGURACIÓN DE NGROK PARA DVDCOIN BANK
+# ═══════════════════════════════════════════════════════════════════════════
+#
+# ⚠️  IMPORTANTE: Este archivo es la ÚNICA FUENTE DE VERDAD
+#
+# - Solo se modifica MANUALMENTE
+# - No hay scripts automáticos que lo cambien
+# - Todos los sistemas leen de aquí
+#
+# FORMATO:
+#   NGROK_TOKEN=tu_token_aqui
+#   NGROK_DOMAIN=premium-size-unreached.ngrok-free.dev
+#
+# NOTAS:
+#   - El dominio NO debe incluir https:// ni barras finales
+#   - Ejemplo correcto: premium-size-unreached.ngrok-free.dev
+#   - Ejemplo incorrecto: https://premium-size-unreached.ngrok-free.dev/
+#
+# ═══════════════════════════════════════════════════════════════════════════
+
+NGROK_TOKEN=3DiuvphN44RTtzn0RiCj6WJa7dD_6bTjNzcsM6sTY38oP3QmU
+NGROK_DOMAIN=premium-size-unreached.ngrok-free.dev
+
+

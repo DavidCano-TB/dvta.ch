@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>📖 Cuentos — DVDcoin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#B8922E;
+  --bg:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#10101E;
+  --text:#EAE6D8;--text2:#B8B0A0;--text3:#6A6458;
+  --border:rgba(212,168,67,.12);--border2:rgba(212,168,67,.25);
+  --glass:rgba(255,255,255,.04);--green:#38B87A;--red:#C84B4B;
+  --r:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh}
+
+/* ── NAV BAR (same as main app) ── */
+#cuentosNav{
+  position:sticky;top:0;z-index:200;
+  background:rgba(4,4,10,.96);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:4px;padding:0 12px;
+  overflow-x:auto;scrollbar-width:none;min-height:44px;
+}
+#cuentosNav::-webkit-scrollbar{display:none}
+.cNavBtn{
+  background:none;border:none;border-bottom:2px solid transparent;
+  padding:12px 10px;font-family:'DM Mono',monospace;font-size:.68rem;
+  color:var(--text2);cursor:pointer;white-space:nowrap;transition:all .15s;
+  text-decoration:none;display:inline-flex;align-items:center;gap:4px;
+}
+.cNavBtn:hover,.cNavBtn.on{color:var(--text);border-bottom-color:var(--gold)}
+.cNavLogo{font-family:'Playfair Display',serif;color:var(--gold2);font-size:.9rem;
+  font-weight:700;padding:0 10px 0 4px;white-space:nowrap;text-decoration:none}
+
+/* ── Page content ── */
+.wrap{max-width:680px;margin:0 auto;padding:16px 14px 80px}
+.secTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:4px}
+.secSub{font-size:.65rem;color:var(--text3);margin-bottom:16px}
+.cuento-card{
+  background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;
+  transition:border-color .15s;
+}
+.cuento-card:hover{border-color:var(--border2)}
+.cIcon{font-size:1.4rem;flex-shrink:0}
+.cInfo{flex:1;min-width:0}
+.cTitle{font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cMeta{font-size:.58rem;color:var(--text3);margin-top:3px}
+.btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;
+  border:1px solid var(--border2);background:none;color:var(--gold2);font-family:'DM Mono',monospace;
+  font-size:.7rem;cursor:pointer;text-decoration:none;transition:all .15s}
+.btn:hover{background:rgba(212,168,67,.1)}
+.empty{text-align:center;padding:40px;color:var(--text3);font-size:.75rem}
+.loading{text-align:center;padding:30px;color:var(--text3);font-size:.7rem}
+
+/* ── Bottom mobile nav ── */
+#cuentosMobileNav{
+  display:none;position:fixed;bottom:0;left:0;right:0;
+  background:rgba(4,4,10,.98);border-top:1px solid var(--border);
+  padding:6px 0;z-index:100;
+}
+@media(max-width:600px){
+  #cuentosMobileNav{display:flex;justify-content:space-around}
+  .cMNavBtn{background:none;border:none;color:var(--text2);font-size:.55rem;
+    display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;padding:4px 6px;min-width:50px}
+  .cMNavBtn .icon{font-size:1.1rem}
+}
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+<!-- ── NAV BAR ── -->
+<nav id="cuentosNav">
+  <a class="cNavLogo" href="/">◈ DVDcoin</a>
+  <button class="cNavBtn" onclick="goTo('dash')">⌂ Inicio</button>
+  <button class="cNavBtn" onclick="goTo('tx')">⇄ Enviar</button>
+  <button class="cNavBtn" id="cNavHist" onclick="goTo('hist')">≡ Historial</button>
+  <button class="cNavBtn" onclick="goTo('gallery')">◫ Galería</button>
+  <button class="cNavBtn on" onclick="void 0">📖 Cuentos</button>
+  <button class="cNavBtn" onclick="goTo('social')">💬 Social</button>
+  <button class="cNavBtn" id="cNavOpo" style="display:none" onclick="goTo('opo')">📝 OPO</button>
+  <button class="cNavBtn" id="cNavStats" style="display:none" onclick="window.location.href='/stats'">📊 Stats</button>
+  <button class="cNavBtn" id="cNavAdm" style="display:none" onclick="goTo('adm')">⚙ Admin</button>
+</nav>
+
+<!-- ── CONTENT ── -->
+<div class="wrap">
+  <div class="secTitle">📖 Cuentos</div>
+  <div class="secSub">Biblioteca de historias de la comunidad</div>
+  <div id="cuentosList"><div class="loading">Cargando…</div></div>
+</div>
+
+<!-- ── Mobile bottom nav ── -->
+<nav id="cuentosMobileNav">
+  <button class="cMNavBtn" onclick="goTo('dash')"><span class="icon">⌂</span>Inicio</button>
+  <button class="cMNavBtn" onclick="goTo('tx')"><span class="icon">⇄</span>Enviar</button>
+  <button class="cMNavBtn" onclick="goTo('social')"><span class="icon">💬</span>Social</button>
+  <button class="cMNavBtn"><span class="icon">📖</span>Cuentos</button>
+</nav>
+
+<script>
+'use strict';
+const token = localStorage.getItem('dvd_token');
+
+function goTo(view) {
+  // Navigate to main app and switch to the correct view
+  window.location.href = '/#' + view;
+}
+
+async function api(method, path) {
+  const r = await fetch(path, {
+    method,
+    headers: {'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1'}
+  });
+  if (!r.ok) { const d = await r.json().catch(()=>{}); throw new Error(d?.detail || 'Error ' + r.status); }
+  return r.json();
+}
+
+function esc(s) {
+  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function load() {
+  if (!token) { window.location.href = '/'; return; }
+
+  // Check user role to show/hide admin nav items
+  try {
+    const me = await api('GET', '/api/me');
+    if (me.is_admin) { document.getElementById('cNavAdm').style.display=''; }
+    if (me.is_superadmin) { document.getElementById('cNavStats').style.display=''; }
+    // Check OPO access
+    api('GET', '/api/opo/my-access').then(r => {
+      if (r.is_opo_user) document.getElementById('cNavOpo').style.display='';
+    }).catch(()=>{});
+    if (!me.is_admin) {
+      document.getElementById('cNavHist').style.display = '';
+    }
+  } catch(e) { window.location.href = '/'; return; }
+
+  try {
+    const items = await api('GET', '/api/cuentos');
+    const el = document.getElementById('cuentosList');
+    if (!items.length) {
+      el.innerHTML = '<div class="empty">Sin cuentos disponibles en este momento.</div>';
+      return;
+    }
+    el.innerHTML = items.map(c => {
+      const masked = c.masked || false;
+      const name = c.filename || c.name || '';
+      const label = (c.label || name).replace(/_/g,' ').replace(/\.docx$/i,'');
+      if (masked) {
+        return `<div class="cuento-card" style="opacity:.4">
+          <span class="cIcon">📖</span>
+          <div class="cInfo"><div class="cTitle">${esc(label)}</div><div class="cMeta">No disponible</div></div>
+        </div>`;
+      }
+      return `<div class="cuento-card">
+        <span class="cIcon">📖</span>
+        <div class="cInfo">
+          <div class="cTitle">${esc(label)}</div>
+          ${c.pages ? `<div class="cMeta">${c.pages} páginas</div>` : ''}
+        </div>
+        <a href="/cuento/${encodeURIComponent(name)}" class="btn">Leer →</a>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    document.getElementById('cuentosList').innerHTML =
+      `<div class="empty">Error al cargar: ${esc(e.message)}</div>`;
+  }
+}
+
+// Handle #view hash from main app navigation
+window.addEventListener('load', () => {
+  const hash = location.hash.replace('#','');
+  if (hash && hash !== 'cuentos') {
+    // Redirect back to main app with the requested view
+    window.location.href = '/' + '#' + hash;
+    return;
+  }
+  load();
+});
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

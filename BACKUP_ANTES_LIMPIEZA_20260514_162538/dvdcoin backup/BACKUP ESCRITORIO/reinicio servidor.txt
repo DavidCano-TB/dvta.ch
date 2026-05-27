@@ -1,0 +1,11 @@
+PASO 4 — Reiniciar el servidor
+cmdC:\DvDcoin\kill.bat
+Luego:
+cmdcd C:\DvDcoin
+venv\Scripts\uvicorn.exe main:app --host 0.0.0.0 --port 8000
+Si aparece Application startup complete. sin errores → funcionando.
+
+PASO 5 — Verificar
+cmdcurl http://localhost:8000/api/health
+Debe responder {"status":"ok"...}.
+Dime qué devuelve el dir C:\DvDcoin\main.py para confirmar el tamaño del archivo.

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Videollamada - DVDCoin</title>
+    <link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .test-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #4ade80;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .test-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .test-step .emoji {
+            font-size: 1.5rem;
+        }
+
+        .test-step ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .test-step li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .checklist {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .checklist h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .check-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .check-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .check-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            margin: 10px 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .result {
+            text-align: center;
+            padding: 30px;
+            margin-top: 20px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .result.success {
+            background: rgba(74, 222, 128, 0.2);
+            border: 2px solid #4ade80;
+        }
+
+        .result.failure {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid #ef4444;
+        }
+
+        .diagnostic-output {
+            background: #1a1a2e;
+            color: #0f0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .warning {
+            background: rgba(251, 191, 36, 0.2);
+            border-left: 4px solid #fbbf24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .info {
+            background: rgba(59, 130, 246, 0.2);
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🎥 Test de Videollamada</h1>
+            <p>Verifica que las videollamadas WebRTC funcionan correctamente</p>
+        </div>
+
+        <div class="card">
+            <h2 style="margin-bottom: 20px;">📋 Instrucciones de Prueba</h2>
+
+            <div class="test-step">
+                <h3><span class="emoji">1️⃣</span> Preparación</h3>
+                <ul>
+                    <li>Abre <strong>dos navegadores diferentes</strong> (o uno normal y uno en modo incógnito)</li>
+                    <li>Asegúrate de tener dos usuarios diferentes para hacer login</li>
+                    <li>Verifica que ambos navegadores tienen permisos de cámara y micrófono</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">2️⃣</span> Usuario A (Navegador 1)</h3>
+                <ul>
+                    <li>Haz login con el primer usuario</li>
+                    <li>Ve a la sección <strong>"Social"</strong></li>
+                    <li>Haz click en <strong>"Crear sala"</strong></li>
+                    <li>Nombra la sala: <code>test-video</code></li>
+                    <li>✅ Deberías ver tu propio video</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">3️⃣</span> Usuario B (Navegador 2)</h3>
+                <ul>
+                    <li>Haz login con el segundo usuario</li>
+                    <li>Ve a la sección <strong>"Social"</strong></li>
+                    <li>Busca la sala <code>test-video</code> en la lista</li>
+                    <li>Haz click en <strong>"▶ Unirse"</strong></li>
+                    <li>✅ Deberías ver tu propio video</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">4️⃣</span> Verificación</h3>
+                <ul>
+                    <li>En el navegador del Usuario A: ¿Ves el video del Usuario B?</li>
+                    <li>En el navegador del Usuario B: ¿Ves el video del Usuario A?</li>
+                    <li>¿Ambos usuarios escuchan el audio del otro?</li>
+                    <li>¿Hay 2 tiles de video en cada pantalla?</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 style="margin-bottom: 20px;">✅ Checklist de Verificación</h2>
+
+            <div class="checklist">
+                <div class="check-item">
+                    <input type="checkbox" id="check1">
+                    <label for="check1">Usuario A ve su propio video</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Usuario B ve su propio video</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Usuario A ve el video de Usuario B</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Usuario B ve el video de Usuario A</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">Usuario A escucha el audio de Usuario B</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">Usuario B escucha el audio de Usuario A</label>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">No hay errores en la consola (F12)</label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button class="btn" onclick="checkResults()">📊 Evaluar Resultados</button>
+                <button class="btn btn-secondary" onclick="resetChecklist()">🔄 Reiniciar</button>
+            </div>
+
+            <div id="result"></div>
+        </div>
+
+        <div class="card">
+            <h2 style="margin-bottom: 20px;">🔬 Herramientas de Diagnóstico</h2>
+
+            <div class="info">
+                <strong>💡 Consejo:</strong> Si el video no funciona, usa estas herramientas para identificar el problema.
+            </div>
+
+            <div class="button-group">
+                <button class="btn btn-secondary" onclick="runDiagnostic()">🔍 Ejecutar Diagnóstico</button>
+                <button class="btn btn-secondary" onclick="showConsoleLogs()">📝 Ver Logs de Consola</button>
+                <button class="btn btn-secondary" onclick="checkPermissions()">🔐 Verificar Permisos</button>
+            </div>
+
+            <div id="diagnostic-output"></div>
+        </div>
+
+        <div class="card">
+            <h2 style="margin-bottom: 20px;">🐛 Solución de Problemas</h2>
+
+            <div class="warning">
+                <strong>⚠️ Si el video no funciona:</strong>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">🔍</span> Paso 1: Verificar Consola</h3>
+                <ul>
+                    <li>Presiona <code>F12</code> en ambos navegadores</li>
+                    <li>Ve a la pestaña "Console"</li>
+                    <li>Busca mensajes con ❌ (errores en rojo)</li>
+                    <li>Busca mensajes con ✅ (éxitos en verde)</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">🔬</span> Paso 2: Ejecutar Diagnóstico</h3>
+                <ul>
+                    <li>En la consola (F12), escribe: <code>_videoDiagnostic()</code></li>
+                    <li>Verifica que <code>connectionState: 'connected'</code></li>
+                    <li>Verifica que <code>remoteTracks</code> no está vacío</li>
+                    <li>Verifica que <code>WebSocket state: 1</code> (OPEN)</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">🔐</span> Paso 3: Verificar Permisos</h3>
+                <ul>
+                    <li>Click en el icono de candado 🔒 en la barra de direcciones</li>
+                    <li>Verifica que "Cámara" y "Micrófono" están permitidos</li>
+                    <li>Si están bloqueados, cambia a "Permitir" y recarga la página</li>
+                </ul>
+            </div>
+
+            <div class="test-step">
+                <h3><span class="emoji">🌐</span> Paso 4: Probar Otro Navegador</h3>
+                <ul>
+                    <li>Prueba en Chrome, Firefox o Edge</li>
+                    <li>Algunos navegadores tienen mejor soporte WebRTC</li>
+                    <li>Verifica soporte en: <a href="https://test.webrtc.org/" target="_blank" style="color: #4ade80;">test.webrtc.org</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" style="text-align: center;">
+            <h2 style="margin-bottom: 20px;">🚀 Enlaces Rápidos</h2>
+            <div class="button-group">
+                <a href="/" class="btn">🏠 Volver a la App</a>
+                <a href="/static/index.html#social" class="btn btn-secondary">💬 Ir a Social</a>
+                <button class="btn btn-danger" onclick="window.close()">❌ Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkResults() {
+            const checks = [
+                document.getElementById('check1').checked,
+                document.getElementById('check2').checked,
+                document.getElementById('check3').checked,
+                document.getElementById('check4').checked,
+                document.getElementById('check5').checked,
+                document.getElementById('check6').checked,
+                document.getElementById('check7').checked
+            ];
+
+            const total = checks.length;
+            const checked = checks.filter(c => c).length;
+            const percentage = (checked / total * 100).toFixed(0);
+
+            const resultDiv = document.getElementById('result');
+
+            if (checked === total) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
+                    <div>¡EXCELENTE! El video funciona perfectamente</div>
+                    <div style="font-size: 1rem; margin-top: 10px; opacity: 0.9;">
+                        Todos los criterios cumplidos (${checked}/${total})
+                    </div>
+                `;
+            } else if (checked >= total * 0.7) {
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 10px;">✅</div>
+                    <div>¡Bien! El video funciona mayormente</div>
+                    <div style="font-size: 1rem; margin-top: 10px; opacity: 0.9;">
+                        ${checked}/${total} criterios cumplidos (${percentage}%)
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 10px;">
+                        Revisa los items no marcados para mejorar
+                    </div>
+                `;
+            } else {
+                resultDiv.className = 'result failure';
+                resultDiv.innerHTML = `
+                    <div style="font-size: 3rem; margin-bottom: 10px;">❌</div>
+                    <div>El video NO funciona correctamente</div>
+                    <div style="font-size: 1rem; margin-top: 10px; opacity: 0.9;">
+                        Solo ${checked}/${total} criterios cumplidos (${percentage}%)
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 10px;">
+                        Usa las herramientas de diagnóstico abajo
+                    </div>
+                `;
+            }
+        }
+
+        function resetChecklist() {
+            for (let i = 1; i <= 7; i++) {
+                document.getElementById('check' + i).checked = false;
+            }
+            document.getElementById('result').innerHTML = '';
+        }
+
+        function runDiagnostic() {
+            const output = document.getElementById('diagnostic-output');
+            output.innerHTML = '<div style="color: #fbbf24;">⏳ Ejecutando diagnóstico...</div>';
+
+            setTimeout(() => {
+                const diagnosticCode = `
+// Copiar y pegar este código en la consola del navegador (F12)
+// en la página donde está la videollamada activa
+
+_videoDiagnostic()
+
+// Esto mostrará un reporte completo del estado del video
+// Busca estos indicadores:
+// ✅ connectionState: 'connected'
+// ✅ remoteTracks: ['video', 'audio']
+// ✅ WebSocket state: 1 (OPEN)
+// ❌ Si ves errores, cópialos para análisis
+                `.trim();
+
+                output.className = 'diagnostic-output';
+                output.innerHTML = `
+<strong style="color: #4ade80;">📋 INSTRUCCIONES:</strong>
+
+1. Ve a la ventana del navegador donde está la videollamada activa
+2. Presiona F12 para abrir la consola
+3. Copia y pega este código:
+
+<span style="color: #3b82f6;">_videoDiagnostic()</span>
+
+4. Presiona ENTER
+5. Revisa el reporte que aparece
+
+<strong style="color: #fbbf24;">🔍 QUÉ BUSCAR:</strong>
+
+✅ connectionState: 'connected'
+✅ remoteTracks: ['video', 'audio'] (no vacío)
+✅ WebSocket state: 1 (OPEN)
+✅ localTracks: ['video', 'audio']
+
+❌ Si ves 'failed' o 'disconnected' → Problema de conexión
+❌ Si remoteTracks está vacío → No se reciben tracks del otro usuario
+❌ Si WebSocket state no es 1 → Problema de conexión al servidor
+                `;
+            }, 500);
+        }
+
+        function showConsoleLogs() {
+            const output = document.getElementById('diagnostic-output');
+            output.className = 'diagnostic-output';
+            output.innerHTML = `
+<strong style="color: #4ade80;">📝 CÓMO VER LOS LOGS:</strong>
+
+1. Presiona F12 en el navegador
+2. Ve a la pestaña "Console"
+3. Busca estos mensajes:
+
+<strong style="color: #4ade80;">✅ MENSAJES BUENOS (verde):</strong>
+[RTC] ✅ Connected to &lt;username&gt;
+[RTC] ✅ Video playing for &lt;username&gt;
+[VIDEO] ✅ Local stream obtained
+
+<strong style="color: #ef4444;">❌ MENSAJES MALOS (rojo):</strong>
+[RTC] ❌ Connection failed
+[RTC] No local stream or tracks available
+[RTC] ❌ No peer connection found
+
+<strong style="color: #3b82f6;">📊 MENSAJES INFORMATIVOS:</strong>
+[VIDEO] 👤 peer-joined: &lt;username&gt;
+[VIDEO] 📨 webrtc-offer from: &lt;username&gt;
+[VIDEO] 📬 webrtc-answer from: &lt;username&gt;
+[VIDEO] 🧊 ICE candidate from: &lt;username&gt;
+
+<strong style="color: #fbbf24;">💡 CONSEJO:</strong>
+Si ves muchos mensajes ❌, copia los logs y revisa qué está fallando.
+            `;
+        }
+
+        function checkPermissions() {
+            const output = document.getElementById('diagnostic-output');
+            output.className = 'diagnostic-output';
+            output.innerHTML = '<div style="color: #fbbf24;">⏳ Verificando permisos...</div>';
+
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(stream => {
+                    stream.getTracks().forEach(track => track.stop());
+                    output.innerHTML = `
+<strong style="color: #4ade80;">✅ PERMISOS CONCEDIDOS</strong>
+
+Cámara: ✅ Permitida
+Micrófono: ✅ Permitido
+
+Los permisos están correctos. Si el video no funciona,
+el problema está en otro lugar.
+
+Prueba ejecutar el diagnóstico completo.
+                    `;
+                })
+                .catch(err => {
+                    output.innerHTML = `
+<strong style="color: #ef4444;">❌ PERMISOS DENEGADOS</strong>
+
+Error: ${err.name}
+Mensaje: ${err.message}
+
+<strong style="color: #fbbf24;">🔧 SOLUCIÓN:</strong>
+
+1. Click en el icono de candado 🔒 en la barra de direcciones
+2. Busca "Cámara" y "Micrófono"
+3. Cambia a "Permitir"
+4. Recarga la página (F5)
+5. Vuelve a intentar
+
+Si el problema persiste:
+- Ve a Configuración del navegador → Privacidad → Permisos
+- Asegúrate de que este sitio tiene permisos de cámara/micrófono
+                    `;
+                });
+        }
+    </script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

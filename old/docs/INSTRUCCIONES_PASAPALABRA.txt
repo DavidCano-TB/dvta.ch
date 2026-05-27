@@ -1,0 +1,108 @@
+═══════════════════════════════════════════════════════════
+  SISTEMA DE PREGUNTAS PASAPALABRA
+═══════════════════════════════════════════════════════════
+
+✓ ARCHIVO GENERADO EXITOSAMENTE
+
+Ubicación: static\pasapalabra\preguntas.json
+Total de preguntas: 1338 preguntas
+Distribución: ~50 preguntas por cada letra del abecedario español
+
+═══════════════════════════════════════════════════════════
+  CARACTERÍSTICAS
+═══════════════════════════════════════════════════════════
+
+✓ 27 letras del abecedario español (A-Z + Ñ)
+✓ Aproximadamente 50 preguntas por letra
+✓ Todas las preguntas son tipo "Empieza por..."
+✓ Dificultad media
+✓ Sistema de marcado de preguntas usadas
+✓ Selección aleatoria automática
+✓ No se repiten preguntas en la misma partida
+
+═══════════════════════════════════════════════════════════
+  ESTRUCTURA DEL ARCHIVO
+═══════════════════════════════════════════════════════════
+
+{
+  "A": [
+    {
+      "tipo": "empieza",
+      "definicion": "Empieza por A: Palabra relacionada con acelerar",
+      "respuesta": "ACELERAR",
+      "usada": false
+    },
+    ...
+  ],
+  "B": [ ... ],
+  ...
+  "Z": [ ... ]
+}
+
+═══════════════════════════════════════════════════════════
+  CÓMO FUNCIONA
+═══════════════════════════════════════════════════════════
+
+1. El sistema selecciona aleatoriamente una pregunta de las 50
+   disponibles para cada letra
+
+2. Marca la pregunta como "usada": true para no repetirla
+
+3. DVD o un admin valida las respuestas de los jugadores
+
+4. Cuando se agotan las preguntas de una letra, se pueden
+   regenerar ejecutando: GENERAR_PREGUNTAS_PASAPALABRA.bat
+
+═══════════════════════════════════════════════════════════
+  REGENERAR PREGUNTAS
+═══════════════════════════════════════════════════════════
+
+Si necesitas regenerar el archivo de preguntas:
+
+1. Ejecuta: GENERAR_PREGUNTAS_PASAPALABRA.bat
+   
+   O directamente:
+   
+2. python gen_preguntas.py
+
+Esto creará un nuevo archivo preguntas.json con todas las
+preguntas marcadas como "usada": false
+
+═══════════════════════════════════════════════════════════
+  PERSONALIZACIÓN
+═══════════════════════════════════════════════════════════
+
+Para añadir más preguntas o modificar las existentes:
+
+1. Edita el archivo: gen_preguntas.py
+
+2. Modifica el diccionario "banco" añadiendo palabras a cada letra
+
+3. Ejecuta el script para regenerar el archivo
+
+Ejemplo:
+  "A": ["ACELERAR", "APROXIMAR", ... "TU_NUEVA_PALABRA"]
+
+═══════════════════════════════════════════════════════════
+  CONTADOR DE PREGUNTAS RESTANTES
+═══════════════════════════════════════════════════════════
+
+Los administradores pueden ver en la pestaña "Admin Pasapalabra"
+un contador de preguntas restantes por letra.
+
+El sistema muestra:
+- Total de preguntas por letra
+- Preguntas usadas
+- Preguntas disponibles
+
+═══════════════════════════════════════════════════════════
+  NOTAS IMPORTANTES
+═══════════════════════════════════════════════════════════
+
+✓ Las preguntas se marcan como usadas automáticamente
+✓ El archivo se guarda después de cada partida
+✓ No se pierde el progreso al reiniciar el servidor
+✓ Las respuestas las valida DVD o un administrador
+✓ El sistema es compatible con el juego existente
+
+═══════════════════════════════════════════════════════════

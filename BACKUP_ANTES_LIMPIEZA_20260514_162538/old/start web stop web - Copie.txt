@@ -1,0 +1,3 @@
+net stop DVDcoinBank
+
+net start DVDcoinBank

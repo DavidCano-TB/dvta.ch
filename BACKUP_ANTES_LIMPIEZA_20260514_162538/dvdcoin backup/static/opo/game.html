@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OPO · DVDcoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
+  --noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;
+  --border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --green:#38B87A;--red:#C83060;--blue:#4878D8;
+  --r:10px;--rL:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px}
+
+/* ── Header ── */
+#hdr{position:sticky;top:0;z-index:200;background:var(--n3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;gap:12px}
+.hLeft{display:flex;align-items:center;gap:12px}
+.backBtn{background:none;border:1px solid var(--border);color:var(--text3);cursor:pointer;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.08em;padding:6px 10px;border-radius:var(--r);transition:all .18s;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.backBtn:hover{color:var(--gold2);border-color:var(--border2)}
+.hTitle{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase}
+.hSub{font-size:.5rem;color:var(--text3);letter-spacing:.2em;text-transform:uppercase}
+.connBadge{font-size:.6rem;padding:3px 10px;border-radius:20px;letter-spacing:.06em;border:1px solid var(--border)}
+.connBadge.ok{color:var(--green);border-color:rgba(56,184,122,.3)}
+.connBadge.err{color:var(--red);border-color:rgba(200,48,96,.3)}
+.badge{font-size:.6rem;color:var(--text3);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;padding:4px 10px}
+
+/* ── Screens ── */
+.screen{display:none;min-height:calc(100vh - 52px)}
+.screen.on{display:flex}
+.flex{flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.centerCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:32px;max-width:420px;width:100%;text-align:center}
+.bigIcon{font-size:3rem;margin-bottom:16px;opacity:.6}
+.cardTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text);margin-bottom:8px}
+.cardSub{font-size:.72rem;color:var(--text3);line-height:1.6;margin-bottom:16px}
+
+/* ── Game layout ── */
+#screen-game{flex-direction:column;padding:0}
+.gameWrap{max-width:820px;width:100%;margin:0 auto;padding:20px 20px 60px}
+
+/* ── Progress ── */
+.progressHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.blockLabel{font-size:.65rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+.blockNum{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--gold2)}
+.qProgress{display:flex;gap:4px;flex-wrap:wrap}
+.qDot{width:10px;height:10px;border-radius:50%;background:var(--border);border:1px solid var(--border2);flex-shrink:0;transition:all .2s}
+.qDot.current{background:var(--gold);border-color:var(--gold2);box-shadow:0 0 6px var(--gold)}
+.qDot.done{background:var(--n4)}
+
+/* ── Question card ── */
+.questionCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:24px;margin-bottom:16px;position:relative;overflow:hidden}
+.questionCard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,67,.25),transparent)}
+.qNum{font-size:.6rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+.qText{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--text);line-height:1.6;font-weight:400}
+
+/* ── Options ── */
+.options{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.optBtn{
+  background:none;border:1px solid var(--border);border-radius:var(--r);
+  padding:12px 16px;text-align:left;cursor:pointer;
+  font-family:'DM Mono',monospace;font-size:.8rem;color:var(--text);
+  transition:all .18s;display:flex;align-items:center;gap:12px;
+  width:100%;
+}
+.optBtn:hover:not(:disabled):not(.selected):not(.correct):not(.wrong){border-color:var(--border2);background:rgba(212,168,67,.04)}
+.optBtn.selected{border-color:var(--blue);background:rgba(72,120,216,.12);color:var(--text)}
+.optBtn.correct{border-color:var(--green);background:rgba(56,184,122,.15);color:var(--green)}
+.optBtn.wrong{border-color:var(--red);background:rgba(200,48,96,.12);color:var(--red)}
+.optBtn.correct-highlight{border-color:var(--green);background:rgba(56,184,122,.08);color:var(--green)}
+.optBtn:disabled{cursor:default}
+.optLetter{width:22px;height:22px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0}
+
+/* ── Controls (dvd only) ── */
+.dvdControls{background:var(--n4);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.dvdLabel{font-size:.6rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;flex-shrink:0}
+.btn{border:none;border-radius:22px;padding:7px 18px;font-family:'DM Mono',monospace;font-size:.68rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .18s;white-space:nowrap}
+.btnG{background:var(--green);color:#000}.btnG:hover{opacity:.85}
+.btnD{background:var(--red);color:#fff}.btnD:hover{opacity:.85}
+.btnO{background:rgba(212,168,67,.15);border:1px solid var(--border2);color:var(--gold2)}.btnO:hover{background:rgba(212,168,67,.25)}
+.btnN{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text2)}.btnN:hover{border-color:var(--border2);color:var(--text)}
+.btnSm{padding:5px 12px;font-size:.62rem}
+
+/* ── Scoreboard ── */
+.scoreboard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:20px;margin-bottom:16px}
+.scoreTitle{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gold2);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.scoreTitle::after{content:'';flex:1;height:1px;background:var(--border)}
+.scoreRows{display:flex;flex-direction:column;gap:6px}
+.scoreRow{display:grid;grid-template-columns:1fr auto auto auto;gap:12px;align-items:center;padding:8px 12px;background:var(--n4);border-radius:8px;border:1px solid var(--border)}
+.scoreUser{font-size:.78rem;color:var(--text);font-weight:500}
+.scoreCorrect{font-size:.72rem;color:var(--green);font-family:'DM Mono',monospace}
+.scoreWrong{font-size:.72rem;color:var(--red);font-family:'DM Mono',monospace}
+.scoreTotal{font-size:.65rem;color:var(--text3);font-family:'DM Mono',monospace}
+
+/* ── Reveal banner ── */
+.revealBanner{background:rgba(56,184,122,.1);border:1px solid rgba(56,184,122,.3);border-radius:var(--r);padding:12px 16px;margin-bottom:14px;font-size:.78rem;color:var(--green);display:none;align-items:center;gap:10px}
+.revealBanner.on{display:flex}
+.revealLetter{font-family:'Oswald',sans-serif;font-size:1.2rem;font-weight:700;color:var(--green)}
+
+/* ── Block result ── */
+#screen-block-result{flex-direction:column;align-items:center;padding:20px}
+.resultCard{background:var(--n3);border:1px solid var(--border2);border-radius:var(--rL);max-width:560px;width:100%;overflow:hidden}
+.resultHead{padding:24px;text-align:center;border-bottom:1px solid var(--border);background:var(--n2)}
+.resultTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:6px}
+.resultSub{font-size:.65rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase}
+.resultBody{padding:20px}
+
+/* ── Finished ── */
+#screen-finished{flex-direction:column;align-items:center;padding:20px}
+.finCard{background:var(--n3);border:1px solid var(--border2);border-radius:var(--rL);max-width:600px;width:100%;overflow:hidden;margin-bottom:20px}
+.finHead{background:linear-gradient(135deg,var(--n2),var(--n3));padding:32px;text-align:center;border-bottom:1px solid var(--border)}
+.finTitle{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold2);margin-bottom:8px}
+.finSub{font-size:.65rem;color:var(--text3);letter-spacing:.12em;text-transform:uppercase}
+
+/* ── Auth ── */
+#screen-auth{flex-direction:column;align-items:center;justify-content:center}
+.btnGold{background:var(--gold);color:#000;border:none;border-radius:24px;padding:10px 24px;font-family:'DM Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.08em;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .18s;margin-top:8px}
+.btnGold:hover{opacity:.85}
+
+/* ── Misc ── */
+.empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:.75rem}
+.spinner{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);border-top-color:var(--gold);animation:spin .7s linear infinite;margin:32px auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.goldenLine{height:1px;margin:18px 0;background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent)}
+@media(max-width:540px){.gameWrap{padding:14px 12px 60px}.qText{font-size:.95rem}.optBtn{font-size:.75rem}}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div id="hdr">
+  <div class="hLeft">
+    <a href="/" class="backBtn">← Banco</a>
+    <div>
+      <div class="hTitle">📝 OPO</div>
+      <div class="hSub">Simulacro de Oposición</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <span class="connBadge err" id="connBadge">Conectando…</span>
+    <span class="badge" id="userBadge">—</span>
+  </div>
+</div>
+
+<!-- Auth -->
+<div class="screen flex on" id="screen-auth">
+  <div class="centerCard">
+    <div class="bigIcon">🔒</div>
+    <div class="cardTitle">Acceso requerido</div>
+    <div class="cardSub">Necesitas estar conectado a DVDcoin Bank.</div>
+    <a href="/" class="btnGold">← Ir al banco</a>
+  </div>
+</div>
+
+<!-- Disabled -->
+<div class="screen flex" id="screen-disabled">
+  <div class="centerCard">
+    <div class="bigIcon">📋</div>
+    <div class="cardTitle">OPO</div>
+    <div class="cardSub">El simulacro de oposición está desactivado.<br>dvd lo activará desde el panel de administración.</div>
+    <a href="/" class="backBtn" style="display:inline-flex;margin-top:8px">← Volver al banco</a>
+  </div>
+</div>
+
+<!-- Waiting (game not started) -->
+<div class="screen flex" id="screen-waiting">
+  <div class="centerCard">
+    <div class="bigIcon">⏳</div>
+    <div class="cardTitle">Sala de espera</div>
+    <div class="cardSub">Esperando a que dvd inicie el simulacro.</div>
+    <div id="waitConnected" style="margin-top:12px;font-size:.65rem;color:var(--text3)"></div>
+    <!-- dvd controls -->
+    <div id="dvdStart" style="display:none;margin-top:16px;display:none">
+      <div class="goldenLine"></div>
+      <div style="font-size:.65rem;color:var(--text3);margin-bottom:10px;letter-spacing:.08em">CONTROL DVd</div>
+      <button class="btn btnG" onclick="sendAction({action:'start'})">▶ Iniciar simulacro</button>
+    </div>
+  </div>
+</div>
+
+<!-- Game -->
+<div class="screen" id="screen-game">
+  <div class="gameWrap">
+
+    <!-- DVD Controls -->
+    <div class="dvdControls" id="dvdControls" style="display:none">
+      <span class="dvdLabel">dvd:</span>
+      <button class="btn btnO btnSm" id="btnReveal" onclick="sendAction({action:'reveal'})">🔍 Revelar respuesta</button>
+      <button class="btn btnN btnSm" id="btnNext"   onclick="sendAction({action:'next'})">→ Siguiente</button>
+      <button class="btn btnD btnSm" style="margin-left:auto" onclick="if(confirm('¿Reiniciar?'))sendAction({action:'reset'})">↺ Reset</button>
+    </div>
+
+    <!-- Progress -->
+    <div class="progressHeader">
+      <div>
+        <div class="blockLabel">Bloque</div>
+        <div class="blockNum" id="blockNum">1 / ?</div>
+      </div>
+      <div class="qProgress" id="qProgress"></div>
+      <div style="text-align:right">
+        <div class="blockLabel">Pregunta</div>
+        <div class="blockNum" id="qNum">1 / 10</div>
+      </div>
+    </div>
+
+    <!-- Reveal banner -->
+    <div class="revealBanner" id="revealBanner">
+      <span>✓ Respuesta correcta:</span>
+      <span class="revealLetter" id="revealLetter"></span>
+      <span id="revealText" style="color:var(--text2);font-size:.72rem"></span>
+    </div>
+
+    <!-- Question -->
+    <div class="questionCard" id="questionCard">
+      <div class="qNum" id="qNumLabel">Pregunta 1</div>
+      <div class="qText" id="qText">Cargando pregunta…</div>
+    </div>
+
+    <!-- Options -->
+    <div class="options" id="options"></div>
+
+    <!-- Scoreboard (current block) -->
+    <div class="scoreboard" id="scoreboard">
+      <div class="scoreTitle">Marcador del bloque</div>
+      <div class="scoreRows" id="scoreRows"></div>
+    </div>
+
+    <!-- Total score -->
+    <div class="scoreboard" id="totalScore" style="display:none">
+      <div class="scoreTitle">Puntuación total</div>
+      <div class="scoreRows" id="totalRows"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Block result -->
+<div class="screen flex" id="screen-block-result">
+  <div class="resultCard">
+    <div class="resultHead">
+      <div class="resultTitle" id="brTitle">Resultado del bloque</div>
+      <div class="resultSub" id="brSub"></div>
+    </div>
+    <div class="resultBody">
+      <div class="scoreRows" id="brRows"></div>
+      <div class="goldenLine"></div>
+      <div id="dvdNextBlock" style="display:none;text-align:center;margin-top:8px">
+        <button class="btn btnG" onclick="sendAction({action:'next_block'})">→ Siguiente bloque</button>
+      </div>
+      <div id="dvdNextBlockMsg" style="text-align:center;margin-top:8px;font-size:.65rem;color:var(--text3);display:none">
+        Esperando a dvd para continuar…
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Finished -->
+<div class="screen flex" id="screen-finished">
+  <div class="finCard">
+    <div class="finHead">
+      <div style="font-size:2.5rem;margin-bottom:12px">🏆</div>
+      <div class="finTitle">Simulacro completado</div>
+      <div class="finSub" id="finSub">600 preguntas</div>
+    </div>
+    <div style="padding:20px">
+      <div class="scoreTitle">Puntuación final</div>
+      <div class="scoreRows" id="finRows"></div>
+      <div class="goldenLine"></div>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:8px;flex-wrap:wrap">
+        <a href="/" class="backBtn">← Banco</a>
+        <div id="dvdReset" style="display:none">
+          <button class="btn btnD btnSm" onclick="sendAction({action:'reset'})">↺ Reiniciar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+let ws = null;
+let state = null;
+let myUsername = '';
+let isDvd = false;
+let myAnswer = null;
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+async function init() {
+  const token = localStorage.getItem('dvd_token');
+  if (!token) return;  // stays on auth screen
+
+  try {
+    const r = await fetch('/api/me', {headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
+    if (!r.ok) return;
+    const me = await r.json();
+    myUsername = me.username;
+    isDvd = me.username === 'dvd';
+    document.getElementById('userBadge').textContent = '@' + me.username;
+    showScreen('disabled');  // default until WS says otherwise
+    connectWS(token);
+  } catch(e) {}
+}
+
+// ── WebSocket ─────────────────────────────────────────────────────────────────
+function connectWS(token) {
+  const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${proto}//${location.host}/ws/opo?token=${encodeURIComponent(token)}`);
+  ws.onopen  = () => {
+    document.getElementById('connBadge').textContent = 'Conectado';
+    document.getElementById('connBadge').className = 'connBadge ok';
+  };
+  ws.onclose = () => {
+    document.getElementById('connBadge').textContent = 'Reconectando…';
+    document.getElementById('connBadge').className = 'connBadge err';
+    setTimeout(() => connectWS(token), 3000);
+  };
+  ws.onerror = () => {};
+  ws.onmessage = e => {
+    try { applyState(JSON.parse(e.data)); } catch(err) { console.error(err); }
+  };
+}
+
+function sendAction(obj) {
+  if (ws && ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify(obj));
+}
+
+// ── State router ──────────────────────────────────────────────────────────────
+function applyState(data) {
+  if (data.type !== 'state') return;
+  state = data;
+  myAnswer = null;  // will be set from player_answers if exists
+
+  if (!data.enabled && !isDvd) { showScreen('disabled'); return; }
+
+  switch(data.status) {
+    case 'waiting':
+      renderWaiting(data); showScreen('waiting'); break;
+    case 'playing':
+      renderGame(data); showScreen('game'); break;
+    case 'block_result':
+      renderBlockResult(data); showScreen('block-result'); break;
+    case 'finished':
+      renderFinished(data); showScreen('finished'); break;
+    default:
+      showScreen('waiting');
+  }
+}
+
+function showScreen(name) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+  const el = document.getElementById('screen-' + name);
+  if (el) el.classList.add('on');
+}
+
+// ── Waiting screen ────────────────────────────────────────────────────────────
+function renderWaiting(data) {
+  const conn = data.connected || [];
+  document.getElementById('waitConnected').textContent =
+    conn.length + ' participante' + (conn.length === 1 ? '' : 's') + ' conectados';
+  const dvdStart = document.getElementById('dvdStart');
+  if (dvdStart) dvdStart.style.display = isDvd ? '' : 'none';
+}
+
+// ── Game screen ───────────────────────────────────────────────────────────────
+function renderGame(data) {
+  const q = data.current_q;
+  if (!q) return;
+
+  // Progress
+  const bi  = data.block_index;
+  const qi  = data.question_index;
+  const tb  = data.total_blocks;
+  document.getElementById('blockNum').textContent = (bi+1) + ' / ' + tb;
+  document.getElementById('qNum').textContent     = (qi+1) + ' / 10';
+  document.getElementById('qNumLabel').textContent = 'Pregunta ' + q.n;
+
+  // Q-dots
+  const pd = document.getElementById('qProgress');
+  pd.innerHTML = '';
+  for (let i = 0; i < 10; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'qDot' + (i === qi ? ' current' : i < qi ? ' done' : '');
+    pd.appendChild(dot);
+  }
+
+  // Question text
+  document.getElementById('qText').textContent = q.p;
+
+  // My answer
+  myAnswer = (data.player_answers || {})[myUsername] || null;
+
+  // Options
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  const letters = ['A','B','C','D'];
+  letters.forEach(L => {
+    const btn = document.createElement('button');
+    btn.className = 'optBtn';
+    const isSelected = myAnswer === L;
+    const isCorrect  = data.revealed && data.correct_answer === L;
+    const isWrong    = data.revealed && myAnswer === L && myAnswer !== data.correct_answer;
+
+    if (isCorrect) btn.classList.add('correct');
+    else if (isWrong) btn.classList.add('wrong');
+    else if (isSelected) btn.classList.add('selected');
+
+    btn.disabled = !!myAnswer || data.revealed;
+    if (!myAnswer && !data.revealed) {
+      btn.onclick = () => {
+        myAnswer = L;
+        sendAction({action:'answer', letter:L});
+      };
+    }
+    btn.innerHTML = `<span class="optLetter">${L}</span>${esc(q[L])}`;
+    opts.appendChild(btn);
+  });
+
+  // Reveal banner
+  const rb = document.getElementById('revealBanner');
+  if (data.revealed && data.correct_answer) {
+    rb.classList.add('on');
+    document.getElementById('revealLetter').textContent = data.correct_answer;
+    document.getElementById('revealText').textContent = q[data.correct_answer];
+  } else {
+    rb.classList.remove('on');
+  }
+
+  // DVD controls
+  const dc = document.getElementById('dvdControls');
+  if (dc) dc.style.display = isDvd ? '' : 'none';
+  const btnReveal = document.getElementById('btnReveal');
+  const btnNext   = document.getElementById('btnNext');
+  if (btnReveal) btnReveal.disabled = data.revealed;
+  if (btnNext)   btnNext.disabled   = !data.revealed;
+
+  // Scoreboard
+  renderScoreboard(data);
+
+  // Total
+  const ts = document.getElementById('totalScore');
+  const allScores = data.all_scores || {};
+  if (Object.keys(allScores).length > 0) {
+    ts.style.display = '';
+    renderScoreTable('totalRows', allScores, 'Puntuación total');
+  } else {
+    ts.style.display = 'none';
+  }
+}
+
+function renderScoreboard(data) {
+  renderScoreTable('scoreRows', data.block_scores || {}, 'Bloque actual');
+}
+
+function renderScoreTable(containerId, scores, label) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const sorted = Object.entries(scores).sort((a,b) => {
+    const aNet = a[1].correct - a[1].wrong;
+    const bNet = b[1].correct - b[1].wrong;
+    return bNet - aNet;
+  });
+  if (!sorted.length) { el.innerHTML = '<div class="empty" style="padding:12px">Sin datos aún</div>'; return; }
+  el.innerHTML = sorted.map(([u, sc]) => `
+    <div class="scoreRow">
+      <div class="scoreUser">@${esc(u)}</div>
+      <div class="scoreCorrect">✓ ${sc.correct}</div>
+      <div class="scoreWrong">✗ ${sc.wrong}</div>
+      <div class="scoreTotal">${sc.correct + sc.wrong > 0 ? Math.round(sc.correct/(sc.correct+sc.wrong)*100) : 0}%</div>
+    </div>`).join('');
+}
+
+// ── Block result screen ────────────────────────────────────────────────────────
+function renderBlockResult(data) {
+  const br = data.last_block_result || {};
+  document.getElementById('brTitle').textContent = 'Bloque ' + (br.block || '?') + ' completado';
+  document.getElementById('brSub').textContent =
+    'Resultados de las 10 preguntas';
+  renderScoreTable('brRows', br.scores || {});
+  const nb  = document.getElementById('dvdNextBlock');
+  const nbm = document.getElementById('dvdNextBlockMsg');
+  if (nb)  nb.style.display  = isDvd ? '' : 'none';
+  if (nbm) nbm.style.display = !isDvd ? '' : 'none';
+}
+
+// ── Finished screen ────────────────────────────────────────────────────────────
+function renderFinished(data) {
+  document.getElementById('finSub').textContent =
+    (data.total_questions || 600) + ' preguntas · ' + (data.total_blocks || 60) + ' bloques';
+  renderScoreTable('finRows', data.all_scores || {});
+  const dr = document.getElementById('dvdReset');
+  if (dr) dr.style.display = isDvd ? '' : 'none';
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+init();
+</script>
+</body>
+</html>

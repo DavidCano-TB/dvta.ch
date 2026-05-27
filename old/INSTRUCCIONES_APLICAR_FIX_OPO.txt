@@ -1,0 +1,95 @@
+═══════════════════════════════════════════════════════════════
+ 🔧 INSTRUCCIONES: Aplicar Fix de Acceso a OPO
+═══════════════════════════════════════════════════════════════
+
+📋 PROBLEMA RESUELTO:
+   Al hacer clic en "Abrir OPO", redirigía a la página principal
+   en lugar de abrir el simulacro de OPO.
+
+✅ SOLUCIÓN:
+   Se corrigió la lógica de autenticación en la ruta /opo
+   eliminando redirecciones incorrectas y añadiendo páginas
+   de error claras.
+
+═══════════════════════════════════════════════════════════════
+ 🚀 OPCIÓN 1: APLICAR AUTOMÁTICAMENTE (RECOMENDADO)
+═══════════════════════════════════════════════════════════════
+
+1. Hacer doble clic en: APLICAR_FIX_OPO.bat
+
+2. El script hará:
+   ✓ Copiar archivos corregidos
+   ✓ Detener el servidor actual
+   ✓ Iniciar el servidor con los cambios
+
+3. ¡Listo! Probar acceso a OPO
+
+═══════════════════════════════════════════════════════════════
+ 🔧 OPCIÓN 2: APLICAR MANUALMENTE
+═══════════════════════════════════════════════════════════════
+
+1. Detener el servidor actual:
+   - Cerrar la ventana del servidor
+   - O ejecutar: taskkill /F /IM python.exe
+
+2. Los archivos ya están corregidos:
+   ✓ main.py (corregido)
+   ✓ src/main.py (corregido)
+
+3. Iniciar el servidor:
+   - Ejecutar: ARRANCAR.bat
+   - O ejecutar: python main.py
+
+═══════════════════════════════════════════════════════════════
+ 🧪 CÓMO PROBAR QUE FUNCIONA
+═══════════════════════════════════════════════════════════════
+
+TEST 1: Usuario Autorizado (dvd o nebulosa)
+   1. Iniciar sesión
+   2. Hacer clic en "Abrir OPO" (panel inicio o admin)
+   3. ✅ Debe abrir el simulacro de OPO
+
+TEST 2: Usuario NO Autorizado
+   1. Iniciar sesión con usuario normal
+   2. Hacer clic en "Abrir OPO"
+   3. ✅ Debe mostrar "Acceso Requerido"
+
+TEST 3: Sin Login
+   1. Abrir /opo directamente sin estar logueado
+   2. ✅ Debe mostrar "Login Requerido"
+
+═══════════════════════════════════════════════════════════════
+ 📁 ARCHIVOS MODIFICADOS
+═══════════════════════════════════════════════════════════════
+
+✓ main.py              → Función opo_page() corregida
+✓ src/main.py          → Función opo_page() corregida
+
+═══════════════════════════════════════════════════════════════
+ 📚 DOCUMENTACIÓN ADICIONAL
+═══════════════════════════════════════════════════════════════
+
+• RESUMEN_FIX_OPO.md           → Resumen completo del fix
+• docs/FIX_OPO_ACCESO.md       → Documentación técnica detallada
+
+═══════════════════════════════════════════════════════════════
+ ⚠️ NOTAS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+• El servidor DEBE reiniciarse para aplicar los cambios
+• Los usuarios autorizados por defecto son: dvd, nebulosa
+• Se pueden añadir más usuarios desde el panel de administración
+• Los cambios NO afectan a otras funcionalidades del sistema
+
+═══════════════════════════════════════════════════════════════
+ ✅ VERIFICACIÓN DE SINTAXIS
+═══════════════════════════════════════════════════════════════
+
+✓ main.py      → Sin errores de sintaxis
+✓ src/main.py  → Sin errores de sintaxis
+
+═══════════════════════════════════════════════════════════════
+
+Fecha: 2026-05-12
+Versión: 1.0
+Estado: LISTO PARA APLICAR

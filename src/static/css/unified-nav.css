@@ -1,0 +1,198 @@
+/**
+ * DVDcoin Bank - Estilos de Navegación Unificada
+ * Sistema consistente para todas las páginas
+ */
+
+/* ══════════════════════════════════════════════════════════
+   NAVEGACIÓN UNIFICADA
+══════════════════════════════════════════════════════════ */
+
+.unified-nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(4, 4, 10, 0.97);
+  backdrop-filter: blur(24px) saturate(1.4);
+  border-bottom: 1px solid rgba(212, 168, 67, 0.14);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.unified-nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(139, 96, 16, 0.5) 30%,
+    rgba(212, 168, 67, 1) 50%,
+    rgba(139, 96, 16, 0.5) 70%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+.nav-tabs {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  gap: 2px;
+  padding: 6px 12px;
+  max-width: 100%;
+}
+
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: rgba(154, 144, 112, 0.7);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-tab:hover {
+  color: rgba(240, 200, 102, 1);
+  background: rgba(212, 168, 67, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-tab:active {
+  transform: translateY(0);
+}
+
+.nav-tab.active {
+  color: rgba(240, 200, 102, 1);
+  background: rgba(212, 168, 67, 0.15);
+  border-bottom: 2px solid rgba(212, 168, 67, 1);
+  font-weight: 500;
+}
+
+.nav-tab.active::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 168, 67, 1),
+    transparent
+  );
+  box-shadow: 0 0 8px rgba(212, 168, 67, 0.6);
+}
+
+.nav-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav-label {
+  line-height: 1;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .nav-tabs {
+    padding: 4px 8px;
+    gap: 1px;
+  }
+  
+  .nav-tab {
+    padding: 6px 10px;
+    font-size: 0.62rem;
+    gap: 4px;
+  }
+  
+  .nav-icon {
+    font-size: 0.9rem;
+  }
+  
+  /* Ocultar labels en móvil muy pequeño */
+  @media (max-width: 480px) {
+    .nav-label {
+      display: none;
+    }
+    
+    .nav-tab {
+      padding: 8px 10px;
+    }
+    
+    .nav-icon {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+/* ══════════════════════════════════════════════════════════
+   ANIMACIONES
+══════════════════════════════════════════════════════════ */
+
+@keyframes navSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.unified-nav {
+  animation: navSlideIn 0.3s ease-out;
+}
+
+/* ══════════════════════════════════════════════════════════
+   AJUSTES PARA COMPATIBILIDAD
+══════════════════════════════════════════════════════════ */
+
+/* Asegurar que el contenido no quede oculto bajo la nav */
+body.has-unified-nav {
+  padding-top: 0;
+}
+
+/* Ajustar headers existentes para que no choquen */
+.unified-nav + .hdr,
+.unified-nav + #hdr,
+.unified-nav + .header {
+  top: 0;
+  position: relative;
+}
+
+/* Para páginas con sticky headers */
+.has-unified-nav .hdr,
+.has-unified-nav #hdr,
+.has-unified-nav .header {
+  position: relative;
+  top: auto;
+}

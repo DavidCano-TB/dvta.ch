@@ -1,0 +1,119 @@
+========================================
+CAMBIOS APLICADOS - JUEGO "QUIEN SOY"
+========================================
+
+FECHA: 14 de mayo de 2026
+ESTADO: ✅ COMPLETADO
+
+========================================
+ARCHIVOS MODIFICADOS:
+========================================
+
+1. src\main.py
+   - Líneas 2648-2654: Validación de respuestas Gemini
+   - Líneas 2760-2780: Fallback local
+   - Líneas 2837-2841: Validación adicional
+
+2. src\ai_helper.py
+   - Línea 256: Personaje no existe
+   - Líneas 268-290: Prompt del sistema
+   - Líneas 301-313: Normalización de respuesta
+
+3. main.py (raíz)
+   - Líneas 2645-2654: Validación (compatibilidad)
+
+4. groq_helper.py
+   - Líneas 330-410: Sistema completo de respuestas
+
+========================================
+CAMBIO PRINCIPAL:
+========================================
+
+ANTES:
+  - Respuestas posibles: "Sí", "No", "Ni sí ni no"
+  - Preguntas ambiguas → "Ni sí ni no"
+  - Personajes desconocidos → "Ni sí ni no"
+  - Errores → "Ni sí ni no"
+
+AHORA:
+  - Respuestas posibles: "Sí", "No" SOLAMENTE
+  - Preguntas ambiguas → "No"
+  - Personajes desconocidos → "No"
+  - Errores → "No"
+
+========================================
+ACCIONES REALIZADAS:
+========================================
+
+✅ Modificados 4 archivos Python
+✅ Eliminado cache de Python (.pyc, __pycache__)
+✅ Creados scripts de prueba y reinicio
+✅ Documentación completa generada
+
+========================================
+PARA APLICAR LOS CAMBIOS:
+========================================
+
+OPCIÓN 1 - SCRIPT AUTOMÁTICO:
+   Ejecuta: REINICIAR_SERVIDOR_FORZADO.bat
+
+OPCIÓN 2 - MANUAL:
+   1. Detén el servidor actual (Ctrl+C o taskkill)
+   2. Detén ngrok (Ctrl+C o taskkill)
+   3. Inicia servidor: python src\main.py
+   4. Inicia ngrok: ngrok http 8000 --domain=premium-size-unreached.ngrok-free.dev
+
+========================================
+VERIFICACIÓN:
+========================================
+
+1. Accede al juego "Quién Soy"
+2. Configura un personaje (ej: "Mickey Mouse")
+3. Haz preguntas al juego
+4. Verifica que SOLO aparezcan respuestas "Sí" o "No"
+5. NO debe aparecer "Ni sí ni no" en ningún caso
+
+========================================
+URLS:
+========================================
+
+Local:  http://localhost:8000
+Ngrok:  https://premium-size-unreached.ngrok-free.dev
+
+Credenciales:
+  Usuario:    dvd
+  Contraseña: 3666
+
+========================================
+ARCHIVOS CREADOS:
+========================================
+
+- test_quien_soy_solo_si_no.py
+- REINICIAR_SERVIDOR_FORZADO.bat
+- APLICAR_CAMBIOS_QUIEN_SOY.bat
+- CAMBIOS_QUIEN_SOY_SOLO_SI_NO.md
+- RESUMEN_CAMBIOS_APLICADOS.txt (este archivo)
+
+========================================
+NOTAS IMPORTANTES:
+========================================
+
+⚠️  El servidor DEBE ser reiniciado para que los cambios surtan efecto
+⚠️  El cache de Python fue eliminado para forzar la recarga
+⚠️  Si sigues viendo "Ni sí ni no", verifica que estés usando el servidor correcto
+⚠️  El servidor debe ejecutarse desde: python src\main.py
+
+========================================
+SOPORTE:
+========================================
+
+Si después de reiniciar el servidor sigues viendo "Ni sí ni no":
+
+1. Verifica que el servidor se esté ejecutando desde src\main.py
+2. Verifica los logs del servidor para ver qué archivo ai_helper.py está usando
+3. Ejecuta: python -c "import sys; sys.path.insert(0, 'src'); import ai_helper; print(ai_helper.__file__)"
+4. Debe mostrar: C:\dvdcoin\src\ai_helper.py
+
+========================================
+FIN DEL RESUMEN
+========================================

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#04040A">
+<title>Admin — ¿Quién soy?</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/admin/_base.css">
+<style>
+.charHint{display:none;margin-top:8px;padding:8px 12px;background:rgba(212,168,67,.06);
+  border:1px solid var(--b1);border-radius:var(--r);font-size:.62rem;color:var(--text2);line-height:1.5}
+.charHint strong{color:var(--gold2)}
+.charHint.show{display:block}
+.sugg{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.suggBtn{background:rgba(212,168,67,.08);border:1px solid var(--b1);border-radius:12px;
+  padding:3px 9px;color:var(--gold2);font-size:.6rem;cursor:pointer;transition:.15s}
+.suggBtn:hover{background:rgba(212,168,67,.18)}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+
+  <span class="hdrIcon">🎭</span>
+  <div class="hdrTitle">¿Quién soy?</div>
+  <span class="badge off" id="badge">—</span>
+</div>
+
+<div class="wrap">
+
+  <!-- Status -->
+  <div class="section">
+    <div class="sTitle">Estado del juego</div>
+    <div class="statusRow">
+      <div class="statusDot off" id="dot"></div>
+      <div class="statusText"><strong id="statusText">Cargando…</strong></div>
+    </div>
+    <div class="btnRow">
+      <button class="btn btnG btnSm" id="btnOn"   onclick="toggle(true)"  style="display:none">▶ Activar</button>
+      <button class="btn btnR btnSm" id="btnOff"  onclick="toggle(false)" style="display:none">■ Desactivar</button>
+      <button class="btn btnS btnSm" id="btnOpen" onclick="openGame()"    style="display:none">↗ Abrir juego</button>
+      <button class="btn btnO btnSm" id="btnReset" onclick="resetGame()" style="display:none">↺ Reiniciar</button>
+    </div>
+    <div class="alert" id="alert1"></div>
+  </div>
+
+  <!-- Setup -->
+  <div class="section">
+    <div class="sTitle">⚙ Configurar nueva partida</div>
+
+    <!-- Character -->
+    <div style="margin-bottom:14px">
+      <div class="lbl">🎭 Personaje secreto</div>
+      <div style="display:flex;gap:8px">
+        <input class="inp" id="charIn" type="text" autocomplete="off" spellcheck="false"
+          placeholder="Mario Bros, Cleopatra, Sherlock Holmes…"
+          oninput="onCharInput()" style="flex:1">
+        <button class="btn btnS btnSm" id="btnVerify" onclick="verifyChar()">🔍 Verificar</button>
+      </div>
+      <div class="charHint" id="charHint"></div>
+    </div>
+
+    <!-- Players -->
+    <div class="lbl">👥 Jugadores (máx 10)</div>
+    <div class="acWrap">
+      <input class="inp" id="acIn" type="text" autocomplete="off"
+        placeholder="🔍 Buscar usuario…"
+        oninput="acFilter()" onkeydown="acKey(event)" onfocus="acFilter()">
+      <div class="acDrop" id="acDrop"></div>
+    </div>
+    <div class="pills" id="pills"><span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span></div>
+    <div class="pillCount" id="pillCount">0 / 10</div>
+
+    <button class="btn btnG w100" id="btnStart" onclick="startGame()" disabled style="margin-top:14px">
+      ▶ Iniciar partida
+    </button>
+    <div class="alert" id="alert2"></div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+const token = localStorage.getItem('dvd_token');
+let allUsers=[], players=[], acIdx=-1, enabled=false, verTimer=null;
+let verifiedCharacterInfo = null; // NUEVO: guardar info completa del personaje verificado
+
+async function api(method, path, body) {
+  const r = await fetch(path, {
+    method, headers:{'Content-Type':'application/json','Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},
+    body: body ? JSON.stringify(body) : undefined
+  });
+  if (!r.ok) { const d=await r.json().catch(()=>{}); throw new Error(d?.detail||'Error '+r.status); }
+  return r.json();
+}
+
+function showAlert(id, msg, type='err') {
+  const el=document.getElementById(id);
+  el.textContent=msg; el.className='alert on '+type;
+  setTimeout(()=>{ el.className='alert'; },4000);
+}
+
+async function load() {
+  if (!token) { location.href='/'; return; }
+  // Verify admin role
+  try {
+    const me = await api('GET', '/api/me');
+    if (!me.is_admin) { location.href='/'; return; }
+  } catch { location.href='/'; return; }
+  try {
+    const [status, users] = await Promise.all([
+      api('GET','/api/quiensoy/status'),
+      api('GET','/api/quiensoy/users'),
+    ]);
+    enabled=!!status.enabled; allUsers=users||[];
+    updateStatus();
+  } catch(e) { 
+    const errorMsg = e.message || String(e) || 'Error al cargar';
+    showAlert('alert1', errorMsg); 
+  }
+}
+
+function updateStatus() {
+  document.getElementById('dot').className='statusDot '+(enabled?'on':'off');
+  document.getElementById('badge').textContent=enabled?'🟢 Activo':'⚫ Desactivado';
+  document.getElementById('badge').className='badge '+(enabled?'on':'off');
+  document.getElementById('statusText').textContent=enabled?'Partida activa':'Juego desactivado';
+  document.getElementById('btnOn').style.display=enabled?'none':'';
+  document.getElementById('btnOff').style.display=enabled?'':'none';
+  document.getElementById('btnOpen').style.display=enabled?'':'none';
+  document.getElementById('btnReset').style.display=enabled?'':'none';
+}
+
+async function toggle(on) {
+  try {
+    await api('POST','/api/quiensoy/toggle',{enabled:on});
+    enabled=on; updateStatus();
+    showAlert('alert1',on?'✓ Quién Soy activado':'Quién Soy desactivado','ok');
+  } catch(e) { 
+    const errorMsg = e.message || String(e) || 'Error al cambiar estado';
+    showAlert('alert1', errorMsg); 
+  }
+}
+
+function openGame() {
+  window.open('/quiensoy?token='+encodeURIComponent(token),'_blank');
+}
+
+async function resetGame() {
+  if (!confirm('¿Reiniciar la partida actual?')) return;
+  try {
+    await api('POST','/api/quiensoy/toggle',{enabled:false});
+    await api('POST','/api/quiensoy/toggle',{enabled:true});
+    enabled=true; updateStatus();
+    showAlert('alert1','✓ Partida reiniciada','ok');
+  } catch(e) { 
+    const errorMsg = e.message || String(e) || 'Error al reiniciar partida';
+    showAlert('alert1', errorMsg); 
+  }
+}
+
+/* Character verify */
+function onCharInput() {
+  clearTimeout(verTimer);
+  document.getElementById('charHint').classList.remove('show');
+  verifiedCharacterInfo = null; // Limpiar info al cambiar el input
+  checkStartBtn();
+  verTimer = setTimeout(verifyChar, 1400);
+}
+
+async function verifyChar() {
+  const name = document.getElementById('charIn').value.trim();
+  if (name.length < 2) return;
+  const btn = document.getElementById('btnVerify');
+  const hint = document.getElementById('charHint');
+  btn.textContent='⏳'; btn.disabled=true;
+  try {
+    const d = await api('GET','/api/quiensoy/verify-character?name='+encodeURIComponent(name));
+    hint.classList.add('show');
+    if (d.valid) {
+      document.getElementById('charIn').value = d.canonical;
+      // NUEVO: Guardar toda la información del personaje verificado
+      verifiedCharacterInfo = {
+        corrected_name: d.canonical,
+        character: d.canonical,
+        main_known_for: d.ai_info?.known_for || "Personaje conocido",
+        key_characteristics: d.ai_info?.key_characteristics || ["Personaje conocido"],
+        is_real: d.ai_info?.is_real || false,
+        is_fictional: d.ai_info?.is_fictional || true,
+        is_mythological: d.ai_info?.is_mythological || false,
+        category: d.ai_info?.category || "unknown",
+        photo: d.photo || null
+      };
+      hint.innerHTML = '<strong style="color:#4ade80">✓ '+esc(d.canonical)+'</strong>';
+      if (d.ai_info && d.ai_info.known_for) {
+        hint.innerHTML += '<br><span style="font-size:.58rem;color:var(--text3)">'+esc(d.ai_info.known_for)+'</span>';
+      }
+      if (d.photo) {
+        hint.innerHTML += '<br><img src="'+esc(d.photo)+'" style="max-width:80px;max-height:80px;margin-top:6px;border-radius:6px;border:1px solid var(--b1)">';
+      }
+    } else {
+      verifiedCharacterInfo = null; // No válido, limpiar info
+      hint.innerHTML = '<strong style="color:var(--orange)">⚠ Personaje no reconocido</strong>';
+      if (d.message) {
+        hint.innerHTML += '<br><span style="font-size:.58rem;color:var(--text3)">'+esc(d.message)+'</span>';
+      }
+      if (d.canonical && d.canonical !== name) {
+        hint.innerHTML += '<br><strong style="color:var(--gold2)">¿Quisiste decir: '+esc(d.canonical)+'?</strong>';
+        hint.innerHTML += ' <button class="suggBtn" onclick="useSugg(\''+esc(d.canonical)+'\')">Usar</button>';
+      }
+      if (d.suggestions && d.suggestions.length) {
+        hint.innerHTML += '<br><div style="margin-top:8px;font-size:.58rem;color:var(--text3)">Sugerencias de la IA:</div>';
+        hint.innerHTML += '<div class="sugg" style="margin-top:6px;display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px">';
+        d.suggestions.forEach(s => {
+          const sName = typeof s === 'string' ? s : s.name;
+          const sPhoto = typeof s === 'object' ? s.photo : null;
+          hint.innerHTML += '<div style="background:rgba(212,168,67,.06);border:1px solid var(--b1);border-radius:8px;padding:6px;cursor:pointer;text-align:center;transition:.15s" onclick="useSugg(\''+esc(sName)+'\')" onmouseover="this.style.background=\'rgba(212,168,67,.15)\'" onmouseout="this.style.background=\'rgba(212,168,67,.06)\'">';
+          if (sPhoto) {
+            hint.innerHTML += '<img src="'+esc(sPhoto)+'" style="width:60px;height:60px;object-fit:cover;border-radius:6px;margin-bottom:4px">';
+          } else {
+            hint.innerHTML += '<div style="width:60px;height:60px;background:rgba(212,168,67,.1);border-radius:6px;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:1.5rem">🎭</div>';
+          }
+          hint.innerHTML += '<div style="font-size:.58rem;color:var(--gold2);font-weight:500">'+esc(sName)+'</div>';
+          hint.innerHTML += '</div>';
+        });
+        hint.innerHTML += '</div>';
+      }
+    }
+  } catch(e) {
+    hint.classList.remove('show');
+    verifiedCharacterInfo = null;
+  }
+  btn.textContent='🔍 Verificar'; btn.disabled=false;
+  checkStartBtn();
+}
+
+function useSugg(name) {
+  document.getElementById('charIn').value = name;
+  verifiedCharacterInfo = null; // Limpiar info al usar sugerencia
+  onCharInput();
+}
+
+/* Players */
+function acFilter() {
+  const q=document.getElementById('acIn').value.trim().toLowerCase();
+  const dd=document.getElementById('acDrop');
+  acIdx=-1;
+  if (!q) { dd.classList.remove('open'); return; }
+  const hits=allUsers.filter(u=>!players.includes(u)&&u.toLowerCase().includes(q)).slice(0,8);
+  if (!hits.length) { dd.classList.remove('open'); return; }
+  dd.innerHTML=hits.map(u=>{
+    const p=u.toLowerCase().indexOf(q);
+    const h=p>=0?u.slice(0,p)+'<b>'+u.slice(p,p+q.length)+'</b>'+u.slice(p+q.length):u;
+    return `<div class="acItem" onmousedown="event.preventDefault();addPlayer('${u}')">@${h}</div>`;
+  }).join('');
+  dd.classList.add('open');
+}
+
+function acKey(e) {
+  const items=document.querySelectorAll('#acDrop .acItem');
+  if (e.key==='ArrowDown') { e.preventDefault(); acIdx=Math.min(acIdx+1,items.length-1); items.forEach((r,i)=>r.classList.toggle('hi',i===acIdx)); }
+  else if (e.key==='ArrowUp') { e.preventDefault(); acIdx=Math.max(acIdx-1,0); items.forEach((r,i)=>r.classList.toggle('hi',i===acIdx)); }
+  else if (e.key==='Enter') { e.preventDefault(); if(acIdx>=0&&items[acIdx])items[acIdx].dispatchEvent(new Event('mousedown')); }
+  else if (e.key==='Escape') document.getElementById('acDrop').classList.remove('open');
+}
+
+function addPlayer(u) {
+  if (!u||players.includes(u)||players.length>=10) return;
+  players.push(u);
+  document.getElementById('acIn').value='';
+  document.getElementById('acDrop').classList.remove('open');
+  renderPills();
+}
+
+function removePlayer(i) { players.splice(i,1); renderPills(); }
+
+function renderPills() {
+  const el=document.getElementById('pills');
+  el.innerHTML=players.length
+    ?players.map((u,i)=>`<span class="pill">@${u}<button class="pillX" onclick="removePlayer(${i})">✕</button></span>`).join('')
+    :'<span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span>';
+  document.getElementById('pillCount').textContent=players.length+' / 10';
+  checkStartBtn();
+}
+
+function checkStartBtn() {
+  const char=document.getElementById('charIn').value.trim();
+  // NUEVO: Solo habilitar si hay personaje verificado (en verde) y jugadores
+  document.getElementById('btnStart').disabled=!char||!players.length||!verifiedCharacterInfo;
+}
+
+async function startGame() {
+  const character=document.getElementById('charIn').value.trim();
+  if (!character||!players.length) { showAlert('alert2','Falta personaje o jugadores'); return; }
+  if (!verifiedCharacterInfo) { showAlert('alert2','Debes verificar el personaje primero (debe aparecer en verde)'); return; }
+  try {
+    // NUEVO: Enviar toda la información del personaje verificado
+    await api('POST','/api/quiensoy/setup',{
+      character: verifiedCharacterInfo.corrected_name,
+      character_photo: verifiedCharacterInfo.photo,
+      character_info: verifiedCharacterInfo,
+      players: players.slice()
+    });
+    enabled=true; updateStatus();
+    showAlert('alert2','✓ Partida iniciada — ¡abre el juego!','ok');
+    setTimeout(openGame,600);
+  } catch(e) { 
+    // Manejo robusto de errores
+    let errorMsg = 'Error al iniciar partida';
+    
+    if (e && typeof e === 'object') {
+      if (e.message && typeof e.message === 'string') {
+        errorMsg = e.message;
+      } else if (e.detail && typeof e.detail === 'string') {
+        errorMsg = e.detail;
+      } else if (e.error && typeof e.error === 'string') {
+        errorMsg = e.error;
+      }
+    } else if (typeof e === 'string') {
+      errorMsg = e;
+    }
+    
+    showAlert('alert2', errorMsg); 
+  }
+}
+
+function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+load();
+</script>
+</body>
+</html>

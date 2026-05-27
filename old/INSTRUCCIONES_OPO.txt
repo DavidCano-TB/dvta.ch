@@ -1,0 +1,245 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║     📚 INSTRUCCIONES - NUEVA PÁGINA OPO                    ║
+║     Gestión de Tests de Oposición                         ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+
+┌────────────────────────────────────────────────────────────┐
+│  🚀 CÓMO EMPEZAR                                           │
+└────────────────────────────────────────────────────────────┘
+
+  OPCIÓN 1: Doble clic en ABRIR_OPO_GESTION.bat
+  
+  OPCIÓN 2: Abrir navegador y ir a:
+            http://localhost:8000/opo
+
+
+┌────────────────────────────────────────────────────────────┐
+│  📊 PANTALLA DE GESTIÓN                                    │
+└────────────────────────────────────────────────────────────┘
+
+  Al abrir la página verás:
+
+  ┌──────────────────────────────────────────────────────┐
+  │  📚 Gestión de Tests OPO                             │
+  │  FEA Radiodiagnóstico · 30 simulacros disponibles   │
+  ├──────────────────────────────────────────────────────┤
+  │                                                      │
+  │  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
+  │  │    30    │  │    0     │  │    0%    │          │
+  │  │  Tests   │  │Completad.│  │  Media   │          │
+  │  └──────────┘  └──────────┘  └──────────┘          │
+  │                                                      │
+  │  Selecciona un test para comenzar:                  │
+  │                                                      │
+  │  ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐              │
+  │  │ 1 │ │ 2 │ │ 3 │ │ 4 │ │ 5 │ │ 6 │              │
+  │  └───┘ └───┘ └───┘ └───┘ └───┘ └───┘              │
+  │  ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐ ┌───┐              │
+  │  │ 7 │ │ 8 │ │ 9 │ │10 │ │11 │ │12 │              │
+  │  └───┘ └───┘ └───┘ └───┘ └───┘ └───┘              │
+  │  ... (hasta el 30)                                  │
+  │                                                      │
+  │  [🔄 Reiniciar progreso]                            │
+  └──────────────────────────────────────────────────────┘
+
+
+┌────────────────────────────────────────────────────────────┐
+│  🎮 CÓMO JUGAR                                             │
+└────────────────────────────────────────────────────────────┘
+
+  PASO 1: Seleccionar bloque
+  ────────────────────────────
+    • Haz clic en cualquier número (1-30)
+    • Se cargará la primera pregunta del bloque
+    • Cada bloque tiene 10 preguntas
+
+  PASO 2: Responder pregunta
+  ────────────────────────────
+    • Lee la pregunta
+    • Haz clic en una de las 4 opciones (A, B, C, D)
+    • Se mostrará si es correcta o incorrecta:
+      ✓ Verde = Correcto
+      ✗ Rojo = Incorrecto
+
+  PASO 3: Siguiente pregunta
+  ────────────────────────────
+    • Haz clic en "▶ Siguiente pregunta"
+    • Se carga la siguiente pregunta
+    • Repite hasta completar las 10 preguntas
+
+  PASO 4: Fin del bloque
+  ────────────────────────────
+    • Se muestra el resumen:
+      - Número de aciertos
+      - Número de fallos
+    • El resultado se guarda automáticamente
+    • Haz clic en "← Volver a gestión"
+
+  PASO 5: Continuar
+  ────────────────────────────
+    • Verás el bloque completado con ✓ verde
+    • El porcentaje de aciertos aparece debajo
+    • Las estadísticas se actualizan
+    • Selecciona otro bloque para continuar
+
+
+┌────────────────────────────────────────────────────────────┐
+│  📈 ESTADÍSTICAS                                           │
+└────────────────────────────────────────────────────────────┘
+
+  TESTS TOTALES
+  ─────────────
+    Siempre 30 (total de bloques disponibles)
+
+  COMPLETADOS
+  ───────────
+    Número de bloques que has terminado
+    Ejemplo: Si completaste bloques 1, 5 y 10 → 3
+
+  MEDIA DE ACIERTOS
+  ─────────────────
+    Porcentaje promedio de todas tus respuestas
+    Ejemplo: 
+      Bloque 1: 8/10 = 80%
+      Bloque 2: 9/10 = 90%
+      Media: (80% + 90%) / 2 = 85%
+
+
+┌────────────────────────────────────────────────────────────┐
+│  🎨 ESTADOS VISUALES                                       │
+└────────────────────────────────────────────────────────────┘
+
+  BLOQUE NORMAL
+  ─────────────
+    ┌───────┐
+    │   5   │  ← Número del bloque
+    └───────┘
+    Borde dorado, sin marca
+
+  BLOQUE COMPLETADO
+  ─────────────────
+    ┌───────┐
+    │   5 ✓ │  ← Marca verde en esquina
+    │  80%  │  ← Porcentaje de aciertos
+    └───────┘
+    Borde verde
+
+  BLOQUE HOVER
+  ────────────
+    ┌───────┐
+    │   5   │  ← Se eleva ligeramente
+    └───────┘
+    Brillo dorado, sombra
+
+
+┌────────────────────────────────────────────────────────────┐
+│  💾 GUARDADO AUTOMÁTICO                                    │
+└────────────────────────────────────────────────────────────┘
+
+  • El progreso se guarda automáticamente en tu navegador
+  • No necesitas hacer nada especial
+  • Si cierras la página y vuelves, tu progreso sigue ahí
+  • Los resultados se guardan en localStorage
+  • Cada bloque guarda: aciertos y fallos
+
+
+┌────────────────────────────────────────────────────────────┐
+│  🔄 REINICIAR PROGRESO                                     │
+└────────────────────────────────────────────────────────────┘
+
+  Si quieres empezar de cero:
+
+  1. Haz clic en "🔄 Reiniciar progreso"
+  2. Confirma la acción
+  3. Se borran todos los resultados guardados
+  4. Todos los bloques vuelven a estado normal
+  5. Las estadísticas se resetean a 0
+
+
+┌────────────────────────────────────────────────────────────┐
+│  ⚠️  SOLUCIÓN DE PROBLEMAS                                 │
+└────────────────────────────────────────────────────────────┘
+
+  PROBLEMA: La página no carga
+  ────────────────────────────
+    ✓ Verificar que el servidor está corriendo
+    ✓ Abrir: http://localhost:8000
+    ✓ Si funciona, ir a /opo
+
+  PROBLEMA: Se queda en "Conectando..."
+  ─────────────────────────────────────
+    ✓ Refrescar la página (F5)
+    ✓ Verificar puerto 8000: netstat -ano | findstr ":8000"
+    ✓ Reiniciar el servidor si es necesario
+
+  PROBLEMA: No se guardan los resultados
+  ──────────────────────────────────────
+    ✓ Verificar que localStorage está habilitado
+    ✓ No usar modo incógnito
+    ✓ Verificar permisos del navegador
+
+  PROBLEMA: Los bloques no se marcan como completados
+  ────────────────────────────────────────────────────
+    ✓ Completar las 10 preguntas del bloque
+    ✓ Esperar a ver la pantalla de resumen
+    ✓ Hacer clic en "Volver a gestión"
+    ✓ Refrescar si es necesario
+
+  PROBLEMA: Las estadísticas no se actualizan
+  ───────────────────────────────────────────
+    ✓ Refrescar la página (F5)
+    ✓ Verificar que completaste el bloque
+    ✓ Limpiar caché del navegador
+
+
+┌────────────────────────────────────────────────────────────┐
+│  🎯 CONSEJOS                                               │
+└────────────────────────────────────────────────────────────┘
+
+  ✓ Empieza por el bloque 1 y avanza en orden
+  ✓ Intenta completar todos los bloques
+  ✓ Revisa las preguntas que fallaste
+  ✓ Repite los bloques con bajo porcentaje
+  ✓ Intenta mejorar tu media de aciertos
+  ✓ No te preocupes si fallas, es para aprender
+
+
+┌────────────────────────────────────────────────────────────┐
+│  📞 INFORMACIÓN TÉCNICA                                    │
+└────────────────────────────────────────────────────────────┘
+
+  URL LOCAL:    http://localhost:8000/opo
+  URL PÚBLICA:  https://unhidden-patient-cradling.ngrok-free.dev/opo
+  
+  SERVIDOR:     Python FastAPI en puerto 8000
+  WEBSOCKET:    ws://localhost:8000/ws/opo
+  
+  PREGUNTAS:    300 preguntas en total
+  BLOQUES:      30 bloques de 10 preguntas cada uno
+  
+  TECNOLOGÍA:   HTML5, CSS3, JavaScript ES6, WebSocket
+
+
+┌────────────────────────────────────────────────────────────┐
+│  ✅ ESTADO ACTUAL                                          │
+└────────────────────────────────────────────────────────────┘
+
+  ✓ Página completamente funcional
+  ✓ WebSocket conecta correctamente
+  ✓ 30 bloques disponibles
+  ✓ Guardado automático activo
+  ✓ Estadísticas funcionando
+  ✓ Navegador abierto en localhost:8000/opo
+
+  🎉 ¡TODO LISTO PARA USAR!
+
+
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║  ¿Necesitas ayuda?                                         ║
+║  Abre la consola del navegador (F12) para ver errores     ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝

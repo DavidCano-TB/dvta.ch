@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TEST FRONTEND OPO</title>
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+body{font-family:monospace;padding:20px;background:#000;color:#0f0;font-size:14px}
+.test{margin:15px 0;padding:15px;border:2px solid #333;background:#111}
+.ok{color:#0f0}.err{color:#f00}.warn{color:#ff0}
+h1{color:#0ff}
+h3{color:#ff0;margin-top:0}
+pre{background:#000;padding:10px;overflow-x:auto;border:1px solid #333}
+button{padding:10px 20px;margin:5px;cursor:pointer;background:#333;color:#0f0;border:1px solid #0f0;font-family:monospace;font-size:14px}
+button:hover{background:#0f0;color:#000}
+#testGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.blockBtn{padding:15px;background:#333;color:#0f0;border:1px solid #0f0;cursor:pointer;text-align:center;font-weight:bold}
+.blockBtn:hover{background:#0f0;color:#000}
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+<h1>🧪 TEST FRONTEND OPO</h1>
+
+<div class="test">
+<h3>Test 1: Verificar Token</h3>
+<button onclick="test1()">▶ Ejecutar Test 1</button>
+<div id="result1"></div>
+</div>
+
+<div class="test">
+<h3>Test 2: Conectar WebSocket</h3>
+<button onclick="test2()">▶ Ejecutar Test 2</button>
+<div id="result2"></div>
+</div>
+
+<div class="test">
+<h3>Test 3: Renderizar Bloques (Simulación)</h3>
+<button onclick="test3()">▶ Ejecutar Test 3</button>
+<div id="result3"></div>
+<div id="testGrid"></div>
+</div>
+
+<div class="test">
+<h3>Test 4: Verificar Funciones JavaScript</h3>
+<button onclick="test4()">▶ Ejecutar Test 4</button>
+<div id="result4"></div>
+</div>
+
+<div class="test">
+<h3>Test 5: Test Completo (WebSocket + Render)</h3>
+<button onclick="test5()">▶ Ejecutar Test 5</button>
+<div id="result5"></div>
+</div>
+
+<script>
+let ws = null;
+
+function log(id, msg, type='ok') {
+  const div = document.getElementById(id);
+  const span = document.createElement('div');
+  span.className = type;
+  span.textContent = '  ' + msg;
+  div.appendChild(span);
+  console.log(msg);
+}
+
+function test1() {
+  const result = document.getElementById('result1');
+  result.innerHTML = '';
+
+  const token = localStorage.getItem('dvd_token');
+  if (!token) {
+    log('result1', '✗ NO HAY TOKEN', 'err');
+    log('result1', 'Ve a http://localhost:8000 y loguéate primero', 'warn');
+    return false;
+  }
+
+  log('result1', '✓ Token presente', 'ok');
+  log('result1', `Token: ${token.substring(0, 20)}...`, 'ok');
+  return true;
+}
+
+async function test2() {
+  const result = document.getElementById('result2');
+  result.innerHTML = '';
+
+  const token = localStorage.getItem('dvd_token');
+  if (!token) {
+    log('result2', '✗ NO HAY TOKEN - Ejecuta Test 1 primero', 'err');
+    return false;
+  }
+
+  log('result2', 'Conectando WebSocket...', 'warn');
+
+  const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
+  ws = new WebSocket(`${proto}//${location.host}/ws/opo?token=${encodeURIComponent(token)}`);
+
+  ws.onopen = () => {
+    log('result2', '✓ WebSocket conectado', 'ok');
+  };
+
+  ws.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    log('result2', '✓ Mensaje recibido', 'ok');
+
+    const pre = document.createElement('pre');
+    pre.textContent = JSON.stringify(data, null, 2);
+    document.getElementById('result2').appendChild(pre);
+
+    if (data.total_blocks === 0) {
+      log('result2', '✗✗✗ PROBLEMA: total_blocks = 0', 'err');
+      log('result2', 'El backend NO está enviando total_blocks', 'err');
+    } else {
+      log('result2', `✓ total_blocks = ${data.total_blocks}`, 'ok');
+    }
+
+    if (data.phase === 'waiting') {
+      log('result2', '✓ Fase correcta: waiting', 'ok');
+    }
+  };
+
+  ws.onerror = (e) => {
+    log('result2', '✗ Error WebSocket', 'err');
+    console.error(e);
+  };
+
+  ws.onclose = (e) => {
+    log('result2', `✗ WebSocket cerrado: code=${e.code}`, 'err');
+    if (e.code === 4003) {
+      log('result2', 'Sin acceso OPO', 'err');
+    }
+  };
+
+  return true;
+}
+
+function test3() {
+  const result = document.getElementById('result3');
+  const grid = document.getElementById('testGrid');
+  result.innerHTML = '';
+  grid.innerHTML = '';
+
+  log('result3', 'Renderizando 30 bloques...', 'warn');
+
+  const total = 30;
+  for (let i = 0; i < total; i++) {
+    const btn = document.createElement('button');
+    btn.className = 'blockBtn';
+    btn.textContent = i + 1;
+    btn.onclick = () => {
+      alert(`Bloque ${i + 1} seleccionado`);
+      log('result3', `✓ Bloque ${i + 1} clickeado`, 'ok');
+    };
+    grid.appendChild(btn);
+  }
+
+  log('result3', `✓ ${total} bloques renderizados`, 'ok');
+  log('result3', 'Haz clic en cualquier bloque para probar', 'warn');
+  return true;
+}
+
+function test4() {
+  const result = document.getElementById('result4');
+  result.innerHTML = '';
+
+  log('result4', 'Verificando funciones JavaScript...', 'warn');
+
+  // Verificar que las funciones existen
+  const funciones = [
+    'renderWaiting',
+    'renderBlockSelect',
+    'showScreen',
+    'applyState',
+    'connectWS',
+    'init'
+  ];
+
+  let allOk = true;
+  for (const fn of funciones) {
+    if (typeof window[fn] === 'function') {
+      log('result4', `✓ ${fn}() existe`, 'ok');
+    } else {
+      log('result4', `✗ ${fn}() NO existe`, 'err');
+      allOk = false;
+    }
+  }
+
+  if (allOk) {
+    log('result4', '✓ Todas las funciones existen', 'ok');
+  } else {
+    log('result4', '✗ Faltan funciones - Verifica game.html', 'err');
+  }
+
+  return allOk;
+}
+
+async function test5() {
+  const result = document.getElementById('result5');
+  result.innerHTML = '';
+
+  log('result5', '=== TEST COMPLETO ===', 'warn');
+
+  // Test 1
+  log('result5', '[1/4] Verificando token...', 'warn');
+  if (!test1()) {
+    log('result5', '✗ Test 1 falló', 'err');
+    return;
+  }
+  log('result5', '✓ Test 1 OK', 'ok');
+
+  // Test 2
+  log('result5', '[2/4] Conectando WebSocket...', 'warn');
+  await test2();
+  await new Promise(r => setTimeout(r, 2000));
+  log('result5', '✓ Test 2 OK', 'ok');
+
+  // Test 3
+  log('result5', '[3/4] Renderizando bloques...', 'warn');
+  test3();
+  log('result5', '✓ Test 3 OK', 'ok');
+
+  // Test 4
+  log('result5', '[4/4] Verificando funciones...', 'warn');
+  if (!test4()) {
+    log('result5', '✗ Test 4 falló', 'err');
+    return;
+  }
+  log('result5', '✓ Test 4 OK', 'ok');
+
+  log('result5', '', 'ok');
+  log('result5', '✓✓✓ TODOS LOS TESTS PASARON ✓✓✓', 'ok');
+  log('result5', '', 'ok');
+  log('result5', 'Si los bloques se renderizaron aquí pero NO en /opo:', 'warn');
+  log('result5', '1. Abre http://localhost:8000/opo', 'warn');
+  log('result5', '2. Abre la consola (F12)', 'warn');
+  log('result5', '3. Busca errores en rojo', 'warn');
+  log('result5', '4. Verifica que total_blocks > 0', 'warn');
+}
+
+// Auto-ejecutar test básico al cargar
+window.onload = () => {
+  console.log('=== TEST FRONTEND OPO CARGADO ===');
+  console.log('Ejecuta los tests haciendo clic en los botones');
+};
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

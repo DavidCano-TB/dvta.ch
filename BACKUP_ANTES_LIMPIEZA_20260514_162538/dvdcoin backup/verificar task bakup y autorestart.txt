@@ -1,0 +1,39 @@
+Paso 1 — Ejecutar todo
+Abre CMD y ejecuta en orden:
+cmdcd C:\DvDcoin
+cmdINSTALL_WATCHDOG.bat
+(clic derecho → Exécuter en tant qu'administrateur)
+
+Paso 2 — Verificar que todo corre
+Una vez cerrado el instalador, en CMD normal:
+cmdcd C:\DvDcoin
+STATUS.bat
+Debes ver:
+
+Service: RUNNING
+Port 8000: OPEN
+Health: {"status":"ok"...}
+Process: RUNNING (ngrok)
+URL: https://nonflying-unstiffened-oakley.ngrok-free.dev/
+
+
+Paso 3 — Verificar las 3 tareas
+cmdschtasks /query /tn "DVDcoin-Watchdog-Boot"
+schtasks /query /tn "DVDcoin-Watchdog-Repeat"
+schtasks /query /tn "DVDcoin-DB-Backup"
+Las 3 deben decir Prêt.
+
+Paso 4 — Verificar el backup de la DB
+cmddir "C:\Users\PC\Documents\dvdcoin backup\data\"
+Debe haber al menos un archivo dvdcoin_2026-XX-XX_XX-XX.db.
+
+Paso 5 — Test manual del watchdog
+cmdC:\DvDcoin\watchdog.bat
+Debe terminar sin errores y escribir en el log. Verifica el log:
+cmdtype C:\DvDcoin\logs\watchdog.log
+
+Paso 6 — Reiniciar Windows para probar el auto-start
+cmdshutdown /r /t 5
+Después del reinicio espera ~2 minutos y verifica:
+cmdC:\DvDcoin\STATUS.bat
+Si todo va bien, el servidor ya corre solo para siempre. Dime qué muestra cada paso.

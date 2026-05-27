@@ -1,0 +1,218 @@
+═══════════════════════════════════════════════════════════
+  ⚠️  IMPORTANTE: SOBRE EL DOMINIO dvd.ch
+═══════════════════════════════════════════════════════════
+
+Fecha: 19 de Mayo de 2026
+Estado: dvd.ch EXISTE pero NO es tuyo
+
+═══════════════════════════════════════════════════════════
+  📊 VERIFICACIÓN REALIZADA
+═══════════════════════════════════════════════════════════
+
+He verificado el dominio dvd.ch y encontré:
+
+✅ El dominio EXISTE
+❌ NO tiene IP configurada (no está en uso activo)
+❌ NO es tu dominio (alguien más lo tiene registrado)
+
+Esto significa:
+  • Alguien ya compró dvd.ch
+  • No lo está usando activamente
+  • NO puedes usarlo sin comprarlo primero
+
+═══════════════════════════════════════════════════════════
+  💰 OPCIONES PARA OBTENER dvd.ch
+═══════════════════════════════════════════════════════════
+
+OPCIÓN 1: Verificar si está a la venta
+  1. Ve a: https://www.nic.ch/whois/
+  2. Busca: dvd.ch
+  3. Verás el email del dueño
+  4. Contacta al dueño para preguntar si lo vende
+  5. Precio: Variable (puede ser caro: 100-1000€+)
+
+OPCIÓN 2: Esperar a que expire
+  • Los dominios expiran si no se renuevan
+  • Puede tardar meses o años
+  • No hay garantía de que lo consigas
+
+OPCIÓN 3: Usar un dominio similar
+  • dvdcoin.ch (disponible?)
+  • mydvd.ch (disponible?)
+  • dvdbank.ch (disponible?)
+  • dvd-coin.ch (disponible?)
+  • Costo: 15-25 CHF/año (~20€)
+
+═══════════════════════════════════════════════════════════
+  🆓 ALTERNATIVA GRATIS (RECOMENDADA)
+═══════════════════════════════════════════════════════════
+
+Ya tienes el dominio david.ch, así que puedes crear
+subdominios GRATIS con certificado SSL incluido:
+
+OPCIÓN A: dvd.david.ch (RECOMENDADO)
+  URL: https://dvd.david.ch
+  
+  Ventajas:
+    ✅ GRATIS (sin costos adicionales)
+    ✅ Certificado SSL incluido
+    ✅ Fácil de configurar (5 minutos)
+    ✅ Corto y profesional
+    ✅ Relacionado con DVD
+  
+  Para configurar:
+    Ejecuta: CONFIGURAR_SUBDOMINIO.bat
+    Escribe: dvd
+
+OPCIÓN B: bank.david.ch
+  URL: https://bank.david.ch
+  
+  Ventajas:
+    ✅ GRATIS
+    ✅ Relacionado con DVDcoin Bank
+    ✅ Profesional
+  
+  Para configurar:
+    Ejecuta: CONFIGURAR_SUBDOMINIO.bat
+    Escribe: bank
+
+OPCIÓN C: coin.david.ch
+  URL: https://coin.david.ch
+  
+  Ventajas:
+    ✅ GRATIS
+    ✅ Relacionado con monedas
+    ✅ Corto
+  
+  Para configurar:
+    Ejecuta: CONFIGURAR_SUBDOMINIO.bat
+    Escribe: coin
+
+OPCIÓN D: app.david.ch (YA CONFIGURADO)
+  URL: https://app.david.ch
+  
+  Estado: ✅ YA FUNCIONA
+  No necesitas hacer nada
+
+═══════════════════════════════════════════════════════════
+  📊 COMPARACIÓN
+═══════════════════════════════════════════════════════════
+
+| Opción | Costo | Tiempo | Dificultad | SSL |
+|--------|-------|--------|------------|-----|
+| dvd.ch (comprar al dueño) | 100-1000€+ | Días/Semanas | Alta | ✅ |
+| dvdcoin.ch (nuevo) | 20€/año | 2-48h | Media | ✅ |
+| dvd.david.ch (subdominio) | GRATIS | 5 min | Baja | ✅ |
+| app.david.ch (actual) | GRATIS | 0 min | Ninguna | ✅ |
+
+═══════════════════════════════════════════════════════════
+  🎯 MI RECOMENDACIÓN
+═══════════════════════════════════════════════════════════
+
+RECOMENDACIÓN #1: dvd.david.ch (GRATIS)
+  
+  Razones:
+    ✅ GRATIS (sin costos)
+    ✅ Rápido (5 minutos)
+    ✅ Profesional
+    ✅ Corto: https://dvd.david.ch
+    ✅ Certificado SSL incluido
+    ✅ Fácil de recordar
+  
+  Cómo configurar:
+    1. Ejecuta: CONFIGURAR_SUBDOMINIO.bat
+    2. Escribe: dvd
+    3. Espera 2 minutos
+    4. Abre: https://dvd.david.ch
+    5. ¡Listo!
+
+RECOMENDACIÓN #2: app.david.ch (YA FUNCIONA)
+  
+  Razones:
+    ✅ YA ESTÁ CONFIGURADO
+    ✅ YA FUNCIONA
+    ✅ No necesitas hacer nada
+    ✅ Profesional
+  
+  Solo abre: https://app.david.ch
+
+═══════════════════════════════════════════════════════════
+  ❓ PREGUNTAS FRECUENTES
+═══════════════════════════════════════════════════════════
+
+P: ¿Por qué no puedo usar dvd.ch?
+R: Porque alguien más ya lo tiene registrado. Los dominios
+   son únicos y solo puede haber un dueño.
+
+P: ¿Cuánto cuesta comprar dvd.ch al dueño actual?
+R: Variable. Puede ser desde 100€ hasta 1000€ o más,
+   dependiendo de si el dueño quiere venderlo.
+
+P: ¿dvd.david.ch es profesional?
+R: SÍ. Muchas empresas usan subdominios:
+   • mail.google.com
+   • drive.google.com
+   • docs.google.com
+   • maps.google.com
+
+P: ¿Puedo cambiar después a dvd.ch si lo consigo?
+R: SÍ. Puedes configurar ambos y redirigir uno al otro.
+
+P: ¿dvd.david.ch tiene certificado SSL?
+R: SÍ. Cloudflare proporciona SSL gratis automáticamente.
+
+P: ¿Cuánto tarda en funcionar dvd.david.ch?
+R: 1-5 minutos después de configurarlo.
+
+═══════════════════════════════════════════════════════════
+  🚀 PRÓXIMOS PASOS
+═══════════════════════════════════════════════════════════
+
+OPCIÓN A: Configurar dvd.david.ch (GRATIS, 5 minutos)
+  1. Ejecuta: CONFIGURAR_SUBDOMINIO.bat
+  2. Escribe: dvd
+  3. Espera 2 minutos
+  4. Abre: https://dvd.david.ch
+
+OPCIÓN B: Usar app.david.ch (YA FUNCIONA)
+  1. Abre: https://app.david.ch
+  2. ¡Listo!
+
+OPCIÓN C: Comprar un dominio similar
+  1. Ve a: https://www.infomaniak.com/es/dominios
+  2. Busca: dvdcoin.ch, mydvd.ch, etc.
+  3. Compra el que esté disponible
+  4. Sigue la guía: GUIA_CONFIGURAR_DVD_CH.md
+
+OPCIÓN D: Contactar al dueño de dvd.ch
+  1. Ve a: https://www.nic.ch/whois/
+  2. Busca: dvd.ch
+  3. Contacta al dueño
+  4. Negocia el precio
+
+═══════════════════════════════════════════════════════════
+  💡 MI CONSEJO FINAL
+═══════════════════════════════════════════════════════════
+
+Te recomiendo usar dvd.david.ch porque:
+
+✅ Es GRATIS (ahorras 20€/año)
+✅ Es rápido (5 minutos vs días/semanas)
+✅ Es profesional
+✅ Tiene SSL incluido
+✅ Es fácil de recordar
+✅ Puedes cambiarlo después si consigues dvd.ch
+
+Para configurarlo AHORA:
+  Ejecuta: CONFIGURAR_SUBDOMINIO.bat
+
+═══════════════════════════════════════════════════════════
+
+¿Qué opción prefieres?
+
+A) dvd.david.ch (GRATIS, 5 min)
+B) app.david.ch (YA FUNCIONA)
+C) Comprar dvdcoin.ch u otro similar (20€/año)
+D) Intentar comprar dvd.ch al dueño (100-1000€+)
+
+═══════════════════════════════════════════════════════════

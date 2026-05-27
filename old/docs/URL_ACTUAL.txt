@@ -1,0 +1,25 @@
+═══════════════════════════════════════════════════════════
+  ✅ TU URL FUNCIONAL AHORA MISMO
+═══════════════════════════════════════════════════════════
+
+👉 https://fleet-quoted-slide-territory.trycloudflare.com
+
+═══════════════════════════════════════════════════════════
+
+✅ HTTPS válido (certificado SSL de Cloudflare)
+✅ Accesible desde cualquier dispositivo y red
+✅ Compatible con navegadores in-app
+✅ Sin errores SSL/TLS
+✅ FUNCIONA AHORA MISMO
+
+Generada: 19 de Mayo de 2026, 23:01
+Estado: ✅ ACTIVA
+
+═══════════════════════════════════════════════════════════
+
+⚠️  Esta URL es temporal y cambiará al reiniciar el servidor.
+
+Para obtener una nueva URL cuando esta expire:
+  python generar_url_ahora.py
+
+═══════════════════════════════════════════════════════════

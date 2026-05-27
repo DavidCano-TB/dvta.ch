@@ -1,0 +1,50 @@
+═══════════════════════════════════════════════════════════
+  ✓ PREGUNTAS PASAPALABRA GENERADAS
+═══════════════════════════════════════════════════════════
+
+ARCHIVO CREADO: static\pasapalabra\preguntas.json
+
+ESTADÍSTICAS:
+  • Total de letras: 27 (A-Z + Ñ)
+  • Total de preguntas: 1338
+  • Promedio por letra: ~50 preguntas
+  • Tamaño del archivo: 222 KB
+  • Codificación: UTF-8
+
+DISTRIBUCIÓN POR LETRA:
+  A: 50 preguntas    N: 50 preguntas
+  B: 50 preguntas    Ñ: 50 preguntas
+  C: 50 preguntas    O: 50 preguntas
+  D: 40 preguntas    P: 50 preguntas
+  E: 50 preguntas    Q: 50 preguntas
+  F: 50 preguntas    R: 50 preguntas
+  G: 49 preguntas    S: 50 preguntas
+  H: 50 preguntas    T: 50 preguntas
+  I: 50 preguntas    U: 49 preguntas
+  J: 50 preguntas    V: 50 preguntas
+  K: 50 preguntas    W: 50 preguntas
+  L: 50 preguntas    X: 50 preguntas
+  M: 50 preguntas    Y: 50 preguntas
+                     Z: 50 preguntas
+
+CARACTERÍSTICAS:
+  ✓ Todas las preguntas tipo "Empieza por..."
+  ✓ Dificultad media
+  ✓ Sistema de marcado de usadas
+  ✓ Selección aleatoria
+  ✓ Sin repeticiones
+
+ARCHIVOS CREADOS:
+  1. static\pasapalabra\preguntas.json (archivo principal)
+  2. gen_preguntas.py (generador)
+  3. GENERAR_PREGUNTAS_PASAPALABRA.bat (ejecutor)
+  4. INSTRUCCIONES_PASAPALABRA.txt (documentación)
+  5. Este archivo (resumen)
+
+PARA REGENERAR:
+  Ejecuta: GENERAR_PREGUNTAS_PASAPALABRA.bat
+  O: python gen_preguntas.py
+
+═══════════════════════════════════════════════════════════
+  TODO LISTO PARA JUGAR
+═══════════════════════════════════════════════════════════

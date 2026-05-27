@@ -1,0 +1,92 @@
+═══════════════════════════════════════════════════════════════════════════
+  🚀 INSTRUCCIONES SIMPLES - MIGRACIÓN A dvta.ch
+═══════════════════════════════════════════════════════════════════════════
+
+Fecha: 27 Mayo 2026
+Dominio: dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ YA COMPLETADO
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Nameservers cambiados a Cloudflare
+✅ Registros DNS de email configurados (MX, SPF, DKIM, DMARC)
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 LO QUE TIENES QUE HACER AHORA (SOLO 2 PASOS)
+═══════════════════════════════════════════════════════════════════════════
+
+PASO 1: Configurar el túnel de Cloudflare
+------------------------------------------
+
+Ejecuta este archivo:
+   👉 CONFIGURAR_TODO_DVTA.bat
+
+El script hará TODO automáticamente:
+   1. Verificar que cloudflared esté instalado
+   2. Abrir tu navegador para autorizar (haz clic en "Authorize")
+   3. Crear el túnel "dvta-tunnel"
+   4. Configurar DNS automáticamente
+   5. Crear el archivo de configuración
+
+⏱️  Tiempo estimado: 2-3 minutos
+
+
+PASO 2: Iniciar el túnel
+-------------------------
+
+Una vez completado el Paso 1, ejecuta:
+   👉 INICIAR_TUNNEL_DVTA.bat
+
+Esto iniciará el túnel y tu sitio estará disponible en:
+   🌐 https://dvta.ch
+   🌐 https://www.dvta.ch
+
+⚠️  IMPORTANTE: NO cierres la ventana del túnel, debe estar siempre activa
+
+
+═══════════════════════════════════════════════════════════════════════════
+  ❓ SI ALGO FALLA
+═══════════════════════════════════════════════════════════════════════════
+
+Si cloudflared no está instalado:
+   1. Ve a: https://github.com/cloudflare/cloudflared/releases
+   2. Descarga: cloudflared-windows-amd64.exe
+   3. Renómbralo a: cloudflared.exe
+   4. Muévelo a: C:\Windows\System32\
+
+Si el túnel ya existe:
+   - No hay problema, el script lo detectará y usará el existente
+
+Si el navegador no se abre:
+   - Copia la URL que aparece en el terminal y ábrela manualmente
+
+═══════════════════════════════════════════════════════════════════════════
+  📁 ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════════
+
+Para configurar:
+   🔧 CONFIGURAR_TODO_DVTA.bat ← EJECUTAR PRIMERO
+
+Para iniciar:
+   🚀 INICIAR_TUNNEL_DVTA.bat ← EJECUTAR DESPUÉS
+
+Documentación:
+   📄 INSTRUCCIONES_SIMPLES.txt (este archivo)
+   📄 GUIA_COMPLETA_MIGRACION_DVTA_CH.txt (guía detallada)
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 RESUMEN: SOLO 2 COMANDOS
+═══════════════════════════════════════════════════════════════════════════
+
+1. Doble clic en: CONFIGURAR_TODO_DVTA.bat
+   (Autoriza en el navegador cuando se abra)
+
+2. Doble clic en: INICIAR_TUNNEL_DVTA.bat
+   (Deja la ventana abierta)
+
+3. Abre tu navegador y ve a: https://dvta.ch
+
+¡Listo! 🎉
+
+═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,152 @@
+═══════════════════════════════════════════════════════════
+  GUÍA RÁPIDA: CONFIGURAR DVD.CH
+═══════════════════════════════════════════════════════════
+
+🎯 OBJETIVO: Usar https://dvd.ch como URL permanente
+
+═══════════════════════════════════════════════════════════
+  PASO 1: AÑADIR DOMINIO A CLOUDFLARE
+═══════════════════════════════════════════════════════════
+
+1. Ve a: https://dash.cloudflare.com
+2. Haz clic en "Add a Site"
+3. Introduce: dvd.ch
+4. Selecciona plan "Free"
+5. Anota los nameservers que te dan:
+   
+   Ejemplo:
+   ┌─────────────────────────────────────────┐
+   │ nameserver1.cloudflare.com              │
+   │ nameserver2.cloudflare.com              │
+   └─────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════
+  PASO 2: CAMBIAR NAMESERVERS EN TU REGISTRADOR
+═══════════════════════════════════════════════════════════
+
+1. Ve al panel de tu registrador (donde compraste dvd.ch)
+   
+   Registradores comunes en Suiza:
+   • Switch.ch → https://www.switch.ch
+   • Infomaniak → https://www.infomaniak.com
+   • Hostpoint → https://www.hostpoint.ch
+
+2. Busca "DNS" o "Nameservers"
+
+3. Cambia los nameservers actuales por los de Cloudflare
+
+4. Guarda los cambios
+
+⏱️  ESPERA: 2-24 horas (normalmente 2-4 horas)
+
+═══════════════════════════════════════════════════════════
+  PASO 3: CONFIGURAR TÚNEL (DESPUÉS DE PROPAGACIÓN DNS)
+═══════════════════════════════════════════════════════════
+
+Opción A - AUTOMÁTICO (Recomendado):
+┌─────────────────────────────────────────┐
+│ CONFIGURAR_DOMINIO_DVD_CH.bat           │
+└─────────────────────────────────────────┘
+
+Opción B - MANUAL:
+
+1. Abrir CMD como Administrador
+
+2. Ejecutar:
+   cloudflared tunnel route dns dvdcoin dvd.ch
+
+3. Editar cloudflare-config.yml:
+   
+   ingress:
+     - hostname: dvd.ch
+       service: http://localhost:8000
+     - service: http_status:404
+
+4. Reiniciar túnel:
+   taskkill /F /IM cloudflared.exe
+   cloudflared tunnel --config cloudflare-config.yml run dvdcoin
+
+═══════════════════════════════════════════════════════════
+  PASO 4: VERIFICAR
+═══════════════════════════════════════════════════════════
+
+1. Verificar DNS:
+   nslookup dvd.ch
+   
+   Debe mostrar IPs de Cloudflare (104.x.x.x)
+
+2. Verificar túnel:
+   cloudflared tunnel info dvdcoin
+
+3. Probar en navegador:
+   https://dvd.ch
+
+═══════════════════════════════════════════════════════════
+  COMANDOS ÚTILES
+═══════════════════════════════════════════════════════════
+
+Verificar DNS:
+  nslookup dvd.ch
+
+Verificar propagación DNS:
+  https://dnschecker.org
+
+Ver info del túnel:
+  cloudflared tunnel info dvdcoin
+
+Ver logs:
+  type cloudflare_tunnel.log
+
+Reiniciar túnel:
+  taskkill /F /IM cloudflared.exe
+  INICIAR_CON_CLOUDFLARE.bat
+
+═══════════════════════════════════════════════════════════
+  SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════
+
+❌ "DNS_PROBE_FINISHED_NXDOMAIN"
+   → Espera más tiempo (DNS no propagado)
+   → Verifica nameservers en tu registrador
+
+❌ "502 Bad Gateway"
+   → Servidor no está corriendo
+   → Ejecuta: python main.py
+
+❌ "ERR_SSL_VERSION_OR_CIPHER_MISMATCH"
+   → Ve a Cloudflare Dashboard → SSL/TLS
+   → Cambia a modo "Full" o "Flexible"
+
+❌ Túnel no conecta
+   → Ver logs: type cloudflare_tunnel.log
+   → Reiniciar: CONFIGURAR_DOMINIO_DVD_CH.bat
+
+═══════════════════════════════════════════════════════════
+  TIMELINE ESPERADO
+═══════════════════════════════════════════════════════════
+
+Hora 0:00  → Añades dvd.ch a Cloudflare
+Hora 0:05  → Cambias nameservers en registrador
+Hora 2:00  → DNS empieza a propagarse
+Hora 4:00  → DNS completamente propagado (normalmente)
+Hora 4:05  → Configuras túnel con dvd.ch
+Hora 4:10  → ✅ https://dvd.ch FUNCIONANDO
+
+═══════════════════════════════════════════════════════════
+  RESULTADO FINAL
+═══════════════════════════════════════════════════════════
+
+✅ URL permanente: https://dvd.ch
+✅ SSL/HTTPS automático
+✅ Sin límites de conexiones
+✅ Protección DDoS
+✅ CDN global de Cloudflare
+
+═══════════════════════════════════════════════════════════
+  DOCUMENTACIÓN COMPLETA
+═══════════════════════════════════════════════════════════
+
+Guía detallada: CONFIGURAR_DVD_CH.md
+Script automático: CONFIGURAR_DOMINIO_DVD_CH.bat
+
+═══════════════════════════════════════════════════════════

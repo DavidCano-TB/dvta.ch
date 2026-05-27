@@ -1,0 +1,3 @@
+Cómo evitar esto en el futuro
+Si el servidor no arranca, antes de mirar ngrok, ejecuta en el terminal:
+bashpython -m py_compile main.py

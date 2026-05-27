@@ -1,0 +1,154 @@
+================================================================================
+  🚨 SOLUCIÓN URGENTE: OPO muestra "Conectando..." pero no carga
+================================================================================
+
+PROBLEMA ACTUAL:
+  - Abres /opo
+  - Ves "Conectando…" en el badge
+  - NO aparece la lista de tests
+  - La pantalla queda en blanco o muestra "Acceso requerido"
+
+CAUSA:
+  Tu usuario NO está en la lista de usuarios autorizados para OPO,
+  O el servidor no se reinició después de agregarlo.
+
+================================================================================
+  SOLUCIÓN RÁPIDA (2 PASOS)
+================================================================================
+
+PASO 1: AGREGAR TU USUARIO Y REINICIAR SERVIDOR
+------------------------------------------------
+
+Ejecuta UNO de estos comandos (reemplaza "tu_usuario" con tu nombre real):
+
+  📁 AGREGAR_USUARIO_Y_REINICIAR.bat tu_usuario
+
+Ejemplos:
+  AGREGAR_USUARIO_Y_REINICIAR.bat dvd
+  AGREGAR_USUARIO_Y_REINICIAR.bat test_user
+  AGREGAR_USUARIO_Y_REINICIAR.bat nina
+
+Este script:
+  ✓ Agrega tu usuario a la lista OPO
+  ✓ Detiene el servidor automáticamente
+  ✓ Reinicia el servidor automáticamente
+
+PASO 2: REFRESCAR EL NAVEGADOR
+-------------------------------
+
+  1. Ve a la página /opo
+  2. Presiona Ctrl+Shift+R (refresco forzado)
+  3. Deberías ver la lista de tests
+
+================================================================================
+  ¿NO SABES TU NOMBRE DE USUARIO?
+================================================================================
+
+Ejecuta:
+  📁 DIAGNOSTICAR_OPO.bat
+
+Esto te mostrará:
+  - Usuarios con acceso OPO (sección [2])
+  - Todos los usuarios del sistema (sección [3])
+  - Estado del servidor
+
+================================================================================
+  USUARIOS ACTUALES CON ACCESO OPO
+================================================================================
+
+Según la base de datos:
+  ✓ dvd
+  ✓ dvdrec
+  ✓ nebulosa
+  ✓ test_user
+
+Si tu usuario NO está en esta lista, agrégalo con:
+  AGREGAR_USUARIO_Y_REINICIAR.bat <tu_usuario>
+
+================================================================================
+  VERIFICACIÓN MANUAL (SI LO ANTERIOR NO FUNCIONA)
+================================================================================
+
+1. Verificar que el servidor está corriendo:
+   
+   tasklist | findstr python.exe
+   
+   Si NO aparece nada, inicia el servidor:
+   ARRANCAR.bat
+
+2. Verificar que tu usuario está en OPO:
+   
+   python -c "import sqlite3; conn = sqlite3.connect('data/rights.db'); rows = conn.execute('SELECT username FROM opo_players').fetchall(); [print(r[0]) for r in rows]; conn.close()"
+
+3. Si tu usuario NO aparece, agrégalo:
+   
+   python add_opo_user.py <tu_usuario>
+
+4. REINICIAR el servidor (OBLIGATORIO):
+   
+   KILL_ALL_AND_RESTART.bat
+
+5. Refrescar el navegador:
+   
+   Ctrl+Shift+R en /opo
+
+================================================================================
+  ERRORES COMUNES
+================================================================================
+
+❌ "Conectando..." infinito
+   → Tu usuario no está en opo_players
+   → Solución: AGREGAR_USUARIO_Y_REINICIAR.bat <tu_usuario>
+
+❌ "Sin acceso OPO" en el badge
+   → Tu usuario no está en opo_players
+   → Solución: AGREGAR_USUARIO_Y_REINICIAR.bat <tu_usuario>
+
+❌ "Sesión inválida"
+   → Tu token expiró o es inválido
+   → Solución: Cierra sesión y vuelve a iniciar sesión en /
+
+❌ Agregué mi usuario pero sigue sin funcionar
+   → NO reiniciaste el servidor
+   → Solución: KILL_ALL_AND_RESTART.bat
+
+❌ La pantalla está completamente vacía
+   → Problema de CSS o JavaScript
+   → Solución: Ctrl+Shift+R para limpiar caché
+
+================================================================================
+  SCRIPTS DISPONIBLES
+================================================================================
+
+📁 AGREGAR_USUARIO_Y_REINICIAR.bat <usuario>
+   → Agrega usuario y reinicia servidor automáticamente
+   → RECOMENDADO: Usa este primero
+
+📁 DIAGNOSTICAR_OPO.bat
+   → Muestra estado completo del sistema
+   → Útil para identificar el problema
+
+📁 GESTIONAR_ACCESO_OPO.bat
+   → Menú interactivo para gestionar usuarios OPO
+
+📁 KILL_ALL_AND_RESTART.bat
+   → Reinicia el servidor manualmente
+
+================================================================================
+  AYUDA ADICIONAL
+================================================================================
+
+Si después de seguir TODOS los pasos anteriores sigue sin funcionar:
+
+1. Abre la consola del navegador (F12)
+2. Ve a la pestaña "Console"
+3. Busca errores en rojo
+4. Busca mensajes que digan "WebSocket closed: 4003" o similar
+5. Copia el error y busca ayuda
+
+Archivos de documentación:
+  📄 SOLUCION_RAPIDA_OPO.md
+  📄 docs/FIX_OPO_ACCESO_DENEGADO.md
+  📄 docs/RESUMEN_COMPLETO_FIXES_OPO.md
+
+================================================================================

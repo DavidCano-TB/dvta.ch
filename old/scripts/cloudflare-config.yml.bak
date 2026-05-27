@@ -1,0 +1,99 @@
+# ============================================================
+# CONFIGURACION DE CLOUDFLARE TUNNEL PARA DVDCOIN
+# ============================================================
+# 
+# INSTRUCCIONES:
+# 1. Reemplaza <TUNNEL-ID> con el ID de tu túnel
+# 2. Reemplaza <TU_USUARIO> con tu nombre de usuario de Windows
+# 3. Reemplaza dvdcoin.tudominio.com con tu dominio
+#
+# Para obtener tu TUNNEL-ID, ejecuta:
+#   cloudflared tunnel list
+#
+# ============================================================
+
+# ID del túnel (obtenido con: cloudflared tunnel create dvdcoin)
+tunnel: <TUNNEL-ID>
+
+# Ruta al archivo de credenciales
+credentials-file: C:\Users\<TU_USUARIO>\.cloudflared\<TUNNEL-ID>.json
+
+# Configuración de ingress (rutas)
+ingress:
+  # Ruta principal - DVDcoin
+  - hostname: dvdcoin.tudominio.com
+    service: http://localhost:8000
+    originRequest:
+      # Configuración para WebSockets
+      noTLSVerify: false
+      connectTimeout: 30s
+      tlsTimeout: 10s
+      tcpKeepAlive: 30s
+      keepAliveConnections: 100
+      keepAliveTimeout: 90s
+      httpHostHeader: localhost:8000
+      originServerName: localhost
+      # Habilitar WebSockets
+      disableChunkedEncoding: false
+      bastionMode: false
+      proxyAddress: 127.0.0.1
+      proxyPort: 0
+      proxyType: ""
+      # HTTP/2
+      http2Origin: false
+      # Timeouts largos para WebSockets
+      noHappyEyeballs: false
+      
+  # Ruta catch-all (debe ser la última)
+  - service: http_status:404
+
+# Configuración de métricas (opcional)
+metrics: localhost:2000
+
+# Configuración de logs
+# Niveles: debug, info, warn, error, fatal
+loglevel: info
+
+# Configuración de transporte
+# Protocolo: auto, http2, quic
+protocol: auto
+
+# Número de conexiones al edge de Cloudflare
+# Recomendado: 4 (por defecto)
+# Aumentar si tienes muchas conexiones simultáneas
+# ha-connections: 4
+
+# Configuración de retries
+retries: 5
+
+# Grace period para shutdown (segundos)
+grace-period: 30s
+
+# Configuración de compresión
+# compression-quality: 0  # 0 = sin compresión, 11 = máxima compresión
+
+# ============================================================
+# NOTAS IMPORTANTES:
+# ============================================================
+#
+# 1. WebSockets: Esta configuración soporta WebSockets para
+#    los juegos en tiempo real (Pasapalabra, Hundir la Flota, etc.)
+#
+# 2. Timeouts: Los timeouts están configurados para conexiones
+#    largas (juegos, chat, etc.)
+#
+# 3. Múltiples dominios: Si quieres usar múltiples dominios,
+#    añade más entradas en ingress:
+#
+#    - hostname: otro.tudominio.com
+#      service: http://localhost:8000
+#
+# 4. Subdominio gratis: Si no tienes dominio, puedes usar
+#    un subdominio de Cloudflare (.trycloudflare.com)
+#    En ese caso, comenta la línea "hostname:" y cloudflared
+#    te asignará uno automáticamente
+#
+# 5. HTTPS: Cloudflare maneja automáticamente SSL/TLS
+#    Tu aplicación seguirá corriendo en HTTP localmente
+#
+# ============================================================

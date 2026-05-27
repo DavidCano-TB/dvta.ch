@@ -1,0 +1,117 @@
+/* DVDcoin Game Admin — shared styles */
+:root{
+  --bg:#04040A;--bg2:#08080F;--bg3:#0D0D1C;
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;
+  --green:#38B87A;--red:#C83060;--orange:#E8820C;--blue:#4878D8;
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --b1:rgba(212,168,67,.12);--b2:rgba(212,168,67,.26);
+  --r:10px;--rL:14px;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:15px;-webkit-text-size-adjust:100%;height:100%}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;
+  min-height:100%;-webkit-font-smoothing:antialiased;overscroll-behavior-y:contain}
+button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointer;border:none;touch-action:manipulation}
+input,select,textarea{-webkit-appearance:none;appearance:none;font-family:inherit;font-size:16px;outline:none}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:2px}
+
+/* ── Header ── */
+.hdr{
+  position:sticky;top:0;z-index:100;
+  height:50px;padding-top:var(--safe-t);
+  background:rgba(4,4,10,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b1);
+  display:flex;align-items:center;gap:10px;padding-left:14px;padding-right:14px;
+}
+.hdrBack{
+  display:inline-flex;align-items:center;gap:5px;
+  background:none;border:1px solid var(--b1);border-radius:8px;
+  padding:6px 11px;color:var(--text2);font-family:'DM Mono',monospace;
+  font-size:.62rem;letter-spacing:.05em;cursor:pointer;transition:.18s;
+  min-height:36px;text-decoration:none;
+}
+.hdrBack:hover{color:var(--gold2);border-color:var(--b2)}
+.hdrIcon{font-size:1.2rem;flex-shrink:0}
+.hdrTitle{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:700;
+  color:var(--gold2);letter-spacing:.12em;text-transform:uppercase;flex:1}
+.badge{font-size:.58rem;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.05em}
+.badge.on {background:rgba(56,184,122,.15);color:var(--green);border:1px solid rgba(56,184,122,.3)}
+.badge.off{background:rgba(255,255,255,.05);color:var(--text3);border:1px solid var(--b1)}
+
+/* ── Layout ── */
+.wrap{max-width:580px;margin:0 auto;padding:18px 14px calc(40px + var(--safe-b))}
+.section{background:var(--bg2);border:1px solid var(--b1);border-radius:var(--rL);
+  padding:16px;margin-bottom:12px}
+.sTitle{font-size:.53rem;color:var(--text3);text-transform:uppercase;
+  letter-spacing:.14em;margin-bottom:12px}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  min-height:44px;padding:10px 18px;border-radius:var(--r);border:none;
+  font-family:'DM Mono',monospace;font-size:.72rem;font-weight:500;
+  letter-spacing:.08em;text-transform:uppercase;transition:all .18s;
+  cursor:pointer;touch-action:manipulation}
+.btn.w100{width:100%}
+.btn:disabled{opacity:.28;cursor:not-allowed;transform:none!important}
+.btnG{background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#050200}
+.btnG:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
+.btnR{background:rgba(200,48,96,.14);color:var(--red);border:1px solid rgba(200,48,96,.3)}
+.btnR:hover:not(:disabled){background:rgba(200,48,96,.24)}
+.btnO{background:rgba(232,130,12,.12);color:var(--orange);border:1px solid rgba(232,130,12,.28)}
+.btnO:hover:not(:disabled){background:rgba(232,130,12,.22)}
+.btnS{background:rgba(255,255,255,.05);color:var(--text2);border:1px solid var(--b1)}
+.btnS:hover:not(:disabled){border-color:var(--b2);color:var(--gold2)}
+.btnSm{min-height:38px;padding:7px 14px;font-size:.65rem}
+.btnRow{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ── Form ── */
+.lbl{font-size:.55rem;color:var(--text3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px}
+.inp{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--b1);
+  border-radius:var(--r);padding:9px 12px;color:var(--text);
+  font-family:'DM Mono',monospace;font-size:16px;transition:.18s}
+.inp:focus{border-color:var(--gold);background:rgba(212,168,67,.03)}
+.inp::placeholder{color:var(--text3)}
+.sel{width:100%;background:var(--bg3);border:1px solid var(--b1);border-radius:var(--r);
+  padding:9px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:16px}
+.sel:focus{border-color:var(--gold)}
+
+/* ── Autocomplete ── */
+.acWrap{position:relative}
+.acDrop{position:absolute;top:calc(100% + 2px);left:0;right:0;z-index:500;
+  background:var(--bg3);border:1px solid var(--b2);border-radius:var(--r);
+  max-height:200px;overflow-y:auto;display:none;
+  box-shadow:0 12px 40px rgba(0,0,0,.8)}
+.acDrop.open{display:block}
+.acItem{padding:10px 12px;font-size:.72rem;color:var(--text);cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,.04);min-height:42px;
+  display:flex;align-items:center;transition:background .1s}
+.acItem:hover,.acItem.hi{background:rgba(212,168,67,.08);color:var(--gold2)}
+.acItem b{color:var(--gold)}
+
+/* ── Player pills ── */
+.pills{display:flex;flex-wrap:wrap;gap:5px;min-height:34px;margin-top:8px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(212,168,67,.07);border:1px solid var(--b1);
+  border-radius:20px;padding:4px 10px 4px 12px;font-size:.66rem;color:var(--text)}
+.pillX{background:none;border:none;color:var(--text3);cursor:pointer;font-size:.78rem;min-height:24px;padding:0 2px}
+.pillX:hover{color:var(--red)}
+.pillCount{font-size:.56rem;color:var(--text3);margin-top:4px}
+
+/* ── Alert ── */
+.alert{font-size:.68rem;padding:0;min-height:0;margin-top:8px;
+  border-radius:var(--r);transition:all .2s;overflow:hidden;max-height:0}
+.alert.on{padding:8px 12px;max-height:80px}
+.alert.ok{background:rgba(56,184,122,.1);color:var(--green);border:1px solid rgba(56,184,122,.25)}
+.alert.err{background:rgba(200,48,96,.1);color:var(--red);border:1px solid rgba(200,48,96,.25)}
+
+/* ── Status row ── */
+.statusRow{display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  padding:10px 14px;background:rgba(255,255,255,.03);border-radius:var(--r);
+  border:1px solid var(--b1)}
+.statusDot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.statusDot.on{background:var(--green);box-shadow:0 0 8px rgba(56,184,122,.5)}
+.statusDot.off{background:var(--text3)}
+.statusText{flex:1;font-size:.7rem;color:var(--text2)}
+.statusText strong{color:var(--text);font-weight:600}

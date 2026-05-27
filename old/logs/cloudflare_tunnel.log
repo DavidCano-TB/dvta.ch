@@ -1,0 +1,25 @@
+2026-05-19T21:04:29Z INF Starting tunnel tunnelID=6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
+2026-05-19T21:04:29Z INF Version 2026.5.0 (Checksum f141cded099c239171ad2cea6fb5da0fdaa2bd36104c3074d883f9546519eba7)
+2026-05-19T21:04:29Z INF GOOS: windows, GOVersion: go1.26.2, GoArch: amd64
+2026-05-19T21:04:29Z INF Settings: map[config:cloudflare-config.yml cred-file:C:\Users\PC\.cloudflared\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json credentials-file:C:\Users\PC\.cloudflared\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json grace-period:30s loglevel:info metrics:127.0.0.1:2000 p:quic protocol:quic retries:5]
+2026-05-19T21:04:29Z INF cloudflared will not automatically update on Windows systems.
+2026-05-19T21:04:29Z INF Generated Connector ID: 7853faef-8635-4c6f-9855-59729960c191
+2026-05-19T21:04:29Z INF Initial protocol quic
+2026-05-19T21:04:29Z INF ICMP proxy will use 192.168.178.88 as source for IPv4
+2026-05-19T21:04:29Z INF ICMP proxy will use fdd3:c074:68b8:0:265:9513:2183:9654 in zone Wi-Fi as source for IPv6
+2026-05-19T21:04:29Z INF cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool
+2026-05-19T21:04:29Z INF cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool
+2026-05-19T21:04:29Z INF cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool
+2026-05-19T21:04:29Z INF cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool
+2026-05-19T21:04:29Z INF cloudflared does not support loading the system root certificate pool on Windows. Please use --origin-ca-pool <PATH> to specify the path to the certificate pool
+2026-05-19T21:04:29Z INF ICMP proxy will use 192.168.178.88 as source for IPv4
+2026-05-19T21:04:29Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.63
+2026-05-19T21:04:29Z INF ICMP proxy will use fdd3:c074:68b8:0:265:9513:2183:9654 in zone Wi-Fi as source for IPv6
+2026-05-19T21:04:29Z INF Starting metrics server on 127.0.0.1:2000/metrics
+2026-05-19T21:04:30Z INF Registered tunnel connection connIndex=0 connection=04f9d357-22da-4495-b6d8-2263964a690f event=0 ip=198.41.200.63 location=fra16 protocol=quic
+2026-05-19T21:04:30Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=1 event=0 ip=198.41.192.27
+2026-05-19T21:04:30Z INF Registered tunnel connection connIndex=1 connection=c0a0ea71-813a-4b56-bdf0-4bc4928ed19c event=0 ip=198.41.192.27 location=zrh01 protocol=quic
+2026-05-19T21:04:31Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=2 event=0 ip=198.41.192.37
+2026-05-19T21:04:31Z INF Registered tunnel connection connIndex=2 connection=ae08568d-300c-4a88-b401-f2ab8dd138b9 event=0 ip=198.41.192.37 location=zrh01 protocol=quic
+2026-05-19T21:04:32Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=3 event=0 ip=198.41.200.193
+2026-05-19T21:04:32Z INF Registered tunnel connection connIndex=3 connection=fe7a44e2-b914-4838-bbc5-52d84e275e34 event=0 ip=198.41.200.193 location=fra16 protocol=quic

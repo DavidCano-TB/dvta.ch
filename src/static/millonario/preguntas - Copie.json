@@ -1,0 +1,8032 @@
+{
+  "1": [
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Azul",
+      "C": "Amarillo",
+      "D": "Verde",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Naranja",
+      "C": "Manzana",
+      "D": "Uva",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Vaca",
+      "C": "Gato",
+      "D": "Pato",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Amarillo",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cinco",
+      "B": "Dos",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Naranja",
+      "C": "Uva",
+      "D": "Manzana",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Pato",
+      "C": "Vaca",
+      "D": "Perro",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Trece",
+      "C": "Once",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Amarillo",
+      "C": "Azul",
+      "D": "Verde",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Naranja",
+      "C": "Plátano",
+      "D": "Manzana",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Vaca",
+      "C": "Pato",
+      "D": "Perro",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Dos",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Rojo",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Marte",
+      "D": "Venus",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cuatro",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Una",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Elefante",
+      "B": "León",
+      "C": "Tigre",
+      "D": "Gorila",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Diez",
+      "C": "Once",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cinco",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Venus",
+      "C": "Marte",
+      "D": "Júpiter",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Elefante",
+      "B": "León",
+      "C": "Tigre",
+      "D": "Gorila",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Pato",
+      "C": "Perro",
+      "D": "Vaca",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Dos",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Una",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Trece",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Pato",
+      "C": "Vaca",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Rojo",
+      "C": "Amarillo",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Siete",
+      "C": "Ocho",
+      "D": "Seis",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Seis",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Once",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Doce",
+      "B": "Once",
+      "C": "Trece",
+      "D": "Diez",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Trece",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "León",
+      "C": "Elefante",
+      "D": "Gorila",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Doce",
+      "B": "Diez",
+      "C": "Trece",
+      "D": "Once",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Saturno",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Una",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Manzana",
+      "C": "Plátano",
+      "D": "Naranja",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Una",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Plátano",
+      "C": "Manzana",
+      "D": "Uva",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Una",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Pato",
+      "C": "Vaca",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Trece",
+      "C": "Doce",
+      "D": "Once",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Una",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Marte",
+      "D": "Venus",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Manzana",
+      "C": "Plátano",
+      "D": "Naranja",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Amarillo",
+      "C": "Verde",
+      "D": "Rojo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Diez",
+      "C": "Doce",
+      "D": "Once",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "Gorila",
+      "C": "León",
+      "D": "Elefante",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Manzana",
+      "B": "Naranja",
+      "C": "Uva",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Dos",
+      "r": "A"
+    }
+  ],
+  "2": [
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Tigre",
+      "C": "Gorila",
+      "D": "Elefante",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Tigre",
+      "C": "Elefante",
+      "D": "Gorila",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Cinco",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Gato",
+      "C": "Pato",
+      "D": "Vaca",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Vaca",
+      "C": "Perro",
+      "D": "Pato",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Una",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Dos",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Marte",
+      "D": "Venus",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Vaca",
+      "C": "Pato",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Marte",
+      "D": "Venus",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Seis",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "Gorila",
+      "C": "Elefante",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Seis",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Cinco",
+      "C": "Siete",
+      "D": "Seis",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Ocho",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Júpiter",
+      "C": "Saturno",
+      "D": "Venus",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Manzana",
+      "C": "Uva",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Once",
+      "C": "Diez",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Amarillo",
+      "C": "Rojo",
+      "D": "Verde",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Manzana",
+      "C": "Plátano",
+      "D": "Naranja",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "León",
+      "C": "Gorila",
+      "D": "Elefante",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Siete",
+      "C": "Ocho",
+      "D": "Seis",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Trece",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Marte",
+      "C": "Júpiter",
+      "D": "Venus",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Doce",
+      "B": "Once",
+      "C": "Trece",
+      "D": "Diez",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Vaca",
+      "C": "Pato",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Venus",
+      "C": "Saturno",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Rojo",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cinco",
+      "B": "Cuatro",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Gorila",
+      "C": "Tigre",
+      "D": "Elefante",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Azul",
+      "C": "Rojo",
+      "D": "Amarillo",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Siete",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "León",
+      "C": "Gorila",
+      "D": "Elefante",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Manzana",
+      "B": "Uva",
+      "C": "Plátano",
+      "D": "Naranja",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Doce",
+      "D": "Trece",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "Elefante",
+      "C": "Gorila",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Vaca",
+      "C": "Gato",
+      "D": "Pato",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Elefante",
+      "C": "Gorila",
+      "D": "Tigre",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Dos",
+      "D": "Una",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Venus",
+      "B": "Júpiter",
+      "C": "Marte",
+      "D": "Saturno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Doce",
+      "D": "Trece",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Marte",
+      "C": "Venus",
+      "D": "Júpiter",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Saturno",
+      "C": "Venus",
+      "D": "Júpiter",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Cinco",
+      "C": "Siete",
+      "D": "Seis",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Manzana",
+      "B": "Uva",
+      "C": "Plátano",
+      "D": "Naranja",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Plátano",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Trece",
+      "C": "Once",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Manzana",
+      "C": "Uva",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Plátano",
+      "C": "Uva",
+      "D": "Manzana",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Plátano",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Manzana",
+      "B": "Plátano",
+      "C": "Naranja",
+      "D": "Uva",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Una",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Rojo",
+      "C": "Azul",
+      "D": "Amarillo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cinco",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "D"
+    }
+  ],
+  "3": [
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Elefante",
+      "B": "Tigre",
+      "C": "Gorila",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "Elefante",
+      "C": "León",
+      "D": "Gorila",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Trece",
+      "C": "Diez",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Uva",
+      "C": "Naranja",
+      "D": "Manzana",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Una",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Naranja",
+      "C": "Manzana",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Manzana",
+      "C": "Plátano",
+      "D": "Naranja",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Seis",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Trece",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Trece",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Pato",
+      "B": "Perro",
+      "C": "Gato",
+      "D": "Vaca",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Cinco",
+      "C": "Ocho",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Dos",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Saturno",
+      "C": "Júpiter",
+      "D": "Venus",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Una",
+      "C": "Dos",
+      "D": "Cuatro",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Seis",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Seis",
+      "B": "Siete",
+      "C": "Cinco",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Azul",
+      "C": "Rojo",
+      "D": "Verde",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cinco",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Dos",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Amarillo",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Siete",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Cinco",
+      "C": "Ocho",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Una",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Plátano",
+      "C": "Manzana",
+      "D": "Uva",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Manzana",
+      "C": "Uva",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Ocho",
+      "C": "Seis",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Gorila",
+      "B": "Tigre",
+      "C": "Elefante",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Doce",
+      "C": "Trece",
+      "D": "Diez",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cinco",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Verde",
+      "C": "Amarillo",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Manzana",
+      "C": "Uva",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Pato",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Vaca",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Plátano",
+      "C": "Uva",
+      "D": "Manzana",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Elefante",
+      "C": "Tigre",
+      "D": "Gorila",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Pato",
+      "C": "Vaca",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Elefante",
+      "B": "Gorila",
+      "C": "Tigre",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Manzana",
+      "B": "Plátano",
+      "C": "Uva",
+      "D": "Naranja",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Doce",
+      "C": "Once",
+      "D": "Trece",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Marte",
+      "D": "Venus",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Venus",
+      "B": "Saturno",
+      "C": "Marte",
+      "D": "Júpiter",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Amarillo",
+      "C": "Rojo",
+      "D": "Verde",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Dos",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Cinco",
+      "C": "Seis",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Seis",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Azul",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Venus",
+      "B": "Júpiter",
+      "C": "Marte",
+      "D": "Saturno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Rojo",
+      "C": "Amarillo",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Una",
+      "B": "Dos",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Saturno",
+      "C": "Venus",
+      "D": "Júpiter",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Pato",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Vaca",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Once",
+      "C": "Diez",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Saturno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Seis",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Dos",
+      "B": "Tres",
+      "C": "Una",
+      "D": "Cuatro",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Dos",
+      "D": "Una",
+      "r": "C"
+    }
+  ],
+  "4": [
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Uva",
+      "C": "Naranja",
+      "D": "Manzana",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Dos",
+      "D": "Una",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Una",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Una",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Doce",
+      "B": "Diez",
+      "C": "Once",
+      "D": "Trece",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Marte",
+      "C": "Venus",
+      "D": "Júpiter",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Vaca",
+      "C": "Gato",
+      "D": "Pato",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "León",
+      "C": "Elefante",
+      "D": "Gorila",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Doce",
+      "C": "Once",
+      "D": "Diez",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Amarillo",
+      "C": "Azul",
+      "D": "Verde",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cinco",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Una",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Trece",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Venus",
+      "C": "Marte",
+      "D": "Júpiter",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Naranja",
+      "C": "Plátano",
+      "D": "Manzana",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Azul",
+      "C": "Amarillo",
+      "D": "Rojo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Dos",
+      "B": "Una",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Trece",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Pato",
+      "B": "Perro",
+      "C": "Vaca",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Elefante",
+      "C": "Tigre",
+      "D": "Gorila",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Gorila",
+      "C": "Tigre",
+      "D": "Elefante",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Perro",
+      "C": "Pato",
+      "D": "Vaca",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Gato",
+      "C": "Vaca",
+      "D": "Pato",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Amarillo",
+      "C": "Verde",
+      "D": "Rojo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Plátano",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Vaca",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Pato",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Ocho",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Plátano",
+      "C": "Uva",
+      "D": "Manzana",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Seis",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Cuatro",
+      "D": "Una",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Verde",
+      "C": "Amarillo",
+      "D": "Rojo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Una",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Vaca",
+      "C": "Pato",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Pato",
+      "B": "Perro",
+      "C": "Vaca",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Una",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Trece",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Doce",
+      "C": "Trece",
+      "D": "Once",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Trece",
+      "C": "Diez",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Júpiter",
+      "C": "Marte",
+      "D": "Venus",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Saturno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Una",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cinco",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Dos",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Cinco",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Pato",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Vaca",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Azul",
+      "C": "Amarillo",
+      "D": "Rojo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Gato",
+      "C": "Vaca",
+      "D": "Pato",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Trece",
+      "C": "Once",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Trece",
+      "C": "Once",
+      "D": "Doce",
+      "r": "D"
+    }
+  ],
+  "5": [
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Manzana",
+      "C": "Uva",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Vaca",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Pato",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Once",
+      "B": "Trece",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Trece",
+      "C": "Doce",
+      "D": "Once",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Tigre",
+      "B": "Gorila",
+      "C": "Elefante",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Perro",
+      "C": "Pato",
+      "D": "Vaca",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Una",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Doce",
+      "C": "Once",
+      "D": "Trece",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Gorila",
+      "C": "Elefante",
+      "D": "Tigre",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Saturno",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Pato",
+      "C": "Gato",
+      "D": "Vaca",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Cinco",
+      "D": "Cuatro",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Ocho",
+      "C": "Seis",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Dos",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Júpiter",
+      "B": "Venus",
+      "C": "Marte",
+      "D": "Saturno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Once",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Vaca",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Pato",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Manzana",
+      "C": "Naranja",
+      "D": "Uva",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Gato",
+      "B": "Pato",
+      "C": "Perro",
+      "D": "Vaca",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cuatro",
+      "C": "Tres",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Plátano",
+      "B": "Manzana",
+      "C": "Uva",
+      "D": "Naranja",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Una",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Cinco",
+      "C": "Tres",
+      "D": "Seis",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Vaca",
+      "B": "Gato",
+      "C": "Perro",
+      "D": "Pato",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas patas tiene un perro?",
+      "A": "Cinco",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Cuatro",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Una",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Una",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Cuatro",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Azul",
+      "C": "Amarillo",
+      "D": "Verde",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Tres",
+      "B": "Seis",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Cuatro",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Marte",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Verde",
+      "C": "Rojo",
+      "D": "Azul",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Dos",
+      "C": "Una",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Rojo",
+      "C": "Azul",
+      "D": "Amarillo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Diez",
+      "C": "Doce",
+      "D": "Once",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Uva",
+      "B": "Naranja",
+      "C": "Manzana",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "Elefante",
+      "B": "Gorila",
+      "C": "Tigre",
+      "D": "León",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Ocho",
+      "C": "Seis",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué animal es el rey de la selva?",
+      "A": "León",
+      "B": "Elefante",
+      "C": "Tigre",
+      "D": "Gorila",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Azul",
+      "B": "Rojo",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué animal dice 'miau'?",
+      "A": "Perro",
+      "B": "Pato",
+      "C": "Vaca",
+      "D": "Gato",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Once",
+      "C": "Diez",
+      "D": "Doce",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Azul",
+      "C": "Rojo",
+      "D": "Amarillo",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Marte",
+      "B": "Júpiter",
+      "C": "Venus",
+      "D": "Saturno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Ocho",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Amarillo",
+      "B": "Azul",
+      "C": "Verde",
+      "D": "Rojo",
+      "r": "B"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Verde",
+      "B": "Amarillo",
+      "C": "Azul",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos días tiene una semana?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Naranja",
+      "B": "Uva",
+      "C": "Manzana",
+      "D": "Plátano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Seis",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Trece",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Azul",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántas ruedas tiene una bicicleta?",
+      "A": "Cuatro",
+      "B": "Tres",
+      "C": "Una",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Doce",
+      "B": "Once",
+      "C": "Diez",
+      "D": "Trece",
+      "r": "A"
+    },
+    {
+      "p": "¿De qué color es el cielo en un día despejado?",
+      "A": "Rojo",
+      "B": "Azul",
+      "C": "Verde",
+      "D": "Amarillo",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué planeta es conocido como el planeta rojo?",
+      "A": "Saturno",
+      "B": "Marte",
+      "C": "Venus",
+      "D": "Júpiter",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos dedos tiene una mano?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Tres",
+      "D": "Cuatro",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué fruta es amarilla y alargada?",
+      "A": "Manzana",
+      "B": "Plátano",
+      "C": "Uva",
+      "D": "Naranja",
+      "r": "B"
+    }
+  ],
+  "6": [
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Amazonas",
+      "C": "Nilo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Nitrógeno",
+      "D": "Dióxido de carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Lope de Vega",
+      "C": "Góngora",
+      "D": "Quevedo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Amazonas",
+      "C": "Nilo",
+      "D": "Misisipi",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Madrid",
+      "B": "Sevilla",
+      "C": "Valencia",
+      "D": "Barcelona",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Yangtsé",
+      "C": "Amazonas",
+      "D": "Nilo",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Oxígeno",
+      "C": "Nitrógeno",
+      "D": "Hidrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Índico",
+      "C": "Pacífico",
+      "D": "Ártico",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Piano",
+      "C": "Sintetizador",
+      "D": "Acordeón",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Donatello",
+      "B": "Rafael",
+      "C": "Miguel Ángel",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Rafael",
+      "C": "Donatello",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Sevilla",
+      "C": "Madrid",
+      "D": "Valencia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1989",
+      "C": "1959",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Órgano",
+      "C": "Piano",
+      "D": "Sintetizador",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Donatello",
+      "C": "Miguel Ángel",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1959",
+      "C": "1979",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Quevedo",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Ocho",
+      "B": "Siete",
+      "C": "Seis",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Quevedo",
+      "C": "Góngora",
+      "D": "Lope de Vega",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Hidrógeno",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Nitrógeno",
+      "C": "Dióxido de carbono",
+      "D": "Oxígeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Misisipi",
+      "D": "Nilo",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Oxígeno",
+      "C": "Dióxido de carbono",
+      "D": "Hidrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Dióxido de carbono",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Donatello",
+      "B": "Miguel Ángel",
+      "C": "Leonardo da Vinci",
+      "D": "Rafael",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Órgano",
+      "C": "Sintetizador",
+      "D": "Acordeón",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Madrid",
+      "B": "Sevilla",
+      "C": "Barcelona",
+      "D": "Valencia",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Sintetizador",
+      "C": "Acordeón",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Acordeón",
+      "C": "Órgano",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "186",
+      "C": "226",
+      "D": "206",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Dióxido de carbono",
+      "D": "Nitrógeno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Barcelona",
+      "C": "Valencia",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Cervantes",
+      "C": "Góngora",
+      "D": "Lope de Vega",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Dióxido de carbono",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1989",
+      "C": "1979",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Índico",
+      "D": "Ártico",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Acordeón",
+      "C": "Órgano",
+      "D": "Sintetizador",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "206",
+      "C": "246",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "226",
+      "C": "206",
+      "D": "186",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "246",
+      "C": "226",
+      "D": "186",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Góngora",
+      "C": "Cervantes",
+      "D": "Quevedo",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Rafael",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Siete",
+      "D": "Ocho",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Madrid",
+      "C": "Barcelona",
+      "D": "Valencia",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "226",
+      "B": "206",
+      "C": "186",
+      "D": "246",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Góngora",
+      "C": "Quevedo",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Lope de Vega",
+      "C": "Cervantes",
+      "D": "Góngora",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Barcelona",
+      "C": "Madrid",
+      "D": "Valencia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1989",
+      "C": "1969",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1989",
+      "C": "1969",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Sintetizador",
+      "C": "Acordeón",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Sevilla",
+      "C": "Valencia",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "206",
+      "C": "226",
+      "D": "186",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Piano",
+      "C": "Órgano",
+      "D": "Acordeón",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Amazonas",
+      "C": "Nilo",
+      "D": "Misisipi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Lope de Vega",
+      "C": "Góngora",
+      "D": "Quevedo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Atlántico",
+      "C": "Índico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Piano",
+      "C": "Órgano",
+      "D": "Acordeón",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Dióxido de carbono",
+      "D": "Nitrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Nitrógeno",
+      "D": "Dióxido de carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Quevedo",
+      "C": "Góngora",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "186",
+      "C": "226",
+      "D": "246",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Ártico",
+      "C": "Pacífico",
+      "D": "Índico",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Rafael",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Cervantes",
+      "C": "Góngora",
+      "D": "Lope de Vega",
+      "r": "B"
+    }
+  ],
+  "7": [
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "226",
+      "C": "206",
+      "D": "246",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Nilo",
+      "C": "Yangtsé",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1959",
+      "C": "1989",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Madrid",
+      "C": "Sevilla",
+      "D": "Barcelona",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Barcelona",
+      "C": "Madrid",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Barcelona",
+      "C": "Madrid",
+      "D": "Valencia",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "226",
+      "C": "206",
+      "D": "246",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "186",
+      "C": "226",
+      "D": "206",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Quevedo",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Índico",
+      "C": "Ártico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Nitrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Misisipi",
+      "C": "Yangtsé",
+      "D": "Nilo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "226",
+      "C": "206",
+      "D": "246",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Dióxido de carbono",
+      "C": "Nitrógeno",
+      "D": "Hidrógeno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Barcelona",
+      "C": "Sevilla",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Atlántico",
+      "C": "Índico",
+      "D": "Ártico",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Órgano",
+      "C": "Acordeón",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Índico",
+      "C": "Pacífico",
+      "D": "Atlántico",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Acordeón",
+      "C": "Sintetizador",
+      "D": "Órgano",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Atlántico",
+      "C": "Ártico",
+      "D": "Índico",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Nitrógeno",
+      "C": "Oxígeno",
+      "D": "Dióxido de carbono",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Ocho",
+      "B": "Cinco",
+      "C": "Seis",
+      "D": "Siete",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Miguel Ángel",
+      "C": "Leonardo da Vinci",
+      "D": "Donatello",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "226",
+      "C": "186",
+      "D": "246",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Madrid",
+      "C": "Valencia",
+      "D": "Barcelona",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Ártico",
+      "C": "Índico",
+      "D": "Atlántico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Nilo",
+      "B": "Amazonas",
+      "C": "Yangtsé",
+      "D": "Misisipi",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Índico",
+      "C": "Atlántico",
+      "D": "Ártico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Índico",
+      "C": "Ártico",
+      "D": "Atlántico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Pacífico",
+      "C": "Atlántico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Cinco",
+      "B": "Siete",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Sintetizador",
+      "C": "Piano",
+      "D": "Órgano",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Cervantes",
+      "C": "Quevedo",
+      "D": "Góngora",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Leonardo da Vinci",
+      "C": "Rafael",
+      "D": "Donatello",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Oxígeno",
+      "C": "Dióxido de carbono",
+      "D": "Hidrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Órgano",
+      "C": "Acordeón",
+      "D": "Sintetizador",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Cervantes",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Cervantes",
+      "C": "Góngora",
+      "D": "Quevedo",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1979",
+      "C": "1989",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Nilo",
+      "D": "Misisipi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Lope de Vega",
+      "C": "Góngora",
+      "D": "Quevedo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Barcelona",
+      "C": "Madrid",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Ártico",
+      "C": "Pacífico",
+      "D": "Índico",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Donatello",
+      "B": "Miguel Ángel",
+      "C": "Leonardo da Vinci",
+      "D": "Rafael",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1959",
+      "C": "1989",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Lope de Vega",
+      "C": "Góngora",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Cervantes",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1959",
+      "C": "1989",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1979",
+      "C": "1959",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1989",
+      "C": "1979",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1969",
+      "C": "1989",
+      "D": "1959",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Góngora",
+      "C": "Cervantes",
+      "D": "Lope de Vega",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1959",
+      "C": "1989",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Cinco",
+      "B": "Ocho",
+      "C": "Siete",
+      "D": "Seis",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Ártico",
+      "C": "Pacífico",
+      "D": "Índico",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Nilo",
+      "D": "Misisipi",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Misisipi",
+      "C": "Yangtsé",
+      "D": "Nilo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Nilo",
+      "C": "Yangtsé",
+      "D": "Misisipi",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Donatello",
+      "C": "Leonardo da Vinci",
+      "D": "Miguel Ángel",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Nilo",
+      "C": "Misisipi",
+      "D": "Yangtsé",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1979",
+      "C": "1969",
+      "D": "1959",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Ártico",
+      "C": "Pacífico",
+      "D": "Atlántico",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Sintetizador",
+      "C": "Órgano",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Atlántico",
+      "C": "Índico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Nitrógeno",
+      "D": "Dióxido de carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Atlántico",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Hidrógeno",
+      "C": "Dióxido de carbono",
+      "D": "Oxígeno",
+      "r": "D"
+    }
+  ],
+  "8": [
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Lope de Vega",
+      "C": "Cervantes",
+      "D": "Quevedo",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Nitrógeno",
+      "D": "Dióxido de carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Ártico",
+      "C": "Atlántico",
+      "D": "Índico",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Acordeón",
+      "C": "Sintetizador",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Acordeón",
+      "C": "Piano",
+      "D": "Sintetizador",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Atlántico",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1959",
+      "C": "1989",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Cinco",
+      "C": "Ocho",
+      "D": "Seis",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Madrid",
+      "C": "Sevilla",
+      "D": "Barcelona",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Góngora",
+      "C": "Cervantes",
+      "D": "Quevedo",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Góngora",
+      "C": "Lope de Vega",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Valencia",
+      "C": "Madrid",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Índico",
+      "C": "Atlántico",
+      "D": "Ártico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Sevilla",
+      "C": "Madrid",
+      "D": "Valencia",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1969",
+      "C": "1989",
+      "D": "1959",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Hidrógeno",
+      "C": "Nitrógeno",
+      "D": "Oxígeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "226",
+      "B": "206",
+      "C": "186",
+      "D": "246",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Ártico",
+      "C": "Atlántico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Cervantes",
+      "C": "Lope de Vega",
+      "D": "Quevedo",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Acordeón",
+      "C": "Sintetizador",
+      "D": "Órgano",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Cervantes",
+      "C": "Lope de Vega",
+      "D": "Quevedo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Índico",
+      "D": "Ártico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "226",
+      "B": "206",
+      "C": "246",
+      "D": "186",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Dióxido de carbono",
+      "D": "Nitrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "186",
+      "C": "226",
+      "D": "246",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Oxígeno",
+      "C": "Nitrógeno",
+      "D": "Hidrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1979",
+      "C": "1969",
+      "D": "1989",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Nitrógeno",
+      "C": "Dióxido de carbono",
+      "D": "Hidrógeno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Ocho",
+      "D": "Siete",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Piano",
+      "C": "Sintetizador",
+      "D": "Órgano",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Nilo",
+      "C": "Amazonas",
+      "D": "Misisipi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Ártico",
+      "C": "Pacífico",
+      "D": "Índico",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Barcelona",
+      "C": "Madrid",
+      "D": "Valencia",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Quevedo",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "226",
+      "C": "246",
+      "D": "186",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Atlántico",
+      "C": "Ártico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1969",
+      "C": "1959",
+      "D": "1989",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "206",
+      "C": "186",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Rafael",
+      "C": "Donatello",
+      "D": "Miguel Ángel",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Dióxido de carbono",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "246",
+      "C": "206",
+      "D": "226",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1959",
+      "C": "1979",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Dióxido de carbono",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Atlántico",
+      "C": "Índico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Órgano",
+      "C": "Sintetizador",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Misisipi",
+      "D": "Nilo",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Rafael",
+      "B": "Miguel Ángel",
+      "C": "Leonardo da Vinci",
+      "D": "Donatello",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Madrid",
+      "B": "Valencia",
+      "C": "Sevilla",
+      "D": "Barcelona",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Piano",
+      "C": "Órgano",
+      "D": "Acordeón",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Leonardo da Vinci",
+      "C": "Rafael",
+      "D": "Donatello",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Lope de Vega",
+      "C": "Quevedo",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Nitrógeno",
+      "C": "Hidrógeno",
+      "D": "Oxígeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "226",
+      "B": "246",
+      "C": "206",
+      "D": "186",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Nilo",
+      "D": "Misisipi",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Sintetizador",
+      "C": "Órgano",
+      "D": "Acordeón",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Sintetizador",
+      "C": "Acordeón",
+      "D": "Órgano",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1989",
+      "C": "1969",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Nilo",
+      "C": "Yangtsé",
+      "D": "Misisipi",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Nitrógeno",
+      "D": "Dióxido de carbono",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Dióxido de carbono",
+      "C": "Nitrógeno",
+      "D": "Hidrógeno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Nilo",
+      "B": "Misisipi",
+      "C": "Yangtsé",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Ártico",
+      "C": "Índico",
+      "D": "Atlántico",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Órgano",
+      "C": "Piano",
+      "D": "Sintetizador",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Dióxido de carbono",
+      "C": "Nitrógeno",
+      "D": "Oxígeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Seis",
+      "B": "Cinco",
+      "C": "Ocho",
+      "D": "Siete",
+      "r": "A"
+    }
+  ],
+  "9": [
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Sintetizador",
+      "C": "Órgano",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Donatello",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Nitrógeno",
+      "C": "Hidrógeno",
+      "D": "Oxígeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Donatello",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Cervantes",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Yangtsé",
+      "C": "Nilo",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Piano",
+      "C": "Órgano",
+      "D": "Acordeón",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1959",
+      "C": "1979",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Piano",
+      "C": "Sintetizador",
+      "D": "Acordeón",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Hidrógeno",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "226",
+      "B": "186",
+      "C": "246",
+      "D": "206",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "226",
+      "C": "186",
+      "D": "246",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Rafael",
+      "C": "Leonardo da Vinci",
+      "D": "Donatello",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1979",
+      "C": "1989",
+      "D": "1959",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Rafael",
+      "C": "Leonardo da Vinci",
+      "D": "Donatello",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "226",
+      "C": "246",
+      "D": "186",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Barcelona",
+      "C": "Valencia",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Nitrógeno",
+      "C": "Oxígeno",
+      "D": "Dióxido de carbono",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Cervantes",
+      "C": "Lope de Vega",
+      "D": "Góngora",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Cervantes",
+      "C": "Góngora",
+      "D": "Quevedo",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Acordeón",
+      "C": "Órgano",
+      "D": "Sintetizador",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Misisipi",
+      "C": "Amazonas",
+      "D": "Nilo",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Piano",
+      "C": "Sintetizador",
+      "D": "Órgano",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Barcelona",
+      "C": "Madrid",
+      "D": "Sevilla",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Nitrógeno",
+      "C": "Hidrógeno",
+      "D": "Dióxido de carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Hidrógeno",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Hidrógeno",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Lope de Vega",
+      "C": "Góngora",
+      "D": "Quevedo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Índico",
+      "C": "Pacífico",
+      "D": "Atlántico",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Sintetizador",
+      "B": "Acordeón",
+      "C": "Órgano",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "206",
+      "C": "186",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Cinco",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Lope de Vega",
+      "C": "Quevedo",
+      "D": "Góngora",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Pacífico",
+      "C": "Atlántico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Amazonas",
+      "C": "Misisipi",
+      "D": "Nilo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Yangtsé",
+      "C": "Amazonas",
+      "D": "Nilo",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1969",
+      "C": "1979",
+      "D": "1989",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Amazonas",
+      "C": "Misisipi",
+      "D": "Nilo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Pacífico",
+      "C": "Atlántico",
+      "D": "Ártico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "226",
+      "C": "246",
+      "D": "186",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Valencia",
+      "C": "Sevilla",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Nilo",
+      "B": "Yangtsé",
+      "C": "Amazonas",
+      "D": "Misisipi",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Quevedo",
+      "C": "Lope de Vega",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1979",
+      "C": "1969",
+      "D": "1959",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Madrid",
+      "B": "Barcelona",
+      "C": "Sevilla",
+      "D": "Valencia",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1969",
+      "C": "1959",
+      "D": "1989",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Ártico",
+      "C": "Atlántico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Nilo",
+      "B": "Misisipi",
+      "C": "Yangtsé",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Ártico",
+      "C": "Índico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Lope de Vega",
+      "B": "Quevedo",
+      "C": "Cervantes",
+      "D": "Góngora",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Madrid",
+      "C": "Valencia",
+      "D": "Barcelona",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Nitrógeno",
+      "C": "Hidrógeno",
+      "D": "Dióxido de carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "206",
+      "C": "226",
+      "D": "186",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Siete",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Nilo",
+      "C": "Misisipi",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Quevedo",
+      "B": "Góngora",
+      "C": "Lope de Vega",
+      "D": "Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Nilo",
+      "C": "Misisipi",
+      "D": "Yangtsé",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Ártico",
+      "C": "Atlántico",
+      "D": "Índico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Cinco",
+      "B": "Siete",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Índico",
+      "C": "Atlántico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Madrid",
+      "C": "Valencia",
+      "D": "Barcelona",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Amazonas",
+      "C": "Misisipi",
+      "D": "Nilo",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Donatello",
+      "C": "Miguel Ángel",
+      "D": "Rafael",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Acordeón",
+      "C": "Órgano",
+      "D": "Sintetizador",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Pacífico",
+      "C": "Atlántico",
+      "D": "Índico",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "246",
+      "C": "186",
+      "D": "226",
+      "r": "A"
+    }
+  ],
+  "10": [
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1959",
+      "C": "1989",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Ocho",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Cinco",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Índico",
+      "C": "Ártico",
+      "D": "Atlántico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Valencia",
+      "C": "Sevilla",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Dióxido de carbono",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Lope de Vega",
+      "C": "Cervantes",
+      "D": "Quevedo",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1989",
+      "C": "1959",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Donatello",
+      "C": "Leonardo da Vinci",
+      "D": "Rafael",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "206",
+      "B": "186",
+      "C": "226",
+      "D": "246",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "226",
+      "B": "206",
+      "C": "246",
+      "D": "186",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Índico",
+      "C": "Pacífico",
+      "D": "Ártico",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Góngora",
+      "C": "Quevedo",
+      "D": "Lope de Vega",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Dióxido de carbono",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Góngora",
+      "B": "Lope de Vega",
+      "C": "Cervantes",
+      "D": "Quevedo",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Sintetizador",
+      "C": "Piano",
+      "D": "Órgano",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "226",
+      "C": "246",
+      "D": "206",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Nilo",
+      "C": "Misisipi",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1989",
+      "C": "1959",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Nilo",
+      "C": "Amazonas",
+      "D": "Yangtsé",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Miguel Ángel",
+      "B": "Rafael",
+      "C": "Leonardo da Vinci",
+      "D": "Donatello",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Ártico",
+      "B": "Índico",
+      "C": "Atlántico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Donatello",
+      "B": "Miguel Ángel",
+      "C": "Rafael",
+      "D": "Leonardo da Vinci",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Donatello",
+      "C": "Miguel Ángel",
+      "D": "Rafael",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Ártico",
+      "C": "Índico",
+      "D": "Atlántico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Nilo",
+      "D": "Misisipi",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Índico",
+      "B": "Pacífico",
+      "C": "Ártico",
+      "D": "Atlántico",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Oxígeno",
+      "C": "Dióxido de carbono",
+      "D": "Hidrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Cinco",
+      "C": "Seis",
+      "D": "Ocho",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Piano",
+      "C": "Órgano",
+      "D": "Sintetizador",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Ártico",
+      "C": "Índico",
+      "D": "Pacífico",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Piano",
+      "C": "Acordeón",
+      "D": "Sintetizador",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Misisipi",
+      "B": "Amazonas",
+      "C": "Nilo",
+      "D": "Yangtsé",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1979",
+      "B": "1959",
+      "C": "1969",
+      "D": "1989",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "226",
+      "C": "206",
+      "D": "246",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Sevilla",
+      "C": "Madrid",
+      "D": "Barcelona",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Valencia",
+      "C": "Barcelona",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Mona Lisa?",
+      "A": "Leonardo da Vinci",
+      "B": "Miguel Ángel",
+      "C": "Donatello",
+      "D": "Rafael",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Piano",
+      "B": "Órgano",
+      "C": "Acordeón",
+      "D": "Sintetizador",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Dióxido de carbono",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Nitrógeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Órgano",
+      "B": "Piano",
+      "C": "Acordeón",
+      "D": "Sintetizador",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Índico",
+      "C": "Ártico",
+      "D": "Atlántico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Sevilla",
+      "B": "Valencia",
+      "C": "Madrid",
+      "D": "Barcelona",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1989",
+      "C": "1969",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Nitrógeno",
+      "C": "Dióxido de carbono",
+      "D": "Hidrógeno",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Nitrógeno",
+      "B": "Hidrógeno",
+      "C": "Dióxido de carbono",
+      "D": "Oxígeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Nilo",
+      "C": "Amazonas",
+      "D": "Misisipi",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Órgano",
+      "C": "Piano",
+      "D": "Sintetizador",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Nilo",
+      "B": "Misisipi",
+      "C": "Yangtsé",
+      "D": "Amazonas",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Nilo",
+      "C": "Amazonas",
+      "D": "Misisipi",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué instrumento tiene 88 teclas?",
+      "A": "Acordeón",
+      "B": "Órgano",
+      "C": "Sintetizador",
+      "D": "Piano",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Seis",
+      "C": "Cinco",
+      "D": "Ocho",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1959",
+      "B": "1969",
+      "C": "1989",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1989",
+      "B": "1979",
+      "C": "1959",
+      "D": "1969",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Barcelona",
+      "B": "Sevilla",
+      "C": "Valencia",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Yangtsé",
+      "C": "Misisipi",
+      "D": "Nilo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Siete",
+      "B": "Ocho",
+      "C": "Seis",
+      "D": "Cinco",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1989",
+      "C": "1979",
+      "D": "1959",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la capital de España?",
+      "A": "Valencia",
+      "B": "Sevilla",
+      "C": "Barcelona",
+      "D": "Madrid",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Dióxido de carbono",
+      "C": "Oxígeno",
+      "D": "Nitrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Nitrógeno",
+      "D": "Dióxido de carbono",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1969",
+      "B": "1979",
+      "C": "1989",
+      "D": "1959",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "246",
+      "B": "206",
+      "C": "186",
+      "D": "226",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Hidrógeno",
+      "B": "Nitrógeno",
+      "C": "Oxígeno",
+      "D": "Dióxido de carbono",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Pacífico",
+      "B": "Ártico",
+      "C": "Atlántico",
+      "D": "Índico",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Misisipi",
+      "C": "Amazonas",
+      "D": "Nilo",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué gas respiramos?",
+      "A": "Oxígeno",
+      "B": "Dióxido de carbono",
+      "C": "Nitrógeno",
+      "D": "Hidrógeno",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos continentes hay?",
+      "A": "Seis",
+      "B": "Ocho",
+      "C": "Cinco",
+      "D": "Siete",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién escribió Don Quijote?",
+      "A": "Cervantes",
+      "B": "Góngora",
+      "C": "Quevedo",
+      "D": "Lope de Vega",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Yangtsé",
+      "B": "Nilo",
+      "C": "Amazonas",
+      "D": "Misisipi",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el océano más grande?",
+      "A": "Atlántico",
+      "B": "Pacífico",
+      "C": "Índico",
+      "D": "Ártico",
+      "r": "B"
+    }
+  ],
+  "11": [
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1991",
+      "C": "1985",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Mont Blanc",
+      "B": "K2",
+      "C": "Kilimanjaro",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Tres",
+      "C": "Uno",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Helio",
+      "C": "Hidrógeno",
+      "D": "Oxígeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Uno",
+      "C": "Tres",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "París",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1914",
+      "B": "1939",
+      "C": "1945",
+      "D": "1941",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Roma",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Kilimanjaro",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Galileo",
+      "C": "Newton",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "Thomas Jefferson",
+      "C": "George Washington",
+      "D": "John Adams",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Kilimanjaro",
+      "D": "Mont Blanc",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Uno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Doce",
+      "C": "Once",
+      "D": "Nueve",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Berlín",
+      "B": "Londres",
+      "C": "Roma",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "300.000 km/s",
+      "C": "600.000 km/s",
+      "D": "450.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "John Adams",
+      "C": "Thomas Jefferson",
+      "D": "Benjamin Franklin",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Newton",
+      "B": "Einstein",
+      "C": "Galileo",
+      "D": "Hawking",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "Benjamin Franklin",
+      "C": "John Adams",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Nueve",
+      "D": "Doce",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "600.000 km/s",
+      "C": "450.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Newton",
+      "C": "Galileo",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Roma",
+      "C": "Berlín",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "Thomas Jefferson",
+      "C": "Benjamin Franklin",
+      "D": "John Adams",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1985",
+      "C": "1979",
+      "D": "1991",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1985",
+      "C": "1991",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Kilimanjaro",
+      "D": "Mont Blanc",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "Mont Blanc",
+      "C": "K2",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Mont Blanc",
+      "B": "Everest",
+      "C": "Kilimanjaro",
+      "D": "K2",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Berlín",
+      "C": "Londres",
+      "D": "Roma",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Ninguno",
+      "C": "Uno",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1914",
+      "C": "1941",
+      "D": "1945",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "K2",
+      "B": "Everest",
+      "C": "Kilimanjaro",
+      "D": "Mont Blanc",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Ninguno",
+      "C": "Uno",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Kilimanjaro",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Einstein",
+      "B": "Newton",
+      "C": "Hawking",
+      "D": "Galileo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Dos",
+      "B": "Uno",
+      "C": "Tres",
+      "D": "Ninguno",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Berlín",
+      "B": "París",
+      "C": "Londres",
+      "D": "Roma",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Ninguno",
+      "D": "Uno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "K2",
+      "B": "Everest",
+      "C": "Mont Blanc",
+      "D": "Kilimanjaro",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Ninguno",
+      "C": "Dos",
+      "D": "Uno",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1985",
+      "B": "1979",
+      "C": "1989",
+      "D": "1991",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "John Adams",
+      "C": "Thomas Jefferson",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1991",
+      "C": "1979",
+      "D": "1985",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Hidrógeno",
+      "C": "Helio",
+      "D": "Oxígeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "George Washington",
+      "C": "John Adams",
+      "D": "Thomas Jefferson",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Nueve",
+      "D": "Doce",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "París",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1985",
+      "C": "1989",
+      "D": "1991",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1945",
+      "B": "1939",
+      "C": "1914",
+      "D": "1941",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "300.000 km/s",
+      "B": "600.000 km/s",
+      "C": "450.000 km/s",
+      "D": "150.000 km/s",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Kilimanjaro",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1985",
+      "C": "1989",
+      "D": "1991",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1945",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1985",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Ninguno",
+      "C": "Tres",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Nueve",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "George Washington",
+      "C": "Benjamin Franklin",
+      "D": "John Adams",
+      "r": "B"
+    }
+  ],
+  "12": [
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1985",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "150.000 km/s",
+      "C": "450.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1989",
+      "C": "1979",
+      "D": "1985",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Doce",
+      "B": "Once",
+      "C": "Diez",
+      "D": "Nueve",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1989",
+      "C": "1985",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Helio",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Helio",
+      "D": "Carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Galileo",
+      "B": "Newton",
+      "C": "Hawking",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Dos",
+      "B": "Ninguno",
+      "C": "Uno",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "París",
+      "C": "Roma",
+      "D": "Berlín",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Uno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "300.000 km/s",
+      "C": "450.000 km/s",
+      "D": "150.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1991",
+      "C": "1985",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "John Adams",
+      "C": "Benjamin Franklin",
+      "D": "Thomas Jefferson",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Nueve",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1989",
+      "C": "1991",
+      "D": "1985",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1945",
+      "B": "1914",
+      "C": "1941",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Once",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Dos",
+      "C": "Uno",
+      "D": "Ninguno",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "George Washington",
+      "C": "Benjamin Franklin",
+      "D": "John Adams",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Dos",
+      "B": "Uno",
+      "C": "Tres",
+      "D": "Ninguno",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1991",
+      "C": "1979",
+      "D": "1985",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Berlín",
+      "C": "Roma",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Uno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Newton",
+      "C": "Galileo",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Helio",
+      "B": "Carbono",
+      "C": "Oxígeno",
+      "D": "Hidrógeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Carbono",
+      "D": "Helio",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Dos",
+      "C": "Uno",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Kilimanjaro",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Mont Blanc",
+      "B": "Everest",
+      "C": "Kilimanjaro",
+      "D": "K2",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "John Adams",
+      "B": "George Washington",
+      "C": "Thomas Jefferson",
+      "D": "Benjamin Franklin",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Helio",
+      "B": "Oxígeno",
+      "C": "Carbono",
+      "D": "Hidrógeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Diez",
+      "C": "Once",
+      "D": "Doce",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Helio",
+      "C": "Oxígeno",
+      "D": "Hidrógeno",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Doce",
+      "C": "Once",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Newton",
+      "B": "Einstein",
+      "C": "Hawking",
+      "D": "Galileo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Helio",
+      "C": "Hidrógeno",
+      "D": "Oxígeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Nueve",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "Mont Blanc",
+      "C": "Kilimanjaro",
+      "D": "K2",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "John Adams",
+      "C": "Thomas Jefferson",
+      "D": "Benjamin Franklin",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1945",
+      "C": "1941",
+      "D": "1914",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1914",
+      "B": "1939",
+      "C": "1945",
+      "D": "1941",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "George Washington",
+      "C": "Benjamin Franklin",
+      "D": "John Adams",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1945",
+      "B": "1941",
+      "C": "1939",
+      "D": "1914",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1939",
+      "D": "1945",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Galileo",
+      "B": "Newton",
+      "C": "Hawking",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Ninguno",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Newton",
+      "B": "Galileo",
+      "C": "Einstein",
+      "D": "Hawking",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Roma",
+      "C": "París",
+      "D": "Berlín",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "K2",
+      "B": "Kilimanjaro",
+      "C": "Everest",
+      "D": "Mont Blanc",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "450.000 km/s",
+      "C": "300.000 km/s",
+      "D": "150.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Ninguno",
+      "C": "Dos",
+      "D": "Uno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "300.000 km/s",
+      "B": "600.000 km/s",
+      "C": "450.000 km/s",
+      "D": "150.000 km/s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1939",
+      "D": "1945",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Roma",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Hidrógeno",
+      "B": "Helio",
+      "C": "Oxígeno",
+      "D": "Carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Carbono",
+      "D": "Helio",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Berlín",
+      "C": "Roma",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Einstein",
+      "B": "Newton",
+      "C": "Hawking",
+      "D": "Galileo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Everest",
+      "r": "D"
+    }
+  ],
+  "13": [
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1945",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Newton",
+      "C": "Galileo",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1989",
+      "C": "1985",
+      "D": "1979",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Ninguno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Doce",
+      "B": "Diez",
+      "C": "Once",
+      "D": "Nueve",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "George Washington",
+      "C": "Benjamin Franklin",
+      "D": "John Adams",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1939",
+      "C": "1914",
+      "D": "1945",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "George Washington",
+      "C": "John Adams",
+      "D": "Thomas Jefferson",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Roma",
+      "C": "Berlín",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Uno",
+      "C": "Dos",
+      "D": "Ninguno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Ninguno",
+      "C": "Tres",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1985",
+      "C": "1979",
+      "D": "1991",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Carbono",
+      "D": "Helio",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1991",
+      "C": "1989",
+      "D": "1985",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1989",
+      "C": "1979",
+      "D": "1985",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1991",
+      "C": "1989",
+      "D": "1985",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "John Adams",
+      "B": "George Washington",
+      "C": "Thomas Jefferson",
+      "D": "Benjamin Franklin",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "600.000 km/s",
+      "C": "300.000 km/s",
+      "D": "450.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1945",
+      "C": "1914",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1914",
+      "D": "1945",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Berlín",
+      "B": "Roma",
+      "C": "Londres",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "300.000 km/s",
+      "B": "600.000 km/s",
+      "C": "450.000 km/s",
+      "D": "150.000 km/s",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "300.000 km/s",
+      "C": "600.000 km/s",
+      "D": "450.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Nueve",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1991",
+      "C": "1985",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Doce",
+      "B": "Diez",
+      "C": "Nueve",
+      "D": "Once",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1939",
+      "D": "1945",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "150.000 km/s",
+      "C": "300.000 km/s",
+      "D": "450.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1945",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1914",
+      "C": "1941",
+      "D": "1945",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Roma",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "John Adams",
+      "B": "Benjamin Franklin",
+      "C": "George Washington",
+      "D": "Thomas Jefferson",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1945",
+      "B": "1941",
+      "C": "1939",
+      "D": "1914",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "K2",
+      "B": "Everest",
+      "C": "Kilimanjaro",
+      "D": "Mont Blanc",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1914",
+      "B": "1945",
+      "C": "1939",
+      "D": "1941",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "John Adams",
+      "C": "Thomas Jefferson",
+      "D": "Benjamin Franklin",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Dos",
+      "C": "Ninguno",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1985",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1941",
+      "C": "1945",
+      "D": "1914",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1985",
+      "C": "1991",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Dos",
+      "C": "Uno",
+      "D": "Tres",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Ninguno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Galileo",
+      "B": "Newton",
+      "C": "Einstein",
+      "D": "Hawking",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "París",
+      "C": "Berlín",
+      "D": "Roma",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Ninguno",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "John Adams",
+      "C": "Thomas Jefferson",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1914",
+      "B": "1939",
+      "C": "1945",
+      "D": "1941",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Newton",
+      "C": "Galileo",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "París",
+      "C": "Roma",
+      "D": "Berlín",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "París",
+      "C": "Berlín",
+      "D": "Londres",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "París",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Nueve",
+      "D": "Doce",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Nueve",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "K2",
+      "B": "Mont Blanc",
+      "C": "Kilimanjaro",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "450.000 km/s",
+      "C": "300.000 km/s",
+      "D": "150.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1945",
+      "C": "1939",
+      "D": "1914",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Mont Blanc",
+      "B": "K2",
+      "C": "Kilimanjaro",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "Everest",
+      "C": "Mont Blanc",
+      "D": "K2",
+      "r": "B"
+    }
+  ],
+  "14": [
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Berlín",
+      "B": "Roma",
+      "C": "París",
+      "D": "Londres",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "300.000 km/s",
+      "C": "450.000 km/s",
+      "D": "150.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Doce",
+      "C": "Nueve",
+      "D": "Once",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Hidrógeno",
+      "C": "Helio",
+      "D": "Carbono",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Berlín",
+      "C": "Roma",
+      "D": "Londres",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Carbono",
+      "C": "Helio",
+      "D": "Hidrógeno",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Roma",
+      "C": "Berlín",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "John Adams",
+      "B": "Thomas Jefferson",
+      "C": "George Washington",
+      "D": "Benjamin Franklin",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "Mont Blanc",
+      "C": "Kilimanjaro",
+      "D": "K2",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "París",
+      "C": "Berlín",
+      "D": "Londres",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "Thomas Jefferson",
+      "C": "George Washington",
+      "D": "John Adams",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Doce",
+      "D": "Nueve",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Einstein",
+      "B": "Hawking",
+      "C": "Newton",
+      "D": "Galileo",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Uno",
+      "C": "Dos",
+      "D": "Ninguno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Doce",
+      "B": "Once",
+      "C": "Nueve",
+      "D": "Diez",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Dos",
+      "B": "Ninguno",
+      "C": "Uno",
+      "D": "Tres",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Einstein",
+      "B": "Galileo",
+      "C": "Newton",
+      "D": "Hawking",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "300.000 km/s",
+      "C": "150.000 km/s",
+      "D": "450.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "Kilimanjaro",
+      "C": "K2",
+      "D": "Mont Blanc",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1939",
+      "C": "1945",
+      "D": "1914",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "Thomas Jefferson",
+      "C": "John Adams",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1985",
+      "C": "1991",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "París",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Nueve",
+      "D": "Doce",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1945",
+      "C": "1914",
+      "D": "1941",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1914",
+      "C": "1941",
+      "D": "1945",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Tres",
+      "C": "Uno",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1985",
+      "B": "1991",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "Mont Blanc",
+      "C": "K2",
+      "D": "Kilimanjaro",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1985",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1985",
+      "C": "1991",
+      "D": "1979",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "150.000 km/s",
+      "C": "450.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Dos",
+      "C": "Tres",
+      "D": "Ninguno",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1989",
+      "B": "1979",
+      "C": "1991",
+      "D": "1985",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "Benjamin Franklin",
+      "C": "Thomas Jefferson",
+      "D": "John Adams",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Newton",
+      "C": "Galileo",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "450.000 km/s",
+      "B": "150.000 km/s",
+      "C": "600.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Nueve",
+      "D": "Doce",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Tres",
+      "B": "Uno",
+      "C": "Ninguno",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Roma",
+      "C": "Berlín",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Helio",
+      "D": "Carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Mont Blanc",
+      "B": "Kilimanjaro",
+      "C": "Everest",
+      "D": "K2",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1914",
+      "C": "1945",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Oxígeno",
+      "C": "Helio",
+      "D": "Hidrógeno",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Berlín",
+      "C": "Londres",
+      "D": "Roma",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Ninguno",
+      "C": "Dos",
+      "D": "Tres",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Roma",
+      "C": "Londres",
+      "D": "Berlín",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "450.000 km/s",
+      "B": "300.000 km/s",
+      "C": "600.000 km/s",
+      "D": "150.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Hidrógeno",
+      "B": "Oxígeno",
+      "C": "Helio",
+      "D": "Carbono",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Roma",
+      "B": "Londres",
+      "C": "París",
+      "D": "Berlín",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "Benjamin Franklin",
+      "C": "John Adams",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1941",
+      "B": "1945",
+      "C": "1939",
+      "D": "1914",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Doce",
+      "C": "Once",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "300.000 km/s",
+      "B": "150.000 km/s",
+      "C": "600.000 km/s",
+      "D": "450.000 km/s",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "300.000 km/s",
+      "B": "450.000 km/s",
+      "C": "150.000 km/s",
+      "D": "600.000 km/s",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1985",
+      "B": "1979",
+      "C": "1991",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Doce",
+      "C": "Diez",
+      "D": "Once",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Newton",
+      "B": "Hawking",
+      "C": "Galileo",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "150.000 km/s",
+      "C": "300.000 km/s",
+      "D": "450.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "John Adams",
+      "B": "Benjamin Franklin",
+      "C": "Thomas Jefferson",
+      "D": "George Washington",
+      "r": "D"
+    }
+  ],
+  "15": [
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "450.000 km/s",
+      "B": "600.000 km/s",
+      "C": "150.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1985",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Nueve",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Doce",
+      "C": "Nueve",
+      "D": "Diez",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "Thomas Jefferson",
+      "C": "John Adams",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Helio",
+      "B": "Hidrógeno",
+      "C": "Carbono",
+      "D": "Oxígeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Newton",
+      "C": "Einstein",
+      "D": "Galileo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Carbono",
+      "C": "Hidrógeno",
+      "D": "Helio",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "Benjamin Franklin",
+      "C": "John Adams",
+      "D": "Thomas Jefferson",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "150.000 km/s",
+      "C": "300.000 km/s",
+      "D": "450.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Berlín",
+      "C": "Roma",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1945",
+      "C": "1941",
+      "D": "1914",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "George Washington",
+      "B": "Thomas Jefferson",
+      "C": "Benjamin Franklin",
+      "D": "John Adams",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1914",
+      "B": "1945",
+      "C": "1941",
+      "D": "1939",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Diez",
+      "C": "Nueve",
+      "D": "Doce",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1991",
+      "B": "1979",
+      "C": "1985",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Once",
+      "B": "Nueve",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Diez",
+      "C": "Once",
+      "D": "Doce",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Helio",
+      "B": "Oxígeno",
+      "C": "Hidrógeno",
+      "D": "Carbono",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Berlín",
+      "B": "Londres",
+      "C": "París",
+      "D": "Roma",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "Londres",
+      "B": "Berlín",
+      "C": "París",
+      "D": "Roma",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Carbono",
+      "B": "Hidrógeno",
+      "C": "Oxígeno",
+      "D": "Helio",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Newton",
+      "B": "Einstein",
+      "C": "Hawking",
+      "D": "Galileo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Ninguno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Kilimanjaro",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Everest",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Kilimanjaro",
+      "D": "Mont Blanc",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1985",
+      "B": "1979",
+      "C": "1989",
+      "D": "1991",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1939",
+      "B": "1945",
+      "C": "1914",
+      "D": "1941",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Kilimanjaro",
+      "D": "Mont Blanc",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Thomas Jefferson",
+      "B": "Benjamin Franklin",
+      "C": "John Adams",
+      "D": "George Washington",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Galileo",
+      "C": "Newton",
+      "D": "Einstein",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Helio",
+      "B": "Hidrógeno",
+      "C": "Carbono",
+      "D": "Oxígeno",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Uno",
+      "B": "Tres",
+      "C": "Ninguno",
+      "D": "Dos",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Hawking",
+      "B": "Einstein",
+      "C": "Galileo",
+      "D": "Newton",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "450.000 km/s",
+      "B": "300.000 km/s",
+      "C": "600.000 km/s",
+      "D": "150.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Diez",
+      "C": "Doce",
+      "D": "Once",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1985",
+      "B": "1991",
+      "C": "1989",
+      "D": "1979",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Galileo",
+      "B": "Hawking",
+      "C": "Einstein",
+      "D": "Newton",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Einstein",
+      "B": "Galileo",
+      "C": "Hawking",
+      "D": "Newton",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Galileo",
+      "B": "Hawking",
+      "C": "Einstein",
+      "D": "Newton",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "300.000 km/s",
+      "C": "450.000 km/s",
+      "D": "600.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Uno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos satélites naturales tiene Marte?",
+      "A": "Ninguno",
+      "B": "Tres",
+      "C": "Dos",
+      "D": "Uno",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "600.000 km/s",
+      "C": "300.000 km/s",
+      "D": "450.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "150.000 km/s",
+      "C": "300.000 km/s",
+      "D": "450.000 km/s",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Newton",
+      "B": "Einstein",
+      "C": "Hawking",
+      "D": "Galileo",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "450.000 km/s",
+      "B": "600.000 km/s",
+      "C": "150.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Helio",
+      "C": "Carbono",
+      "D": "Hidrógeno",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Londres",
+      "C": "Roma",
+      "D": "Berlín",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "150.000 km/s",
+      "B": "300.000 km/s",
+      "C": "600.000 km/s",
+      "D": "450.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Mont Blanc",
+      "B": "Everest",
+      "C": "Kilimanjaro",
+      "D": "K2",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "George Washington",
+      "C": "John Adams",
+      "D": "Thomas Jefferson",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos jugadores tiene un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Diez",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Benjamin Franklin",
+      "B": "Thomas Jefferson",
+      "C": "George Washington",
+      "D": "John Adams",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz?",
+      "A": "600.000 km/s",
+      "B": "300.000 km/s",
+      "C": "150.000 km/s",
+      "D": "450.000 km/s",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué científico propuso la teoría de la relatividad?",
+      "A": "Einstein",
+      "B": "Newton",
+      "C": "Hawking",
+      "D": "Galileo",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1979",
+      "B": "1985",
+      "C": "1991",
+      "D": "1989",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se encuentra la Torre Eiffel?",
+      "A": "París",
+      "B": "Roma",
+      "C": "Berlín",
+      "D": "Londres",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "K2",
+      "C": "Mont Blanc",
+      "D": "Kilimanjaro",
+      "r": "A"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "Everest",
+      "B": "Mont Blanc",
+      "C": "Kilimanjaro",
+      "D": "K2",
+      "r": "A"
+    }
+  ]
+}

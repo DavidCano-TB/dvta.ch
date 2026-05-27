@@ -1,0 +1,122 @@
+================================================================================
+INSTRUCCIONES DE ARRANQUE - DVDCOIN BANK
+================================================================================
+
+PROBLEMA RESUELTO:
+------------------
+El error "ERR_NGROK_8012" ocurría porque ngrok se iniciaba antes que el 
+servidor, o el servidor no se iniciaba correctamente en el puerto 8000.
+
+SOLUCIÓN APLICADA:
+------------------
+Se corrigieron los scripts para usar el comando correcto de uvicorn:
+  pythonw -m uvicorn src.main:app --host 0.0.0.0 --port 8000
+
+================================================================================
+SCRIPTS DISPONIBLES:
+================================================================================
+
+1. ARRANCAR.bat
+   - Inicia SOLO el servidor DVDcoin en puerto 8000
+   - Modo interactivo (muestra logs en consola)
+   - Usar para desarrollo/pruebas locales
+
+2. ARRANQUE_AUTOMATICO_COMPLETO.bat
+   - Inicia servidor + ngrok automáticamente
+   - Modo background (sin consola visible)
+   - Abre navegador con URL pública
+   - Usar para acceso remoto rápido
+
+3. ADMIN_INICIAR_NGROK.bat
+   - Verifica que el servidor esté corriendo
+   - Inicia ngrok si el servidor ya está activo
+   - Requiere permisos de administrador
+   - Muestra URL pública y panel de control
+
+4. VERIFICAR_SERVIDOR.bat
+   - Verifica estado del servidor y ngrok
+   - Muestra URLs y códigos HTTP
+   - Útil para diagnóstico
+
+5. DETENER_TODO.bat
+   - Detiene servidor y ngrok
+   - Libera puerto 8000
+   - Usar antes de reiniciar
+
+================================================================================
+ORDEN RECOMENDADO DE USO:
+================================================================================
+
+OPCIÓN A - Arranque completo automático (recomendado):
+-------------------------------------------------------
+1. Ejecutar: ARRANQUE_AUTOMATICO_COMPLETO.bat
+2. Esperar 10-15 segundos
+3. El navegador se abrirá automáticamente con la URL pública
+
+OPCIÓN B - Arranque manual paso a paso:
+----------------------------------------
+1. Ejecutar: ARRANCAR.bat (dejar la ventana abierta)
+2. Esperar a ver "Uvicorn running on http://0.0.0.0:8000"
+3. Ejecutar: ADMIN_INICIAR_NGROK.bat
+4. Copiar la URL pública que aparece
+
+OPCIÓN C - Solo servidor local (sin ngrok):
+--------------------------------------------
+1. Ejecutar: ARRANCAR.bat
+2. Abrir navegador en: http://localhost:8000
+
+================================================================================
+VERIFICACIÓN:
+================================================================================
+
+Después de iniciar, ejecutar: VERIFICAR_SERVIDOR.bat
+
+Debe mostrar:
+  [OK] Servidor corriendo en puerto 8000
+  Codigo HTTP: 200
+  [OK] Ngrok corriendo (si se inició)
+
+================================================================================
+SOLUCIÓN DE PROBLEMAS:
+================================================================================
+
+Si aparece "ERR_NGROK_8012":
+----------------------------
+1. Ejecutar: DETENER_TODO.bat
+2. Esperar 5 segundos
+3. Ejecutar: VERIFICAR_SERVIDOR.bat (debe mostrar que nada está corriendo)
+4. Ejecutar: ARRANQUE_AUTOMATICO_COMPLETO.bat
+
+Si el servidor no inicia:
+--------------------------
+1. Verificar que Python está instalado: python --version
+2. Verificar que uvicorn está instalado: pip show uvicorn
+3. Si falta uvicorn: pip install uvicorn
+4. Verificar que el puerto 8000 está libre: netstat -ano | findstr :8000
+
+Si ngrok no funciona:
+---------------------
+1. Verificar que el token está configurado en: config\.ngrok_token
+2. Verificar que ngrok está instalado: ngrok version
+3. Configurar token manualmente: ngrok config add-authtoken TU_TOKEN
+
+================================================================================
+URLS IMPORTANTES:
+================================================================================
+
+Servidor local:     http://localhost:8000
+Panel ngrok:        http://localhost:4040
+OPO local:          http://localhost:8000/opo
+URL pública:        (se guarda en ngrok_url.txt)
+
+================================================================================
+NOTAS TÉCNICAS:
+================================================================================
+
+- El servidor usa FastAPI + Uvicorn
+- Puerto por defecto: 8000
+- Ngrok crea un túnel HTTPS público
+- Los logs se guardan en ngrok.log
+- La URL pública cambia en cada reinicio de ngrok (plan gratuito)
+
+================================================================================

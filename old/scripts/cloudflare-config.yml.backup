@@ -1,0 +1,45 @@
+# Configuracion de Cloudflare Tunnel para DVDcoin
+# Dominio: david.ch
+# Certificado SSL automatico de Cloudflare
+tunnel: 6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
+credentials-file: C:\Users\PC\.cloudflared\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json
+
+ingress:
+  # Subdominio app.david.ch - URL PRINCIPAL
+  - hostname: app.david.ch
+    service: http://127.0.0.1:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 60s
+      tlsTimeout: 20s
+      tcpKeepAlive: 60s
+      keepAliveConnections: 1024
+      keepAliveTimeout: 120s
+      httpHostHeader: app.david.ch
+      disableChunkedEncoding: false
+      proxyType: http
+  
+  # Subdominio localhost.david.ch - URL ALTERNATIVA
+  - hostname: localhost.david.ch
+    service: http://127.0.0.1:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 60s
+      tlsTimeout: 20s
+      tcpKeepAlive: 60s
+      keepAliveConnections: 1024
+      keepAliveTimeout: 120s
+      httpHostHeader: localhost.david.ch
+      disableChunkedEncoding: false
+      proxyType: http
+  
+  # Catch-all para cualquier otro tráfico
+  - service: http_status:404
+
+# Metricas y configuracion avanzada
+metrics: 127.0.0.1:2000
+loglevel: info
+protocol: quic
+retries: 5
+grace-period: 30s
+no-autoupdate: false

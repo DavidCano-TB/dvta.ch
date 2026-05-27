@@ -1,0 +1,43 @@
+# Configuración de Cloudflare Tunnel para dvta.ch
+tunnel: 6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
+credentials-file: C:/Users/PC/.cloudflared/6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json
+
+ingress:
+  # Dominio principal: dvta.ch
+  - hostname: dvta.ch
+    service: http://127.0.0.1:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 60s
+      tlsTimeout: 20s
+      tcpKeepAlive: 60s
+      keepAliveConnections: 1024
+      keepAliveTimeout: 120s
+      httpHostHeader: dvta.ch
+      disableChunkedEncoding: false
+      proxyType: http
+  
+  # Subdominio www
+  - hostname: www.dvta.ch
+    service: http://127.0.0.1:8000
+    originRequest:
+      noTLSVerify: true
+      connectTimeout: 60s
+      tlsTimeout: 20s
+      tcpKeepAlive: 60s
+      keepAliveConnections: 1024
+      keepAliveTimeout: 120s
+      httpHostHeader: www.dvta.ch
+      disableChunkedEncoding: false
+      proxyType: http
+  
+  # Catch-all para cualquier otro tráfico
+  - service: http_status:404
+
+# Métricas y configuración avanzada
+metrics: 127.0.0.1:2000
+loglevel: info
+protocol: quic
+retries: 5
+grace-period: 30s
+no-autoupdate: false

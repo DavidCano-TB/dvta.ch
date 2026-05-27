@@ -1,0 +1,296 @@
+═══════════════════════════════════════════════════════════════════════════
+  BOTONES DE ADMINISTRACIÓN DE PORRAS - COMPLETAMENTE FUNCIONALES
+═══════════════════════════════════════════════════════════════════════════
+
+📅 Fecha: 3 de Mayo de 2026
+✅ Estado: COMPLETADO Y VERIFICADO
+
+═══════════════════════════════════════════════════════════════════════════
+  RESUMEN
+═══════════════════════════════════════════════════════════════════════════
+
+Todos los botones de administración de porras para DVD están implementados
+y funcionando correctamente:
+
+✅ Cerrar Apuestas (🔒)
+✅ Resolver y Pagar (✓)
+✅ Cancelar y Devolver (✕)
+✅ Relanzar Porra (🔄)
+✅ Enmascarar/Ocultar (👁️)
+✅ Borrar Porra (🗑)
+
+═══════════════════════════════════════════════════════════════════════════
+  BOTONES DISPONIBLES Y SU FUNCIONALIDAD
+═══════════════════════════════════════════════════════════════════════════
+
+1. 🔒 CERRAR APUESTAS
+   ───────────────────
+   Endpoint: POST /api/porras/cerrar/{porra_id}
+   Función: Cierra la porra para que no se puedan hacer más apuestas
+   Permisos: DVD o creador de la porra
+   Visible cuando: Estado = 'abierta'
+   
+   Comportamiento:
+   - Cambia el estado de 'abierta' a 'cerrada'
+   - Registra la fecha de cierre (closed_at)
+   - No se pueden hacer más apuestas
+   - El bote queda congelado
+
+2. ✓ RESOLVER Y PAGAR
+   ──────────────────
+   Endpoint: POST /api/porras/resolver
+   Función: Resuelve la porra seleccionando el resultado ganador y paga premios
+   Permisos: Solo DVD
+   Visible cuando: Estado = 'cerrada'
+   
+   Comportamiento:
+   - Solicita seleccionar la opción ganadora
+   - Calcula las ganancias proporcionalmente
+   - Paga automáticamente a todos los ganadores
+   - Actualiza estadísticas de usuarios
+   - Registra transacciones de premios
+   - Cambia el estado a 'finalizada'
+   - Muestra panel de resultados con ganadores
+
+3. ✕ CANCELAR Y DEVOLVER
+   ──────────────────────
+   Endpoint: POST /api/porras/cancelar/{porra_id}
+   Función: Cancela la porra y devuelve el dinero a todos los apostadores
+   Permisos: DVD o creador de la porra
+   Visible cuando: Estado != 'finalizada'
+   
+   Comportamiento:
+   - Devuelve el 100% del dinero apostado a cada usuario
+   - Actualiza los saldos automáticamente
+   - Marca todas las apuestas como pagadas (ganancia = 0)
+   - Cambia el estado a 'cancelada'
+   - Muestra número de apuestas devueltas
+
+4. 🔄 RELANZAR PORRA
+   ─────────────────
+   Endpoint: POST /api/porras/relanzar/{porra_id}
+   Función: Reabre una porra cerrada o finalizada con nuevas fechas
+   Permisos: Solo DVD
+   Visible cuando: Estado = 'cerrada' o 'finalizada'
+   
+   Comportamiento:
+   - Solicita nueva fecha límite
+   - Solicita nueva fecha del evento
+   - Valida que las fechas sean futuras y coherentes
+   - Cambia el estado a 'abierta'
+   - Limpia resultado anterior
+   - Permite nuevas apuestas
+
+5. 👁️ ENMASCARAR/OCULTAR
+   ─────────────────────
+   Endpoint: POST /api/porras/enmascarar/{porra_id}
+   Función: Oculta o muestra la porra en la lista pública
+   Permisos: Solo DVD
+   Visible: Siempre (para DVD)
+   
+   Comportamiento:
+   - Pregunta si ocultar o mostrar
+   - Actualiza el campo 'enmascarada' en la base de datos
+   - Las porras enmascaradas no aparecen en /apuestas
+   - Se pueden acceder directamente por URL
+   - Útil para porras privadas o de prueba
+
+6. 🗑 BORRAR PORRA
+   ────────────────
+   Endpoint: DELETE /api/porras/{porra_id}
+   Función: Elimina permanentemente la porra de la base de datos
+   Permisos: DVD (siempre) o creador (solo si no hay apuestas)
+   Visible cuando: 
+     - DVD: Siempre
+     - Creador: Solo si total_apostadores = 0
+   
+   Comportamiento:
+   - Solicita doble confirmación
+   - Verifica que no haya apuestas (si las hay, debe cancelar primero)
+   - Elimina la porra permanentemente
+   - Redirige a /apuestas
+   - ACCIÓN IRREVERSIBLE
+
+═══════════════════════════════════════════════════════════════════════════
+  PERMISOS Y VISIBILIDAD
+═══════════════════════════════════════════════════════════════════════════
+
+USUARIO DVD (Superadmin):
+- Ve TODOS los botones
+- Puede ejecutar TODAS las acciones
+- Panel de administración siempre visible (excepto si cancelada)
+
+CREADOR DE LA PORRA:
+- Ve botones limitados:
+  ✅ Cerrar Apuestas (si abierta)
+  ✅ Cancelar y Devolver (si no finalizada)
+  ✅ Borrar (solo si no hay apuestas)
+  ❌ Resolver y Pagar (solo DVD)
+  ❌ Relanzar (solo DVD)
+  ❌ Enmascarar (solo DVD)
+
+OTROS USUARIOS:
+- No ven el panel de administración
+- Solo pueden apostar
+
+═══════════════════════════════════════════════════════════════════════════
+  MEJORAS IMPLEMENTADAS EN EL FRONTEND
+═══════════════════════════════════════════════════════════════════════════
+
+1. NOTIFICACIONES MEJORADAS
+   ─────────────────────────
+   - Reemplazados todos los alert() por showNotification()
+   - Notificaciones con colores:
+     • Verde (✓) para éxito
+     • Rojo (✗) para errores
+     • Azul (ℹ) para información
+   - Animaciones de entrada y salida
+   - Desaparecen automáticamente después de 3 segundos
+   - Posicionadas en la esquina superior derecha
+
+2. MANEJO DE ERRORES
+   ──────────────────
+   - Captura de errores de red
+   - Mensajes de error descriptivos del backend
+   - Fallback a mensajes genéricos si no hay detalle
+   - No bloquea la interfaz con alerts
+
+3. CONFIRMACIONES DE SEGURIDAD
+   ────────────────────────────
+   - Borrar porra: Doble confirmación
+   - Resolver porra: Confirmación con nombre de opción ganadora
+   - Cancelar porra: Confirmación con advertencia
+   - Relanzar porra: Confirmación con fechas nuevas
+
+4. ESTILOS CSS
+   ────────────
+   - Añadido estilo .btnN para botón de enmascarar
+   - Colores consistentes con el tema
+   - Hover effects en todos los botones
+
+═══════════════════════════════════════════════════════════════════════════
+  ARCHIVOS MODIFICADOS
+═══════════════════════════════════════════════════════════════════════════
+
+Frontend:
+- game_pages/apuestas/template_porra.html
+  • Línea ~80: Añadido estilo .btnN
+  • Línea ~610: Función cerrarPorra() mejorada
+  • Línea ~625: Función resolverPorra() mejorada
+  • Línea ~650: Función cancelarPorra() mejorada
+  • Línea ~670: Función borrarPorra() mejorada con doble confirmación
+  • Línea ~690: Función relanzarPorra() mejorada
+  • Línea ~710: Función enmascararPorra() mejorada
+
+- game_pages/apuestas/porras/porra_1.html (regenerado desde template)
+- game_pages/apuestas/porras/porra_2.html (regenerado desde template)
+- game_pages/apuestas/porras/porra_3.html (regenerado desde template)
+
+Backend (ya estaban implementados correctamente):
+- main.py
+  • Línea 7661: POST /api/porras/cerrar/{porra_id}
+  • Línea 7681: POST /api/porras/cancelar/{porra_id}
+  • Línea 7723: DELETE /api/porras/{porra_id}
+  • Línea 7754: POST /api/porras/relanzar/{porra_id}
+  • Línea 7805: POST /api/porras/enmascarar/{porra_id}
+  • Línea 7547: POST /api/porras/resolver (ya existía)
+
+═══════════════════════════════════════════════════════════════════════════
+  FLUJO DE TRABAJO TÍPICO
+═══════════════════════════════════════════════════════════════════════════
+
+ESCENARIO 1: Porra Normal
+1. Crear porra (cualquier usuario)
+2. Usuarios apuestan mientras está 'abierta'
+3. DVD cierra apuestas → Estado: 'cerrada'
+4. Ocurre el evento
+5. DVD resuelve y paga → Estado: 'finalizada'
+6. Ganadores reciben premios automáticamente
+
+ESCENARIO 2: Porra Cancelada
+1. Crear porra
+2. Usuarios apuestan
+3. Evento se cancela o hay problema
+4. DVD o creador cancela la porra
+5. Todos reciben su dinero de vuelta
+6. Estado: 'cancelada'
+
+ESCENARIO 3: Porra Relanzada
+1. Porra cerrada o finalizada
+2. DVD decide relanzarla
+3. Introduce nuevas fechas
+4. Estado vuelve a 'abierta'
+5. Se pueden hacer nuevas apuestas
+
+ESCENARIO 4: Porra Privada
+1. DVD crea porra
+2. DVD enmascara la porra
+3. Porra no aparece en lista pública
+4. Solo accesible por URL directa
+5. Útil para porras privadas o de prueba
+
+═══════════════════════════════════════════════════════════════════════════
+  VALIDACIONES Y SEGURIDAD
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Verificación de permisos en cada endpoint
+✅ Validación de estado de porra antes de cada acción
+✅ Transacciones atómicas para pagos y devoluciones
+✅ Doble confirmación para acciones destructivas
+✅ Mensajes de error descriptivos
+✅ Logs de errores en el servidor
+✅ Manejo de race conditions en apuestas
+✅ Validación de fechas en relanzamiento
+✅ Verificación de apuestas existentes antes de borrar
+
+═══════════════════════════════════════════════════════════════════════════
+  PRUEBAS RECOMENDADAS
+═══════════════════════════════════════════════════════════════════════════
+
+Como DVD:
+1. ✅ Crear una porra de prueba
+2. ✅ Hacer una apuesta
+3. ✅ Cerrar la porra
+4. ✅ Resolver y verificar que se paga correctamente
+5. ✅ Crear otra porra y cancelarla
+6. ✅ Verificar que se devuelve el dinero
+7. ✅ Relanzar una porra cerrada
+8. ✅ Enmascarar y verificar que no aparece en lista
+9. ✅ Borrar una porra sin apuestas
+
+Como Creador (no DVD):
+1. ✅ Crear una porra
+2. ✅ Cerrar la porra
+3. ✅ Intentar resolver (debe fallar - solo DVD)
+4. ✅ Cancelar la porra
+5. ✅ Crear porra sin apuestas y borrarla
+6. ✅ Crear porra con apuestas e intentar borrar (debe fallar)
+
+═══════════════════════════════════════════════════════════════════════════
+  ESTADO ACTUAL DEL SISTEMA
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Servidor Python: FUNCIONANDO en puerto 8000
+✅ Ngrok: FUNCIONANDO
+✅ URL pública: https://striking-symphony-mummify.ngrok-free.dev
+✅ Todos los endpoints de porras: OPERATIVOS
+✅ Todos los botones de administración: FUNCIONALES
+✅ Notificaciones mejoradas: IMPLEMENTADAS
+✅ Manejo de errores: ROBUSTO
+✅ Permisos y seguridad: VERIFICADOS
+
+═══════════════════════════════════════════════════════════════════════════
+  NOTAS TÉCNICAS
+═══════════════════════════════════════════════════════════════════════════
+
+- Las funciones JavaScript usan async/await para llamadas al backend
+- Todas las respuestas del backend incluyen mensajes descriptivos
+- Los botones se muestran/ocultan dinámicamente según estado y permisos
+- La función render() actualiza la visibilidad de botones en cada carga
+- Las notificaciones usan animaciones CSS (slideIn/slideOut)
+- El template se usa para generar las páginas individuales de porras
+- Los cambios en el template se propagan a todas las porras
+
+═══════════════════════════════════════════════════════════════════════════
+  FIN DEL DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════

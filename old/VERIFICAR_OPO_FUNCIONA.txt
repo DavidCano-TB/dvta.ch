@@ -1,0 +1,157 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║     ✅ VERIFICAR QUE OPO FUNCIONA CORRECTAMENTE            ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+
+🎯 OBJETIVO
+═══════════════════════════════════════════════════════════
+
+  Verificar que al hacer clic en un bloque, el test arranca
+  correctamente y se puede jugar.
+
+
+📋 PASOS PARA VERIFICAR
+═══════════════════════════════════════════════════════════
+
+  PASO 1: Abrir la página
+  ────────────────────────
+    1. Abrir navegador
+    2. Ir a: http://localhost:8000/opo
+    3. Deberías ver la pantalla de gestión con 30 bloques
+
+  PASO 2: Abrir consola del navegador
+  ────────────────────────────────────
+    1. Presionar F12 (o clic derecho → Inspeccionar)
+    2. Ir a la pestaña "Console" / "Consola"
+    3. Deberías ver mensajes como:
+       - "Iniciando conexión WebSocket..."
+       - "Conectando a: ws://localhost:8000/ws/opo"
+       - "WebSocket conectado"
+
+  PASO 3: Verificar badge de conexión
+  ────────────────────────────────────
+    1. Mirar la esquina superior derecha
+    2. Deberías ver un badge que dice "Conectado" en verde
+    3. Si dice "Reconectando..." espera unos segundos
+
+  PASO 4: Hacer clic en un bloque
+  ────────────────────────────────
+    1. Haz clic en el bloque número 1
+    2. En la consola deberías ver:
+       - "Iniciando bloque: 0"
+       - "Enviando: {action: 'start', block: 0}"
+       - "Estado recibido: question"
+    3. La pantalla debería cambiar a la pregunta
+
+  PASO 5: Verificar que la pregunta se muestra
+  ─────────────────────────────────────────────
+    1. Deberías ver:
+       - "Bloque 1 · Pregunta 1 / 10"
+       - El texto de la pregunta
+       - 4 opciones (A, B, C, D)
+    2. Si ves esto, ¡FUNCIONA! ✅
+
+
+🔍 QUÉ BUSCAR EN LA CONSOLA
+═══════════════════════════════════════════════════════════
+
+  LOGS CORRECTOS (✅):
+  ───────────────────
+    ✓ "Iniciando conexión WebSocket..."
+    ✓ "Conectando a: ws://localhost:8000/ws/opo"
+    ✓ "WebSocket conectado"
+    ✓ "Iniciando bloque: 0"
+    ✓ "Enviando: {action: 'start', block: 0}"
+    ✓ "Estado recibido: question"
+
+  LOGS DE ERROR (❌):
+  ──────────────────
+    ✗ "WebSocket error: ..."
+    ✗ "WebSocket no conectado"
+    ✗ "Error creando WebSocket: ..."
+
+
+⚠️  PROBLEMAS COMUNES Y SOLUCIONES
+═══════════════════════════════════════════════════════════
+
+  PROBLEMA 1: Badge dice "Reconectando..."
+  ─────────────────────────────────────────
+    CAUSA: WebSocket no puede conectar
+    SOLUCIÓN:
+      1. Verificar que el servidor está corriendo
+      2. Ejecutar: netstat -ano | findstr ":8000"
+      3. Debería mostrar "LISTENING"
+      4. Si no, reiniciar el servidor
+
+  PROBLEMA 2: Al hacer clic, aparece alert "Conectando..."
+  ─────────────────────────────────────────────────────────
+    CAUSA: WebSocket no está conectado aún
+    SOLUCIÓN:
+      1. Esperar 3-5 segundos
+      2. Intentar de nuevo
+      3. Si persiste, recargar la página (F5)
+
+  PROBLEMA 3: Al hacer clic, aparece alert "No hay conexión"
+  ──────────────────────────────────────────────────────────
+    CAUSA: WebSocket se desconectó
+    SOLUCIÓN:
+      1. La página se recargará automáticamente
+      2. Esperar a que diga "Conectado"
+      3. Intentar de nuevo
+
+  PROBLEMA 4: No pasa nada al hacer clic
+  ───────────────────────────────────────
+    CAUSA: JavaScript no se ejecutó
+    SOLUCIÓN:
+      1. Abrir consola (F12)
+      2. Buscar errores en rojo
+      3. Recargar la página (F5)
+      4. Limpiar caché (Ctrl+Shift+R)
+
+
+✅ CHECKLIST DE VERIFICACIÓN
+═══════════════════════════════════════════════════════════
+
+  [ ] Página carga correctamente
+  [ ] Se ven 30 bloques numerados
+  [ ] Badge muestra "Conectado" en verde
+  [ ] Consola muestra "WebSocket conectado"
+  [ ] Al hacer clic en bloque, se ve log "Iniciando bloque: X"
+  [ ] Al hacer clic en bloque, se ve log "Enviando: ..."
+  [ ] La pantalla cambia a la pregunta
+  [ ] Se ve "Bloque X · Pregunta 1 / 10"
+  [ ] Se ven 4 opciones (A, B, C, D)
+  [ ] Al hacer clic en opción, se marca
+  [ ] Se muestra si es correcta o incorrecta
+  [ ] Aparece botón "Siguiente pregunta"
+
+
+🎉 SI TODO FUNCIONA
+═══════════════════════════════════════════════════════════
+
+  ¡PERFECTO! El sistema OPO está funcionando correctamente.
+
+  Ahora puedes:
+    1. Jugar cualquier bloque
+    2. Responder las 10 preguntas
+    3. Ver tu resultado
+    4. El progreso se guarda automáticamente
+    5. Los bloques completados se marcan con ✓
+
+
+📞 SI ALGO NO FUNCIONA
+═══════════════════════════════════════════════════════════
+
+  1. Copia los mensajes de error de la consola
+  2. Verifica que el servidor está corriendo
+  3. Intenta recargar la página (F5)
+  4. Intenta limpiar caché (Ctrl+Shift+R)
+  5. Verifica que no hay firewall bloqueando
+
+
+═══════════════════════════════════════════════════════════
+  Fecha: Mayo 14, 2026
+  Archivo: VERIFICAR_OPO_FUNCIONA.txt
+═══════════════════════════════════════════════════════════

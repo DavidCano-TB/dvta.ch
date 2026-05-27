@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Test WebRTC Simple</title>
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+body {
+  font-family: monospace;
+  background: #0a0e14;
+  color: #e8edf5;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h1 { color: #6b9bd4; }
+.section {
+  background: #0f1419;
+  border: 1px solid #2a4a78;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+}
+.section h2 {
+  color: #8bb3e8;
+  font-size: 1.1rem;
+  margin-top: 0;
+}
+button {
+  background: linear-gradient(135deg, #6b9bd4, #4a7ab8);
+  border: none;
+  color: #060400;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: monospace;
+  font-weight: bold;
+  margin: 5px;
+}
+button:hover {
+  background: linear-gradient(135deg, #8bb3e8, #6b9bd4);
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+video {
+  width: 320px;
+  height: 240px;
+  background: #000;
+  border: 2px solid #4a7ab8;
+  border-radius: 6px;
+  margin: 10px;
+}
+.videos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.log {
+  background: #000;
+  border: 1px solid #2a4a78;
+  border-radius: 6px;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+.log div {
+  margin: 2px 0;
+}
+.log .success { color: #38b87a; }
+.log .error { color: #e05260; }
+.log .info { color: #6b9bd4; }
+.log .warn { color: #f0c866; }
+input {
+  background: rgba(107,155,212,0.1);
+  border: 1px solid #4a7ab8;
+  color: #e8edf5;
+  padding: 8px;
+  border-radius: 4px;
+  font-family: monospace;
+  width: 300px;
+}
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+<h1>🧪 Test WebRTC Simple</h1>
+<p>Esta página prueba WebRTC peer-to-peer sin servidor de señalización.</p>
+
+<div class="section">
+  <h2>1️⃣ Obtener Stream Local</h2>
+  <button onclick="getLocalStream()">Obtener Cámara + Micrófono</button>
+  <button onclick="stopLocalStream()">Detener Stream</button>
+  <div class="videos">
+    <video id="localVideo" autoplay muted playsinline></video>
+  </div>
+</div>
+
+<div class="section">
+  <h2>2️⃣ Crear Peer Connection (Loopback Test)</h2>
+  <p>Este test crea dos peer connections y las conecta entre sí (loopback).</p>
+  <button onclick="startLoopback()">Iniciar Loopback Test</button>
+  <button onclick="stopLoopback()">Detener Loopback</button>
+  <div class="videos">
+    <video id="remoteVideo" autoplay playsinline></video>
+  </div>
+</div>
+
+<div class="section">
+  <h2>3️⃣ Manual Signaling (Dos Navegadores)</h2>
+  <p>Abre esta página en DOS navegadores. Copia/pega las ofertas y respuestas manualmente.</p>
+
+  <div style="margin: 10px 0;">
+    <button onclick="createOffer()">Crear Oferta (Navegador A)</button>
+    <button onclick="createAnswer()">Crear Respuesta (Navegador B)</button>
+  </div>
+
+  <div style="margin: 10px 0;">
+    <label>Pegar SDP (offer o answer):</label><br>
+    <textarea id="sdpInput" style="width: 100%; height: 100px; background: #000; color: #38b87a; border: 1px solid #4a7ab8; border-radius: 4px; padding: 8px; font-family: monospace; font-size: 0.8rem;"></textarea>
+    <button onclick="applyRemoteSDP()">Aplicar SDP Remoto</button>
+  </div>
+
+  <div style="margin: 10px 0;">
+    <label>Pegar ICE Candidate:</label><br>
+    <textarea id="iceInput" style="width: 100%; height: 60px; background: #000; color: #6b9bd4; border: 1px solid #4a7ab8; border-radius: 4px; padding: 8px; font-family: monospace; font-size: 0.8rem;"></textarea>
+    <button onclick="applyRemoteICE()">Aplicar ICE Candidate</button>
+  </div>
+
+  <div class="videos">
+    <video id="manualRemoteVideo" autoplay playsinline></video>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📋 Logs</h2>
+  <button onclick="clearLogs()">Limpiar Logs</button>
+  <div id="logs" class="log"></div>
+</div>
+
+<script>
+let localStream = null;
+let pc1 = null;  // loopback peer 1
+let pc2 = null;  // loopback peer 2
+let manualPC = null;  // manual signaling peer
+
+const ICE_SERVERS = [
+  { urls: 'stun:stun.l.google.com:19302' },
+  { urls: 'stun:stun1.l.google.com:19302' },
+];
+
+function log(msg, type = 'info') {
+  const div = document.createElement('div');
+  div.className = type;
+  div.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  document.getElementById('logs').appendChild(div);
+  document.getElementById('logs').scrollTop = document.getElementById('logs').scrollHeight;
+  console.log(msg);
+}
+
+function clearLogs() {
+  document.getElementById('logs').innerHTML = '';
+}
+
+async function getLocalStream() {
+  try {
+    log('Solicitando permisos de cámara y micrófono...', 'info');
+    localStream = await navigator.mediaDevices.getUserMedia({
+      video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: { echoCancellation: true, noiseSuppression: true }
+    });
+
+    const tracks = localStream.getTracks();
+    log(`✅ Stream obtenido: ${tracks.map(t => t.kind + ':' + t.enabled).join(', ')}`, 'success');
+
+    document.getElementById('localVideo').srcObject = localStream;
+    log('✅ Video local asignado', 'success');
+  } catch (e) {
+    log(`❌ Error obteniendo stream: ${e.message}`, 'error');
+  }
+}
+
+function stopLocalStream() {
+  if (localStream) {
+    localStream.getTracks().forEach(t => t.stop());
+    document.getElementById('localVideo').srcObject = null;
+    localStream = null;
+    log('🛑 Stream local detenido', 'info');
+  }
+}
+
+async function startLoopback() {
+  if (!localStream) {
+    log('❌ Primero obtén el stream local', 'error');
+    return;
+  }
+
+  try {
+    log('Creando peer connections para loopback...', 'info');
+
+    // PC1 (sender)
+    pc1 = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+    localStream.getTracks().forEach(track => {
+      pc1.addTrack(track, localStream);
+      log(`PC1: Track añadido: ${track.kind}`, 'info');
+    });
+
+    // PC2 (receiver)
+    pc2 = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+
+    // ICE candidates
+    pc1.onicecandidate = e => {
+      if (e.candidate) {
+        pc2.addIceCandidate(e.candidate);
+        log('PC1 → PC2: ICE candidate', 'info');
+      }
+    };
+
+    pc2.onicecandidate = e => {
+      if (e.candidate) {
+        pc1.addIceCandidate(e.candidate);
+        log('PC2 → PC1: ICE candidate', 'info');
+      }
+    };
+
+    // Receive tracks
+    pc2.ontrack = e => {
+      log(`✅ PC2 ontrack: ${e.track.kind} (readyState: ${e.track.readyState})`, 'success');
+      const remoteVideo = document.getElementById('remoteVideo');
+      if (!remoteVideo.srcObject) {
+        remoteVideo.srcObject = e.streams[0];
+        log('✅ Stream remoto asignado a video', 'success');
+      }
+    };
+
+    // Connection state
+    pc1.onconnectionstatechange = () => log(`PC1 connection: ${pc1.connectionState}`, 'info');
+    pc2.onconnectionstatechange = () => log(`PC2 connection: ${pc2.connectionState}`, 'info');
+
+    // Create offer
+    const offer = await pc1.createOffer();
+    await pc1.setLocalDescription(offer);
+    log('PC1: Oferta creada', 'info');
+
+    // Apply offer to PC2
+    await pc2.setRemoteDescription(offer);
+    log('PC2: Oferta aplicada', 'info');
+
+    // Create answer
+    const answer = await pc2.createAnswer();
+    await pc2.setLocalDescription(answer);
+    log('PC2: Respuesta creada', 'info');
+
+    // Apply answer to PC1
+    await pc1.setRemoteDescription(answer);
+    log('PC1: Respuesta aplicada', 'success');
+
+    log('✅ Loopback iniciado. Deberías ver tu video duplicado.', 'success');
+  } catch (e) {
+    log(`❌ Error en loopback: ${e.message}`, 'error');
+  }
+}
+
+function stopLoopback() {
+  if (pc1) { pc1.close(); pc1 = null; }
+  if (pc2) { pc2.close(); pc2 = null; }
+  document.getElementById('remoteVideo').srcObject = null;
+  log('🛑 Loopback detenido', 'info');
+}
+
+async function createOffer() {
+  if (!localStream) {
+    log('❌ Primero obtén el stream local', 'error');
+    return;
+  }
+
+  try {
+    log('Creando peer connection y oferta...', 'info');
+
+    manualPC = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+
+    localStream.getTracks().forEach(track => {
+      manualPC.addTrack(track, localStream);
+      log(`Track añadido: ${track.kind}`, 'info');
+    });
+
+    manualPC.onicecandidate = e => {
+      if (e.candidate) {
+        const json = JSON.stringify(e.candidate.toJSON());
+        log(`🧊 ICE Candidate generado. Copia y pega en el otro navegador:`, 'warn');
+        log(json, 'warn');
+      }
+    };
+
+    manualPC.ontrack = e => {
+      log(`✅ ontrack: ${e.track.kind} (readyState: ${e.track.readyState})`, 'success');
+      const remoteVideo = document.getElementById('manualRemoteVideo');
+      if (!remoteVideo.srcObject) {
+        remoteVideo.srcObject = e.streams[0];
+        log('✅ Stream remoto asignado', 'success');
+      }
+    };
+
+    manualPC.onconnectionstatechange = () => {
+      log(`Connection state: ${manualPC.connectionState}`, 'info');
+    };
+
+    const offer = await manualPC.createOffer();
+    await manualPC.setLocalDescription(offer);
+
+    const sdp = JSON.stringify({ type: 'offer', sdp: manualPC.localDescription.sdp });
+    log('✅ Oferta creada. Copia y pega en el NAVEGADOR B:', 'success');
+    log(sdp, 'success');
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(sdp).then(() => {
+      log('📋 Oferta copiada al portapapeles', 'success');
+    });
+  } catch (e) {
+    log(`❌ Error creando oferta: ${e.message}`, 'error');
+  }
+}
+
+async function createAnswer() {
+  if (!localStream) {
+    log('❌ Primero obtén el stream local', 'error');
+    return;
+  }
+
+  const sdpText = document.getElementById('sdpInput').value.trim();
+  if (!sdpText) {
+    log('❌ Pega la oferta del NAVEGADOR A en el campo de texto', 'error');
+    return;
+  }
+
+  try {
+    const sdpData = JSON.parse(sdpText);
+
+    log('Creando peer connection y respuesta...', 'info');
+
+    manualPC = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+
+    localStream.getTracks().forEach(track => {
+      manualPC.addTrack(track, localStream);
+      log(`Track añadido: ${track.kind}`, 'info');
+    });
+
+    manualPC.onicecandidate = e => {
+      if (e.candidate) {
+        const json = JSON.stringify(e.candidate.toJSON());
+        log(`🧊 ICE Candidate generado. Copia y pega en el NAVEGADOR A:`, 'warn');
+        log(json, 'warn');
+      }
+    };
+
+    manualPC.ontrack = e => {
+      log(`✅ ontrack: ${e.track.kind} (readyState: ${e.track.readyState})`, 'success');
+      const remoteVideo = document.getElementById('manualRemoteVideo');
+      if (!remoteVideo.srcObject) {
+        remoteVideo.srcObject = e.streams[0];
+        log('✅ Stream remoto asignado', 'success');
+      }
+    };
+
+    manualPC.onconnectionstatechange = () => {
+      log(`Connection state: ${manualPC.connectionState}`, 'info');
+    };
+
+    await manualPC.setRemoteDescription(sdpData);
+    log('✅ Oferta aplicada', 'info');
+
+    const answer = await manualPC.createAnswer();
+    await manualPC.setLocalDescription(answer);
+
+    const sdp = JSON.stringify({ type: 'answer', sdp: manualPC.localDescription.sdp });
+    log('✅ Respuesta creada. Copia y pega en el NAVEGADOR A:', 'success');
+    log(sdp, 'success');
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(sdp).then(() => {
+      log('📋 Respuesta copiada al portapapeles', 'success');
+    });
+  } catch (e) {
+    log(`❌ Error creando respuesta: ${e.message}`, 'error');
+  }
+}
+
+async function applyRemoteSDP() {
+  const sdpText = document.getElementById('sdpInput').value.trim();
+  if (!sdpText) {
+    log('❌ Pega el SDP en el campo de texto', 'error');
+    return;
+  }
+
+  if (!manualPC) {
+    log('❌ Primero crea una oferta o respuesta', 'error');
+    return;
+  }
+
+  try {
+    const sdpData = JSON.parse(sdpText);
+    await manualPC.setRemoteDescription(sdpData);
+    log(`✅ SDP remoto aplicado (${sdpData.type})`, 'success');
+  } catch (e) {
+    log(`❌ Error aplicando SDP: ${e.message}`, 'error');
+  }
+}
+
+async function applyRemoteICE() {
+  const iceText = document.getElementById('iceInput').value.trim();
+  if (!iceText) {
+    log('❌ Pega el ICE candidate en el campo de texto', 'error');
+    return;
+  }
+
+  if (!manualPC) {
+    log('❌ Primero crea una oferta o respuesta', 'error');
+    return;
+  }
+
+  try {
+    const candidate = JSON.parse(iceText);
+    await manualPC.addIceCandidate(new RTCIceCandidate(candidate));
+    log('✅ ICE candidate aplicado', 'success');
+  } catch (e) {
+    log(`❌ Error aplicando ICE: ${e.message}`, 'error');
+  }
+}
+
+log('🧪 Test WebRTC cargado. Comienza obteniendo el stream local.', 'info');
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

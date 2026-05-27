@@ -1,0 +1,221 @@
+═══════════════════════════════════════════════════════════
+  ✅ CHECKLIST: CONFIGURAR DVD.CH
+═══════════════════════════════════════════════════════════
+
+Sigue estos pasos en orden para que dvd.ch funcione:
+
+═══════════════════════════════════════════════════════════
+  PARTE 1: CONFIGURACIÓN TÉCNICA (YA HECHO ✅)
+═══════════════════════════════════════════════════════════
+
+[✅] Instalar cloudflared.exe
+[✅] Crear túnel Cloudflare
+[✅] Configurar túnel con dvd.ch
+[✅] Actualizar cloudflare-config.yml
+[✅] Iniciar túnel (4 conexiones activas)
+[✅] Iniciar servidor en puerto 8000
+[✅] Crear scripts de gestión
+[✅] Crear documentación
+
+═══════════════════════════════════════════════════════════
+  PARTE 2: CONFIGURACIÓN DNS (PENDIENTE ⏳)
+═══════════════════════════════════════════════════════════
+
+[ ] 1. AÑADIR DOMINIO A CLOUDFLARE
+    
+    a) Ve a: https://dash.cloudflare.com
+    b) Haz clic en "Add a Site"
+    c) Introduce: dvd.ch
+    d) Selecciona plan: Free
+    e) Haz clic en "Continue"
+    f) Anota los nameservers que te den
+    
+    Ejemplo:
+    ✏️ nameserver1: _______________________
+    ✏️ nameserver2: _______________________
+
+[ ] 2. CAMBIAR NAMESERVERS EN REGISTRADOR
+    
+    a) Ve al panel de tu registrador
+       (donde compraste dvd.ch)
+    
+    b) Busca la sección "DNS" o "Nameservers"
+    
+    c) Cambia a los nameservers de Cloudflare
+       (los que anotaste arriba)
+    
+    d) Guarda los cambios
+    
+    ✏️ Registrador usado: _______________________
+    ✏️ Fecha del cambio: _______________________
+    ✏️ Hora del cambio: _______________________
+
+[ ] 3. ESPERAR PROPAGACIÓN DNS
+    
+    ⏱️ Tiempo estimado: 2-4 horas
+    ⏱️ Máximo: 24-48 horas
+    
+    Verificar cada hora con:
+    nslookup dvd.ch
+    
+    ✅ Cuando veas IPs de Cloudflare (104.x.x.x),
+       ¡el DNS está propagado!
+    
+    ✏️ DNS propagado el: _______________________
+    ✏️ A las: _______________________
+
+[ ] 4. VERIFICAR EN CLOUDFLARE DASHBOARD
+    
+    a) Ve a: https://dash.cloudflare.com
+    b) Selecciona: dvd.ch
+    c) Verifica que el estado sea: "Active"
+    d) Ve a: Traffic → Cloudflare Tunnel
+    e) Verifica que "dvdcoin" esté conectado
+
+[ ] 5. CONFIGURAR SSL/TLS (RECOMENDADO)
+    
+    a) En Cloudflare Dashboard → dvd.ch
+    b) Ve a: SSL/TLS
+    c) Selecciona modo: "Full"
+    d) Ve a: SSL/TLS → Edge Certificates
+    e) Activa: "Always Use HTTPS"
+    f) Activa: "Automatic HTTPS Rewrites"
+
+[ ] 6. PROBAR EN NAVEGADOR
+    
+    a) Abre tu navegador
+    b) Ve a: https://dvd.ch
+    c) ✅ Deberías ver tu aplicación DVDcoin
+    d) Verifica el candado verde (HTTPS)
+
+═══════════════════════════════════════════════════════════
+  PARTE 3: VERIFICACIÓN FINAL
+═══════════════════════════════════════════════════════════
+
+[ ] DNS propagado (nslookup muestra IPs de Cloudflare)
+[ ] Cloudflare Dashboard muestra estado "Active"
+[ ] Túnel "dvdcoin" conectado en Cloudflare
+[ ] https://dvd.ch accesible en navegador
+[ ] https://www.dvd.ch accesible en navegador
+[ ] SSL/HTTPS funcionando (candado verde)
+[ ] Aplicación carga correctamente
+[ ] Login funciona
+[ ] Todas las páginas funcionan
+
+═══════════════════════════════════════════════════════════
+  COMANDOS ÚTILES
+═══════════════════════════════════════════════════════════
+
+Verificar DNS:
+  nslookup dvd.ch
+
+Verificar túnel:
+  cloudflared.exe tunnel info dvdcoin
+
+Verificar servidor:
+  netstat -ano | findstr ":8000"
+
+Verificar todo:
+  VERIFICAR_DVD_CH.bat
+
+Iniciar sistema:
+  INICIAR_DVD_CH.bat
+
+Ver logs:
+  type cloudflare_tunnel.log
+
+═══════════════════════════════════════════════════════════
+  TIMELINE ESPERADO
+═══════════════════════════════════════════════════════════
+
+Hora 0:00  → Añades dvd.ch a Cloudflare
+Hora 0:05  → Cambias nameservers en registrador
+Hora 0:10  → Esperas... ⏳
+Hora 2:00  → DNS empieza a propagarse
+Hora 4:00  → DNS propagado ✅
+Hora 4:05  → Pruebas https://dvd.ch
+Hora 4:06  → ✅ ¡FUNCIONA! 🎉
+
+═══════════════════════════════════════════════════════════
+  REGISTRADORES COMUNES PARA .CH
+═══════════════════════════════════════════════════════════
+
+Switch.ch
+  → https://www.switch.ch/
+  → Login → My Domains → dvd.ch → DNS Settings
+
+Infomaniak
+  → https://manager.infomaniak.com
+  → Dominios → dvd.ch → Gestión DNS
+
+Hostpoint
+  → https://admin.hostpoint.ch
+  → Dominios → dvd.ch → DNS
+
+Cyon
+  → https://my.cyon.ch
+  → Dominios → dvd.ch → DNS
+
+GoDaddy
+  → https://dcc.godaddy.com
+  → My Products → Domains → dvd.ch → DNS
+
+═══════════════════════════════════════════════════════════
+  SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════
+
+❌ DNS no propaga después de 24h
+   → Verifica que los nameservers están correctos
+   → Contacta al soporte de tu registrador
+
+❌ "502 Bad Gateway"
+   → Ejecuta: python main.py
+
+❌ "ERR_SSL_VERSION_OR_CIPHER_MISMATCH"
+   → Cloudflare Dashboard → SSL/TLS → Modo "Full"
+
+❌ Túnel desconectado
+   → Ejecuta: INICIAR_DVD_CH.bat
+
+═══════════════════════════════════════════════════════════
+  DOCUMENTACIÓN
+═══════════════════════════════════════════════════════════
+
+INSTRUCCIONES_DVD_CH.txt
+  → Instrucciones completas
+
+GUIA_DNS_DVD_CH.md
+  → Guía paso a paso para configurar DNS
+
+ESTADO_DVD_CH.md
+  → Estado técnico actual
+
+RESUMEN_DVD_CH.txt
+  → Resumen de lo hecho
+
+═══════════════════════════════════════════════════════════
+  NOTAS
+═══════════════════════════════════════════════════════════
+
+📝 Anota aquí cualquier información importante:
+
+Registrador: _______________________
+
+Nameservers de Cloudflare:
+  1. _______________________
+  2. _______________________
+
+Fecha de cambio de NS: _______________________
+
+Fecha de propagación: _______________________
+
+Problemas encontrados:
+_______________________
+_______________________
+_______________________
+
+═══════════════════════════════════════════════════════════
+
+¡Sigue este checklist y tendrás dvd.ch funcionando! 🚀
+
+═══════════════════════════════════════════════════════════

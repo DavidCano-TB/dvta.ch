@@ -1,0 +1,104 @@
+================================================================================
+  🔧 SOLUCIÓN: OPO - "Acceso requerido"
+================================================================================
+
+PROBLEMA:
+  Al intentar acceder a OPO aparece:
+  
+  🔒 Acceso requerido
+  Conéctate al DVDcoin Bank para acceder.
+  ← Ir al banco
+
+CAUSA:
+  El usuario SÍ está autenticado, pero NO tiene permisos para acceder a OPO.
+
+SOLUCIÓN EN 3 PASOS:
+================================================================================
+
+1️⃣  EJECUTAR EL GESTOR DE ACCESO
+   
+   Doble clic en:
+   
+   📁 GESTIONAR_ACCESO_OPO.bat
+   
+   O si sabes el nombre de usuario:
+   
+   📁 AGREGAR_USUARIO_OPO.bat <nombre_usuario>
+
+2️⃣  AGREGAR EL USUARIO
+   
+   Ejemplo:
+   
+   AGREGAR_USUARIO_OPO.bat nina
+
+3️⃣  REINICIAR EL SERVIDOR
+   
+   ⚠️  IMPORTANTE: Los cambios NO se aplican hasta reiniciar
+   
+   Doble clic en:
+   
+   📁 KILL_ALL_AND_RESTART.bat
+   
+   O manualmente:
+   - Detener el servidor (Ctrl+C)
+   - Ejecutar: ARRANCAR.bat
+
+================================================================================
+
+VERIFICACIÓN:
+  
+  ✅ Si todo funciona correctamente:
+     - Ir a /opo
+     - Debe aparecer la pantalla de selección de bloques
+     - Badge debe mostrar "Conectado" en verde
+     - Se pueden elegir bloques de preguntas
+
+  ❌ Si sigue sin funcionar:
+     - Verifica que agregaste el usuario correcto
+     - Verifica que reiniciaste el servidor
+     - Revisa los logs del servidor para errores
+
+================================================================================
+
+DOCUMENTACIÓN COMPLETA:
+
+  📄 SOLUCION_RAPIDA_OPO.md
+     Guía rápida con comandos útiles
+
+  📄 docs/FIX_OPO_ACCESO_DENEGADO.md
+     Documentación técnica completa
+
+  📄 docs/RESUMEN_COMPLETO_FIXES_OPO.md
+     Historial de todos los fixes aplicados
+
+================================================================================
+
+COMANDOS ÚTILES:
+
+  Ver quién tiene acceso OPO:
+  
+  python -c "import sqlite3; conn = sqlite3.connect('data/rights.db'); rows = conn.execute('SELECT username FROM opo_players').fetchall(); [print(f'  - {r[0]}') for r in rows]; conn.close()"
+
+  Ver todos los usuarios:
+  
+  python -c "import sqlite3; conn = sqlite3.connect('data/users.db'); rows = conn.execute('SELECT username FROM users ORDER BY username').fetchall(); [print(f'  - {r[0]}') for r in rows]; conn.close()"
+
+================================================================================
+
+USUARIOS ACTUALES CON ACCESO OPO:
+  
+  ✓ dvd (siempre tiene acceso)
+  ✓ nebulosa
+  ✓ dvdrec
+
+================================================================================
+
+¿NECESITAS AYUDA?
+
+  1. Ejecuta: GESTIONAR_ACCESO_OPO.bat
+  2. Selecciona opción 1 para ver usuarios con acceso
+  3. Selecciona opción 2 para ver todos los usuarios
+  4. Selecciona opción 3 para agregar un usuario
+  5. Reinicia el servidor
+
+================================================================================

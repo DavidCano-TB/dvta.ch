@@ -1,0 +1,82 @@
+═══════════════════════════════════════════════════════════
+  📋 DATOS NECESARIOS PARA CONFIGURAR dvdbank.ch
+═══════════════════════════════════════════════════════════
+
+Por favor, completa esta información mientras registras
+el dominio en Hoststar:
+
+═══════════════════════════════════════════════════════════
+  1. DATOS DEL REGISTRO
+═══════════════════════════════════════════════════════════
+
+Dominio registrado: dvdbank.ch
+Registrador: Hoststar (hoststar.ch)
+Fecha de registro: _______________
+Fecha de expiración: _______________
+
+═══════════════════════════════════════════════════════════
+  2. DATOS DE ACCESO A HOSTSTAR
+═══════════════════════════════════════════════════════════
+
+URL del panel: https://my.hoststar.ch
+Usuario/Email: _______________
+Contraseña: (guárdala en un lugar seguro)
+
+═══════════════════════════════════════════════════════════
+  3. NAMESERVERS ACTUALES (ANTES DE CAMBIAR)
+═══════════════════════════════════════════════════════════
+
+Hoststar te asignará nameservers por defecto, algo como:
+  ns1.hoststar.ch
+  ns2.hoststar.ch
+
+Anótalos aquí (por si necesitas volver atrás):
+  Nameserver 1: _______________
+  Nameserver 2: _______________
+
+═══════════════════════════════════════════════════════════
+  4. PRÓXIMOS PASOS (DESPUÉS DEL REGISTRO)
+═══════════════════════════════════════════════════════════
+
+Una vez que Hoststar confirme el registro:
+
+✅ PASO A: Añadir dvdbank.ch a Cloudflare
+   → Ejecuta: ANADIR_DVDBANK_A_CLOUDFLARE.bat
+
+✅ PASO B: Cambiar nameservers en Hoststar
+   → Cloudflare te dará 2 nameservers
+   → Los cambiarás en el panel de Hoststar
+
+✅ PASO C: Configurar el túnel
+   → Ejecuta: CONFIGURAR_DVDBANK_FINAL.bat
+
+✅ PASO D: Probar que funciona
+   → Abre: https://dvdbank.ch
+
+═══════════════════════════════════════════════════════════
+  ⏱️ TIEMPOS ESTIMADOS
+═══════════════════════════════════════════════════════════
+
+• Registro en Hoststar: 5-10 minutos
+• Activación del dominio: 1-24 horas (normalmente 1-2 horas)
+• Añadir a Cloudflare: 2 minutos
+• Cambiar nameservers: 2 minutos
+• Propagación DNS: 2-48 horas (normalmente 2-4 horas)
+• Configurar túnel: 2 minutos
+
+TOTAL: 2-48 horas (normalmente 3-6 horas)
+
+═══════════════════════════════════════════════════════════
+  💡 CONSEJOS
+═══════════════════════════════════════════════════════════
+
+1. Guarda bien tus datos de acceso a Hoststar
+2. Activa la renovación automática para no perder el dominio
+3. Usa un email que revises regularmente
+4. Anota los nameservers originales por si necesitas volver
+
+═══════════════════════════════════════════════════════════
+
+Cuando termines el registro, avísame y continuamos.
+
+═══════════════════════════════════════════════════════════

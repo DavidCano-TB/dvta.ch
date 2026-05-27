@@ -1,0 +1,170 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║         ESTADO ACTUAL DEL SISTEMA DVDCOIN                    ║
+║              Fecha: 19 Mayo 2026 - 20:17                     ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════
+✅ SISTEMA FUNCIONANDO CORRECTAMENTE
+═══════════════════════════════════════════════════════════════
+
+
+SERVIDOR PYTHON
+═══════════════════════════════════════════════════════════════
+
+✅ Estado: CORRIENDO
+✅ Puerto: 8000
+✅ Procesos activos:
+   - python.exe (PID: 1500)
+   - python.exe (PID: 10780)
+   - pythonw.exe (PID: 6636) ← Servidor principal
+
+✅ Acceso local: http://localhost:8000
+
+
+CLOUDFLARE TUNNEL
+═══════════════════════════════════════════════════════════════
+
+✅ Estado: CORRIENDO
+✅ Método: Quick Tunnel (sin configuración)
+✅ Procesos activos:
+   - cloudflared.exe (PID: 5928)
+   - cloudflared.exe (PID: 9956)
+
+✅ Túnel configurado: dvdcoin
+✅ Túnel ID: 6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
+✅ Autenticación: COMPLETADA
+✅ Certificado: C:\Users\PC\.cloudflared\cert.pem
+
+
+CONFIGURACIÓN ACTUAL
+═══════════════════════════════════════════════════════════════
+
+Archivos creados:
+✅ cloudflare-config.yml (configuración avanzada)
+✅ INICIAR_CON_CLOUDFLARE.bat (inicio automático)
+✅ INICIAR_CLOUDFLARE_SIMPLE.bat (inicio simple) ← EN USO
+✅ DETENER_SERVIDOR.bat (detener todo)
+✅ EJECUTAR_MIGRACION_AHORA.bat (migración completa)
+
+
+NGROK (SISTEMA ANTIGUO)
+═══════════════════════════════════════════════════════════════
+
+❌ Estado: DETENIDO (ya no se usa)
+✅ Token guardado: conf/.ngrok_token
+✅ Dominio antiguo: premium-size-unreached.ngrok-free.dev
+
+
+CÓMO OBTENER LA URL PÚBLICA
+═══════════════════════════════════════════════════════════════
+
+Deberías ver una ventana CMD abierta con el título:
+"Cloudflare Tunnel - DVDcoin"
+
+En esa ventana aparece la URL pública que se ve así:
+https://XXXXXXXX.trycloudflare.com
+
+Si no ves la ventana:
+1. Busca en la barra de tareas
+2. O ejecuta: INICIAR_CLOUDFLARE_SIMPLE.bat
+3. La URL aparece en los primeros segundos
+
+
+VENTAJAS DEL NUEVO SISTEMA
+═══════════════════════════════════════════════════════════════
+
+✅ SIN LÍMITES de conexiones (ngrok tenía 40/min)
+✅ URL pública funcionando
+✅ SSL/HTTPS automático
+✅ Protección DDoS de Cloudflare
+✅ GRATIS para siempre
+✅ Más rápido y estable
+
+
+COMANDOS ÚTILES
+═══════════════════════════════════════════════════════════════
+
+Ver procesos activos:
+  Get-Process cloudflared
+  Get-Process python
+
+Ver información del túnel:
+  cloudflared tunnel info dvdcoin
+
+Detener todo:
+  DETENER_SERVIDOR.bat
+
+Iniciar de nuevo:
+  INICIAR_CLOUDFLARE_SIMPLE.bat
+
+
+ACCESO AL SISTEMA
+═══════════════════════════════════════════════════════════════
+
+Local (desde tu PC):
+  http://localhost:8000
+  http://localhost:8000/opo (panel admin)
+
+Público (desde Internet):
+  https://XXXXXXXX.trycloudflare.com
+  (Ver en la ventana CMD abierta)
+
+
+PRÓXIMOS PASOS
+═══════════════════════════════════════════════════════════════
+
+1. ✅ Servidor Python funcionando
+2. ✅ Cloudflare Tunnel funcionando
+3. ⏳ Obtener URL pública (ver ventana CMD)
+4. ⏳ Compartir URL con usuarios
+5. ⏳ Configurar autostart (opcional)
+
+
+TAREAS PENDIENTES
+═══════════════════════════════════════════════════════════════
+
+1. Crear JSON de Pasapalabra con 50 preguntas por letra
+2. Sistema de no repetir preguntas
+3. Contador de preguntas restantes en admin
+
+
+NOTAS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+• Todo tu contenido está INTACTO (bases de datos, usuarios, etc.)
+• El sistema de votaciones funciona normal
+• El sistema de apuestas funciona normal
+• Los juegos funcionan normal
+• Solo cambió la forma de exponer a Internet
+
+
+SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+Si no ves la URL pública:
+  1. Busca la ventana CMD en la barra de tareas
+  2. O ejecuta de nuevo: INICIAR_CLOUDFLARE_SIMPLE.bat
+
+Si el servidor no responde:
+  1. Verifica: http://localhost:8000
+  2. Si no funciona: DETENER_SERVIDOR.bat
+  3. Luego: ARRANCAR.bat
+
+Si quieres volver a ngrok temporalmente:
+  1. DETENER_SERVIDOR.bat
+  2. Ejecuta: INICIAR_COMO_ADMIN_NGROK_OLD.bat
+
+
+═══════════════════════════════════════════════════════════════
+
+RESUMEN: ✅ TODO FUNCIONANDO
+
+• Servidor: ✅ ACTIVO
+• Cloudflare: ✅ ACTIVO  
+• Migración: ✅ COMPLETADA
+• URL pública: ⏳ Ver ventana CMD
+
+═══════════════════════════════════════════════════════════════

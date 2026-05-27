@@ -1,0 +1,184 @@
+{
+  "A": [
+    {"tipo":"empieza","definicion":"Empieza por A: País de Asia Central cuya capital es Kabul, devastado por décadas de conflicto e invadido por la URSS en 1979.","respuesta":"AFGANISTÁN"},
+    {"tipo":"empieza","definicion":"Empieza por A: Galaxia espiral más próxima a la Vía Láctea, visible a simple vista desde el hemisferio norte en noches despejadas.","respuesta":"ANDRÓMEDA"},
+    {"tipo":"empieza","definicion":"Empieza por A: Disciplina olímpica en la que los atletas lanzan una jabalina, un disco, una bala y un martillo, además de correr y saltar.","respuesta":"ATLETISMO"},
+    {"tipo":"empieza","definicion":"Empieza por A: Río más largo de América del Sur y mayor del mundo por caudal, que desemboca en el océano Atlántico en Brasil.","respuesta":"AMAZONAS"},
+    {"tipo":"empieza","definicion":"Empieza por A: Artista español padre del cubismo, que pintó el Guernica en 1937 como denuncia del bombardeo nazi de esa ciudad vasca.","respuesta":"AZUL (PICASSO)"}
+  ],
+  "B": [
+    {"tipo":"empieza","definicion":"Empieza por B: País más grande de América del Sur, cuya capital es Brasilia y cuya lengua oficial es el portugués.","respuesta":"BRASIL"},
+    {"tipo":"empieza","definicion":"Empieza por B: Compositor alemán sordo en sus últimos años, autor de la Novena Sinfonía y la célebre 'Oda a la alegría'.","respuesta":"BEETHOVEN"},
+    {"tipo":"empieza","definicion":"Empieza por B: Capital de Alemania, ciudad dividida por un muro entre 1961 y 1989, caído de forma pacífica ese último año.","respuesta":"BERLÍN"},
+    {"tipo":"empieza","definicion":"Empieza por B: Deporte de origen inglés jugado con bate y pelota en un diamante, deporte nacional de Estados Unidos, Cuba y Japón.","respuesta":"BÉISBOL"},
+    {"tipo":"empieza","definicion":"Empieza por B: Mamífero marino de gran tamaño conocido como el animal más grande que ha existido en la Tierra.","respuesta":"BALLENA AZUL"}
+  ],
+  "C": [
+    {"tipo":"empieza","definicion":"Empieza por C: Órgano muscular hueco situado en el tórax que impulsa la sangre a través del sistema circulatorio.","respuesta":"CORAZÓN"},
+    {"tipo":"empieza","definicion":"Empieza por C: Astrónomo polaco del siglo XVI que propuso el modelo heliocéntrico del sistema solar.","respuesta":"COPÉRNICO"},
+    {"tipo":"empieza","definicion":"Empieza por C: Montaña más alta del mundo con 8.849 metros, situada en el Himalaya en la frontera entre Nepal y China.","respuesta":"EVEREST (QOMOLANGMA)"},
+    {"tipo":"empieza","definicion":"Empieza por C: Aparato óptico que registra imágenes en movimiento, inventado por los hermanos Lumière a finales del siglo XIX.","respuesta":"CINEMATÓGRAFO"},
+    {"tipo":"empieza","definicion":"Empieza por C: Nombre del barco en el que Cristóbal Colón llegó a América en 1492, la mayor de sus tres naves.","respuesta":"SANTA MARÍA"}
+  ],
+  "D": [
+    {"tipo":"empieza","definicion":"Empieza por D: En geometría, segmento que une dos puntos de una circunferencia pasando por su centro, el doble del radio.","respuesta":"DIÁMETRO"},
+    {"tipo":"empieza","definicion":"Empieza por D: Naturalista británico que formuló la teoría de la evolución por selección natural, publicada en 1859.","respuesta":"DARWIN"},
+    {"tipo":"empieza","definicion":"Empieza por D: País escandinavo cuya capital es Copenhague, con una monarquía constitucional y famoso por su arquitectura vikinga.","respuesta":"DINAMARCA"},
+    {"tipo":"empieza","definicion":"Empieza por D: Pintor español del Barroco, retratista de la corte de Felipe IV, autor de Las Meninas.","respuesta":"VELÁZQUEZ"},
+    {"tipo":"empieza","definicion":"Empieza por D: Río que nace en la Selva Negra alemana y desemboca en el mar Negro tras recorrer diez países europeos.","respuesta":"DANUBIO"}
+  ],
+  "E": [
+    {"tipo":"empieza","definicion":"Empieza por E: Capa más superficial de la piel, que actúa como barrera protectora del organismo frente al exterior.","respuesta":"EPIDERMIS"},
+    {"tipo":"empieza","definicion":"Empieza por E: País de América del Sur atravesado por la línea del ecuador, cuya capital es Quito.","respuesta":"ECUADOR"},
+    {"tipo":"empieza","definicion":"Empieza por E: Estructura de hierro construida para la Exposición Universal de París de 1889, diseñada por Gustave Eiffel.","respuesta":"TORRE EIFFEL"},
+    {"tipo":"empieza","definicion":"Empieza por E: Filósofo griego del siglo IV a.C., discípulo de Platón y maestro de Alejandro Magno, padre de la lógica occidental.","respuesta":"ARISTÓTELES"},
+    {"tipo":"empieza","definicion":"Empieza por E: Proceso de conversión de glucosa en alcohol y CO₂ por acción de levaduras, fundamental en la elaboración del vino y la cerveza.","respuesta":"FERMENTACIÓN"}
+  ],
+  "F": [
+    {"tipo":"empieza","definicion":"Empieza por F: Ciencia natural que estudia la materia, la energía, el espacio-tiempo y sus interacciones.","respuesta":"FÍSICA"},
+    {"tipo":"empieza","definicion":"Empieza por F: Proceso por el que las plantas convierten luz solar, agua y CO₂ en glucosa y oxígeno.","respuesta":"FOTOSÍNTESIS"},
+    {"tipo":"empieza","definicion":"Empieza por F: País del norte de Europa cuya capital es Helsinki, famoso por su sistema educativo y los saunas.","respuesta":"FINLANDIA"},
+    {"tipo":"empieza","definicion":"Empieza por F: Deporte de combate olímpico que se practica con espada, sable o florete sobre una pista estrecha llamada 'piste'.","respuesta":"ESGRIMA"},
+    {"tipo":"empieza","definicion":"Empieza por F: Nombre de pila del famoso físico italiano que construyó el primer reactor nuclear en Chicago en 1942.","respuesta":"FERMI (ENRICO)"}
+  ],
+  "G": [
+    {"tipo":"empieza","definicion":"Empieza por G: País de África occidental, primera nación subsahariana en independizarse, cuya capital es Accra.","respuesta":"GHANA"},
+    {"tipo":"empieza","definicion":"Empieza por G: Fuerza de atracción mutua entre cuerpos con masa, descrita por Newton y reformulada por Einstein.","respuesta":"GRAVITACIÓN"},
+    {"tipo":"empieza","definicion":"Empieza por G: Isla más grande del mundo, perteneciente al reino de Dinamarca, cubierta en un 80% por hielo.","respuesta":"GROENLANDIA"},
+    {"tipo":"empieza","definicion":"Empieza por G: Compositor ruso del siglo XIX, autor del Preludio para cuarteto de cuerdas en do sostenido menor, primer ruso en triunfar en Europa.","respuesta":"GLINKA"},
+    {"tipo":"empieza","definicion":"Empieza por G: Escritor colombiano premio Nobel de Literatura en 1982, autor de 'Cien años de soledad'.","respuesta":"GABRIEL GARCÍA MÁRQUEZ"}
+  ],
+  "H": [
+    {"tipo":"empieza","definicion":"Empieza por H: Glándula digestiva más voluminosa del cuerpo humano, que produce bilis y filtra toxinas de la sangre.","respuesta":"HÍGADO"},
+    {"tipo":"empieza","definicion":"Empieza por H: Elemento químico más abundante en el universo, número atómico 1, combustible de las estrellas.","respuesta":"HIDRÓGENO"},
+    {"tipo":"empieza","definicion":"Empieza por H: País de Asia Oriental formado por archipiélago de islas, cuya capital es Tokio y cuyo símbolo es el Monte Fuji.","respuesta":"JAPÓN"},
+    {"tipo":"empieza","definicion":"Empieza por H: Médico griego de la Antigüedad conocido como 'Padre de la Medicina', creador del juramento que llevan su nombre.","respuesta":"HIPÓCRATES"},
+    {"tipo":"empieza","definicion":"Empieza por H: Cadena montañosa de Asia que alberga las cimas más altas del mundo, entre ellas el Everest.","respuesta":"HIMALAYA"}
+  ],
+  "I": [
+    {"tipo":"empieza","definicion":"Empieza por I: País de Europa del Sur con forma de bota, cuya capital es Roma y fue sede del Imperio Romano.","respuesta":"ITALIA"},
+    {"tipo":"empieza","definicion":"Empieza por I: Civilización precolombina que dominó los Andes sudamericanos en los siglos XV y XVI, con capital en Cuzco.","respuesta":"INCAS"},
+    {"tipo":"empieza","definicion":"Empieza por I: País de Asia del Sur más poblado del mundo, cuya capital es Nueva Delhi y tiene una civilización milenaria.","respuesta":"INDIA"},
+    {"tipo":"empieza","definicion":"Empieza por I: Movimiento artístico francés del siglo XIX que buscaba capturar la luz y el momento, con pintores como Monet y Renoir.","respuesta":"IMPRESIONISMO"},
+    {"tipo":"empieza","definicion":"Empieza por I: Instrumento de cuerdas pulsadas de origen árabe con caja de resonancia en forma de pera, muy usado en el Renacimiento.","respuesta":"LAÚD"}
+  ],
+  "J": [
+    {"tipo":"empieza","definicion":"Empieza por J: Arte marcial y deporte olímpico de origen japonés cuyo nombre significa 'camino de la suavidad'.","respuesta":"JUDO"},
+    {"tipo":"empieza","definicion":"Empieza por J: Planeta más grande del sistema solar, con la Gran Mancha Roja y más de 90 lunas conocidas.","respuesta":"JÚPITER"},
+    {"tipo":"empieza","definicion":"Empieza por J: País de Oriente Medio cuya capital es Ammán, limítrofe con Israel, Siria, Irak y Arabia Saudí.","respuesta":"JORDANIA"},
+    {"tipo":"empieza","definicion":"Empieza por J: Músico americano considerado el mayor guitarrista eléctrico de la historia, conocido por tocar el himno de Woodstock.","respuesta":"JIMI HENDRIX"},
+    {"tipo":"empieza","definicion":"Empieza por J: Género musical originado en Nueva Orleans a principios del siglo XX, basado en la improvisación y el swing.","respuesta":"JAZZ"}
+  ],
+  "K": [
+    {"tipo":"empieza","definicion":"Empieza por K: Unidad de temperatura del Sistema Internacional cuyo cero absoluto equivale a −273,15 °C.","respuesta":"KELVIN"},
+    {"tipo":"empieza","definicion":"Empieza por K: País de África oriental con capital en Nairobi, famoso por sus safaris y la Gran Migración.","respuesta":"KENIA"},
+    {"tipo":"empieza","definicion":"Empieza por K: Escritor checo autor de 'La metamorfosis', obra en la que un hombre despierta convertido en insecto.","respuesta":"KAFKA"},
+    {"tipo":"empieza","definicion":"Empieza por K: Montaña himalaya de Pakistán, la segunda más alta del mundo con 8.611 metros, conocida como 'la montaña salvaje'.","respuesta":"K2"},
+    {"tipo":"empieza","definicion":"Empieza por K: País de Asia Central sin salida al mar, antigua república soviética cuya capital es Nursultán (Astana).","respuesta":"KAZAJISTÁN"}
+  ],
+  "L": [
+    {"tipo":"empieza","definicion":"Empieza por L: Único satélite natural de la Tierra, que completa su órbita en unos 27 días y fue pisado por primera vez en 1969.","respuesta":"LUNA"},
+    {"tipo":"empieza","definicion":"Empieza por L: Polímata italiano del Renacimiento, pintor de la Mona Lisa y La Última Cena, también inventor y científico.","respuesta":"LEONARDO DA VINCI"},
+    {"tipo":"empieza","definicion":"Empieza por L: Ciudad más poblada del Reino Unido y capital del país, a orillas del río Támesis.","respuesta":"LONDRES"},
+    {"tipo":"empieza","definicion":"Empieza por L: Lagarto prehistórico de gran tamaño cuyo nombre científico significa 'rey de los lagartos tiránicos'.","respuesta":"LAGARTO (T-REX)"},
+    {"tipo":"empieza","definicion":"Empieza por L: Instrumento óptico que amplía objetos muy pequeños mediante lentes, utilizado en biología y medicina.","respuesta":"LUPA"}
+  ],
+  "M": [
+    {"tipo":"empieza","definicion":"Empieza por M: Famoso retrato pintado por Leonardo da Vinci entre 1503 y 1519, expuesto en el Museo del Louvre.","respuesta":"MONA LISA"},
+    {"tipo":"empieza","definicion":"Empieza por M: Planeta más cercano al Sol, sin atmósfera significativa y con ciclos de temperatura extremos.","respuesta":"MERCURIO"},
+    {"tipo":"empieza","definicion":"Empieza por M: País de África del Norte cuya capital es Rabat, con costas en el Mediterráneo y el Atlántico.","respuesta":"MARRUECOS"},
+    {"tipo":"empieza","definicion":"Empieza por M: Instrumento de percusión membranófono consistente en un parche tensado sobre una caja cilíndrica, tocado con baquetas.","respuesta":"TAMBOR"},
+    {"tipo":"empieza","definicion":"Empieza por M: Científica polaco-francesa dos veces Premio Nobel, pionera en el estudio de la radiactividad.","respuesta":"MARIE CURIE"}
+  ],
+  "N": [
+    {"tipo":"empieza","definicion":"Empieza por N: Físico inglés del siglo XVII que formuló las tres leyes del movimiento y la ley de la gravitación universal.","respuesta":"NEWTON"},
+    {"tipo":"empieza","definicion":"Empieza por N: Río más largo del mundo, de casi 6.700 km, que desemboca en el Mediterráneo en Egipto.","respuesta":"NILO"},
+    {"tipo":"empieza","definicion":"Empieza por N: País de América del Norte limítrofe con Estados Unidos y Guatemala, cuya capital es Managua.","respuesta":"NICARAGUA"},
+    {"tipo":"empieza","definicion":"Empieza por N: Física y química neozelandesa que descubrió el elemento plutonio junto a Glenn Seaborg.","respuesta":"NEPTUNIO"},
+    {"tipo":"empieza","definicion":"Empieza por N: País nórdico de Europa cuya capital es Oslo, famoso por los fiordos y el Nobel de la Paz.","respuesta":"NORUEGA"}
+  ],
+  "O": [
+    {"tipo":"empieza","definicion":"Empieza por O: Instrumento musical de viento madera que usa doble lengüeta de caña, habitual en la orquesta sinfónica.","respuesta":"OBOE"},
+    {"tipo":"empieza","definicion":"Empieza por O: Capa de la estratosfera que absorbe la radiación ultravioleta solar, protegiendo la vida en la Tierra.","respuesta":"OZONO"},
+    {"tipo":"empieza","definicion":"Empieza por O: País de la Península Arábiga cuya capital es Mascate, con costas en el golfo de Omán y el mar Arábigo.","respuesta":"OMÁN"},
+    {"tipo":"empieza","definicion":"Empieza por O: Elemento químico símbolo O, gaseoso, necesario para la respiración de los seres vivos.","respuesta":"OXÍGENO"},
+    {"tipo":"empieza","definicion":"Empieza por O: Héroe de la mitología griega, rey de Ítaca, protagonista de la epopeya de Homero que narra su regreso tras la guerra de Troya.","respuesta":"ODISEO (ULISES)"}
+  ],
+  "P": [
+    {"tipo":"empieza","definicion":"Empieza por P: Capital de Francia, conocida como 'La Ciudad de la Luz', bañada por el río Sena y sede de la Torre Eiffel.","respuesta":"PARÍS"},
+    {"tipo":"empieza","definicion":"Empieza por P: Matemático griego famoso por su teorema sobre los triángulos rectángulos: el cuadrado de la hipotenusa.","respuesta":"PITÁGORAS"},
+    {"tipo":"empieza","definicion":"Empieza por P: País de América del Sur cuya capital es Lima, famoso por las ruinas de Machu Picchu y la civilización inca.","respuesta":"PERÚ"},
+    {"tipo":"empieza","definicion":"Empieza por P: Instrumento musical de teclado con cuerdas percutidas por martillos, inventado en Italia en el siglo XVIII.","respuesta":"PIANO"},
+    {"tipo":"empieza","definicion":"Empieza por P: Planeta enano del sistema solar, anteriormente considerado el noveno planeta, descubierto en 1930.","respuesta":"PLUTÓN"}
+  ],
+  "Q": [
+    {"tipo":"empieza","definicion":"Empieza por Q: Ciencia que estudia la composición, estructura y propiedades de la materia a nivel atómico y molecular.","respuesta":"QUÍMICA"},
+    {"tipo":"empieza","definicion":"Empieza por Q: Novela de Miguel de Cervantes publicada en 1605, considerada la primera novela moderna de la literatura universal.","respuesta":"QUIJOTE"},
+    {"tipo":"empieza","definicion":"Empieza por Q: Ciudad española de Aragón a orillas del Ebro, sede de la Exposición Internacional de 2008 y hogar de la Basílica del Pilar.","respuesta":"ZARAGOZA"},
+    {"tipo":"empieza","definicion":"Empieza por Q: Sustancia amarga extraída de la corteza del árbol de quina, usada como medicamento antipalúdico durante siglos.","respuesta":"QUININA"},
+    {"tipo":"empieza","definicion":"Empieza por Q: Cereal andino considerado superalimento, cultivado por los incas durante miles de años y rico en proteínas.","respuesta":"QUINOA"}
+  ],
+  "R": [
+    {"tipo":"empieza","definicion":"Empieza por R: País más extenso del planeta, que abarca once husos horarios y tiene frontera con catorce países.","respuesta":"RUSIA"},
+    {"tipo":"empieza","definicion":"Empieza por R: Movimiento cultural surgido en Italia en el siglo XIV que supuso el redescubrimiento de la cultura clásica grecolatina.","respuesta":"RENACIMIENTO"},
+    {"tipo":"empieza","definicion":"Empieza por R: Capital de Italia, conocida como 'La Ciudad Eterna', con el Vaticano en su interior y el Coliseo como emblema.","respuesta":"ROMA"},
+    {"tipo":"empieza","definicion":"Empieza por R: Deporte de equipo que se juega en una cancha con una pelota oval y en el que se pueden hacer placajes.","respuesta":"RUGBY"},
+    {"tipo":"empieza","definicion":"Empieza por R: Poeta persa medieval cuya obra 'Masnavi' es considerada una de las grandes joyas de la literatura sufí.","respuesta":"RUMI"}
+  ],
+  "S": [
+    {"tipo":"empieza","definicion":"Empieza por S: Sexto planeta del sistema solar, reconocible por sus espectaculares anillos de hielo y roca.","respuesta":"SATURNO"},
+    {"tipo":"empieza","definicion":"Empieza por S: Dramaturgo inglés del siglo XVI considerado el mayor escritor en lengua inglesa, autor de Hamlet y Romeo y Julieta.","respuesta":"SHAKESPEARE"},
+    {"tipo":"empieza","definicion":"Empieza por S: País de Asia del Sureste cuya capital es Bangkok, único del Sudeste Asiático que nunca fue colonizado.","respuesta":"TAILANDIA"},
+    {"tipo":"empieza","definicion":"Empieza por S: Filósofo griego de la Antigüedad que fue condenado a muerte por corromper a la juventud y debió beber cicuta.","respuesta":"SÓCRATES"},
+    {"tipo":"empieza","definicion":"Empieza por S: Instrumento musical de viento madera inventado por Adolphe Sax en el siglo XIX, muy usado en el jazz.","respuesta":"SAXOFÓN"}
+  ],
+  "T": [
+    {"tipo":"empieza","definicion":"Empieza por T: Instrumento de percusión membranófono de forma cilíndrica, imprescindible en la orquesta sinfónica.","respuesta":"TIMBAL"},
+    {"tipo":"empieza","definicion":"Empieza por T: Capital de Japón y ciudad más poblada del mundo, situada en la isla de Honshu.","respuesta":"TOKIO"},
+    {"tipo":"empieza","definicion":"Empieza por T: País africano cuya capital es Túnez, situado en el Mediterráneo entre Argelia y Libia.","respuesta":"TÚNEZ"},
+    {"tipo":"empieza","definicion":"Empieza por T: Escritor ruso del siglo XIX, autor de 'Guerra y Paz' y 'Ana Karenina', considerado uno de los grandes novelistas universales.","respuesta":"TOLSTÓI"},
+    {"tipo":"empieza","definicion":"Empieza por T: Instrumento musical de viento de cobre de grandes dimensiones, el más grave de la familia de los metales.","respuesta":"TUBA"}
+  ],
+  "U": [
+    {"tipo":"empieza","definicion":"Empieza por U: País de Europa del Este, el más extenso íntegramente europeo excluyendo Rusia, cuya capital es Kiev.","respuesta":"UCRANIA"},
+    {"tipo":"empieza","definicion":"Empieza por U: Séptimo planeta del sistema solar, el tercero más grande, con el eje de rotación tumbado sobre su plano orbital.","respuesta":"URANO"},
+    {"tipo":"empieza","definicion":"Empieza por U: País de América del Sur cuya capital es Montevideo, situado entre Argentina y Brasil a orillas del Río de la Plata.","respuesta":"URUGUAY"},
+    {"tipo":"empieza","definicion":"Empieza por U: Organización internacional fundada en 1945 para mantener la paz y la seguridad mundiales, con sede en Nueva York.","respuesta":"ONU"},
+    {"tipo":"empieza","definicion":"Empieza por U: Instrumento musical de cuerda pulsada de origen hawaiano, similar a una guitarra pequeña de cuatro cuerdas.","respuesta":"UKULELE"}
+  ],
+  "V": [
+    {"tipo":"empieza","definicion":"Empieza por V: Segundo planeta del sistema solar, el más caliente con más de 460 °C, conocido como el lucero del alba.","respuesta":"VENUS"},
+    {"tipo":"empieza","definicion":"Empieza por V: Filósofo y escritor francés de la Ilustración, defensor de la libertad de expresión, autor de 'Cándido'.","respuesta":"VOLTAIRE"},
+    {"tipo":"empieza","definicion":"Empieza por V: Ciudad italiana del noreste famosa por sus canales, sus góndolas y el festival de cine más antiguo del mundo.","respuesta":"VENECIA"},
+    {"tipo":"empieza","definicion":"Empieza por V: Compositor italiano del Barroco, autor de 'Las cuatro estaciones', que fue sacerdote y músico virtuoso del violín.","respuesta":"VIVALDI"},
+    {"tipo":"empieza","definicion":"Empieza por V: País de Asia Oriental cuya capital es Hanói, que libró una larga guerra contra Estados Unidos entre 1955 y 1975.","respuesta":"VIETNAM"}
+  ],
+  "W": [
+    {"tipo":"empieza","definicion":"Empieza por W: Compositor alemán del Romanticismo, autor de 'El anillo del nibelungo' y 'Tristán e Isolda'.","respuesta":"WAGNER"},
+    {"tipo":"empieza","definicion":"Empieza por W: Primer presidente de los Estados Unidos, que lideró el Ejército Continental en la Revolución Americana.","respuesta":"WASHINGTON"},
+    {"tipo":"empieza","definicion":"Empieza por W: Físico escocés del siglo XVIII cuyas mejoras de la máquina de vapor fueron fundamentales para la Revolución Industrial.","respuesta":"JAMES WATT"},
+    {"tipo":"empieza","definicion":"Empieza por W: Capital de Polonia, ciudad reconstruida tras ser casi completamente destruida en la Segunda Guerra Mundial.","respuesta":"VARSOVIA"},
+    {"tipo":"empieza","definicion":"Empieza por W: País de Oceanía cuyo nombre oficial es 'Commonwealth de las Naciones de Australia'.","respuesta":"AUSTRALIA"}
+  ],
+  "X": [
+    {"tipo":"empieza","definicion":"Empieza por X: Instrumento musical de percusión con láminas de madera de distintos tamaños golpeadas con baquetas.","respuesta":"XILÓFONO"},
+    {"tipo":"empieza","definicion":"Empieza por X: Rey del Imperio Persa que invadió Grecia en 480 a.C. y fue derrotado en la batalla naval de Salamina.","respuesta":"JERJES"},
+    {"tipo":"empieza","definicion":"Empieza por X: Técnica de reproducción de documentos que usa electricidad estática y polvo de carbono, inventada en 1938.","respuesta":"XEROGRAFÍA"},
+    {"tipo":"empieza","definicion":"Empieza por X: Gas noble, incoloro e inodoro, usado en lámparas de flash fotográfico y en ciertos tipos de láseres.","respuesta":"XENÓN"},
+    {"tipo":"empieza","definicion":"Empieza por X: Personaje de la mitología griega que cortaba las cabezas de la hidra de Lerna, que volvían a crecer.","respuesta":"HÉRCULES"}
+  ],
+  "Y": [
+    {"tipo":"empieza","definicion":"Empieza por Y: Disciplina física, mental y espiritual originaria de la India, con más de cinco mil años de historia.","respuesta":"YOGA"},
+    {"tipo":"empieza","definicion":"Empieza por Y: País de la Península Arábiga en el extremo sur, con capital en Saná, en grave conflicto humanitario desde 2015.","respuesta":"YEMEN"},
+    {"tipo":"empieza","definicion":"Empieza por Y: Parque nacional de Estados Unidos famoso por sus géiseres, especialmente el 'Old Faithful', situado sobre un supervolcán.","respuesta":"YELLOWSTONE"},
+    {"tipo":"empieza","definicion":"Empieza por Y: Unidad monetaria oficial del Japón, símbolo ¥, una de las principales divisas de reserva del mundo.","respuesta":"YEN"},
+    {"tipo":"empieza","definicion":"Empieza por Y: Arte marcial coreano, deporte olímpico desde los Juegos de Seúl 1988, que destaca por sus patadas acrobáticas.","respuesta":"TAEKWONDO"}
+  ],
+  "Z": [
+    {"tipo":"empieza","definicion":"Empieza por Z: País del sur de África bañado por el río Zambeze, limítrofe con la RDC, cuya capital es Lusaka.","respuesta":"ZAMBIA"},
+    {"tipo":"empieza","definicion":"Empieza por Z: Ciudad española de Aragón a orillas del Ebro, con la Basílica de Nuestra Señora del Pilar como icono.","respuesta":"ZARAGOZA"},
+    {"tipo":"empieza","definicion":"Empieza por Z: País de África del Sur limítrofe con Zambia, Mozambique y Botsuana, cuya capital es Harare.","respuesta":"ZIMBABUE"},
+    {"tipo":"empieza","definicion":"Empieza por Z: Nombre del fundador del zoroastrismo, religión monoteísta persa de más de 3.500 años de antigüedad.","respuesta":"ZARATUSTRA"},
+    {"tipo":"empieza","definicion":"Empieza por Z: Lugar en Suiza donde se celebra cada año el Foro Económico Mundial con líderes políticos y empresariales.","respuesta":"DAVOS"}
+  ]
+}

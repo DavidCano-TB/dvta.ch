@@ -1,0 +1,107 @@
+═══════════════════════════════════════════════════════════════════════════
+  📋 PASOS SIGUIENTES - MIGRACIÓN A dvta.ch
+═══════════════════════════════════════════════════════════════════════════
+
+Estado actual: 27 Mayo 2026
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ PASO 1: NAMESERVERS CAMBIADOS (COMPLETADO)
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Nameservers cambiados a Cloudflare
+⏳ Propagando (1-24 horas, normalmente 2-4 horas)
+
+═══════════════════════════════════════════════════════════════════════════
+  ✅ PASO 2: CONFIGURAR EMAIL (COMPLETADO)
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Token de Cloudflare creado
+✅ Script ejecutado: PASO_2_CONFIGURAR_EMAIL.bat
+
+Para verificar que todo está bien:
+   → Ejecuta: VERIFICAR_DNS.bat
+
+═══════════════════════════════════════════════════════════════════════════
+  🔄 PASO 3: CREAR TÚNEL DE CLOUDFLARE (HACER AHORA)
+═══════════════════════════════════════════════════════════════════════════
+
+ACCIÓN REQUERIDA:
+
+1. Ejecuta: PASO_3_CREAR_TUNNEL.bat
+
+2. El script hará automáticamente:
+   ✅ Iniciar sesión en Cloudflare (se abrirá tu navegador)
+   ✅ Crear un túnel llamado "dvta-tunnel"
+   ✅ Configurar DNS para dvta.ch y www.dvta.ch
+   ✅ Crear archivo de configuración
+
+3. Autoriza el acceso cuando se abra el navegador
+
+4. El script te dirá cuando esté listo
+
+═══════════════════════════════════════════════════════════════════════════
+  🚀 PASO 4: INICIAR EL TÚNEL (DESPUÉS DEL PASO 3)
+═══════════════════════════════════════════════════════════════════════════
+
+Una vez creado el túnel:
+
+1. Ejecuta: INICIAR_TUNNEL_DVTA.bat
+
+2. Deja la ventana abierta (el túnel debe estar siempre activo)
+
+3. Abre tu navegador y ve a: https://dvta.ch
+
+4. ¡Deberías ver tu aplicación funcionando!
+
+═══════════════════════════════════════════════════════════════════════════
+  🔧 PASO 5: ACTUALIZAR SCRIPTS DE INICIO (DESPUÉS DEL PASO 4)
+═══════════════════════════════════════════════════════════════════════════
+
+Cuando el túnel funcione correctamente:
+
+1. Actualizaremos todos los scripts .bat para usar Cloudflare
+2. Eliminaremos la dependencia de ngrok
+3. Configuraremos inicio automático con Windows
+
+═══════════════════════════════════════════════════════════════════════════
+  📁 ARCHIVOS CREADOS PARA TI
+═══════════════════════════════════════════════════════════════════════════
+
+Paso 2 (Email):
+   ✅ PASO_2_CONFIGURAR_EMAIL.bat
+   ✅ configurar_dns_cloudflare_dvta.py
+   ✅ VERIFICAR_DNS.bat
+   ✅ verificar_dns_cloudflare.py
+
+Paso 3 (Túnel):
+   🔄 PASO_3_CREAR_TUNNEL.bat ← EJECUTAR AHORA
+   🔄 crear_tunnel_dvta.py
+   🔄 INICIAR_TUNNEL_DVTA.bat
+
+Documentación:
+   📄 GUIA_COMPLETA_MIGRACION_DVTA_CH.txt
+   📄 PASOS_SIGUIENTES.txt (este archivo)
+   📄 REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt
+
+═══════════════════════════════════════════════════════════════════════════
+  🎯 ACCIÓN INMEDIATA
+═══════════════════════════════════════════════════════════════════════════
+
+1. (Opcional) Verifica el email: VERIFICAR_DNS.bat
+
+2. Crea el túnel: PASO_3_CREAR_TUNNEL.bat
+
+3. Avísame cuando termine y te guiaré en el siguiente paso
+
+═══════════════════════════════════════════════════════════════════════════
+  ℹ️  INFORMACIÓN IMPORTANTE
+═══════════════════════════════════════════════════════════════════════════
+
+Dominio: dvta.ch
+Zone ID: a0353c3d6ad85c54e8ed8f31237538b9
+Account ID: bc719d01fe06039b0823aab050e9150a
+
+Dashboard Cloudflare:
+https://dash.cloudflare.com/bc719d01fe06039b0823aab050e9150a/dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cuento · DVDcoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/css/unified-nav.css">
+<style>
+  :root {
+    --gold:   #D4A843; --gold2:  #F0C866; --gold3:  #8B6010; --gold4:  #5A3A06;
+    --glass:  rgba(212,168,67,.06);
+    --noir:   #04040A; --n2:     #08080F; --n3:     #0C0C1A; --n4:     #111120;
+    --border: rgba(212,168,67,.13); --border2:rgba(212,168,67,.30);
+    --text:   #EAE6D8; --text2:  #9A9070; --text3:  #504430;
+    --r: 10px; --rL: 16px;
+  }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { font-size:15px; scroll-behavior:smooth; }
+  body {
+    font-family:'DM Mono',monospace;
+    background:var(--noir); color:var(--text);
+    min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+
+  /* ── Header ── */
+  #hdr {
+    position:sticky; top:0; z-index:200;
+    background:var(--n3); border-bottom:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 20px; height:52px;
+  }
+  .hLeft { display:flex; align-items:center; gap:14px; }
+
+
+  .hTitle {
+    font-family:'Oswald',sans-serif; font-size:.9rem; font-weight:600;
+    color:var(--text3); letter-spacing:.1em; text-transform:uppercase;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px;
+  }
+  .userBadge {
+    font-size:.6rem; color:var(--text3); background:rgba(255,255,255,.04);
+    border:1px solid var(--border); border-radius:20px;
+    padding:4px 10px; letter-spacing:.06em; flex-shrink:0;
+  }
+
+  /* ── Main layout ── */
+  .wrap { max-width:640px; margin:0 auto; padding:36px 20px 80px; }
+
+  /* ── Story header ── */
+  .storyMeta {
+    font-size:.58rem; color:var(--text3); letter-spacing:.14em;
+    text-transform:uppercase; margin-bottom:12px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .storyMeta .metaDot {
+    width:3px; height:3px; border-radius:50%; background:var(--gold3);
+  }
+  .storyTitle {
+    font-family:'Playfair Display',serif; font-size:1.7rem; font-weight:700;
+    color:var(--text); line-height:1.25; letter-spacing:.01em;
+    margin-bottom:8px;
+  }
+  .goldenLine {
+    height:1px; margin:22px 0 32px;
+    background:linear-gradient(90deg,transparent,var(--gold3) 30%,var(--gold) 50%,var(--gold3) 70%,transparent);
+  }
+
+  /* ── Story body ── */
+  .storyBody { }
+
+  .storyBody p {
+    font-family:'Playfair Display',serif; font-size:1rem;
+    color:var(--text); line-height:1.85;
+    margin-bottom:1.3em; text-align:justify;
+    font-weight:400;
+  }
+  .storyBody p:first-child::first-letter {
+    font-size:3.2rem; font-weight:700; line-height:.8;
+    float:left; margin-right:6px; margin-top:4px;
+    color:var(--gold2); font-family:'Playfair Display',serif;
+  }
+  .storyBody .bold-p {
+    font-family:'Playfair Display',serif; font-size:1rem;
+    color:var(--gold2); line-height:1.7; margin-bottom:1.3em;
+    font-weight:700;
+  }
+  .storyBody .heading-p {
+    font-family:'Oswald',sans-serif; font-size:1rem; font-weight:600;
+    color:var(--gold); letter-spacing:.08em; text-transform:uppercase;
+    margin-top:2em; margin-bottom:.8em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .storyBody .heading-p::after {
+    content:''; flex:1; height:1px; background:var(--border);
+  }
+
+  /* Dialogue lines — lines starting with — */
+  .storyBody p.dialogue {
+    padding-left:16px;
+    border-left:2px solid var(--gold4);
+    color:var(--text2);
+  }
+
+  /* ── Moraleja box ── */
+  .moralejaBox {
+    margin-top:2.5em;
+    background:var(--glass);
+    border:1px solid var(--border2);
+    border-radius:var(--rL);
+    padding:20px 22px;
+    position:relative; overflow:hidden;
+  }
+  .moralejaBox::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:1px;
+    background:linear-gradient(90deg,transparent,rgba(212,168,67,.4),transparent);
+  }
+  .moralejaLabel {
+    font-size:.58rem; color:var(--gold); letter-spacing:.16em;
+    text-transform:uppercase; margin-bottom:10px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .moralejaLabel::after { content:''; flex:1; height:1px; background:var(--border); }
+  .moralejaBox p {
+    font-family:'Playfair Display',serif; font-size:.95rem;
+    color:var(--text2); line-height:1.75; font-style:italic;
+    margin-bottom:.6em;
+  }
+  .moralejaBox p:last-child { margin-bottom:0; }
+  .moralejaBox p::first-letter { /* override drop cap */ font-size:inherit; float:none; margin:0; }
+
+  /* ── Loading / error ── */
+  .spinner {
+    width:28px; height:28px; border-radius:50%;
+    border:2px solid var(--border); border-top-color:var(--gold);
+    animation:spin .7s linear infinite; margin:80px auto;
+  }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  .errorBox {
+    text-align:center; padding:60px 20px;
+    color:var(--text3); font-size:.78rem;
+  }
+  .errorBox .icon { font-size:2.5rem; margin-bottom:14px; opacity:.4; }
+
+  /* ── Auth screen ── */
+  #authScreen {
+    display:none; flex-direction:column; align-items:center;
+    justify-content:center; min-height:60vh; gap:14px;
+    text-align:center; padding:20px;
+  }
+  #authScreen .bigIcon { font-size:3rem; opacity:.35; }
+  #authScreen h2 {
+    font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--text2);
+  }
+  .btnGold {
+    background:var(--gold); color:#000; border:none; border-radius:24px;
+    padding:10px 24px; font-family:'DM Mono',monospace; font-size:.72rem;
+    font-weight:700; letter-spacing:.08em; cursor:pointer;
+    text-decoration:none; display:inline-block; transition:opacity .18s;
+  }
+  .btnGold:hover { opacity:.85; }
+
+  /* ── Footer nav ── */
+  .storyNav {
+    margin-top:48px; padding-top:24px;
+    border-top:1px solid var(--border);
+    display:flex; justify-content:space-between; align-items:center;
+    gap:12px;
+  }
+  .storyNav a {
+    font-size:.65rem; color:var(--text3); letter-spacing:.1em;
+    text-decoration:none; text-transform:uppercase;
+    padding:8px 14px; border:1px solid var(--border);
+    border-radius:24px; transition:all .18s;
+    display:flex; align-items:center; gap:6px;
+  }
+  .storyNav a:hover { color:var(--gold2); border-color:var(--border2); }
+
+  @media(max-width:540px) {
+    .wrap { padding:24px 14px 60px; }
+    .storyTitle { font-size:1.35rem; }
+    .storyBody p { font-size:.95rem; }
+  }
+</style>
+</head>
+<body class="has-unified-nav">
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
+
+<!-- ── Header ── -->
+
+  </div>
+  <span class="userBadge" id="userBadge">—</span>
+</div>
+
+<!-- Auth error -->
+<div id="authScreen">
+  <div class="bigIcon">📖</div>
+  <h2>Acceso requerido</h2>
+  <a href="/" class="btnGold">← Ir al banco</a>
+</div>
+
+<!-- Main -->
+<div class="wrap" id="mainWrap" style="display:none">
+  <div id="content"><div class="spinner"></div></div>
+</div>
+
+<script>
+'use strict';
+
+function getFilename() {
+  // URL is /cuento/<filename>
+  const parts = location.pathname.split('/cuento/');
+  return parts.length > 1 ? decodeURIComponent(parts[1]) : null;
+}
+
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderStory(story) {
+  const { title, date, blocks } = story;
+
+  // Update page title and header
+  document.title = title + ' · DVDcoin';
+  document.getElementById('hdrTitle').textContent = title;
+
+  let metaHtml = '';
+  if (date) metaHtml = `<span>${escHtml(date)}</span><span class="metaDot"></span>`;
+  metaHtml += `<span>Cuento de la sala</span>`;
+
+  // Detect moraleja block (last heading + following paragraphs)
+  let moralejaStart = -1;
+  for (let i = 0; i < blocks.length; i++) {
+    const t = blocks[i].text.toLowerCase();
+    if (blocks[i].type === 'heading' && (t.includes('moraleja') || t.includes('moral'))) {
+      moralejaStart = i;
+      break;
+    }
+    if (blocks[i].type === 'bold' && (t.includes('moraleja') || t.includes('moral'))) {
+      moralejaStart = i;
+      break;
+    }
+  }
+
+  const mainBlocks  = moralejaStart > 0 ? blocks.slice(0, moralejaStart) : blocks;
+  const moralBlocks = moralejaStart > 0 ? blocks.slice(moralejaStart + 1) : [];
+
+  function renderBlock(b, isFirst) {
+    const t = escHtml(b.text);
+    if (b.type === 'heading') {
+      return `<div class="heading-p">${t}</div>`;
+    }
+    if (b.type === 'bold') {
+      return `<div class="bold-p">${t}</div>`;
+    }
+    // Dialogue detection: starts with — or -
+    const isDialogue = b.text.trimStart().startsWith('—') || b.text.trimStart().startsWith('–');
+    const cls = isDialogue ? ' dialogue' : '';
+    const firstCls = isFirst && !isDialogue ? ' class="first-para"' : '';
+    return `<p class="${cls.trim()}"${firstCls}>${t}</p>`;
+  }
+
+  let bodyHtml = '<div class="storyBody">';
+  mainBlocks.forEach((b, i) => {
+    bodyHtml += renderBlock(b, i === 0);
+  });
+  bodyHtml += '</div>';
+
+  let moralejaHtml = '';
+  if (moralBlocks.length) {
+    moralejaHtml = `
+      <div class="moralejaBox">
+        <div class="moralejaLabel">Moraleja</div>
+        ${moralBlocks.map(b => `<p>${escHtml(b.text)}</p>`).join('')}
+      </div>`;
+  }
+
+  document.getElementById('content').innerHTML = `
+    <div class="storyMeta">${metaHtml}</div>
+    <h1 class="storyTitle">${escHtml(title)}</h1>
+    <div class="goldenLine"></div>
+    ${bodyHtml}
+    ${moralejaHtml}
+    <div class="storyNav">
+      <a href="/cuentos">← Todos los cuentos</a>
+      <a href="/" >⌂ Banco</a>
+    </div>`;
+}
+
+async function init() {
+  const token = localStorage.getItem('dvd_token');
+  if (!token) {
+    document.getElementById('authScreen').style.display = 'flex';
+    return;
+  }
+
+  // Verify token
+  try {
+    const r = await fetch('/api/me', {
+      headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
+    });
+    if (!r.ok) throw new Error();
+    const me = await r.json();
+    document.getElementById('userBadge').textContent = '@' + me.username;
+  } catch {
+    document.getElementById('authScreen').style.display = 'flex';
+    return;
+  }
+
+  const filename = getFilename();
+  if (!filename) {
+    window.location.href = '/cuentos';
+    return;
+  }
+
+  document.getElementById('mainWrap').style.display = '';
+
+  try {
+    const r = await fetch('/api/cuento/' + encodeURIComponent(filename), {
+      headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
+    });
+    if (!r.ok) throw new Error('Error ' + r.status);
+    const story = await r.json();
+    renderStory(story);
+  } catch (e) {
+    document.getElementById('content').innerHTML = `
+      <div class="errorBox">
+        <div class="icon">⚠</div>
+        <div>${e.message}</div>
+        <div style="margin-top:16px">
+          <a href="/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← Volver a los cuentos</a>
+        </div>
+      </div>`;
+  }
+}
+
+init();
+</script>
+
+<!-- Sistema de Navegación Unificada -->
+<script src="/static/js/unified-nav.js"></script>
+
+</body>
+</html>

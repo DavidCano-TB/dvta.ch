@@ -1,0 +1,189 @@
+═══════════════════════════════════════════════════════════════════════════
+  TRAZAS DE APUESTAS Y PREMIOS - IMPLEMENTACIÓN COMPLETA
+═══════════════════════════════════════════════════════════════════════════
+
+📅 Fecha: 3 de Mayo de 2026
+✅ Estado: COMPLETADO
+
+═══════════════════════════════════════════════════════════════════════════
+  RESUMEN DE CAMBIOS
+═══════════════════════════════════════════════════════════════════════════
+
+Se han implementado las trazas de apuestas y premios en todo el sistema del
+banco DVDcoin, incluyendo:
+
+1. ✅ Transacciones de apuestas registradas en la base de datos
+2. ✅ Iconos especiales en el historial de transacciones (🎲 y 🏆)
+3. ✅ Estadísticas de apuestas en el panel de DVD Stats
+4. ✅ Sección de apuestas en el dashboard de inicio
+5. ✅ Endpoint de estadísticas simplificadas para el dashboard
+
+═══════════════════════════════════════════════════════════════════════════
+  CAMBIOS EN BACKEND (main.py)
+═══════════════════════════════════════════════════════════════════════════
+
+1. NUEVO ENDPOINT: /api/stats/apuestas-summary
+   ─────────────────────────────────────────────
+   - Devuelve estadísticas globales de apuestas (solo superadmins)
+   - Métricas incluidas:
+     • Total apostado en el sistema
+     • Total premios pagados
+     • Número de porras por estado (abiertas, cerradas, finalizadas)
+     • Top 10 apostadores (por cantidad total apostada)
+     • Top 10 ganadores (por ganancias netas)
+
+2. NUEVO ENDPOINT: /api/porras/mis-estadisticas
+   ──────────────────────────────────────────────
+   - Devuelve estadísticas simplificadas del usuario actual
+   - Métricas incluidas:
+     • Total apostado
+     • Ganancia neta (total_ganado - total_apostado)
+     • Porras ganadas
+     • Porras perdidas
+     • Apuestas activas (en porras abiertas o cerradas)
+
+3. TRANSACCIONES YA IMPLEMENTADAS (verificado)
+   ────────────────────────────────────────────
+   - Al realizar apuesta: registra transacción con concepto "Apuesta porra #ID"
+   - Al pagar premio: registra transacción con concepto "Ganador porra: ID"
+
+═══════════════════════════════════════════════════════════════════════════
+  CAMBIOS EN FRONTEND
+═══════════════════════════════════════════════════════════════════════════
+
+1. FUNCIÓN renderTx() ACTUALIZADA (3 archivos)
+   ────────────────────────────────────────────
+   Archivos modificados:
+   - static/index.html (línea ~3061)
+   - static/millonario/index.html (línea ~1490)
+   - static/pasapalabra/index.html (línea ~2445)
+
+   Cambios:
+   - Detecta transacciones de apuestas: tx.concept.includes('Apuesta porra')
+   - Detecta transacciones de premios: tx.concept.includes('Ganador porra')
+   - Iconos especiales:
+     • 🎲 para apuestas (salida de dinero, clase 'out')
+     • 🏆 para premios (entrada de dinero, clase 'in')
+   - Mantiene iconos normales para otras transacciones:
+     • ◆ para transacciones de admin
+     • ↙ para entradas normales
+     • ↗ para salidas normales
+
+2. PANEL DVD STATS ACTUALIZADO (static/index.html)
+   ─────────────────────────────────────────────────
+   Función: loadDvdStats() (línea ~4627)
+
+   Cambios:
+   - Añadida llamada a /api/stats/apuestas-summary
+   - Nueva sección "🎲 Estadísticas de Apuestas" con 4 métricas:
+     • Total Apostado (en DVDcoins)
+     • Total Premios (en DVDcoins)
+     • Porras Abiertas (número)
+     • Porras Finalizadas (número)
+   - Actualizado subtítulo para incluir "X porras activas"
+
+3. NUEVA SECCIÓN EN DASHBOARD (static/index.html)
+   ────────────────────────────────────────────────
+   HTML: Añadida sección #dashApuestasSection (línea ~1456)
+   JavaScript: Nueva función loadUserApuestas() (línea ~3125)
+
+   Características:
+   - Se muestra solo si el usuario tiene actividad de apuestas
+   - 4 tarjetas con estadísticas personales:
+     • Total Apostado
+     • Ganancia Neta (con color verde/rojo según sea positiva/negativa)
+     • Apuestas Activas
+     • Porras Ganadas
+   - Se carga automáticamente:
+     • Al iniciar sesión (en Promise.all inicial)
+     • Al cambiar a la vista 'dash'
+
+═══════════════════════════════════════════════════════════════════════════
+  UBICACIÓN DE LAS TRAZAS EN LA INTERFAZ
+═══════════════════════════════════════════════════════════════════════════
+
+1. PANTALLA DE INICIO (Dashboard)
+   ───────────────────────────────
+   - Sección "Recent": Últimas 10 transacciones con iconos 🎲 y 🏆
+   - Sección "🎲 Mis Apuestas": Estadísticas personales (4 métricas)
+
+2. PESTAÑA HISTORY (Historial completo)
+   ─────────────────────────────────────
+   - Todas las transacciones con iconos especiales para apuestas y premios
+   - Filtrable y ordenable
+
+3. PANEL DVD STATS (Solo superadmins)
+   ────────────────────────────────────
+   - Estadísticas globales del sistema
+   - Sección dedicada a apuestas con 4 métricas
+   - Top apostadores y ganadores (disponible en endpoint, pendiente UI)
+
+4. JUEGOS (Millonario y Pasapalabra)
+   ──────────────────────────────────
+   - Historial de transacciones con iconos 🎲 y 🏆
+   - Mismo comportamiento que en la pantalla principal
+
+═══════════════════════════════════════════════════════════════════════════
+  VERIFICACIÓN Y PRUEBAS
+═══════════════════════════════════════════════════════════════════════════
+
+✅ Servidor reiniciado correctamente
+✅ Endpoint /api/health responde OK
+✅ Ngrok funcionando: https://striking-symphony-mummify.ngrok-free.dev
+✅ Todos los archivos modificados sin errores de sintaxis
+
+PRUEBAS RECOMENDADAS:
+1. Realizar una apuesta en cualquier porra
+2. Verificar que aparece en el historial con icono 🎲
+3. Verificar que aparece en la sección "Mis Apuestas" del dashboard
+4. Resolver una porra y verificar que el premio aparece con icono 🏆
+5. Verificar estadísticas en el panel DVD Stats (como superadmin)
+
+═══════════════════════════════════════════════════════════════════════════
+  ARCHIVOS MODIFICADOS
+═══════════════════════════════════════════════════════════════════════════
+
+Backend:
+- main.py
+  • Línea ~2090: Nuevo endpoint /api/stats/apuestas-summary
+  • Línea ~7960: Nuevo endpoint /api/porras/mis-estadisticas
+
+Frontend:
+- static/index.html
+  • Línea ~1456: Nueva sección HTML #dashApuestasSection
+  • Línea ~2846: Añadida carga de apuestas en Promise.all inicial
+  • Línea ~3061: Función renderTx() actualizada con iconos de apuestas
+  • Línea ~3125: Nueva función loadUserApuestas()
+  • Línea ~4550: Añadida carga de apuestas al cambiar a vista 'dash'
+  • Línea ~4627: Función loadDvdStats() actualizada con stats de apuestas
+
+- static/millonario/index.html
+  • Línea ~1490: Función renderTx() actualizada con iconos de apuestas
+
+- static/pasapalabra/index.html
+  • Línea ~2445: Función renderTx() actualizada con iconos de apuestas
+
+═══════════════════════════════════════════════════════════════════════════
+  PRÓXIMOS PASOS OPCIONALES
+═══════════════════════════════════════════════════════════════════════════
+
+1. Añadir filtros en el historial para ver solo transacciones de apuestas
+2. Mostrar top apostadores y ganadores en el panel DVD Stats
+3. Añadir gráficos de evolución de apuestas en el tiempo
+4. Notificaciones push cuando se gana una apuesta
+5. Sección de "Últimas apuestas del sistema" en el dashboard
+
+═══════════════════════════════════════════════════════════════════════════
+  NOTAS TÉCNICAS
+═══════════════════════════════════════════════════════════════════════════
+
+- Las transacciones de apuestas se registran en la tabla 'transactions'
+- Las estadísticas se calculan desde la tabla 'estadisticas_porras'
+- Los iconos 🎲 y 🏆 son emojis Unicode, compatibles con todos los navegadores
+- La sección de apuestas en el dashboard se oculta automáticamente si el
+  usuario no tiene actividad de apuestas
+- Todas las funciones tienen manejo de errores con .catch(()=>{})
+
+═══════════════════════════════════════════════════════════════════════════
+  FIN DEL DOCUMENTO
+═══════════════════════════════════════════════════════════════════════════

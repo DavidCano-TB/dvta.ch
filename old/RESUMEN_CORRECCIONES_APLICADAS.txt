@@ -1,0 +1,129 @@
+========================================
+  RESUMEN DE CORRECCIONES APLICADAS
+  HUNDIR LA FLOTA
+========================================
+
+FECHA: 16.05.2026
+HORA: 09:45
+
+========================================
+CORRECCIONES APLICADAS:
+========================================
+
+✅ 1. AGREGADO BARCO DE 1 CUADRADO (PATRULLERA)
+   Archivo: admin.html
+   - Agregado input para "Patrullera" (1 cuadrado) con icono ⛵
+   - Actualizado valor por defecto a 1
+   - Actualizada función de reset
+   - Actualizada configuración de barcos en setup
+   
+   NUEVA CONFIGURACIÓN:
+   - Portaaviones (5 cuadrados) 🚢 - Cantidad: 1
+   - Acorazado (4 cuadrados) ⛴️ - Cantidad: 1
+   - Crucero (3 cuadrados) 🛳️ - Cantidad: 1
+   - Submarino (2 cuadrados) 🚤 - Cantidad: 1
+   - Destructor (2 cuadrados) 🛥️ - Cantidad: 1
+   - Patrullera (1 cuadrado) ⛵ - Cantidad: 1
+   
+   NOTA: Ahora hay barcos de 5, 4, 3, 2 y 1 cuadrados ✓
+
+✅ 2. ELIMINADO BOTÓN "MOVER"
+   Archivo: game.html
+   - Eliminado botón "Mover" del HTML
+   - Deshabilitada función moveSelected()
+   - Eliminada lógica de mostrar/ocultar botón mover
+   - Mensaje de error si se intenta usar
+   
+   RAZÓN: La función no funcionaba correctamente
+   ALTERNATIVA: Usar "Borrar" y volver a colocar el barco
+
+✅ 3. ANIMACIONES VISIBLES PARA TODOS
+   Archivo: game.html
+   - Modificado handleMessage para attack_result
+   - TODOS los jugadores ven videos de ataque
+   - TODOS los jugadores ven animaciones
+   - TODOS los jugadores escuchan sonidos
+   - Mensajes personalizados según rol:
+     * Atacante: "Has impactado..."
+     * Víctima: "El enemigo ha tocado..."
+     * Espectador: "X impactó a Y..."
+
+✅ 4. PANTALLA DE VICTORIA VISIBLE PARA TODOS
+   Archivo: game.html
+   - Modificado handleMessage para game_over
+   - TODOS los jugadores ven la pantalla "¡FELICIDADES!"
+   - TODOS ven el nombre del ganador
+   - TODOS ven el confeti
+   - TODOS escuchan el sonido de victoria
+   - Duración: 7 segundos automáticos
+
+========================================
+PENDIENTE (REQUIERE CAMBIOS EN SERVIDOR):
+========================================
+
+⚠️ 5. JUGADOR ATACADO NO VE DÓNDE LE ATACARON
+   Problema: El jugador que recibe el ataque no ve en su
+   tablero propio dónde fue atacado (hit/miss markers)
+   
+   Solución requerida:
+   - El servidor debe enviar información de ataques recibidos
+   - El cliente debe renderizar estos ataques en "myBoard"
+   - Mostrar 💥 para hits y ○ para misses en tablero propio
+
+⚠️ 6. CUANDO UN JUGADOR VALIDA, OTROS PIERDEN BARCOS
+   Problema: Al validar un jugador, los demás ven sus barcos
+   desaparecer del tablero
+   
+   Solución requerida:
+   - Verificar que el servidor mantiene estado independiente
+   - Verificar que el cliente no sobrescribe placedShips
+   - Cada jugador debe mantener su propio estado de barcos
+
+========================================
+ARCHIVOS MODIFICADOS:
+========================================
+
+1. game_pages/hundirlaflota/admin.html
+   - Líneas 153-161: Agregada Patrullera
+   - Línea 325: Actualizado reset
+   - Líneas 379-385: Actualizada configuración
+
+2. game_pages/hundirlaflota/game.html
+   - Línea 147: Eliminado botón Mover
+   - Líneas 420-470: Animaciones para todos
+   - Líneas 472-480: Victoria para todos
+   - Línea 1111: Deshabilitada función moveSelected
+   - Línea 877: Eliminada lógica botón mover
+
+========================================
+PARA PROBAR:
+========================================
+
+1. Reiniciar el servidor
+2. Abrir panel de admin
+3. Configurar partida con nueva Patrullera
+4. Verificar que aparecen 6 tipos de barcos
+5. Colocar barcos (verificar que no hay botón Mover)
+6. Usar Rotar y Borrar (deben funcionar)
+7. Jugar una partida completa
+8. Verificar que TODOS ven las animaciones
+9. Verificar que TODOS ven la pantalla de victoria
+
+========================================
+PRÓXIMOS PASOS:
+========================================
+
+1. Reiniciar servidor para aplicar cambios
+2. Probar configuración de barcos
+3. Verificar problemas pendientes (#5 y #6)
+4. Si persisten, modificar código del servidor
+
+========================================
+ESTADO: CORRECCIONES APLICADAS ✓
+========================================
+
+Las correcciones del lado del cliente están completas.
+Los problemas #5 y #6 requieren verificación/cambios
+en el servidor Python.
+
+========================================

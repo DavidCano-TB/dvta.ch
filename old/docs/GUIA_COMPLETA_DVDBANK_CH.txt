@@ -1,0 +1,637 @@
+═══════════════════════════════════════════════════════════
+  📖 GUÍA COMPLETA PASO A PASO: CONFIGURAR dvdbank.ch
+═══════════════════════════════════════════════════════════
+
+Esta guía te llevará desde CERO hasta tener dvdbank.ch funcionando
+completamente con HTTPS válido.
+
+Tiempo total: 15 minutos + 2-48 horas de espera (propagación DNS)
+
+═══════════════════════════════════════════════════════════
+  PARTE 1: AÑADIR dvdbank.ch A CLOUDFLARE
+═══════════════════════════════════════════════════════════
+
+PASO 1.1: Acceder a Cloudflare Dashboard
+─────────────────────────────────────────────────────────
+
+1. Abre tu navegador
+2. Ve a: https://dash.cloudflare.com
+3. Inicia sesión con tu cuenta de Cloudflare
+   (la misma que usas para david.ch)
+
+PASO 1.2: Añadir el sitio dvdbank.ch
+─────────────────────────────────────────────────────────
+
+1. En el Dashboard de Cloudflare, busca el botón:
+   
+   [+ Add a Site]  o  [+ Añadir un sitio]
+   
+   Haz clic en él.
+
+2. Te aparecerá un campo de texto que dice:
+   "Enter your site (example.com)"
+   
+   Escribe exactamente:
+   
+   dvdbank.ch
+   
+   (sin www, sin https://, solo dvdbank.ch)
+
+3. Haz clic en el botón:
+   
+   [Add site]  o  [Añadir sitio]
+
+PASO 1.3: Seleccionar el plan FREE
+─────────────────────────────────────────────────────────
+
+1. Cloudflare te mostrará varios planes:
+   
+   ┌─────────────────────────────────────────┐
+   │ Free         $0/month                   │
+   │ ✓ SSL/TLS                               │
+   │ ✓ DDoS protection                       │
+   │ ✓ CDN                                   │
+   │                                         │
+   │ [Select Free Plan]                      │
+   └─────────────────────────────────────────┘
+   
+   ┌─────────────────────────────────────────┐
+   │ Pro          $20/month                  │
+   │ ...                                     │
+   └─────────────────────────────────────────┘
+
+2. Haz clic en:
+   
+   [Select Free Plan]  o  [Seleccionar plan gratuito]
+
+3. Haz clic en:
+   
+   [Continue]  o  [Continuar]
+
+PASO 1.4: Revisar registros DNS (OPCIONAL)
+─────────────────────────────────────────────────────────
+
+Cloudflare intentará detectar automáticamente los registros DNS
+existentes de dvdbank.ch.
+
+1. Verás una lista de registros DNS detectados (puede estar vacía)
+
+2. NO NECESITAS AÑADIR NADA AQUÍ
+   (el túnel de Cloudflare se encargará de todo)
+
+3. Haz clic en:
+   
+   [Continue]  o  [Continuar]
+
+═══════════════════════════════════════════════════════════
+  PARTE 2: COPIAR NAMESERVERS DE CLOUDFLARE
+═══════════════════════════════════════════════════════════
+
+PASO 2.1: Obtener los nameservers
+─────────────────────────────────────────────────────────
+
+Cloudflare te mostrará una pantalla con 2 nameservers:
+
+┌─────────────────────────────────────────────────────────┐
+│ Change your nameservers                                 │
+│                                                         │
+│ Replace your nameservers with:                         │
+│                                                         │
+│ ┌─────────────────────────────────────────────────┐   │
+│ │ alice.ns.cloudflare.com                         │   │
+│ └─────────────────────────────────────────────────┘   │
+│                                                         │
+│ ┌─────────────────────────────────────────────────┐   │
+│ │ bob.ns.cloudflare.com                           │   │
+│ └─────────────────────────────────────────────────┘   │
+│                                                         │
+│ [Done, check nameservers]                              │
+└─────────────────────────────────────────────────────────┘
+
+IMPORTANTE: Tus nameservers serán DIFERENTES a estos ejemplos.
+Pueden ser algo como:
+  • xxx.ns.cloudflare.com
+  • yyy.ns.cloudflare.com
+
+PASO 2.2: Copiar los nameservers
+─────────────────────────────────────────────────────────
+
+1. Selecciona el PRIMER nameserver (ejemplo: alice.ns.cloudflare.com)
+2. Haz clic derecho → Copiar (o Ctrl+C)
+3. Pégalo en un archivo de texto temporal (Notepad)
+
+4. Selecciona el SEGUNDO nameserver (ejemplo: bob.ns.cloudflare.com)
+5. Haz clic derecho → Copiar (o Ctrl+C)
+6. Pégalo en el mismo archivo de texto
+
+Deberías tener algo como:
+
+alice.ns.cloudflare.com
+bob.ns.cloudflare.com
+
+PASO 2.3: NO CIERRES ESTA VENTANA
+─────────────────────────────────────────────────────────
+
+⚠️  IMPORTANTE: Deja esta ventana de Cloudflare ABIERTA.
+   La necesitarás después para verificar que los nameservers
+   se cambiaron correctamente.
+
+═══════════════════════════════════════════════════════════
+  PARTE 3: CAMBIAR NAMESERVERS EN HOSTSTAR
+═══════════════════════════════════════════════════════════
+
+PASO 3.1: Acceder a Hoststar
+─────────────────────────────────────────────────────────
+
+1. Abre una NUEVA PESTAÑA en tu navegador
+2. Ve a: https://my.hoststar.ch
+3. Inicia sesión con tu cuenta de Hoststar
+   (la cuenta con la que compraste dvdbank.ch)
+
+PASO 3.2: Ir a la gestión de dominios
+─────────────────────────────────────────────────────────
+
+1. En el panel de Hoststar, busca el menú:
+   
+   [Domaines]  o  [Dominios]  o  [Domains]
+   
+   Haz clic en él.
+
+2. Verás una lista de tus dominios. Busca:
+   
+   dvdbank.ch
+   
+   Haz clic en él para abrirlo.
+
+PASO 3.3: Encontrar la configuración de nameservers
+─────────────────────────────────────────────────────────
+
+Dependiendo de la interfaz de Hoststar, busca una de estas opciones:
+
+• "Nameserver" o "Serveurs de noms"
+• "DNS" o "DNS Settings"
+• "Nameserver-Einstellungen"
+• "Serveurs DNS"
+
+Puede estar en:
+• Una pestaña llamada "DNS" o "Nameserver"
+• Un botón "Modifier" o "Editar" o "Edit"
+• Una sección "Configuration avancée" o "Advanced settings"
+
+PASO 3.4: Cambiar los nameservers
+─────────────────────────────────────────────────────────
+
+1. Verás los nameservers ACTUALES de Hoststar, algo como:
+   
+   Nameserver 1: ns1.hoststar.ch
+   Nameserver 2: ns2.hoststar.ch
+
+2. REEMPLAZA estos nameservers con los de Cloudflare:
+   
+   Nameserver 1: [PEGA EL PRIMER NAMESERVER DE CLOUDFLARE]
+   Nameserver 2: [PEGA EL SEGUNDO NAMESERVER DE CLOUDFLARE]
+   
+   Ejemplo:
+   Nameserver 1: alice.ns.cloudflare.com
+   Nameserver 2: bob.ns.cloudflare.com
+
+3. Busca un botón que diga:
+   
+   [Enregistrer]  o  [Guardar]  o  [Save]  o  [Speichern]
+   
+   Haz clic en él.
+
+4. Puede que te pida confirmar. Haz clic en:
+   
+   [Confirmer]  o  [Confirmar]  o  [Confirm]
+
+PASO 3.5: Verificar el cambio
+─────────────────────────────────────────────────────────
+
+1. Después de guardar, verifica que los nameservers se hayan
+   cambiado correctamente.
+
+2. Deberías ver:
+   
+   Nameserver 1: alice.ns.cloudflare.com  ✓
+   Nameserver 2: bob.ns.cloudflare.com    ✓
+
+3. Si ves los nameservers de Cloudflare, ¡perfecto!
+
+═══════════════════════════════════════════════════════════
+  PARTE 4: VERIFICAR EN CLOUDFLARE
+═══════════════════════════════════════════════════════════
+
+PASO 4.1: Volver a Cloudflare
+─────────────────────────────────────────────────────────
+
+1. Vuelve a la pestaña de Cloudflare que dejaste abierta
+   (la que mostraba los nameservers)
+
+2. Haz clic en el botón:
+   
+   [Done, check nameservers]  o  [Listo, verificar nameservers]
+
+PASO 4.2: Esperar verificación
+─────────────────────────────────────────────────────────
+
+Cloudflare verificará si los nameservers se cambiaron correctamente.
+
+Puede mostrar uno de estos mensajes:
+
+OPCIÓN A: Verificación exitosa inmediata
+┌─────────────────────────────────────────────────────────┐
+│ ✓ Great news! Cloudflare is now protecting your site   │
+│                                                         │
+│ [Continue to dashboard]                                │
+└─────────────────────────────────────────────────────────┘
+
+Si ves esto, ¡perfecto! Haz clic en [Continue to dashboard]
+
+OPCIÓN B: Verificación pendiente
+┌─────────────────────────────────────────────────────────┐
+│ ⏳ We're checking your nameservers                      │
+│                                                         │
+│ This can take up to 24 hours. We'll send you an email  │
+│ when your site is active on Cloudflare.                │
+│                                                         │
+│ [Continue to dashboard]                                │
+└─────────────────────────────────────────────────────────┘
+
+Si ves esto, es NORMAL. Haz clic en [Continue to dashboard]
+
+═══════════════════════════════════════════════════════════
+  PARTE 5: CONFIGURAR EL TÚNEL CLOUDFLARE
+═══════════════════════════════════════════════════════════
+
+PASO 5.1: Configurar rutas DNS en el túnel
+─────────────────────────────────────────────────────────
+
+Ahora vamos a configurar el túnel para que dvdbank.ch apunte
+a tu servidor.
+
+1. Abre una ventana de comandos (CMD) o PowerShell
+
+2. Ve a la carpeta de dvdcoin:
+   
+   cd c:\dvdcoin
+
+3. Ejecuta estos comandos UNO POR UNO:
+
+   cloudflared tunnel route dns dvdcoin dvdbank.ch
+   
+   Deberías ver:
+   "dvdbank.ch is now configured to route to your tunnel"
+   o
+   "dvdbank.ch is already configured to route to your tunnel"
+
+4. Ejecuta el segundo comando:
+
+   cloudflared tunnel route dns dvdcoin www.dvdbank.ch
+   
+   Deberías ver:
+   "www.dvdbank.ch is now configured to route to your tunnel"
+   o
+   "www.dvdbank.ch is already configured to route to your tunnel"
+
+5. ¡Listo! El túnel está configurado.
+
+PASO 5.2: Verificar la configuración del túnel
+─────────────────────────────────────────────────────────
+
+1. Ejecuta este comando para verificar:
+
+   cloudflared tunnel info 6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
+
+2. Deberías ver información del túnel con conexiones activas.
+
+═══════════════════════════════════════════════════════════
+  PARTE 6: VERIFICAR DNS EN CLOUDFLARE DASHBOARD
+═══════════════════════════════════════════════════════════
+
+PASO 6.1: Ir a DNS en Cloudflare
+─────────────────────────────────────────────────────────
+
+1. En el Dashboard de Cloudflare, selecciona:
+   
+   dvdbank.ch
+   
+   (en la lista de sitios)
+
+2. En el menú lateral izquierdo, haz clic en:
+   
+   [DNS]  o  [DNS > Records]
+
+PASO 6.2: Verificar registros CNAME
+─────────────────────────────────────────────────────────
+
+Deberías ver estos registros CNAME (creados automáticamente
+por cloudflared):
+
+┌─────────────────────────────────────────────────────────┐
+│ Type  Name              Content                  Proxy  │
+├─────────────────────────────────────────────────────────┤
+│ CNAME dvdbank.ch        6c0cb6da-aafe-4e61...   🟠 On  │
+│ CNAME www.dvdbank.ch    6c0cb6da-aafe-4e61...   🟠 On  │
+└─────────────────────────────────────────────────────────┘
+
+IMPORTANTE: Verifica que:
+  ✓ El "Proxy status" esté en NARANJA (🟠 Proxied)
+  ✓ NO esté en GRIS (🔘 DNS only)
+
+Si está en GRIS, haz clic en el icono para cambiarlo a NARANJA.
+
+PASO 6.3: Si NO ves los registros CNAME
+─────────────────────────────────────────────────────────
+
+Si NO ves los registros CNAME, créalos manualmente:
+
+1. Haz clic en [+ Add record]
+
+2. Rellena los campos:
+   
+   Type:    CNAME
+   Name:    @  (o dvdbank.ch)
+   Target:  6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.cfargotunnel.com
+   Proxy:   🟠 Proxied (NARANJA)
+   TTL:     Auto
+
+3. Haz clic en [Save]
+
+4. Repite para www:
+   
+   Type:    CNAME
+   Name:    www
+   Target:  6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.cfargotunnel.com
+   Proxy:   🟠 Proxied (NARANJA)
+   TTL:     Auto
+
+5. Haz clic en [Save]
+
+═══════════════════════════════════════════════════════════
+  PARTE 7: CONFIGURAR SSL/TLS
+═══════════════════════════════════════════════════════════
+
+PASO 7.1: Ir a SSL/TLS en Cloudflare
+─────────────────────────────────────────────────────────
+
+1. En el Dashboard de Cloudflare (con dvdbank.ch seleccionado)
+
+2. En el menú lateral izquierdo, haz clic en:
+   
+   [SSL/TLS]
+
+PASO 7.2: Configurar el modo SSL/TLS
+─────────────────────────────────────────────────────────
+
+1. Verás varias opciones de SSL/TLS:
+   
+   ○ Off (not secure)
+   ○ Flexible
+   ● Full
+   ○ Full (strict)
+
+2. Selecciona:
+   
+   ● Full
+   
+   (NO "Full (strict)", solo "Full")
+
+3. Cloudflare guardará automáticamente.
+
+PASO 7.3: Activar "Always Use HTTPS"
+─────────────────────────────────────────────────────────
+
+1. En el menú lateral, haz clic en:
+   
+   [SSL/TLS] > [Edge Certificates]
+
+2. Busca la opción:
+   
+   "Always Use HTTPS"
+   
+   Actívala (ON):
+   
+   Always Use HTTPS  [🟢 ON]
+
+3. Esto redirigirá automáticamente http:// a https://
+
+═══════════════════════════════════════════════════════════
+  PARTE 8: ESPERAR PROPAGACIÓN DNS
+═══════════════════════════════════════════════════════════
+
+PASO 8.1: Tiempo de espera
+─────────────────────────────────────────────────────────
+
+Los cambios DNS pueden tardar entre 2 y 48 horas en propagarse
+por todo el mundo.
+
+Tiempo típico:
+  • 2-4 horas: La mayoría de los casos
+  • 24 horas: Casos normales
+  • 48 horas: Casos excepcionales
+
+PASO 8.2: Recibirás un email
+─────────────────────────────────────────────────────────
+
+Cloudflare te enviará un email cuando dvdbank.ch esté activo:
+
+┌─────────────────────────────────────────────────────────┐
+│ From: Cloudflare <noreply@cloudflare.com>              │
+│ Subject: dvdbank.ch is now active on Cloudflare         │
+│                                                         │
+│ Great news! Your site dvdbank.ch is now active on      │
+│ Cloudflare and protected by our global network.        │
+└─────────────────────────────────────────────────────────┘
+
+PASO 8.3: Mientras esperas
+─────────────────────────────────────────────────────────
+
+Mientras esperas la propagación DNS, puedes usar:
+
+  ✅ https://fleet-quoted-slide-territory.trycloudflare.com
+     (URL temporal que funciona AHORA)
+
+  ✅ http://localhost:8000
+     (solo desde tu PC)
+
+═══════════════════════════════════════════════════════════
+  PARTE 9: VERIFICAR QUE dvdbank.ch FUNCIONA
+═══════════════════════════════════════════════════════════
+
+PASO 9.1: Verificar DNS
+─────────────────────────────────────────────────────────
+
+Después de recibir el email de Cloudflare, verifica el DNS:
+
+1. Abre CMD o PowerShell
+
+2. Ejecuta:
+   
+   nslookup dvdbank.ch
+
+3. Deberías ver algo como:
+   
+   Name:    dvdbank.ch
+   Addresses:  104.21.x.x
+               172.67.x.x
+   
+   (IPs de Cloudflare)
+
+Si ves IPs de Cloudflare (104.x.x.x o 172.x.x.x), ¡perfecto!
+
+PASO 9.2: Probar en el navegador
+─────────────────────────────────────────────────────────
+
+1. Abre tu navegador
+
+2. Ve a:
+   
+   https://dvdbank.ch
+
+3. Deberías ver:
+   
+   ✅ Tu aplicación DVDBank cargando
+   ✅ Candado verde en la barra de direcciones (🔒)
+   ✅ Sin errores SSL/TLS
+   ✅ Sin mensajes de "Site Temporarily Closed"
+
+4. Prueba también:
+   
+   https://www.dvdbank.ch
+
+PASO 9.3: Probar desde otros dispositivos
+─────────────────────────────────────────────────────────
+
+1. Prueba desde tu móvil (usando datos móviles, no WiFi)
+2. Prueba desde otro ordenador
+3. Comparte la URL con alguien para que la pruebe
+
+═══════════════════════════════════════════════════════════
+  PARTE 10: REINICIAR EL SISTEMA (SI ES NECESARIO)
+═══════════════════════════════════════════════════════════
+
+Si dvdbank.ch no funciona después de la propagación DNS:
+
+PASO 10.1: Reiniciar el sistema completo
+─────────────────────────────────────────────────────────
+
+1. Ve a: c:\dvdcoin
+
+2. Ejecuta:
+   
+   INICIAR_SISTEMA_COMPLETO.bat
+
+3. Esto:
+   ✓ Matará procesos existentes
+   ✓ Liberará el puerto 8000
+   ✓ Iniciará el servidor Python
+   ✓ Iniciará el túnel Cloudflare
+   ✓ Verificará que todo funcione
+
+4. Espera 1-2 minutos
+
+5. Prueba de nuevo: https://dvdbank.ch
+
+═══════════════════════════════════════════════════════════
+  ✅ RESUMEN DE LO QUE HICISTE
+═══════════════════════════════════════════════════════════
+
+✅ PARTE 1: Añadiste dvdbank.ch a Cloudflare (plan FREE)
+✅ PARTE 2: Copiaste los nameservers de Cloudflare
+✅ PARTE 3: Cambiaste los nameservers en Hoststar
+✅ PARTE 4: Verificaste en Cloudflare
+✅ PARTE 5: Configuraste el túnel Cloudflare
+✅ PARTE 6: Verificaste los registros DNS (CNAME)
+✅ PARTE 7: Configuraste SSL/TLS (Full + Always HTTPS)
+✅ PARTE 8: Esperaste la propagación DNS (2-48 horas)
+✅ PARTE 9: Verificaste que dvdbank.ch funciona
+✅ PARTE 10: Reiniciaste el sistema (si fue necesario)
+
+═══════════════════════════════════════════════════════════
+  🎉 ¡FELICIDADES!
+═══════════════════════════════════════════════════════════
+
+dvdbank.ch está ahora completamente configurado y funcionando:
+
+✅ https://dvdbank.ch
+✅ https://www.dvdbank.ch
+
+Características:
+  ✅ HTTPS válido (certificado SSL de Cloudflare)
+  ✅ Candado verde en todos los navegadores
+  ✅ Accesible desde cualquier dispositivo y red
+  ✅ Compatible con navegadores in-app
+  ✅ Protección DDoS de Cloudflare
+  ✅ CDN global (carga rápida en todo el mundo)
+  ✅ GRATIS (plan FREE de Cloudflare)
+
+═══════════════════════════════════════════════════════════
+  ❓ SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════
+
+PROBLEMA 1: "dvdbank.ch no resuelve" después de 48 horas
+─────────────────────────────────────────────────────────
+
+Solución:
+1. Ve a Hoststar
+2. Verifica que los nameservers sean los de Cloudflare
+3. Si no lo son, cámbialos de nuevo
+4. Espera 2-4 horas más
+
+PROBLEMA 2: "Error 1033: Cloudflare Tunnel error"
+─────────────────────────────────────────────────────────
+
+Solución:
+1. Ejecuta: INICIAR_SISTEMA_COMPLETO.bat
+2. Verifica que el servidor Python esté corriendo
+3. Verifica que el túnel Cloudflare esté activo
+4. Espera 1-2 minutos y prueba de nuevo
+
+PROBLEMA 3: "Error SSL/TLS" o "Certificado no válido"
+─────────────────────────────────────────────────────────
+
+Solución:
+1. Ve a Cloudflare Dashboard > dvdbank.ch > SSL/TLS
+2. Verifica que esté en modo "Full" (no "Full (strict)")
+3. Espera 5-10 minutos para que se genere el certificado
+4. Prueba de nuevo
+
+PROBLEMA 4: "Site Temporarily Closed"
+─────────────────────────────────────────────────────────
+
+Solución:
+1. Ve a Cloudflare Dashboard > dvdbank.ch > DNS
+2. Verifica que los registros CNAME existan
+3. Verifica que el "Proxy status" esté en NARANJA (🟠)
+4. Si está en GRIS, cámbialo a NARANJA
+5. Espera 2-5 minutos y prueba de nuevo
+
+PROBLEMA 5: "No puedo cambiar los nameservers en Hoststar"
+─────────────────────────────────────────────────────────
+
+Solución:
+1. Contacta al soporte de Hoststar
+2. Pídeles que cambien los nameservers a:
+   - [TU PRIMER NAMESERVER DE CLOUDFLARE]
+   - [TU SEGUNDO NAMESERVER DE CLOUDFLARE]
+3. Ellos lo harán por ti
+
+═══════════════════════════════════════════════════════════
+  📞 SOPORTE
+═══════════════════════════════════════════════════════════
+
+Si tienes problemas:
+
+1. Lee la sección "SOLUCIÓN DE PROBLEMAS" arriba
+2. Ejecuta: PROBAR_TODAS_URLS.bat (para ver qué funciona)
+3. Revisa los logs en: c:\dvdcoin\logs\
+4. Contacta al soporte de Cloudflare o Hoststar si es necesario
+
+═══════════════════════════════════════════════════════════
+
+Guía creada: 19 de Mayo de 2026, 23:15
+Versión: 1.0
+Sistema: DVDBank v4.0
+
+═══════════════════════════════════════════════════════════

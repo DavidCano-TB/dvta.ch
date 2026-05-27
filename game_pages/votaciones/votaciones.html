@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Votaciones - DVDcoin Bank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #e74c3c 100%);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #7d8a96 100%);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .votaciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .votacion-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .votacion-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .votacion-title {
+            font-size: 1.5em;
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .votacion-description {
+            color: #b0b0b0;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .votacion-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status-abierta {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+            border: 1px solid #28a745;
+        }
+
+        .status-cerrada {
+            background: rgba(108, 117, 125, 0.2);
+            color: #6c757d;
+            border: 1px solid #6c757d;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            margin: 50px auto;
+            padding: 30px;
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 10px 50px rgba(255, 215, 0, 0.3);
+        }
+
+        .close {
+            color: #ffd700;
+            float: right;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+        }
+
+        .close:hover {
+            color: #ffed4e;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffd700;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #e0e0e0;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .options-list {
+            margin-top: 15px;
+        }
+
+        .option-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .option-item input {
+            flex: 1;
+        }
+
+        .option-item button {
+            padding: 8px 16px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .vote-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .vote-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .vote-option-name {
+            font-size: 1.2em;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .vote-stats {
+            color: #b0b0b0;
+            font-size: 0.9em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffd700 0%, #ffed4e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1a1a2e;
+            font-weight: bold;
+            transition: width 0.3s ease;
+        }
+
+        .voters-list {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .voter-item {
+            padding: 5px;
+            color: #ffd700;
+        }
+
+        .results-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+        }
+
+        .winner-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a1a2e;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #b0b0b0;
+        }
+
+        .empty-state h2 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div id="simpleNav" style="background:rgba(26,26,46,0.95);border-bottom:1px solid rgba(255,215,0,0.3);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;position:sticky;top:0;z-index:100;">
+        <a href="/" class="sNavBtn" style="background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">⌂ Home</a>
+        <a href="/social" id="sNavSocial" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">💬 Social</a>
+        <a href="/apuestas" id="sNavApuestas" class="sNavBtn" style="background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🎲 Betting</a>
+        <span class="sNavBtn" style="background:none;border:none;color:#ffd700;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid #ffd700;transition:all .18s;white-space:nowrap;text-decoration:none">🗳️ Voting</span>
+        <a href="/millonario" id="sNavMillonario" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">💰 Millionaire</a>
+        <a href="/quiensoy" id="sNavQuienSoy" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🎭 Who am I?</a>
+        <a href="/cifrasletras" id="sNavCifrasLetras" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🔤 Numbers & Letters</a>
+        <a href="/pasapalabra" id="sNavPasapalabra" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🔡 Pasapalabra</a>
+        <a href="/cuentos" id="sNavCuentos" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">📖 Stories</a>
+        <a href="/stats" id="sNavStats" class="sNavBtn" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">📊 Stats</a>
+    </div>
+    <style>
+        #simpleNav::-webkit-scrollbar{display:none}
+        .sNavBtn:hover{color:#ffd700 !important}
+    </style>
+    <div class="container">
+        <h1>🗳️ Sistema de Votaciones</h1>
+        
+        <!-- Navegación completa -->
+        <div style="background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,215,0,0.2);display:flex;align-items:center;gap:4px;padding:0 16px;overflow-x:auto;white-space:nowrap;margin-bottom:20px;border-radius:8px">
+            <a href="/" style="background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">⌂ Inicio</a>
+            <a href="/cuentos" id="navCuentos" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">📖 Cuentos</a>
+            <a href="/apuestas" style="background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🎲 Apuestas</a>
+            <span style="background:none;border:none;color:#ffd700;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid #ffd700;transition:all .18s;white-space:nowrap;text-decoration:none">🗳️ Votaciones</span>
+            <a href="/millonario" id="navMillonario" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">💰 Millonario</a>
+            <a href="/quiensoy" id="navQuienSoy" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🎭 ¿Quién soy?</a>
+            <a href="/cifrasletras" id="navCifrasLetras" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🔤 Cifras y Letras</a>
+            <a href="/pasapalabra" id="navPasapalabra" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">🔡 Pasapalabra</a>
+            <a href="/stats" id="navStats" style="display:none;background:none;border:none;color:#b0b0b0;cursor:pointer;font-family:'Georgia',serif;font-size:0.85rem;padding:10px 14px;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none">📊 Stats</a>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button class="btn btn-primary" onclick="openCreateModal()">➕ Crear Nueva Votación</button>
+        </div>
+
+        <div id="votacionesList" class="votaciones-grid"></div>
+    </div>
+
+    <!-- Create Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCreateModal()">&times;</span>
+            <h2 style="color: #ffd700; margin-bottom: 20px;">Crear Nueva Votación</h2>
+            
+            <div class="form-group">
+                <label>Título *</label>
+                <input type="text" id="createTitle" placeholder="Ingresa el título de la votación">
+            </div>
+
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea id="createDescription" placeholder="Ingresa la descripción de la votación (opcional)"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Opciones *</label>
+                <div id="optionsList" class="options-list"></div>
+                <button class="btn btn-secondary" onclick="addOption()" style="margin-top: 10px;">+ Agregar Opción</button>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="createMultiple">
+                    <label for="createMultiple" style="margin: 0;">Permitir múltiples votos por usuario</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="createAnonima" checked>
+                    <label for="createAnonima" style="margin: 0;">Votación anónima (ocultar quién votó qué)</label>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px; margin-top: 30px;">
+                <button class="btn btn-success" onclick="createVotacion()" style="flex: 1;">Crear Votación</button>
+                <button class="btn btn-secondary" onclick="closeCreateModal()" style="flex: 1;">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeDetailModal()">&times;</span>
+            <div id="detailContent"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentToken = '';
+        let currentUser = '';
+
+        // Get token from URL params OR localStorage
+        function getToken() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const urlToken = urlParams.get('token');
+            
+            // Priority: URL token > localStorage token
+            if (urlToken) {
+                currentToken = urlToken;
+                // Save to localStorage for future use
+                localStorage.setItem('dvd_token', urlToken);
+                // Clean URL (remove token from address bar for security)
+                window.history.replaceState({}, document.title, window.location.pathname);
+                return urlToken;
+            }
+            
+            const storedToken = localStorage.getItem('dvd_token');
+            if (storedToken) {
+                currentToken = storedToken;
+                return storedToken;
+            }
+            
+            return null;
+        }
+
+        // API call helper
+        async function apiCall(endpoint, method = 'GET', body = null) {
+            const token = getToken();
+            const options = {
+                method,
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'  // Incluir cookies
+            };
+            if (body) {
+                options.body = JSON.stringify(body);
+            }
+            const response = await fetch(endpoint, options);
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.detail || 'Request failed');
+            }
+            return response.json();
+        }
+
+        // Load votaciones
+        async function loadVotaciones() {
+            try {
+                const data = await apiCall('/api/votaciones/list');
+                const container = document.getElementById('votacionesList');
+                
+                if (!data.votaciones || data.votaciones.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="grid-column: 1 / -1;">
+                            <h2>No hay votaciones aún</h2>
+                            <p>¡Crea la primera votación para comenzar!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = data.votaciones.map(v => `
+                    <div class="votacion-card" onclick="showDetail(${v.id})">
+                        <div class="votacion-title">${escapeHtml(v.titulo)}</div>
+                        <div class="votacion-description">${escapeHtml(v.descripcion || 'Sin descripción')}</div>
+                        <div class="votacion-meta">
+                            <span class="status-badge status-${v.estado}">${v.estado}</span>
+                            <span style="color: #b0b0b0;">${v.total_votos} votos</span>
+                        </div>
+                        ${v.mis_votos ? '<div style="margin-top: 10px; color: #28a745;">✓ Has votado</div>' : ''}
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading votaciones:', error);
+                alert('Error al cargar las votaciones: ' + error.message);
+            }
+        }
+
+        // Show detail
+        async function showDetail(votacionId) {
+            // Guardar la página actual antes de mostrar el detalle
+            sessionStorage.setItem('previousPage', window.location.pathname);
+            
+            try {
+                const data = await apiCall(`/api/votaciones/${votacionId}`);
+                const v = data;
+                const stats = data.stats || {};
+                const isDvd = data.is_dvd;
+                const canManage = isDvd || v.creador === currentUser;
+
+                let html = `
+                    <h2 style="color: #ffd700; margin-bottom: 20px;">${escapeHtml(v.titulo)}</h2>
+                    <p style="color: #b0b0b0; margin-bottom: 20px;">${escapeHtml(v.descripcion || 'Sin descripción')}</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="status-badge status-${v.estado}">${v.estado}</span>
+                        <span style="margin-left: 15px; color: #b0b0b0;">Total de votos: ${v.total_votos}</span>
+                        ${v.multiple ? '<span style="margin-left: 15px; color: #ffd700;">Múltiples votos permitidos</span>' : ''}
+                        ${v.anonima ? '<span style="margin-left: 15px; color: #ffd700;">Anónima</span>' : ''}
+                    </div>
+                `;
+
+                // Results section (if closed)
+                if (v.estado === 'cerrada' && v.resultado) {
+                    html += '<div class="results-section">';
+                    html += '<h3 style="color: #ffd700; margin-bottom: 15px;">🏆 Resultados</h3>';
+                    
+                    if (v.resultado.ganadores && v.resultado.ganadores.length > 0) {
+                        html += '<div style="margin-bottom: 20px;">';
+                        html += '<strong style="color: #ffd700;">Ganador(es):</strong><br>';
+                        v.resultado.ganadores.forEach(g => {
+                            html += `<div style="margin: 10px 0; font-size: 1.2em;">
+                                ${escapeHtml(g.nombre)} <span class="winner-badge">🏆 ${g.votos} votos (${g.porcentaje}%)</span>
+                            </div>`;
+                        });
+                        html += '</div>';
+                    }
+
+                    if (v.resultado.ranking && v.resultado.ranking.length > 0) {
+                        html += '<div><strong style="color: #ffd700;">Ranking Completo:</strong></div>';
+                        v.resultado.ranking.forEach((r, index) => {
+                            html += `<div style="margin: 10px 0;">
+                                ${index + 1}. ${escapeHtml(r.nombre)} - ${r.votos} votos (${r.porcentaje}%)
+                            </div>`;
+                        });
+                    }
+                    html += '</div>';
+                }
+
+                // Voting options (if open)
+                if (v.estado === 'abierta') {
+                    html += '<div style="margin-top: 30px;"><h3 style="color: #ffd700; margin-bottom: 15px;">Opciones de Votación</h3>';
+                    
+                    v.opciones.forEach(opt => {
+                        const optStats = stats[opt.valor] || { votos: 0, porcentaje: 0, votantes: [] };
+                        const hasVoted = data.mis_votos && data.mis_votos.includes(opt.valor);
+                        
+                        html += `
+                            <div class="vote-option">
+                                <div class="vote-option-header">
+                                    <div class="vote-option-name">${escapeHtml(opt.nombre)}</div>
+                                    <div class="vote-stats">${optStats.votos || 0} votos (${optStats.porcentaje || 0}%)</div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${optStats.porcentaje || 0}%">
+                                        ${(optStats.porcentaje || 0) > 10 ? (optStats.porcentaje || 0) + '%' : ''}
+                                    </div>
+                                </div>
+                                ${!hasVoted ? 
+                                    `<button class="btn btn-success" onclick="vote(${v.id}, '${opt.valor}')">Votar por esta opción</button>` :
+                                    `<button class="btn" disabled style="opacity: 0.6;">✓ Has votado por esta</button>`
+                                }
+                                ${isDvd && optStats.votantes && optStats.votantes.length > 0 ? `
+                                    <div class="voters-list">
+                                        <strong>Votantes (vista DVD):</strong>
+                                        ${optStats.votantes.map(voter => `<div class="voter-item">• ${escapeHtml(voter)}</div>`).join('')}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    });
+                    
+                    html += '</div>';
+
+                    // Remove vote button
+                    if (data.mis_votos && data.mis_votos.length > 0) {
+                        html += `
+                            <button class="btn btn-secondary" onclick="removeVote(${v.id})" style="width: 100%; margin-top: 20px;">
+                                🗑️ Eliminar Mi Voto
+                            </button>
+                        `;
+                    }
+                }
+
+                // Management buttons
+                if (canManage) {
+                    html += '<div style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap;">';
+                    
+                    if (v.estado === 'abierta') {
+                        html += `<button class="btn btn-success" onclick="finalizeVotacion(${v.id})">🏁 Finalizar Votación</button>`;
+                    }
+                    
+                    html += `<button class="btn btn-danger" onclick="deleteVotacion(${v.id})">🗑️ Eliminar Votación</button>`;
+                    html += '</div>';
+                }
+
+                document.getElementById('detailContent').innerHTML = html;
+                document.getElementById('detailModal').style.display = 'block';
+            } catch (error) {
+                console.error('Error loading detail:', error);
+                alert('Error al cargar los detalles de la votación: ' + error.message);
+            }
+        }
+
+        // Vote
+        async function vote(votacionId, opcion) {
+            try {
+                await apiCall('/api/votaciones/votar', 'POST', {
+                    votacion_id: votacionId,
+                    opcion: opcion
+                });
+
+                await showDetail(votacionId);
+                await loadVotaciones();
+                alert('¡Voto registrado exitosamente!');
+            } catch (error) {
+                console.error('Error voting:', error);
+                alert('Error al registrar el voto: ' + error.message);
+            }
+        }
+
+        // Remove vote
+        async function removeVote(votacionId) {
+            if (!confirm('¿Estás seguro de que quieres eliminar tu voto?')) return;
+
+            try {
+                await apiCall(`/api/votaciones/${votacionId}/voto`, 'DELETE');
+
+                await showDetail(votacionId);
+                await loadVotaciones();
+                alert('¡Voto eliminado exitosamente!');
+            } catch (error) {
+                console.error('Error removing vote:', error);
+                alert('Error al eliminar el voto: ' + error.message);
+            }
+        }
+
+        // Finalize votacion
+        async function finalizeVotacion(votacionId) {
+            if (!confirm('¿Estás seguro de que quieres finalizar esta votación? Esta acción no se puede deshacer.')) return;
+
+            try {
+                await apiCall('/api/votaciones/finalizar', 'POST', {
+                    votacion_id: votacionId
+                });
+
+                await showDetail(votacionId);
+                await loadVotaciones();
+                alert('¡Votación finalizada exitosamente!');
+            } catch (error) {
+                console.error('Error finalizing:', error);
+                alert('Error al finalizar la votación: ' + error.message);
+            }
+        }
+
+        // Delete votacion
+        async function deleteVotacion(votacionId) {
+            if (!confirm('¿Estás seguro de que quieres eliminar esta votación? Esto eliminará todos los votos y no se puede deshacer.')) return;
+
+            try {
+                await apiCall(`/api/votaciones/${votacionId}`, 'DELETE');
+
+                closeDetailModal();
+                await loadVotaciones();
+                alert('¡Votación eliminada exitosamente!');
+            } catch (error) {
+                console.error('Error deleting:', error);
+                alert('Error al eliminar la votación: ' + error.message);
+            }
+        }
+
+        // Create modal functions
+        function openCreateModal() {
+            document.getElementById('createModal').style.display = 'block';
+            document.getElementById('createTitle').value = '';
+            document.getElementById('createDescription').value = '';
+            document.getElementById('createMultiple').checked = false;
+            document.getElementById('createAnonima').checked = true;
+            document.getElementById('optionsList').innerHTML = '';
+            addOption();
+            addOption();
+        }
+
+        function closeCreateModal() {
+            document.getElementById('createModal').style.display = 'none';
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').style.display = 'none';
+            // Restaurar la página anterior si existe
+            const previousPage = sessionStorage.getItem('previousPage');
+            if (previousPage && previousPage !== window.location.pathname) {
+                window.location.href = previousPage;
+            }
+        }
+
+        function addOption() {
+            const container = document.getElementById('optionsList');
+            const index = container.children.length;
+            const div = document.createElement('div');
+            div.className = 'option-item';
+            div.innerHTML = `
+                <input type="text" placeholder="Opción ${index + 1}" class="option-input">
+                <button class="btn btn-danger" onclick="this.parentElement.remove()">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        async function createVotacion() {
+            const title = document.getElementById('createTitle').value.trim();
+            const description = document.getElementById('createDescription').value.trim();
+            const multiple = document.getElementById('createMultiple').checked;
+            const anonima = document.getElementById('createAnonima').checked;
+            
+            const optionInputs = document.querySelectorAll('.option-input');
+            const opciones = Array.from(optionInputs)
+                .map(input => input.value.trim())
+                .filter(val => val.length > 0);
+
+            if (!title) {
+                alert('Por favor ingresa un título');
+                return;
+            }
+
+            if (opciones.length < 2) {
+                alert('Por favor ingresa al menos 2 opciones');
+                return;
+            }
+
+            try {
+                const response = await apiCall('/api/votaciones/create', 'POST', {
+                    titulo: title,
+                    descripcion: description,
+                    opciones: opciones,
+                    multiple: multiple,
+                    anonima: anonima
+                });
+
+                console.log('✅ Votación creada:', response);
+                closeCreateModal();
+                await loadVotaciones();
+                alert('¡Votación creada exitosamente!');
+            } catch (error) {
+                console.error('❌ Error creating votacion:', error);
+                alert('Error al crear la votación: ' + error.message);
+            }
+        }
+
+        // Utility function
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Close modals on outside click
+        window.onclick = function(event) {
+            const createModal = document.getElementById('createModal');
+            const detailModal = document.getElementById('detailModal');
+            if (event.target === createModal) {
+                closeCreateModal();
+            }
+            if (event.target === detailModal) {
+                closeDetailModal();
+            }
+        }
+
+        // Initialize
+        async function init() {
+            try {
+                const me = await apiCall('/api/me');
+                currentUser = me.username;
+                
+                // Mostrar pestañas de navegación según permisos del usuario
+                if(me.is_admin){
+                    document.getElementById('navStats').style.display='';
+                }
+                // Verificar qué juegos están habilitados
+                try{
+                    const statusChecks = [
+                        {endpoint:'/api/cuentos/status', navId:'navCuentos'},
+                        {endpoint:'/api/millonario/status', navId:'navMillonario'},
+                        {endpoint:'/api/quiensoy/status', navId:'navQuienSoy'},
+                        {endpoint:'/api/cifrasletras/status', navId:'navCifrasLetras'},
+                        {endpoint:'/api/pasapalabra/status', navId:'navPasapalabra'}
+                    ];
+                    for(const check of statusChecks){
+                        try{
+                            const data=await apiCall(check.endpoint);
+                            if(data.enabled){
+                                document.getElementById(check.navId).style.display='';
+                            }
+                        }catch(_){}
+                    }
+                }catch(_){}
+                
+                await loadVotaciones();
+            } catch (error) {
+                console.error('Error initializing:', error);
+                alert('Error al cargar los datos del usuario. Por favor inicia sesión nuevamente.');
+                window.location.href = '/';
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+═══════════════════════════════════════════════════════════════════════════
+  📋 PASOS PARA COMPLETAR LA MIGRACIÓN A CLOUDFLARE
+  Dominio: dvta.ch
+  Fecha: 27 Mayo 2026
+═══════════════════════════════════════════════════════════════════════════
+
+ESTADO ACTUAL:
+✅ Dominio dvta.ch comprado en Infomaniak con kSuite
+✅ Dominio añadido a Cloudflare (Zone ID: a0353c3d6ad85c54e8ed8f31237538b9)
+✅ Nameservers cambiados a Cloudflare (nelci.ns.cloudflare.com, otto.ns.cloudflare.com)
+✅ Registros DNS respaldados en: REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt
+⏳ Esperando propagación de nameservers (1-24 horas)
+❌ DNS Records en Cloudflare: VACÍO (hay que añadirlos)
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 1: CREAR TOKEN DE CLOUDFLARE CON PERMISOS DNS
+═══════════════════════════════════════════════════════════════════════════
+
+1.1. Ve a: https://dash.cloudflare.com/profile/api-tokens
+
+1.2. Clic en botón azul [Create Token]
+
+1.3. Busca el template "Edit zone DNS" y clic en [Use template]
+
+1.4. Configuración del token:
+     • Permissions: Zone - DNS - Edit (ya viene configurado)
+     • Zone Resources: 
+       - Selecciona "Specific zone"
+       - Selecciona "dvta.ch"
+     
+1.5. Clic en [Continue to summary]
+
+1.6. Clic en [Create Token]
+
+1.7. COPIA EL TOKEN (solo se muestra una vez)
+     Ejemplo: cfat_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+1.8. Guarda el token en un lugar seguro (lo necesitarás en el siguiente paso)
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 2: AÑADIR REGISTROS DNS DE EMAIL A CLOUDFLARE
+═══════════════════════════════════════════════════════════════════════════
+
+2.1. Abre una ventana de CMD o PowerShell
+
+2.2. Ejecuta el script:
+     c:\dvdcoin\CONFIGURAR_EMAIL_CLOUDFLARE.bat
+
+2.3. Cuando te pida el token, pega el token que creaste en el Paso 1
+
+2.4. El script añadirá automáticamente estos registros:
+     ✅ MX → mta-gw.infomaniak.ch (servidor de correo)
+     ✅ SPF → v=spf1 include:spf.infomaniak.ch -all
+     ✅ DKIM → 20260527._domainkey.dvta.ch
+     ✅ DMARC → _dmarc.dvta.ch
+     ✅ Autoconfig → autoconfig.dvta.ch
+     ✅ Autodiscover → autodiscover.dvta.ch
+
+2.5. Verifica en Cloudflare Dashboard:
+     https://dash.cloudflare.com/a0353c3d6ad85c54e8ed8f31237538b9/dvta.ch/dns/records
+     
+     Deberías ver 8 registros DNS creados.
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 3: AÑADIR REGISTRO A PARA EL SITIO WEB
+═══════════════════════════════════════════════════════════════════════════
+
+IMPORTANTE: Este paso lo haremos DESPUÉS de crear el Cloudflare Tunnel.
+Por ahora, NO añadas ningún registro A o CNAME para dvta.ch.
+
+El Cloudflare Tunnel creará automáticamente el registro necesario.
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 4: ESPERAR PROPAGACIÓN DE NAMESERVERS
+═══════════════════════════════════════════════════════════════════════════
+
+4.1. Los nameservers pueden tardar entre 1 y 24 horas en propagarse.
+
+4.2. Puedes verificar el estado en:
+     https://dash.cloudflare.com/a0353c3d6ad85c54e8ed8f31237538b9/dvta.ch
+     
+     Cuando esté listo, verás:
+     ✅ "Great news! Cloudflare is now protecting your site"
+
+4.3. También puedes verificar con esta herramienta:
+     https://www.whatsmydns.net/#NS/dvta.ch
+     
+     Deberías ver:
+     • nelci.ns.cloudflare.com
+     • otto.ns.cloudflare.com
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 5: INSTALAR CLOUDFLARED (CLIENTE DE TUNNEL)
+═══════════════════════════════════════════════════════════════════════════
+
+5.1. Descarga cloudflared para Windows:
+     https://github.com/cloudflare/cloudflared/releases/latest
+     
+     Busca: cloudflared-windows-amd64.exe
+
+5.2. Guarda el archivo en: c:\dvdcoin\cloudflared.exe
+
+5.3. Verifica la instalación:
+     c:\dvdcoin\cloudflared.exe --version
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 6: AUTENTICAR CLOUDFLARED CON TU CUENTA
+═══════════════════════════════════════════════════════════════════════════
+
+6.1. Ejecuta:
+     c:\dvdcoin\cloudflared.exe tunnel login
+
+6.2. Se abrirá tu navegador automáticamente
+
+6.3. Inicia sesión en Cloudflare (si no lo estás ya)
+
+6.4. Selecciona el dominio: dvta.ch
+
+6.5. Clic en [Authorize]
+
+6.6. Verás un mensaje: "You have successfully logged in"
+
+6.7. El certificado se guardará en:
+     C:\Users\TuUsuario\.cloudflared\cert.pem
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 7: CREAR EL TUNNEL PARA dvta.ch
+═══════════════════════════════════════════════════════════════════════════
+
+7.1. Crea el tunnel:
+     c:\dvdcoin\cloudflared.exe tunnel create dvta-tunnel
+
+7.2. Verás un mensaje como:
+     "Created tunnel dvta-tunnel with id: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+7.3. GUARDA EL TUNNEL ID (lo necesitarás después)
+
+7.4. El archivo de credenciales se guardará en:
+     C:\Users\TuUsuario\.cloudflared\xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.json
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 8: CONFIGURAR EL TUNNEL
+═══════════════════════════════════════════════════════════════════════════
+
+8.1. Yo crearé el archivo de configuración por ti.
+     Necesito que me des el TUNNEL ID del paso anterior.
+
+8.2. El archivo se creará en:
+     c:\dvdcoin\cloudflare-tunnel-config.yml
+
+8.3. Contendrá la configuración para:
+     • dvta.ch → localhost:8000 (tu servidor Python)
+     • www.dvta.ch → localhost:8000
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 9: CREAR RUTAS DNS PARA EL TUNNEL
+═══════════════════════════════════════════════════════════════════════════
+
+9.1. Crea la ruta para dvta.ch:
+     c:\dvdcoin\cloudflared.exe tunnel route dns dvta-tunnel dvta.ch
+
+9.2. Crea la ruta para www.dvta.ch:
+     c:\dvdcoin\cloudflared.exe tunnel route dns dvta-tunnel www.dvta.ch
+
+9.3. Esto creará automáticamente los registros CNAME en Cloudflare:
+     • dvta.ch → xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.cfargotunnel.com
+     • www.dvta.ch → xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.cfargotunnel.com
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 10: INICIAR EL TUNNEL
+═══════════════════════════════════════════════════════════════════════════
+
+10.1. Inicia el tunnel:
+      c:\dvdcoin\cloudflared.exe tunnel --config c:\dvdcoin\cloudflare-tunnel-config.yml run dvta-tunnel
+
+10.2. Verás mensajes como:
+      "Connection registered"
+      "Registered tunnel connection"
+
+10.3. Abre tu navegador y ve a: https://dvta.ch
+
+10.4. Deberías ver tu sitio web funcionando.
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 11: CONFIGURAR INICIO AUTOMÁTICO DEL TUNNEL
+═══════════════════════════════════════════════════════════════════════════
+
+11.1. Yo crearé los scripts de inicio automático:
+      • INICIAR_TUNNEL_DVTA.bat (para iniciar manualmente)
+      • INSTALAR_SERVICIO_TUNNEL.bat (para inicio automático con Windows)
+
+11.2. Para inicio automático, ejecuta como ADMINISTRADOR:
+      c:\dvdcoin\INSTALAR_SERVICIO_TUNNEL.bat
+
+11.3. Esto instalará el tunnel como servicio de Windows que se inicia
+      automáticamente al arrancar el PC.
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 12: ACTUALIZAR SCRIPTS DE INICIO DEL SERVIDOR
+═══════════════════════════════════════════════════════════════════════════
+
+12.1. Yo actualizaré estos archivos para usar el nuevo tunnel:
+      • INICIAR_SISTEMA_COMPLETO.bat
+      • ARRANCAR.bat
+      • INSTALAR_INICIO_AUTOMATICO.bat
+
+12.2. Eliminaré las referencias a ngrok
+
+12.3. Añadiré el inicio del Cloudflare Tunnel
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 13: VERIFICAR QUE TODO FUNCIONA
+═══════════════════════════════════════════════════════════════════════════
+
+13.1. Verifica el sitio web:
+      https://dvta.ch → Debería mostrar tu aplicación
+      https://www.dvta.ch → Debería redirigir a dvta.ch
+
+13.2. Verifica el email:
+      • Envía un email a: tu-email@dvta.ch
+      • Envía un email desde: tu-email@dvta.ch
+      • Ambos deberían funcionar normalmente
+
+13.3. Verifica el tunnel:
+      c:\dvdcoin\cloudflared.exe tunnel info dvta-tunnel
+
+13.4. Verifica los registros DNS en Cloudflare:
+      https://dash.cloudflare.com/a0353c3d6ad85c54e8ed8f31237538b9/dvta.ch/dns/records
+      
+      Deberías ver:
+      ✅ Registros de email (MX, SPF, DKIM, DMARC)
+      ✅ Registros del tunnel (CNAME para dvta.ch y www.dvta.ch)
+
+═══════════════════════════════════════════════════════════════════════════
+  PASO 14: LIMPIAR CONFIGURACIÓN ANTIGUA DE NGROK
+═══════════════════════════════════════════════════════════════════════════
+
+14.1. Una vez que todo funcione con Cloudflare, puedes eliminar:
+      • Scripts de ngrok
+      • Configuración de ngrok
+      • Referencias a ngrok en los scripts
+
+14.2. Yo te ayudaré con esto cuando estés listo.
+
+═══════════════════════════════════════════════════════════════════════════
+  RESUMEN DE ARCHIVOS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════════
+
+📄 REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt
+   → Backup de todos los registros DNS de Infomaniak
+
+📄 configurar_dns_cloudflare_dvta.py
+   → Script para añadir registros de email a Cloudflare
+
+📄 CONFIGURAR_EMAIL_CLOUDFLARE.bat
+   → Ejecuta el script de configuración DNS
+
+📄 cloudflare-tunnel-config.yml (se creará en Paso 8)
+   → Configuración del Cloudflare Tunnel
+
+📄 INICIAR_TUNNEL_DVTA.bat (se creará en Paso 11)
+   → Script para iniciar el tunnel manualmente
+
+📄 INSTALAR_SERVICIO_TUNNEL.bat (se creará en Paso 11)
+   → Script para instalar el tunnel como servicio de Windows
+
+═══════════════════════════════════════════════════════════════════════════
+  PRÓXIMOS PASOS INMEDIATOS
+═══════════════════════════════════════════════════════════════════════════
+
+🔴 AHORA MISMO:
+   1. Crear token de Cloudflare (Paso 1)
+   2. Ejecutar CONFIGURAR_EMAIL_CLOUDFLARE.bat (Paso 2)
+   3. Verificar que los registros DNS se crearon en Cloudflare
+
+⏳ DESPUÉS (cuando nameservers propaguen):
+   4. Instalar cloudflared (Paso 5)
+   5. Autenticar cloudflared (Paso 6)
+   6. Crear tunnel (Paso 7)
+   7. Configurar tunnel (Paso 8)
+   8. Crear rutas DNS (Paso 9)
+   9. Iniciar tunnel (Paso 10)
+   10. Verificar que todo funciona (Paso 13)
+
+═══════════════════════════════════════════════════════════════════════════
+
+Creado por: Kiro AI
+Fecha: 27 Mayo 2026
+Propósito: Guía completa para migrar de ngrok a Cloudflare Tunnel
+
+═══════════════════════════════════════════════════════════════════════════

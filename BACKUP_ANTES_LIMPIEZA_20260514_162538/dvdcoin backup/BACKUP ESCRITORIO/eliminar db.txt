@@ -1,0 +1,12 @@
+El servidor tiene la base de datos bloqueada. Hay que pararlo primero, limpiar, y reiniciar.
+Comando 1 — parar el servidor:
+cmdC:\DvDcoin\nssm.exe stop DVDcoinBank
+Comando 2 — esperar 3 segundos:
+cmdtimeout /t 3
+Comando 3 — limpiar la base de datos:
+cmdcd C:\DvDcoin && venv\Scripts\python.exe -c "import sqlite3; conn=sqlite3.connect('data/dvdcoin.db'); conn.execute('DELETE FROM users'); conn.execute('DELETE FROM transactions'); conn.commit(); conn.close(); print('OK - base de datos limpia')"
+Comando 4 — reiniciar el servidor:
+cmdC:\DvDcoin\nssm.exe start DVDcoinBank
+Comando 5 — verificar:
+cmdcurl http://localhost:8000/api/health
+Debe mostrar "users":4,"transactions":0.

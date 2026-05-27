@@ -1,0 +1,205 @@
+================================================================================
+  CAMBIOS COMPLETOS EN EL SISTEMA DE APUESTAS
+================================================================================
+
+📅 Fecha: 2 de Mayo de 2026
+🎯 Objetivo: Arreglar botones de selección y mejorar estadísticas personales
+
+================================================================================
+  1. BOTONES DE SELECCIÓN ARREGLADOS ✅
+================================================================================
+
+PROBLEMA:
+  - Los botones de opciones no se quedaban clicados
+  - No se podía realizar la apuesta después de seleccionar
+  - Error de sintaxis en la función render()
+
+SOLUCIÓN:
+  - Corregida la función render() en template_porra.html
+  - La función selectOption() ahora funciona correctamente
+  - Los botones aplican la clase .selected visualmente
+  - El botón "Apostar Ahora" se habilita correctamente
+
+ARCHIVOS MODIFICADOS:
+  - game_pages/apuestas/template_porra.html (función render y selectOption)
+
+================================================================================
+  2. ESTADÍSTICAS PERSONALES COMPLETAS ✅
+================================================================================
+
+NUEVO SISTEMA DE ESTADÍSTICAS CON 3 SECCIONES:
+
+A) ESTADÍSTICAS GENERALES DE LA PORRA (siempre visible)
+   - 💰 Bote Total (DVDc)
+   - 👥 Apostadores
+   - 🎲 Total Apuestas
+
+B) ESTADÍSTICAS PERSONALES DE ESTA PORRA (solo si apostó)
+   - 🎯 Tu Apuesta
+   - 📌 Tu Opción
+   - 📊 Tu Probabilidad
+   - 🏆 Ganancia Potencial/Real
+   - 💹 ROI Potencial/Real
+
+C) ESTADÍSTICAS GLOBALES DEL USUARIO (solo si tiene historial)
+   - 🎲 Total Porras participadas
+   - ✅ Porras Ganadas
+   - ❌ Porras Perdidas
+   - 📈 Win Rate (% de victorias)
+   - 💸 Total Apostado (todas las porras)
+   - 💰 Total Ganado (todas las porras)
+   - 💵 Beneficio Neto (ganancia - apuesta)
+   - 📊 ROI Global (% de retorno de inversión)
+   - 📏 Apuesta Promedio
+   - 🎯 Ganancia Promedio
+   - 🏆 Mayor Ganancia (récord personal)
+   - 🔥 Racha Actual (ganadora/perdedora)
+
+CARACTERÍSTICAS:
+  - Un jugador puede apostar en múltiples porras diferentes
+  - Las estadísticas globales reflejan TODAS sus apuestas
+  - Las estadísticas personales de la porra muestran solo esa porra específica
+  - Colores dinámicos: verde para ganancias, rojo para pérdidas
+  - Cálculos en tiempo real de probabilidades y ROI
+
+================================================================================
+  3. ENDPOINT DE ESTADÍSTICAS MEJORADO ✅
+================================================================================
+
+ENDPOINT: GET /api/porras/stats/{username}
+
+DATOS DEVUELTOS (JSON):
+{
+  "username": "nombre_usuario",
+  
+  // Totales
+  "total_apostado": 1500.0,
+  "total_ganado": 1800.0,
+  "beneficio_neto": 300.0,
+  "roi": 20.0,
+  
+  // Porras
+  "total_porras": 15,
+  "porras_ganadas": 8,
+  "porras_perdidas": 5,
+  "porras_activas": 2,
+  "porras_finalizadas": 13,
+  "porras_canceladas": 0,
+  "porras_por_estado": {
+    "abierta": 1,
+    "cerrada": 1,
+    "finalizada": 13,
+    "cancelada": 0
+  },
+  
+  // Promedios
+  "apuesta_promedio": 100.0,
+  "ganancia_promedio": 225.0,
+  "win_rate": 61.5,
+  
+  // Records
+  "mayor_ganancia": 500.0,
+  
+  // Racha
+  "racha_actual": 3,
+  "racha_tipo": "ganadora",
+  
+  // Actividad reciente (últimas 5 apuestas)
+  "actividad_reciente": [...]
+}
+
+ARCHIVOS MODIFICADOS:
+  - main.py (endpoint /api/porras/stats/{username})
+
+================================================================================
+  4. MEJORAS ADICIONALES ✅
+================================================================================
+
+- Separación clara entre estadísticas generales y personales
+- Carga asíncrona de estadísticas globales al iniciar
+- Actualización automática cada 10 segundos
+- Manejo de errores robusto con try-catch
+- Colores dinámicos según ganancias/pérdidas
+- Iconos visuales para mejor UX
+- Formato de números con decimales apropiados
+
+================================================================================
+  5. ARCHIVOS MODIFICADOS
+================================================================================
+
+1. main.py
+   - Endpoint /api/porras/stats/{username} completamente reescrito
+   - Cálculo de 12 nuevas métricas estadísticas
+   - Análisis de racha actual (ganadora/perdedora)
+   - Actividad reciente (últimas 5 apuestas)
+
+2. game_pages/apuestas/template_porra.html
+   - Función render() corregida
+   - Función init() mejorada con carga de stats globales
+   - Nueva función updateGlobalStats()
+   - 3 secciones de estadísticas separadas
+   - HTML reorganizado para mejor estructura
+
+3. fix_and_regenerate.py (NUEVO)
+   - Script para regenerar todas las páginas de porras
+   - Usa el template actualizado
+   - Genera HTML con todas las correcciones
+
+4. REGENERAR_PORRAS.bat (ACTUALIZADO)
+   - Script batch para ejecutar la regeneración
+   - Mensajes informativos mejorados
+
+================================================================================
+  6. CÓMO APLICAR LOS CAMBIOS
+================================================================================
+
+PASO 1: Regenerar páginas HTML
+   > REGENERAR_PORRAS.bat
+
+PASO 2: Reiniciar el servidor
+   > APLICAR_CAMBIOS.bat
+
+PASO 3: Verificar en el navegador
+   - Abre cualquier porra
+   - Verifica que los botones de selección funcionen
+   - Verifica que se muestren las estadísticas globales
+   - Haz una apuesta de prueba para ver las estadísticas personales
+
+================================================================================
+  7. CARACTERÍSTICAS TÉCNICAS
+================================================================================
+
+FRONTEND:
+  - JavaScript vanilla (sin dependencias)
+  - Fetch API para llamadas asíncronas
+  - CSS Grid para layout responsive
+  - Animaciones suaves con CSS transitions
+  - Actualización automática cada 10 segundos
+
+BACKEND:
+  - FastAPI con endpoints RESTful
+  - SQLite para persistencia
+  - Cálculos estadísticos en tiempo real
+  - Manejo de errores con try-catch
+  - Logging de errores para debugging
+
+SEGURIDAD:
+  - Autenticación JWT en todos los endpoints
+  - Validación de permisos (DVD vs usuarios normales)
+  - Sanitización de datos en frontend
+  - Manejo seguro de errores
+
+================================================================================
+  8. PRÓXIMAS MEJORAS SUGERIDAS
+================================================================================
+
+- Gráficos visuales de estadísticas (charts.js)
+- Historial detallado de apuestas con filtros
+- Comparación con otros usuarios
+- Badges y logros por hitos alcanzados
+- Notificaciones push cuando se resuelve una porra
+- Exportar estadísticas a CSV/PDF
+
+================================================================================
+  FIN DEL DOCUMENTO
+================================================================================

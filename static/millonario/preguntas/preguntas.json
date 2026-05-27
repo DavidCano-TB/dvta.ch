@@ -1,0 +1,1232 @@
+{
+  "1": [
+    {
+      "p": "¿De qué color es el sol?",
+      "A": "Azul",
+      "B": "Verde",
+      "C": "Amarillo",
+      "D": "Rojo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas patas tiene una araña?",
+      "A": "Cuatro",
+      "B": "Seis",
+      "C": "Ocho",
+      "D": "Diez",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el animal más grande del mundo?",
+      "A": "Elefante africano",
+      "B": "Ballena azul",
+      "C": "Tiburón blanco",
+      "D": "Jirafa",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos colores tiene el arcoíris?",
+      "A": "Cinco",
+      "B": "Seis",
+      "C": "Siete",
+      "D": "Ocho",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué continente está España?",
+      "A": "América",
+      "B": "Asia",
+      "C": "África",
+      "D": "Europa",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos meses tiene un año?",
+      "A": "Diez",
+      "B": "Once",
+      "C": "Doce",
+      "D": "Trece",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma más hablado del mundo por número de hablantes nativos?",
+      "A": "Inglés",
+      "B": "Español",
+      "C": "Mandarín",
+      "D": "Hindi",
+      "r": "C"
+    },
+    {
+      "p": "¿A qué animal le sale la lana?",
+      "A": "Vaca",
+      "B": "Cabra",
+      "C": "Oveja",
+      "D": "Cerdo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el planeta más cercano al Sol?",
+      "A": "Venus",
+      "B": "Tierra",
+      "C": "Mercurio",
+      "D": "Marte",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos lados tiene un triángulo?",
+      "A": "Dos",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Cinco",
+      "r": "B"
+    }
+  ],
+  "2": [
+    {
+      "p": "¿Cuál es la capital de Francia?",
+      "A": "Lyon",
+      "B": "Marsella",
+      "C": "Burdeos",
+      "D": "París",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó la Capilla Sixtina?",
+      "A": "Leonardo da Vinci",
+      "B": "Rafael",
+      "C": "Miguel Ángel",
+      "D": "Botticelli",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó Cristóbal Colón a América?",
+      "A": "1488",
+      "B": "1492",
+      "C": "1498",
+      "D": "1504",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el río más largo del mundo?",
+      "A": "Amazonas",
+      "B": "Congo",
+      "C": "Yangtze",
+      "D": "Nilo",
+      "r": "D"
+    },
+    {
+      "p": "¿De qué material está hecha la Torre Eiffel?",
+      "A": "Hormigón",
+      "B": "Aluminio",
+      "C": "Hierro",
+      "D": "Acero inoxidable",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos jugadores hay en un equipo de fútbol?",
+      "A": "Nueve",
+      "B": "Diez",
+      "C": "Once",
+      "D": "Doce",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'Don Quijote de la Mancha'?",
+      "A": "Lope de Vega",
+      "B": "Francisco de Quevedo",
+      "C": "Tirso de Molina",
+      "D": "Miguel de Cervantes",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el elemento químico con símbolo O?",
+      "A": "Oro",
+      "B": "Osmio",
+      "C": "Oxígeno",
+      "D": "Óxido",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué país están las pirámides de Guiza?",
+      "A": "Marruecos",
+      "B": "Egipto",
+      "C": "Irak",
+      "D": "Irán",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el océano más grande del mundo?",
+      "A": "Atlántico",
+      "B": "Índico",
+      "C": "Ártico",
+      "D": "Pacífico",
+      "r": "D"
+    }
+  ],
+  "3": [
+    {
+      "p": "¿Quién formuló la teoría de la gravitación universal?",
+      "A": "Galileo Galilei",
+      "B": "Albert Einstein",
+      "C": "Isaac Newton",
+      "D": "Nicolás Copérnico",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Japón?",
+      "A": "Osaka",
+      "B": "Kioto",
+      "C": "Tokio",
+      "D": "Hiroshima",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año cayó el Muro de Berlín?",
+      "A": "1985",
+      "B": "1987",
+      "C": "1989",
+      "D": "1991",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos huesos tiene el cuerpo humano adulto?",
+      "A": "186",
+      "B": "206",
+      "C": "226",
+      "D": "246",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué gas se produce durante la fotosíntesis?",
+      "A": "Dióxido de carbono",
+      "B": "Nitrógeno",
+      "C": "Oxígeno",
+      "D": "Hidrógeno",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién compuso la Quinta Sinfonía?",
+      "A": "Mozart",
+      "B": "Bach",
+      "C": "Beethoven",
+      "D": "Schubert",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el país más grande del mundo por superficie?",
+      "A": "China",
+      "B": "Canadá",
+      "C": "Estados Unidos",
+      "D": "Rusia",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos planetas tiene el sistema solar?",
+      "A": "Siete",
+      "B": "Ocho",
+      "C": "Nueve",
+      "D": "Diez",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué continente se encuentra el desierto del Sahara?",
+      "A": "Asia",
+      "B": "América",
+      "C": "África",
+      "D": "Oceanía",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer ser humano en viajar al espacio?",
+      "A": "Neil Armstrong",
+      "B": "Yuri Gagarin",
+      "C": "Buzz Aldrin",
+      "D": "John Glenn",
+      "r": "B"
+    }
+  ],
+  "4": [
+    {
+      "p": "¿Cuál es el elemento químico más abundante en el universo?",
+      "A": "Oxígeno",
+      "B": "Helio",
+      "C": "Hidrógeno",
+      "D": "Carbono",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'Cien años de soledad' de Gabriel García Márquez?",
+      "A": "1955",
+      "B": "1962",
+      "C": "1967",
+      "D": "1972",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué civilización construyó Machu Picchu?",
+      "A": "Azteca",
+      "B": "Maya",
+      "C": "Inca",
+      "D": "Olmeca",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la moneda oficial de Japón?",
+      "A": "Won",
+      "B": "Yuan",
+      "C": "Yen",
+      "D": "Baht",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué país nació Frédéric Chopin?",
+      "A": "Francia",
+      "B": "Austria",
+      "C": "Alemania",
+      "D": "Polonia",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la velocidad de la luz en el vacío (aproximadamente)?",
+      "A": "150.000 km/s",
+      "B": "200.000 km/s",
+      "C": "250.000 km/s",
+      "D": "300.000 km/s",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién pintó 'La noche estrellada'?",
+      "A": "Pablo Picasso",
+      "B": "Paul Gauguin",
+      "C": "Vincent van Gogh",
+      "D": "Claude Monet",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos cromosomas tiene una célula humana normal?",
+      "A": "23",
+      "B": "36",
+      "C": "46",
+      "D": "48",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año comenzó la Segunda Guerra Mundial?",
+      "A": "1935",
+      "B": "1937",
+      "C": "1939",
+      "D": "1941",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Australia?",
+      "A": "Sídney",
+      "B": "Melbourne",
+      "C": "Brisbane",
+      "D": "Canberra",
+      "r": "D"
+    }
+  ],
+  "5": [
+    {
+      "p": "¿Qué científica ganó el Premio Nobel tanto en Física como en Química?",
+      "A": "Rosalind Franklin",
+      "B": "Lise Meitner",
+      "C": "Marie Curie",
+      "D": "Dorothy Hodgkin",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el hueso más largo del cuerpo humano?",
+      "A": "Húmero",
+      "B": "Tibia",
+      "C": "Fémur",
+      "D": "Radio",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se firmó la Declaración de Independencia de Estados Unidos?",
+      "A": "1774",
+      "B": "1775",
+      "C": "1776",
+      "D": "1778",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el idioma oficial de Brasil?",
+      "A": "Español",
+      "B": "Portugués",
+      "C": "Francés",
+      "D": "Inglés",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué filósofo griego fue maestro de Alejandro Magno?",
+      "A": "Platón",
+      "B": "Sócrates",
+      "C": "Aristóteles",
+      "D": "Epicuro",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos estados tiene Estados Unidos?",
+      "A": "48",
+      "B": "49",
+      "C": "50",
+      "D": "52",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año llegó el hombre a la Luna?",
+      "A": "1965",
+      "B": "1967",
+      "C": "1969",
+      "D": "1971",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el instrumento de cuerda con más cuerdas en una orquesta sinfónica clásica?",
+      "A": "Arpa",
+      "B": "Violín",
+      "C": "Cello",
+      "D": "Contrabajo",
+      "r": "A"
+    },
+    {
+      "p": "¿Qué país inventó el papel?",
+      "A": "India",
+      "B": "Japón",
+      "C": "Egipto",
+      "D": "China",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la montaña más alta del mundo?",
+      "A": "K2",
+      "B": "Kangchenjunga",
+      "C": "Lhotse",
+      "D": "Everest",
+      "r": "D"
+    }
+  ],
+  "6": [
+    {
+      "p": "¿En qué año se fundó la Organización de las Naciones Unidas (ONU)?",
+      "A": "1943",
+      "B": "1945",
+      "C": "1947",
+      "D": "1948",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'La Odisea'?",
+      "A": "Virgilio",
+      "B": "Sófocles",
+      "C": "Homero",
+      "D": "Esquilo",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el símbolo químico del oro?",
+      "A": "Go",
+      "B": "Or",
+      "C": "Ag",
+      "D": "Au",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué ciudad se celebran los Juegos Olímpicos de verano de 2024?",
+      "A": "Londres",
+      "B": "Tokio",
+      "C": "París",
+      "D": "Los Ángeles",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el planeta más grande del sistema solar?",
+      "A": "Saturno",
+      "B": "Urano",
+      "C": "Neptuno",
+      "D": "Júpiter",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién fue el primer presidente de Estados Unidos?",
+      "A": "Abraham Lincoln",
+      "B": "Thomas Jefferson",
+      "C": "George Washington",
+      "D": "John Adams",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos lados tiene un dodecágono?",
+      "A": "10",
+      "B": "11",
+      "C": "12",
+      "D": "14",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó 'El origen de las especies' de Darwin?",
+      "A": "1847",
+      "B": "1853",
+      "C": "1859",
+      "D": "1865",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de Canadá?",
+      "A": "Toronto",
+      "B": "Montreal",
+      "C": "Vancouver",
+      "D": "Ottawa",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué arquitecto diseñó la Sagrada Familia de Barcelona?",
+      "A": "Santiago Calatrava",
+      "B": "Antoni Gaudí",
+      "C": "Lluís Domènech i Montaner",
+      "D": "Enric Sagnier",
+      "r": "B"
+    }
+  ],
+  "7": [
+    {
+      "p": "¿En qué batalla fue derrotado definitivamente Napoleón Bonaparte en 1815?",
+      "A": "Austerlitz",
+      "B": "Leipzig",
+      "C": "Trafalgar",
+      "D": "Waterloo",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántas veces se ha celebrado el Mundial de Fútbol en América del Sur (hasta 2022)?",
+      "A": "Tres",
+      "B": "Cuatro",
+      "C": "Cinco",
+      "D": "Seis",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la capital de la India?",
+      "A": "Bombay",
+      "B": "Calcuta",
+      "C": "Nueva Delhi",
+      "D": "Chennai",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se descubrió la estructura del ADN?",
+      "A": "1943",
+      "B": "1948",
+      "C": "1953",
+      "D": "1959",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor escribió las Cuatro Estaciones?",
+      "A": "Bach",
+      "B": "Vivaldi",
+      "C": "Handel",
+      "D": "Telemann",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la segunda ciudad más poblada del mundo?",
+      "A": "Mumbai",
+      "B": "São Paulo",
+      "C": "Pekín",
+      "D": "Delhi",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién escribió 'En busca del tiempo perdido'?",
+      "A": "Gustave Flaubert",
+      "B": "Marcel Proust",
+      "C": "Albert Camus",
+      "D": "Émile Zola",
+      "r": "B"
+    },
+    {
+      "p": "¿Qué país tiene la mayor longitud de costa del mundo?",
+      "A": "Rusia",
+      "B": "Australia",
+      "C": "Noruega",
+      "D": "Canadá",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año fue asesinado Abraham Lincoln?",
+      "A": "1863",
+      "B": "1865",
+      "C": "1867",
+      "D": "1869",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el metal más abundante en la corteza terrestre?",
+      "A": "Hierro",
+      "B": "Silicio",
+      "C": "Aluminio",
+      "D": "Calcio",
+      "r": "C"
+    }
+  ],
+  "8": [
+    {
+      "p": "¿Quién fue el faraón egipcio que mandó construir la gran pirámide de Guiza?",
+      "A": "Ramsés II",
+      "B": "Tutankamón",
+      "C": "Kefrén",
+      "D": "Keops",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la religión con más seguidores en el mundo?",
+      "A": "Islam",
+      "B": "Hinduismo",
+      "C": "Budismo",
+      "D": "Cristianismo",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año ocurrió la Revolución Francesa?",
+      "A": "1776",
+      "B": "1789",
+      "C": "1793",
+      "D": "1799",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos libros componen el Antiguo Testamento según el canon protestante?",
+      "A": "33",
+      "B": "36",
+      "C": "39",
+      "D": "46",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué filósofo alemán escribió 'Así habló Zaratustra'?",
+      "A": "Kant",
+      "B": "Hegel",
+      "C": "Schopenhauer",
+      "D": "Nietzsche",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año fue fundada Roma según la tradición?",
+      "A": "553 a.C.",
+      "B": "653 a.C.",
+      "C": "753 a.C.",
+      "D": "853 a.C.",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál fue el primer país en conceder el voto a las mujeres?",
+      "A": "Estados Unidos",
+      "B": "Reino Unido",
+      "C": "Nueva Zelanda",
+      "D": "Finlandia",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién tradujo la Biblia al latín (Vulgata)?",
+      "A": "San Agustín",
+      "B": "San Jerónimo",
+      "C": "San Ambrosio",
+      "D": "Tertuliano",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuántos kilómetros tiene la Gran Muralla China aproximadamente?",
+      "A": "3.000 km",
+      "B": "6.000 km",
+      "C": "12.000 km",
+      "D": "21.000 km",
+      "r": "D"
+    },
+    {
+      "p": "¿Quién era el líder soviético durante la Crisis de los Misiles de Cuba?",
+      "A": "Stalin",
+      "B": "Lenin",
+      "C": "Kruschev",
+      "D": "Brezhnev",
+      "r": "C"
+    }
+  ],
+  "9": [
+    {
+      "p": "¿Qué teoría establece que el universo se originó de una singularidad hace unos 13.800 millones de años?",
+      "A": "Teoría del Estado Estacionario",
+      "B": "Teoría del Big Bang",
+      "C": "Teoría de las Cuerdas",
+      "D": "Teoría Inflacionaria",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'Crimen y castigo'?",
+      "A": "León Tolstói",
+      "B": "Iván Turguénev",
+      "C": "Nikolái Gógol",
+      "D": "Fiódor Dostoievski",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año fue fundada Apple Inc.?",
+      "A": "1972",
+      "B": "1974",
+      "C": "1976",
+      "D": "1978",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la partícula subatómica con carga negativa?",
+      "A": "Protón",
+      "B": "Neutrón",
+      "C": "Electrón",
+      "D": "Fotón",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién pintó 'Las Meninas'?",
+      "A": "Francisco de Goya",
+      "B": "Bartolomé Esteban Murillo",
+      "C": "El Greco",
+      "D": "Diego Velázquez",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuántos libros escribió Shakespeare aproximadamente?",
+      "A": "21",
+      "B": "27",
+      "C": "37",
+      "D": "45",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué país se inventó la imprenta de tipos móviles?",
+      "A": "Italia",
+      "B": "China",
+      "C": "Corea",
+      "D": "Alemania",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es la moneda oficial de Suiza?",
+      "A": "Euro",
+      "B": "Libra",
+      "C": "Corona",
+      "D": "Franco suizo",
+      "r": "D"
+    },
+    {
+      "p": "¿Qué científico formuló la teoría especial de la relatividad en 1905?",
+      "A": "Max Planck",
+      "B": "Albert Einstein",
+      "C": "Werner Heisenberg",
+      "D": "Niels Bohr",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué ciudad murió Wolfgang Amadeus Mozart?",
+      "A": "Salzburgo",
+      "B": "Viena",
+      "C": "Praga",
+      "D": "Munich",
+      "r": "B"
+    }
+  ],
+  "10": [
+    {
+      "p": "¿Cómo se llama la unidad de medida de la presión en el Sistema Internacional?",
+      "A": "Bar",
+      "B": "Atmósfera",
+      "C": "Pascal",
+      "D": "Torr",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se celebró el primer Festival de Cannes?",
+      "A": "1932",
+      "B": "1936",
+      "C": "1939",
+      "D": "1946",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del principio físico que explica la sustentación de los aviones?",
+      "A": "Principio de Arquímedes",
+      "B": "Principio de Bernoulli",
+      "C": "Principio de Pascal",
+      "D": "Principio de Venturi",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién fue el fundador de la psicología analítica?",
+      "A": "Sigmund Freud",
+      "B": "Alfred Adler",
+      "C": "Carl Gustav Jung",
+      "D": "Wilhelm Wundt",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se construyó el Partenón de Atenas?",
+      "A": "Siglo VI a.C.",
+      "B": "Siglo V a.C.",
+      "C": "Siglo IV a.C.",
+      "D": "Siglo III a.C.",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el nombre del teorema que establece que en un triángulo rectángulo la suma de los cuadrados de los catetos es igual al cuadrado de la hipotenusa?",
+      "A": "Teorema de Tales",
+      "B": "Teorema de Fermat",
+      "C": "Teorema de Pitágoras",
+      "D": "Teorema de Euclides",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'El capital'?",
+      "A": "Friedrich Engels",
+      "B": "Karl Marx",
+      "C": "Lenin",
+      "D": "Rosa Luxemburgo",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué país se encuentra el Monte Kilimanjaro?",
+      "A": "Kenia",
+      "B": "Ruanda",
+      "C": "Tanzania",
+      "D": "Uganda",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántos metros de altura tiene la Torre Eiffel aproximadamente?",
+      "A": "250 m",
+      "B": "300 m",
+      "C": "330 m",
+      "D": "400 m",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué ópera compone la célebre aria 'Nessun Dorma'?",
+      "A": "Madama Butterfly",
+      "B": "Tosca",
+      "C": "Turandot",
+      "D": "La Bohème",
+      "r": "C"
+    }
+  ],
+  "11": [
+    {
+      "p": "¿Cuál es el número de Avogadro (aproximado)?",
+      "A": "3,14 × 10²³",
+      "B": "6,02 × 10²³",
+      "C": "9,8 × 10²³",
+      "D": "1,38 × 10²³",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién descubrió la penicilina?",
+      "A": "Louis Pasteur",
+      "B": "Robert Koch",
+      "C": "Paul Ehrlich",
+      "D": "Alexander Fleming",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año comenzó la Guerra de los Treinta Años?",
+      "A": "1598",
+      "B": "1608",
+      "C": "1618",
+      "D": "1628",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del proceso mediante el cual los seres vivos transforman el alimento en energía?",
+      "A": "Fotosíntesis",
+      "B": "Glucólisis",
+      "C": "Respiración celular",
+      "D": "Fermentación",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién escribió 'La interpretación de los sueños'?",
+      "A": "Carl Jung",
+      "B": "Alfred Adler",
+      "C": "Sigmund Freud",
+      "D": "William James",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué país nació Frida Kahlo?",
+      "A": "Colombia",
+      "B": "Argentina",
+      "C": "México",
+      "D": "Venezuela",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuántas sinfonías compuso Johannes Brahms?",
+      "A": "Dos",
+      "B": "Tres",
+      "C": "Cuatro",
+      "D": "Nueve",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es la distancia media entre la Tierra y la Luna en kilómetros?",
+      "A": "184.000 km",
+      "B": "284.000 km",
+      "C": "384.000 km",
+      "D": "484.000 km",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué científico formuló la teoría cuántica al proponer que la energía se emite en 'quanta' discretos?",
+      "A": "Albert Einstein",
+      "B": "Niels Bohr",
+      "C": "Max Planck",
+      "D": "Erwin Schrödinger",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del escritor argentino que publicó 'Ficciones' en 1944?",
+      "A": "Julio Cortázar",
+      "B": "Jorge Luis Borges",
+      "C": "Ernesto Sábato",
+      "D": "Mario Vargas Llosa",
+      "r": "B"
+    }
+  ],
+  "12": [
+    {
+      "p": "¿Cuál es el nombre del proceso geológico por el que el fondo oceánico se hunde bajo otro tipo de corteza?",
+      "A": "Deriva continental",
+      "B": "Expansión oceánica",
+      "C": "Subducción",
+      "D": "Rifting",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se produjo el Edicto de Milán que legalizó el cristianismo en el Imperio Romano?",
+      "A": "303",
+      "B": "313",
+      "C": "325",
+      "D": "380",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió la novela 'Ulises', considerada una de las más complejas del siglo XX?",
+      "A": "Samuel Beckett",
+      "B": "William Faulkner",
+      "C": "Virginia Woolf",
+      "D": "James Joyce",
+      "r": "D"
+    },
+    {
+      "p": "¿Cómo se llama el campo magnético que rodea la Tierra y la protege del viento solar?",
+      "A": "Ionosfera",
+      "B": "Troposfera",
+      "C": "Magnetosfera",
+      "D": "Litosfera",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se firmó el Tratado de Westfalia que puso fin a la Guerra de los Treinta Años?",
+      "A": "1638",
+      "B": "1643",
+      "C": "1648",
+      "D": "1653",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué compositor ruso escribió el ballet 'El lago de los cisnes'?",
+      "A": "Prokófiev",
+      "B": "Shostakóvich",
+      "C": "Rimski-Kórsakov",
+      "D": "Chaikovski",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el fenómeno por el que la luz cambia de velocidad y dirección al pasar de un medio a otro?",
+      "A": "Reflexión",
+      "B": "Difracción",
+      "C": "Refracción",
+      "D": "Polarización",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué ciudad se firmó la Carta Magna en 1215?",
+      "A": "Londres",
+      "B": "Oxford",
+      "C": "Winchester",
+      "D": "Runnymede",
+      "r": "D"
+    },
+    {
+      "p": "¿Cómo se llama la parte del ADN que codifica para una proteína?",
+      "A": "Intron",
+      "B": "Exón",
+      "C": "Gen",
+      "D": "Cromosoma",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién enunció el principio de incertidumbre que lleva su nombre?",
+      "A": "Niels Bohr",
+      "B": "Max Born",
+      "C": "Werner Heisenberg",
+      "D": "Erwin Schrödinger",
+      "r": "C"
+    }
+  ],
+  "13": [
+    {
+      "p": "¿Cuál es el nombre del tratado filosófico de Spinoza en el que expone su sistema ético 'more geometrico'?",
+      "A": "Tractatus Theologico-Politicus",
+      "B": "Ética",
+      "C": "Principios de Descartes",
+      "D": "Tratado de la corrección del intelecto",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año fundó Alejandro Magno la ciudad de Alejandría en Egipto?",
+      "A": "334 a.C.",
+      "B": "331 a.C.",
+      "C": "327 a.C.",
+      "D": "323 a.C.",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es la constante de Planck (h) en julios por segundo?",
+      "A": "3,14 × 10⁻³⁴ J·s",
+      "B": "6,63 × 10⁻³⁴ J·s",
+      "C": "1,38 × 10⁻²³ J·s",
+      "D": "9,11 × 10⁻³¹ J·s",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién pintó el techo del Oratorio de San Juan Decollato en Roma, una de las primeras obras del Manierismo?",
+      "A": "El Pontormo",
+      "B": "Giovan Battista de Rossi (Rosso Fiorentino)",
+      "C": "Giorgio Vasari",
+      "D": "Parmigianino",
+      "r": "B"
+    },
+    {
+      "p": "¿Cuál es el nombre del proceso por el que las proteínas mal plegadas son degradadas en la célula?",
+      "A": "Apoptosis",
+      "B": "Autofagia",
+      "C": "Proteasoma",
+      "D": "Piroptosis",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año se publicó el 'Discurso del método' de René Descartes?",
+      "A": "1627",
+      "B": "1632",
+      "C": "1637",
+      "D": "1641",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del economista que acuñó el término 'destrucción creativa'?",
+      "A": "John Maynard Keynes",
+      "B": "Friedrich Hayek",
+      "C": "Joseph Schumpeter",
+      "D": "Milton Friedman",
+      "r": "C"
+    },
+    {
+      "p": "¿Qué estrella está más cercana al sistema solar?",
+      "A": "Sirio",
+      "B": "Vega",
+      "C": "Próxima Centauri",
+      "D": "Betelgeuse",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué año fue coronado Carlomagno Emperador de Occidente?",
+      "A": "768",
+      "B": "788",
+      "C": "800",
+      "D": "814",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del ciclo bioquímico que oxida el acetil-CoA para generar energía en las células?",
+      "A": "Ciclo de Calvin",
+      "B": "Ciclo de Krebs",
+      "C": "Ciclo de Cori",
+      "D": "Ciclo de la urea",
+      "r": "B"
+    }
+  ],
+  "14": [
+    {
+      "p": "¿Cuál es el nombre de la paradoja que formuló Zenón de Elea en la que Aquiles nunca alcanza a una tortuga?",
+      "A": "Paradoja del montón",
+      "B": "Paradoja del estadio",
+      "C": "Paradoja de la dicotomía",
+      "D": "Paradoja de Aquiles y la tortuga",
+      "r": "D"
+    },
+    {
+      "p": "¿En qué año fue publicado el 'Tractatus Logico-Philosophicus' de Ludwig Wittgenstein?",
+      "A": "1918",
+      "B": "1919",
+      "C": "1921",
+      "D": "1922",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del efecto por el que un cuerpo en rotación deflecta su trayectoria en el hemisferio norte hacia la derecha?",
+      "A": "Efecto Coriolis",
+      "B": "Efecto Doppler",
+      "C": "Efecto Magnus",
+      "D": "Efecto Bernoulli",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién formuló el teorema de incompletitud que demuestra que en todo sistema formal consistente hay proposiciones verdaderas que no pueden ser demostradas?",
+      "A": "Bertrand Russell",
+      "B": "David Hilbert",
+      "C": "Kurt Gödel",
+      "D": "Alfred Tarski",
+      "r": "C"
+    },
+    {
+      "p": "¿En qué siglo comenzó la construcción del Taj Mahal?",
+      "A": "Siglo XV",
+      "B": "Siglo XVI",
+      "C": "Siglo XVII",
+      "D": "Siglo XVIII",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del poeta latino que escribió la 'Eneida'?",
+      "A": "Horacio",
+      "B": "Ovidio",
+      "C": "Virgilio",
+      "D": "Juvenal",
+      "r": "C"
+    },
+    {
+      "p": "¿Cómo se denomina el proceso por el que el ARN mensajero es sintetizado a partir del ADN?",
+      "A": "Traducción",
+      "B": "Transcripción",
+      "C": "Replicación",
+      "D": "Splicing",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año se realizó la primera transmisión de televisión en color con éxito comercial en Estados Unidos?",
+      "A": "1944",
+      "B": "1950",
+      "C": "1954",
+      "D": "1960",
+      "r": "C"
+    },
+    {
+      "p": "¿Cómo se denomina el fenómeno astronómico por el que una estrella colapsa produciendo una explosión enormemente luminosa?",
+      "A": "Nova",
+      "B": "Quásar",
+      "C": "Supernova",
+      "D": "Púlsar",
+      "r": "C"
+    },
+    {
+      "p": "¿Quién fue el primer Secretario General de la ONU?",
+      "A": "Dag Hammarskjöld",
+      "B": "Trygve Lie",
+      "C": "U Thant",
+      "D": "Kurt Waldheim",
+      "r": "B"
+    }
+  ],
+  "15": [
+    {
+      "p": "¿Cuál es el nombre del teorema de la topología que establece que toda función continua de una bola cerrada en sí misma tiene al menos un punto fijo?",
+      "A": "Teorema de Brouwer",
+      "B": "Teorema de Banach",
+      "C": "Teorema de Jordan",
+      "D": "Teorema de Borsuk",
+      "r": "A"
+    },
+    {
+      "p": "¿En qué año fue descubierto el bosón de Higgs experimentalmente en el CERN?",
+      "A": "2008",
+      "B": "2010",
+      "C": "2012",
+      "D": "2015",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del fenómeno cuántico por el que dos partículas pueden estar correlacionadas instantáneamente a cualquier distancia?",
+      "A": "Superposición cuántica",
+      "B": "Entrelazamiento cuántico",
+      "C": "Efecto túnel",
+      "D": "Decoherencia cuántica",
+      "r": "B"
+    },
+    {
+      "p": "¿Quién escribió 'El ser y la nada', obra fundacional del existencialismo francés?",
+      "A": "Albert Camus",
+      "B": "Maurice Merleau-Ponty",
+      "C": "Simone de Beauvoir",
+      "D": "Jean-Paul Sartre",
+      "r": "D"
+    },
+    {
+      "p": "¿Cuál es el nombre del proceso económico descrito por David Ricardo en el que los países se especializan en producir lo que hacen relativamente mejor?",
+      "A": "Ventaja absoluta",
+      "B": "Ventaja comparativa",
+      "C": "Equilibrio de Nash",
+      "D": "Principio de Pareto",
+      "r": "B"
+    },
+    {
+      "p": "¿En qué año fue ejecutado Sócrates?",
+      "A": "389 a.C.",
+      "B": "395 a.C.",
+      "C": "399 a.C.",
+      "D": "404 a.C.",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre de la dualidad matemática que establece que todo enunciado topológico tiene un dual obtenido invirtiendo las flechas en su diagrama?",
+      "A": "Dualidad de Pontryagin",
+      "B": "Dualidad de De Rham",
+      "C": "Dualidad de Poincaré",
+      "D": "Dualidad de Hodge",
+      "r": "C"
+    },
+    {
+      "p": "¿Cómo se denomina el tipo de estrella de neutrones que emite pulsos regulares de radiación electromagnética?",
+      "A": "Cuásar",
+      "B": "Magnetar",
+      "C": "Púlsar",
+      "D": "Microquásar",
+      "r": "C"
+    },
+    {
+      "p": "¿Cuál es el nombre del tratado que puso fin a la Primera Guerra Mundial?",
+      "A": "Tratado de Versalles",
+      "B": "Tratado de Saint-Germain",
+      "C": "Tratado de Trianon",
+      "D": "Tratado de Sèvres",
+      "r": "A"
+    },
+    {
+      "p": "¿Quién desarrolló la teoría de los juegos junto a Oskar Morgenstern en el libro 'Theory of Games and Economic Behavior' (1944)?",
+      "A": "John Nash",
+      "B": "Kenneth Arrow",
+      "C": "John von Neumann",
+      "D": "Paul Samuelson",
+      "r": "C"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+================================================================================
+                    CHECKLIST DE INICIO - DVDCOIN BANK
+================================================================================
+
+Sigue estos pasos para asegurarte de que todo funciona correctamente:
+
+================================================================================
+PRIMERA VEZ (Solo necesitas hacer esto una vez)
+================================================================================
+
+[ ] 1. Verificar que Python está instalado
+    Comando: python --version
+    Debe mostrar: Python 3.x.x
+
+[ ] 2. Instalar dependencias
+    Ejecutar: INSTALAR_DEPENDENCIAS.bat
+    Esperar a que termine la instalación
+
+[ ] 3. Verificar instalación
+    Ejecutar: PRUEBA_COMPLETA.bat
+    Todos los checks deben estar en [OK]
+
+[ ] 4. Configurar token de ngrok (opcional, para acceso remoto)
+    - Crear carpeta: config
+    - Crear archivo: config\.ngrok_token
+    - Pegar tu token de ngrok dentro del archivo
+    - Obtener token en: https://dashboard.ngrok.com/get-started/your-authtoken
+
+================================================================================
+CADA VEZ QUE INICIES EL SISTEMA
+================================================================================
+
+[ ] 1. Verificar que no hay procesos anteriores
+    Ejecutar: VERIFICAR_SERVIDOR.bat
+    Si hay algo corriendo: DETENER_TODO.bat
+
+[ ] 2. Elegir modo de inicio:
+
+    OPCIÓN A - Acceso remoto (recomendado):
+    [ ] Ejecutar: ARRANQUE_AUTOMATICO_COMPLETO.bat
+    [ ] Esperar 15 segundos
+    [ ] El navegador se abrirá automáticamente
+    [ ] Verificar que la URL funciona
+
+    OPCIÓN B - Solo local:
+    [ ] Ejecutar: ARRANCAR.bat
+    [ ] Esperar a ver "Uvicorn running on..."
+    [ ] Abrir navegador en: http://localhost:8000
+
+    OPCIÓN C - Usar el menú:
+    [ ] Ejecutar: MENU.bat
+    [ ] Seleccionar opción 1 o 2
+
+[ ] 3. Verificar que todo funciona
+    Ejecutar: VERIFICAR_SERVIDOR.bat
+    Debe mostrar:
+    [OK] Servidor corriendo en puerto 8000
+    Codigo HTTP: 200
+
+================================================================================
+SI ALGO NO FUNCIONA
+================================================================================
+
+[ ] 1. Detener todo
+    Ejecutar: DETENER_TODO.bat
+
+[ ] 2. Verificar que está detenido
+    Ejecutar: VERIFICAR_SERVIDOR.bat
+    No debe mostrar nada corriendo
+
+[ ] 3. Verificar dependencias
+    Ejecutar: PRUEBA_COMPLETA.bat
+    Si falta algo: INSTALAR_DEPENDENCIAS.bat
+
+[ ] 4. Reintentar
+    Ejecutar: ARRANQUE_AUTOMATICO_COMPLETO.bat
+
+[ ] 5. Si sigue sin funcionar
+    Leer: SOLUCION_ERROR_NGROK.md
+    O contactar al administrador
+
+================================================================================
+ERRORES COMUNES Y SOLUCIONES
+================================================================================
+
+ERROR: "ERR_NGROK_8012"
+SOLUCIÓN:
+[ ] DETENER_TODO.bat
+[ ] Esperar 5 segundos
+[ ] ARRANQUE_AUTOMATICO_COMPLETO.bat
+
+ERROR: "uvicorn no está instalado"
+SOLUCIÓN:
+[ ] INSTALAR_DEPENDENCIAS.bat
+
+ERROR: "Puerto 8000 ocupado"
+SOLUCIÓN:
+[ ] DETENER_TODO.bat
+[ ] Verificar con: netstat -ano | findstr :8000
+[ ] Si sigue ocupado, reiniciar el ordenador
+
+ERROR: "Python no encontrado"
+SOLUCIÓN:
+[ ] Instalar Python desde https://www.python.org/
+[ ] Marcar "Add Python to PATH" durante instalación
+[ ] Reiniciar terminal
+
+ERROR: "ngrok no funciona"
+SOLUCIÓN:
+[ ] Verificar que el token está en: config\.ngrok_token
+[ ] Verificar que ngrok está instalado: ngrok version
+[ ] Si no está instalado: descargar de https://ngrok.com/download
+
+================================================================================
+URLS IMPORTANTES
+================================================================================
+
+Servidor Local:     http://localhost:8000
+Panel Ngrok:        http://localhost:4040
+OPO Local:          http://localhost:8000/opo
+URL Pública:        (ver ngrok_url.txt después de iniciar)
+
+================================================================================
+SCRIPTS ÚTILES
+================================================================================
+
+MENU.bat                           - Menú interactivo principal
+ARRANQUE_AUTOMATICO_COMPLETO.bat   - Inicio rápido (servidor + ngrok)
+ARRANCAR.bat                       - Solo servidor local
+VERIFICAR_SERVIDOR.bat             - Ver estado del sistema
+DETENER_TODO.bat                   - Detener todos los servicios
+PRUEBA_COMPLETA.bat                - Verificar que todo está listo
+INSTALAR_DEPENDENCIAS.bat          - Instalar/actualizar dependencias
+
+================================================================================
+DOCUMENTACIÓN
+================================================================================
+
+LEEME.md                      - Guía rápida de inicio
+INSTRUCCIONES_ARRANQUE.txt    - Guía detallada
+SOLUCION_ERROR_NGROK.md       - Solución de errores técnicos
+CAMBIOS_REALIZADOS.md         - Registro de cambios
+
+================================================================================
+CHECKLIST RÁPIDO (Uso diario)
+================================================================================
+
+[ ] 1. Ejecutar: MENU.bat
+[ ] 2. Seleccionar opción 1 (Arranque automático)
+[ ] 3. Esperar a que se abra el navegador
+[ ] 4. ¡Listo para usar!
+
+================================================================================
+NOTAS FINALES
+================================================================================
+
+✓ El servidor debe estar corriendo ANTES de iniciar ngrok
+✓ Espera al menos 10 segundos después de iniciar el servidor
+✓ La URL de ngrok cambia cada vez que lo reinicias (plan gratuito)
+✓ Puedes usar el sistema sin ngrok si solo necesitas acceso local
+✓ El puerto 8000 debe estar libre antes de iniciar
+✓ Si tienes dudas, ejecuta VERIFICAR_SERVIDOR.bat
+
+================================================================================
+                        ¡SISTEMA LISTO PARA USAR!
+================================================================================
+
+Si todos los checks están marcados, el sistema está funcionando correctamente.
+
+Para soporte adicional, consulta la documentación o contacta al administrador.
+
+Versión: DVDcoin Bank v4.0
+Fecha: 14 de mayo de 2026
+Estado: ✅ Operativo
+
+================================================================================

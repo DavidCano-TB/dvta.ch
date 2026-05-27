@@ -1,0 +1,116 @@
+================================================================================
+  FIX: PESTAÑA APUESTAS NO VISIBLE
+================================================================================
+
+📅 Fecha: 2 de Mayo de 2026
+🐛 Problema: La pestaña de Apuestas no se veía
+
+================================================================================
+  PROBLEMA IDENTIFICADO
+================================================================================
+
+La pestaña de Apuestas estaba visible en el menú de escritorio pero
+FALTABA en el menú de navegación móvil.
+
+MENÚ ESCRITORIO:
+  ✓ Botón presente: <button class="navTab" id="navApuestas">
+  ✓ Sin clase hidden
+  ✓ Función openApuestas() definida
+
+MENÚ MÓVIL:
+  ❌ Botón FALTABA completamente
+  ❌ No había mobileNavApuestas
+
+================================================================================
+  SOLUCIÓN APLICADA
+================================================================================
+
+AÑADIDO BOTÓN EN MENÚ MÓVIL:
+
+<button class="mNavBtn" id="mobileNavApuestas" onclick="openApuestas()" title="Apuestas">
+  <span class="icon">🎲</span>
+</button>
+
+UBICACIÓN:
+  - Después del botón de Cifras y Letras
+  - Antes del botón de Social
+  - SIN clase "hidden" (siempre visible)
+
+CARACTERÍSTICAS:
+  ✓ Icono: 🎲 (dado)
+  ✓ Título: "Apuestas"
+  ✓ Función: openApuestas()
+  ✓ Abre en nueva pestaña con token
+
+================================================================================
+  ARCHIVOS MODIFICADOS
+================================================================================
+
+1. static/index.html
+   - Línea ~2328: Añadido botón mobileNavApuestas
+   - Menú móvil ahora incluye Apuestas
+
+================================================================================
+  CÓMO VERIFICAR
+================================================================================
+
+ESCRITORIO:
+  1. Abrir http://127.0.0.1:8000
+  2. Login
+  3. Ver barra de navegación superior
+  4. Debe aparecer: 🎲 Apuestas
+  5. Clic → Abre /apuestas en nueva pestaña
+
+MÓVIL (o vista responsive):
+  1. Abrir http://127.0.0.1:8000
+  2. Login
+  3. Ver barra de navegación inferior
+  4. Debe aparecer: 🎲 (icono de dado)
+  5. Clic → Abre /apuestas en nueva pestaña
+
+================================================================================
+  ESTADO ACTUAL
+================================================================================
+
+MENÚ ESCRITORIO:
+  ✓ Inicio
+  ✓ Enviar
+  ✓ Historial
+  ✓ Galería
+  ✓ Cuentos (hidden)
+  ✓ Juegos (hidden)
+  ✓ Millonario (hidden)
+  ✓ ¿Quién soy? (hidden)
+  ✓ Cifras y Letras (hidden)
+  ✓ Stats (hidden)
+  ✓ Social (hidden)
+  ✓ Apuestas ← VISIBLE SIEMPRE
+  ✓ Videollamadas (hidden)
+  ✓ Admin (hidden)
+
+MENÚ MÓVIL:
+  ✓ Inicio
+  ✓ Enviar
+  ✓ Galería
+  ✓ Cuentos (hidden)
+  ✓ Juegos (hidden)
+  ✓ Millonario (hidden)
+  ✓ ¿Quién soy? (hidden)
+  ✓ Cifras y Letras (hidden)
+  ✓ Apuestas ← AÑADIDO AHORA
+  ✓ Social (hidden)
+  ✓ Admin (hidden)
+
+================================================================================
+  PRÓXIMOS PASOS
+================================================================================
+
+1. Reiniciar el servidor para aplicar cambios
+2. Recargar el navegador (Ctrl+F5)
+3. Verificar que aparece la pestaña Apuestas
+4. Probar clic en Apuestas
+5. Verificar que abre /apuestas correctamente
+
+================================================================================
+  FIN DEL DOCUMENTO
+================================================================================

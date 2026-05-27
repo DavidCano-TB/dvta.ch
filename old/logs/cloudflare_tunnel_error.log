@@ -1,0 +1,8 @@
+2026-05-19T18:04:45Z INF Starting tunnel tunnelID=6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
+2026-05-19T18:04:45Z INF Version 2026.5.0 (Checksum f141cded099c239171ad2cea6fb5da0fdaa2bd36104c3074d883f9546519eba7)
+2026-05-19T18:04:45Z INF GOOS: windows, GOVersion: go1.26.2, GoArch: amd64
+2026-05-19T18:04:45Z INF Settings: map[config:c:\dvdcoin\cloudflare-config.yml cred-file:C:\Users\PC\.cloudflared\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json credentials-file:C:\Users\PC\.cloudflared\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json grace-period:30s loglevel:info metrics:localhost:2000 p:auto protocol:auto retries:5]
+2026-05-19T18:04:45Z INF cloudflared will not automatically update on Windows systems.
+2026-05-19T18:04:45Z INF Generated Connector ID: 2799e3b5-7ec4-4023-ba4a-9e1d77cd4be7
+2026-05-19T18:04:45Z ERR Couldn't start tunnel error="Rule #1 is matching the hostname '', but this will match every hostname, meaning the rules which follow it will never be triggered."
+Rule #1 is matching the hostname '', but this will match every hostname, meaning the rules which follow it will never be triggered.

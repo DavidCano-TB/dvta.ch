@@ -1,0 +1,219 @@
+[2026-03-19 10:23:03] ======================================================== 
+[2026-03-19 10:23:03] Cycle  fails=0/2  reboots=0/2 
+[2026-03-19 10:23:03] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 10:23:03] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 10:23:03] RESULT FAIL 1/2 ngrok=OK url=FAIL 
+[2026-03-19 10:23:19] DB backup: dvdcoin_2026-03-19_10-23.db 
+[2026-03-19 10:24:47] DB backup: dvdcoin_2026-03-19_10-24.db 
+[2026-03-19 10:26:30] ======================================================== 
+[2026-03-19 10:26:30] Cycle  fails=1/2  reboots=0/2 
+[2026-03-19 10:26:30] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 10:26:30] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 10:26:30] RESULT FAIL 2/2 ngrok=OK url=FAIL 
+[2026-03-19 10:26:30] REBOOTING reboot#1 
+[2026-03-19 10:28:26] ======================================================== 
+[2026-03-19 10:28:26] Cycle  fails=0/2  reboots=1/2 
+[2026-03-19 10:28:26] BOOT MODE: launching STATUS.bat then waiting 20 min 
+[2026-03-19 10:29:03] ======================================================== 
+[2026-03-19 10:29:03] Cycle  fails=0/2  reboots=1/2 
+[2026-03-19 10:29:03] CHECK1 ngrok.exe: NOT FOUND 
+[2026-03-19 10:29:03] CHECK2 URL: HTTP 0 FAILED 
+[2026-03-19 10:29:03] RESULT FAIL 1/2 ngrok=FAIL url=FAIL 
+[2026-03-19 10:34:01] ======================================================== 
+[2026-03-19 10:34:01] Cycle  fails=1/2  reboots=1/2 
+[2026-03-19 10:34:01] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 10:34:01] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 10:34:01] RESULT FAIL 2/2 ngrok=OK url=FAIL 
+[2026-03-19 10:34:01]  
+[2026-03-19 10:34:01] -- CLEAN RESTORE START -- 
+[2026-03-19 10:34:01]   Processes stopped. 
+[2026-03-19 10:34:01]   Restored main.py 
+[2026-03-19 10:34:01]   Restored dvdcoin_bank_windows.bat 
+[2026-03-19 10:34:01]   Restored kill.bat 
+[2026-03-19 10:34:01]   Restored INSTALL.bat 
+[2026-03-19 10:34:01]   Restored STATUS.bat 
+[2026-03-19 10:34:01]   Restored start_ngrok.bat 
+[2026-03-19 10:34:01]   Restored INSTALL_WATCHDOG.bat 
+[2026-03-19 10:34:01]   Restored watchdog.bat 
+[2026-03-19 10:34:01]   Restored backup_db.bat 
+[2026-03-19 10:34:01]   Restored static\index.html 
+[2026-03-19 10:34:01]   Restored i18n\es.json 
+[2026-03-19 10:34:01]   Restored i18n\fr.json 
+[2026-03-19 10:34:01]   Restored i18n\en.json 
+[2026-03-19 10:34:01]   Restored i18n\it.json 
+[2026-03-19 10:34:01]   Restored gallery\ 
+[2026-03-19 10:34:01]   Restored DB: dvdcoin_2026-03-19_10-23.db 
+[2026-03-19 10:34:01]   NSSM service reinstalled. 
+[2026-03-19 10:34:01] -- CLEAN RESTORE COMPLETE -- 
+[2026-03-19 10:34:01] REBOOTING reboot#2 
+[2026-03-19 10:35:46] ======================================================== 
+[2026-03-19 10:35:46] Cycle  fails=0/2  reboots=0/2 
+[2026-03-19 10:35:46] BOOT MODE: launching STATUS.bat then waiting 20 min 
+[2026-03-19 10:39:04] ======================================================== 
+[2026-03-19 10:39:04] Cycle  fails=0/2  reboots=0/2 
+[2026-03-19 10:39:04] CHECK1 ngrok.exe: NOT FOUND 
+[2026-03-19 10:39:04] CHECK2 URL: HTTP 0 FAILED 
+[2026-03-19 10:39:04] RESULT FAIL 1/2 ngrok=FAIL url=FAIL 
+[2026-03-19 10:44:02] ======================================================== 
+[2026-03-19 10:44:02] Cycle  fails=1/2  reboots=0/2 
+[2026-03-19 10:44:02] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 10:44:02] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 10:44:02] RESULT FAIL 2/2 ngrok=OK url=FAIL 
+[2026-03-19 10:44:02] REBOOTING reboot#1 
+[2026-03-19 10:45:58] ======================================================== 
+[2026-03-19 10:45:58] Cycle  fails=0/2  reboots=1/2 
+[2026-03-19 10:45:58] BOOT MODE: launching STATUS.bat then waiting 20 min 
+[2026-03-19 10:49:03] ======================================================== 
+[2026-03-19 10:49:03] Cycle  fails=0/2  reboots=1/2 
+[2026-03-19 10:49:03] CHECK1 ngrok.exe: NOT FOUND 
+[2026-03-19 10:49:03] CHECK2 URL: HTTP 0 FAILED 
+[2026-03-19 10:49:03] RESULT FAIL 1/2 ngrok=FAIL url=FAIL 
+[2026-03-19 10:54:02] ======================================================== 
+[2026-03-19 10:54:02] Cycle  fails=1/2  reboots=1/2 
+[2026-03-19 10:54:02] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 10:54:02] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 10:54:02] RESULT FAIL 2/2 ngrok=OK url=FAIL 
+[2026-03-19 10:54:02]  
+[2026-03-19 10:54:02] -- CLEAN RESTORE START -- 
+[2026-03-19 10:54:02]   Processes stopped. 
+[2026-03-19 10:54:02]   Restored main.py 
+[2026-03-19 10:54:02]   Restored dvdcoin_bank_windows.bat 
+[2026-03-19 10:54:02]   Restored kill.bat 
+[2026-03-19 10:54:02]   Restored INSTALL.bat 
+[2026-03-19 10:54:02]   Restored STATUS.bat 
+[2026-03-19 10:54:02]   Restored start_ngrok.bat 
+[2026-03-19 10:54:02]   Restored INSTALL_WATCHDOG.bat 
+[2026-03-19 10:54:02]   Restored watchdog.bat 
+[2026-03-19 10:54:02]   Restored backup_db.bat 
+[2026-03-19 10:54:02]   Restored static\index.html 
+[2026-03-19 10:54:02]   Restored i18n\es.json 
+[2026-03-19 10:54:02]   Restored i18n\fr.json 
+[2026-03-19 10:54:02]   Restored i18n\en.json 
+[2026-03-19 10:54:02]   Restored i18n\it.json 
+[2026-03-19 10:54:02]   Restored gallery\ 
+[2026-03-19 10:54:02]   Restored DB: dvdcoin_2026-03-19_10-23.db 
+[2026-03-19 10:54:02]   NSSM service reinstalled. 
+[2026-03-19 10:54:02] -- CLEAN RESTORE COMPLETE -- 
+[2026-03-19 10:54:02] REBOOTING reboot#2 
+[2026-03-19 10:56:37] ======================================================== 
+[2026-03-19 10:56:37] Cycle  fails=0/2  reboots=0/2 
+[2026-03-19 10:56:37] BOOT MODE: STATUS.bat launched, waiting 20 min. Repeat task is locked. 
+[2026-03-19 10:59:04] LOCK active - boot wait in progress, skipping cycle. 
+[2026-03-19 11:04:02] LOCK active - boot wait in progress, skipping cycle. 
+[2026-03-19 11:09:07] LOCK active - boot wait in progress, skipping cycle. 
+[2026-03-19 11:14:02] LOCK active - boot wait in progress, skipping cycle. 
+[2026-03-19 10:56:37] 20-minute wait done. Lock released. Running checks now. 
+[2026-03-19 11:16:42] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 11:16:42] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 11:16:42] RESULT FAIL 1/2 ngrok=OK url=FAIL 
+[2026-03-19 11:19:02] ======================================================== 
+[2026-03-19 11:19:02] Cycle  fails=1/2  reboots=0/2 
+[2026-03-19 11:19:02] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 11:19:02] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 11:19:02] RESULT FAIL 2/2 ngrok=OK url=FAIL 
+[2026-03-19 11:19:02] REBOOTING reboot#1 
+[2026-03-19 11:20:31] ======================================================== 
+[2026-03-19 11:20:31] Cycle  fails=0/2  reboots=1/2 
+[2026-03-19 11:20:31] BOOT MODE: STATUS.bat launched, waiting 20 min. Repeat task is locked. 
+[2026-03-19 11:24:04] LOCK active - boot wait in progress, skipping cycle. 
+[2026-03-19 11:24:05] DB backup: dvdcoin_2026-03-19_11-24.db 
+[2026-03-19 11:29:01] LOCK active - boot wait in progress, skipping cycle. 
+[2026-03-19 11:33:34] DB backup: dvdcoin_2026-03-19_11-33.db 
+[2026-03-19 11:35:14] DB backup: dvdcoin_2026-03-19_11-35.db 
+[2026-03-19 11:36:02] DB backup: dvdcoin_2026-03-19_11-36.db 
+[2026-03-19 11:39:16] DB backup: dvdcoin_2026-03-19_11-39.db 
+[2026-03-19 11:20:31] 20-minute wait done. Lock released. Running checks now. 
+[2026-03-19 11:49:42] ======================================================== 
+[2026-03-19 11:49:42] Cycle  fails=0/2  reboots=1/2 
+[2026-03-19 11:49:42] BOOT MODE: STATUS.bat launched, waiting 20 min. Repeat task is locked. 
+[2026-03-19 11:49:42] 20-minute wait done. Lock released. Running checks now. 
+[2026-03-19 12:09:46] CHECK1 ngrok.exe: RUNNING 
+[2026-03-19 12:09:46] CHECK2 URL: HTTP 200 but DVDcoin not in body 
+[2026-03-19 12:09:46] RESULT FAIL 1/2 ngrok=OK url=FAIL 
+[2026-03-19 12:39:08] DB backup: dvdcoin_2026-03-19_12-39.db 
+[2026-03-19 13:39:02] DB backup: dvdcoin_2026-03-19_13-39.db 
+[2026-03-19 14:39:17] DB backup: dvdcoin_2026-03-19_14-39.db 
+[2026-03-20 12:39:03] DB backup: dvdcoin_2026-03-20_12-39.db 
+[2026-03-20 13:39:03] DB backup: dvdcoin_2026-03-20_13-39.db 
+[2026-03-20 14:39:12] DB backup: dvdcoin_2026-03-20_14-39.db 
+[2026-03-20 15:39:12] DB backup: dvdcoin_2026-03-20_15-39.db 
+[2026-03-20 16:39:02] DB backup: dvdcoin_2026-03-20_16-39.db 
+[2026-03-20 17:39:03] DB backup: dvdcoin_2026-03-20_17-39.db 
+[2026-03-20 18:39:02] DB backup: dvdcoin_2026-03-20_18-39.db 
+[2026-03-20 19:39:07] DB backup: dvdcoin_2026-03-20_19-39.db 
+[2026-03-20 20:39:07] DB backup: dvdcoin_2026-03-20_20-39.db 
+[2026-03-20 21:39:07] DB backup: dvdcoin_2026-03-20_21-39.db 
+[2026-03-20 22:39:07] DB backup: dvdcoin_2026-03-20_22-39.db 
+[2026-03-20 23:39:07] DB backup: dvdcoin_2026-03-20_23-39.db 
+[2026-03-21 00:39:03] DB backup: dvdcoin_2026-03-21_00-39.db 
+[2026-03-21 01:39:03] DB backup: dvdcoin_2026-03-21_01-39.db 
+[2026-03-21 02:39:02] DB backup: dvdcoin_2026-03-21_02-39.db 
+[2026-03-21 03:39:02] DB backup: dvdcoin_2026-03-21_03-39.db 
+[2026-03-21 04:39:03] DB backup: dvdcoin_2026-03-21_04-39.db 
+[2026-03-21 05:39:03] DB backup: dvdcoin_2026-03-21_05-39.db 
+[2026-03-21 06:39:03] DB backup: dvdcoin_2026-03-21_06-39.db 
+[2026-03-21 07:39:11] DB backup: dvdcoin_2026-03-21_07-39.db 
+[2026-03-21 08:39:03] DB backup: dvdcoin_2026-03-21_08-39.db 
+[2026-03-21 09:39:03] DB backup: dvdcoin_2026-03-21_09-39.db 
+[2026-03-21 10:39:03] DB backup: dvdcoin_2026-03-21_10-39.db 
+[2026-03-21 11:39:03] DB backup: dvdcoin_2026-03-21_11-39.db 
+[2026-03-21 12:39:08] DB backup: dvdcoin_2026-03-21_12-39.db 
+[2026-03-21 13:39:03] DB backup: dvdcoin_2026-03-21_13-39.db 
+[2026-03-21 14:39:03] DB backup: dvdcoin_2026-03-21_14-39.db 
+[2026-03-21 15:39:03] DB backup: dvdcoin_2026-03-21_15-39.db 
+[2026-03-21 16:39:03] DB backup: dvdcoin_2026-03-21_16-39.db 
+[2026-03-21 17:39:03] DB backup: dvdcoin_2026-03-21_17-39.db 
+[2026-03-21 18:39:03] DB backup: dvdcoin_2026-03-21_18-39.db 
+[2026-03-21 19:39:03] DB backup: dvdcoin_2026-03-21_19-39.db 
+[2026-03-21 20:39:03] DB backup: dvdcoin_2026-03-21_20-39.db 
+[2026-03-21 21:39:03] DB backup: dvdcoin_2026-03-21_21-39.db 
+[2026-03-21 22:54:10] DB backup: dvdcoin_2026-03-21_22-54.db 
+[2026-03-21 23:39:04] DB backup: dvdcoin_2026-03-21_23-39.db 
+[2026-03-22 00:39:03] DB backup: dvdcoin_2026-03-22_00-39.db 
+[2026-03-22 01:39:11] DB backup: dvdcoin_2026-03-22_01-39.db 
+[2026-03-22 02:39:03] DB backup: dvdcoin_2026-03-22_02-39.db 
+[2026-03-22 03:39:03] DB backup: dvdcoin_2026-03-22_03-39.db 
+[2026-03-22 03:42:19] Watchdog v2.5 started. Uptime: 2 min 
+[2026-03-22 03:42:19] Uptime < 3 min. Opening STATUS, skipping checks. 
+[2026-03-22 04:39:06] DB backup: dvdcoin_2026-03-22_04-39.db 
+[2026-03-22 05:39:03] DB backup: dvdcoin_2026-03-22_05-39.db 
+[2026-03-22 06:39:03] DB backup: dvdcoin_2026-03-22_06-39.db 
+[2026-03-22 07:39:03] DB backup: dvdcoin_2026-03-22_07-39.db 
+[2026-03-22 08:39:03] DB backup: dvdcoin_2026-03-22_08-39.db 
+[2026-03-22 09:39:03] DB backup: dvdcoin_2026-03-22_09-39.db 
+[2026-03-22 10:39:04] DB backup: dvdcoin_2026-03-22_10-39.db 
+[2026-03-22 11:39:03] DB backup: dvdcoin_2026-03-22_11-39.db 
+[2026-03-22 12:39:18] DB backup: dvdcoin_2026-03-22_12-39.db 
+[2026-03-22 13:39:02] DB backup: dvdcoin_2026-03-22_13-39.db 
+[2026-03-22 14:39:02] DB backup: dvdcoin_2026-03-22_14-39.db 
+[2026-03-22 15:39:02] DB backup: dvdcoin_2026-03-22_15-39.db 
+[2026-03-22 16:39:02] DB backup: dvdcoin_2026-03-22_16-39.db 
+[2026-03-22 17:39:02] DB backup: dvdcoin_2026-03-22_17-39.db 
+[2026-03-22 18:39:02] DB backup: dvdcoin_2026-03-22_18-39.db 
+[2026-03-22 19:39:02] DB backup: dvdcoin_2026-03-22_19-39.db 
+[2026-03-22 20:39:11] DB backup: dvdcoin_2026-03-22_20-39.db 
+[2026-03-22 21:39:05] DB backup: dvdcoin_2026-03-22_21-39.db 
+[2026-03-22 22:39:02] DB backup: dvdcoin_2026-03-22_22-39.db 
+[2026-03-22 23:39:02] DB backup: dvdcoin_2026-03-22_23-39.db 
+[2026-03-23 00:39:02] DB backup: dvdcoin_2026-03-23_00-39.db 
+[2026-03-23 01:39:02] DB backup: dvdcoin_2026-03-23_01-39.db 
+[2026-03-23 02:39:02] DB backup: dvdcoin_2026-03-23_02-39.db 
+[2026-03-23 03:39:02] DB backup: dvdcoin_2026-03-23_03-39.db 
+[2026-03-23 04:39:02] DB backup: dvdcoin_2026-03-23_04-39.db 
+[2026-03-23 05:39:02] DB backup: dvdcoin_2026-03-23_05-39.db 
+[2026-03-23 06:39:02] DB backup: dvdcoin_2026-03-23_06-39.db 
+[2026-03-23 07:39:03] DB backup: dvdcoin_2026-03-23_07-39.db 
+[2026-03-23 08:39:02] DB backup: dvdcoin_2026-03-23_08-39.db 
+[2026-03-23 09:39:02] DB backup: dvdcoin_2026-03-23_09-39.db 
+[2026-03-23 10:39:02] DB backup: dvdcoin_2026-03-23_10-39.db 
+[2026-03-23 11:39:02] DB backup: dvdcoin_2026-03-23_11-39.db 
+[2026-03-23 12:39:02] DB backup: dvdcoin_2026-03-23_12-39.db 
+[2026-03-23 13:39:02] DB backup: dvdcoin_2026-03-23_13-39.db 
+[2026-03-23 14:39:02] DB backup: dvdcoin_2026-03-23_14-39.db 
+[2026-03-23 15:39:02] DB backup: dvdcoin_2026-03-23_15-39.db 
+[2026-03-23 16:39:02] DB backup: dvdcoin_2026-03-23_16-39.db 
+[2026-03-23 17:39:03] DB backup: dvdcoin_2026-03-23_17-39.db 
+[2026-03-23 18:39:03] DB backup: dvdcoin_2026-03-23_18-39.db 
+[2026-03-23 19:39:09] DB backup: dvdcoin_2026-03-23_19-39.db 
+[2026-03-23 20:39:03] DB backup: dvdcoin_2026-03-23_20-39.db 
+[2026-03-23 21:39:03] DB backup: dvdcoin_2026-03-23_21-39.db 

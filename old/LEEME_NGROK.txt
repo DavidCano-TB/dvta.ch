@@ -1,0 +1,91 @@
+================================================================================
+                    SOLUCION NGROK - ERR_NGROK_3200
+================================================================================
+
+PROBLEMA:
+---------
+El error ERR_NGROK_3200 significa que ngrok NO esta corriendo.
+
+CAUSA:
+------
+Ngrok.exe requiere permisos de administrador en Windows.
+El script Python no tiene esos permisos por defecto.
+
+
+SOLUCION RAPIDA:
+----------------
+
+1. Ejecutar: INICIAR_COMO_ADMIN.bat
+   (Se abrira una ventana pidiendo permisos de administrador)
+
+2. Aceptar el UAC (Control de Cuentas de Usuario)
+
+3. El servidor y ngrok iniciaran correctamente
+
+4. La URL publica se mostrara en la consola
+
+
+ALTERNATIVA (Sin permisos de administrador):
+---------------------------------------------
+
+Si no quieres ejecutar como administrador:
+
+1. Abrir CMD como Administrador (una sola vez)
+2. cd C:\dvdcoin
+3. ngrok.exe config add-authtoken 3AqlNjjWKOeqmIGjN1Gu4Dnqm5d_28Hfykvwy45AXCe8gUHGz
+4. Cerrar CMD
+
+Luego, cada vez que quieras iniciar:
+1. Abrir CMD normal (sin admin)
+2. cd C:\dvdcoin
+3. ngrok.exe http 8000 --domain=unhidden-patient-cradling.ngrok-free.dev
+4. En otra ventana CMD: python main.py
+
+
+SOLO LOCALHOST (Sin ngrok):
+----------------------------
+
+Si no necesitas acceso publico:
+
+1. python main.py
+2. Abrir: http://localhost:8000
+
+
+VERIFICACION:
+-------------
+
+Servidor local:
+  http://localhost:8000
+
+Ngrok dashboard:
+  http://localhost:4040
+
+URL publica:
+  Se muestra en la consola al iniciar
+  O en http://localhost:4040/status
+
+
+SCRIPTS DISPONIBLES:
+--------------------
+
+INICIAR_COMO_ADMIN.bat
+  - Inicia servidor + ngrok con permisos de administrador
+  - RECOMENDADO
+
+INICIAR_SERVIDOR_SIMPLE.bat
+  - Inicia servidor + ngrok (requiere ejecutar como admin)
+
+REINICIAR_TODO_DEFINITIVO.bat
+  - Mata procesos y reinicia todo (requiere ejecutar como admin)
+
+
+DOCUMENTACION COMPLETA:
+------------------------
+
+SOLUCION_NGROK_DEFINITIVA.md
+  - Documentacion detallada del problema y soluciones
+
+
+================================================================================
+                    RESUMEN: Ejecutar INICIAR_COMO_ADMIN.bat
+================================================================================

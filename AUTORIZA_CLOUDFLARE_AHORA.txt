@@ -1,0 +1,75 @@
+═══════════════════════════════════════════════════════════════════════════
+ ⚡ AUTORIZA CLOUDFLARE AHORA
+═══════════════════════════════════════════════════════════════════════════
+
+✅ HE INICIADO EL PROCESO DE AUTORIZACIÓN
+
+Se debería haber abierto una ventana del navegador con Cloudflare.
+
+═══════════════════════════════════════════════════════════════════════════
+ PASO 1: EN EL NAVEGADOR
+═══════════════════════════════════════════════════════════════════════════
+
+1. Verás una página de Cloudflare pidiendo autorización
+
+2. Selecciona tu cuenta: Davidcano.ch@gmail.com
+
+3. Selecciona el dominio: dvta.ch
+
+4. Haz clic en "Authorize" o "Autorizar"
+
+5. Espera el mensaje de confirmación
+
+6. Cierra la pestaña del navegador
+
+═══════════════════════════════════════════════════════════════════════════
+ PASO 2: DESPUÉS DE AUTORIZAR
+═══════════════════════════════════════════════════════════════════════════
+
+Ejecuta este comando en c:\dvdcoin:
+
+    COMPLETAR_CONFIGURACION_DVTA.bat
+
+Este script:
+- Verificará la autorización
+- Creará el túnel dvta-tunnel
+- Configurará el DNS
+- Iniciará el sistema con dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+ SI NO SE ABRIÓ EL NAVEGADOR
+═══════════════════════════════════════════════════════════════════════════
+
+Abre manualmente esta URL:
+
+https://dash.cloudflare.com/argotunnel?aud=&callback=https%3A%2F%2Flogin.cloudflareaccess.org%2FTwiUDmkpJ1ks0aRcwHE7ZktBOLIfaxnQR96qBJvqom0%3D
+
+Y sigue los pasos 1-6 arriba.
+
+═══════════════════════════════════════════════════════════════════════════
+ RESUMEN
+═══════════════════════════════════════════════════════════════════════════
+
+1. ✅ Proceso de autorización iniciado
+2. ⏳ Esperando que autorices en el navegador
+3. ⏳ Después ejecuta: COMPLETAR_CONFIGURACION_DVTA.bat
+
+═══════════════════════════════════════════════════════════════════════════
+ TIEMPO ESTIMADO
+═══════════════════════════════════════════════════════════════════════════
+
+- Autorizar en navegador: 1 minuto
+- Ejecutar script: 2 minutos
+- TOTAL: 3 minutos
+
+═══════════════════════════════════════════════════════════════════════════
+ ¡CASI TERMINADO!
+═══════════════════════════════════════════════════════════════════════════
+
+Solo necesitas:
+1. Autorizar en el navegador (1 min)
+2. Ejecutar COMPLETAR_CONFIGURACION_DVTA.bat (2 min)
+
+¡Y dvta.ch estará funcionando!
+
+═══════════════════════════════════════════════════════════════════════════

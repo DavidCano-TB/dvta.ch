@@ -1,0 +1,170 @@
+╔════════════════════════════════════════════════════════════╗
+║                                                            ║
+║     ✅ SOLUCIÓN: OPO REQUIERE LOGIN                        ║
+║                                                            ║
+╚════════════════════════════════════════════════════════════╝
+
+
+🔍 PROBLEMA IDENTIFICADO
+═══════════════════════════════════════════════════════════
+
+  El mensaje "Conectando al servidor... Por favor espera un 
+  momento e intenta de nuevo" aparece porque:
+
+  1. El WebSocket de OPO requiere autenticación
+  2. Necesitas estar logueado en DVDcoin Bank
+  3. El token de sesión debe estar en las cookies
+
+
+✅ SOLUCIÓN PASO A PASO
+═══════════════════════════════════════════════════════════
+
+  PASO 1: Hacer login en DVDcoin Bank
+  ────────────────────────────────────
+    1. Abre: http://localhost:8000
+    2. Haz login con tu usuario y contraseña
+    3. Verifica que estás logueado (deberías ver tu nombre)
+
+  PASO 2: Abrir OPO
+  ─────────────────
+    1. Abre: http://localhost:8000/opo
+    2. O haz clic en el botón "OPO" en el menú
+
+  PASO 3: Verificar conexión
+  ──────────────────────────
+    1. Abre la consola del navegador (F12)
+    2. Deberías ver:
+       - "Usuario autenticado: TU_USUARIO"
+       - "Conectando a: ws://localhost:8000/ws/opo?token=..."
+       - "WebSocket conectado"
+    3. El badge debe mostrar "Conectado" en verde
+
+  PASO 4: Hacer clic en un bloque
+  ────────────────────────────────
+    1. Haz clic en cualquier bloque (1-30)
+    2. El test debería arrancar
+    3. Deberías ver la primera pregunta
+
+
+🚀 MÉTODO RÁPIDO (SCRIPT AUTOMÁTICO)
+═══════════════════════════════════════════════════════════
+
+  Ejecuta el script:
+  
+    ABRIR_OPO_CON_LOGIN.bat
+
+  Este script:
+    1. Abre la página principal para login
+    2. Espera 3 segundos
+    3. Abre la página OPO
+    4. Sigue las instrucciones en pantalla
+
+
+🔧 CAMBIOS REALIZADOS EN EL CÓDIGO
+═══════════════════════════════════════════════════════════
+
+  1. ✅ Agregada función getCookie() para leer el token
+  2. ✅ WebSocket ahora envía el token en la URL
+  3. ✅ Verificación de autenticación antes de conectar
+  4. ✅ Redirección automática si no hay token
+  5. ✅ Manejo de códigos de error del WebSocket:
+     - 4001: Auth required → Redirige a login
+     - 4003: Access denied → Muestra mensaje
+
+
+⚠️  SI SIGUE SIN FUNCIONAR
+═══════════════════════════════════════════════════════════
+
+  PROBLEMA: Badge sigue diciendo "Reconectando..."
+  ─────────────────────────────────────────────────
+    SOLUCIÓN:
+      1. Cierra todas las ventanas del navegador
+      2. Abre una nueva ventana
+      3. Ve a http://localhost:8000
+      4. Haz login
+      5. Ve a http://localhost:8000/opo
+      6. Recarga la página (F5)
+
+  PROBLEMA: Dice "No tienes acceso a OPO"
+  ───────────────────────────────────────
+    SOLUCIÓN:
+      1. Tu usuario no está en la lista de OPO_USERS
+      2. Contacta al administrador (dvd)
+      3. O agrega tu usuario a la base de datos:
+         - Tabla: opo_players
+         - Campo: username
+
+  PROBLEMA: Consola muestra "WebSocket error"
+  ───────────────────────────────────────────
+    SOLUCIÓN:
+      1. Verifica que el servidor está corriendo
+      2. Ejecuta: netstat -ano | findstr ":8000"
+      3. Debe mostrar "LISTENING"
+      4. Si no, reinicia el servidor
+
+
+📋 CHECKLIST DE VERIFICACIÓN
+═══════════════════════════════════════════════════════════
+
+  [ ] Servidor corriendo en puerto 8000
+  [ ] Navegador abierto en http://localhost:8000
+  [ ] Login exitoso (ves tu nombre de usuario)
+  [ ] Navegador abierto en http://localhost:8000/opo
+  [ ] Consola abierta (F12)
+  [ ] Log: "Usuario autenticado: TU_USUARIO"
+  [ ] Log: "Conectando a: ws://localhost:8000/ws/opo?token=..."
+  [ ] Log: "WebSocket conectado"
+  [ ] Badge muestra "Conectado" en verde
+  [ ] Al hacer clic en bloque, arranca el test
+
+
+🎯 FLUJO CORRECTO
+═══════════════════════════════════════════════════════════
+
+  1. Usuario abre http://localhost:8000
+     ↓
+  2. Hace login con usuario y contraseña
+     ↓
+  3. Servidor crea token y lo guarda en cookie
+     ↓
+  4. Usuario abre http://localhost:8000/opo
+     ↓
+  5. JavaScript lee el token de la cookie
+     ↓
+  6. WebSocket se conecta con el token
+     ↓
+  7. Servidor valida el token
+     ↓
+  8. WebSocket conectado ✅
+     ↓
+  9. Usuario hace clic en bloque
+     ↓
+  10. Test arranca correctamente ✅
+
+
+💡 TIPS IMPORTANTES
+═══════════════════════════════════════════════════════════
+
+  • Siempre haz login ANTES de abrir OPO
+  • Si cierras el navegador, debes hacer login de nuevo
+  • El token expira después de un tiempo
+  • Si el badge dice "Error", recarga la página (F5)
+  • Usa siempre la misma ventana del navegador
+  • No uses modo incógnito (no guarda cookies)
+
+
+📞 SOPORTE ADICIONAL
+═══════════════════════════════════════════════════════════
+
+  Si nada funciona:
+    1. Copia los mensajes de error de la consola
+    2. Verifica que tu usuario tiene acceso a OPO
+    3. Verifica que el servidor está corriendo
+    4. Intenta con otro navegador
+    5. Limpia las cookies del navegador
+
+
+═══════════════════════════════════════════════════════════
+  Fecha: Mayo 14, 2026
+  Archivo: SOLUCION_OPO_LOGIN.txt
+═══════════════════════════════════════════════════════════

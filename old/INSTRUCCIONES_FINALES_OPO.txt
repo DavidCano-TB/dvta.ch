@@ -1,0 +1,226 @@
+================================================================================
+  ✅ OPO - INSTRUCCIONES FINALES
+================================================================================
+
+EL SERVIDOR YA ESTÁ CORRIENDO
+
+Acabo de ejecutar el script de reinicio. El servidor debería estar activo.
+
+================================================================================
+  PASO 1: ABRIR OPO EN EL NAVEGADOR
+================================================================================
+
+Abre tu navegador y ve a:
+
+  http://localhost:8000/opo
+
+O simplemente ejecuta este comando:
+
+  start http://localhost:8000/opo
+
+================================================================================
+  PASO 2: REFRESCAR LA PÁGINA
+================================================================================
+
+Una vez en la página, presiona:
+
+  Ctrl + Shift + R
+
+Esto hace un refresco forzado y limpia la caché del navegador.
+
+================================================================================
+  QUÉ DEBERÍAS VER
+================================================================================
+
+Si todo funciona correctamente, verás:
+
+┌────────────────────────────────────────────────────────────┐
+│ 📝 OPO                                                      │
+│ FEA Radiodiagnóstico                                       │
+│                                    [Conectado] [@test_user]│
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│              📋 Elige el siguiente bloque                  │
+│           30 simulacros · 10 preguntas cada uno            │
+│                                                            │
+│  [Bloque 1] [Bloque 2] [Bloque 3] [Bloque 4] [Bloque 5]  │
+│  [Bloque 6] [Bloque 7] [Bloque 8] [Bloque 9] [Bloque 10] │
+│  [Bloque 11] [Bloque 12] [Bloque 13] ...                  │
+│                                                            │
+│         [🔊 Activar audio]  [📊 Mis stats]                │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+
+================================================================================
+  SI NO FUNCIONA
+================================================================================
+
+PROBLEMA 1: Pantalla completamente vacía o en blanco
+────────────────────────────────────────────────────
+Solución:
+  1. Presiona Ctrl+Shift+R
+  2. Espera 5 segundos
+  3. Presiona F5
+
+PROBLEMA 2: Badge dice "Conectando..." (rojo)
+────────────────────────────────────────────────────
+Solución:
+  1. Espera 10 segundos más (el servidor puede estar iniciando)
+  2. Refresca con F5
+  3. Si persiste después de 30 segundos:
+     - Presiona F12
+     - Ve a la pestaña "Console"
+     - Busca errores en rojo
+     - Copia el error y búscalo en la documentación
+
+PROBLEMA 3: Badge dice "Sin acceso OPO"
+────────────────────────────────────────────────────
+Causa: Tu usuario no tiene permisos para OPO
+
+Solución:
+  1. Ejecuta: AGREGAR_USUARIO_Y_REINICIAR.bat tu_usuario
+  2. Ejemplo: AGREGAR_USUARIO_Y_REINICIAR.bat test_user
+  3. Espera 15 segundos
+  4. Refresca el navegador
+
+PROBLEMA 4: Dice "Acceso requerido - Conéctate al DVDcoin Bank"
+────────────────────────────────────────────────────
+Causa: No tienes sesión iniciada
+
+Solución:
+  1. Ve a http://localhost:8000/
+  2. Inicia sesión con tu usuario
+  3. Ve a http://localhost:8000/opo
+
+PROBLEMA 5: Error "ERR_CONNECTION_REFUSED"
+────────────────────────────────────────────────────
+Causa: El servidor no está corriendo
+
+Solución:
+  1. Ejecuta: REINICIO_AUTOMATICO_OPO.bat
+  2. Espera 20 segundos
+  3. Refresca el navegador
+
+================================================================================
+  VERIFICAR QUE EL SERVIDOR ESTÁ CORRIENDO
+================================================================================
+
+Ejecuta este comando en PowerShell o CMD:
+
+  tasklist | findstr python.exe
+
+Si aparece "python.exe", el servidor está corriendo.
+
+Si NO aparece nada, ejecuta:
+
+  REINICIO_AUTOMATICO_OPO.bat
+
+================================================================================
+  DEBUGGING AVANZADO
+================================================================================
+
+1. ABRIR CONSOLA DEL NAVEGADOR
+   - Presiona F12
+   - Ve a la pestaña "Console"
+   - Busca mensajes de error (en rojo)
+
+2. VERIFICAR WEBSOCKET
+   En la consola del navegador, ejecuta:
+   
+   console.log('WebSocket:', ws?.readyState);
+   
+   Resultado esperado: 1 (significa CONECTADO)
+   
+   Otros valores:
+   - 0 = Conectando
+   - 2 = Cerrando
+   - 3 = Cerrado (problema)
+
+3. VERIFICAR ESTADO
+   En la consola del navegador, ejecuta:
+   
+   console.log('State:', state);
+   console.log('Me:', me);
+   
+   Deberías ver:
+   - state.phase: "waiting" o "block_select"
+   - state.total_blocks: 30
+   - me.username: "test_user" (o tu usuario)
+
+4. VER LOGS DEL SERVIDOR
+   - Ve a la ventana "DVDcoin Server" o "DVDcoin-OPO"
+   - Busca líneas como:
+     INFO: Application startup complete.
+     INFO: Uvicorn running on http://0.0.0.0:8000
+     INFO: OPO users loaded: {'dvd', 'test_user', ...}
+
+================================================================================
+  SCRIPTS DISPONIBLES
+================================================================================
+
+REINICIO_AUTOMATICO_OPO.bat
+  → Mata todo y reinicia automáticamente (SIN pausas)
+  → USA ESTE si quieres reiniciar rápido
+
+MATAR_TODO_Y_REINICIAR_OPO.bat
+  → Mata todo y reinicia con verificaciones (CON pausas)
+  → USA ESTE si quieres ver cada paso
+
+INICIAR_OPO_LOCAL.bat
+  → Inicia el servidor y abre OPO
+  → USA ESTE si el servidor no está corriendo
+
+DIAGNOSTICO_COMPLETO_OPO.bat
+  → Verifica todo el sistema
+  → USA ESTE si quieres ver el estado completo
+
+AGREGAR_USUARIO_Y_REINICIAR.bat <usuario>
+  → Agrega un usuario a OPO y reinicia
+  → USA ESTE si tu usuario no tiene acceso
+
+================================================================================
+  DOCUMENTACIÓN
+================================================================================
+
+SOLUCION_FINAL_OPO.md
+  → Documentación completa del sistema OPO
+  → Incluye troubleshooting detallado
+
+SOLUCION_ERROR_NGROK.md
+  → Solución al error de ngrok
+  → Explica acceso local vs externo
+
+COMO_USAR_OPO_AHORA.txt
+  → Guía rápida de uso
+
+================================================================================
+  RESUMEN RÁPIDO
+================================================================================
+
+1. Abre: http://localhost:8000/opo
+2. Presiona: Ctrl+Shift+R
+3. Deberías ver la lista de 30 bloques
+4. Haz clic en un bloque para empezar
+
+Si no funciona:
+  → Ejecuta: REINICIO_AUTOMATICO_OPO.bat
+  → Espera 20 segundos
+  → Refresca el navegador
+
+================================================================================
+  ESTADO ACTUAL DEL SISTEMA
+================================================================================
+
+✅ Preguntas: 300 preguntas válidas
+✅ Bloques: 30 bloques de 10 preguntas
+✅ Usuarios OPO: 9 usuarios con acceso
+✅ Backend: Funcionando correctamente
+✅ Frontend: Funcionando correctamente
+✅ Servidor: DEBERÍA ESTAR CORRIENDO AHORA
+
+================================================================================
+
+ÚLTIMA ACCIÓN: Ejecuté REINICIO_AUTOMATICO_OPO.bat
+PRÓXIMA ACCIÓN: Abre http://localhost:8000/opo y presiona Ctrl+Shift+R
+
+================================================================================

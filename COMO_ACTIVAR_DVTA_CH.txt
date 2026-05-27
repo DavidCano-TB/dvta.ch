@@ -1,0 +1,169 @@
+═══════════════════════════════════════════════════════════════════════════
+ CÓMO ACTIVAR dvta.ch - GUÍA PASO A PASO
+═══════════════════════════════════════════════════════════════════════════
+
+ESTADO ACTUAL:
+✅ El sistema funciona con URL temporal
+✅ El inicio automático está configurado
+✅ El navegador se abre automáticamente
+
+PARA ACTIVAR dvta.ch (URL permanente):
+
+═══════════════════════════════════════════════════════════════════════════
+ MÉTODO 1: COMANDO SIMPLE (5 MINUTOS)
+═══════════════════════════════════════════════════════════════════════════
+
+1. Abre una ventana de comandos (CMD) en c:\dvdcoin
+
+2. Ejecuta estos comandos UNO POR UNO:
+
+   A) Eliminar certificado antiguo:
+      del "%USERPROFILE%\.cloudflared\cert.pem"
+
+   B) Login en Cloudflare (se abre navegador):
+      cloudflared.exe tunnel login
+      
+      → Autoriza en el navegador y cierra la pestaña
+
+   C) Crear túnel:
+      cloudflared.exe tunnel create dvta-tunnel
+
+   D) Configurar DNS:
+      cloudflared.exe tunnel route dns dvta-tunnel dvta.ch
+      cloudflared.exe tunnel route dns dvta-tunnel www.dvta.ch
+
+   E) Obtener ID del túnel:
+      cloudflared.exe tunnel list
+      
+      → Copia el ID (primera columna)
+
+   F) Buscar archivo de credenciales:
+      dir /s "%USERPROFILE%\.cloudflared\*.json"
+      
+      → Copia la ruta completa del archivo .json
+
+   G) Editar cloudflare-dvta-config.yml:
+      - Reemplaza "TUNNEL_ID_AQUI" con el ID del paso E
+      - Reemplaza la ruta del credentials-file con la del paso F
+
+3. Ejecuta: INICIAR_DVDBANK_DVTA.bat
+
+4. ¡Listo! Ahora funciona en https://dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+ MÉTODO 2: DASHBOARD WEB (MÁS FÁCIL - 10 MINUTOS)
+═══════════════════════════════════════════════════════════════════════════
+
+1. Ve a: https://one.dash.cloudflare.com/
+
+2. Inicia sesión y selecciona tu cuenta
+
+3. En el menú lateral:
+   Zero Trust → Networks → Tunnels
+
+4. Haz clic en "Create a tunnel"
+
+5. Selecciona "Cloudflared" → Next
+
+6. Nombre: dvta-tunnel → Save tunnel
+
+7. En la siguiente pantalla verás un comando como:
+   cloudflared.exe service install eyJh...
+   
+   COPIA TODO el token (la parte después de "install ")
+
+8. Abre CMD en c:\dvdcoin y ejecuta:
+   cloudflared.exe service install [PEGA_EL_TOKEN_AQUÍ]
+
+9. Vuelve al dashboard y haz clic en "Next"
+
+10. Configura Public Hostname:
+    - Subdomain: (vacío)
+    - Domain: dvta.ch
+    - Service Type: HTTP
+    - URL: localhost:8000
+    - Save hostname
+
+11. Añade otro hostname:
+    - Subdomain: www
+    - Domain: dvta.ch
+    - Service Type: HTTP
+    - URL: localhost:8000
+    - Save hostname
+
+12. El túnel se iniciará automáticamente
+
+13. Ejecuta: INICIAR_DVDBANK_DVTA.bat
+
+14. ¡Listo! Ahora funciona en https://dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+ MÉTODO 3: SEGUIR USANDO URL TEMPORAL (YA FUNCIONA)
+═══════════════════════════════════════════════════════════════════════════
+
+Si no necesitas una URL permanente:
+
+✅ El sistema YA FUNCIONA con URL temporal
+✅ El inicio automático YA ESTÁ CONFIGURADO
+✅ El navegador se abre automáticamente
+
+Para ver la URL actual:
+   type logs\tunnel_url.txt
+
+O ejecuta:
+   VER_ESTADO_SISTEMA.bat
+
+La URL cambia cada reinicio pero el sistema funciona perfectamente.
+
+═══════════════════════════════════════════════════════════════════════════
+ VERIFICACIÓN
+═══════════════════════════════════════════════════════════════════════════
+
+Después de configurar dvta.ch:
+
+1. Ejecuta: VER_ESTADO_SISTEMA.bat
+   Deberías ver: URL: https://dvta.ch
+
+2. Abre https://dvta.ch en tu navegador
+   Deberías ver la página de DVDBank
+
+3. Reinicia Windows
+   El sistema debería iniciar automáticamente
+   El navegador debería abrir https://dvta.ch
+
+═══════════════════════════════════════════════════════════════════════════
+ SCRIPTS DISPONIBLES
+═══════════════════════════════════════════════════════════════════════════
+
+CONFIGURAR_DVTA_CH_SIMPLE.bat
+  → Intenta configurar automáticamente (requiere interacción)
+
+ABRIR_CLOUDFLARE_DASHBOARD.bat
+  → Abre el dashboard con instrucciones
+
+INICIAR_DVDBANK_DVTA.bat
+  → Inicia el sistema (usa dvta.ch si está configurado)
+
+VER_ESTADO_SISTEMA.bat
+  → Muestra el estado completo
+
+═══════════════════════════════════════════════════════════════════════════
+ NOTAS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════════
+
+- Los cambios DNS tardan 5-10 minutos en propagarse
+- Necesitas tener dvta.ch en tu cuenta de Cloudflare
+- El túnel nombrado es permanente (no cambia al reiniciar)
+- El Quick Tunnel (actual) es temporal pero funciona perfectamente
+
+═══════════════════════════════════════════════════════════════════════════
+ ¿NECESITAS AYUDA?
+═══════════════════════════════════════════════════════════════════════════
+
+Si tienes problemas:
+1. Revisa logs\tunnel.log para errores
+2. Ejecuta VER_ESTADO_SISTEMA.bat para diagnóstico
+3. Verifica que dvta.ch está en tu cuenta de Cloudflare
+4. Asegúrate de que los nameservers apuntan a Cloudflare
+
+═══════════════════════════════════════════════════════════════════════════

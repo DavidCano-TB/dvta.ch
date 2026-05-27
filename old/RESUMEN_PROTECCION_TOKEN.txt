@@ -1,0 +1,197 @@
+================================================================================
+                RESUMEN - PROTECCIÓN DEL TOKEN DE NGROK
+================================================================================
+
+FECHA: 14 de mayo de 2026
+ACCIÓN: Protección del archivo conf\.ngrok_token contra modificaciones
+
+================================================================================
+PROBLEMA DETECTADO
+================================================================================
+
+El script INICIAR_COMO_ADMIN.bat contenía una línea que ESCRIBÍA al archivo
+de token cada vez que se ejecutaba:
+
+  Línea 227: echo NGROK_URL=%NGROK_URL%>>conf\.ngrok_token
+
+Esto causaba que el archivo creciera indefinidamente con URLs temporales.
+
+================================================================================
+SOLUCIÓN APLICADA
+================================================================================
+
+1. ARCHIVO MODIFICADO: INICIAR_COMO_ADMIN.bat
+   
+   ANTES (línea 227):
+   ------------------
+   echo NGROK_URL=%NGROK_URL%>>conf\.ngrok_token
+   
+   DESPUÉS (línea 227):
+   --------------------
+   REM NOTA: NO modificar conf\.ngrok_token - solo el usuario puede cambiarlo
+   
+   RESULTADO:
+   ----------
+   ✅ El script ya NO escribe al archivo de token
+   ✅ La URL temporal se guarda en ngrok_url.txt (correcto)
+   ✅ El archivo de token permanece intacto
+
+2. ARCHIVOS NUEVOS CREADOS:
+   
+   a) conf\README_IMPORTANTE.txt
+      └─> Advertencia sobre la protección del archivo
+      └─> Instrucciones de formato correcto
+      └─> Guía de verificación
+   
+   b) VERIFICAR_TOKEN_NGROK.bat
+      └─> Script de verificación automática
+      └─> Detecta problemas en el archivo
+      └─> Ofrece limpieza automática con backup
+   
+   c) PROTECCION_TOKEN_NGROK.md
+      └─> Documentación completa de la protección
+      └─> Ejemplos de formato correcto e incorrecto
+      └─> Guía de solución de problemas
+
+================================================================================
+FORMATO CORRECTO DEL ARCHIVO
+================================================================================
+
+El archivo conf\.ngrok_token debe contener SOLO:
+
+OPCIÓN 1 - Solo token (1 línea):
+---------------------------------
+3AqlNjjWKOeqmIGjN1Gu4Dnqm5d_28Hfykvwy45AXCe8gUHGz
+
+OPCIÓN 2 - Token + dominio (2 líneas):
+---------------------------------------
+NGROK_TOKEN=3AqlNjjWKOeqmIGjN1Gu4Dnqm5d_28Hfykvwy45AXCe8gUHGz
+NGROK_DOMAIN=premium-size-unreached.ngrok-free.dev
+
+❌ NO DEBE CONTENER:
+--------------------
+- URLs temporales (NGROK_URL=...)
+- Comentarios (# ...)
+- Líneas en blanco
+- Otras variables
+
+================================================================================
+VERIFICACIÓN
+================================================================================
+
+Para verificar que el archivo está correcto:
+
+  OPCIÓN 1 - Script automático:
+  ------------------------------
+  VERIFICAR_TOKEN_NGROK.bat
+
+  OPCIÓN 2 - Verificación manual:
+  --------------------------------
+  type conf\.ngrok_token
+
+  Debe mostrar solo 1 o 2 líneas (token y opcionalmente dominio)
+
+================================================================================
+UBICACIÓN DE ARCHIVOS
+================================================================================
+
+conf\.ngrok_token      - Token de autenticación (PROTEGIDO)
+ngrok_url.txt          - URL temporal actual (generado automáticamente)
+ngrok.log              - Logs de ngrok (generado automáticamente)
+ngrok_tunnels.json     - Info de túneles (generado automáticamente)
+
+================================================================================
+REGLAS DE PROTECCIÓN
+================================================================================
+
+✅ PERMITIDO:
+-------------
+- Editar el archivo manualmente
+- Cambiar el token si obtienes uno nuevo
+- Añadir o cambiar el dominio personalizado
+- Leer el archivo desde scripts (solo lectura)
+
+❌ PROHIBIDO:
+-------------
+- Que los scripts modifiquen el archivo automáticamente
+- Añadir URLs temporales al archivo
+- Añadir comentarios o líneas adicionales
+- Borrar el archivo sin respaldo
+
+================================================================================
+SCRIPTS VERIFICADOS
+================================================================================
+
+Se verificaron todos los scripts .bat del proyecto:
+
+✅ INICIAR_COMO_ADMIN.bat       - CORREGIDO (ya no escribe al archivo)
+✅ ARRANCAR.bat                  - OK (no modifica el archivo)
+✅ DESACTIVAR_ANTIVIRUS_Y_ARRANCAR.bat - OK (solo lee)
+✅ DESINSTALAR_DEFENDER_Y_ARRANCAR.bat - OK (solo lee)
+✅ Todos los demás scripts       - OK (no tocan el archivo)
+
+RESULTADO:
+----------
+✅ Ningún script escribe al archivo conf\.ngrok_token
+✅ Todos los scripts solo LEEN el archivo
+✅ Las URLs temporales se guardan en ngrok_url.txt
+
+================================================================================
+DOCUMENTACIÓN CREADA
+================================================================================
+
+1. conf\README_IMPORTANTE.txt
+   └─> Advertencia y guía de protección
+
+2. VERIFICAR_TOKEN_NGROK.bat
+   └─> Script de verificación y limpieza
+
+3. PROTECCION_TOKEN_NGROK.md
+   └─> Documentación técnica completa
+
+4. RESUMEN_PROTECCION_TOKEN.txt
+   └─> Este archivo - resumen ejecutivo
+
+================================================================================
+RESULTADO FINAL
+================================================================================
+
+✅ Archivo conf\.ngrok_token PROTEGIDO contra modificaciones automáticas
+✅ Solo el administrador puede modificar el archivo manualmente
+✅ Scripts solo LEEN el archivo, nunca ESCRIBEN
+✅ URLs temporales se guardan en ngrok_url.txt (lugar correcto)
+✅ Documentación completa creada
+✅ Script de verificación disponible
+
+================================================================================
+PRÓXIMOS PASOS
+================================================================================
+
+1. Verificar el archivo actual:
+   VERIFICAR_TOKEN_NGROK.bat
+
+2. Si hay problemas, el script ofrecerá limpiar automáticamente
+
+3. Leer la documentación:
+   - conf\README_IMPORTANTE.txt
+   - PROTECCION_TOKEN_NGROK.md
+
+4. Continuar usando el sistema normalmente
+
+================================================================================
+CONTACTO
+================================================================================
+
+Si tienes dudas sobre la protección del token:
+- Lee: PROTECCION_TOKEN_NGROK.md
+- Ejecuta: VERIFICAR_TOKEN_NGROK.bat
+- Contacta al administrador del sistema
+
+================================================================================
+                        ✅ PROTECCIÓN IMPLEMENTADA
+================================================================================
+
+El archivo de token está ahora protegido contra modificaciones automáticas.
+Solo tú, como administrador, puedes modificarlo manualmente.
+
+================================================================================
