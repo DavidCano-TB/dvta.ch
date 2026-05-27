@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reset Bank - DVDcoin</title>
+<style>
+  body { font-family: system-ui, -apple-system, sans-serif; background: #0A0E14; color: #E8EDF5;
+         display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+  .card { background: #141A24; border: 1px solid #2A4A78; border-radius: 12px; padding: 30px;
+          max-width: 480px; width: 100%; }
+  h1 { color: #8BB3E8; margin-top: 0; }
+  .step { padding: 10px 0; border-bottom: 1px solid #2A4A78; }
+  .step:last-child { border-bottom: none; }
+  .ok { color: #38B87A; }
+  .err { color: #E05260; }
+  .pending { color: #A8B8D0; }
+  button { background: #4A7AB8; color: #fff; border: none; padding: 12px 24px; border-radius: 8px;
+           font-size: 15px; cursor: pointer; margin-top: 16px; width: 100%; }
+  button:hover { background: #6B9BD4; }
+  a { color: #8BB3E8; }
+  pre { background: #0A0E14; padding: 10px; border-radius: 6px; overflow-x: auto; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>🔧 Reset Bank Login</h1>
+  <p>Esta página limpia todo el estado del navegador para arreglar el botón de login.</p>
+  <div id="steps"></div>
+  <button id="goBtn" onclick="doReset()">Ejecutar reset y volver al login</button>
+  <p style="font-size:13px;color:#A8B8D0;margin-top:20px">
+    Después: <a href="/bank">Ir a /bank</a>
+  </p>
+</div>
+<script>
+const steps = document.getElementById('steps');
+function log(name, status, detail) {
+  const cls = status === 'ok' ? 'ok' : status === 'err' ? 'err' : 'pending';
+  const icon = status === 'ok' ? '✅' : status === 'err' ? '❌' : '⏳';
+  steps.insertAdjacentHTML('beforeend',
+    '<div class="step ' + cls + '">' + icon + ' ' + name + (detail ? '<pre>' + detail + '</pre>' : '') + '</div>');
+}
+
+async function doReset() {
+  document.getElementById('goBtn').disabled = true;
+  steps.innerHTML = '';
+
+  // 1. Unregister all service workers
+  try {
+    if ('serviceWorker' in navigator) {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      for (const r of regs) await r.unregister();
+      log('Service Workers desregistrados', 'ok', regs.length + ' eliminados');
+    } else {
+      log('Service Workers no soportados', 'ok');
+    }
+  } catch (e) { log('Error unregister SW', 'err', e.message); }
+
+  // 2. Delete all caches
+  try {
+    if ('caches' in window) {
+      const names = await caches.keys();
+      for (const n of names) await caches.delete(n);
+      log('Caches eliminados', 'ok', names.length + ' caches: ' + names.join(', '));
+    } else {
+      log('CacheStorage no soportado', 'ok');
+    }
+  } catch (e) { log('Error delete caches', 'err', e.message); }
+
+  // 3. Clear localStorage and sessionStorage
+  try {
+    localStorage.clear();
+    sessionStorage.clear();
+    log('localStorage y sessionStorage limpiados', 'ok');
+  } catch (e) { log('Error clear storage', 'err', e.message); }
+
+  // 4. Test login API reachability
+  try {
+    const r = await fetch('/bank/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: '__probe__', password: '__probe__' })
+    });
+    log('API /bank/api/login responde', r.status === 401 ? 'ok' : 'err',
+        'HTTP ' + r.status + ' (esperado 401)');
+  } catch (e) { log('Error contactar API', 'err', e.message); }
+
+  log('Listo - redirigiendo a /bank en 3 segundos...', 'ok');
+  setTimeout(() => { window.location.href = '/bank'; }, 3000);
+}
+</script>
+</body>
+</html>

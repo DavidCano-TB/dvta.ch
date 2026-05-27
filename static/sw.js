@@ -3,7 +3,7 @@
  * Ensures fresh HTML on every load and caches static assets
  */
 
-const CACHE_NAME = 'dvdcoin-bank-v2-20260527';
+const CACHE_NAME = 'dvdcoin-bank-v3-20260528';
 const BASE_PATH = '/bank';
 
 // Assets to cache
@@ -46,8 +46,14 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
+  // Only handle GET requests — never intercept POST/PUT/DELETE/etc (login uses POST)
+  if (request.method !== 'GET') {
+    return;
+  }
+
   // Always fetch HTML fresh (no cache)
-  if (request.mode === 'navigate' || request.headers.get('accept').includes('text/html')) {
+  const accept = request.headers.get('accept') || '';
+  if (request.mode === 'navigate' || accept.includes('text/html')) {
     event.respondWith(
       fetch(request).catch(() => {
         return caches.match(`${BASE_PATH}/`);
@@ -56,7 +62,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // API calls - always network
+  // API calls - always network, never cache
   if (url.pathname.startsWith(`${BASE_PATH}/api/`)) {
     event.respondWith(fetch(request));
     return;

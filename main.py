@@ -1534,6 +1534,24 @@ async def service_worker():
     resp.headers["ngrok-skip-browser-warning"] = "1"
     return resp
 
+@app.get("/bank/reset", response_class=HTMLResponse)
+async def bank_reset():
+    """Reset page — unregisters Service Workers, clears caches/localStorage.
+
+    Use this when the login button stops working due to a stale Service Worker
+    or cached frontend. Visit /bank/reset and click the button.
+    """
+    html_path = os.path.join(BASE_DIR, "static", "reset.html")
+    try:
+        with open(html_path, "r", encoding="utf-8") as f:
+            html = f.read()
+        resp = HTMLResponse(html)
+        resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+        return resp
+    except Exception as e:
+        logger.error("Error loading reset.html: %s", e)
+        return HTMLResponse("Error loading reset page", status_code=500)
+
 @app.get("/bank/video")
 async def video_page(token: str = ""):
     """Página de videollamadas - WebRTC P2P puro (sin Jitsi)"""
