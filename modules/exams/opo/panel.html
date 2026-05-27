@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OPO · DVDcoin Exams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
+  --noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;
+  --border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --green:#38B87A;--red:#C83060;--blue:#4878D8;
+  --r:10px;--rL:16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{font-size:15px}
+body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px}
+
+#hdr{position:sticky;top:0;z-index:200;background:var(--n3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:52px;gap:12px}
+.hLeft{display:flex;align-items:center;gap:12px}
+.hTitle{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--gold2);letter-spacing:.12em;text-transform:uppercase}
+.hSub{font-size:.5rem;color:var(--text3);letter-spacing:.2em;text-transform:uppercase}
+.badge{font-size:.6rem;color:var(--text3);background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;padding:4px 10px}
+
+.screen{display:none;min-height:calc(100vh - 52px)}
+.screen.on{display:flex}
+.flex{flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.centerCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:32px;max-width:460px;width:100%;text-align:center}
+.bigIcon{font-size:2.5rem;margin-bottom:14px;opacity:.6}
+.cardTitle{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:8px}
+.cardSub{font-size:.72rem;color:var(--text3);line-height:1.6;margin-bottom:14px}
+
+.btn{border:none;border-radius:22px;padding:8px 20px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .18s;white-space:nowrap;text-decoration:none;display:inline-block}
+.btnG{background:var(--green);color:#000}.btnG:hover:not(:disabled){opacity:.85}
+.btnD{background:var(--red);color:#fff}.btnD:hover:not(:disabled){opacity:.85}
+.btnO{background:rgba(212,168,67,.15);border:1px solid var(--border2);color:var(--gold2)}.btnO:hover:not(:disabled){background:rgba(212,168,67,.25)}
+.btnN{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text2)}.btnN:hover:not(:disabled){border-color:var(--border2);color:var(--text)}
+.btnSm{padding:5px 14px;font-size:.63rem}
+.btn:disabled{opacity:.35;cursor:default}
+
+.blockBtn{background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .25s;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--gold2);font-weight:600;min-height:80px;position:relative;overflow:hidden}
+.blockBtn:hover{border-color:var(--gold);background:rgba(212,168,67,.1);transform:translateY(-2px);box-shadow:0 4px 12px rgba(212,168,67,.2)}
+.blockBtn:active{transform:translateY(0);box-shadow:none}
+.blockBtn.completed{border-color:var(--green);background:rgba(56,184,122,.08)}
+.blockBtn.completed::after{content:'✓';position:absolute;top:4px;right:6px;font-size:.7rem;color:var(--green)}
+.blockBtn.in-progress{border-color:var(--blue);background:rgba(72,120,216,.08)}
+.blockBtn.in-progress::after{content:'▶';position:absolute;top:4px;right:6px;font-size:.6rem;color:var(--blue)}
+.bNum{display:block;font-size:1.3rem;margin-bottom:4px}
+.bScore{font-size:.6rem;color:var(--text3);font-weight:400;letter-spacing:.05em}
+
+.qCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:22px;margin-bottom:12px;position:relative;overflow:hidden;transition:border-color .4s,box-shadow .4s}
+.qCard.correct{border-color:rgba(56,184,122,.5);box-shadow:0 0 24px rgba(56,184,122,.1)}
+.qCard.wrong{border-color:rgba(200,48,96,.5);box-shadow:0 0 24px rgba(200,48,96,.1)}
+.qMeta{font-size:.58rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.qText{font-family:'Playfair Display',serif;font-size:1rem;color:var(--text);line-height:1.65}
+
+.options{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.optBtn{background:none;border:1px solid var(--border);border-radius:var(--r);padding:12px 15px;text-align:left;cursor:pointer;font-family:'DM Mono',monospace;font-size:.77rem;color:var(--text);transition:all .25s;display:flex;align-items:center;gap:11px;width:100%}
+.optBtn:hover:not(:disabled):not(.selected):not(.correct):not(.wrong){border-color:var(--border2);background:rgba(212,168,67,.05)}
+.optBtn.selected{border-color:var(--blue);background:rgba(72,120,216,.15);color:var(--text)}
+.optBtn.correct{border-color:var(--green);background:rgba(56,184,122,.18);color:var(--green)}
+.optBtn.wrong{border-color:var(--red);background:rgba(200,48,96,.15);color:var(--red)}
+.optBtn:disabled{cursor:default}
+.optLetter{width:22px;height:22px;border-radius:50%;border:1px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.66rem;font-weight:700;flex-shrink:0}
+
+@media (max-width:600px){
+  #waitBlockGrid{grid-template-columns:repeat(4,1fr) !important}
+}
+@media (max-width:400px){
+  #waitBlockGrid{grid-template-columns:repeat(3,1fr) !important}
+}
+</style>
+</head>
+<body>
+
+<div id="hdr">
+  <div class="hLeft">
+    <div>
+      <div class="hTitle">OPO Tests</div>
+      <div class="hSub">FEA Radiodiagnóstico</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <span class="badge" id="userBadge">Modo Invitado</span>
+    <a href="/exams" class="btn btnSm btnO">← Inicio</a>
+  </div>
+</div>
+
+<div class="screen flex on" id="screen-waiting">
+  <div style="max-width:900px;width:100%;padding:20px">
+    <div style="text-align:center;margin-bottom:24px">
+      <div style="font-size:2.5rem;margin-bottom:10px">📚</div>
+      <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold2);margin-bottom:6px">Gestión de Tests OPO</div>
+      <div style="font-size:.75rem;color:var(--text3);letter-spacing:.08em">FEA Radiodiagnóstico · <span id="waitTotal">0</span> simulacros disponibles</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto">
+      <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center">
+        <div style="font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--gold2)" id="totalTests">0</div>
+        <div style="font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Tests Totales</div>
+      </div>
+      <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center">
+        <div style="font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--green)" id="completedTests">0</div>
+        <div style="font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Completados</div>
+      </div>
+      <div style="background:var(--n3);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center">
+        <div style="font-size:1.8rem;font-family:'Oswald',sans-serif;color:var(--blue)" id="avgScore">0%</div>
+        <div style="font-size:.65rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:4px">Media Aciertos</div>
+      </div>
+    </div>
+    <div style="margin-bottom:20px">
+      <div style="font-size:.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;text-align:center">Selecciona un test para comenzar</div>
+      <div id="waitBlockGrid" style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:16px"></div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+      <button class="btn btnO btnSm" onclick="resetAllProgress()">🔄 Reiniciar progreso</button>
+    </div>
+  </div>
+</div>
+
+<div class="screen" id="screen-game">
+  <div style="max-width:860px;width:100%;margin:0 auto;padding:16px 20px 60px">
+    <div style="font-size:.65rem;color:var(--text3);margin-bottom:10px">
+      <span id="blockBadge">Bloque 1</span> · Pregunta <span id="qLabel">1 / 10</span>
+    </div>
+    <div class="qCard" id="qCard">
+      <div class="qMeta" id="qMeta">Pregunta 1</div>
+      <div class="qText" id="qText">Cargando…</div>
+    </div>
+    <div class="options" id="options"></div>
+    <button id="btnNext" class="btn btnG" style="display:none;width:100%;margin-top:10px" onclick="sendNext()">▶ Siguiente pregunta</button>
+  </div>
+</div>
+
+<div class="screen flex" id="screen-block-end">
+  <div class="centerCard">
+    <div style="font-size:1.8rem;margin-bottom:8px">📊</div>
+    <div class="cardTitle" id="brTitle">Bloque completado</div>
+    <div class="cardSub" id="brSub"></div>
+    <button class="btn btnG" style="margin-top:12px" onclick="backToManagement()">← Volver a gestión</button>
+  </div>
+</div>
+
+<script>
+'use strict';
+let state=null,me='invitado',allQuestions=[],currentBlock=0,currentQIndex=0,blockAnswers=[];
+
+function showScreen(name){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  const el=document.getElementById('screen-'+name);
+  if(el)el.classList.add('on');
+}
+
+async function init(){
+  console.log('=== INICIANDO OPO PANEL ===');
+  me = 'invitado';
+  showScreen('waiting');
+  await loadQuestions();
+  console.log('✅ OPO Panel listo');
+}
+
+async function loadQuestions(){
+  // Try multiple paths to find the questions file
+  const paths = [
+    '/opo/static/preguntas_opo_nebulosa.json',
+    '/static/opo/preguntas_opo_nebulosa.json',
+    '/opo/preguntas_opo_nebulosa.json'
+  ];
+  
+  for(const path of paths){
+    try{
+      const resp = await fetch(path);
+      if(resp.ok){
+        allQuestions = await resp.json();
+        console.log('✅ Preguntas cargadas desde', path, ':', allQuestions.length);
+        if(allQuestions.length > 0){
+          renderWaitingStatic();
+          return;
+        }
+      }
+    }catch(e){
+      console.warn('No encontrado en', path);
+    }
+  }
+  
+  console.error('❌ No se pudieron cargar las preguntas');
+  allQuestions = [];
+  alert('Error al cargar las preguntas. Por favor recarga la página.');
+}
+
+function renderQuestion(){
+  const q=state.current_q;
+  if(!q)return;
+  document.getElementById('blockBadge').textContent='Bloque '+(state.block_index+1);
+  document.getElementById('qLabel').textContent=(state.q_index+1)+' / 10';
+  document.getElementById('qMeta').textContent='Pregunta '+(state.q_index+1);
+  document.getElementById('qText').textContent=q.p;
+  const opts=document.getElementById('options');
+  opts.innerHTML='';
+  ['A','B','C','D'].forEach(l=>{
+    const btn=document.createElement('button');
+    btn.className='optBtn';
+    btn.innerHTML=`<span class="optLetter">${l}</span><span>${q[l]}</span>`;
+    btn.onclick=()=>sendAnswer(l);
+    opts.appendChild(btn);
+  });
+  document.getElementById('btnNext').style.display='none';
+  document.getElementById('qCard').className='qCard';
+}
+
+function renderReveal(){
+  const q=state.current_q;
+  if(!q)return;
+  const opts=document.querySelectorAll('.optBtn');
+  opts.forEach((btn,i)=>{
+    const l=['A','B','C','D'][i];
+    btn.disabled=true;
+    if(l===state.correct){
+      btn.classList.add('correct');
+    }
+    if(state.player_answer===l && l!==state.correct){
+      btn.classList.add('wrong');
+    }
+  });
+  
+  const qCard = document.getElementById('qCard');
+  if(state.player_answer === state.correct){
+    qCard.classList.add('correct');
+  }else{
+    qCard.classList.add('wrong');
+  }
+  
+  document.getElementById('btnNext').style.display='block';
+}
+
+function renderBlockEnd(){
+  const bi=state.block_index+1;
+  const sc=state.block_scores[me]||{correct:0,wrong:0};
+  document.getElementById('brTitle').textContent='Bloque '+bi+' completado';
+  document.getElementById('brSub').textContent=sc.correct+' aciertos · '+sc.wrong+' fallos';
+  saveBlockResult(bi,sc.correct,sc.wrong);
+  renderWaitingStatic();
+}
+
+function startBlock(idx){
+  console.log('Iniciando bloque:', idx);
+  currentBlock = idx;
+  currentQIndex = 0;
+  blockAnswers = [];
+  startLocalBlock();
+}
+
+function startLocalBlock(){
+  const startIdx = currentBlock * 10;
+  const blockQuestions = allQuestions.slice(startIdx, startIdx + 10);
+
+  if(blockQuestions.length < 10){
+    alert('No hay suficientes preguntas para este bloque');
+    return;
+  }
+
+  state = {
+    phase: 'question',
+    block_index: currentBlock,
+    q_index: 0,
+    current_q: blockQuestions[0],
+    blockQuestions: blockQuestions
+  };
+
+  renderQuestion();
+  showScreen('game');
+}
+
+function sendAnswer(letter){
+  if(!state || !state.current_q) return;
+
+  const isCorrect = letter === state.current_q.r;
+  blockAnswers.push({
+    question: state.q_index + 1,
+    answer: letter,
+    correct: state.current_q.r,
+    isCorrect: isCorrect
+  });
+
+  state.phase = 'reveal';
+  state.player_answer = letter;
+  state.correct = state.current_q.r;
+
+  renderReveal();
+}
+
+function sendNext(){
+  currentQIndex++;
+
+  if(currentQIndex >= 10){
+    finishBlock();
+  }else{
+    state.phase = 'question';
+    state.q_index = currentQIndex;
+    state.current_q = state.blockQuestions[currentQIndex];
+    renderQuestion();
+  }
+}
+
+function finishBlock(){
+  const correct = blockAnswers.filter(a => a.isCorrect).length;
+  const wrong = 10 - correct;
+
+  state.phase = 'block_end';
+  state.block_scores = {};
+  state.block_scores[me] = {correct: correct, wrong: wrong};
+
+  renderBlockEnd();
+  showScreen('block-end');
+}
+
+function backToManagement(){
+  state = null;
+  renderWaitingStatic();
+  showScreen('waiting');
+}
+
+function loadStats(){
+  try{
+    return JSON.parse(localStorage.getItem('opo_dvta_stats')||'{}');
+  }catch{return{}}
+}
+
+function saveBlockResult(block,correct,wrong){
+  const stats=loadStats();
+  stats[block]={correct:correct,wrong:wrong};
+  localStorage.setItem('opo_dvta_stats',JSON.stringify(stats));
+}
+
+function resetAllProgress(){
+  if(confirm('¿Borrar todo el progreso guardado?')){
+    localStorage.removeItem('opo_dvta_stats');
+    renderWaitingStatic();
+  }
+}
+
+function renderWaitingStatic(){
+  console.log('📊 Renderizando panel - Preguntas disponibles:', allQuestions.length);
+
+  if(allQuestions.length === 0){
+    console.warn('⚠️ No hay preguntas cargadas aún');
+    return;
+  }
+
+  const totalBlocks = Math.floor(allQuestions.length / 10);
+  console.log('📦 Total de bloques:', totalBlocks);
+
+  document.getElementById('waitTotal').textContent=totalBlocks;
+  document.getElementById('totalTests').textContent=totalBlocks;
+
+  const stats=loadStats();
+  const completed=Object.keys(stats).length;
+  let totalCorrect=0,totalQuestions=0;
+  for(const k in stats){
+    totalCorrect+=stats[k].correct||0;
+    totalQuestions+=10;
+  }
+  const avg=totalQuestions>0?Math.round((totalCorrect/totalQuestions)*100):0;
+
+  document.getElementById('completedTests').textContent=completed;
+  document.getElementById('avgScore').textContent=avg+'%';
+
+  const grid=document.getElementById('waitBlockGrid');
+  grid.innerHTML='';
+
+  for(let i=0;i<totalBlocks;i++){
+    const btn=document.createElement('button');
+    btn.className='blockBtn';
+    const st=stats[i+1];
+    if(st){
+      btn.classList.add('completed');
+      const pct=Math.round((st.correct/10)*100);
+      btn.innerHTML=`<span class="bNum">${i+1}</span><span class="bScore">${pct}%</span>`;
+    }else{
+      btn.innerHTML=`<span class="bNum">${i+1}</span>`;
+    }
+    btn.onclick=()=>startBlock(i);
+    grid.appendChild(btn);
+  }
+
+  console.log('✅ Panel renderizado con', totalBlocks, 'bloques');
+}
+
+init();
+</script>
+
+</body>
+</html>

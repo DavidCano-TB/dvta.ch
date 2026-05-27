@@ -420,8 +420,18 @@ async def exams_index_slash():
 
 @app.get("/opo")
 async def opo_index():
-    """Lista de oposiciones"""
+    """Panel de gestión de tests OPO (sin login)"""
+    return FileResponse(os.path.join(OPO_DIR, "panel.html"))
+
+@app.get("/opo/list")
+async def opo_list_old():
+    """Lista de oposiciones (versión antigua)"""
     return FileResponse(os.path.join(OPO_DIR, "list.html"))
+
+@app.get("/opo/panel")
+async def opo_panel():
+    """Panel OPO directo"""
+    return FileResponse(os.path.join(OPO_DIR, "panel.html"))
 
 @app.get("/opo/admin")
 async def opo_admin(user: dict = Depends(require_admin)):
