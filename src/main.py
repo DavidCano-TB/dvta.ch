@@ -1616,6 +1616,12 @@ async def change_my_password(body: ChangePasswordRequest, user: str = Depends(ge
     conn.close()
     logger.info("Password changed for @%s", user)
     return {"ok": True}
+
+# Alias para compatibilidad
+@app.post("/api/me/change-password")
+async def change_my_password_alias(body: ChangePasswordRequest, user: str = Depends(get_current_user)):
+    """Alias de /bank/api/me/change-password para compatibilidad"""
+    return await change_my_password(body, user)
  
 @app.post("/bank/api/ping")
 async def ping(user: str = Depends(get_current_user), request: Request = None):
@@ -1706,6 +1712,13 @@ async def login(request: Request, body: LoginRequest):
         max_age=JWT_EXPIRE_H * 3600  # 1 semana
     )
     return response
+
+# Alias para compatibilidad con archivos HTML antiguos
+@app.post("/api/login")
+@limiter.limit("200/minute")
+async def login_alias(request: Request, body: LoginRequest):
+    """Alias de /bank/api/login para compatibilidad con archivos HTML antiguos"""
+    return await login(request, body)
  
 @app.post("/bank/api/register")
 @limiter.limit("100/minute")  # Aumentado para tests (era 10/minute)
@@ -1750,6 +1763,13 @@ async def register(request: Request, body: RegisterRequest):
         max_age=JWT_EXPIRE_H * 3600
     )
     return response
+
+# Alias para compatibilidad con archivos HTML antiguos
+@app.post("/api/register")
+@limiter.limit("100/minute")
+async def register_alias(request: Request, body: RegisterRequest):
+    """Alias de /bank/api/register para compatibilidad con archivos HTML antiguos"""
+    return await register(request, body)
  
 @app.get("/bank/api/me")
 async def me(user: str = Depends(get_current_user)):
@@ -1789,12 +1809,24 @@ async def me(user: str = Depends(get_current_user)):
         "lang":          lang,
     }
 
+# Alias para compatibilidad con archivos HTML antiguos
+@app.get("/api/me")
+async def me_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/me para compatibilidad con archivos HTML antiguos"""
+    return await me(user)
+
 @app.post("/bank/api/me/refresh-token")
 async def refresh_token(user: str = Depends(get_current_user)):
     """Refresh the user's JWT token, extending expiration by JWT_EXPIRE_H hours.
     Called automatically by frontend when token is < 1 hour from expiration."""
     new_token = create_token(user)
     return {"token": new_token, "expires_in": JWT_EXPIRE_H * 3600}
+
+# Alias para compatibilidad
+@app.post("/api/me/refresh-token")
+async def refresh_token_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/me/refresh-token para compatibilidad"""
+    return await refresh_token(user)
  
 # =============================================================================
 # LANGUAGE PREFERENCE
@@ -1813,6 +1845,12 @@ async def set_lang(body: LangRequest, user: str = Depends(get_current_user)):
     )
     conn.commit(); conn.close()
     return {"ok": True, "lang": body.lang}
+
+# Alias para compatibilidad
+@app.post("/api/me/lang")
+async def set_lang_alias(body: LangRequest, user: str = Depends(get_current_user)):
+    """Alias de /bank/api/me/lang para compatibilidad"""
+    return await set_lang(body, user)
  
 @app.get("/bank/api/me/lang")
 async def get_lang(user: str = Depends(get_current_user)):
@@ -1828,6 +1866,12 @@ async def get_lang(user: str = Depends(get_current_user)):
         except Exception:
             pass
     return {"lang": lang}
+
+# Alias para compatibilidad
+@app.get("/api/me/lang")
+async def get_lang_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/me/lang para compatibilidad"""
+    return await get_lang(user)
  
 # =============================================================================
 # USERS / TRANSFER / HISTORY
@@ -1842,6 +1886,12 @@ async def list_users(user: str = Depends(get_current_user)):
     ).fetchall()
     conn.close()
     return [r["username"] for r in rows if r["username"] != user]
+
+# Alias para compatibilidad
+@app.get("/api/users")
+async def list_users_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/users para compatibilidad"""
+    return await list_users(user)
  
 @app.post("/bank/api/transfer")
 @limiter.limit("300/minute")  # Aumentado para tests (era 30/minute)
@@ -1883,6 +1933,13 @@ async def transfer(request: Request, body: TransferRequest, user: str = Depends(
     logger.info("Transfer %s→%s %.4f", user, to_user, amount)
     return {"success": True, "new_balance": new_balance, "auto_created": was_created,
             "message": f"Sent {amount} DVDcoins to @{to_user}"}
+
+# Alias para compatibilidad
+@app.post("/api/transfer")
+@limiter.limit("300/minute")
+async def transfer_alias(request: Request, body: TransferRequest, user: str = Depends(get_current_user)):
+    """Alias de /bank/api/transfer para compatibilidad"""
+    return await transfer(request, body, user)
  
 @app.get("/bank/api/history")
 async def history(user: str = Depends(get_current_user), limit:
@@ -1903,6 +1960,12 @@ async def history(user: str = Depends(get_current_user), limit:
         ).fetchall()
     conn.close()
     return [dict(r) for r in rows]
+
+# Alias para compatibilidad
+@app.get("/api/history")
+async def history_alias(user: str = Depends(get_current_user), limit: int = 100):
+    """Alias de /bank/api/history para compatibilidad"""
+    return await history(user, limit)
  
 # =============================================================================
 # ADMIN
@@ -5533,6 +5596,12 @@ async def messages_status(user: str = Depends(get_current_user)):
         "online":  msg_manager.online,
         "rooms":   rooms,
     }
+
+# Alias para compatibilidad
+@app.get("/api/messages/status")
+async def messages_status_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/messages/status para compatibilidad"""
+    return await messages_status(user)
  
  
 @app.get("/bank/api/messages/history")
@@ -5568,6 +5637,17 @@ async def messages_history(
         for m in msgs:
             m["read_by_me"] = m["id"] in read_ids
     return msgs
+
+# Alias para compatibilidad
+@app.get("/api/messages/history")
+async def messages_history_alias(
+    user: str = Depends(get_current_user),
+    room: str = "group",
+    limit: int = 60,
+    before_id: int = 0,
+):
+    """Alias de /bank/api/messages/history para compatibilidad"""
+    return await messages_history(user, room, limit, before_id)
  
  
 @app.post("/bank/api/messages/read")
@@ -5658,6 +5738,12 @@ async def messages_toggle(body: MsgToggleRequest, user: str = Depends(get_curren
     logger.info("Messaging %s by %s", "enabled" if body.enabled else "disabled", user)
     await msg_manager.broadcast_status()
     return {"enabled": body.enabled}
+
+# Alias para compatibilidad
+@app.post("/api/messages/toggle")
+async def messages_toggle_alias(body: MsgToggleRequest, user: str = Depends(get_current_user)):
+    """Alias de /bank/api/messages/toggle para compatibilidad"""
+    return await messages_toggle(body, user)
  
  
 @app.get("/bank/api/messages/users")
@@ -5689,6 +5775,12 @@ async def messages_unread(user: str = Depends(get_current_user)):
     ).fetchall()
     c.close()
     return {r["room"]: r["cnt"] for r in rows}
+
+# Alias para compatibilidad
+@app.get("/api/messages/unread")
+async def messages_unread_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/messages/unread para compatibilidad"""
+    return await messages_unread(user)
  
  
 @app.get("/bank/api/messages/admin/stats")
@@ -5717,6 +5809,12 @@ async def messages_admin_stats(user: str = Depends(get_current_user)):
         "online_now":     len(msg_manager.online),
         "enabled":        _msg_enabled(),
     }
+
+# Alias para compatibilidad
+@app.get("/api/messages/admin/stats")
+async def messages_admin_stats_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/messages/admin/stats para compatibilidad"""
+    return await messages_admin_stats(user)
  
  
 @app.get("/bank/api/opo/my-access")
@@ -5741,6 +5839,12 @@ async def messages_admin_all_rooms(user: str = Depends(get_current_user)):
     ).fetchall()
     c.close()
     return {"rooms": [dict(r) for r in rows]}
+
+# Alias para compatibilidad
+@app.get("/api/messages/admin/all-rooms")
+async def messages_admin_all_rooms_alias(user: str = Depends(get_current_user)):
+    """Alias de /bank/api/messages/admin/all-rooms para compatibilidad"""
+    return await messages_admin_all_rooms(user)
  
  
 @app.get("/bank/api/rooms/debug")

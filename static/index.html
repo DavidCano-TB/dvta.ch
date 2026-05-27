@@ -2821,7 +2821,7 @@ async function doLogin() {
   if (!u || !p) return showAlert('authAlert', t('errorUsernamePassword'));
   const done = setLoading('btnL', t('btnLogin'));
   try {
-    const d = await req('POST', '/api/login', { username: u, password: p });
+    const d = await req('POST', '/bank/api/login', { username: u, password: p });
     token = d.token;
     localStorage.setItem('dvd_token', token);
     await loadApp();
@@ -2838,7 +2838,7 @@ async function doReg() {
   if (p.length < 4) return showAlert('authAlert', t('errorPasswordMin'));
   const done = setLoading('btnR', t('btnRegister'));
   try {
-    const d = await req('POST', '/api/register', { username: u, password: p });
+    const d = await req('POST', '/bank/api/register', { username: u, password: p });
     token = d.token;
     localStorage.setItem('dvd_token', token);
     await loadApp();
@@ -2863,7 +2863,7 @@ function doLogout() {
 /* ── 6. App loader ──────────────────────────────────────── */
 async function loadApp() {
   try {
-    me = await req('GET', '/api/me');
+    me = await req('GET', '/bank/api/me');
     // Load language preference from DB (overrides localStorage)
     if (me.lang && me.lang !== curLang) {
       await loadLang(me.lang);
