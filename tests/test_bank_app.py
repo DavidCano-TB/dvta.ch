@@ -1,19 +1,24 @@
 """
-Unit tests for the DVDcoin Bank Panel module (modules/bank/app_bank.py)
+Unit tests for the DVDcoin Bank Proxy module (modules/bank/app_bank.py)
+
+The Bank service is a reverse proxy to the main Bank (localhost:8000),
+giving /bank its own dedicated lifecycle, health probe, and fallback panel.
 
 Tests cover:
-- Endpoints (root, /bank, /bank/full, /health, /api/info)
-- Static file mounts
-- Database initialization
-- Error handling and fallbacks
+- Endpoints: /, /health, /api/info, /bank/panel-fallback
+- Reverse proxy behaviour (mocked upstream)
+- Fallback when upstream is unreachable
+- Header filtering (hop-by-hop)
+- DB initialisation
 
-Note: Uses httpx.AsyncClient with ASGITransport because the installed
+Note: uses httpx.AsyncClient with ASGITransport because the installed
 starlette + httpx pair has a TestClient compatibility issue.
 """
 import os
 import sys
 import pytest
 from pathlib import Path
+from unittest.mock import AsyncMock, patch, MagicMock
 
 import httpx
 
@@ -28,10 +33,7 @@ sys.path.insert(0, str(BASE_DIR / "modules" / "bank"))
 
 @pytest.fixture(scope="module")
 def bank_app(tmp_path_factory):
-    """
-    Import the bank module with isolated DATA_DIR / DB so tests don't pollute
-    the real working directory.
-    """
+    """Import the bank module fresh so it picks up patched config."""
     tmp_data = tmp_path_factory.mktemp("bank_data")
 
     bank_module_path = str(BASE_DIR / "modules" / "bank")
@@ -42,10 +44,6 @@ def bank_app(tmp_path_factory):
         del sys.modules["app_bank"]
     import app_bank  # type: ignore
 
-    # Re-target DB to a temp location to avoid touching the real one.
-    # NOTE: tables in the *original* DB are already created at import time;
-    # we override the path only for tests that inspect/run new DBs separately.
-    app_bank._original_db_panel = app_bank.DB_PANEL
     app_bank._test_db_panel = str(tmp_data / "bank_panel_test.db")
     return app_bank
 
@@ -67,178 +65,267 @@ async def aclient(asgi_transport):
 
 
 # -----------------------------------------------------------------------------
-# Tests
+# Unit tests
 # -----------------------------------------------------------------------------
 
 @pytest.mark.unit
-@pytest.mark.asyncio
-class TestHealthEndpoint:
-    """Test suite for /health endpoint"""
+class TestConfiguration:
+    """Module-level constants and configuration."""
 
-    async def test_health_returns_200(self, aclient):
-        """Happy path: health check responds 200"""
-        resp = await aclient.get("/health")
-        assert resp.status_code == 200
+    def test_port_is_8002(self, bank_app):
+        assert bank_app.PORT == 8002
 
-    async def test_health_returns_expected_payload(self, aclient):
-        """Health response contains required fields"""
-        resp = await aclient.get("/health")
-        data = resp.json()
-        assert data["status"] == "healthy"
-        assert data["service"] == "DVDcoin Bank Panel"
-        assert data["port"] == 8002
-        assert "origin" in data
-        assert data["version"] == "1.0.0"
+    def test_origin_points_to_bank_dvta_ch(self, bank_app):
+        assert bank_app.BANK_ORIGIN_URL == "https://bank.dvta.ch"
 
+    def test_upstream_default_is_localhost_8000(self, bank_app):
+        assert bank_app.BANK_UPSTREAM in ("http://localhost:8000",
+                                          os.environ.get("BANK_UPSTREAM", ""))
 
-@pytest.mark.unit
-@pytest.mark.asyncio
-class TestApiInfo:
-    """Test suite for /api/info endpoint"""
+    def test_required_dirs_are_strings(self, bank_app):
+        for attr in ("BASE_DIR", "DATA_DIR", "STATIC_DIR", "CONFIG_DIR"):
+            assert isinstance(getattr(bank_app, attr), str)
 
-    async def test_info_returns_200(self, aclient):
-        resp = await aclient.get("/api/info")
-        assert resp.status_code == 200
-
-    async def test_info_contains_routes_list(self, aclient):
-        resp = await aclient.get("/api/info")
-        data = resp.json()
-        assert "available_routes" in data
-        assert isinstance(data["available_routes"], list)
-        assert len(data["available_routes"]) >= 4
-
-    async def test_info_contains_service_metadata(self, aclient):
-        resp = await aclient.get("/api/info")
-        data = resp.json()
-        assert data["service"] == "Bank Panel"
-        assert data["port"] == 8002
-
-
-@pytest.mark.unit
-@pytest.mark.asyncio
-class TestBankPanelEndpoint:
-    """Test suite for /bank panel page"""
-
-    async def test_bank_with_real_panel_html_returns_200(self, aclient):
-        """Happy path: the shipped panel.html is served"""
-        resp = await aclient.get("/bank")
-        assert resp.status_code == 200
-        # Real panel content sanity-check
-        assert "DVDcoin" in resp.text
-
-    async def test_bank_with_slash_works(self, aclient):
-        """Trailing slash variant works"""
-        resp = await aclient.get("/bank/")
-        assert resp.status_code == 200
-
-    async def test_bank_panel_html_contains_expected_markup(self, aclient):
-        """The real panel.html shipped with the repo should contain key markers"""
-        resp = await aclient.get("/bank")
-        body = resp.text
-        assert "Bank Panel" in body or "Bank" in body
-        assert "<html" in body.lower()
-
-
-@pytest.mark.unit
-@pytest.mark.asyncio
-class TestRootRedirect:
-    """Test suite for / root endpoint"""
-
-    async def test_root_redirects_to_bank(self, aclient):
-        resp = await aclient.get("/", follow_redirects=False)
-        assert resp.status_code in (302, 307)
-        assert resp.headers["location"] == "/bank"
-
-
-@pytest.mark.unit
-@pytest.mark.asyncio
-class TestBankFullRedirect:
-    """Test suite for /bank/full external redirect"""
-
-    async def test_bank_full_redirects_to_origin(self, aclient, bank_app):
-        resp = await aclient.get("/bank/full", follow_redirects=False)
-        assert resp.status_code in (302, 307)
-        assert resp.headers["location"] == bank_app.BANK_ORIGIN_URL
-
-
-@pytest.mark.unit
-@pytest.mark.asyncio
-class TestStaticMount:
-    """Test suite for /static and /bank/static mounts"""
-
-    async def test_static_mount_returns_404_for_unknown_file(self, aclient):
-        """Edge case: missing static file returns 404"""
-        resp = await aclient.get("/static/no_such_file_xyz.txt")
-        assert resp.status_code == 404
-
-    async def test_bank_static_mount_returns_404_for_unknown_file(self, aclient):
-        """Edge case: missing /bank/static file returns 404"""
-        resp = await aclient.get("/bank/static/no_such_file_xyz.txt")
-        assert resp.status_code == 404
+    def test_hop_by_hop_headers_listed(self, bank_app):
+        # Must include critical hop-by-hop entries
+        for h in ("connection", "transfer-encoding", "host"):
+            assert h in bank_app.HOP_BY_HOP
 
 
 @pytest.mark.unit
 class TestDatabaseInitialization:
-    """Test suite for DB initialization (visits, preferences tables)"""
-
-    def test_db_panel_path_is_set(self, bank_app):
-        assert bank_app.DB_PANEL.endswith(".db")
+    """The schema must create visits + preferences tables on import."""
 
     def test_visits_table_exists(self, bank_app):
-        """The schema must create a visits table on the real DB used at import"""
         import sqlite3
         conn = sqlite3.connect(bank_app.DB_PANEL)
         try:
             cur = conn.execute(
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='visits'"
             )
-            row = cur.fetchone()
-            assert row is not None, "visits table must exist"
+            assert cur.fetchone() is not None
         finally:
             conn.close()
 
     def test_preferences_table_exists(self, bank_app):
-        """The schema must create a preferences table on the real DB used at import"""
         import sqlite3
         conn = sqlite3.connect(bank_app.DB_PANEL)
         try:
             cur = conn.execute(
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='preferences'"
             )
-            row = cur.fetchone()
-            assert row is not None, "preferences table must exist"
+            assert cur.fetchone() is not None
         finally:
             conn.close()
 
 
 @pytest.mark.unit
-class TestConfiguration:
-    """Test suite for module configuration constants"""
-
-    def test_port_is_8002(self, bank_app):
-        """Bank panel must run on the dedicated port 8002"""
-        assert bank_app.PORT == 8002
-
-    def test_origin_points_to_bank_dvta_ch(self, bank_app):
-        """Origin URL should point to the main Bank deployment"""
-        assert bank_app.BANK_ORIGIN_URL == "https://bank.dvta.ch"
-
-    def test_required_dirs_are_strings(self, bank_app):
-        for attr in ("BASE_DIR", "DATA_DIR", "STATIC_DIR", "CONFIG_DIR"):
-            assert isinstance(getattr(bank_app, attr), str)
+@pytest.mark.asyncio
+class TestRootRedirect:
+    async def test_root_redirects_to_bank(self, aclient):
+        r = await aclient.get("/", follow_redirects=False)
+        assert r.status_code in (302, 307)
+        assert r.headers["location"] == "/bank"
 
 
 @pytest.mark.unit
 @pytest.mark.asyncio
-class TestPanelFallbackBehavior:
-    """Test suite covering the 404 path when panel.html is missing"""
+class TestApiInfo:
+    async def test_info_returns_200(self, aclient):
+        r = await aclient.get("/api/info")
+        assert r.status_code == 200
 
-    async def test_bank_returns_404_when_panel_missing(self, aclient, bank_app, tmp_path, monkeypatch):
-        """Edge case: when panel.html doesn't exist, a 404 is raised"""
-        empty_static = tmp_path / "empty_static"
-        empty_static.mkdir()
-        monkeypatch.setattr(bank_app, "STATIC_DIR", str(empty_static))
+    async def test_info_payload(self, aclient):
+        data = (await aclient.get("/api/info")).json()
+        assert data["service"] == "Bank Proxy"
+        assert data["port"] == 8002
+        assert "available_routes" in data
+        assert isinstance(data["available_routes"], list)
+        assert len(data["available_routes"]) >= 4
 
-        resp = await aclient.get("/bank")
-        assert resp.status_code == 404
-        assert "not found" in resp.json().get("detail", "").lower()
+
+@pytest.mark.unit
+@pytest.mark.asyncio
+class TestPanelFallbackEndpoint:
+    """/bank/panel-fallback always serves the static panel without proxying."""
+
+    async def test_panel_fallback_returns_200(self, aclient):
+        r = await aclient.get("/bank/panel-fallback")
+        assert r.status_code == 200
+
+    async def test_panel_fallback_has_html(self, aclient):
+        r = await aclient.get("/bank/panel-fallback")
+        body = r.text
+        assert "<html" in body.lower()
+        assert "DVDcoin" in body
+
+
+@pytest.mark.unit
+class TestHeaderFiltering:
+    """Hop-by-hop headers must not be forwarded."""
+
+    def test_filter_response_headers_strips_hop_by_hop(self, bank_app):
+        # Build fake httpx-like headers
+        h = httpx.Headers([
+            ("content-type", "text/html"),
+            ("connection", "keep-alive"),
+            ("transfer-encoding", "chunked"),
+            ("set-cookie", "x=1"),
+        ])
+        out = dict(bank_app._filter_response_headers(h))
+        assert "content-type" in out
+        assert "set-cookie" in out
+        assert "connection" not in out
+        assert "transfer-encoding" not in out
+
+    def test_filter_request_headers_strips_host(self, bank_app):
+        # Build a fake request stub
+        class StubURL:
+            scheme = "http"
+            netloc = "example.com"
+
+        class StubReq:
+            headers = {
+                "host": "evil.example.com",
+                "content-type": "application/json",
+                "authorization": "Bearer xyz",
+                "connection": "keep-alive",
+            }
+            client = type("C", (), {"host": "1.2.3.4"})()
+            url = StubURL()
+
+        out = bank_app._filter_request_headers(StubReq())
+        assert "host" not in {k.lower() for k in out}
+        assert "connection" not in {k.lower() for k in out}
+        assert "content-type" in out
+        assert "authorization" in out
+        # X-Forwarded-* must be set
+        assert out.get("X-Forwarded-For") == "1.2.3.4"
+        assert out.get("X-Forwarded-Proto") == "http"
+
+
+@pytest.mark.unit
+@pytest.mark.asyncio
+class TestReverseProxyWithMockedUpstream:
+    """Mocks the upstream client to verify proxy semantics without 8000 running."""
+
+    async def test_proxy_forwards_status_and_body(self, aclient, bank_app, monkeypatch):
+        # Arrange: replace _client with a mock whose send() returns a fake response
+        fake_upstream_response = MagicMock()
+        fake_upstream_response.status_code = 200
+        fake_upstream_response.headers = {"content-type": "text/plain"}
+
+        async def fake_aiter_raw():
+            yield b"hello from upstream"
+
+        fake_upstream_response.aiter_raw = fake_aiter_raw
+        fake_upstream_response.aclose = AsyncMock(return_value=None)
+
+        fake_client = MagicMock()
+        fake_client.build_request = MagicMock(return_value=MagicMock())
+        fake_client.send = AsyncMock(return_value=fake_upstream_response)
+        monkeypatch.setattr(bank_app, "_client", fake_client)
+
+        # Act
+        r = await aclient.get("/bank/something")
+
+        # Assert
+        assert r.status_code == 200
+        assert b"hello from upstream" in r.content
+
+    async def test_proxy_handles_connect_error_with_fallback(
+        self, aclient, bank_app, monkeypatch
+    ):
+        """Edge case: when upstream is unreachable, GET /bank serves the fallback panel."""
+        fake_client = MagicMock()
+        fake_client.build_request = MagicMock(return_value=MagicMock())
+        fake_client.send = AsyncMock(
+            side_effect=httpx.ConnectError("connection refused")
+        )
+        monkeypatch.setattr(bank_app, "_client", fake_client)
+
+        r = await aclient.get("/bank")
+        # Falls back to the static panel (200 + HTML)
+        assert r.status_code == 200
+        assert "DVDcoin" in r.text
+
+    async def test_proxy_handles_connect_error_returns_503_for_post(
+        self, aclient, bank_app, monkeypatch
+    ):
+        """Edge case: non-GET request when upstream is down returns 503 JSON."""
+        fake_client = MagicMock()
+        fake_client.build_request = MagicMock(return_value=MagicMock())
+        fake_client.send = AsyncMock(
+            side_effect=httpx.ConnectError("connection refused")
+        )
+        monkeypatch.setattr(bank_app, "_client", fake_client)
+
+        r = await aclient.post("/bank/api/login", json={"u": "x", "p": "y"})
+        assert r.status_code == 503
+        body = r.json()
+        assert body.get("error") == "upstream_unavailable"
+
+    async def test_proxy_handles_timeout_returns_504(
+        self, aclient, bank_app, monkeypatch
+    ):
+        """Edge case: timeout from upstream returns 504."""
+        fake_client = MagicMock()
+        fake_client.build_request = MagicMock(return_value=MagicMock())
+        fake_client.send = AsyncMock(
+            side_effect=httpx.TimeoutException("timed out")
+        )
+        monkeypatch.setattr(bank_app, "_client", fake_client)
+
+        r = await aclient.get("/bank/api/me")
+        assert r.status_code == 504
+        body = r.json()
+        assert body.get("error") == "upstream_timeout"
+
+
+@pytest.mark.unit
+@pytest.mark.asyncio
+class TestHealthEndpoint:
+    """Health probe must succeed even if upstream is down (just reports it)."""
+
+    async def test_health_returns_200_even_when_upstream_down(
+        self, aclient, bank_app, monkeypatch
+    ):
+        fake_client = MagicMock()
+        fake_client.get = AsyncMock(side_effect=httpx.ConnectError("nope"))
+        monkeypatch.setattr(bank_app, "_client", fake_client)
+
+        r = await aclient.get("/health")
+        assert r.status_code == 200
+        data = r.json()
+        assert data["status"] == "healthy"
+        assert data["upstream_ok"] is False
+
+    async def test_health_reports_upstream_ok_when_reachable(
+        self, aclient, bank_app, monkeypatch
+    ):
+        fake_resp = MagicMock()
+        fake_resp.status_code = 200
+
+        fake_client = MagicMock()
+        fake_client.get = AsyncMock(return_value=fake_resp)
+        monkeypatch.setattr(bank_app, "_client", fake_client)
+
+        r = await aclient.get("/health")
+        data = r.json()
+        assert data["upstream_ok"] is True
+        assert data["upstream_status"] == 200
+
+
+@pytest.mark.unit
+@pytest.mark.asyncio
+class TestPanelFallbackMissing:
+    """When STATIC_DIR has no panel.html, the fallback returns 404."""
+
+    async def test_panel_fallback_404_when_missing(
+        self, aclient, bank_app, tmp_path, monkeypatch
+    ):
+        empty = tmp_path / "empty"
+        empty.mkdir()
+        monkeypatch.setattr(bank_app, "STATIC_DIR", str(empty))
+        r = await aclient.get("/bank/panel-fallback")
+        assert r.status_code == 404

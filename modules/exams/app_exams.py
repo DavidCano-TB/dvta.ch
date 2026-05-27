@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'shared'))
 
 from fastapi import FastAPI, HTTPException, Depends, Request, Response
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel, EmailStr
@@ -448,28 +448,75 @@ async def opo_exam(user: dict = Depends(require_verified)):
     """Ejecución del examen OPO"""
     return FileResponse(os.path.join(OPO_DIR, "exam.html"))
 
-@app.get("/bank")
-async def bank_panel_proxy():
-    """Sirve el panel del Bank (servicio dedicado puerto 8002, con fallback)"""
+@app.api_route(
+    "/bank{path:path}",
+    methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
+)
+async def bank_reverse_proxy(path: str, request: Request):
+    """
+    Reverse proxy a /bank{path} hacia el servicio Bank.
+    Esto permite que dvta.ch/bank/* funcione exactamente igual que el Bank
+    en bank.dvta.ch: mismo HTML (static/index.html), mismo login, mismas APIs.
+
+    Intenta primero el servicio dedicado (puerto 8002) y, si no responde,
+    cae al Bank principal en localhost:8000. Si ninguno responde, redirige
+    a https://bank.dvta.ch para que el usuario nunca quede sin servicio.
+    """
     import httpx
-    try:
-        async with httpx.AsyncClient(timeout=3.0) as client:
-            r = await client.get("http://localhost:8002/bank")
-            if r.status_code == 200:
-                return HTMLResponse(content=r.text, status_code=200)
-    except Exception as e:
-        logger.warning(f"Bank panel service (8002) not available: {e}")
-    # Fallback: redirige al Bank principal
-    return RedirectResponse(url="https://bank.dvta.ch")
+    target = f"/bank{path}"
+    qs = request.url.query
+    if qs:
+        target = f"{target}?{qs}"
 
-@app.get("/bank/")
-async def bank_panel_proxy_slash():
-    return await bank_panel_proxy()
+    # Forward headers (drop hop-by-hop)
+    HOP = {"host", "content-length", "connection", "keep-alive",
+           "transfer-encoding", "upgrade", "te", "trailers"}
+    fwd_headers = {k: v for k, v in request.headers.items() if k.lower() not in HOP}
 
-@app.get("/bank/full")
-async def bank_full_redirect():
-    """Redirige al Bank completo en bank.dvta.ch"""
-    return RedirectResponse(url="https://bank.dvta.ch")
+    body = await request.body() if request.method not in ("GET", "HEAD") else None
+
+    last_error = None
+    for upstream in ("http://localhost:8002", "http://localhost:8000"):
+        try:
+            async with httpx.AsyncClient(base_url=upstream, timeout=30.0,
+                                         follow_redirects=False) as client:
+                r = await client.request(
+                    method=request.method,
+                    url=target,
+                    headers=fwd_headers,
+                    content=body,
+                )
+            # Filter response headers
+            resp_headers = {k: v for k, v in r.headers.items()
+                            if k.lower() not in HOP}
+            return Response(
+                content=r.content,
+                status_code=r.status_code,
+                headers=resp_headers,
+                media_type=r.headers.get("content-type"),
+            )
+        except (httpx.ConnectError, httpx.TimeoutException) as e:
+            last_error = e
+            logger.info(f"Bank proxy {upstream} not available: {e}, trying next")
+            continue
+        except Exception as e:
+            logger.exception(f"Bank reverse proxy error on {upstream}: {e}")
+            return JSONResponse(
+                {"error": "proxy_error", "detail": str(e)},
+                status_code=502,
+            )
+
+    # Both upstreams failed — fallback
+    logger.warning(f"Bank proxy: both 8002 and 8000 down ({last_error}). "
+                   f"Fallback to bank.dvta.ch")
+    if request.method == "GET":
+        return RedirectResponse(url=f"https://bank.dvta.ch{target}",
+                                status_code=302)
+    return JSONResponse(
+        {"error": "bank_proxy_unavailable",
+         "detail": "Servicio Bank no responde. Intenta en unos segundos."},
+        status_code=503,
+    )
 
 @app.get("/health")
 async def health_check():
