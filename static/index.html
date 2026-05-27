@@ -6,12 +6,12 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="build" content="20260427-v10-video">
+<meta name="build" content="20260527-v11-login-fix">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <script>
 /* Register Service Worker to force fresh HTML on every load */
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/bank/static/sw.js?v=20260427')
+  navigator.serviceWorker.register('/bank/static/sw.js?v=20260527')
     .then(reg => {
       /* Force update check immediately */
       reg.update();
@@ -2816,18 +2816,25 @@ function authTab(which, el) {
 }
 
 async function doLogin() {
+  console.log('[DEBUG] doLogin called');
   const u = (document.getElementById('lU').value || '').trim().toLowerCase();
   const p = document.getElementById('lP').value || '';
+  console.log('[DEBUG] Username:', u, 'Password length:', p.length);
   if (!u || !p) return showAlert('authAlert', t('errorUsernamePassword'));
   const done = setLoading('btnL', t('btnLogin'));
   try {
+    console.log('[DEBUG] Calling API:', '/bank/api/login');
     const d = await req('POST', '/bank/api/login', { username: u, password: p });
+    console.log('[DEBUG] Login response:', d);
     token = d.token;
     localStorage.setItem('dvd_token', token);
     await loadApp();
     // Solo solicitar permisos de notificaciones, NO audio/video
     _requestNotificationPermission();
-  } catch (e) { showAlert('authAlert', e.message); }
+  } catch (e) { 
+    console.error('[DEBUG] Login error:', e);
+    showAlert('authAlert', e.message); 
+  }
   finally { done(); }
 }
 

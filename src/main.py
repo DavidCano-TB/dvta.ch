@@ -1529,6 +1529,16 @@ localStorage.setItem('dvd_token_refreshed_at', Date.now().toString());
     html = html.replace("<script>", inject_script + "\n<script>", 1)
     return HTMLResponse(html)
 
+@app.get("/bank/test-login", response_class=HTMLResponse)
+async def test_login_page():
+    """Serve the login test page for debugging."""
+    resp = FileResponse(os.path.join(BASE_DIR, "..", "TEST_LOGIN.html"))
+    resp.headers["ngrok-skip-browser-warning"] = "1"
+    resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    resp.headers["Pragma"] = "no-cache"
+    resp.headers["Expires"] = "0"
+    return resp
+
 @app.get("/bank/api/health")
 async def health():
     """Health check endpoint."""
