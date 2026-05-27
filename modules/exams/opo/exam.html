@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen - DVDcoin Exams</title>
+    <link rel="stylesheet" href="/static/css/exams-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .question-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-main);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .question-number {
+            color: var(--blue-light);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .question-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .option {
+            background: var(--bg-main);
+            border: 2px solid var(--border-main);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .option:hover {
+            border-color: var(--blue-light);
+            background: var(--bg-secondary);
+        }
+        
+        .option.selected {
+            border-color: var(--blue-light);
+            background: var(--blue-dark);
+        }
+        
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .option.incorrect {
+            border-color: var(--error);
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .option-letter {
+            font-weight: 700;
+            color: var(--blue-light);
+            min-width: 30px;
+        }
+        
+        .timer {
+            position: fixed;
+            top: 80px;
+            right: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-main);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--blue-light);
+            z-index: 100;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: var(--border-main);
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--blue-light);
+            transition: width 0.3s;
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .explanation {
+            background: var(--bg-main);
+            border-left: 4px solid var(--blue-light);
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .explanation.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="/exams" class="logo">
+                <div class="logo-icon">📚</div>
+                <span>DVDcoin Exams</span>
+            </a>
+            <nav class="nav">
+                <span class="nav-link" id="examTitle">Examen en Curso</span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Barra de progreso -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+
+    <!-- Timer -->
+    <div class="timer" id="timer">
+        <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem;">Tiempo</div>
+        <div id="timerDisplay">60:00</div>
+    </div>
+
+    <main class="container" style="padding-top: 2rem; max-width: 900px;">
+        <!-- Pregunta actual -->
+        <div id="questionContainer"></div>
+
+        <!-- Botones de navegación -->
+        <div class="navigation-buttons">
+            <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>
+                ← Anterior
+            </button>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-secondary" id="nextBtn" onclick="nextQuestion()">
+                    Siguiente →
+                </button>
+                <button class="btn btn-primary" id="finishBtn" onclick="finishExam()" style="display: none;">
+                    Finalizar Examen
+                </button>
+            </div>
+        </div>
+
+        <!-- Mapa de preguntas -->
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-header">
+                <h3 class="card-title">Mapa de Preguntas</h3>
+            </div>
+            <div class="card-body">
+                <div id="questionMap" style="display: flex; flex-wrap: wrap; gap: 0.5rem;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de resultados -->
+    <div id="resultsModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+        <div class="card" style="max-width: 600px; margin: 2rem;">
+            <div class="card-header">
+                <h2 class="card-title">Resultados del Examen</h2>
+            </div>
+            <div class="card-body">
+                <div style="text-align: center; margin-bottom: 2rem;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;" id="resultEmoji">🎉</div>
+                    <div style="font-size: 3rem; font-weight: 700; color: var(--blue-light); margin-bottom: 0.5rem;" id="resultScore">0%</div>
+                    <div style="color: var(--text-secondary); font-size: 1.1rem;" id="resultMessage">¡Buen trabajo!</div>
+                </div>
+                
+                <div class="grid grid-3" style="margin-bottom: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--success); margin-bottom: 0.5rem;" id="resultCorrect">0</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Correctas</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--error); margin-bottom: 0.5rem;" id="resultWrong">0</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Incorrectas</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--text-tertiary); margin-bottom: 0.5rem;" id="resultTime">0:00</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Tiempo</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer" style="display: flex; gap: 1rem;">
+                <button class="btn btn-secondary" onclick="reviewExam()">Revisar Respuestas</button>
+                <button class="btn btn-primary" onclick="goToExamTypes()">Nuevo Examen</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/exam.js"></script>
+</body>
+</html>

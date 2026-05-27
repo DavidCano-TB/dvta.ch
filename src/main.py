@@ -221,7 +221,18 @@ def db_init():
             failed_attempts INTEGER NOT NULL DEFAULT 0,
             locked_until    TEXT,
             created_at      TEXT    NOT NULL DEFAULT (datetime('now')),
-            lang_pref       TEXT    NOT NULL DEFAULT 'en'
+            lang_pref       TEXT    NOT NULL DEFAULT 'en',
+            email           TEXT,
+            full_name       TEXT,
+            phone           TEXT,
+            email_verified  INTEGER NOT NULL DEFAULT 0,
+            verification_token TEXT,
+            verification_expires TEXT,
+            opo_interest    INTEGER NOT NULL DEFAULT 0,
+            opo_access      INTEGER NOT NULL DEFAULT 0,
+            payment_status  TEXT DEFAULT 'pending',
+            payment_date    TEXT,
+            payment_amount  REAL DEFAULT 0.0
         );
         CREATE TABLE IF NOT EXISTS lang_prefs (
             username   TEXT PRIMARY KEY,
@@ -230,12 +241,27 @@ def db_init():
         );
     """)
     c.commit()
-    # Add lang_pref column to existing DB if missing (migration safety)
-    try:
-        c.execute("ALTER TABLE users ADD COLUMN lang_pref TEXT NOT NULL DEFAULT 'en'")
-        c.commit()
-    except Exception:
-        pass  # column already exists
+    # Add new columns to existing DB if missing (migration safety)
+    new_columns = [
+        ("lang_pref", "TEXT NOT NULL DEFAULT 'en'"),
+        ("email", "TEXT"),
+        ("full_name", "TEXT"),
+        ("phone", "TEXT"),
+        ("email_verified", "INTEGER NOT NULL DEFAULT 0"),
+        ("verification_token", "TEXT"),
+        ("verification_expires", "TEXT"),
+        ("opo_interest", "INTEGER NOT NULL DEFAULT 0"),
+        ("opo_access", "INTEGER NOT NULL DEFAULT 0"),
+        ("payment_status", "TEXT DEFAULT 'pending'"),
+        ("payment_date", "TEXT"),
+        ("payment_amount", "REAL DEFAULT 0.0")
+    ]
+    for col_name, col_type in new_columns:
+        try:
+            c.execute(f"ALTER TABLE users ADD COLUMN {col_name} {col_type}")
+            c.commit()
+        except Exception:
+            pass  # column already exists
     c.close()
  
     # rights.db
@@ -1124,6 +1150,10 @@ class LoginRequest(BaseModel):
 class RegisterRequest(BaseModel):
     username: str
     password: str
+    email: str = ""
+    full_name: str = ""
+    phone: str = ""
+    opo_interest: bool = False
  
 class TransferRequest(BaseModel):
     to_user: str
@@ -1734,35 +1764,106 @@ async def login_alias(request: Request, body: LoginRequest):
 @limiter.limit("100/minute")  # Aumentado para tests (era 10/minute)
 async def register(request: Request, body: RegisterRequest):
     from fastapi.responses import JSONResponse
+    import secrets
     
     u = body.username.strip().lower()
+    email = body.email.strip().lower() if body.email else ""
+    
+    # Validaciones
     if not (2 <= len(u) <= 30):
         raise HTTPException(400, "Username must be 2–30 characters")
     if len(body.password) < 4:
         raise HTTPException(400, "Password must be at least 4 characters")
+    if not email:
+        raise HTTPException(400, "Email is required")
     if u in GHOST:
         raise HTTPException(400, "Reserved username")
+    
+    # Validar formato de email
+    import re
+    email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
+    if not re.match(email_regex, email):
+        raise HTTPException(400, "Invalid email format")
+    
     conn = db_users()
-    row = conn.execute("SELECT password_hash FROM users WHERE username=?", (u,)).fetchone()
+    
+    # Verificar si el usuario ya existe
+    row = conn.execute("SELECT password_hash, email FROM users WHERE username=?", (u,)).fetchone()
     if row and row["password_hash"] not in ("__UNSET__", "__AUTO__"):
         conn.close()
         raise HTTPException(409, "Username already registered")
-    pwd_hash = hash_password(body.password)
-    if row:
-        conn.execute("UPDATE users SET password_hash=? WHERE username=?", (pwd_hash, u))
-    else:
-        conn.execute("INSERT INTO users(username,password_hash) VALUES(?,?)", (u, pwd_hash))
-    conn.commit(); conn.close()
-    _open_session(u, "bank")
-    logger.info("Register: %s", u)
     
+    # Verificar si el email ya está en uso
+    email_row = conn.execute("SELECT username FROM users WHERE email=? AND email IS NOT NULL", (email,)).fetchone()
+    if email_row:
+        conn.close()
+        raise HTTPException(409, "Email already registered")
+    
+    # Generar token de verificación
+    verification_token = secrets.token_urlsafe(32)
+    verification_expires = (datetime.utcnow() + timedelta(hours=24)).isoformat()
+    
+    pwd_hash = hash_password(body.password)
+    
+    # Insertar o actualizar usuario con todos los campos
+    if row:
+        conn.execute("""
+            UPDATE users 
+            SET password_hash=?, email=?, full_name=?, phone=?, 
+                opo_interest=?, verification_token=?, verification_expires=?,
+                email_verified=0
+            WHERE username=?
+        """, (pwd_hash, email, body.full_name, body.phone, 
+              1 if body.opo_interest else 0, verification_token, verification_expires, u))
+    else:
+        conn.execute("""
+            INSERT INTO users(
+                username, password_hash, email, full_name, phone, 
+                opo_interest, verification_token, verification_expires, email_verified
+            ) VALUES(?,?,?,?,?,?,?,?,0)
+        """, (u, pwd_hash, email, body.full_name, body.phone, 
+              1 if body.opo_interest else 0, verification_token, verification_expires))
+    
+    conn.commit()
+    conn.close()
+    
+    # Enviar email de verificación
+    try:
+        from modules.shared.email_service import create_email_service
+        import os
+        
+        # Cargar configuración de email
+        config_path = os.path.join(CONF_DIR, "email_config.json")
+        email_service = create_email_service(config_path)
+        
+        # Construir link de verificación
+        base_url = str(request.base_url).rstrip('/')
+        verification_link = f"{base_url}/bank/verify-email?token={verification_token}"
+        
+        email_sent = email_service.send_verification_email(email, u, verification_link)
+        
+        if email_sent:
+            logger.info(f"Verification email sent to {email} for user {u}")
+        else:
+            logger.warning(f"Failed to send verification email to {email} for user {u} (email service may be disabled)")
+    except Exception as e:
+        logger.error(f"Error sending verification email: {e}")
+    
+    _open_session(u, "bank")
+    logger.info("Register: %s (email: %s, opo_interest: %s)", u, email, body.opo_interest)
+    
+    # Crear token JWT
     token = create_token(u)
     response = JSONResponse(content={
         "token": token,
         "username": u,
+        "email": email,
         "is_admin": False,
-        "is_superadmin": False
+        "is_superadmin": False,
+        "requires_verification": True,
+        "message": "Cuenta creada. Por favor verifica tu email para activar todas las funcionalidades."
     })
+    
     # Establecer cookie HTTP-only segura
     response.set_cookie(
         key="dvd_token",
@@ -1780,6 +1881,218 @@ async def register(request: Request, body: RegisterRequest):
 async def register_alias(request: Request, body: RegisterRequest):
     """Alias de /bank/api/register para compatibilidad con archivos HTML antiguos"""
     return await register(request, body)
+
+@app.get("/bank/verify-email")
+async def verify_email(token: str):
+    """Verifica el email del usuario usando el token enviado por email"""
+    from fastapi.responses import HTMLResponse
+    
+    if not token:
+        raise HTTPException(400, "Token is required")
+    
+    conn = db_users()
+    row = conn.execute("""
+        SELECT username, verification_expires, email_verified 
+        FROM users 
+        WHERE verification_token=?
+    """, (token,)).fetchone()
+    
+    if not row:
+        conn.close()
+        return HTMLResponse(content="""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Verificación Fallida</title>
+                <style>
+                    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+                    .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center; max-width: 500px; }
+                    .icon { font-size: 60px; margin-bottom: 20px; }
+                    h1 { color: #e74c3c; margin: 0 0 20px 0; }
+                    p { color: #666; line-height: 1.6; }
+                    .btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="icon">❌</div>
+                    <h1>Token Inválido</h1>
+                    <p>El enlace de verificación no es válido o ya ha sido utilizado.</p>
+                    <a href="/bank" class="btn">Volver al inicio</a>
+                </div>
+            </body>
+            </html>
+        """, status_code=400)
+    
+    # Verificar si ya está verificado
+    if row["email_verified"]:
+        conn.close()
+        return HTMLResponse(content="""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Ya Verificado</title>
+                <style>
+                    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+                    .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center; max-width: 500px; }
+                    .icon { font-size: 60px; margin-bottom: 20px; }
+                    h1 { color: #3498db; margin: 0 0 20px 0; }
+                    p { color: #666; line-height: 1.6; }
+                    .btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="icon">✅</div>
+                    <h1>Email Ya Verificado</h1>
+                    <p>Tu email ya ha sido verificado anteriormente. Puedes acceder a tu cuenta.</p>
+                    <a href="/bank" class="btn">Ir a la plataforma</a>
+                </div>
+            </body>
+            </html>
+        """)
+    
+    # Verificar si el token ha expirado
+    expires = datetime.fromisoformat(row["verification_expires"])
+    if datetime.utcnow() > expires:
+        conn.close()
+        return HTMLResponse(content="""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="UTF-8">
+                <title>Token Expirado</title>
+                <style>
+                    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+                    .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center; max-width: 500px; }
+                    .icon { font-size: 60px; margin-bottom: 20px; }
+                    h1 { color: #e67e22; margin: 0 0 20px 0; }
+                    p { color: #666; line-height: 1.6; }
+                    .btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="icon">⏰</div>
+                    <h1>Token Expirado</h1>
+                    <p>El enlace de verificación ha expirado. Por favor, solicita un nuevo enlace desde tu perfil.</p>
+                    <a href="/bank" class="btn">Volver al inicio</a>
+                </div>
+            </body>
+            </html>
+        """, status_code=400)
+    
+    # Marcar email como verificado
+    conn.execute("""
+        UPDATE users 
+        SET email_verified=1, verification_token=NULL, verification_expires=NULL 
+        WHERE username=?
+    """, (row["username"],))
+    conn.commit()
+    conn.close()
+    
+    logger.info(f"Email verified for user: {row['username']}")
+    
+    return HTMLResponse(content="""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Email Verificado</title>
+            <style>
+                body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+                .container { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center; max-width: 500px; }
+                .icon { font-size: 60px; margin-bottom: 20px; }
+                h1 { color: #27ae60; margin: 0 0 20px 0; }
+                p { color: #666; line-height: 1.6; }
+                .btn { display: inline-block; margin-top: 20px; padding: 12px 30px; background: #27ae60; color: white; text-decoration: none; border-radius: 5px; }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="icon">🎉</div>
+                <h1>¡Email Verificado!</h1>
+                <p>Tu email ha sido verificado exitosamente. Ya puedes acceder a todas las funcionalidades de la plataforma.</p>
+                <a href="/bank" class="btn">Ir a la plataforma</a>
+            </div>
+        </body>
+        </html>
+    """)
+
+@app.get("/api/verify-email")
+async def verify_email_alias(token: str):
+    """Alias de /bank/verify-email para compatibilidad"""
+    return await verify_email(token)
+
+class PaymentRequest(BaseModel):
+    username: str
+    amount: float
+    payment_method: str = "card"
+    opo_access: bool = False
+
+@app.post("/bank/api/payment")
+@limiter.limit("50/minute")
+async def process_payment(request: Request, body: PaymentRequest, user: str = Depends(get_current_user)):
+    """Procesa un pago para activar funcionalidades premium o acceso OPO"""
+    from fastapi.responses import JSONResponse
+    
+    # Verificar que el usuario autenticado coincide con el del pago
+    if user != body.username:
+        raise HTTPException(403, "Unauthorized payment")
+    
+    # Validar monto
+    if body.amount <= 0:
+        raise HTTPException(400, "Invalid payment amount")
+    
+    conn = db_users()
+    row = conn.execute("SELECT email_verified, payment_status FROM users WHERE username=?", (user,)).fetchone()
+    
+    if not row:
+        conn.close()
+        raise HTTPException(404, "User not found")
+    
+    # Verificar que el email esté verificado
+    if not row["email_verified"]:
+        conn.close()
+        raise HTTPException(400, "Email must be verified before making payments")
+    
+    # NOTA: Aquí se integraría con un procesador de pagos real (Stripe, PayPal, etc.)
+    # Por ahora, simulamos un pago exitoso para desarrollo
+    
+    payment_success = True  # En producción, esto vendría del procesador de pagos
+    
+    if payment_success:
+        # Actualizar estado de pago
+        conn.execute("""
+            UPDATE users 
+            SET payment_status='completed', 
+                payment_date=?, 
+                payment_amount=?,
+                opo_access=?
+            WHERE username=?
+        """, (datetime.utcnow().isoformat(), body.amount, 1 if body.opo_access else 0, user))
+        conn.commit()
+        conn.close()
+        
+        logger.info(f"Payment processed for user {user}: ${body.amount} (OPO access: {body.opo_access})")
+        
+        return JSONResponse(content={
+            "success": True,
+            "message": "Pago procesado exitosamente",
+            "payment_status": "completed",
+            "opo_access": body.opo_access
+        })
+    else:
+        conn.close()
+        raise HTTPException(400, "Payment processing failed")
+
+@app.post("/api/payment")
+@limiter.limit("50/minute")
+async def process_payment_alias(request: Request, body: PaymentRequest, user: str = Depends(get_current_user)):
+    """Alias de /bank/api/payment para compatibilidad"""
+    return await process_payment(request, body, user)
  
 @app.get("/bank/api/me")
 async def me(user: str = Depends(get_current_user)):
@@ -1809,6 +2122,13 @@ async def me(user: str = Depends(get_current_user)):
             lang = row["lang_pref"] or "en"
     except Exception:
         pass
+    
+    # Get OPO fields
+    email_verified = bool(row.get("email_verified", 0)) if "email_verified" in row.keys() else False
+    opo_interest = bool(row.get("opo_interest", 0)) if "opo_interest" in row.keys() else False
+    opo_access = bool(row.get("opo_access", 0)) if "opo_access" in row.keys() else False
+    payment_status = row.get("payment_status", "pending") if "payment_status" in row.keys() else "pending"
+    
     return {
         "username":      row["username"],
         "balance":       0.0 if user in ADMINS else row["balance"],
@@ -1817,6 +2137,10 @@ async def me(user: str = Depends(get_current_user)):
         "is_superadmin": user in SUPERADMINS,
         "is_blocked":    bool(row["is_blocked"]),
         "lang":          lang,
+        "email_verified": email_verified,
+        "opo_interest":  opo_interest,
+        "opo_access":    opo_access,
+        "payment_status": payment_status,
     }
 
 # Alias para compatibilidad con archivos HTML antiguos

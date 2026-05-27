@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Examen - DVDcoin Exams</title>
+    <link rel="stylesheet" href="/static/css/exams-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="/exams" class="logo">
+                <div class="logo-icon">📚</div>
+                <span>DVDcoin Exams</span>
+            </a>
+            <nav class="nav">
+                <a href="/exams" class="nav-link">Inicio</a>
+                <a href="/opo" class="nav-link">Oposiciones</a>
+                <a href="#" class="nav-link active" id="categoryName">Imagen Diagnóstico</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumb -->
+        <div style="margin-bottom: 2rem; color: var(--text-tertiary);">
+            <a href="/opo" style="color: var(--blue-light); text-decoration: none;">← Volver a Oposiciones</a>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;" id="pageTitle">
+                Técnico Superior en Imagen para el Diagnóstico
+            </h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">
+                Elige el tipo de examen que deseas realizar
+            </p>
+        </div>
+
+        <!-- Tipos de examen -->
+        <div class="grid grid-2">
+            <!-- Examen Completo -->
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2.5rem;">📝</div>
+                        <div>
+                            <h3 class="card-title">Examen Completo</h3>
+                            <span class="badge badge-primary">Recomendado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Examen completo con preguntas de todos los temas. Simula un examen real de oposición.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📊 50 preguntas</div>
+                        <div>⏱️ 60 minutos</div>
+                        <div>🎯 Todos los temas</div>
+                        <div>✅ Puntuación mínima: 50%</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-block" onclick="startExam('completo')">
+                        Comenzar Examen Completo
+                    </button>
+                </div>
+            </div>
+
+            <!-- Examen Rápido -->
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2.5rem;">⚡</div>
+                        <div>
+                            <h3 class="card-title">Examen Rápido</h3>
+                            <span class="badge badge-success">Popular</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Examen corto para practicar rápidamente. Ideal para repasos diarios.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📊 20 preguntas</div>
+                        <div>⏱️ 20 minutos</div>
+                        <div>🎯 Temas aleatorios</div>
+                        <div>✅ Puntuación mínima: 50%</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-block" onclick="startExam('rapido')">
+                        Comenzar Examen Rápido
+                    </button>
+                </div>
+            </div>
+
+            <!-- Examen por Temas -->
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2.5rem;">📚</div>
+                        <div>
+                            <h3 class="card-title">Examen por Temas</h3>
+                            <span class="badge badge-info">Personalizado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Elige los temas específicos que quieres practicar. Perfecto para reforzar áreas débiles.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📊 Número de preguntas variable</div>
+                        <div>⏱️ Tiempo flexible</div>
+                        <div>🎯 Temas seleccionables</div>
+                        <div>✅ Sin puntuación mínima</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-block" onclick="showThemeSelector()">
+                        Seleccionar Temas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modo Entrenamiento -->
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="font-size: 2.5rem;">🎯</div>
+                        <div>
+                            <h3 class="card-title">Modo Entrenamiento</h3>
+                            <span class="badge badge-warning">Sin límite</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Practica sin límite de tiempo. Verás las respuestas correctas inmediatamente.
+                    </p>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📊 Preguntas ilimitadas</div>
+                        <div>⏱️ Sin límite de tiempo</div>
+                        <div>🎯 Feedback inmediato</div>
+                        <div>✅ Modo aprendizaje</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary btn-block" onclick="startExam('entrenamiento')">
+                        Comenzar Entrenamiento
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas personales -->
+        <div id="personalStats" style="display: none; margin-top: 3rem;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Tus Estadísticas en esta Oposición</h2>
+            <div class="grid grid-4">
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--blue-light); margin-bottom: 0.5rem;" id="statExams">0</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Exámenes</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--success); margin-bottom: 0.5rem;" id="statAvg">0%</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Media</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--blue-light); margin-bottom: 0.5rem;" id="statBest">0%</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Mejor</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; color: var(--text-tertiary); margin-bottom: 0.5rem;" id="statTime">0h</div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Tiempo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: var(--bg-secondary); padding: 2rem; text-align: center; margin-top: 4rem; border-top: 1px solid var(--border-main);">
+        <p style="color: var(--text-tertiary);">© 2026 DVDcoin Exams. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="/static/js/exam-types.js"></script>
+</body>
+</html>
