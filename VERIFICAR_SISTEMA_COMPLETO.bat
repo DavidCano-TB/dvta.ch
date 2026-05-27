@@ -1,234 +1,124 @@
 @echo off
 chcp 65001 >nul
-title Verificación Sistema Completo
-color 0E
+title Verificación Completa del Sistema DVDcoin
+color 0B
 
 echo.
-echo ═══════════════════════════════════════════════════════════════════════════
-echo   🔍 VERIFICACIÓN SISTEMA COMPLETO
-echo ═══════════════════════════════════════════════════════════════════════════
+echo ═══════════════════════════════════════════════════════════════
+echo    🔍 VERIFICACIÓN COMPLETA DEL SISTEMA DVDCOIN
+echo ═══════════════════════════════════════════════════════════════
 echo.
 
-cd /d "%~dp0"
+echo [1/5] Verificando servidores locales...
+echo.
 
-set ERRORS=0
+echo 📊 Bank (Puerto 8000):
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8000/bank
+if %errorlevel% neq 0 (
+    echo    ❌ ERROR - Servidor no responde
+) else (
+    echo    ✅ OK
+)
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [1/10] Verificando Python...
-python --version >nul 2>&1
+echo.
+echo 📚 Exams (Puerto 8001):
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8001/exams
+if %errorlevel% neq 0 (
+    echo    ❌ ERROR - Servidor no responde
+) else (
+    echo    ✅ OK
+)
+
+echo.
+echo [2/5] Verificando Cloudflare Tunnel...
+echo.
+tasklist /FI "IMAGENAME eq cloudflared.exe" 2>nul | find /I "cloudflared.exe" >nul
 if %errorlevel% equ 0 (
-    for /f "tokens=2" %%i in ('python --version 2^>^&1') do echo       ✅ Python %%i instalado
+    echo    ✅ Cloudflare Tunnel está corriendo
 ) else (
-    echo       ❌ Python NO encontrado
-    set /a ERRORS+=1
+    echo    ❌ Cloudflare Tunnel NO está corriendo
+    echo    💡 Ejecuta: cloudflared tunnel run dvta
 )
+
+echo.
+echo [3/5] Verificando URLs públicas...
 echo.
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [2/10] Verificando estructura de carpetas...
-set FOLDERS_OK=0
-if exist "modules\shared" (
-    echo       ✅ modules\shared
-    set /a FOLDERS_OK+=1
+echo 🌐 https://dvta.ch/bank
+curl -s -o nul -w "   Status: %%{http_code}\n" https://dvta.ch/bank
+if %errorlevel% neq 0 (
+    echo    ⚠️  No se pudo verificar (puede ser problema de red)
 )
-if exist "modules\exams" (
-    echo       ✅ modules\exams
-    set /a FOLDERS_OK+=1
+
+echo.
+echo 🌐 https://dvta.ch/exams
+curl -s -o nul -w "   Status: %%{http_code}\n" https://dvta.ch/exams  
+if %errorlevel% neq 0 (
+    echo    ⚠️  No se pudo verificar (puede ser problema de red)
 )
-if exist "modules\bank" (
-    echo       ✅ modules\bank
-    set /a FOLDERS_OK+=1
-)
-if exist "data" (
-    echo       ✅ data
-    set /a FOLDERS_OK+=1
-)
-if exist "config" (
-    echo       ✅ config
-    set /a FOLDERS_OK+=1
-)
-if %FOLDERS_OK% lss 5 (
-    echo       ⚠️  Algunas carpetas faltan
-    set /a ERRORS+=1
-)
+
+echo.
+echo [4/5] Verificando endpoints de API...
 echo.
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [3/10] Verificando archivos críticos...
-set FILES_OK=0
-if exist "main.py" (
-    echo       ✅ main.py (Bank)
-    set /a FILES_OK+=1
-) else (
-    echo       ❌ main.py NO encontrado
-    set /a ERRORS+=1
-)
-if exist "modules\exams\app_exams.py" (
-    echo       ✅ app_exams.py (Exams)
-    set /a FILES_OK+=1
-) else (
-    echo       ⚠️  app_exams.py no encontrado (módulo nuevo)
-)
-if exist "modules\shared\db_helper.py" (
-    echo       ✅ db_helper.py (Shared)
-    set /a FILES_OK+=1
-)
-if exist "requirements.txt" (
-    echo       ✅ requirements.txt
-    set /a FILES_OK+=1
-)
+echo 🔌 /bank/api/gallery
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8000/bank/api/gallery
+
+echo.
+echo 🔌 /bank/api/health
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8000/bank/api/health
+
+echo.
+echo 🔌 /exams/api/health
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8001/exams/api/health
+
+echo.
+echo [5/5] Verificando funcionalidades integradas...
 echo.
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [4/10] Verificando dependencias Python...
-python -c "import fastapi" >nul 2>&1
-if %errorlevel% equ 0 (
-    echo       ✅ FastAPI instalado
+echo 🎮 Games (integrado en Bank):
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8000/bank/pasapalabra
+if %errorlevel% neq 0 (
+    echo    ❌ ERROR
 ) else (
-    echo       ❌ FastAPI NO instalado
-    set /a ERRORS+=1
+    echo    ✅ OK
 )
-python -c "import uvicorn" >nul 2>&1
-if %errorlevel% equ 0 (
-    echo       ✅ Uvicorn instalado
-) else (
-    echo       ❌ Uvicorn NO instalado
-    set /a ERRORS+=1
-)
-python -c "import bcrypt" >nul 2>&1
-if %errorlevel% equ 0 (
-    echo       ✅ bcrypt instalado
-) else (
-    echo       ⚠️  bcrypt no instalado
-)
-echo.
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [5/10] Verificando sintaxis Python...
-python -m py_compile main.py >nul 2>&1
-if %errorlevel% equ 0 (
-    echo       ✅ main.py sintaxis OK
-) else (
-    echo       ❌ main.py tiene errores de sintaxis
-    set /a ERRORS+=1
-)
-if exist "modules\exams\app_exams.py" (
-    python -m py_compile modules\exams\app_exams.py >nul 2>&1
-    if %errorlevel% equ 0 (
-        echo       ✅ app_exams.py sintaxis OK
-    ) else (
-        echo       ❌ app_exams.py tiene errores
-        set /a ERRORS+=1
-    )
-)
 echo.
+echo 💬 Social (integrado en Bank):
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8000/bank/messages
+if %errorlevel% neq 0 (
+    echo    ❌ ERROR
+) else (
+    echo    ✅ OK
+)
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [6/10] Verificando bases de datos...
-if exist "data\users.db" (
-    echo       ✅ users.db existe
-) else (
-    echo       ⚠️  users.db se creará al iniciar
-)
-if exist "data\transactions.db" (
-    echo       ✅ transactions.db existe
-) else (
-    echo       ⚠️  transactions.db se creará al iniciar
-)
 echo.
+echo 🎲 Apuestas (integrado en Bank):
+curl -s -o nul -w "   Status: %%{http_code}\n" http://localhost:8000/bank/apuestas
+if %errorlevel% neq 0 (
+    echo    ❌ ERROR
+) else (
+    echo    ✅ OK
+)
 
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [7/10] Verificando configuración Cloudflare...
-if exist "cloudflared.exe" (
-    echo       ✅ cloudflared.exe instalado
-) else (
-    echo       ⚠️  cloudflared.exe no encontrado
-)
-if exist "cloudflare-dvta-config.yml" (
-    echo       ✅ cloudflare-dvta-config.yml
-) else (
-    echo       ⚠️  cloudflare-dvta-config.yml no encontrado
-)
-if exist "config\tunnels\cloudflare-multi.yml" (
-    echo       ✅ cloudflare-multi.yml (nuevo)
-) else (
-    echo       ⚠️  cloudflare-multi.yml no encontrado
-)
 echo.
-
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [8/10] Verificando scripts de arranque...
-if exist "ARRANCAR.bat" (
-    echo       ✅ ARRANCAR.bat (Bank)
-) else (
-    echo       ❌ ARRANCAR.bat NO encontrado
-    set /a ERRORS+=1
-)
-if exist "ARRANCAR_TODO.bat" (
-    echo       ✅ ARRANCAR_TODO.bat (Todos los módulos)
-) else (
-    echo       ⚠️  ARRANCAR_TODO.bat no encontrado
-)
-if exist "INICIAR_TUNNEL_DVTA.bat" (
-    echo       ✅ INICIAR_TUNNEL_DVTA.bat
-) else (
-    echo       ⚠️  INICIAR_TUNNEL_DVTA.bat no encontrado
-)
+echo ═══════════════════════════════════════════════════════════════
+echo    ✅ VERIFICACIÓN COMPLETADA
+echo ═══════════════════════════════════════════════════════════════
 echo.
-
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [9/10] Verificando GitHub Actions...
-if exist ".github\workflows\deploy.yml" (
-    echo       ✅ deploy.yml configurado
-) else (
-    echo       ❌ deploy.yml NO encontrado
-    set /a ERRORS+=1
-)
+echo 📝 Resumen:
+echo    • Bank: Servidor principal en puerto 8000
+echo    • Exams: Servidor independiente en puerto 8000
+echo    • Games: Integrado en Bank (pasapalabra, millonario, etc.)
+echo    • Social: Integrado en Bank (mensajes, videollamadas)
+echo    • Apuestas: Integrado en Bank
 echo.
-
-REM ═══════════════════════════════════════════════════════════════════════════
-echo [10/10] Verificando servidores en ejecución...
-tasklist | findstr "python.exe" >nul 2>&1
-if %errorlevel% equ 0 (
-    for /f %%i in ('tasklist ^| findstr "python.exe" ^| find /c /v ""') do (
-        echo       ✅ %%i proceso(s) Python en ejecución
-    )
-) else (
-    echo       ⚠️  Ningún servidor Python en ejecución
-)
-tasklist | findstr "cloudflared.exe" >nul 2>&1
-if %errorlevel% equ 0 (
-    echo       ✅ Cloudflare Tunnel en ejecución
-) else (
-    echo       ⚠️  Cloudflare Tunnel no está en ejecución
-)
-echo.
-
-REM ═══════════════════════════════════════════════════════════════════════════
-echo ═══════════════════════════════════════════════════════════════════════════
-echo   📊 RESUMEN
-echo ═══════════════════════════════════════════════════════════════════════════
-echo.
-
-if %ERRORS% equ 0 (
-    echo   ✅ SISTEMA OK - Sin errores críticos
-    echo.
-    echo   🚀 LISTO PARA:
-    echo      • Arrancar servidores: ARRANCAR_TODO.bat
-    echo      • Iniciar tunnel: INICIAR_TUNNEL_DVTA.bat
-    echo      • Push a GitHub: git push
-) else (
-    echo   ❌ ERRORES ENCONTRADOS: %ERRORS%
-    echo.
-    echo   🔧 ACCIONES REQUERIDAS:
-    if %ERRORS% gtr 0 (
-        echo      • Instalar dependencias: pip install -r requirements.txt
-        echo      • Verificar archivos críticos
-        echo      • Revisar errores arriba
-    )
-)
-echo.
-echo ═══════════════════════════════════════════════════════════════════════════
+echo 🌐 URLs públicas:
+echo    • https://dvta.ch/bank - Dashboard principal
+echo    • https://dvta.ch/exams - Oposiciones
+echo    • https://bank.dvta.ch - Alias del dashboard
+echo    • https://exams.dvta.ch - Alias de oposiciones
 echo.
 
 pause
