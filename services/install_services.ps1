@@ -42,6 +42,14 @@ $services = @(
         Port = 8001
     },
     @{
+        Name = "DVDcoin-BankPanel"
+        DisplayName = "DVDcoin Bank Panel Server"
+        Description = "Panel de acceso modular del Bank DVDcoin (Puerto 8002)"
+        WorkingDir = "$baseDir\modules\bank"
+        Script = "app_bank.py"
+        Port = 8002
+    },
+    @{
         Name = "DVDcoin-Tunnel"
         DisplayName = "DVDcoin Cloudflare Tunnel"
         Description = "Túnel Cloudflare para acceso externo a dvta.ch"

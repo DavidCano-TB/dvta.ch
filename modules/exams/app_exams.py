@@ -449,13 +449,26 @@ async def opo_exam(user: dict = Depends(require_verified)):
     return FileResponse(os.path.join(OPO_DIR, "exam.html"))
 
 @app.get("/bank")
-async def bank_redirect():
-    """Redirige al sistema Bank"""
+async def bank_panel_proxy():
+    """Sirve el panel del Bank (servicio dedicado puerto 8002, con fallback)"""
+    import httpx
+    try:
+        async with httpx.AsyncClient(timeout=3.0) as client:
+            r = await client.get("http://localhost:8002/bank")
+            if r.status_code == 200:
+                return HTMLResponse(content=r.text, status_code=200)
+    except Exception as e:
+        logger.warning(f"Bank panel service (8002) not available: {e}")
+    # Fallback: redirige al Bank principal
     return RedirectResponse(url="https://bank.dvta.ch")
 
 @app.get("/bank/")
-async def bank_redirect_slash():
-    """Redirige al sistema Bank (con slash)"""
+async def bank_panel_proxy_slash():
+    return await bank_panel_proxy()
+
+@app.get("/bank/full")
+async def bank_full_redirect():
+    """Redirige al Bank completo en bank.dvta.ch"""
     return RedirectResponse(url="https://bank.dvta.ch")
 
 @app.get("/health")
