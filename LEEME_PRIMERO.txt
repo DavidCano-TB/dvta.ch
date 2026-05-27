@@ -79,6 +79,8 @@
     • ACTIVAR_DVTA_CH_AHORA.bat      → Iniciar todo (PRINCIPAL)
     • STATUS_DVTA.bat                → Ver estado
     • MONITOR_SISTEMA.bat            → Monitor en tiempo real
+    • DASHBOARD_SISTEMA.bat          → Dashboard visual (NUEVO)
+    • VERIFICAR_ESTADO_AHORA.bat     → Verificación completa (NUEVO)
     • ARREGLAR_DVTA_AHORA.bat        → Solución rápida
 
   AUTO-ARRANQUE (NUEVO):
@@ -103,6 +105,8 @@
     • GUIA_AUTOARRANQUE.md           → Guía de auto-arranque (NUEVO)
 
   DOCUMENTACIÓN COMPLETA:
+    • ESTADO_ACTUAL_SISTEMA.md       → Estado actual detallado (NUEVO)
+    • ERROR_502_RESUELTO.md          → Resolución último problema (NUEVO)
     • RESUMEN_EJECUTIVO_FINAL.md     → Resumen ejecutivo
     • SISTEMA_COMPLETO_FUNCIONANDO.md → Estado actual
     • README_DVTA_CH.md              → Guía completa de dvta.ch
