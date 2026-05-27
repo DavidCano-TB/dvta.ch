@@ -438,6 +438,16 @@ async def opo_exam(user: dict = Depends(require_verified)):
     """Ejecución del examen OPO"""
     return FileResponse(os.path.join(OPO_DIR, "exam.html"))
 
+@app.get("/bank")
+async def bank_redirect():
+    """Redirige al sistema Bank"""
+    return RedirectResponse(url="https://bank.dvta.ch")
+
+@app.get("/bank/")
+async def bank_redirect_slash():
+    """Redirige al sistema Bank (con slash)"""
+    return RedirectResponse(url="https://bank.dvta.ch")
+
 @app.get("/health")
 async def health_check():
     """Health check endpoint"""
