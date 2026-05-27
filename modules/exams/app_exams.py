@@ -458,6 +458,139 @@ async def health_check():
         "port": 8001
     }
 
+# =============================================================================
+# RUTAS - API OPO
+# =============================================================================
+
+@app.get("/api/opo/questions/{category}")
+async def get_opo_questions(
+    category: str,
+    count: int = 50,
+    user: dict = Depends(require_verified)
+):
+    """Obtiene preguntas para un examen OPO"""
+    import random
+    
+    # Buscar preguntas de la categoría
+    questions = db_opo.fetchall(
+        "SELECT * FROM opo_questions WHERE category_id IN (SELECT id FROM opo_categories WHERE slug=?) ORDER BY RANDOM() LIMIT ?",
+        (category, count)
+    )
+    
+    # Si no hay preguntas en BD, generar preguntas de ejemplo
+    if not questions:
+        logger.warning(f"No questions found for category {category}, generating samples")
+        questions = []
+        for i in range(count):
+            questions.append({
+                "id": i + 1,
+                "question": f"Pregunta de ejemplo {i + 1} sobre {category}. ¿Cuál es la respuesta correcta?",
+                "option_a": "Opción A - Primera respuesta posible",
+                "option_b": "Opción B - Segunda respuesta posible",
+                "option_c": "Opción C - Tercera respuesta posible",
+                "option_d": "Opción D - Cuarta respuesta posible",
+                "correct_answer": random.choice(['a', 'b', 'c', 'd']),
+                "explanation": "Esta es una explicación de ejemplo de por qué esta respuesta es correcta."
+            })
+    
+    # Formatear respuesta
+    formatted_questions = []
+    for q in questions:
+        formatted_questions.append({
+            "id": q.get("id"),
+            "question": q.get("question"),
+            "options": {
+                "a": q.get("option_a"),
+                "b": q.get("option_b"),
+                "c": q.get("option_c"),
+                "d": q.get("option_d")
+            },
+            "correct": q.get("correct_answer"),
+            "explanation": q.get("explanation", "")
+        })
+    
+    return formatted_questions
+
+@app.get("/api/opo/stats/{category}")
+async def get_opo_stats(
+    category: str,
+    user: dict = Depends(require_verified)
+):
+    """Obtiene estadísticas del usuario para una categoría"""
+    user_id = user["id"]
+    
+    # Obtener ID de categoría
+    cat = db_opo.fetchone("SELECT id FROM opo_categories WHERE slug=?", (category,))
+    if not cat:
+        return {
+            "total_exams": 0,
+            "avg_score": 0,
+            "best_score": 0,
+            "total_time": 0
+        }
+    
+    category_id = cat["id"]
+    
+    # Obtener estadísticas
+    stats = db_opo.fetchone("""
+        SELECT 
+            COUNT(*) as total_exams,
+            AVG(score) as avg_score,
+            MAX(score) as best_score,
+            SUM(duration_seconds) as total_time
+        FROM opo_results
+        WHERE user_id=? AND category_id=?
+    """, (user_id, category_id))
+    
+    return {
+        "total_exams": stats["total_exams"] or 0,
+        "avg_score": round(stats["avg_score"] or 0),
+        "best_score": stats["best_score"] or 0,
+        "total_time": stats["total_time"] or 0
+    }
+
+class OpoResultRequest(BaseModel):
+    category: str
+    exam_type: str
+    score: int
+    correct: int
+    wrong: int
+    duration: int
+
+@app.post("/api/opo/results")
+async def save_opo_result(
+    data: OpoResultRequest,
+    user: dict = Depends(require_verified)
+):
+    """Guarda el resultado de un examen OPO"""
+    user_id = user["id"]
+    
+    # Obtener o crear categoría
+    cat = db_opo.fetchone("SELECT id FROM opo_categories WHERE slug=?", (data.category,))
+    if not cat:
+        # Crear categoría si no existe
+        category_id = db_opo.insert("opo_categories", {
+            "name": data.category.replace('-', ' ').title(),
+            "slug": data.category
+        })
+    else:
+        category_id = cat["id"]
+    
+    # Guardar resultado
+    result_id = db_opo.insert("opo_results", {
+        "user_id": user_id,
+        "category_id": category_id,
+        "exam_type": data.exam_type,
+        "score": data.score,
+        "correct": data.correct,
+        "wrong": data.wrong,
+        "duration_seconds": data.duration
+    })
+    
+    logger.info(f"OPO result saved: user={user['username']}, category={data.category}, score={data.score}")
+    
+    return {"success": True, "result_id": result_id}
+
 # Montar archivos estáticos ANTES de las rutas catch-all
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 app.mount("/opo/static", StaticFiles(directory=OPO_DIR), name="opo_static")
