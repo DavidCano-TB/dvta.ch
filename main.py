@@ -1171,6 +1171,17 @@ async def redirect_root():
     """Redirect root to /bank"""
     return RedirectResponse(url="/bank", status_code=307)
 
+@app.get("/opo", response_class=HTMLResponse)
+async def opo_standalone():
+    """OPO standalone - sin login requerido"""
+    html_path = os.path.join(BASE_DIR, "static", "opo", "standalone.html")
+    try:
+        with open(html_path, "r", encoding="utf-8") as f:
+            return HTMLResponse(f.read())
+    except Exception as e:
+        logger.error("Error loading OPO standalone: %s", e)
+        return HTMLResponse("Error loading OPO", status_code=500)
+
 @app.get("/bank", response_class=HTMLResponse)
 async def root():
     """Serve the frontend with rooms polling script injected."""
