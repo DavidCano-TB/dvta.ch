@@ -1,13 +1,13 @@
 @echo off
 REM ============================================================================
-REM GESTOR DE SERVICIOS WINDOWS - DVDcoin Platform
+REM ESTADO DE SERVICIOS WINDOWS - DVDcoin Platform
 REM ============================================================================
-REM Menu interactivo para gestionar servicios Windows de DVDcoin
+REM Muestra el estado actual de todos los servicios DVDcoin
 REM ============================================================================
 
 echo.
 echo ============================================================================
-echo   GESTOR DE SERVICIOS WINDOWS - DVDcoin Platform
+echo   ESTADO DE SERVICIOS WINDOWS - DVDcoin Platform
 echo ============================================================================
 echo.
 
@@ -19,7 +19,16 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Ejecutar gestor de servicios
-powershell -ExecutionPolicy Bypass -File "%~dp0services\manage_services.ps1"
+REM Mostrar estado de servicios
+powershell -ExecutionPolicy Bypass -Command "Get-Service -Name 'DVDcoin-*' -ErrorAction SilentlyContinue | Format-Table Name, DisplayName, Status, StartType -AutoSize"
 
+if %errorlevel% neq 0 (
+    echo.
+    echo No se encontraron servicios DVDcoin instalados
+    echo.
+    echo Para instalar los servicios, ejecuta: INSTALAR_SERVICIOS.bat
+    echo.
+)
+
+echo.
 pause

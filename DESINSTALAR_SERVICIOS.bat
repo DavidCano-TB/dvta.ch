@@ -1,21 +1,34 @@
 @echo off
-chcp 65001 >nul
-title Desinstalar Servicios Windows - DVDcoin
-color 0C
+REM ============================================================================
+REM DESINSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform
+REM ============================================================================
+REM Este script elimina todos los servicios Windows de DVDcoin
+REM ============================================================================
 
 echo.
-echo ═══════════════════════════════════════════════════════════════════════════
-echo   🗑️  DESINSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform
-echo ═══════════════════════════════════════════════════════════════════════════
+echo ============================================================================
+echo   DESINSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform
+echo ============================================================================
 echo.
-echo Este script eliminará todos los servicios Windows de DVDcoin
+echo Este script eliminara todos los servicios Windows de DVDcoin
 echo.
-echo ⚠️  IMPORTANTE: Se requieren privilegios de administrador
+echo IMPORTANTE: Este script requiere privilegios de administrador
 echo.
 pause
 
-cd /d "%~dp0"
+REM Verificar si PowerShell esta disponible
+where powershell >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ERROR: PowerShell no esta disponible
+    pause
+    exit /b 1
+)
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0services\uninstall_services.ps1"
+REM Ejecutar script de desinstalacion
+echo.
+echo Ejecutando desinstalador...
+echo.
+powershell -ExecutionPolicy Bypass -File "%~dp0services\uninstall_services.ps1"
 
+echo.
 pause

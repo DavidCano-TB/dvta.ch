@@ -1,54 +1,60 @@
 @echo off
-chcp 65001 >nul
-title Instalar Servicios Windows - DVDcoin
-color 0B
+REM ============================================================================
+REM INSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform
+REM ============================================================================
+REM Este script instala servicios Windows para Bank, Exams y Cloudflare Tunnel
+REM Los servicios se inician automaticamente con Windows
+REM ============================================================================
 
 echo.
-echo ═══════════════════════════════════════════════════════════════════════════
-echo   📦 INSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform
-echo ═══════════════════════════════════════════════════════════════════════════
+echo ============================================================================
+echo   INSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform
+echo ============================================================================
 echo.
-echo Este script instalará servicios Windows para:
-echo   • DVDcoin Bank (Puerto 8000)
-echo   • DVDcoin Exams (Puerto 8001)
-echo   • Cloudflare Tunnel (dvta.ch)
+echo Este script instalara servicios Windows para:
+echo   - DVDcoin Bank (Puerto 8000)
+echo   - DVDcoin Exams (Puerto 8001)
+echo   - Cloudflare Tunnel (dvta.ch)
 echo.
-echo Los servicios se iniciarán automáticamente con Windows
+echo Los servicios se iniciaran automaticamente con Windows y se reiniciaran
+echo automaticamente si fallan.
 echo.
-echo ⚠️  IMPORTANTE: Se requieren privilegios de administrador
+echo IMPORTANTE: Este script requiere privilegios de administrador
 echo.
 pause
 
-cd /d "%~dp0"
+REM Verificar si PowerShell esta disponible
+where powershell >nul 2>&1
+if %errorlevel% neq 0 (
+    echo ERROR: PowerShell no esta disponible
+    pause
+    exit /b 1
+)
 
+REM Ejecutar script de instalacion de servicios
 echo.
-echo Ejecutando instalador...
+echo Ejecutando instalador de servicios...
 echo.
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0services\install_services.ps1"
+powershell -ExecutionPolicy Bypass -File "%~dp0services\install_services.ps1"
 
 if %errorlevel% equ 0 (
     echo.
-    echo ═══════════════════════════════════════════════════════════════════════════
-    echo   ✅ INSTALACIÓN COMPLETADA
-    echo ═══════════════════════════════════════════════════════════════════════════
+    echo ============================================================================
+    echo   INSTALACION COMPLETADA
+    echo ============================================================================
     echo.
-    echo Los servicios están instalados y corriendo
+    echo Los servicios han sido instalados y se iniciaran automaticamente con Windows
     echo.
-    echo Para gestionar los servicios:
-    echo   • Ejecuta: GESTIONAR_SERVICIOS.bat
-    echo   • O usa: services.msc (Administrador de servicios de Windows)
+    echo Para gestionar los servicios, ejecuta: GESTIONAR_SERVICIOS.bat
     echo.
 ) else (
     echo.
-    echo ═══════════════════════════════════════════════════════════════════════════
-    echo   ❌ ERROR EN LA INSTALACIÓN
-    echo ═══════════════════════════════════════════════════════════════════════════
+    echo ============================================================================
+    echo   ERROR EN LA INSTALACION
+    echo ============================================================================
     echo.
-    echo Verifica que:
-    echo   1. Ejecutaste como Administrador
-    echo   2. Python está instalado
-    echo   3. No hay otros servicios usando los puertos 8000 y 8001
+    echo Verifica que ejecutaste este script como administrador
+    echo Haz clic derecho y selecciona "Ejecutar como administrador"
     echo.
 )
 
