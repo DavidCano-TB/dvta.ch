@@ -2,8 +2,16 @@ tunnel: b75039b1-7b54-4da0-b2ab-0a338bfccdc5
 credentials-file: C:\Users\PC\.cloudflared\b75039b1-7b54-4da0-b2ab-0a338bfccdc5.json
 
 ingress:
+  # DVDExams en puerto 8001 (nuevo módulo)
   - hostname: dvta.ch
-    service: http://127.0.0.1:8000
+    service: http://localhost:8001
   - hostname: www.dvta.ch
-    service: http://127.0.0.1:8000
+    service: http://localhost:8001
+  
+  # Rutas específicas para bank (temporal, hasta separar dominios)
+  - hostname: dvta.ch
+    path: /bank/*
+    service: http://localhost:8000
+  
+  # Catch-all
   - service: http_status:404

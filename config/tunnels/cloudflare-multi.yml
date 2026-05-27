@@ -1,0 +1,25 @@
+# Cloudflare Tunnel - Configuración Multi-Módulo
+# Enruta múltiples dominios a diferentes puertos
+
+tunnel: b75039b1-7b54-4da0-b2ab-0a338bfccdc5
+credentials-file: C:\Users\PC\.cloudflared\b75039b1-7b54-4da0-b2ab-0a338bfccdc5.json
+
+ingress:
+  # DVDBank (puerto 8000)
+  - hostname: dvdbank.com
+    service: http://127.0.0.1:8000
+  - hostname: www.dvdbank.com
+    service: http://127.0.0.1:8000
+  
+  # DVDExams (puerto 8001)
+  - hostname: dvta.ch
+    service: http://127.0.0.1:8001
+  - hostname: www.dvta.ch
+    service: http://127.0.0.1:8001
+  
+  # Games (puerto 8002) - Futuro
+  - hostname: games.dvdbank.com
+    service: http://127.0.0.1:8002
+  
+  # Catch-all (404)
+  - service: http_status:404

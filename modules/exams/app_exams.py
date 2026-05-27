@@ -22,7 +22,29 @@ from pydantic import BaseModel, EmailStr
 from db_helper import DatabaseHelper, create_database
 from jwt_helper import JWTHelper, load_or_create_secret
 from email_service import EmailService, create_email_service
-from utils import generate_token, hash_password, verify_password, validate_email
+try:
+    from utils import generate_token, hash_password, verify_password, validate_email
+except ImportError:
+    # Fallback si no se puede importar
+    import secrets
+    import re
+    import bcrypt as _bcrypt
+    
+    def generate_token(length=32):
+        return secrets.token_urlsafe(length)
+    
+    def hash_password(password):
+        return _bcrypt.hashpw(password.encode(), _bcrypt.gensalt()).decode()
+    
+    def verify_password(password, hashed):
+        try:
+            return _bcrypt.checkpw(password.encode(), hashed.encode())
+        except:
+            return False
+    
+    def validate_email(email):
+        pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        return re.match(pattern, email) is not None
 
 # =============================================================================
 # CONFIGURACIÓN
@@ -416,4 +438,17 @@ app.mount("/opo/static", StaticFiles(directory=OPO_DIR), name="opo_static")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001, log_level="info")
+    
+    logger.info("=" * 80)
+    logger.info("DVDcoin Exams starting...")
+    logger.info(f"Port: 8001")
+    logger.info(f"Access: http://localhost:8001")
+    logger.info(f"External: https://dvta.ch")
+    logger.info("=" * 80)
+    
+    try:
+        uvicorn.run(app, host="0.0.0.0", port=8001, log_level="info")
+    except Exception as e:
+        logger.error(f"Failed to start server: {e}")
+        import sys
+        sys.exit(1)

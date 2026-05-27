@@ -1,60 +1,89 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Entornos virtuales
+*.py[cod]
+*$py.class
+*.so
+.Python
 venv/
-dvdcoin_bank_windows/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
 
-# Bases de datos (no subir al repo — datos privados)
+# Databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
 data/*.db
-data/*.db-wal
-data/*.db-shm
-data/*.db.migrated
-
-# Backups de bases de datos
+modules/*/data/*.db
 backup/
-!backup/.gitignore
 backup_30min/
 
-# Secretos y configuración sensible
-conf/.jwt_secret
-conf/.ngrok_token
-conf/jwt_secret.txt
-conf/master.txt
-config/.ngrok_token
-config/ngrok_config.txt
+# Logs
+*.log
+logs/
+*.log.*
+
+# Secrets y configuración sensible
+config/.jwt_secret
 config/jwt_secret.txt
 config/master.txt
+config/.ngrok_token
+config/.openai_key
+config/.groq_key
+config/.gemini_key
+config/.google_key
+conf/.jwt_secret
+conf/jwt_secret.txt
+conf/master.txt
+modules/*/config/jwt_secret*.txt
+modules/*/config/email.json
+*.pem
+*.key
+*.crt
 
-# Logs
-logs/*.log
-logs/*.txt
-logs/current_url.txt
-!logs/.gitkeep
-no_sleep.log
-
-# Audio subido por usuarios
-static/audio/messages/*.webm
-static/audio/messages/*.mp4
-static/audio/messages/*.ogg
-
-# Cuentos subidos por usuarios (contenido privado)
-static/cuentos/*.docx
-static/cuentos/*.odt
-static/cuentos/*.txt
-static/cuentos/.meta.json
-
-# OS
-.DS_Store
-Thumbs.db
+# Cloudflare
+.cloudflared/
+*.json
+!package.json
+!tsconfig.json
+!modules/exams/config/admins.json
+!modules/exams/config/email.json.example
 
 # IDE
 .vscode/
-.vs/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
 
-# Backups con repositorios Git embebidos
-BACKUP_ANTES_LIMPIEZA_*/old/dvdcoin*
-old/dvdcoin*
+# Windows
+Thumbs.db
+desktop.ini
+*.lnk
+
+# Backups
+BACKUP_*/
+backup_*/
+*.backup
+*.bak
+*_backup_*
+
+# Temporal
+temp/
+tmp/
+*.tmp
+passwords_*.txt
+extraer_password_*.py
+
+# Node
+node_modules/
+package-lock.json
+
+# Otros
+old/
+test_funcionalidades/
+BACKUP_NGROK_*/

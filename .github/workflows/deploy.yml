@@ -1,4 +1,4 @@
-name: Deploy DVDcoin
+name: Deploy DVDcoin Platform
 
 on:
   push:
@@ -19,10 +19,18 @@ jobs:
         python-version: '3.11'
         cache: 'pip'
         
-    - name: Install dependencies
+    - name: Install main dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+      shell: pwsh
+    
+    - name: Install exams module dependencies
+      run: |
+        if (Test-Path "modules/exams/requirements.txt") {
+          Write-Host "Installing exams module dependencies..."
+          pip install -r modules/exams/requirements.txt
+        }
       shell: pwsh
         
     - name: Verify installation
@@ -53,7 +61,15 @@ jobs:
       run: |
         Write-Host "✓ Checking Python syntax..."
         python -m py_compile main.py
-        Write-Host "Syntax check passed"
+        if (Test-Path "modules/exams/app_exams.py") {
+          python -m py_compile modules/exams/app_exams.py
+          Write-Host "Exams module syntax OK"
+        }
+        if (Test-Path "modules/shared/db_helper.py") {
+          python -m py_compile modules/shared/db_helper.py
+          Write-Host "Shared modules syntax OK"
+        }
+        Write-Host "All syntax checks passed"
       shell: pwsh
       
     - name: Run tests (if exist)
@@ -70,9 +86,14 @@ jobs:
     - name: Build summary
       run: |
         Write-Host "`n========================================="
-        Write-Host "✓ DVDcoin Bank - Build Successful"
+        Write-Host "✓ DVDcoin Platform - Build Successful"
         Write-Host "========================================="
-        Write-Host "Commit: $env:GITHUB_SHA"
+        Write-Host "Modules:"
+        Write-Host "  • Bank (main.py) - port 8000"
+        if (Test-Path "modules/exams/app_exams.py") {
+          Write-Host "  • Exams (modules/exams) - port 8001"
+        }
+        Write-Host "`nCommit: $env:GITHUB_SHA"
         Write-Host "Branch: $env:GITHUB_REF_NAME"
         Write-Host "Triggered by: $env:GITHUB_ACTOR"
         Write-Host "========================================="
@@ -82,11 +103,14 @@ jobs:
       if: success()
       run: |
         Write-Host "`n🚀 Deployment ready!"
-        Write-Host "The application has been validated and is ready to run."
-        Write-Host "`nTo start the server locally:"
-        Write-Host "  python main.py"
-        Write-Host "`nOr use the batch file:"
-        Write-Host "  INICIAR_DVDBANK.bat"
+        Write-Host "The platform has been validated and is ready to run."
+        Write-Host "`nTo start all modules:"
+        Write-Host "  ARRANCAR_TODO.bat"
+        Write-Host "`nOr start individually:"
+        Write-Host "  • Bank:  python main.py"
+        Write-Host "  • Exams: cd modules/exams && python app_exams.py"
+        Write-Host "`nTo start Cloudflare Tunnel:"
+        Write-Host "  INICIAR_TUNNEL_MULTI.bat"
       shell: pwsh
       
     - name: Send deployment email
@@ -97,15 +121,19 @@ jobs:
         server_port: 587
         username: ${{ secrets.SMTP_USERNAME }}
         password: ${{ secrets.SMTP_PASSWORD }}
-        subject: "✅ DVDBank Deploy Exitoso - ${{ github.ref_name }}"
+        subject: "✅ DVDcoin Platform Deploy Exitoso - ${{ github.ref_name }}"
         to: davidcano.ch@gmail.com
-        from: DVDBank Deploy <info@dvta.ch>
+        from: DVDcoin Platform <info@dvta.ch>
         body: |
           ═══════════════════════════════════════════════════════════════
-          ✅ DEPLOY EXITOSO - DVDBank
+          ✅ DEPLOY EXITOSO - DVDcoin Platform
           ═══════════════════════════════════════════════════════════════
           
           El deploy se ha completado correctamente.
+          
+          📦 MÓDULOS DESPLEGADOS:
+          • Bank (dvdbank.com) - puerto 8000
+          • Exams (dvta.ch) - puerto 8001
           
           📋 DETALLES:
           
@@ -126,8 +154,9 @@ jobs:
           El sistema está listo para ser reiniciado en el servidor.
           
           Para aplicar los cambios:
-          1. Haz pull en el servidor
-          2. Reinicia el servicio: INICIAR_DVDBANK_DVTA.bat
+          1. Haz pull en el servidor: git pull
+          2. Reinicia todos los módulos: ARRANCAR_TODO.bat
+          3. Inicia el tunnel: INICIAR_TUNNEL_MULTI.bat
           
           ═══════════════════════════════════════════════════════════════
         content_type: text/plain
@@ -140,12 +169,12 @@ jobs:
         server_port: 587
         username: ${{ secrets.SMTP_USERNAME }}
         password: ${{ secrets.SMTP_PASSWORD }}
-        subject: "❌ DVDBank Deploy Fallido - ${{ github.ref_name }}"
+        subject: "❌ DVDcoin Platform Deploy Fallido - ${{ github.ref_name }}"
         to: davidcano.ch@gmail.com
-        from: DVDBank Deploy <info@dvta.ch>
+        from: DVDcoin Platform <info@dvta.ch>
         body: |
           ═══════════════════════════════════════════════════════════════
-          ❌ DEPLOY FALLIDO - DVDBank
+          ❌ DEPLOY FALLIDO - DVDcoin Platform
           ═══════════════════════════════════════════════════════════════
           
           El deploy ha fallado. Revisa los logs para más detalles.
