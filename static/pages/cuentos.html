@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#04040A">
 <title>Admin — Cuentos</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/admin/_base.css">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/admin/_base.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 .fileList{display:flex;flex-direction:column;gap:6px;max-height:320px;overflow-y:auto;margin-top:10px}
 .fileRow{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);
@@ -44,7 +44,7 @@
     <div class="btnRow">
       <button class="btn btnG btnSm" id="btnOn"  onclick="toggle(true)"  style="display:none">👁 Mostrar a miembros</button>
       <button class="btn btnR btnSm" id="btnOff" onclick="toggle(false)" style="display:none">🚫 Ocultar</button>
-      <a class="btn btnS btnSm" href="/cuentos" target="_blank">↗ Ver como miembro</a>
+      <a class="btn btnS btnSm" href="/bank/cuentos" target="_blank">↗ Ver como miembro</a>
     </div>
     <div class="alert" id="alert1"></div>
   </div>
@@ -140,7 +140,7 @@ function renderFiles(files) {
   }
   el.innerHTML = files.map(f => `
     <div class="fileRow" id="fr-${esc(f.filename)}">
-      <a class="fileTitle" title="Leer: ${esc(f.filename)}" href="/cuento/${encodeURIComponent(f.filename)}"
+      <a class="fileTitle" title="Leer: ${esc(f.filename)}" href="/bank/cuento/${encodeURIComponent(f.filename)}"
         style="color:var(--text);text-decoration:none;cursor:pointer" onmouseover="this.style.color='var(--gold2)'" onmouseout="this.style.color='var(--text)'"
       >📖 ${esc(f.title || f.filename)}</a>
       ${f.date ? `<div class="fileDate">${esc(f.date)}</div>` : ''}
@@ -189,7 +189,7 @@ async function uploadFile(file) {
   try {
     const form = new FormData();
     form.append('file', file);
-    const r = await fetch('/api/cuentos/upload', {
+    const r = await fetch(\'/bank/api/cuentos/upload\', {
       method: 'POST',
       headers: {'Authorization': 'Bearer '+token, 'ngrok-skip-browser-warning':'1'},
       body: form
@@ -215,7 +215,7 @@ load();
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

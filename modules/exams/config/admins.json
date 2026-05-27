@@ -1,0 +1,6 @@
+{
+  "admins": ["dvd", "tata"],
+  "superadmins": ["dvd"],
+  "_comment": "Lista de usuarios con acceso de administrador",
+  "_note": "Los admins tienen acceso gratis a todo el contenido premium"
+}

@@ -10,48 +10,48 @@
   const NAV_CONFIG = {
     // Pestañas visibles para todos los usuarios autenticados
     common: [
-      { id: 'home', icon: '🏦', label: 'Inicio', href: '/', hash: '' },
-      { id: 'transfer', icon: '💸', label: 'Transferir', href: '/', hash: '#transfer' },
-      { id: 'history', icon: '📜', label: 'Historial', href: '/', hash: '#history' },
-      { id: 'gallery', icon: '🖼️', label: 'Galería', href: '/', hash: '#gallery' }
+      { id: 'home', icon: '🏦', label: 'Inicio', href: '/bank', hash: '' },
+      { id: 'transfer', icon: '💸', label: 'Transferir', href: '/bank', hash: '#transfer' },
+      { id: 'history', icon: '📜', label: 'Historial', href: '/bank', hash: '#history' },
+      { id: 'gallery', icon: '🖼️', label: 'Galería', href: '/bank', hash: '#gallery' }
     ],
     
     // Pestañas para miembros (no admins)
     member: [
-      { id: 'cuentos', icon: '📖', label: 'Cuentos', href: '/cuentos.html', dynamic: true, checkEndpoint: '/api/cuentos/status' },
-      { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: '/api/messages/status' },
-      { id: 'video', icon: '🎥', label: 'Video', href: '/video.html', dynamic: true, checkEndpoint: '/api/rooms/status' },
-      { id: 'pasapalabra', icon: '🎯', label: 'Pasapalabra', href: '/pasapalabra/game.html', dynamic: true, checkEndpoint: '/api/pasapalabra/status' },
-      { id: 'millonario', icon: '💰', label: 'Millonario', href: '/millonario/game.html', dynamic: true, checkEndpoint: '/api/millonario/status' },
-      { id: 'quiensoy', icon: '🎭', label: '¿Quién soy?', href: '/quiensoy/game.html', dynamic: true, checkEndpoint: '/api/quiensoy/status' },
-      { id: 'cifrasletras', icon: '🔤', label: 'Cifras y Letras', href: '/cifrasletras/game.html', dynamic: true, checkEndpoint: '/api/cifrasletras/status' },
-      { id: 'hundirlaflota', icon: '⚓', label: 'Hundir la Flota', href: '/hundirlaflota/game.html', dynamic: true, checkEndpoint: '/api/hundirlaflota/status' },
-      { id: 'apuestas', icon: '🎲', label: 'Apuestas', href: '/apuestas' },
-      { id: 'votaciones', icon: '🗳️', label: 'Votaciones', href: '/votaciones' }
+      { id: 'cuentos', icon: '📖', label: 'Cuentos', href: \'/bank/cuentos.html\', dynamic: true, checkEndpoint: \'/bank/api/cuentos/status\' },
+      { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: \'/bank/api/messages/status\' },
+      { id: 'video', icon: '🎥', label: 'Video', href: \'/bank/video.html\', dynamic: true, checkEndpoint: \'/bank/api/rooms/status\' },
+      { id: 'pasapalabra', icon: '🎯', label: 'Pasapalabra', href: \'/bank/pasapalabra/game.html\', dynamic: true, checkEndpoint: \'/bank/api/pasapalabra/status\' },
+      { id: 'millonario', icon: '💰', label: 'Millonario', href: \'/bank/millonario/game.html\', dynamic: true, checkEndpoint: \'/bank/api/millonario/status\' },
+      { id: 'quiensoy', icon: '🎭', label: '¿Quién soy?', href: \'/bank/quiensoy/game.html\', dynamic: true, checkEndpoint: \'/bank/api/quiensoy/status\' },
+      { id: 'cifrasletras', icon: '🔤', label: 'Cifras y Letras', href: \'/bank/cifrasletras/game.html\', dynamic: true, checkEndpoint: \'/bank/api/cifrasletras/status\' },
+      { id: 'hundirlaflota', icon: '⚓', label: 'Hundir la Flota', href: \'/bank/hundirlaflota/game.html\', dynamic: true, checkEndpoint: \'/bank/api/hundirlaflota/status\' },
+      { id: 'apuestas', icon: '🎲', label: 'Apuestas', href: \'/bank/apuestas\' },
+      { id: 'votaciones', icon: '🗳️', label: 'Votaciones', href: \'/bank/votaciones\' }
     ],
     
     // Pestañas para admins (no superadmins)
     admin: [
-      { id: 'cuentos-admin', icon: '📖', label: 'Cuentos', href: '/cuentos.html' },
-      { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: '/mensajes.html' },
-      { id: 'video-admin', icon: '🎥', label: 'Video', href: '/video.html' },
-      { id: 'pasapalabra-admin', icon: '🎯', label: 'Pasapalabra', href: '/pasapalabra.html' },
-      { id: 'millonario-admin', icon: '💰', label: 'Millonario', href: '/millonario.html' },
-      { id: 'quiensoy-admin', icon: '🎭', label: '¿Quién soy?', href: '/quiensoy.html' },
-      { id: 'cifrasletras-admin', icon: '🔤', label: 'Cifras y Letras', href: '/cifrasletras.html' },
-      { id: 'apuestas-admin', icon: '🎲', label: 'Apuestas', href: '/apuestas' },
-      { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: '/votaciones' },
-      { id: 'admin', icon: '⚙️', label: 'Admin', href: '/', hash: '#admin' }
+      { id: 'cuentos-admin', icon: '📖', label: 'Cuentos', href: \'/bank/cuentos.html\' },
+      { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: \'/bank/mensajes.html\' },
+      { id: 'video-admin', icon: '🎥', label: 'Video', href: \'/bank/video.html\' },
+      { id: 'pasapalabra-admin', icon: '🎯', label: 'Pasapalabra', href: \'/bank/pasapalabra.html\' },
+      { id: 'millonario-admin', icon: '💰', label: 'Millonario', href: \'/bank/millonario.html\' },
+      { id: 'quiensoy-admin', icon: '🎭', label: '¿Quién soy?', href: \'/bank/quiensoy.html\' },
+      { id: 'cifrasletras-admin', icon: '🔤', label: 'Cifras y Letras', href: \'/bank/cifrasletras.html\' },
+      { id: 'apuestas-admin', icon: '🎲', label: 'Apuestas', href: \'/bank/apuestas\' },
+      { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: \'/bank/votaciones\' },
+      { id: 'admin', icon: '⚙️', label: 'Admin', href: '/bank', hash: '#admin' }
     ],
     
     // Pestañas adicionales para superadmin
     superadmin: [
-      { id: 'stats', icon: '📊', label: 'Stats', href: '/stats' }
+      { id: 'stats', icon: '📊', label: 'Stats', href: \'/bank/stats\' }
     ],
     
     // Pestañas exclusivas para dvd
     dvd: [
-      { id: 'opo', icon: '🎓', label: 'OPO', href: '/opo', hash: '' }
+      { id: 'opo', icon: '🎓', label: 'OPO', href: \'/bank/opo\', hash: '' }
     ]
   };
 
@@ -71,7 +71,7 @@
     }
 
     try {
-      currentUser = await fetchAPI('/api/me');
+      currentUser = await fetchAPI('/bank/api/me');
       
       // Verificar estados dinámicos (juegos, features)
       await checkDynamicStates();

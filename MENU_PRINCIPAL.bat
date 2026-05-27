@@ -1,220 +1,189 @@
 @echo off
+setlocal enabledelayedexpansion
 chcp 65001 >nul
-title DVDBank - Menú Principal
-color 0B
+cd /d "%~dp0"
 
 :MENU
 cls
 echo.
 echo ═══════════════════════════════════════════════════════════════════════════
-echo   🏦 DVDBANK - MENÚ PRINCIPAL
-echo   Sistema: dvta.ch con Cloudflare Tunnel
+echo  🏦 DVDBANK - MENÚ PRINCIPAL
 echo ═══════════════════════════════════════════════════════════════════════════
 echo.
-echo   [1] Iniciar Sistema
-echo   [2] Detener Sistema
-echo   [3] Ver Estado del Sistema (Tiempo Real)
-echo   [4] Diagnóstico Completo
+echo  SERVIDOR Y SISTEMA:
+echo  ───────────────────────────────────────────────────────────────────────────
+echo   1. Iniciar servidor y túnel
+echo   2. Ver estado del sistema
+echo   3. Configurar inicio automático con Windows
 echo.
-echo   [5] Configurar Inicio Automático
-echo   [6] Desinstalar Inicio Automático
-echo   [7] Instalación Completa Automática
+echo  DEPLOY Y ACTUALIZACIONES:
+echo  ───────────────────────────────────────────────────────────────────────────
+echo   4. Configurar deploy con email (GitHub Secrets)
+echo   5. Verificar configuración de deploy
+echo   6. Actualizar servidor ahora (git pull + reinicio)
+echo   7. Iniciar monitor de actualizaciones
 echo.
-echo   [8] Configurar Cloudflare Tunnel (cuando DNS esté activo)
-echo   [9] Configurar Email en Cloudflare (cuando DNS esté activo)
-echo   [10] Actualizar Cloudflared
+echo  CLOUDFLARE Y TÚNEL:
+echo  ───────────────────────────────────────────────────────────────────────────
+echo   8. Activar túnel permanente dvta.ch
+echo   9. Abrir dashboard de Cloudflare
 echo.
-echo   [11] Backup del Sistema
-echo   [12] Limpiar Archivos Ngrok
-echo   [13] Configurar Arranque desde C:
+echo  DOCUMENTACIÓN:
+echo  ───────────────────────────────────────────────────────────────────────────
+echo   10. Ver resumen completo del sistema
+echo   11. Ver instrucciones de deploy con email
+echo   12. Ver instrucciones de túnel dvta.ch
 echo.
-echo   [14] Ver Documentación
-echo   [15] Abrir Servidor Local en Navegador
+echo  ACCESOS RÁPIDOS:
+echo  ───────────────────────────────────────────────────────────────────────────
+echo   13. Abrir GitHub
+echo   14. Abrir historial de Git
 echo.
-echo   [0] Salir
+echo   0. Salir
 echo.
 echo ═══════════════════════════════════════════════════════════════════════════
 echo.
+set /p OPCION="Selecciona una opción (0-14): "
 
-set /p OPCION="Selecciona una opción: "
-
-if "%OPCION%"=="1" goto INICIAR
-if "%OPCION%"=="2" goto DETENER
-if "%OPCION%"=="3" goto ESTADO
-if "%OPCION%"=="4" goto DIAGNOSTICO
-if "%OPCION%"=="5" goto INSTALAR_AUTO
-if "%OPCION%"=="6" goto DESINSTALAR_AUTO
-if "%OPCION%"=="7" goto INSTALACION_COMPLETA
-if "%OPCION%"=="8" goto CONFIG_TUNNEL
-if "%OPCION%"=="9" goto CONFIG_EMAIL
-if "%OPCION%"=="10" goto ACTUALIZAR
-if "%OPCION%"=="11" goto BACKUP
-if "%OPCION%"=="12" goto LIMPIAR_NGROK
-if "%OPCION%"=="13" goto CONFIG_ARRANQUE
-if "%OPCION%"=="14" goto DOCUMENTACION
-if "%OPCION%"=="15" goto ABRIR_NAVEGADOR
+if "%OPCION%"=="1" goto INICIAR_SERVIDOR
+if "%OPCION%"=="2" goto VER_ESTADO
+if "%OPCION%"=="3" goto CONFIGURAR_INICIO
+if "%OPCION%"=="4" goto CONFIGURAR_SECRETS
+if "%OPCION%"=="5" goto VERIFICAR_DEPLOY
+if "%OPCION%"=="6" goto ACTUALIZAR_AHORA
+if "%OPCION%"=="7" goto MONITOR_UPDATES
+if "%OPCION%"=="8" goto ACTIVAR_TUNEL
+if "%OPCION%"=="9" goto ABRIR_CLOUDFLARE
+if "%OPCION%"=="10" goto VER_RESUMEN
+if "%OPCION%"=="11" goto VER_INSTRUCCIONES_DEPLOY
+if "%OPCION%"=="12" goto VER_INSTRUCCIONES_TUNEL
+if "%OPCION%"=="13" goto ABRIR_GITHUB
+if "%OPCION%"=="14" goto ABRIR_GIT_GRAFICO
 if "%OPCION%"=="0" goto SALIR
 
 echo.
-echo ❌ Opción no válida
-timeout /t 2 /nobreak >nul
+echo Opción no válida. Presiona cualquier tecla para continuar...
+pause >nul
 goto MENU
 
-:INICIAR
+:INICIAR_SERVIDOR
 cls
-call INICIAR_SISTEMA_DVTA.bat
+echo.
+echo Iniciando servidor y túnel...
+echo.
+call INICIAR_DVDBANK_DVTA.bat
 pause
 goto MENU
 
-:DETENER
+:VER_ESTADO
 cls
-call DETENER_SISTEMA.bat
-goto MENU
-
-:ESTADO
-cls
+echo.
 call VER_ESTADO_SISTEMA.bat
-goto MENU
-
-:DIAGNOSTICO
-cls
-call DIAGNOSTICO_COMPLETO.bat
-goto MENU
-
-:INSTALAR_AUTO
-cls
-echo.
-echo ⚠️  Este script requiere permisos de administrador.
-echo.
-echo Por favor, ejecuta como administrador:
-echo    INSTALAR_INICIO_AUTOMATICO.bat
-echo.
 pause
 goto MENU
 
-:DESINSTALAR_AUTO
+:CONFIGURAR_INICIO
 cls
 echo.
-echo ⚠️  Este script requiere permisos de administrador.
-echo.
-echo Por favor, ejecuta como administrador:
-echo    DESINSTALAR_INICIO_AUTOMATICO.bat
-echo.
+call CONFIGURAR_INICIO_AUTOMATICO_COMPLETO.bat
 pause
 goto MENU
 
-:INSTALACION_COMPLETA
+:CONFIGURAR_SECRETS
 cls
 echo.
-echo ⚠️  Este script requiere permisos de administrador.
-echo.
-echo Por favor, ejecuta como administrador:
-echo    INSTALACION_COMPLETA_AUTOMATICA.bat
-echo.
+call CONFIGURAR_SECRETS_GITHUB.bat
 pause
 goto MENU
 
-:CONFIG_TUNNEL
-cls
-call CONFIGURAR_TUNNEL_DVTA.bat
-goto MENU
-
-:CONFIG_EMAIL
-cls
-call CONFIGURAR_EMAIL_CLOUDFLARE.bat
-goto MENU
-
-:ACTUALIZAR
-cls
-call ACTUALIZAR_CLOUDFLARED.bat
-goto MENU
-
-:BACKUP
-cls
-call BACKUP_SISTEMA.bat
-goto MENU
-
-:LIMPIAR_NGROK
-cls
-call LIMPIAR_ARCHIVOS_NGROK.bat
-goto MENU
-
-:CONFIG_ARRANQUE
+:VERIFICAR_DEPLOY
 cls
 echo.
-echo ⚠️  Este script requiere permisos de administrador.
+call VERIFICAR_DEPLOY_EMAIL.bat
+goto MENU
+
+:ACTUALIZAR_AHORA
+cls
 echo.
-echo Por favor, ejecuta como administrador:
-echo    CONFIGURAR_ARRANQUE_DISCO_C.bat
-echo.
+call AUTO_UPDATE.bat
 pause
 goto MENU
 
-:DOCUMENTACION
+:MONITOR_UPDATES
 cls
 echo.
-echo ═══════════════════════════════════════════════════════════════════════════
-echo   📚 DOCUMENTACIÓN DISPONIBLE
-echo ═══════════════════════════════════════════════════════════════════════════
+echo Iniciando monitor de actualizaciones...
+echo (Presiona Ctrl+C para detener)
 echo.
-echo   [1] RESUMEN_MIGRACION.txt
-echo       → Resumen ejecutivo de la migración
-echo.
-echo   [2] MIGRACION_COMPLETADA.txt
-echo       → Guía completa de la migración
-echo.
-echo   [3] PASOS_CONFIGURACION_CLOUDFLARE_DVTA_CH.txt
-echo       → Pasos detallados para configurar Cloudflare
-echo.
-echo   [4] REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt
-echo       → Backup de registros DNS de Infomaniak
-echo.
-echo   [0] Volver al menú
-echo.
-echo ═══════════════════════════════════════════════════════════════════════════
-echo.
-set /p DOC="Selecciona un documento (0-4): "
+timeout /t 3 /nobreak >nul
+call WATCH_UPDATES.bat
+pause
+goto MENU
 
-if "%DOC%"=="1" (
-    cls
-    type RESUMEN_MIGRACION.txt
-    echo.
-    pause
-    goto DOCUMENTACION
-)
-if "%DOC%"=="2" (
-    cls
-    type MIGRACION_COMPLETADA.txt
-    echo.
-    pause
-    goto DOCUMENTACION
-)
-if "%DOC%"=="3" (
-    cls
-    type PASOS_CONFIGURACION_CLOUDFLARE_DVTA_CH.txt
-    echo.
-    pause
-    goto DOCUMENTACION
-)
-if "%DOC%"=="4" (
-    cls
-    type REGISTROS_DNS_INFOMANIAK_DVTA_CH.txt
-    echo.
-    pause
-    goto DOCUMENTACION
-)
-if "%DOC%"=="0" goto MENU
-
+:ACTIVAR_TUNEL
+cls
 echo.
-echo ❌ Opción no válida
+call ACTIVAR_DVTA_CH_AHORA.bat
+pause
+goto MENU
+
+:ABRIR_CLOUDFLARE
+cls
+echo.
+echo Abriendo dashboard de Cloudflare...
+call ABRIR_CLOUDFLARE_DASHBOARD.bat
 timeout /t 2 /nobreak >nul
-goto DOCUMENTACION
+goto MENU
 
-:ABRIR_NAVEGADOR
-start http://localhost:8000
+:VER_RESUMEN
+cls
 echo.
-echo ✅ Navegador abierto en: http://localhost:8000
+if exist "RESUMEN_SISTEMA_COMPLETO.txt" (
+    type RESUMEN_SISTEMA_COMPLETO.txt
+) else (
+    echo Archivo no encontrado: RESUMEN_SISTEMA_COMPLETO.txt
+)
 echo.
+pause
+goto MENU
+
+:VER_INSTRUCCIONES_DEPLOY
+cls
+echo.
+if exist "PASOS_CONFIGURAR_EMAIL_DEPLOY.txt" (
+    type PASOS_CONFIGURAR_EMAIL_DEPLOY.txt
+) else (
+    echo Archivo no encontrado: PASOS_CONFIGURAR_EMAIL_DEPLOY.txt
+)
+echo.
+pause
+goto MENU
+
+:VER_INSTRUCCIONES_TUNEL
+cls
+echo.
+if exist "EJECUTA_ESTO_PARA_DVTA_CH.txt" (
+    type EJECUTA_ESTO_PARA_DVTA_CH.txt
+) else (
+    echo Archivo no encontrado: EJECUTA_ESTO_PARA_DVTA_CH.txt
+)
+echo.
+pause
+goto MENU
+
+:ABRIR_GITHUB
+cls
+echo.
+echo Abriendo GitHub...
+call ABRIR_GITHUB.bat
+timeout /t 2 /nobreak >nul
+goto MENU
+
+:ABRIR_GIT_GRAFICO
+cls
+echo.
+echo Abriendo historial de Git...
+call ABRIR_GIT_GRAFICO.bat
 timeout /t 2 /nobreak >nul
 goto MENU
 
@@ -222,11 +191,8 @@ goto MENU
 cls
 echo.
 echo ═══════════════════════════════════════════════════════════════════════════
-echo   👋 Hasta luego
+echo  👋 ¡Hasta luego!
 echo ═══════════════════════════════════════════════════════════════════════════
-echo.
-echo Para volver a abrir este menú:
-echo    MENU_PRINCIPAL.bat
 echo.
 timeout /t 2 /nobreak >nul
 exit /b 0

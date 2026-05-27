@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 /* ============================================================
    DVDcoin Bank v5.1
@@ -636,7 +636,7 @@ select option { background:var(--n4); color:var(--text); }
 <!-- Auth header bar — same logo as app header, hidden once logged in -->
 <div id="authHdr">
   <div class="logo">
-    <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+    <img class="logoBill" src="/bank/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
       onerror="this.style.display='none'">
     <div class="logoTextWrap">
       <div class="logoTitle">DVDcoin</div>
@@ -714,7 +714,7 @@ select option { background:var(--n4); color:var(--text); }
   <!-- Header -->
   <div id="hdr">
     <div class="logo">
-      <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+      <img class="logoBill" src="/bank/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
         onerror="this.style.display='none'">
       <div class="logoTextWrap">
         <div class="logoTitle">DVDcoin</div>
@@ -1060,7 +1060,7 @@ let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
   try {
-    const r = await fetch('/api/gallery');
+    const r = await fetch(\'/bank/api/gallery\');
     if (!r.ok) throw new Error();
     gcImages = await r.json();
   } catch (e) {
@@ -1690,7 +1690,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

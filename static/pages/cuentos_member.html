@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#04040A">
 <title>📖 Cuentos — DVDcoin</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 :root{
   --gold:#D4A843;--gold2:#F0C866;--gold3:#B8922E;
@@ -79,7 +79,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 
 <!-- ── NAV BAR ── -->
 <nav id="cuentosNav">
-  <a class="cNavLogo" href="/">◈ DVDcoin</a>
+  <a class="cNavLogo" href="/bank/">◈ DVDcoin</a>
   <button class="cNavBtn" onclick="goTo('dash')">⌂ Inicio</button>
   <button class="cNavBtn" onclick="goTo('tx')">⇄ Enviar</button>
   <button class="cNavBtn" id="cNavHist" onclick="goTo('hist')">≡ Historial</button>
@@ -87,7 +87,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
   <button class="cNavBtn on" onclick="void 0">📖 Cuentos</button>
   <button class="cNavBtn" onclick="goTo('social')">💬 Social</button>
   <button class="cNavBtn" id="cNavOpo" style="display:none" onclick="goTo('opo')">📝 OPO</button>
-  <button class="cNavBtn" id="cNavStats" style="display:none" onclick="window.location.href='/stats'">📊 Stats</button>
+  <button class="cNavBtn" id="cNavStats" style="display:none" onclick="window.location.href="/bank/stats"">📊 Stats</button>
   <button class="cNavBtn" id="cNavAdm" style="display:none" onclick="goTo('adm')">⚙ Admin</button>
 </nav>
 
@@ -129,7 +129,7 @@ function esc(s) {
 }
 
 async function load() {
-  if (!token) { window.location.href = '/'; return; }
+  if (!token) { window.location.href = \'/bank\'; return; }
 
   // Check user role to show/hide admin nav items
   try {
@@ -143,7 +143,7 @@ async function load() {
     if (!me.is_admin) {
       document.getElementById('cNavHist').style.display = '';
     }
-  } catch(e) { window.location.href = '/'; return; }
+  } catch(e) { window.location.href = \'/bank\'; return; }
 
   try {
     const items = await api('GET', '/api/cuentos');
@@ -168,7 +168,7 @@ async function load() {
           <div class="cTitle">${esc(label)}</div>
           ${c.pages ? `<div class="cMeta">${c.pages} páginas</div>` : ''}
         </div>
-        <a href="/cuento/${encodeURIComponent(name)}" class="btn">Leer →</a>
+        <a href="/bank/cuento/${encodeURIComponent(name)}" class="btn">Leer →</a>
       </div>`;
     }).join('');
   } catch(e) {
@@ -182,7 +182,7 @@ window.addEventListener('load', () => {
   const hash = location.hash.replace('#','');
   if (hash && hash !== 'cuentos') {
     // Redirect back to main app with the requested view
-    window.location.href = '/' + '#' + hash;
+    window.location.href = \'/bank\' + '#' + hash;
     return;
   }
   load();
@@ -190,7 +190,7 @@ window.addEventListener('load', () => {
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

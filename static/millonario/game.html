@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#04040A">
 <title>¿Quién quiere ser millonario?</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 :root{--gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;--noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;--glass:rgba(255,255,255,.04);--border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);--text:#EAE6D8;--text2:#9A9070;--text3:#504430;--green:#38B87A;--red:#C83060;--blue:#4878D8;--orange:#E07840;--r:12px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -120,7 +120,7 @@ let ws,st=null,me=null,isAdmin=false;
 async function init(){
   if(!tok){showOv('Sin sesión','Abre el juego desde la aplicación.');return;}
   try{
-    const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       me=await r.json();
       isAdmin=!!me.is_admin;
@@ -199,7 +199,7 @@ init();
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,27 @@
+{
+  "provider": "smtp",
+  "enabled": false,
+  "smtp_host": "localhost",
+  "smtp_port": 1025,
+  "smtp_user": "",
+  "smtp_pass": "",
+  "use_tls": true,
+  "from_email": "noreply@dvta.ch",
+  "from_name": "DVDcoin Exams",
+  "_comment": "Para producción, cambiar a SendGrid o Mailgun",
+  "_sendgrid_example": {
+    "provider": "sendgrid",
+    "enabled": true,
+    "api_key": "SG.xxxxxxxxxxxxx",
+    "from_email": "noreply@dvta.ch",
+    "from_name": "DVDcoin Exams"
+  },
+  "_mailgun_example": {
+    "provider": "mailgun",
+    "enabled": true,
+    "api_key": "key-xxxxxxxxxxxxx",
+    "domain": "mg.dvta.ch",
+    "from_email": "noreply@dvta.ch",
+    "from_name": "DVDcoin Exams"
+  }
+}

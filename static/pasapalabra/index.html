@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 /* ============================================================
    DVDcoin Bank v5.1
@@ -991,7 +991,7 @@ select option { background:var(--n4); color:var(--text); }
 <!-- Auth header bar — same logo as app header, hidden once logged in -->
 <div id="authHdr">
   <div class="logo">
-    <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+    <img class="logoBill" src="/bank/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
       onerror="this.style.display='none'">
     <div class="logoTextWrap">
       <div class="logoTitle">DVDcoin</div>
@@ -1069,7 +1069,7 @@ select option { background:var(--n4); color:var(--text); }
   <!-- Header -->
   <div id="hdr">
     <div class="logo">
-      <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+      <img class="logoBill" src="/bank/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
         onerror="this.style.display='none'">
       <div class="logoTextWrap">
         <div class="logoTitle">DVDcoin</div>
@@ -1092,12 +1092,12 @@ select option { background:var(--n4); color:var(--text); }
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="window.location.href='/cuentos'" data-i18n="navCuentos">📖 Cuentos</button>
+      <button class="navTab hidden" id="navCuentos" onclick="window.location.href="/bank/cuentos"" data-i18n="navCuentos">📖 Cuentos</button>
       <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 Millonario</button>
       <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 ¿Quién soy?</button>
       <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 Cifras y Letras</button>
-      <button class="navTab hidden" id="navStats" onclick="window.location.href='/stats'" data-i18n="navStats">📊 Stats</button>
+      <button class="navTab hidden" id="navStats" onclick="window.location.href="/bank/stats"" data-i18n="navStats">📊 Stats</button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">Admin</button>
     </div>
 
@@ -1144,7 +1144,7 @@ select option { background:var(--n4); color:var(--text); }
             <div class="pSub" id="dvdStatsSub">Actividad de la comunidad</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btnS btnSm" onclick="window.location.href='/stats'">↗ Ver completo</button>
+            <button class="btn btnS btnSm" onclick="window.location.href="/bank/stats"">↗ Ver completo</button>
           </div>
         </div>
         <div id="dvdStatsContent" style="margin-top:10px">
@@ -1161,7 +1161,7 @@ select option { background:var(--n4); color:var(--text); }
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn btnO btnSm" onclick="showOpoResults()">📊 Resultados</button>
-            <a href="/opo" target="_blank" class="btn btnG btnSm">▶ Jugar</a>
+            <a href="/bank/opo" target="_blank" class="btn btnG btnSm">▶ Jugar</a>
           </div>
         </div>
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
@@ -1242,7 +1242,7 @@ select option { background:var(--n4); color:var(--text); }
           <div class="pSub">Tienes acceso al simulacro de oposición</div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
-          <a href="/opo" target="_blank" class="btn btnG btnSm">▶ Estadísticas avanzadas</a>
+          <a href="/bank/opo" target="_blank" class="btn btnG btnSm">▶ Estadísticas avanzadas</a>
           <button class="btn btnS btnSm" onclick="showMemberOpoSelect()">📋 Seleccionar cuestionario</button>
         </div>
       </div>
@@ -1380,7 +1380,7 @@ select option { background:var(--n4); color:var(--text); }
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 Cifras y Letras</button>
           <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📖 Cuentos</button>
           <button class="btn btnS" onclick="openGamePanel('opo')"         style="justify-content:flex-start;gap:8px">📝 OPO</button>
-          <a href="/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 Estadísticas</a>
+          <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 Estadísticas</a>
         </div>
       </div>
 
@@ -1587,8 +1587,8 @@ select option { background:var(--n4); color:var(--text); }
               <div style="display:flex;gap:8px;flex-wrap:wrap">
                 <button class="btn btnG btnSm" id="ctBtnOn"  onclick="toggleCuentos(true)"  style="display:none">▶ Mostrar a miembros</button>
                 <button class="btn btnD btnSm" id="ctBtnOff" onclick="toggleCuentos(false)" style="display:none">■ Ocultar</button>
-                <a href="/admin/cuentos" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar archivos</a>
-                <a href="/cuentos" target="_blank" class="btn btnO btnSm" style="text-decoration:none">↗ Ver cuentos</a>
+                <a href="/bank/admin/cuentos" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar archivos</a>
+                <a href="/bank/cuentos" target="_blank" class="btn btnO btnSm" style="text-decoration:none">↗ Ver cuentos</a>
               </div>
             </div>
             <div class="alert" id="ctAlert"></div>
@@ -1605,7 +1605,7 @@ select option { background:var(--n4); color:var(--text); }
               </div>
               <div style="display:flex;gap:8px">
                 <button class="btn btnO btnSm" onclick="showOpoResults()">📊 Resultados</button>
-                <a href="/opo" target="_blank" class="btn btnG btnSm" style="text-decoration:none">▶ Jugar</a>
+                <a href="/bank/opo" target="_blank" class="btn btnG btnSm" style="text-decoration:none">▶ Jugar</a>
               </div>
             </div>
             <div style="display:flex;gap:8px;margin:10px 0;align-items:center">
@@ -1754,7 +1754,7 @@ select option { background:var(--n4); color:var(--text); }
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery">
       <span class="icon">◫</span><span data-i18n="navGallery">Gallery</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" class="mNavBtn hidden" onclick="window.location.href='/cuentos'" data-view="cuentos">
+    <button class="mNavBtn hidden" id="mobileNavCuentos" class="mNavBtn hidden" onclick="window.location.href="/bank/cuentos"" data-view="cuentos">
       <span class="icon">📖</span><span>Cuentos</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavGame" class="mNavBtn hidden" onclick="openGame()" data-view="game">
@@ -1955,7 +1955,7 @@ let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
   try {
-    const r = await fetch('/api/gallery', { headers: { 'ngrok-skip-browser-warning': '1' } });
+    const r = await fetch(\'/bank/api/gallery\', { headers: { 'ngrok-skip-browser-warning': '1' } });
     if (!r.ok) throw new Error();
     gcImages = await r.json();
   } catch (e) {
@@ -3905,7 +3905,7 @@ async function loadDvdStats() {
         </div>
       </div>
       <div style="font-size:.62rem;color:var(--text3);text-align:right">
-        <a href="/stats" style="color:var(--gold3);text-decoration:none">Ver estadísticas completas →</a>
+        <a href="/bank/stats" style="color:var(--gold3);text-decoration:none">Ver estadísticas completas →</a>
       </div>`;
     document.getElementById('dvdStatsSub').textContent = `${totalUsers} miembros · ${totalSessions} sesiones`;
   } catch(e) {
@@ -4054,7 +4054,7 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

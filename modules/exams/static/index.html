@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DVDcoin Exams - Plataforma de Exámenes</title>
+    <link rel="stylesheet" href="/static/css/exams-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">📚</div>
+                <span>DVDcoin Exams</span>
+            </a>
+            <nav class="nav">
+                <a href="/" class="nav-link active">Inicio</a>
+                <a href="/opo" class="nav-link">Oposiciones</a>
+                <a href="#" class="nav-link" id="loginBtn">Iniciar Sesión</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section style="text-align: center; padding: 3rem 0;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--blue-light), var(--blue-pale)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Prepara tus Exámenes con Confianza
+            </h1>
+            <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
+                Accede a miles de preguntas de oposiciones y exámenes oficiales. Practica, aprende y aprueba.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+                <a href="#" class="btn btn-primary" id="startBtn">Comenzar Ahora</a>
+                <a href="#categories" class="btn btn-outline">Ver Categorías</a>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="grid grid-3" style="margin: 3rem 0;">
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;">5,000+</div>
+                <div style="color: var(--text-secondary);">Preguntas Disponibles</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;">15+</div>
+                <div style="color: var(--text-secondary);">Categorías de Exámenes</div>
+            </div>
+            <div class="card" style="text-align: center;">
+                <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;">98%</div>
+                <div style="color: var(--text-secondary);">Tasa de Satisfacción</div>
+            </div>
+        </section>
+
+        <!-- Categories -->
+        <section id="categories" style="margin: 4rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Categorías de Exámenes</h2>
+            
+            <div class="grid grid-2">
+                <!-- Oposiciones -->
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem;">🏥</div>
+                            <div>
+                                <h3 class="card-title">Oposiciones Sanitarias</h3>
+                                <span class="badge badge-premium">Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Prepara oposiciones del sector sanitario con miles de preguntas actualizadas.</p>
+                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--text-secondary);">
+                            <li>Técnico Superior en Imagen para el Diagnóstico</li>
+                            <li>Medicina Nuclear</li>
+                            <li>Enfermería</li>
+                            <li>Y más...</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <span style="color: var(--text-tertiary);">2,500+ preguntas</span>
+                        <a href="/opo" class="btn btn-primary">Acceder</a>
+                    </div>
+                </div>
+
+                <!-- Más categorías próximamente -->
+                <div class="card" style="opacity: 0.6;">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem;">👮</div>
+                            <div>
+                                <h3 class="card-title">Fuerzas y Cuerpos de Seguridad</h3>
+                                <span class="badge badge-warning">Próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Prepara oposiciones de Policía Nacional, Guardia Civil y más.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span style="color: var(--text-tertiary);">Disponible pronto</span>
+                        <button class="btn btn-secondary" disabled>Próximamente</button>
+                    </div>
+                </div>
+
+                <div class="card" style="opacity: 0.6;">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem;">📖</div>
+                            <div>
+                                <h3 class="card-title">Educación</h3>
+                                <span class="badge badge-warning">Próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Oposiciones de maestros, profesores y personal educativo.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span style="color: var(--text-tertiary);">Disponible pronto</span>
+                        <button class="btn btn-secondary" disabled>Próximamente</button>
+                    </div>
+                </div>
+
+                <div class="card" style="opacity: 0.6;">
+                    <div class="card-header">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="font-size: 2rem;">⚖️</div>
+                            <div>
+                                <h3 class="card-title">Justicia</h3>
+                                <span class="badge badge-warning">Próximamente</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Auxilio Judicial, Tramitación Procesal y más.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span style="color: var(--text-tertiary);">Disponible pronto</span>
+                        <button class="btn btn-secondary" disabled>Próximamente</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section style="margin: 4rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">¿Por qué elegirnos?</h2>
+            
+            <div class="grid grid-3">
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">✅</div>
+                    <h3 style="margin-bottom: 0.5rem;">Preguntas Actualizadas</h3>
+                    <p style="color: var(--text-secondary);">Base de datos constantemente actualizada con las últimas convocatorias.</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
+                    <h3 style="margin-bottom: 0.5rem;">Estadísticas Detalladas</h3>
+                    <p style="color: var(--text-secondary);">Sigue tu progreso con estadísticas completas y análisis de rendimiento.</p>
+                </div>
+                
+                <div class="card">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
+                    <h3 style="margin-bottom: 0.5rem;">Simulacros Reales</h3>
+                    <p style="color: var(--text-secondary);">Practica con exámenes que simulan las condiciones reales de la oposición.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section style="text-align: center; padding: 3rem; background: var(--bg-card); border-radius: var(--radius-lg); margin: 4rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿Listo para empezar?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Regístrate ahora y accede a todo el contenido.</p>
+            <a href="#" class="btn btn-primary" id="registerBtn">Crear Cuenta Gratis</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--bg-secondary); padding: 2rem; text-align: center; margin-top: 4rem; border-top: 1px solid var(--border-main);">
+        <p style="color: var(--text-tertiary);">© 2026 DVDcoin Exams. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

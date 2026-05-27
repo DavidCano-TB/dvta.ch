@@ -7,7 +7,7 @@
 <title>Videollamadas � DVDcoin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -455,7 +455,7 @@ window.addEventListener('load', async () => {
 
   // Load TURN servers
   try {
-    const r = await fetch('/api/ice-servers');
+    const r = await fetch(\'/bank/api/ice-servers\');
     if (r.ok) {
       const d = await r.json();
       if (d.iceServers?.length) {
@@ -1252,7 +1252,7 @@ async function apiFetch(url, opts={}) {
 function goBack() {
   leaveRoom();
   if (localStream) localStream.getTracks().forEach(t=>t.stop());
-  window.location.href = '/';
+  window.location.href = \'/bank\';
 }
 window.addEventListener('beforeunload', () => {
   if (currentRoom) send({ action:'leave', room:currentRoom });
@@ -1394,7 +1394,7 @@ console.log('%c[VIDEO] Diagn�stico disponible: window.videoDiagnostic()', 'col
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

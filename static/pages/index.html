@@ -11,7 +11,7 @@
 <script>
 /* Register Service Worker to force fresh HTML on every load */
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/static/sw.js?v=20260427')
+  navigator.serviceWorker.register('/bank/static/sw.js?v=20260427')
     .then(reg => {
       /* Force update check immediately */
       reg.update();
@@ -39,7 +39,7 @@ if('serviceWorker' in navigator){
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 /* ============================================================
    DVDcoin Bank v5.1
@@ -1283,7 +1283,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
 <!-- Auth header bar — same logo as app header, hidden once logged in -->
 <div id="authHdr">
   <div class="logo">
-    <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+    <img class="logoBill" src="/bank/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
       onerror="this.style.display='none'">
     <div class="logoTextWrap">
       <div class="logoTitle">DVDcoin</div>
@@ -1361,7 +1361,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
   <!-- Header -->
   <div id="hdr">
     <div class="logo">
-      <img class="logoBill" src="/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
+      <img class="logoBill" src="/bank/static/gallery/1dvdcoin_bill.jpg" alt="DVDcoin"
         onerror="this.style.display='none'">
       <div class="logoTextWrap">
         <div class="logoTitle">DVDcoin</div>
@@ -1376,7 +1376,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
         <span id="hdrRoomsChevron">▾</span>
       </div>
       <!-- Enlace directo a página de salas -->
-      <a id="hdrSalasLink" href="/salas" target="_blank"
+      <a id="hdrSalasLink" href="/bank/salas" target="_blank"
         style="display:none;align-items:center;gap:5px;background:rgba(34,197,94,.1);
           border:1px solid rgba(34,197,94,.3);border-radius:20px;padding:5px 11px;
           font-size:.65rem;color:#4ade80;text-decoration:none;white-space:nowrap;
@@ -1417,7 +1417,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 <span data-i18n="navMillonario">Millonario</span></button>
       <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
       <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
-      <button class="navTab hidden" id="navStats" onclick="window.location.href='/stats'" data-i18n="navStats">📊 Stats</button>
+      <button class="navTab hidden" id="navStats" onclick="window.location.href="/bank/stats"" data-i18n="navStats">📊 Stats</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
       <button class="navTab hidden" id="navVideo" onclick="openVideoAsync()">🎥 <span>Videollamadas</span></button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">Admin</button>
@@ -1471,7 +1471,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="btn btnO btnSm" onclick="showOpoResults()">📊 Resultados</button>
-            <a href="/opo" class="btn btnG btnSm" style="text-decoration:none">▶ Abrir OPO</a>
+            <a href="/bank/opo" class="btn btnG btnSm" style="text-decoration:none">▶ Abrir OPO</a>
           </div>
         </div>
         <!-- Keep hidden inputs/lists so existing JS (opoAddPlayer, opoSuggest) still works -->
@@ -1553,7 +1553,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <div class="pSub">Tienes acceso al simulacro de oposición</div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
-          <a href="/opo" target="_blank" class="btn btnG btnSm" style="text-decoration:none">▶ Abrir OPO</a>
+          <a href="/bank/opo" target="_blank" class="btn btnG btnSm" style="text-decoration:none">▶ Abrir OPO</a>
         </div>
       </div>
     </div>
@@ -1630,7 +1630,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           </div>
           <div style="display:flex;gap:6px">
             <button class="btn btnS btnSm" onclick="loadAdvancedStats()">↻ Actualizar</button>
-            <a href="/stats" class="btn btnO btnSm" style="text-decoration:none">↗ Stats</a>
+            <a href="/bank/stats" class="btn btnO btnSm" style="text-decoration:none">↗ Stats</a>
           </div>
         </div>
         <div id="histAdvStatsContent" style="margin-top:10px"><div class="empty">Pulsa Actualizar para cargar</div></div>
@@ -1822,7 +1822,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
             <div class="pSub">Archivos .docx o .txt</div>
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <a href="/admin/cuentos" target="_blank" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar</a>
+            <a href="/bank/admin/cuentos" target="_blank" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar</a>
           </div>
         </div>
         <div id="cuentosUploadAlert" class="alert"></div>
@@ -1886,7 +1886,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
           <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📖 <span data-i18n="navCuentos">Cuentos</span></button>
-          <a href="/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
+          <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
 
@@ -2093,8 +2093,8 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
               <div style="display:flex;gap:8px;flex-wrap:wrap">
                 <button class="btn btnG btnSm" id="ctBtnOn"  onclick="toggleCuentos(true)"  style="display:none">▶ Mostrar a miembros</button>
                 <button class="btn btnD btnSm" id="ctBtnOff" onclick="toggleCuentos(false)" style="display:none">■ Ocultar</button>
-                <a href="/admin/cuentos" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar archivos</a>
-                <a href="/cuentos" target="_blank" class="btn btnO btnSm" style="text-decoration:none">↗ Ver cuentos</a>
+                <a href="/bank/admin/cuentos" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar archivos</a>
+                <a href="/bank/cuentos" target="_blank" class="btn btnO btnSm" style="text-decoration:none">↗ Ver cuentos</a>
               </div>
             </div>
             <div class="alert" id="ctAlert"></div>
@@ -2111,7 +2111,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
               </div>
               <div style="display:flex;gap:8px">
                 <button class="btn btnO btnSm" onclick="showOpoResults()">📊 Resultados</button>
-                <a href="/opo" target="_blank" class="btn btnG btnSm" style="text-decoration:none">▶ Jugar</a>
+                <a href="/bank/opo" target="_blank" class="btn btnG btnSm" style="text-decoration:none">▶ Jugar</a>
               </div>
             </div>
             <div style="display:flex;gap:8px;margin:10px 0;align-items:center">
@@ -2461,7 +2461,7 @@ let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
   try {
-    const r = await fetch('/api/gallery', { headers: { 'ngrok-skip-browser-warning': '1' } });
+    const r = await fetch(\'/bank/api/gallery\', { headers: { 'ngrok-skip-browser-warning': '1' } });
     if (!r.ok) throw new Error();
     gcImages = await r.json();
   } catch (e) {
@@ -3444,7 +3444,7 @@ async function loadCuentosView() {
           ${c.date ? `<div style="font-size:.58rem;color:var(--text3);margin-top:2px">${esc(c.date)}</div>` : ''}
           ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Oculto para miembros</div>' : ''}
         </div>
-        ${!masked ? `<a href="/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
+        ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem("dvd_token')||'')}" target="_blank"
           class="btn btnG btnSm" style="text-decoration:none;flex-shrink:0">Leer →</a>` : ''}
       </div>`;
     }).filter(Boolean).join('');
@@ -3462,7 +3462,7 @@ async function cuentosUpload() {
   const fd = new FormData();
   fd.append('file', file);
   try {
-    const r = await fetch('/api/cuentos/upload', {
+    const r = await fetch(\'/bank/api/cuentos/upload\', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('dvd_token')||''), 'ngrok-skip-browser-warning': '1' },
       body: fd,
@@ -4639,7 +4639,7 @@ async function loadDvdStats() {
         </div>
       </div>
       <div style="font-size:.62rem;color:var(--text3);text-align:right">
-        <a href="/stats" style="color:var(--gold3);text-decoration:none">Ver estadísticas completas →</a>
+        <a href="/bank/stats" style="color:var(--gold3);text-decoration:none">Ver estadísticas completas →</a>
       </div>`;
     document.getElementById('dvdStatsSub').textContent = `${totalUsers} miembros · ${totalSessions} sesiones`;
   } catch(e) {
@@ -7375,11 +7375,11 @@ function _playRoomOpenSound(){
     var t=tok(); if(!t) return;
     /* Use DB-backed endpoint — survives restarts; fallback to memory-only */
     var headers={'Authorization':'Bearer '+t,'ngrok-skip-browser-warning':'1'};
-    var p=fetch('/api/rooms/status',{headers:headers})
+    var p=fetch(\'/bank/api/rooms/status\',{headers:headers})
       .then(function(r){
         if(r.ok) return r.json();
         /* fallback to memory endpoint if status not found */
-        return fetch('/api/rooms/list',{headers:headers}).then(function(r2){return r2.ok?r2.json():null;});
+        return fetch(\'/bank/api/rooms/list\',{headers:headers}).then(function(r2){return r2.ok?r2.json():null;});
       });
     p.then(function(data){
       if(!data) return;
@@ -7416,7 +7416,7 @@ function _playRoomOpenSound(){
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

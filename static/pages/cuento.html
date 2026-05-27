@@ -6,7 +6,7 @@
 <title>Cuento · DVDcoin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
   :root {
     --gold:   #D4A843; --gold2:  #F0C866; --gold3:  #8B6010; --gold4:  #5A3A06;
@@ -198,7 +198,7 @@
 <div id="authScreen">
   <div class="bigIcon">📖</div>
   <h2>Acceso requerido</h2>
-  <a href="/" class="btnGold">← Ir al banco</a>
+  <a href="/bank/" class="btnGold">← Ir al banco</a>
 </div>
 
 <!-- Main -->
@@ -286,8 +286,8 @@ function renderStory(story) {
     ${bodyHtml}
     ${moralejaHtml}
     <div class="storyNav">
-      <a href="/cuentos">← Todos los cuentos</a>
-      <a href="/" >⌂ Banco</a>
+      <a href="/bank/cuentos">← Todos los cuentos</a>
+      <a href="/bank/" >⌂ Banco</a>
     </div>`;
 }
 
@@ -300,7 +300,7 @@ async function init() {
 
   // Verify token
   try {
-    const r = await fetch('/api/me', {
+    const r = await fetch(\'/bank/api/me\', {
       headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
     });
     if (!r.ok) throw new Error();
@@ -320,7 +320,7 @@ async function init() {
   document.getElementById('mainWrap').style.display = '';
 
   try {
-    const r = await fetch('/api/cuento/' + encodeURIComponent(filename), {
+    const r = await fetch(\'/bank/api/cuento/\' + encodeURIComponent(filename), {
       headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
     });
     if (!r.ok) throw new Error('Error ' + r.status);
@@ -332,7 +332,7 @@ async function init() {
         <div class="icon">⚠</div>
         <div>${e.message}</div>
         <div style="margin-top:16px">
-          <a href="/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← Volver a los cuentos</a>
+          <a href="/bank/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← Volver a los cuentos</a>
         </div>
       </div>`;
   }
@@ -342,7 +342,7 @@ init();
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

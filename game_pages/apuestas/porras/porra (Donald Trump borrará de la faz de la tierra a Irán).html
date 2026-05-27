@@ -206,7 +206,7 @@ let me=null,selectedOpt=null,porraData=null;
 async function init(){
   if(!tok){alert('Sin sesión. Abre desde la aplicación.');return;}
   try{
-    const r=await fetch('/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok)me=await r.json();
   }catch(_){}
   
@@ -223,7 +223,7 @@ async function loadData(){
       document.body.innerHTML=`<div style="padding:40px;text-align:center;color:var(--text);">
         <h1 style="color:var(--red);">Error al cargar la porra</h1>
         <p>${errorText}</p>
-        <button onclick="location.href='/apuestas?token=${tok}'" style="margin-top:20px;padding:10px 20px;background:var(--gold);border:none;border-radius:8px;cursor:pointer;">Volver a Apuestas</button>
+        <button onclick="location.href="/bank/apuestas?token=${tok}"" style="margin-top:20px;padding:10px 20px;background:var(--gold);border:none;border-radius:8px;cursor:pointer;">Volver a Apuestas</button>
       </div>`;
       return;
     }
@@ -235,7 +235,7 @@ async function loadData(){
       <h1 style="color:var(--red);">Error de conexión</h1>
       <p>No se pudo cargar la porra. Por favor, intenta de nuevo.</p>
       <button onclick="location.reload()" style="margin-top:20px;padding:10px 20px;background:var(--gold);border:none;border-radius:8px;cursor:pointer;">Reintentar</button>
-      <button onclick="location.href='/apuestas?token=${tok}'" style="margin-top:20px;margin-left:10px;padding:10px 20px;background:var(--n3);border:none;border-radius:8px;cursor:pointer;">Volver</button>
+      <button onclick="location.href="/bank/apuestas?token=${tok}"" style="margin-top:20px;margin-left:10px;padding:10px 20px;background:var(--n3);border:none;border-radius:8px;cursor:pointer;">Volver</button>
     </div>`;
   }
 }
@@ -549,7 +549,7 @@ async function realizarApuesta(){
   console.log('🎲 Realizando apuesta:', {porra_id: PORRA_ID, opcion: selectedOpt, cantidad});
   
   try{
-    const r=await fetch('/api/porras/apostar',{
+    const r=await fetch(\'/bank/api/porras/apostar\',{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify({porra_id:PORRA_ID,opcion:selectedOpt,cantidad})

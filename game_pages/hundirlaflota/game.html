@@ -125,7 +125,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointe
         <button onclick="resetAndNewGame()" style="background:rgba(212,168,67,.2);border:2px solid var(--gold);color:var(--gold2);border-radius:10px;padding:15px 30px;font-size:1rem;font-family:'DM Mono',monospace;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(212,168,67,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(212,168,67,.2)';this.style.transform='translateY(0)'">
           🔄 Nueva Partida
         </button>
-        <button onclick="location.href='/'" style="background:rgba(72,120,216,.2);border:2px solid var(--blue);color:var(--blue);border-radius:10px;padding:15px 30px;font-size:1rem;font-family:'DM Mono',monospace;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(72,120,216,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(72,120,216,.2)';this.style.transform='translateY(0)'">
+        <button onclick="location.href="/bank/"" style="background:rgba(72,120,216,.2);border:2px solid var(--blue);color:var(--blue);border-radius:10px;padding:15px 30px;font-size:1rem;font-family:'DM Mono',monospace;font-weight:600;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(72,120,216,.35)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='rgba(72,120,216,.2)';this.style.transform='translateY(0)'">
           🏠 Volver al Inicio
         </button>
       </div>
@@ -737,7 +737,7 @@ function renderGame() {
         </div>
         <div class="actionButtons">
           <button class="btn btnO" onclick="resetAndNewGame()">🔄 Nueva Partida</button>
-          <button class="btn btnS" onclick="location.href='/'">🏠 Volver al Inicio</button>
+          <button class="btn btnS" onclick="location.href="/bank/"">🏠 Volver al Inicio</button>
         </div>
       </div>
     `;
@@ -1331,7 +1331,7 @@ async function resetAndNewGame() {
   
   try {
     // Paso 1: Desactivar el juego primero
-    const toggleResponse = await fetch('/api/hundirlaflota/toggle', {
+    const toggleResponse = await fetch(\'/bank/api/hundirlaflota/toggle\', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1345,7 +1345,7 @@ async function resetAndNewGame() {
     }
     
     // Paso 2: Resetear el estado del servidor
-    const response = await fetch('/api/hundirlaflota/reset', {
+    const response = await fetch(\'/bank/api/hundirlaflota/reset\', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

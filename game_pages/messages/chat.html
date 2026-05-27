@@ -500,7 +500,7 @@ input, textarea {
   <div class="wallIcon">🔐</div>
   <div class="wallTitle">Acceso requerido</div>
   <div class="wallSub">Inicia sesión en DVDcoin Bank para usar la mensajería.</div>
-  <a href="/" class="wallBtn">Ir al banco</a>
+  <a href="/bank/" class="wallBtn">Ir al banco</a>
 </div>
 
 <!-- ── DISABLED WALL ────────────────────────────────────── -->
@@ -508,7 +508,7 @@ input, textarea {
   <div class="wallIcon">💬</div>
   <div class="wallTitle">Mensajería desactivada</div>
   <div class="wallSub">Un administrador activará los mensajes en breve.</div>
-  <a href="/" class="wallLink">← Volver al banco</a>
+  <a href="/bank/" class="wallLink">← Volver al banco</a>
 </div>
 
 <!-- ── DM MODAL ─────────────────────────────────────────── -->
@@ -527,7 +527,7 @@ input, textarea {
 
   <!-- TOP BAR -->
   <div id="topBar">
-    <a href="/" class="tbBack">← Banco</a>
+    <a href="/bank/" class="tbBack">← Banco</a>
     <div style="flex:1;min-width:0">
       <div class="tbTitle" id="topTitle">💬 Mensajes</div>
     </div>
@@ -1161,7 +1161,7 @@ async function uploadAudio(blob, mime) {
   const form = new FormData();
   form.append('file', new File([blob], `voice.${ext}`, { type: mime }));
   try {
-    const r   = await fetch('/api/messages/audio', {
+    const r   = await fetch(\'/bank/api/messages/audio\', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' },
       body: form,

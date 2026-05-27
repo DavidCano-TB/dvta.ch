@@ -6,7 +6,7 @@
 <title>Gestión Cuentos · DVDcoin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 :root{
   --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
@@ -166,7 +166,7 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
   <div style="font-size:3rem;opacity:.3">🔒</div>
   <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text2)">Acceso restringido</div>
   <div style="font-size:.72rem;color:var(--text3)">Solo los administradores pueden acceder.</div>
-  <a href="/" class="btnGold">← Ir al banco</a>
+  <a href="/bank/" class="btnGold">← Ir al banco</a>
 </div>
 
 <div class="wrap" id="mainWrap" style="display:none">
@@ -324,7 +324,7 @@ function api(method, url, body) {
 
 // ── Global toggle ─────────────────────────────────────────────────────────────
 async function loadStatus() {
-  const r = await fetch('/api/cuentos/status', {headers:{'ngrok-skip-browser-warning':'1'}});
+  const r = await fetch(\'/bank/api/cuentos/status\', {headers:{'ngrok-skip-browser-warning':'1'}});
   const d = await r.json();
   updateToggleUI(d.enabled);
 }
@@ -576,7 +576,7 @@ init();
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

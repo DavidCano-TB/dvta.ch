@@ -296,7 +296,7 @@ input,textarea{-webkit-appearance:none;appearance:none;font-family:inherit;font-
   #chatPanel.hide{display:flex !important}
 }
 </style>
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 </head>
 <body class="has-unified-nav">
 <!-- Navegación Unificada -->
@@ -306,13 +306,13 @@ input,textarea{-webkit-appearance:none;appearance:none;font-family:inherit;font-
   <div class="wallIcon">🔐</div>
   <div class="wallTitle">Acceso requerido</div>
   <div class="wallSub">Inicia sesión en DVDcoin Bank para usar la mensajería.</div>
-  <a href="/" class="wallBtn">← Ir al banco</a>
+  <a href="/bank/" class="wallBtn">← Ir al banco</a>
 </div>
 <div class="wall" id="disabledWall">
   <div class="wallIcon">💬</div>
   <div class="wallTitle">Mensajería desactivada</div>
   <div class="wallSub">Un administrador activará los mensajes en breve.</div>
-  <a href="/" class="wallLink">← Volver al banco</a>
+  <a href="/bank/" class="wallLink">← Volver al banco</a>
 </div>
 
 <div id="lightbox" onclick="closeLightbox()">
@@ -716,7 +716,7 @@ async function sendPastedImage(){
   if(!pastedImage||!currentRoom)return;
   const form=new FormData();form.append('file',new File([pastedImage.blob],'imagen.jpg',{type:'image/jpeg'}));
   clearPaste();
-  try{const r=await fetch('/api/messages/audio',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'image'});clearReply();}
+  try{const r=await fetch(\'/bank/api/messages/audio\',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'image'});clearReply();}
   catch{toast('Error al enviar la imagen');}
 }
 
@@ -738,7 +738,7 @@ function resetRecUI(){el('btnRec').classList.remove('rec');el('inputArea').style
 async function uploadAudio(blob,mime){
   if(!currentRoom)return;
   const ext=mime.split('/')[1].split(';')[0];const form=new FormData();form.append('file',new File([blob],`voice.${ext}`,{type:mime}));
-  try{const r=await fetch('/api/messages/audio',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'audio'});clearReply();}
+  try{const r=await fetch(\'/bank/api/messages/audio\',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'audio'});clearReply();}
   catch{toast('Error al enviar el audio');}
 }
 
@@ -849,7 +849,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

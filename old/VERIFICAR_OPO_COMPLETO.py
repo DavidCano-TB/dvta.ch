@@ -150,7 +150,7 @@ try:
     with open('main.py', 'r', encoding='utf-8') as f:
         content = f.read()
         
-        if '@app.websocket("/ws/opo")' in content:
+        if '@app.websocket("/bank/ws/opo")' in content:
             print("✓ Endpoint /ws/opo encontrado")
             
             # Verificar verificación de OPO_USERS

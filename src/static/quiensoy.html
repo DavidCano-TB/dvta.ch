@@ -6,8 +6,8 @@
 <meta name="theme-color" content="#04040A">
 <title>Admin — ¿Quién soy?</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/admin/_base.css">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/admin/_base.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 /* ── NAVEGACIÓN UNIFICADA ─────────────────────────────── */
 .unified-nav {
@@ -132,12 +132,12 @@ function showAlert(id, msg, type='err') {
 }
 
 async function load() {
-  if (!token) { location.href='/'; return; }
+  if (!token) { location.href="/bank/"; return; }
   // Verify admin role
   try {
     const me = await api('GET', '/api/me');
-    if (!me.is_admin) { location.href='/'; return; }
-  } catch { location.href='/'; return; }
+    if (!me.is_admin) { location.href="/bank/"; return; }
+  } catch { location.href="/bank/"; return; }
   try {
     const [status, users] = await Promise.all([
       api('GET','/api/quiensoy/status'),
@@ -373,7 +373,7 @@ load();
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

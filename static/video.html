@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videollamadas - DVDcoin Bank</title>
-    <link rel="stylesheet" href="/static/css/unified-nav.css">
+    <link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -438,7 +438,7 @@
                     return;
                 }
 
-                const response = await fetch('/api/rooms/list', {
+                const response = await fetch(\'/bank/api/rooms/list\', {
                     headers: {
                         'Authorization': 'Bearer ' + token
                     }
@@ -473,7 +473,7 @@
                 const token = localStorage.getItem('dvd_token');
                 if (!token) return;
 
-                const response = await fetch('/api/me/refresh-token', {
+                const response = await fetch(\'/bank/api/me/refresh-token\', {
                     method: 'POST',
                     headers: {
                         'Authorization': 'Bearer ' + token
@@ -527,7 +527,7 @@
             const roomKey = name.toLowerCase().replace(/\s+/g, '-').substring(0, 30);
 
             // Call API to create room
-            fetch('/api/rooms/create', {
+            fetch(\'/bank/api/rooms/create\', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -573,7 +573,7 @@
 
             // NOTIFICAR AL BACKEND QUE ESTE USUARIO SE UNE A LA SALA
             const token = localStorage.getItem('dvd_token');
-            fetch('/api/rooms/join', {
+            fetch(\'/bank/api/rooms/join\', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -726,7 +726,7 @@
                         jitsiApi.addEventListener('videoConferenceLeft', () => {
                             console.log('Salido de conferencia Jitsi');
                             const token = localStorage.getItem('dvd_token');
-                            fetch('/api/rooms/leave', {
+                            fetch(\'/bank/api/rooms/leave\', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json',
@@ -767,7 +767,7 @@
                         console.log('Salido de conferencia Jitsi');
                         // Notificar al backend que se fue
                         const token = localStorage.getItem('dvd_token');
-                        fetch('/api/rooms/leave', {
+                        fetch(\'/bank/api/rooms/leave\', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -813,7 +813,7 @@
                 } catch (e) {}
                 jitsiApi = null;
             }
-            window.location.href = '/';
+            window.location.href = \'/bank\';
         }
 
         // Limpiar al cerrar
@@ -827,7 +827,7 @@
     </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

@@ -39,7 +39,7 @@ async function debug() {
   
   // 2. Verificar usuario
   try {
-    const r = await fetch('/api/me', {
+    const r = await fetch(\'/bank/api/me\', {
       headers: {
         'Authorization': 'Bearer ' + token,
         'ngrok-skip-browser-warning': '1'

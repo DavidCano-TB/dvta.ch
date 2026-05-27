@@ -54,7 +54,7 @@
    */
   async function loadTranslations(lang) {
     try {
-      const response = await fetch(`/static/i18n/${lang}.json`);
+      const response = await fetch(`/bank/static/i18n/${lang}.json`);
       if (!response.ok) throw new Error(`Failed to load ${lang}`);
       translations = await response.json();
       return true;

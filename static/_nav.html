@@ -85,88 +85,88 @@
   <div class="nav-container">
     <div class="nav-tabs" id="unifiedNavTabs">
       <!-- Inicio / Dashboard -->
-      <a href="/" class="nav-tab" data-page="home">
+      <a href="/bank/" class="nav-tab" data-page="home">
         <span class="icon">🏦</span>
         <span>Inicio</span>
       </a>
       
       <!-- Transferencias -->
-      <a href="/#transfer" class="nav-tab" data-page="transfer">
+      <a href="/bank/#transfer" class="nav-tab" data-page="transfer">
         <span class="icon">💸</span>
         <span>Transferir</span>
       </a>
       
       <!-- Historial -->
-      <a href="/#history" class="nav-tab" data-page="history">
+      <a href="/bank/#history" class="nav-tab" data-page="history">
         <span class="icon">📜</span>
         <span>Historial</span>
       </a>
       
       <!-- Galería -->
-      <a href="/#gallery" class="nav-tab" data-page="gallery">
+      <a href="/bank/#gallery" class="nav-tab" data-page="gallery">
         <span class="icon">🖼️</span>
         <span>Galería</span>
       </a>
       
       <!-- Cuentos -->
-      <a href="/cuentos.html" class="nav-tab" data-page="cuentos">
+      <a href="/bank/cuentos.html" class="nav-tab" data-page="cuentos">
         <span class="icon">📖</span>
         <span>Cuentos</span>
       </a>
       
       <!-- Mensajes -->
-      <a href="/chat.html" class="nav-tab" data-page="chat">
+      <a href="/bank/chat.html" class="nav-tab" data-page="chat">
         <span class="icon">💬</span>
         <span>Mensajes</span>
       </a>
       
       <!-- Videollamadas -->
-      <a href="/video.html" class="nav-tab" data-page="video">
+      <a href="/bank/video.html" class="nav-tab" data-page="video">
         <span class="icon">🎥</span>
         <span>Video</span>
       </a>
       
       <!-- Juegos -->
-      <a href="/pasapalabra.html" class="nav-tab" data-page="pasapalabra">
+      <a href="/bank/pasapalabra.html" class="nav-tab" data-page="pasapalabra">
         <span class="icon">🎯</span>
         <span>Pasapalabra</span>
       </a>
       
-      <a href="/millonario.html" class="nav-tab" data-page="millonario">
+      <a href="/bank/millonario.html" class="nav-tab" data-page="millonario">
         <span class="icon">💰</span>
         <span>Millonario</span>
       </a>
       
-      <a href="/quiensoy.html" class="nav-tab" data-page="quiensoy">
+      <a href="/bank/quiensoy.html" class="nav-tab" data-page="quiensoy">
         <span class="icon">🎭</span>
         <span>¿Quién soy?</span>
       </a>
       
-      <a href="/cifrasletras.html" class="nav-tab" data-page="cifrasletras">
+      <a href="/bank/cifrasletras.html" class="nav-tab" data-page="cifrasletras">
         <span class="icon">🔤</span>
         <span>Cifras y Letras</span>
       </a>
       
       <!-- Apuestas -->
-      <a href="/apuestas.html" class="nav-tab" data-page="apuestas">
+      <a href="/bank/apuestas.html" class="nav-tab" data-page="apuestas">
         <span class="icon">🎲</span>
         <span>Apuestas</span>
       </a>
       
       <!-- Votaciones -->
-      <a href="/votaciones.html" class="nav-tab" data-page="votaciones">
+      <a href="/bank/votaciones.html" class="nav-tab" data-page="votaciones">
         <span class="icon">🗳️</span>
         <span>Votaciones</span>
       </a>
       
       <!-- Stats -->
-      <a href="/stats" class="nav-tab" data-page="stats">
+      <a href="/bank/stats" class="nav-tab" data-page="stats">
         <span class="icon">📊</span>
         <span>Estadísticas</span>
       </a>
       
       <!-- Admin (solo visible para admins) -->
-      <a href="/#admin" class="nav-tab" data-page="admin" id="navAdmin" style="display:none">
+      <a href="/bank/#admin" class="nav-tab" data-page="admin" id="navAdmin" style="display:none">
         <span class="icon">⚙️</span>
         <span>Admin</span>
       </a>
@@ -210,7 +210,7 @@
     const token = localStorage.getItem('dvd_token');
     if (!token) return;
     
-    fetch('/api/me', {
+    fetch(\'/bank/api/me\', {
       headers: {
         'Authorization': 'Bearer ' + token,
         'ngrok-skip-browser-warning': '1'

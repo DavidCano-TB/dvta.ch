@@ -1111,7 +1111,7 @@ app.add_middleware(NgrokHeaderMiddleware)
 for _d in ["gallery", "cuentos", "i18n", "opo", "pasapalabra", "millonario"]:
     os.makedirs(os.path.join(BASE_DIR, "static", _d), exist_ok=True)
  
-app.mount("/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
+app.mount("/bank/static", StaticFiles(directory=os.path.join(BASE_DIR, "static")), name="static")
  
 # =============================================================================
 # PYDANTIC MODELS
@@ -1153,7 +1153,7 @@ class OpoResultRequest(BaseModel):
 # CORE ROUTES
 # =============================================================================
  
-@app.get("/", response_class=HTMLResponse)
+@app.get("/bank", response_class=HTMLResponse)
 async def root():
     """Serve the frontend with rooms polling script injected."""
     html_path = os.path.join(BASE_DIR, "static", "index.html")
@@ -1436,7 +1436,7 @@ window._ssrRooms = {_json_ssr.dumps(ssr_rooms)};
 
   function poll(){
     var t=tok();if(!t)return;
-    fetch('/api/rooms/status',{headers:{'Authorization':'Bearer '+t,'ngrok-skip-browser-warning':'1'}})
+    fetch('/bank/api/rooms/status',{headers:{'Authorization':'Bearer '+t,'ngrok-skip-browser-warning':'1'}})
     .then(function(r){return r.ok?r.json():null;})
     .then(function(d){if(d)applyRooms(d.rooms||[]);})
     .catch(function(){});
@@ -1483,7 +1483,7 @@ window._ssrRooms = {_json_ssr.dumps(ssr_rooms)};
     return resp
 
 
-@app.get("/static/rooms-check.js")
+@app.get("/bank/static/rooms-check.js")
 async def rooms_check_js():
     """Serve rooms polling script — always fresh, no cache."""
     resp = FileResponse(os.path.join(BASE_DIR, "static", "rooms-check.js"))
@@ -1495,7 +1495,7 @@ async def rooms_check_js():
     return resp
 
 
-@app.get("/static/sw.js")
+@app.get("/bank/static/sw.js")
 async def service_worker():
     """Serve Service Worker — always fresh, no cache."""
     resp = FileResponse(os.path.join(BASE_DIR, "static", "sw.js"))
@@ -1505,7 +1505,7 @@ async def service_worker():
     resp.headers["ngrok-skip-browser-warning"] = "1"
     return resp
 
-@app.get("/video")
+@app.get("/bank/video")
 async def video_page(token: str = ""):
     """Página de videollamadas - WebRTC P2P puro (sin Jitsi)"""
     if not token:
@@ -1529,12 +1529,12 @@ localStorage.setItem('dvd_token_refreshed_at', Date.now().toString());
     html = html.replace("<script>", inject_script + "\n<script>", 1)
     return HTMLResponse(html)
 
-@app.get("/api/health")
+@app.get("/bank/api/health")
 async def health():
     """Health check endpoint."""
     return {"status": "ok", "time": datetime.utcnow().isoformat()}
 
-@app.get("/api/ice-servers")
+@app.get("/bank/api/ice-servers")
 async def ice_servers():
     """Return ICE server list including TURN credentials (no auth required — servers are public)."""
     servers = [
@@ -1579,7 +1579,7 @@ async def ice_servers():
     return {"iceServers": servers}
 
 
-@app.get("/api/do-restart")
+@app.get("/bank/api/do-restart")
 async def do_restart():
     """One-shot restart — removes itself after use."""
     import threading, os, signal as _sig
@@ -1595,7 +1595,7 @@ class ChangePasswordRequest(BaseModel):
     new_password: str
  
  
-@app.post("/api/me/change-password")
+@app.post("/bank/api/me/change-password")
 async def change_my_password(body: ChangePasswordRequest, user: str = Depends(get_current_user)):
     """Allow any authenticated user to change their own password."""
     if len(body.new_password) < 4:
@@ -1617,7 +1617,7 @@ async def change_my_password(body: ChangePasswordRequest, user: str = Depends(ge
     logger.info("Password changed for @%s", user)
     return {"ok": True}
  
-@app.post("/api/ping")
+@app.post("/bank/api/ping")
 async def ping(user: str = Depends(get_current_user), request: Request = None):
     _ONLINE[user] = _time.time()
     return {"ok": True}
@@ -1626,7 +1626,7 @@ async def ping(user: str = Depends(get_current_user), request: Request = None):
 # AUTH
 # =============================================================================
  
-@app.post("/api/login")
+@app.post("/bank/api/login")
 @limiter.limit("200/minute")  # Aumentado para tests (era 20/minute)
 async def login(request: Request, body: LoginRequest):
     from fastapi.responses import JSONResponse
@@ -1707,7 +1707,7 @@ async def login(request: Request, body: LoginRequest):
     )
     return response
  
-@app.post("/api/register")
+@app.post("/bank/api/register")
 @limiter.limit("100/minute")  # Aumentado para tests (era 10/minute)
 async def register(request: Request, body: RegisterRequest):
     from fastapi.responses import JSONResponse
@@ -1751,7 +1751,7 @@ async def register(request: Request, body: RegisterRequest):
     )
     return response
  
-@app.get("/api/me")
+@app.get("/bank/api/me")
 async def me(user: str = Depends(get_current_user)):
     """Return the authenticated user profile."""
     if user in GHOST:
@@ -1789,7 +1789,7 @@ async def me(user: str = Depends(get_current_user)):
         "lang":          lang,
     }
 
-@app.post("/api/me/refresh-token")
+@app.post("/bank/api/me/refresh-token")
 async def refresh_token(user: str = Depends(get_current_user)):
     """Refresh the user's JWT token, extending expiration by JWT_EXPIRE_H hours.
     Called automatically by frontend when token is < 1 hour from expiration."""
@@ -1800,7 +1800,7 @@ async def refresh_token(user: str = Depends(get_current_user)):
 # LANGUAGE PREFERENCE
 # =============================================================================
  
-@app.post("/api/me/lang")
+@app.post("/bank/api/me/lang")
 async def set_lang(body: LangRequest, user: str = Depends(get_current_user)):
     """Save user language preference to the DB."""
     if body.lang not in {"es","en","fr","it","de","eu","ca"}:
@@ -1814,7 +1814,7 @@ async def set_lang(body: LangRequest, user: str = Depends(get_current_user)):
     conn.commit(); conn.close()
     return {"ok": True, "lang": body.lang}
  
-@app.get("/api/me/lang")
+@app.get("/bank/api/me/lang")
 async def get_lang(user: str = Depends(get_current_user)):
     """Retrieve user language preference."""
     conn = db_users()
@@ -1833,7 +1833,7 @@ async def get_lang(user: str = Depends(get_current_user)):
 # USERS / TRANSFER / HISTORY
 # =============================================================================
  
-@app.get("/api/users")
+@app.get("/bank/api/users")
 async def list_users(user: str = Depends(get_current_user)):
     """Return list of all registered usernames."""
     conn = db_users()
@@ -1843,7 +1843,7 @@ async def list_users(user: str = Depends(get_current_user)):
     conn.close()
     return [r["username"] for r in rows if r["username"] != user]
  
-@app.post("/api/transfer")
+@app.post("/bank/api/transfer")
 @limiter.limit("300/minute")  # Aumentado para tests (era 30/minute)
 async def transfer(request: Request, body: TransferRequest, user: str = Depends(get_current_user)):
     to_user = body.to_user.strip().lower()
@@ -1884,7 +1884,7 @@ async def transfer(request: Request, body: TransferRequest, user: str = Depends(
     return {"success": True, "new_balance": new_balance, "auto_created": was_created,
             "message": f"Sent {amount} DVDcoins to @{to_user}"}
  
-@app.get("/api/history")
+@app.get("/bank/api/history")
 async def history(user: str = Depends(get_current_user), limit:
     int = 100):
     conn = db_tx()
@@ -1908,7 +1908,7 @@ async def history(user: str = Depends(get_current_user), limit:
 # ADMIN
 # =============================================================================
  
-@app.get("/api/admin/users")
+@app.get("/bank/api/admin/users")
 async def admin_users(user: str = Depends(get_current_user)):
     """Return users. Superadmins see all + admins. Regular admins see members only."""
     if user not in ADMINS:
@@ -1940,7 +1940,7 @@ async def admin_users(user: str = Depends(get_current_user)):
     result.sort(key=lambda x: (not x.get("is_admin", False), x["username"].lower()))
     return result
  
-@app.get("/api/admin/ledger")
+@app.get("/bank/api/admin/ledger")
 async def admin_ledger(user: str = Depends(get_current_user), limit:
     int = 1000):
     if user not in ADMINS:
@@ -1953,7 +1953,7 @@ async def admin_ledger(user: str = Depends(get_current_user), limit:
     conn.close()
     return [dict(r) for r in rows]
  
-@app.get("/api/admin/activity")
+@app.get("/bank/api/admin/activity")
 async def admin_activity(user: str = Depends(get_current_user), limit:
     int = 500):
     if user not in ADMINS:
@@ -1966,7 +1966,7 @@ async def admin_activity(user: str = Depends(get_current_user), limit:
     conn.close()
     return [dict(r) for r in rows]
  
-@app.get("/api/admin/connected")
+@app.get("/bank/api/admin/connected")
 async def admin_connected(user: str = Depends(get_current_user)):
     """Return list of currently connected users."""
     if user not in ADMINS:
@@ -1974,7 +1974,7 @@ async def admin_connected(user: str = Depends(get_current_user)):
     now = _time.time()
     return [u for u, t in _ONLINE.items() if now - t < ONLINE_TIMEOUT_S]
  
-@app.post("/api/admin/block/{target}")
+@app.post("/bank/api/admin/block/{target}")
 async def admin_block(target: str, user: str = Depends(get_current_user)):
     """Block a user account."""
     if user not in ADMINS: raise HTTPException(403)
@@ -1984,7 +1984,7 @@ async def admin_block(target: str, user: str = Depends(get_current_user)):
     conn.commit(); conn.close()
     return {"ok": True, "message": f"User {target} blocked successfully"}
  
-@app.post("/api/admin/unblock/{target}")
+@app.post("/bank/api/admin/unblock/{target}")
 async def admin_unblock(target: str, user: str = Depends(get_current_user)):
     """Unblock or unlock a user account."""
     if user not in ADMINS: raise HTTPException(403)
@@ -1993,7 +1993,7 @@ async def admin_unblock(target: str, user: str = Depends(get_current_user)):
     conn.commit(); conn.close()
     return {"ok": True, "message": f"User {target} unblocked successfully"}
  
-@app.post("/api/admin/reset-pwd/{target}")
+@app.post("/bank/api/admin/reset-pwd/{target}")
 async def admin_reset_pwd(target: str, user: str = Depends(get_current_user)):
     """Reset a member password to unset state."""
     if user not in ADMINS: raise HTTPException(403)
@@ -2003,7 +2003,7 @@ async def admin_reset_pwd(target: str, user: str = Depends(get_current_user)):
     conn.commit(); conn.close()
     return {"ok": True, "message": f"Password reset for {target}. Default password is now active."}
  
-@app.delete("/api/admin/delete/{target}")
+@app.delete("/bank/api/admin/delete/{target}")
 async def admin_delete(target: str, user: str = Depends(get_current_user)):
     """Permanently delete a user account (dvd password required)."""
     if user not in ADMINS: raise HTTPException(403)
@@ -2013,7 +2013,7 @@ async def admin_delete(target: str, user: str = Depends(get_current_user)):
     conn.commit(); conn.close()
     return {"ok": True, "message": f"User {target} deleted successfully"}
 
-@app.post("/api/admin/delete/{target}")
+@app.post("/bank/api/admin/delete/{target}")
 async def admin_delete_post(target: str, user: str = Depends(get_current_user)):
     """Permanently delete a user account (only dvd can delete)."""
     try:
@@ -2043,7 +2043,7 @@ async def admin_delete_post(target: str, user: str = Depends(get_current_user)):
         raise HTTPException(500, f"Error deleting user: {str(e)}")
  
 # Superadmin: manage admins
-@app.get("/api/admin/list-admins")
+@app.get("/bank/api/admin/list-admins")
 async def list_admins(user: str = Depends(get_current_user)):
     """List all admin-role users."""
     if user not in SUPERADMINS: raise HTTPException(403)
@@ -2055,7 +2055,7 @@ async def list_admins(user: str = Depends(get_current_user)):
              "created_at": r["created_at"]}
             for r in rows if r["username"] in ADMINS and r["username"] not in GHOST]
  
-@app.post("/api/admin/create-admin")
+@app.post("/bank/api/admin/create-admin")
 async def create_admin(body: AdminCreateRequest, user: str = Depends(get_current_user)):
     """Grant admin role to an existing or new user."""
     global ADMINS, ALL_ADMINS
@@ -2075,7 +2075,7 @@ async def create_admin(body: AdminCreateRequest, user: str = Depends(get_current
     c.commit(); c.close()
     return {"ok": True, "username": uname}
  
-@app.delete("/api/admin/delete-admin/{target}")
+@app.delete("/bank/api/admin/delete-admin/{target}")
 async def delete_admin_route(target: str, user: str = Depends(get_current_user)):
     """Revoke admin role from a user."""
     global ADMINS, ALL_ADMINS
@@ -2088,7 +2088,7 @@ async def delete_admin_route(target: str, user: str = Depends(get_current_user))
     c.commit(); c.close()
     return {"ok": True}
  
-@app.post("/api/admin/reset-admin-pwd/{target}")
+@app.post("/bank/api/admin/reset-admin-pwd/{target}")
 async def reset_admin_pwd(target: str, user: str = Depends(get_current_user)):
     """Reset an admin password."""
     if user not in SUPERADMINS: raise HTTPException(403)
@@ -2101,7 +2101,7 @@ async def reset_admin_pwd(target: str, user: str = Depends(get_current_user)):
 # STATS
 # =============================================================================
  
-@app.get("/api/stats/summary")
+@app.get("/bank/api/stats/summary")
 async def stats_summary(user: str = Depends(get_current_user)):
     """Return per-user session summary for the stats dashboard."""
     if user not in SUPERADMINS: raise HTTPException(403)
@@ -2114,7 +2114,7 @@ async def stats_summary(user: str = Depends(get_current_user)):
     conn.close()
     return [dict(r) for r in rows]
  
-@app.get("/api/stats/user/{uname}")
+@app.get("/bank/api/stats/user/{uname}")
 async def stats_user(uname: str, user: str = Depends(get_current_user)):
     """Return session history for a specific user."""
     if user not in SUPERADMINS and user != uname: raise HTTPException(403)
@@ -2126,7 +2126,7 @@ async def stats_user(uname: str, user: str = Depends(get_current_user)):
     conn.close()
     return [dict(r) for r in rows]
  
-@app.get("/api/stats/section/{section}")
+@app.get("/bank/api/stats/section/{section}")
 async def stats_section(section: str, user: str = Depends(get_current_user)):
     """Return session history for a specific game section."""
     if user not in SUPERADMINS: raise HTTPException(403)
@@ -2138,7 +2138,7 @@ async def stats_section(section: str, user: str = Depends(get_current_user)):
     conn.close()
     return [dict(r) for r in rows]
  
-@app.get("/api/stats/activity")
+@app.get("/bank/api/stats/activity")
 async def stats_activity(
     user: str = Depends(get_current_user),
     username: str = "", section: str = "",
@@ -2167,7 +2167,7 @@ async def stats_activity(
             "total_sessions": tot["n"] if tot else 0,
             "total_seconds": tot["s"] if tot else 0}
  
-@app.get("/api/stats/games")
+@app.get("/bank/api/stats/games")
 async def stats_games(user: str = Depends(get_current_user)):
     """Return session stats grouped by game section for the dashboard."""
     if user not in SUPERADMINS:
@@ -2183,7 +2183,7 @@ async def stats_games(user: str = Depends(get_current_user)):
     return [dict(r) for r in rows]
  
  
-@app.get("/api/stats/transactions-summary")
+@app.get("/bank/api/stats/transactions-summary")
 async def stats_transactions_summary(user: str = Depends(get_current_user)):
     """Return transaction totals, top senders and receivers."""
     if user not in SUPERADMINS:
@@ -2215,7 +2215,7 @@ async def stats_transactions_summary(user: str = Depends(get_current_user)):
  
  
 
-@app.get("/api/stats/advanced")
+@app.get("/bank/api/stats/advanced")
 async def stats_advanced(user: str = Depends(get_current_user)):
     """Return advanced session analytics: by section and by user. Called by the History tab."""
     if user not in SUPERADMINS:
@@ -2244,7 +2244,7 @@ async def stats_advanced(user: str = Depends(get_current_user)):
     }
 
 
-@app.get("/api/stats/apuestas-summary")
+@app.get("/bank/api/stats/apuestas-summary")
 async def stats_apuestas_summary(user: str = Depends(get_current_user)):
     """Return betting statistics summary."""
     if user not in SUPERADMINS:
@@ -2297,7 +2297,7 @@ async def stats_apuestas_summary(user: str = Depends(get_current_user)):
     }
 
 
-@app.get("/api/stats/members-overview")
+@app.get("/bank/api/stats/members-overview")
 async def stats_members_overview(user: str = Depends(get_current_user)):
     """Return per-member stats: balance, sessions, last seen, sections used."""
     if user not in SUPERADMINS:
@@ -2475,7 +2475,7 @@ def _office_date(fname: str) -> str:
  
 # ── Routes ────────────────────────────────────────────────────────────────────
  
-@app.get("/admin/cuentos", response_class=HTMLResponse)
+@app.get("/bank/admin/cuentos", response_class=HTMLResponse)
 async def cuentos_admin_page():
     """Serve the cuentos admin management page."""
     resp = FileResponse(os.path.join(BASE_DIR, "static", "pages", "cuentos_admin.html"))
@@ -2483,13 +2483,13 @@ async def cuentos_admin_page():
     return resp
  
  
-@app.get("/api/cuentos/status")
+@app.get("/bank/api/cuentos/status")
 async def cuentos_status():
     """Return cuentos enabled state."""
     return {"enabled": _cuentos_enabled}
  
  
-@app.post("/api/cuentos/toggle")
+@app.post("/bank/api/cuentos/toggle")
 async def cuentos_toggle(user: str = Depends(get_current_user)):
     """Enable or disable cuentos visibility."""
     global _cuentos_enabled
@@ -2503,7 +2503,7 @@ async def cuentos_toggle(user: str = Depends(get_current_user)):
     return {"enabled": _cuentos_enabled}
  
  
-@app.post("/api/cuentos/upload")
+@app.post("/bank/api/cuentos/upload")
 async def cuentos_upload(file: UploadFile = File(...), user:
     str = Depends(get_current_user)):
     if user not in ALL_ADMINS:
@@ -2526,7 +2526,7 @@ async def cuentos_upload(file: UploadFile = File(...), user:
     return {"ok": True, "filename": final, "title": _office_title(dest)}
  
  
-@app.delete("/api/cuentos/file/{filename:path}")
+@app.delete("/bank/api/cuentos/file/{filename:path}")
 async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
     """Delete a story file."""
     if user not in ALL_ADMINS:
@@ -2542,7 +2542,7 @@ async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
     return {"ok": True}
  
  
-@app.post("/api/cuentos/mask/{filename:path}")
+@app.post("/bank/api/cuentos/mask/{filename:path}")
 async def cuentos_mask(filename: str, user: str = Depends(get_current_user)):
     """Hide a story from members."""
     if user not in ALL_ADMINS:
@@ -2557,7 +2557,7 @@ async def cuentos_mask(filename: str, user: str = Depends(get_current_user)):
     return {"ok": True, "masked": True}
  
  
-@app.post("/api/cuentos/unmask/{filename:path}")
+@app.post("/bank/api/cuentos/unmask/{filename:path}")
 async def cuentos_unmask(filename: str, user: str = Depends(get_current_user)):
     """Show a previously hidden story to members."""
     if user not in ALL_ADMINS:
@@ -2569,7 +2569,7 @@ async def cuentos_unmask(filename: str, user: str = Depends(get_current_user)):
     return {"ok": True, "masked": False}
  
  
-@app.get("/stats", response_class=HTMLResponse)
+@app.get("/bank/stats", response_class=HTMLResponse)
 async def stats_page():
     """Serve the statistics page."""
     resp = FileResponse(os.path.join(BASE_DIR, "static", "pages", "stats.html"))
@@ -2577,7 +2577,7 @@ async def stats_page():
     resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     return resp
  
-@app.get("/cuentos", response_class=HTMLResponse)
+@app.get("/bank/cuentos", response_class=HTMLResponse)
 async def cuentos_page():
     """Serve the cuentos member list page."""
     # Try the member-facing list first, fall back to legacy
@@ -2591,7 +2591,7 @@ async def cuentos_page():
     return resp
  
  
-@app.get("/cuento/{filename:path}", response_class=HTMLResponse)
+@app.get("/bank/cuento/{filename:path}", response_class=HTMLResponse)
 async def cuento_page(filename: str):
     """Serve a single cuento reader page."""
     resp = FileResponse(os.path.join(BASE_DIR, "static", "pages", "cuento.html"))
@@ -2599,7 +2599,7 @@ async def cuento_page(filename: str):
     return resp
  
  
-@app.get("/api/cuentos")
+@app.get("/bank/api/cuentos")
 async def list_cuentos(user: str = Depends(get_current_user)):
     """List stories. When enabled: all users. When disabled: admins only."""
     if not _cuentos_enabled and user not in ALL_ADMINS:
@@ -2632,7 +2632,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
     return dated + undated
  
  
-@app.get("/api/cuento/{filename:path}")
+@app.get("/bank/api/cuento/{filename:path}")
 async def get_cuento(filename: str, user: str = Depends(get_current_user)):
     """Return full story content as structured blocks."""
     if not _cuentos_enabled and user not in ALL_ADMINS:
@@ -2950,13 +2950,13 @@ quien_soy_manager = QuienSoyManager()
 # QUIEN SOY — Routes
 # =============================================================================
  
-@app.get("/quiensoy", response_class=HTMLResponse)
+@app.get("/bank/quiensoy", response_class=HTMLResponse)
 async def quien_soy_page():
     """Serve the Quien Soy game page."""
     return _serve_game_page(QUIEN_SOY_DIR)
  
  
-@app.get("/api/quiensoy/status")
+@app.get("/bank/api/quiensoy/status")
 async def quien_soy_status():
     """Return Quien Soy enabled state."""
     return {"enabled": quien_soy_manager.enabled}
@@ -2965,7 +2965,7 @@ async def quien_soy_status():
 class QuienSoyToggleRequest(BaseModel):
     enabled: bool
  
-@app.post("/api/quiensoy/toggle")
+@app.post("/bank/api/quiensoy/toggle")
 async def quien_soy_toggle(body: QuienSoyToggleRequest, user: str = Depends(get_current_user)):
     """Enable or disable Quien Soy."""
     if user not in ADMINS:
@@ -2977,7 +2977,7 @@ async def quien_soy_toggle(body: QuienSoyToggleRequest, user: str = Depends(get_
     return {"enabled": quien_soy_manager.enabled}
  
  
-@app.get("/api/quiensoy/users")
+@app.get("/bank/api/quiensoy/users")
 async def quien_soy_users(user: str = Depends(get_current_user)):
     """Return eligible user list for Quien Soy."""
     if user not in ADMINS:
@@ -2999,7 +2999,7 @@ class QuienSoySetupRequest(BaseModel):
     players: list
  
  
-@app.post("/api/quiensoy/setup")
+@app.post("/bank/api/quiensoy/setup")
 async def quien_soy_setup(body: QuienSoySetupRequest, user: str = Depends(get_current_user)):
     """Start a QuienSoy game directly from the admin panel (no WS needed)."""
     logger.info(f"QuienSoy setup request from {user}: character={body.character}, players={body.players}, photo={body.character_photo}")
@@ -3049,7 +3049,7 @@ async def quien_soy_setup(body: QuienSoySetupRequest, user: str = Depends(get_cu
 #     pass
 
 
-@app.get("/api/quiensoy/verify-character")
+@app.get("/bank/api/quiensoy/verify-character")
 async def quien_soy_verify(name: str, user: str = Depends(get_current_user)):
     """
     Verify character with AI-powered validation, spell correction, and suggestions.
@@ -3140,7 +3140,7 @@ async def quien_soy_verify(name: str, user: str = Depends(get_current_user)):
         raise HTTPException(503, f"AI service error: {str(e)}")
 
 
-@app.websocket("/ws/quiensoy")
+@app.websocket("/bank/ws/quiensoy")
 async def quien_soy_ws(websocket: WebSocket, token: str = ""):
     """WebSocket handler for Quien Soy game.
     Hosts (dvd/nebulosa) control game flow (setup, next_turn, reveal, reset).
@@ -3419,13 +3419,13 @@ cifras_letras_manager = CifrasLetrasManager()
  
 # ── CifrasLetras routes ───────────────────────────────────────────────────────
  
-@app.get("/cifrasletras", response_class=HTMLResponse)
+@app.get("/bank/cifrasletras", response_class=HTMLResponse)
 async def cifras_letras_page():
     """Serve the Cifras y Letras game page."""
     return _serve_game_page(CIFRAS_LETRAS_DIR)
  
  
-@app.get("/api/cifrasletras/status")
+@app.get("/bank/api/cifrasletras/status")
 async def cifras_letras_status():
     """Return Cifras y Letras enabled state."""
     return {"enabled": cifras_letras_manager.enabled}
@@ -3435,7 +3435,7 @@ class CifrasLetrasToggleRequest(BaseModel):
     enabled: bool
  
  
-@app.post("/api/cifrasletras/toggle")
+@app.post("/bank/api/cifrasletras/toggle")
 async def cifras_letras_toggle(body: CifrasLetrasToggleRequest, user: str = Depends(get_current_user)):
     """Enable or disable Cifras y Letras."""
     if user not in ADMINS:
@@ -3447,7 +3447,7 @@ async def cifras_letras_toggle(body: CifrasLetrasToggleRequest, user: str = Depe
     return {"enabled": cifras_letras_manager.enabled}
  
  
-@app.get("/api/cifrasletras/users")
+@app.get("/bank/api/cifrasletras/users")
 async def cifras_letras_users(user: str = Depends(get_current_user)):
     """Return eligible user list for Cifras y Letras."""
     if user not in ADMINS:
@@ -3464,7 +3464,7 @@ class CifrasLetrasSetupRequest(BaseModel):
     round_time: int = 30
  
  
-@app.post("/api/cifrasletras/setup")
+@app.post("/bank/api/cifrasletras/setup")
 async def cifras_letras_setup(body: CifrasLetrasSetupRequest, user: str = Depends(get_current_user)):
     """Start a Cifras y Letras game from the admin panel."""
     if user not in ADMINS:
@@ -3478,7 +3478,7 @@ async def cifras_letras_setup(body: CifrasLetrasSetupRequest, user: str = Depend
     return {"ok": True}
  
  
-@app.post("/api/cifrasletras/reset")
+@app.post("/bank/api/cifrasletras/reset")
 async def cifras_letras_reset(user: str = Depends(get_current_user)):
     """Reset Cifras y Letras game state."""
     if user not in ADMINS:
@@ -3487,7 +3487,7 @@ async def cifras_letras_reset(user: str = Depends(get_current_user)):
     return {"ok": True}
  
  
-@app.get("/api/cifrasletras/check-word")
+@app.get("/bank/api/cifrasletras/check-word")
 async def cifras_letras_check_word(word: str, user: str = Depends(get_current_user)):
     """Ask Gemini if a word is valid Spanish."""
     if user not in ADMINS:
@@ -3540,7 +3540,7 @@ async def cifras_letras_check_word(word: str, user: str = Depends(get_current_us
         return {"valid": True, "word": word, "reason": "Error de verificación — aceptada por defecto"}
  
  
-@app.websocket("/ws/cifrasletras")
+@app.websocket("/bank/ws/cifrasletras")
 async def cifras_letras_ws(websocket: WebSocket, token: str = ""):
     """WebSocket handler for Cifras y Letras game."""
     username = decode_token(token) if token else None
@@ -3591,7 +3591,7 @@ import random
 # GALLERY
 # =============================================================================
  
-@app.get("/api/gallery")
+@app.get("/bank/api/gallery")
 async def gallery_images():
     """
     Return a sorted list of image files found in static/gallery/.
@@ -4021,17 +4021,17 @@ game_manager = PasapalabraManager()
 # PASAPALABRA ROUTES
 # =============================================================================
  
-@app.get("/pasapalabra", response_class=HTMLResponse)
+@app.get("/bank/pasapalabra", response_class=HTMLResponse)
 async def pasapalabra_page():
     """Serve the Pasapalabra game page."""
     return _serve_game_page(PASAPALABRA_DIR)
  
-@app.get("/api/pasapalabra/status")
+@app.get("/bank/api/pasapalabra/status")
 async def pasapalabra_status():
     """Return Pasapalabra enabled state."""
     return {"enabled": game_manager.enabled}
  
-@app.get("/api/pasapalabra/users")
+@app.get("/bank/api/pasapalabra/users")
 async def pasapalabra_users(user: str = Depends(get_current_user)):
     """Return eligible user list for Pasapalabra."""
     if user not in ADMINS:
@@ -4047,7 +4047,7 @@ async def pasapalabra_users(user: str = Depends(get_current_user)):
 class GameToggleRequest(BaseModel):
     enabled: bool
  
-@app.post("/api/pasapalabra/toggle")
+@app.post("/bank/api/pasapalabra/toggle")
 async def pasapalabra_toggle(body: GameToggleRequest, user: str = Depends(get_current_user)):
     """Enable or disable Pasapalabra."""
     if user not in ADMINS:
@@ -4066,7 +4066,7 @@ class PasapalabraSetupRequest(BaseModel):
     rosco_time: int = 500
  
  
-@app.post("/api/pasapalabra/setup")
+@app.post("/bank/api/pasapalabra/setup")
 async def pasapalabra_setup(body: PasapalabraSetupRequest, user: str = Depends(get_current_user)):
     """Configure and start a Pasapalabra game from admin panel."""
     if user not in ADMINS:
@@ -4084,7 +4084,7 @@ async def pasapalabra_setup(body: PasapalabraSetupRequest, user: str = Depends(g
     return {"ok": True, "players": players, "rosco_time": rosco_time}
  
  
-@app.post("/api/pasapalabra/reset")
+@app.post("/bank/api/pasapalabra/reset")
 async def pasapalabra_reset(user: str = Depends(get_current_user)):
     """Reset Pasapalabra game state."""
     if user not in ADMINS:
@@ -4097,7 +4097,7 @@ async def pasapalabra_reset(user: str = Depends(get_current_user)):
  
 # ── DB Migration: dvdcoin.db → 5 separate DBs ─────────────────────────────────
  
-@app.post("/api/admin/migrate-db")
+@app.post("/bank/api/admin/migrate-db")
 async def migrate_db(user: str = Depends(get_current_user)):
     """Migrate data from legacy dvdcoin.db to the 5 new DB files. Run once."""
     if user not in SUPERADMINS:
@@ -4210,7 +4210,7 @@ async def migrate_db(user: str = Depends(get_current_user)):
     except Exception as e:
         return {"ok": False, "error": str(e)}
  
-@app.websocket("/ws/pasapalabra")
+@app.websocket("/bank/ws/pasapalabra")
 async def pasapalabra_ws(websocket: WebSocket, token: str = ""):
     """WebSocket handler for Pasapalabra game.
     Admins control game flow; any connected player can send player_answer.
@@ -4509,19 +4509,19 @@ millonario_manager = MillonarioManager()
  
 # ── Routes ────────────────────────────────────────────────
  
-@app.get("/millonario", response_class=HTMLResponse)
+@app.get("/bank/millonario", response_class=HTMLResponse)
 async def millonario_page():
     """Serve the Millonario game page."""
     return _serve_game_page(MILLONARIO_DIR)
 
 
-@app.get("/apuestas", response_class=HTMLResponse)
+@app.get("/bank/apuestas", response_class=HTMLResponse)
 async def apuestas_page():
     """Serve the Betting/Apuestas page."""
     return _serve_game_page(APUESTAS_DIR, "apuestas.html")
 
 
-@app.get("/apuestas/porra/{porra_id}", response_class=HTMLResponse)
+@app.get("/bank/apuestas/porra/{porra_id}", response_class=HTMLResponse)
 async def porra_individual_page(porra_id: int):
     """Serve individual porra page. Auto-generates if missing."""
     try:
@@ -4573,13 +4573,13 @@ async def porra_individual_page(porra_id: int):
         raise HTTPException(500, f"Error al cargar la página: {str(e)}")
  
  
-@app.get("/api/millonario/status")
+@app.get("/bank/api/millonario/status")
 async def millonario_status():
     """Return Millonario enabled state."""
     return {"enabled": millonario_manager.enabled}
  
  
-@app.get("/api/millonario/users")
+@app.get("/bank/api/millonario/users")
 async def millonario_users(user: str = Depends(get_current_user)):
     """Return eligible user list for Millonario."""
     if user not in ADMINS:
@@ -4596,7 +4596,7 @@ class MillonarioToggleRequest(BaseModel):
     enabled: bool
  
  
-@app.post("/api/millonario/toggle")
+@app.post("/bank/api/millonario/toggle")
 async def millonario_toggle(
     body: MillonarioToggleRequest,
     user: str = Depends(get_current_user)
@@ -4614,7 +4614,7 @@ class MillonarioSetupRequest(BaseModel):
     player: str
  
  
-@app.post("/api/millonario/setup")
+@app.post("/bank/api/millonario/setup")
 async def millonario_setup(body: MillonarioSetupRequest, user: str = Depends(get_current_user)):
     """Configure and start a Millonario game from admin panel."""
     if user not in ADMINS:
@@ -4628,7 +4628,7 @@ async def millonario_setup(body: MillonarioSetupRequest, user: str = Depends(get
     return {"ok": True, "player": player}
  
  
-@app.post("/api/millonario/reset")
+@app.post("/bank/api/millonario/reset")
 async def millonario_reset(user: str = Depends(get_current_user)):
     """Reset Millonario game state."""
     if user not in ADMINS:
@@ -4638,7 +4638,7 @@ async def millonario_reset(user: str = Depends(get_current_user)):
     return {"ok": True}
  
  
-@app.websocket("/ws/millonario")
+@app.websocket("/bank/ws/millonario")
 async def millonario_ws(websocket: WebSocket, token: str = ""):
     """WebSocket handler for Millonario game."""
     username = decode_token(token) if token else None
@@ -5057,18 +5057,18 @@ def get_opo_manager(username: str) -> "OpoManager":
  
 # ── OPO routes ─────────────────────────────────────────────────────────────────
  
-@app.get("/opo", response_class=HTMLResponse)
+@app.get("/bank/opo", response_class=HTMLResponse)
 async def opo_page():
     """Serve the OPO game page."""
     return _serve_game_page(os.path.join(BASE_DIR, "static", "opo"))
  
-@app.get("/api/opo/status")
+@app.get("/bank/api/opo/status")
 async def opo_status(user: str = Depends(get_current_user)):
     """Return OPO status and access for the current user."""
     mgr = get_opo_manager(user)
     return {"enabled": mgr.enabled, "username": user, "is_opo_user": user in OPO_USERS}
  
-@app.post("/api/opo/toggle")
+@app.post("/bank/api/opo/toggle")
 async def opo_toggle(user: str = Depends(get_current_user)):
     """Enable or disable OPO."""
     if user not in SUPERADMINS: raise HTTPException(403)
@@ -5076,7 +5076,7 @@ async def opo_toggle(user: str = Depends(get_current_user)):
     mgr.enabled = not mgr.enabled
     return {"enabled": mgr.enabled}
  
-@app.get("/api/opo/players")
+@app.get("/bank/api/opo/players")
 async def opo_players_list(user: str = Depends(get_current_user)):
     """Return the list of OPO players."""
     if user not in OPO_USERS: raise HTTPException(403)
@@ -5105,7 +5105,7 @@ async def opo_players_list(user: str = Depends(get_current_user)):
                           "last_session_s": 0, "total_s": ts2 or 0, "tests_done": td2 or 0})
     return result
  
-@app.post("/api/opo/players")
+@app.post("/bank/api/opo/players")
 async def opo_player_add(body: OpoPlayerRequest, user: str = Depends(get_current_user)):
     """Add a user to OPO access list."""
     global OPO_USERS
@@ -5122,7 +5122,7 @@ async def opo_player_add(body: OpoPlayerRequest, user: str = Depends(get_current
     OPO_USERS = _load_opo_users()
     return {"ok": True}
  
-@app.delete("/api/opo/players/{username}")
+@app.delete("/bank/api/opo/players/{username}")
 async def opo_player_remove(username: str, user: str = Depends(get_current_user)):
     """Remove a user from OPO access list."""
     global OPO_USERS
@@ -5134,7 +5134,7 @@ async def opo_player_remove(username: str, user: str = Depends(get_current_user)
     OPO_USERS = _load_opo_users()
     return {"ok": True}
  
-@app.post("/api/opo/result")
+@app.post("/bank/api/opo/result")
 async def opo_result_save(body: OpoResultRequest, user: str = Depends(get_current_user)):
     """Save an OPO test result."""
     if user not in OPO_USERS: raise HTTPException(403)
@@ -5147,7 +5147,7 @@ async def opo_result_save(body: OpoResultRequest, user: str = Depends(get_curren
     conn.commit(); conn.close()
     return {"ok": True}
  
-@app.get("/api/opo/results")
+@app.get("/bank/api/opo/results")
 async def opo_results_all(user: str = Depends(get_current_user), username:
     str = ""):
     if user not in OPO_USERS: raise HTTPException(403)
@@ -5177,7 +5177,7 @@ async def opo_results_all(user: str = Depends(get_current_user), username:
                        "played_at":r["played_at"],"correct":r["correct"],"wrong":r["wrong"],"wrong_qs":wqs})
     return result
  
-@app.get("/api/opo/stats")
+@app.get("/bank/api/opo/stats")
 async def opo_stats_endpoint(user: str = Depends(get_current_user)):
     """Return OPO session stats per user."""
     if user not in SUPERADMINS: raise HTTPException(403)
@@ -5191,7 +5191,7 @@ async def opo_stats_endpoint(user: str = Depends(get_current_user)):
  
 # ── Cuentos sessions ──────────────────────────────────────────────────────────
  
-@app.get("/api/cuentos/sessions")
+@app.get("/bank/api/cuentos/sessions")
 async def cuentos_sessions(
     user: str = Depends(get_current_user),
     username: str = "", date_from: str = "", date_to: str = "",
@@ -5212,7 +5212,7 @@ async def cuentos_sessions(
  
 # ── OPO WebSocket ─────────────────────────────────────────────────────────────
  
-@app.websocket("/ws/opo")
+@app.websocket("/bank/ws/opo")
 async def opo_ws(websocket: WebSocket, token: str = ""):
     username = decode_token(token) if token else None
     if not username:
@@ -5504,7 +5504,7 @@ class MsgSendRequest(BaseModel):
  
 # ── REST routes ────────────────────────────────────────────────────────────
  
-@app.get("/messages", response_class=HTMLResponse)
+@app.get("/bank/messages", response_class=HTMLResponse)
 async def messages_page():
     """Serve the messaging chat page."""
     resp = FileResponse(os.path.join(BASE_DIR, "static", "pages", "chat.html"))
@@ -5513,7 +5513,7 @@ async def messages_page():
     return resp
  
  
-@app.get("/api/messages/status")
+@app.get("/bank/api/messages/status")
 async def messages_status(user: str = Depends(get_current_user)):
     """Return messaging enabled state, online users, and available rooms."""
     enabled = _msg_enabled()
@@ -5535,7 +5535,7 @@ async def messages_status(user: str = Depends(get_current_user)):
     }
  
  
-@app.get("/api/messages/history")
+@app.get("/bank/api/messages/history")
 async def messages_history(
     user: str = Depends(get_current_user),
     room: str = "group",
@@ -5570,7 +5570,7 @@ async def messages_history(
     return msgs
  
  
-@app.post("/api/messages/read")
+@app.post("/bank/api/messages/read")
 async def messages_mark_read(
     user: str = Depends(get_current_user),
     room: str = "group",
@@ -5594,7 +5594,7 @@ async def messages_mark_read(
     return {"ok": True, "marked": len(rows)}
 
 
-@app.post("/api/messages/mark-room-read")
+@app.post("/bank/api/messages/mark-room-read")
 async def messages_mark_room_read(
     body: dict,
     user: str = Depends(get_current_user),
@@ -5623,7 +5623,7 @@ async def messages_mark_room_read(
     return {"ok": True, "marked": len(rows), "room": room}
  
  
-@app.post("/api/messages/audio")
+@app.post("/bank/api/messages/audio")
 async def messages_upload_audio(
     user: str = Depends(get_current_user),
     file: UploadFile = File(...),
@@ -5649,7 +5649,7 @@ async def messages_upload_audio(
     return {"ok": True, "url": url}
  
  
-@app.post("/api/messages/toggle")
+@app.post("/bank/api/messages/toggle")
 async def messages_toggle(body: MsgToggleRequest, user: str = Depends(get_current_user)):
     """Enable or disable the messaging system (admins only)."""
     if user not in ALL_ADMINS:
@@ -5660,7 +5660,7 @@ async def messages_toggle(body: MsgToggleRequest, user: str = Depends(get_curren
     return {"enabled": body.enabled}
  
  
-@app.get("/api/messages/users")
+@app.get("/bank/api/messages/users")
 async def messages_users(user: str = Depends(get_current_user)):
     """Return list of users available to start a DM with."""
     if not _msg_enabled() and user not in ALL_ADMINS:
@@ -5674,7 +5674,7 @@ async def messages_users(user: str = Depends(get_current_user)):
     return [r["username"] for r in rows if r["username"] != user]
  
  
-@app.get("/api/messages/unread")
+@app.get("/bank/api/messages/unread")
 async def messages_unread(user: str = Depends(get_current_user)):
     """Return unread message counts per room for the current user."""
     if not _msg_enabled() and user not in ALL_ADMINS:
@@ -5691,7 +5691,7 @@ async def messages_unread(user: str = Depends(get_current_user)):
     return {r["room"]: r["cnt"] for r in rows}
  
  
-@app.get("/api/messages/admin/stats")
+@app.get("/bank/api/messages/admin/stats")
 async def messages_admin_stats(user: str = Depends(get_current_user)):
     """Return admin-level messaging statistics."""
     if user not in ALL_ADMINS:
@@ -5719,14 +5719,14 @@ async def messages_admin_stats(user: str = Depends(get_current_user)):
     }
  
  
-@app.get("/api/opo/my-access")
+@app.get("/bank/api/opo/my-access")
 async def opo_my_access(user: str = Depends(get_current_user)):
     """Returns whether the current user can access OPO."""
     is_opo = user in OPO_USERS or user in SUPERADMINS
     return {"is_opo_user": is_opo, "username": user}
 
 
-@app.get("/api/messages/admin/all-rooms")
+@app.get("/bank/api/messages/admin/all-rooms")
 async def messages_admin_all_rooms(user: str = Depends(get_current_user)):
     """Return all conversation rooms with last message info, for superadmin view."""
     if user not in SUPERADMINS:
@@ -5743,7 +5743,7 @@ async def messages_admin_all_rooms(user: str = Depends(get_current_user)):
     return {"rooms": [dict(r) for r in rows]}
  
  
-@app.get("/api/rooms/debug")
+@app.get("/bank/api/rooms/debug")
 async def rooms_debug(user: str = Depends(get_current_user)):
     """Debug endpoint — shows raw DB state and memory state for rooms."""
     try:
@@ -5768,7 +5768,7 @@ async def rooms_debug(user: str = Depends(get_current_user)):
         return {"error": str(e)}
 
 
-@app.get("/api/rooms/status")
+@app.get("/bank/api/rooms/status")
 async def rooms_status(user: str = Depends(get_current_user)):
     """Game-style status endpoint for rooms.
     Returns active=True/False and the list of visible rooms.
@@ -5842,7 +5842,7 @@ async def rooms_status(user: str = Depends(get_current_user)):
         return {"active": False, "count": 0, "rooms": [], "error": str(e)}
 
 
-@app.get("/api/rooms/list")
+@app.get("/bank/api/rooms/list")
 async def rooms_list(user: str = Depends(get_current_user)):
     """List video rooms visible to the current user — memory + DB merged.
     Returns consistent field names: room_key, title, host, mode, members_csv"""
@@ -5861,7 +5861,7 @@ async def rooms_list(user: str = Depends(get_current_user)):
     return result
 
 
-@app.get("/api/rooms/public")
+@app.get("/bank/api/rooms/public")
 async def rooms_public(user: str = Depends(get_current_user)):
     """Ultra-simple endpoint: returns ALL active public rooms + rooms where user is invited.
     Reads directly from DB. No complex logic. Used by members to see open rooms."""
@@ -5933,7 +5933,7 @@ async def rooms_public(user: str = Depends(get_current_user)):
         return {"rooms": [], "count": 0, "error": str(e)}
 
 
-@app.post("/api/rooms/create")
+@app.post("/bank/api/rooms/create")
 async def rooms_create(request: Request, user: str = Depends(get_current_user)):
     """Create a room via REST — works even when messaging WS is disabled.
     This is the fallback when _socialWS is not connected."""
@@ -5980,7 +5980,7 @@ async def rooms_create(request: Request, user: str = Depends(get_current_user)):
     }
 
 
-@app.post("/api/rooms/join")
+@app.post("/bank/api/rooms/join")
 async def rooms_join(request: Request, user: str = Depends(get_current_user)):
     """Join an existing room via REST — fallback when WS is not available."""
     body = await request.json()
@@ -6022,7 +6022,7 @@ async def rooms_join(request: Request, user: str = Depends(get_current_user)):
     }
 
 
-@app.post("/api/rooms/leave")
+@app.post("/bank/api/rooms/leave")
 async def rooms_leave(request: Request, user: str = Depends(get_current_user)):
     """Leave a room via REST — fallback when WS is not available."""
     body = await request.json()
@@ -6038,7 +6038,7 @@ async def rooms_leave(request: Request, user: str = Depends(get_current_user)):
     return {"ok": True}
 
 
-@app.post("/api/rooms/close")
+@app.post("/bank/api/rooms/close")
 async def rooms_close(request: Request, user: str = Depends(get_current_user)):
     """Close a room (only dvd or the host can do this)."""
     body = await request.json()
@@ -6068,7 +6068,7 @@ async def rooms_close(request: Request, user: str = Depends(get_current_user)):
     return {"ok": True, "closed": room_key, "members": members}
 
 
-@app.get("/api/rooms/active")
+@app.get("/bank/api/rooms/active")
 async def rooms_active(user: str = Depends(get_current_user)):
     """DB-backed active rooms — survives server restarts.
     Returns public rooms + private rooms where user is invited.
@@ -6084,7 +6084,7 @@ async def rooms_active(user: str = Depends(get_current_user)):
 
 from fastapi.responses import StreamingResponse as _StreamingResponse
 
-@app.get("/api/rooms/stream")
+@app.get("/bank/api/rooms/stream")
 async def rooms_stream(request: Request, token: str = ""):
     """SSE endpoint — pushes room updates in real time to all connected clients.
     Client subscribes once; server pushes 'data: rooms-changed\\n\\n' on every change.
@@ -6145,7 +6145,7 @@ async def rooms_stream(request: Request, token: str = ""):
     )
 
 
-@app.get("/join/{room_key}", response_class=HTMLResponse)
+@app.get("/bank/join/{room_key}", response_class=HTMLResponse)
 async def join_room_page(room_key: str):
     """Direct join link — serves a redirect page that opens Social and joins the room."""
     html = f"""<!DOCTYPE html>
@@ -6185,7 +6185,7 @@ async def join_room_page(room_key: str):
     return resp
 
 
-@app.get("/salas", response_class=HTMLResponse)
+@app.get("/bank/salas", response_class=HTMLResponse)
 async def salas_page(request: Request):
     """Live rooms page — server-rendered, no cache, auto-refresh every 5s.
     Works without JavaScript. Shows all active public rooms with join links.
@@ -6310,7 +6310,7 @@ async def salas_page(request: Request):
     return resp
 
 
-@app.post("/api/rooms/invite")
+@app.post("/bank/api/rooms/invite")
 async def rooms_invite(request: Request, user: str = Depends(get_current_user)):
     """Invite a user to an existing private room (host only)."""
     body = await request.json()
@@ -6368,7 +6368,7 @@ async def rooms_invite(request: Request, user: str = Depends(get_current_user)):
  
 # ── WebSocket ──────────────────────────────────────────────────────────────
  
-@app.websocket("/ws/messages")
+@app.websocket("/bank/ws/messages")
 async def messages_ws(websocket: WebSocket, token: str = ""):
     """WebSocket endpoint for real-time messaging.
     Events received:  join | send | typing | read
@@ -6797,7 +6797,7 @@ class RoomsManager:
 rooms_manager = RoomsManager()
 
 
-@app.websocket("/ws/rooms")
+@app.websocket("/bank/ws/rooms")
 async def rooms_ws(websocket: WebSocket, token: str = ""):
     """Dedicated WebSocket for room presence updates.
     Always available regardless of messaging enabled state.
@@ -6898,32 +6898,32 @@ a{{color:#D4A843}}</style></head>
     resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
     return resp
  
-@app.get("/admin/games/pasapalabra", response_class=HTMLResponse)
+@app.get("/bank/admin/games/pasapalabra", response_class=HTMLResponse)
 async def admin_pasapalabra_page(user: str = Depends(get_current_user)):
     if user not in ALL_ADMINS: raise HTTPException(403)
     return _serve_admin_page("pasapalabra.html")
  
-@app.get("/admin/games/millonario", response_class=HTMLResponse)
+@app.get("/bank/admin/games/millonario", response_class=HTMLResponse)
 async def admin_millonario_page(user: str = Depends(get_current_user)):
     if user not in ALL_ADMINS: raise HTTPException(403)
     return _serve_admin_page("millonario.html")
  
-@app.get("/admin/games/quiensoy", response_class=HTMLResponse)
+@app.get("/bank/admin/games/quiensoy", response_class=HTMLResponse)
 async def admin_quiensoy_page(user: str = Depends(get_current_user)):
     if user not in ALL_ADMINS: raise HTTPException(403)
     return _serve_admin_page("quiensoy.html")
  
-@app.get("/admin/games/cifrasletras", response_class=HTMLResponse)
+@app.get("/bank/admin/games/cifrasletras", response_class=HTMLResponse)
 async def admin_cifrasletras_page(user: str = Depends(get_current_user)):
     if user not in ALL_ADMINS: raise HTTPException(403)
     return _serve_admin_page("cifrasletras.html")
  
-@app.get("/admin/games/cuentos", response_class=HTMLResponse)
+@app.get("/bank/admin/games/cuentos", response_class=HTMLResponse)
 async def admin_cuentos_page(user: str = Depends(get_current_user)):
     if user not in ALL_ADMINS: raise HTTPException(403)
     return _serve_admin_page("cuentos.html")
  
-@app.get("/admin/games/mensajes", response_class=HTMLResponse)
+@app.get("/bank/admin/games/mensajes", response_class=HTMLResponse)
 async def admin_mensajes_page(user: str = Depends(get_current_user)):
     if user not in ALL_ADMINS: raise HTTPException(403)
     return _serve_admin_page("mensajes.html")
@@ -6949,7 +6949,7 @@ async def admin_mensajes_page(user: str = Depends(get_current_user)):
 # Salas de video: room_key → {username: websocket}
 _VIDEO_ROOMS: dict = {}
 
-@app.websocket("/ws/video")
+@app.websocket("/bank/ws/video")
 async def video_relay_ws(websocket: WebSocket, token: str = ""):
     """Dual-mode video WebSocket: WebRTC signaling + binary chunk relay."""
     username = decode_token(token) if token else None
@@ -7123,7 +7123,7 @@ class ResolverPorraRequest(BaseModel):
     porra_id: int
     resultado: str  # valor de la opción ganadora
 
-@app.get("/api/porras/list")
+@app.get("/bank/api/porras/list")
 async def porras_list(user: str = Depends(get_current_user)):
     """List all betting pools (porras)."""
     try:
@@ -7210,7 +7210,7 @@ async def porras_list(user: str = Depends(get_current_user)):
         logger.exception(e)
         raise HTTPException(500, f"Error al listar porras: {str(e)}")
 
-@app.get("/api/porras/{porra_id}")
+@app.get("/bank/api/porras/{porra_id}")
 async def porra_detail(porra_id: int, user: str = Depends(get_current_user)):
     """Get detailed info about a specific porra including all bets and statistics."""
     try:
@@ -7310,7 +7310,7 @@ async def porra_detail(porra_id: int, user: str = Depends(get_current_user)):
         logger.error(f"Error getting porra detail {porra_id}: {e}")
         raise HTTPException(500, f"Error al obtener detalles de la porra: {str(e)}")
 
-@app.post("/api/porras/create")
+@app.post("/bank/api/porras/create")
 async def porra_create(body: PorraCreateRequest, user: str = Depends(get_current_user)):
     """Create a new betting pool. Any user can create."""
     try:
@@ -7440,7 +7440,7 @@ async def porra_create(body: PorraCreateRequest, user: str = Depends(get_current
         logger.error(f"Error creating porra: {e}", exc_info=True)
         raise HTTPException(500, f"Error al crear la porra: {str(e)}")
 
-@app.post("/api/porras/apostar")
+@app.post("/bank/api/porras/apostar")
 async def porra_apostar(body: ApuestaRequest, user: str = Depends(get_current_user)):
     """Place a bet on a porra. Users can bet multiple times on different options."""
     try:
@@ -7585,7 +7585,7 @@ async def porra_apostar(body: ApuestaRequest, user: str = Depends(get_current_us
         logger.error(f"Unexpected error in porra_apostar: {e}", exc_info=True)
         raise HTTPException(500, f"Error inesperado: {str(e)}")
 
-@app.post("/api/porras/resolver")
+@app.post("/bank/api/porras/resolver")
 async def porra_resolver(body: ResolverPorraRequest, user: str = Depends(get_current_user)):
     """Resolve a porra and pay winners. Only dvd can resolve."""
     if user not in SUPERADMINS:
@@ -7735,7 +7735,7 @@ async def porra_resolver(body: ResolverPorraRequest, user: str = Depends(get_cur
     
     return {"ok": True, "ganadores": len(ganadores), "bote_repartido": bote_neto}
 
-@app.post("/api/porras/cerrar/{porra_id}")
+@app.post("/bank/api/porras/cerrar/{porra_id}")
 async def porra_cerrar(porra_id: int, user: str = Depends(get_current_user)):
     """Close a porra (no more bets). Only dvd or creator."""
     if user not in SUPERADMINS:
@@ -7755,7 +7755,7 @@ async def porra_cerrar(porra_id: int, user: str = Depends(get_current_user)):
     
     return {"ok": True}
 
-@app.post("/api/porras/cerrar-y-resolver/{porra_id}")
+@app.post("/bank/api/porras/cerrar-y-resolver/{porra_id}")
 async def porra_cerrar_y_resolver(porra_id: int, body: dict, user: str = Depends(get_current_user)):
     """Close porra and resolve with winner in one step. Only dvd can do this."""
     if user not in SUPERADMINS:
@@ -7784,7 +7784,7 @@ async def porra_cerrar_y_resolver(porra_id: int, body: dict, user: str = Depends
     resolver_request = ResolverPorraRequest(porra_id=porra_id, resultado=resultado)
     return await porra_resolver(resolver_request, user)
 
-@app.post("/api/porras/cancelar/{porra_id}")
+@app.post("/bank/api/porras/cancelar/{porra_id}")
 async def porra_cancelar(porra_id: int, user: str = Depends(get_current_user)):
     """Cancel a porra and refund all bets. Creator or dvd can cancel."""
     c = db_bets()
@@ -7850,7 +7850,7 @@ async def porra_cancelar(porra_id: int, user: str = Depends(get_current_user)):
     
     return {"ok": True, "refunded": refunded_count}
 
-@app.delete("/api/porras/{porra_id}")
+@app.delete("/bank/api/porras/{porra_id}")
 async def porra_delete(porra_id: int, user: str = Depends(get_current_user)):
     """Delete a porra completely. Creator or dvd can delete."""
     c = db_bets()
@@ -7896,7 +7896,7 @@ class RelanzarPorraRequest(BaseModel):
     fecha_limite: str
     fecha_evento: str
 
-@app.post("/api/porras/relanzar/{porra_id}")
+@app.post("/bank/api/porras/relanzar/{porra_id}")
 async def porra_relanzar(porra_id: int, body: RelanzarPorraRequest, user: str = Depends(get_current_user)):
     """Relaunch a porra with new dates. Only dvd can relaunch."""
     if user not in SUPERADMINS:
@@ -7947,7 +7947,7 @@ async def porra_relanzar(porra_id: int, body: RelanzarPorraRequest, user: str = 
 class EnmascararPorraRequest(BaseModel):
     enmascarada: bool
 
-@app.post("/api/porras/enmascarar/{porra_id}")
+@app.post("/bank/api/porras/enmascarar/{porra_id}")
 async def porra_enmascarar(porra_id: int, body: EnmascararPorraRequest, user: str = Depends(get_current_user)):
     """Hide/show a porra from public list. Only dvd can mask."""
     if user not in SUPERADMINS:
@@ -7976,7 +7976,7 @@ async def porra_enmascarar(porra_id: int, body: EnmascararPorraRequest, user: st
         logger.error(f"Error masking porra {porra_id}: {e}")
         raise HTTPException(500, f"Error al enmascarar la porra: {str(e)}")
 
-@app.get("/api/porras/stats/{username}")
+@app.get("/bank/api/porras/stats/{username}")
 async def porra_user_stats(username: str, user: str = Depends(get_current_user)):
     """Get comprehensive betting statistics for a user."""
     try:
@@ -8105,7 +8105,7 @@ async def porra_user_stats(username: str, user: str = Depends(get_current_user))
         logger.error(f"Error getting user stats {username}: {e}")
         raise HTTPException(500, f"Error al obtener estadísticas: {str(e)}")
 
-@app.get("/api/porras/mis-estadisticas")
+@app.get("/bank/api/porras/mis-estadisticas")
 async def porra_mis_estadisticas(user: str = Depends(get_current_user)):
     """Get simplified betting statistics for current user (for dashboard)."""
     try:
@@ -8144,7 +8144,7 @@ async def porra_mis_estadisticas(user: str = Depends(get_current_user)):
         logger.error(f"Error getting user stats {user}: {e}")
         raise HTTPException(500, f"Error al obtener estadísticas: {str(e)}")
 
-@app.get("/api/porras/ranking")
+@app.get("/bank/api/porras/ranking")
 async def porra_ranking(user: str = Depends(get_current_user)):
     """Get global betting ranking."""
     try:
@@ -8178,7 +8178,7 @@ async def porra_ranking(user: str = Depends(get_current_user)):
         logger.error(f"Error getting ranking: {e}")
         raise HTTPException(500, f"Error al obtener ranking: {str(e)}")
 
-@app.get("/api/porras/mis-apuestas")
+@app.get("/bank/api/porras/mis-apuestas")
 async def mis_apuestas(user: str = Depends(get_current_user)):
     """Get all bets from current user."""
     try:
@@ -8924,7 +8924,7 @@ hundirlaflota_manager = HundirLaFlotaManager()
 
 # ── Routes ────────────────────────────────────────────────
 
-@app.get("/hundirlaflota/admin.html", response_class=HTMLResponse)
+@app.get("/bank/hundirlaflota/admin.html", response_class=HTMLResponse)
 async def hundirlaflota_admin_page():
     """Serve Hundir la Flota admin page."""
     path = os.path.join(BASE_DIR, "game_pages", "hundirlaflota", "admin.html")
@@ -8933,7 +8933,7 @@ async def hundirlaflota_admin_page():
     return FileResponse(path)
 
 
-@app.get("/hundirlaflota/game.html", response_class=HTMLResponse)
+@app.get("/bank/hundirlaflota/game.html", response_class=HTMLResponse)
 async def hundirlaflota_game_page():
     """Serve Hundir la Flota game page."""
     path = os.path.join(BASE_DIR, "game_pages", "hundirlaflota", "game.html")
@@ -8942,13 +8942,13 @@ async def hundirlaflota_game_page():
     return FileResponse(path)
 
 
-@app.get("/api/hundirlaflota/status")
+@app.get("/bank/api/hundirlaflota/status")
 async def hundirlaflota_status():
     """Return Hundir la Flota enabled state."""
     return {"enabled": hundirlaflota_manager.enabled}
 
 
-@app.get("/api/hundirlaflota/users")
+@app.get("/bank/api/hundirlaflota/users")
 async def hundirlaflota_users(user: str = Depends(get_current_user)):
     """Return eligible user list for Hundir la Flota."""
     if user not in ADMINS:
@@ -8965,7 +8965,7 @@ class HundirLaFlotaToggleRequest(BaseModel):
     enabled: bool
 
 
-@app.post("/api/hundirlaflota/toggle")
+@app.post("/bank/api/hundirlaflota/toggle")
 async def hundirlaflota_toggle(
     body: HundirLaFlotaToggleRequest,
     user: str = Depends(get_current_user)
@@ -8987,7 +8987,7 @@ class HundirLaFlotaSetupRequest(BaseModel):
     ships: Optional[Dict] = None
 
 
-@app.post("/api/hundirlaflota/setup")
+@app.post("/bank/api/hundirlaflota/setup")
 async def hundirlaflota_setup(
     body: HundirLaFlotaSetupRequest, 
     user: str = Depends(get_current_user)
@@ -9012,7 +9012,7 @@ async def hundirlaflota_setup(
     return {"ok": True, "players": body.players}
 
 
-@app.get("/api/hundirlaflota/ships")
+@app.get("/bank/api/hundirlaflota/ships")
 async def hundirlaflota_get_ships(user: str = Depends(get_current_user)):
     """Get current ship configuration."""
     if user not in ADMINS:
@@ -9024,7 +9024,7 @@ class HundirLaFlotaShipsRequest(BaseModel):
     ships: Dict
 
 
-@app.post("/api/hundirlaflota/ships")
+@app.post("/bank/api/hundirlaflota/ships")
 async def hundirlaflota_set_ships(
     body: HundirLaFlotaShipsRequest,
     user: str = Depends(get_current_user)
@@ -9036,7 +9036,7 @@ async def hundirlaflota_set_ships(
     return {"ok": True, "ships": body.ships}
 
 
-@app.post("/api/hundirlaflota/reset")
+@app.post("/bank/api/hundirlaflota/reset")
 async def hundirlaflota_reset(user: str = Depends(get_current_user)):
     """Reset Hundir la Flota game state."""
     if user not in ADMINS:
@@ -9046,7 +9046,7 @@ async def hundirlaflota_reset(user: str = Depends(get_current_user)):
     return {"ok": True}
 
 
-@app.websocket("/ws/hundirlaflota")
+@app.websocket("/bank/ws/hundirlaflota")
 async def hundirlaflota_ws(websocket: WebSocket, token: str = ""):
     """WebSocket handler for Hundir la Flota game."""
     username = decode_token(token) if token else None
@@ -9090,13 +9090,13 @@ async def hundirlaflota_ws(websocket: WebSocket, token: str = ""):
 # VOTACIONES / VOTING SYSTEM
 # =============================================================================
 
-@app.get("/votaciones", response_class=HTMLResponse)
+@app.get("/bank/votaciones", response_class=HTMLResponse)
 async def votaciones_page():
     """Serve the voting system page."""
     return _serve_game_page(VOTACIONES_DIR, "votaciones.html")
 
 
-@app.get("/api/votaciones/list")
+@app.get("/bank/api/votaciones/list")
 async def votaciones_list(user: str = Depends(get_current_user)):
     """List all votaciones visible to the user."""
     c = None
@@ -9147,7 +9147,7 @@ async def votaciones_list(user: str = Depends(get_current_user)):
         raise HTTPException(500, f"Error al listar votaciones: {str(e)}")
 
 
-@app.get("/api/votaciones/{votacion_id}")
+@app.get("/bank/api/votaciones/{votacion_id}")
 async def votacion_detail(votacion_id: int, user: str = Depends(get_current_user)):
     """Get detailed information about a votacion."""
     c = None
@@ -9291,7 +9291,7 @@ class VotacionCreateRequest(BaseModel):
     anonima: bool = False
 
 
-@app.post("/api/votaciones/create")
+@app.post("/bank/api/votaciones/create")
 async def votacion_create(body: VotacionCreateRequest, user: str = Depends(get_current_user)):
     """Create a new votacion."""
     try:
@@ -9348,7 +9348,7 @@ class VotarRequest(BaseModel):
     opcion: str
 
 
-@app.post("/api/votaciones/votar")
+@app.post("/bank/api/votaciones/votar")
 async def votar(body: VotarRequest, user: str = Depends(get_current_user)):
     """Vote in a votacion."""
     c = None
@@ -9418,7 +9418,7 @@ async def votar(body: VotarRequest, user: str = Depends(get_current_user)):
         raise HTTPException(500, f"Error al registrar el voto: {str(e)}")
 
 
-@app.delete("/api/votaciones/{votacion_id}/voto")
+@app.delete("/bank/api/votaciones/{votacion_id}/voto")
 async def remove_vote(votacion_id: int, user: str = Depends(get_current_user)):
     """Remove user's vote from a votacion."""
     c = None
@@ -9461,7 +9461,7 @@ class FinalizarRequest(BaseModel):
     votacion_id: int
 
 
-@app.post("/api/votaciones/finalizar")
+@app.post("/bank/api/votaciones/finalizar")
 async def finalizar_votacion(body: FinalizarRequest, user: str = Depends(get_current_user)):
     """Finalize a votacion and calculate results."""
     if user not in ADMINS:
@@ -9505,7 +9505,7 @@ async def finalizar_votacion(body: FinalizarRequest, user: str = Depends(get_cur
         raise HTTPException(500, f"Error al finalizar la votación: {str(e)}")
 
 
-@app.delete("/api/votaciones/{votacion_id}")
+@app.delete("/bank/api/votaciones/{votacion_id}")
 async def delete_votacion(votacion_id: int, user: str = Depends(get_current_user)):
     """Delete a votacion."""
     if user not in ADMINS:

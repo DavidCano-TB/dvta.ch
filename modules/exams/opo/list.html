@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oposiciones - DVDcoin Exams</title>
+    <link rel="stylesheet" href="/static/css/exams-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">📚</div>
+                <span>DVDcoin Exams</span>
+            </a>
+            <nav class="nav">
+                <a href="/" class="nav-link">Inicio</a>
+                <a href="/opo" class="nav-link active">Oposiciones</a>
+                <a href="#" class="nav-link" id="userBtn">Mi Cuenta</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Oposiciones Sanitarias</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">
+                Prepara tu oposición con miles de preguntas actualizadas
+            </p>
+        </div>
+
+        <!-- Admin button (solo visible para admins) -->
+        <div id="adminSection" style="display: none; margin-bottom: 2rem;">
+            <a href="/opo/admin" class="btn btn-primary">
+                ⚙️ Panel de Administración
+            </a>
+        </div>
+
+        <!-- Filtros -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <input type="text" id="searchInput" class="form-input" placeholder="Buscar oposición..." style="flex: 1; min-width: 250px;">
+                <select id="difficultyFilter" class="form-input" style="width: 200px;">
+                    <option value="">Todas las dificultades</option>
+                    <option value="easy">Fácil</option>
+                    <option value="medium">Media</option>
+                    <option value="hard">Difícil</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Lista de oposiciones -->
+        <div class="grid grid-2" id="opoList">
+            <!-- Técnico Superior en Imagen para el Diagnóstico -->
+            <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h3 class="card-title">Técnico Superior en Imagen para el Diagnóstico</h3>
+                            <span class="badge badge-primary">Medicina Nuclear</span>
+                        </div>
+                        <span class="badge badge-premium">Premium</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Prepara tu oposición con preguntas específicas de imagen diagnóstica y medicina nuclear.
+                    </p>
+                    <div style="display: flex; gap: 2rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📝 2,500+ preguntas</div>
+                        <div>⏱️ 60 min por examen</div>
+                        <div>📊 Dificultad: Media</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div style="color: var(--text-tertiary); font-size: 0.9rem;">
+                        Última actualización: Mayo 2026
+                    </div>
+                    <a href="/opo/exam-types?category=imagen-diagnostico" class="btn btn-primary">
+                        Comenzar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Más oposiciones próximamente -->
+            <div class="card" style="opacity: 0.6;">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h3 class="card-title">Enfermería</h3>
+                            <span class="badge badge-primary">Sanidad</span>
+                        </div>
+                        <span class="badge badge-warning">Próximamente</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Oposiciones de enfermería para diferentes comunidades autónomas.
+                    </p>
+                    <div style="display: flex; gap: 2rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📝 Disponible pronto</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div style="color: var(--text-tertiary); font-size: 0.9rem;">
+                        En desarrollo
+                    </div>
+                    <button class="btn btn-secondary" disabled>Próximamente</button>
+                </div>
+            </div>
+
+            <div class="card" style="opacity: 0.6;">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h3 class="card-title">Auxiliar de Enfermería</h3>
+                            <span class="badge badge-primary">Sanidad</span>
+                        </div>
+                        <span class="badge badge-warning">Próximamente</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Prepara tu oposición de auxiliar de enfermería.
+                    </p>
+                    <div style="display: flex; gap: 2rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📝 Disponible pronto</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div style="color: var(--text-tertiary); font-size: 0.9rem;">
+                        En desarrollo
+                    </div>
+                    <button class="btn btn-secondary" disabled>Próximamente</button>
+                </div>
+            </div>
+
+            <div class="card" style="opacity: 0.6;">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h3 class="card-title">Celador</h3>
+                            <span class="badge badge-primary">Sanidad</span>
+                        </div>
+                        <span class="badge badge-warning">Próximamente</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem;">
+                        Oposiciones de celador para el sistema sanitario.
+                    </p>
+                    <div style="display: flex; gap: 2rem; color: var(--text-tertiary); font-size: 0.9rem;">
+                        <div>📝 Disponible pronto</div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div style="color: var(--text-tertiary); font-size: 0.9rem;">
+                        En desarrollo
+                    </div>
+                    <button class="btn btn-secondary" disabled>Próximamente</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas del usuario -->
+        <div id="userStats" style="display: none; margin-top: 3rem;">
+            <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem;">Tus Estadísticas</h2>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;" id="totalExams">0</div>
+                        <div style="color: var(--text-secondary);">Exámenes Realizados</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--success); margin-bottom: 0.5rem;" id="avgScore">0%</div>
+                        <div style="color: var(--text-secondary);">Puntuación Media</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;" id="totalTime">0h</div>
+                        <div style="color: var(--text-secondary);">Tiempo Total</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="background: var(--bg-secondary); padding: 2rem; text-align: center; margin-top: 4rem; border-top: 1px solid var(--border-main);">
+        <p style="color: var(--text-tertiary);">© 2026 DVDcoin Exams. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="/static/js/opo-list.js"></script>
+</body>
+</html>

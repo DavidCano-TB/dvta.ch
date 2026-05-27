@@ -9,7 +9,7 @@
 <title>OPO · DVDcoin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 :root{
   --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
@@ -202,7 +202,7 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);mi
     <div class="bigIcon">🔒</div>
     <div class="cardTitle">Acceso requerido</div>
     <div class="cardSub">Conéctate al DVDcoin Bank para acceder.</div>
-    <a href="/" class="btnGold" style="margin-top:8px">← Ir al banco</a>
+    <a href="/bank/" class="btnGold" style="margin-top:8px">← Ir al banco</a>
   </div>
 </div>
 
@@ -627,7 +627,7 @@ async function init() {
   const token = localStorage.getItem('dvd_token');
   if (!token) return;
   try {
-    const r = await fetch('/api/me',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
+    const r = await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
     if (!r.ok) return;
     me = await r.json();
     document.getElementById('userBadge').textContent = '@'+me.username;
@@ -915,7 +915,7 @@ async function loadAllOpoStats() {
     // superadmins call /api/opo/players; others get basic list from status
     let players = [];
     if (isSA) {
-      const pr = await fetch('/api/opo/players', {headers: hdrs});
+      const pr = await fetch(\'/bank/api/opo/players\', {headers: hdrs});
       if (pr.ok) players = await pr.json();
     }
     // Always ensure own user in list
@@ -1068,7 +1068,7 @@ async function loadUserStats(username) {
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Mensajes — DVDcoin</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Oswald:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/css/unified-nav.css">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 /* ── VARIABLES ─────────────────────────────────────────── */
 :root {
@@ -496,7 +496,7 @@ input, textarea {
   <div class="wallIcon">🔐</div>
   <div class="wallTitle">Acceso requerido</div>
   <div class="wallSub">Inicia sesión en DVDcoin Bank para usar la mensajería.</div>
-  <a href="/" class="wallBtn">Ir al banco</a>
+  <a href="/bank/" class="wallBtn">Ir al banco</a>
 </div>
 
 <!-- ── DISABLED WALL ────────────────────────────────────── -->
@@ -504,7 +504,7 @@ input, textarea {
   <div class="wallIcon">💬</div>
   <div class="wallTitle">Mensajería desactivada</div>
   <div class="wallSub">Un administrador activará los mensajes en breve.</div>
-  <a href="/" class="wallLink">← Volver al banco</a>
+  <a href="/bank/" class="wallLink">← Volver al banco</a>
 </div>
 
 <!-- ── DM MODAL ─────────────────────────────────────────── -->
@@ -1180,7 +1180,7 @@ async function uploadAudio(blob, mime) {
   const form = new FormData();
   form.append('file', new File([blob], `voice.${ext}`, { type: mime }));
   try {
-    const r   = await fetch('/api/messages/audio', {
+    const r   = await fetch(\'/bank/api/messages/audio\', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' },
       body: form,
@@ -1290,7 +1290,7 @@ else init();
 </script>
 
 <!-- Sistema de Navegación Unificada -->
-<script src="/static/js/unified-nav.js"></script>
+<script src="/bank/static/js/unified-nav.js"></script>
 
 </body>
 </html>

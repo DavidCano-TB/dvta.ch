@@ -1,0 +1,15 @@
+═══════════════════════════════════════════════════════════════
+ CONFIGURACIÓN FINAL - 5 MINUTOS
+═══════════════════════════════════════════════════════════════
+
+Ejecuta: SETUP_RAPIDO.bat
+
+Ese script:
+1. Abrirá 2 páginas (GitHub y Gmail)
+2. Te pedirá copiar 2 valores
+3. Configurará todo automáticamente
+4. Hará push para probar
+
+Recibirás email en: davidcano.ch@gmail.com
+
+═══════════════════════════════════════════════════════════════
