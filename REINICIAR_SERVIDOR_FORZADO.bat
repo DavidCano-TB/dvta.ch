@@ -50,9 +50,9 @@ if errorlevel 1 (
 echo ✅ Servidor funcionando correctamente
 
 echo.
-echo [OPCIONAL] Iniciando túnel Cloudflare...
-start "Cloudflare Tunnel" /MIN cloudflared.exe tunnel --config cloudflare-multi-server.yml run
-timeout /t 5 /nobreak >nul
+echo [6/6] Iniciando túnel Cloudflare con configuración actualizada...
+start "Cloudflare Tunnel" /MIN cloudflared.exe tunnel --config cloudflare-dvta-config.yml run
+timeout /t 10 /nobreak >nul
 
 echo.
 echo ═══════════════════════════════════════════════════════════════
