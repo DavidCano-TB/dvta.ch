@@ -1242,7 +1242,8 @@ function toast(msg, dur=3000) {
   setTimeout(()=>t.remove(), dur);
 }
 async function apiFetch(url, opts={}) {
-  const r = await fetch(url, {
+  const fullUrl = url.startsWith('/bank/') ? url : (url.startsWith('/api/') ? '/bank' + url : url);
+  const r = await fetch(fullUrl, {
     ...opts,
     headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/json', ...(opts.headers||{}) }
   });

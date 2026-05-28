@@ -2610,7 +2610,7 @@ async function refreshTokenIfNeeded() {
 
   _tokenRefreshInProgress = true;
   try {
-    const r = await fetch(API + '/api/me/refresh-token', {
+    const r = await fetch(API + '/bank/api/me/refresh-token', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + token }
     });
