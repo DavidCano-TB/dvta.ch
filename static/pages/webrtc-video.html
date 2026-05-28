@@ -590,14 +590,14 @@ async function handle(d) {
 // -- ROOMS ---------------------------------------------------------
 async function loadRooms() {
   try {
-    const r = await apiFetch('/api/rooms/list');
+    const r = await apiFetch('/bank/api/rooms/list');
     if (r?.rooms) { rooms = r.rooms; renderRooms(); }
   } catch {}
 }
 
 async function loadUsers() {
   try {
-    const r = await apiFetch('/api/users');
+    const r = await apiFetch('/bank/api/users');
     if (Array.isArray(r)) allUsers = r;
   } catch {}
 }
@@ -1242,7 +1242,7 @@ function toast(msg, dur=3000) {
   setTimeout(()=>t.remove(), dur);
 }
 async function apiFetch(url, opts={}) {
-  const fullUrl = url.startsWith('/bank/') ? url : (url.startsWith('/api/') ? '/bank' + url : url);
+  const fullUrl = url.startsWith('/bank/') ? url : (url.startsWith('/bank/api/') ? '/bank' + url : url);
   const r = await fetch(fullUrl, {
     ...opts,
     headers:{ 'Authorization':'Bearer '+TOKEN, 'Content-Type':'application/json', ...(opts.headers||{}) }

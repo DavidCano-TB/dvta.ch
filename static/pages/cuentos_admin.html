@@ -296,7 +296,7 @@ async function init() {
   _token = localStorage.getItem('dvd_token');
   if (!_token) { showAuth(); return; }
   try {
-    const r = await api('GET', '/api/me');
+    const r = await api('GET', '/bank/api/me');
     if (!r.ok) { showAuth(); return; }
     const me = await r.json();
     if (!me.is_admin) { showAuth(); return; }
@@ -337,7 +337,7 @@ function updateToggleUI(on) {
 }
 
 async function toggleCuentos(enable) {
-  const r = await api('POST', '/api/cuentos/toggle');
+  const r = await api('POST', '/bank/api/cuentos/toggle');
   const d = await r.json();
   updateToggleUI(d.enabled);
 }
@@ -369,7 +369,7 @@ async function handleFiles(files) {
     try {
       const fd = new FormData();
       fd.append('file', file);
-      const r = await api('POST', '/api/cuentos/upload', fd);
+      const r = await api('POST', '/bank/api/cuentos/upload', fd);
       if (!r.ok) {
         const e = await r.json().catch(() => ({detail: 'Error ' + r.status}));
         results.push({ ok: false, name: file.name, msg: e.detail || 'Error' });
@@ -403,7 +403,7 @@ async function loadList() {
   const container = document.getElementById('storyContainer');
   container.innerHTML = '<div class="spinner"></div>';
   try {
-    const r = await api('GET', '/api/cuentos');
+    const r = await api('GET', '/bank/api/cuentos');
     if (!r.ok) throw new Error('Error ' + r.status);
     const stories = await r.json();
     document.getElementById('listSub').textContent =
@@ -439,13 +439,13 @@ async function loadList() {
 
 // ── Mask / Unmask ──────────────────────────────────────────────────────────────
 async function mask(filename) {
-  const r = await api('POST', '/api/cuentos/mask/' + encodeURIComponent(filename));
+  const r = await api('POST', '/bank/api/cuentos/mask/' + encodeURIComponent(filename));
   if (r.ok) loadList();
   else showAlert('Error al ocultar', 'err');
 }
 
 async function unmask(filename) {
-  const r = await api('POST', '/api/cuentos/unmask/' + encodeURIComponent(filename));
+  const r = await api('POST', '/bank/api/cuentos/unmask/' + encodeURIComponent(filename));
   if (r.ok) loadList();
   else showAlert('Error al mostrar', 'err');
 }
@@ -465,7 +465,7 @@ function closeConfirm() {
 
 async function doDelete(filename) {
   closeConfirm();
-  const r = await api('DELETE', '/api/cuentos/file/' + encodeURIComponent(filename));
+  const r = await api('DELETE', '/bank/api/cuentos/file/' + encodeURIComponent(filename));
   if (r.ok) {
     showAlert('Cuento eliminado', 'ok');
     loadList();
@@ -521,7 +521,7 @@ async function _doLoadSessions() {
   params.set('limit', '300');
 
   try {
-    const r = await api('GET', '/api/cuentos/sessions?' + params);
+    const r = await api('GET', '/bank/api/cuentos/sessions?' + params);
     if (!r.ok) { list.innerHTML = '<div class="empty">Error al cargar</div>'; return; }
     const rows = await r.json();
     const totalS = rows.reduce((s,r) => s + (r.duration_s||0), 0);

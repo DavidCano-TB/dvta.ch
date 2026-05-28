@@ -103,13 +103,13 @@ async function load() {
   if (!token) { location.href="/bank/"; return; }
   // Verify admin role
   try {
-    const me = await api('GET', '/api/me');
+    const me = await api('GET', '/bank/api/me');
     if (!me.is_admin) { location.href="/bank/"; return; }
   } catch { location.href="/bank/"; return; }
   try {
     const [status, users] = await Promise.all([
-      api('GET','/api/quiensoy/status'),
-      api('GET','/api/quiensoy/users'),
+      api('GET','/bank/api/quiensoy/status'),
+      api('GET','/bank/api/quiensoy/users'),
     ]);
     enabled=!!status.enabled; allUsers=users||[];
     updateStatus();
@@ -132,7 +132,7 @@ function updateStatus() {
 
 async function toggle(on) {
   try {
-    await api('POST','/api/quiensoy/toggle',{enabled:on});
+    await api('POST','/bank/api/quiensoy/toggle',{enabled:on});
     enabled=on; updateStatus();
     showAlert('alert1',on?'✓ Quién Soy activado':'Quién Soy desactivado','ok');
   } catch(e) { 
@@ -148,8 +148,8 @@ function openGame() {
 async function resetGame() {
   if (!confirm('¿Reiniciar la partida actual?')) return;
   try {
-    await api('POST','/api/quiensoy/toggle',{enabled:false});
-    await api('POST','/api/quiensoy/toggle',{enabled:true});
+    await api('POST','/bank/api/quiensoy/toggle',{enabled:false});
+    await api('POST','/bank/api/quiensoy/toggle',{enabled:true});
     enabled=true; updateStatus();
     showAlert('alert1','✓ Partida reiniciada','ok');
   } catch(e) { 
@@ -173,7 +173,7 @@ async function verifyChar() {
   const hint = document.getElementById('charHint');
   btn.textContent='⏳ Verificando con IA...'; btn.disabled=true;
   try {
-    const d = await api('GET','/api/quiensoy/verify-character?name='+encodeURIComponent(name));
+    const d = await api('GET','/bank/api/quiensoy/verify-character?name='+encodeURIComponent(name));
     hint.classList.add('show');
     if (d.valid) {
       // Personaje válido - actualizar con el nombre canónico
@@ -291,7 +291,7 @@ async function startGame() {
   const character=document.getElementById('charIn').value.trim();
   if (!character||!players.length) { showAlert('alert2','Falta personaje o jugadores'); return; }
   try {
-    const response = await api('POST','/api/quiensoy/setup',{character,players:players.slice()});
+    const response = await api('POST','/bank/api/quiensoy/setup',{character,players:players.slice()});
     enabled=true; updateStatus();
     showAlert('alert2','✓ Partida iniciada — ¡abre el juego!','ok');
     setTimeout(openGame,600);

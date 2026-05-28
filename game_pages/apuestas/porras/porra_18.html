@@ -216,7 +216,7 @@ async function init(){
 
 async function loadData(){
   try{
-    const r=await fetch(`/api/porras/`+PORRA_ID,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch(`/bank/api/porras/`+PORRA_ID,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(!r.ok){
       const errorText=await r.text();
       console.error('Error loading porra:',errorText);
@@ -634,7 +634,7 @@ async function cerrarPorraDirecto(){
   }
   
   try{
-    const r=await fetch(`/api/porras/cerrar/18`,{
+    const r=await fetch(`/bank/api/porras/cerrar/18`,{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
     });

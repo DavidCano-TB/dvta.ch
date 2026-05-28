@@ -105,13 +105,13 @@ async function load() {
   if (!token) { location.href="/bank/"; return; }
   // Verify admin role
   try {
-    const me = await api('GET', '/api/me');
+    const me = await api('GET', '/bank/api/me');
     if (!me.is_admin) { location.href="/bank/"; return; }
   } catch { location.href="/bank/"; return; }
   try {
     const [status, users] = await Promise.all([
-      api('GET','/api/quiensoy/status'),
-      api('GET','/api/quiensoy/users'),
+      api('GET','/bank/api/quiensoy/status'),
+      api('GET','/bank/api/quiensoy/users'),
     ]);
     enabled=!!status.enabled; allUsers=users||[];
     updateStatus();
@@ -134,7 +134,7 @@ function updateStatus() {
 
 async function toggle(on) {
   try {
-    await api('POST','/api/quiensoy/toggle',{enabled:on});
+    await api('POST','/bank/api/quiensoy/toggle',{enabled:on});
     enabled=on; updateStatus();
     showAlert('alert1',on?'✓ Quién Soy activado':'Quién Soy desactivado','ok');
   } catch(e) { 
@@ -150,8 +150,8 @@ function openGame() {
 async function resetGame() {
   if (!confirm('¿Reiniciar la partida actual?')) return;
   try {
-    await api('POST','/api/quiensoy/toggle',{enabled:false});
-    await api('POST','/api/quiensoy/toggle',{enabled:true});
+    await api('POST','/bank/api/quiensoy/toggle',{enabled:false});
+    await api('POST','/bank/api/quiensoy/toggle',{enabled:true});
     enabled=true; updateStatus();
     showAlert('alert1','✓ Partida reiniciada','ok');
   } catch(e) { 
@@ -176,7 +176,7 @@ async function verifyChar() {
   const hint = document.getElementById('charHint');
   btn.textContent='⏳'; btn.disabled=true;
   try {
-    const d = await api('GET','/api/quiensoy/verify-character?name='+encodeURIComponent(name));
+    const d = await api('GET','/bank/api/quiensoy/verify-character?name='+encodeURIComponent(name));
     hint.classList.add('show');
     if (d.valid) {
       document.getElementById('charIn').value = d.canonical;
@@ -296,7 +296,7 @@ async function startGame() {
   if (!verifiedCharacterInfo) { showAlert('alert2','Debes verificar el personaje primero (debe aparecer en verde)'); return; }
   try {
     // NUEVO: Enviar toda la información del personaje verificado
-    await api('POST','/api/quiensoy/setup',{
+    await api('POST','/bank/api/quiensoy/setup',{
       character: verifiedCharacterInfo.corrected_name,
       character_photo: verifiedCharacterInfo.photo,
       character_info: verifiedCharacterInfo,

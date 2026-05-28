@@ -912,7 +912,7 @@ async function loadAllOpoStats() {
 
   try {
     // 1. Get player list
-    // superadmins call /api/opo/players; others get basic list from status
+    // superadmins call /bank/api/opo/players; others get basic list from status
     let players = [];
     if (isSA) {
       const pr = await fetch(\'/bank/api/opo/players\', {headers: hdrs});
@@ -933,7 +933,7 @@ async function loadAllOpoStats() {
     // 2. Get results
     // superadmins get ALL results; others only own
     let allResults = [];
-    const urlRes = isSA ? '/api/opo/results' : '/api/opo/results';
+    const urlRes = isSA ? '/bank/api/opo/results' : '/bank/api/opo/results';
     const rr = await fetch(urlRes, {headers: hdrs});
     if (rr.ok) {
       allResults = await rr.json();
@@ -1021,7 +1021,7 @@ async function loadUserStats(username) {
     const token = localStorage.getItem('dvd_token');
     const hdrs  = {'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'};
     const isDvdNeb = me?.username === 'dvd';
-    let url = '/api/opo/results';
+    let url = '/bank/api/opo/results';
     if (isDvdNeb && username) url += '?username=' + encodeURIComponent(username);
 
     const r = await fetch(url, {headers: hdrs});

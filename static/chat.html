@@ -603,7 +603,7 @@ input, textarea {
    ──────────────────────────────────────────────
    Architecture:
    • WebSocket /ws/messages (join / send / typing / read)
-   • REST  /api/messages/*  (history, audio upload, unread)
+   • REST  /bank/api/messages/*  (history, audio upload, unread)
    • Two room types: "group" (all) | "dm:a:b" (private)
    • Audio: MediaRecorder → POST → URL → WS send
    • Presence: server broadcasts online list on connect/disconnect
@@ -673,12 +673,12 @@ async function init() {
   if (!token) { show('authWall'); return; }
 
   try {
-    me = await api('GET', '/api/me');
+    me = await api('GET', '/bank/api/me');
     el('topUser').textContent = '@' + me.username;
   } catch { show('authWall'); return; }
 
   // Check messaging enabled
-  const status = await api('GET', '/api/messages/status').catch(() => ({ enabled: false }));
+  const status = await api('GET', '/bank/api/messages/status').catch(() => ({ enabled: false }));
   if (!status.enabled && !me.is_admin) {
     show('disabledWall'); return;
   }
@@ -687,10 +687,10 @@ async function init() {
 
   // Pre-load known rooms and unread counts
   rooms  = ['group', ...(status.rooms || []).filter(r => r !== 'group')];
-  unread = await api('GET', '/api/messages/unread').catch(() => ({}));
+  unread = await api('GET', '/bank/api/messages/unread').catch(() => ({}));
 
   // Load users for DM modal (async, non-blocking)
-  api('GET', '/api/messages/users').then(u => { allUsers = u || []; }).catch(() => {});
+  api('GET', '/bank/api/messages/users').then(u => { allUsers = u || []; }).catch(() => {});
 
   renderConvList();
   connectWS();

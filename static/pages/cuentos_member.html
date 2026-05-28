@@ -133,11 +133,11 @@ async function load() {
 
   // Check user role to show/hide admin nav items
   try {
-    const me = await api('GET', '/api/me');
+    const me = await api('GET', '/bank/api/me');
     if (me.is_admin) { document.getElementById('cNavAdm').style.display=''; }
     if (me.is_superadmin) { document.getElementById('cNavStats').style.display=''; }
     // Check OPO access
-    api('GET', '/api/opo/my-access').then(r => {
+    api('GET', '/bank/api/opo/my-access').then(r => {
       if (r.is_opo_user) document.getElementById('cNavOpo').style.display='';
     }).catch(()=>{});
     if (!me.is_admin) {
@@ -146,7 +146,7 @@ async function load() {
   } catch(e) { window.location.href = \'/bank\'; return; }
 
   try {
-    const items = await api('GET', '/api/cuentos');
+    const items = await api('GET', '/bank/api/cuentos');
     const el = document.getElementById('cuentosList');
     if (!items.length) {
       el.innerHTML = '<div class="empty">Sin cuentos disponibles en este momento.</div>';

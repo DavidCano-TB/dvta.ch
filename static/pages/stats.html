@@ -373,12 +373,12 @@ let me = null;
 
 /* All loaded data */
 let DATA = {
-  members: [],     // /api/stats/members-overview
-  ledger: [],      // /api/admin/ledger
-  games: [],       // /api/stats/games
-  activity: [],    // /api/stats/activity (full)
-  txSummary: null, // /api/stats/transactions-summary
-  msgStats: null,  // /api/messages/admin/stats
+  members: [],     // /bank/api/stats/members-overview
+  ledger: [],      // /bank/api/admin/ledger
+  games: [],       // /bank/api/stats/games
+  activity: [],    // /bank/api/stats/activity (full)
+  txSummary: null, // /bank/api/stats/transactions-summary
+  msgStats: null,  // /bank/api/messages/admin/stats
 };
 
 /* Sort state per table */
@@ -392,13 +392,13 @@ let sorts = {
 async function init() {
   if (!token) { showAuth(); return; }
   try {
-    me = await apiFetch('/api/me');
+    me = await apiFetch('/bank/api/me');
     document.getElementById('hUser').textContent = '@' + me.username;
   } catch(e) { showAuth(); return; }
 
   // Show cuentos nav if enabled
   try {
-    const ct = await apiFetch('/api/cuentos/status');
+    const ct = await apiFetch('/bank/api/cuentos/status');
     if (ct.enabled) document.getElementById('sNavCuentos').style.display = '';
   } catch(e) {}
 
@@ -423,12 +423,12 @@ async function reload() {
 /* Load everything in parallel */
 async function loadAll() {
   const [members, ledger, games, activity, txSummary, msgStats] = await Promise.allSettled([
-    apiFetch('/api/stats/members-overview'),
-    apiFetch('/api/admin/ledger?limit=2000'),
-    apiFetch('/api/stats/games'),
-    apiFetch('/api/stats/activity?limit=2000'),
-    apiFetch('/api/stats/transactions-summary'),
-    apiFetch('/api/messages/admin/stats'),
+    apiFetch('/bank/api/stats/members-overview'),
+    apiFetch('/bank/api/admin/ledger?limit=2000'),
+    apiFetch('/bank/api/stats/games'),
+    apiFetch('/bank/api/stats/activity?limit=2000'),
+    apiFetch('/bank/api/stats/transactions-summary'),
+    apiFetch('/bank/api/messages/admin/stats'),
   ]);
 
   if (members.status === 'fulfilled')   DATA.members   = members.value   || [];

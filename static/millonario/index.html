@@ -952,7 +952,7 @@ select option { background:var(--n4); color:var(--text); }
    DVDcoin Bank v5.1 — Application JavaScript
    1. Background canvas animation
    2. i18n
-   3. In-app gallery carousel (reads /api/gallery — directory scan)
+   3. In-app gallery carousel (reads /bank/api/gallery — directory scan)
    4. API helper
    5. Auth (login / register / logout)
    6. App loader
@@ -1055,7 +1055,7 @@ function updateLangButtons() {
 }
 function setLang(lang) { loadLang(lang); }
 
-/* ── 3. Gallery carousel — reads /api/gallery (directory scan) */
+/* ── 3. Gallery carousel — reads /bank/api/gallery (directory scan) */
 let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
@@ -1242,7 +1242,7 @@ async function doLogin() {
   if (!u || !p) return showAlert('authAlert', t('errorUsernamePassword'));
   const done = setLoading('btnL', t('btnLogin'));
   try {
-    const d = await req('POST', '/api/login', { username: u, password: p });
+    const d = await req('POST', '/bank/api/login', { username: u, password: p });
     token = d.token;
     localStorage.setItem('dvd_token', token);
     await loadApp();
@@ -1257,7 +1257,7 @@ async function doReg() {
   if (p.length < 4) return showAlert('authAlert', t('errorPasswordMin'));
   const done = setLoading('btnR', t('btnRegister'));
   try {
-    const d = await req('POST', '/api/register', { username: u, password: p });
+    const d = await req('POST', '/bank/api/register', { username: u, password: p });
     token = d.token;
     localStorage.setItem('dvd_token', token);
     await loadApp();
@@ -1280,7 +1280,7 @@ function doLogout() {
 /* ── 6. App loader ──────────────────────────────────────── */
 async function loadApp() {
   try {
-    me = await req('GET', '/api/me');
+    me = await req('GET', '/bank/api/me');
     document.getElementById('authWrap').classList.add('hidden');
     document.getElementById('authHdr').classList.add('hidden');   // hide auth header
     document.getElementById('app').classList.remove('hidden');
@@ -1324,7 +1324,7 @@ let acFocusIdx = -1;   // keyboard navigation index in dropdown
 // Load all users into memory (called on nav to transfer tab and after transfers)
 async function loadDropdown() {
   try {
-    const users = await req('GET', '/api/users');
+    const users = await req('GET', '/bank/api/users');
     acAllUsers = users.map(u => ({ name: u, isAdmin: ADMINS.has(u) }));
   } catch (e) { /* silent — list stays stale */ }
 }
@@ -1477,7 +1477,7 @@ async function doTransfer() {
   if (!amt || amt <= 0) return showAlert('txAlert', t('errorValidAmount'));
   const done = setLoading('btnTx', t('txBtn'));
   try {
-    const d = await req('POST', '/api/transfer', { to_user: to, amount: amt, concept: con });
+    const d = await req('POST', '/bank/api/transfer', { to_user: to, amount: amt, concept: con });
     showAlert('txAlert', d.message, 's');
     // Clear fields and reset autocomplete
     document.getElementById('txAmt').value = '';
@@ -1537,7 +1537,7 @@ function renderTx(id, txs) {
 
 async function loadHist(id, limit) {
   try {
-    const txs = await req('GET', '/api/history?limit=' + Math.min(limit || 100, 1000));
+    const txs = await req('GET', '/bank/api/history?limit=' + Math.min(limit || 100, 1000));
     renderTx(id, txs);
   } catch (e) {
     document.getElementById(id).innerHTML = `<div class="empty">${t('errorLoading')}</div>`;
@@ -1547,7 +1547,7 @@ async function loadHist(id, limit) {
 /* ── 9. Admin panel ─────────────────────────────────────── */
 async function loadAdmin() {
   try {
-    const users = await req('GET', '/api/admin/users');
+    const users = await req('GET', '/bank/api/admin/users');
     document.getElementById('admTbl').innerHTML = users.map(u => {
       const isBlocked = !!u.is_blocked;
       const isLocked  = !isBlocked && u.locked_until && new Date(u.locked_until + 'Z') > new Date();
@@ -1575,7 +1575,7 @@ async function loadAdmin() {
         <td style="display:flex;gap:5px;flex-wrap:wrap">${blockBtn}${resetBtn}</td>
       </tr>`;
     }).join('');
-    const ledger = await req('GET', '/api/admin/ledger?limit=1000');
+    const ledger = await req('GET', '/bank/api/admin/ledger?limit=1000');
     renderTx('ledger', ledger);
   } catch (e) { showAlert('admAlert', e.message); }
 }
@@ -1583,7 +1583,7 @@ async function loadAdmin() {
 async function admAct(action, username) {
   if (action === 'reset-pwd' && !confirm(t('admConfirmReset', { user: username }))) return;
   try {
-    const d = await req('POST', `/api/admin/${action}/${username}`);
+    const d = await req('POST', `/bank/api/admin/${action}/${username}`);
     showAlert('admAlert', d.message, 's');
     await Promise.all([loadAdmin(), loadDropdown()]);
   } catch (e) { showAlert('admAlert', e.message); }
@@ -1594,7 +1594,7 @@ let gameEnabled = false;
 
 async function checkGameStatus() {
   try {
-    const d = await req('GET', '/api/pasapalabra/status');
+    const d = await req('GET', '/bank/api/pasapalabra/status');
     gameEnabled = !!d.enabled;
   } catch (_) { gameEnabled = false; }
   // Show/hide Juegos tab for all users
@@ -1620,7 +1620,7 @@ async function checkGameStatus() {
 
 async function toggleGame(enable) {
   try {
-    await req('POST', '/api/pasapalabra/toggle', { enabled: enable });
+    await req('POST', '/bank/api/pasapalabra/toggle', { enabled: enable });
     await checkGameStatus();
     showAlert('gameAlert', enable ? 'Juego activado — la pestaña Juegos ya es visible para todos.' : 'Juego desactivado.', 's');
   } catch (e) { showAlert('gameAlert', e.message); }
@@ -1635,7 +1635,7 @@ let millonarioEnabled = false;
 
 async function checkMillonarioStatus() {
   try {
-    const d = await req('GET', '/api/millonario/status');
+    const d = await req('GET', '/bank/api/millonario/status');
     millonarioEnabled = !!d.enabled;
   } catch (_) { millonarioEnabled = false; }
   ['navMillonario', 'mobileNavMillonario'].forEach(id => {
@@ -1652,7 +1652,7 @@ async function checkMillonarioStatus() {
 
 async function toggleMillonario(enable) {
   try {
-    await req('POST', '/api/millonario/toggle', { enabled: enable });
+    await req('POST', '/bank/api/millonario/toggle', { enabled: enable });
     await checkMillonarioStatus();
     showAlert('millonarioAlert', enable ? 'Millonario activado.' : 'Millonario desactivado.', 's');
   } catch (e) { showAlert('millonarioAlert', e.message); }

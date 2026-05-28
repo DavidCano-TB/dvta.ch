@@ -163,12 +163,12 @@ function showAlert(id, msg, type='err') {
 
 async function load() {
   if (!token) { location.href = '/'; return; }
-  try { const me = await api('GET', '/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
+  try { const me = await api('GET', '/bank/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
   catch { location.href = '/'; return; }
   try {
     const [status, users] = await Promise.all([
-      api('GET', '/api/pasapalabra/status'),
-      api('GET', '/api/pasapalabra/users'),
+      api('GET', '/bank/api/pasapalabra/status'),
+      api('GET', '/bank/api/pasapalabra/users'),
     ]);
     enabled = !!status.enabled;
     allUsers = users || [];
@@ -228,7 +228,7 @@ const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 
 async function toggle(on) {
   try {
-    await api('POST', '/api/pasapalabra/toggle', { enabled: on });
+    await api('POST', '/bank/api/pasapalabra/toggle', { enabled: on });
     enabled = on; updateStatus();
     showAlert('alert1', on ? '✓ Pasapalabra activado' : 'Pasapalabra desactivado', 'ok');
   } catch(e) { showAlert('alert1', e.message); }
@@ -237,7 +237,7 @@ async function toggle(on) {
 async function resetGame() {
   if (!confirm('¿Reiniciar la partida?')) return;
   try {
-    await api('POST', '/api/pasapalabra/reset');
+    await api('POST', '/bank/api/pasapalabra/reset');
     showAlert('alert1', '✓ Partida reiniciada', 'ok');
   } catch(e) { showAlert('alert1', e.message); }
 }
@@ -250,7 +250,7 @@ async function startGame() {
   const btn = document.getElementById('btnStart');
   btn.disabled = true; btn.textContent = '⏳ Iniciando…';
   try {
-    await api('POST', '/api/pasapalabra/setup', { players: players.slice(), rosco_time: roscoTime });
+    await api('POST', '/bank/api/pasapalabra/setup', { players: players.slice(), rosco_time: roscoTime });
     enabled = true; updateStatus();
     showAlert('alert2', '✓ Partida iniciada — abriendo juego…', 'ok');
     setTimeout(openGame, 700);

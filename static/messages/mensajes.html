@@ -95,7 +95,7 @@ function showAlert(id, msg, type='err') {
 async function load() {
   if (!token) { location.href = '/'; return; }
   try {
-    const status = await api('GET', '/api/messages/status');
+    const status = await api('GET', '/bank/api/messages/status');
     enabled = !!status.enabled;
     updateStatus(status.online || []);
     await loadStats();
@@ -116,7 +116,7 @@ function updateStatus(online) {
 
 async function toggle(on) {
   try {
-    await api('POST', '/api/messages/toggle', { enabled: on });
+    await api('POST', '/bank/api/messages/toggle', { enabled: on });
     enabled = on;
     updateStatus([]);
     showAlert('alert1', on ? '✓ Mensajería activada' : 'Mensajería desactivada', 'ok');
@@ -130,7 +130,7 @@ function openChat() {
 
 async function loadStats() {
   try {
-    const d = await api('GET', '/api/messages/admin/stats');
+    const d = await api('GET', '/bank/api/messages/admin/stats');
     document.getElementById('statTotal').textContent = d.total_messages ?? 0;
     document.getElementById('statToday').textContent = d.messages_today ?? 0;
     document.getElementById('statUsers').textContent = d.unique_senders ?? 0;

@@ -202,7 +202,7 @@ function showAlert(id, msg, type='err') {
 
 async function load() {
   if (!token) { location.href = '/'; return; }
-  try { const me = await api('GET', '/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
+  try { const me = await api('GET', '/bank/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
   catch { location.href = '/'; return; }
   
   // Limpiar localStorage relacionado con el juego
@@ -218,8 +218,8 @@ async function load() {
   
   try {
     const [status, users] = await Promise.all([
-      api('GET', '/api/hundirlaflota/status'),
-      api('GET', '/api/hundirlaflota/users'),
+      api('GET', '/bank/api/hundirlaflota/status'),
+      api('GET', '/bank/api/hundirlaflota/users'),
     ]);
     enabled = !!status.enabled;
     allUsers = users || [];
@@ -282,7 +282,7 @@ const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replac
 
 async function toggle(on) {
   try {
-    await api('POST', '/api/hundirlaflota/toggle', { enabled: on });
+    await api('POST', '/bank/api/hundirlaflota/toggle', { enabled: on });
     enabled = on; updateStatus();
     showAlert('alert1', on ? '✓ Hundir la Flota activado' : 'Hundir la Flota desactivado', 'ok');
   } catch(e) { showAlert('alert1', e.message); }
@@ -298,11 +298,11 @@ async function resetGame() {
   
   try {
     // Paso 1: Desactivar el juego
-    await api('POST', '/api/hundirlaflota/toggle', { enabled: false });
+    await api('POST', '/bank/api/hundirlaflota/toggle', { enabled: false });
     console.log('✓ Juego desactivado');
     
     // Paso 2: Resetear el estado del juego
-    await api('POST', '/api/hundirlaflota/reset');
+    await api('POST', '/bank/api/hundirlaflota/reset');
     console.log('✓ Estado reseteado');
     
     enabled = false;
@@ -396,7 +396,7 @@ async function startGame() {
   const btn = document.getElementById('btnStart');
   btn.disabled = true; btn.textContent = '⏳ Iniciando…';
   try {
-    const response = await api('POST', '/api/hundirlaflota/setup', { 
+    const response = await api('POST', '/bank/api/hundirlaflota/setup', { 
       players: players.slice(), 
       board_size: boardSize,
       turn_time: turnTime,

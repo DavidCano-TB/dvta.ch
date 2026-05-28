@@ -2448,7 +2448,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
    DVDcoin Bank v5.1 — Application JavaScript
    1. Background canvas animation
    2. i18n
-   3. In-app gallery carousel (reads /api/gallery — directory scan)
+   3. In-app gallery carousel (reads /bank/api/gallery — directory scan)
    4. API helper
    5. Auth (login / register / logout)
    6. App loader
@@ -2559,7 +2559,7 @@ function updateLangButtons() {
 }
 function setLang(lang) { loadLang(lang); }
 
-/* ── 3. Gallery carousel — reads /api/gallery (directory scan) */
+/* ── 3. Gallery carousel — reads /bank/api/gallery (directory scan) */
 let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
@@ -3353,7 +3353,7 @@ async function loadUserApuestas() {
 }
 
 /* ── 9. Admin panel ─────────────────────────────────────── */
-/* ── Heartbeat: POST /api/ping every 30 s ─────────────────────────────── */
+/* ── Heartbeat: POST /bank/api/ping every 30 s ─────────────────────────────── */
 let _pingIv = null;
 function startHeartbeat() {
   if (_pingIv) return;
@@ -4743,7 +4743,7 @@ async function changePwd() {
 async function loadContactInfo() {
   if (!me) return;
   try {
-    // Los datos ya vienen en el objeto 'me' desde /api/me
+    // Los datos ya vienen en el objeto 'me' desde /bank/api/me
     document.getElementById('profileEmail').value = me.email || '';
     document.getElementById('profilePhone').value = me.phone || '';
     document.getElementById('profileWhatsapp').value = me.whatsapp || '';
@@ -4862,7 +4862,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 const escHtml = s => String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 let _opoPlayers = [];
 
-// Map of username → online status (populated from /api/admin/connected)
+// Map of username → online status (populated from /bank/api/admin/connected)
 let _ONLINE_MAP = {};
 
 async function loadOpoDash() {

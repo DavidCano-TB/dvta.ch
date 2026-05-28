@@ -449,14 +449,14 @@ async function init(){
   token=urlTok||safeGetItem('dvd_token');
   if(urlTok)safeSetItem('dvd_token',urlTok);
   if(!token){show('authWall');return;}
-  try{me=await api('GET','/api/me');el('tbUser').textContent='@'+me.username;}
+  try{me=await api('GET','/bank/api/me');el('tbUser').textContent='@'+me.username;}
   catch{show('authWall');return;}
-  const status=await api('GET','/api/messages/status').catch(()=>({enabled:false}));
+  const status=await api('GET','/bank/api/messages/status').catch(()=>({enabled:false}));
   if(!status.enabled&&!me.is_admin){show('disabledWall');return;}
   el('shell').style.display='flex';
   rooms=['group',...(status.rooms||[]).filter(r=>r!=='group')];
-  unread=await api('GET','/api/messages/unread').catch(()=>({}));
-  api('GET','/api/messages/users').then(u=>{allUsers=u||[];}).catch(()=>{});
+  unread=await api('GET','/bank/api/messages/unread').catch(()=>({}));
+  api('GET','/bank/api/messages/users').then(u=>{allUsers=u||[];}).catch(()=>{});
   buildEmojiPicker();renderConvList();connectWS();
   if(window.innerWidth>620)openRoom('group');
   setupSwipe();

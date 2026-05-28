@@ -149,12 +149,12 @@ function showAlert(id, msg, type='err') {
 
 async function load() {
   if (!token) { location.href = '/'; return; }
-  try { const me = await api('GET', '/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
+  try { const me = await api('GET', '/bank/api/me'); if (!me.is_admin) { location.href = '/'; return; } }
   catch { location.href = '/'; return; }
   try {
     const [status, users] = await Promise.all([
-      api('GET', '/api/millonario/status'),
-      api('GET', '/api/millonario/users'),
+      api('GET', '/bank/api/millonario/status'),
+      api('GET', '/bank/api/millonario/users'),
     ]);
     enabled = !!status.enabled;
     allUsers = users || [];
@@ -199,7 +199,7 @@ function handleState(data) {
 
 async function toggle(on) {
   try {
-    await api('POST', '/api/millonario/toggle', { enabled: on });
+    await api('POST', '/bank/api/millonario/toggle', { enabled: on });
     enabled = on; updateStatus();
     showAlert('alert1', on ? '✓ Millonario activado' : 'Millonario desactivado', 'ok');
   } catch(e) { showAlert('alert1', e.message); }
@@ -208,7 +208,7 @@ async function toggle(on) {
 async function resetGame() {
   if (!confirm('¿Reiniciar la partida?')) return;
   try {
-    await api('POST', '/api/millonario/reset');
+    await api('POST', '/bank/api/millonario/reset');
     showAlert('alert1', '✓ Partida reiniciada', 'ok');
   } catch(e) { showAlert('alert1', e.message); }
 }
@@ -220,7 +220,7 @@ async function startGame() {
   const btn = document.getElementById('btnStart');
   btn.disabled = true; btn.textContent = '⏳ Iniciando…';
   try {
-    await api('POST', '/api/millonario/setup', { player: selected });
+    await api('POST', '/bank/api/millonario/setup', { player: selected });
     enabled = true; updateStatus();
     showAlert('alert2', '✓ Partida iniciada — abriendo juego…', 'ok');
     setTimeout(openGame, 700);

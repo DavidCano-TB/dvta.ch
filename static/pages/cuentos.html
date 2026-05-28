@@ -97,13 +97,13 @@ async function load() {
   if (!token) { location.href = '/'; return; }
   // Verify admin role before showing any content
   try {
-    const me = await api('GET', '/api/me');
+    const me = await api('GET', '/bank/api/me');
     if (!me.is_admin) { location.href = '/'; return; }
   } catch { location.href = '/'; return; }
   try {
     const [status, files] = await Promise.all([
-      api('GET', '/api/cuentos/status'),
-      api('GET', '/api/cuentos'),
+      api('GET', '/bank/api/cuentos/status'),
+      api('GET', '/bank/api/cuentos'),
     ]);
     enabled = !!status.enabled;
     updateStatus();
@@ -124,7 +124,7 @@ function updateStatus() {
 
 async function toggle(on) {
   try {
-    await api('POST', '/api/cuentos/toggle');
+    await api('POST', '/bank/api/cuentos/toggle');
     enabled = on;
     updateStatus();
     showAlert('alert1', on ? '✓ Cuentos ahora visibles para miembros' : 'Cuentos ocultados', 'ok');
@@ -156,9 +156,9 @@ function renderFiles(files) {
 
 async function toggleMask(filename, hide) {
   try {
-    const ep = hide ? '/api/cuentos/mask/' : '/api/cuentos/unmask/';
+    const ep = hide ? '/bank/api/cuentos/mask/' : '/bank/api/cuentos/unmask/';
     await api('POST', ep + encodeURIComponent(filename));
-    const [status, files] = await Promise.all([api('GET','/api/cuentos/status'), api('GET','/api/cuentos')]);
+    const [status, files] = await Promise.all([api('GET','/bank/api/cuentos/status'), api('GET','/bank/api/cuentos')]);
     renderFiles(files);
     showAlert('alertFile', hide ? 'Cuento ocultado' : 'Cuento visible', 'ok');
   } catch(e) { showAlert('alertFile', e.message); }
@@ -167,8 +167,8 @@ async function toggleMask(filename, hide) {
 async function deleteFile(filename) {
   if (!confirm('¿Eliminar "' + filename + '"? Esta acción no se puede deshacer.')) return;
   try {
-    await api('DELETE', '/api/cuentos/file/' + encodeURIComponent(filename));
-    const files = await api('GET', '/api/cuentos');
+    await api('DELETE', '/bank/api/cuentos/file/' + encodeURIComponent(filename));
+    const files = await api('GET', '/bank/api/cuentos');
     renderFiles(files);
     showAlert('alertFile', '✓ Cuento eliminado', 'ok');
   } catch(e) { showAlert('alertFile', e.message); }
@@ -197,7 +197,7 @@ async function uploadFile(file) {
     if (!r.ok) throw new Error('Error al subir');
     const d = await r.json();
     showAlert('alertUpload', '✓ Subido: ' + (d.title || file.name), 'ok');
-    const files = await api('GET', '/api/cuentos');
+    const files = await api('GET', '/bank/api/cuentos');
     renderFiles(files);
   } catch(e) { showAlert('alertUpload', e.message); }
   finally {
