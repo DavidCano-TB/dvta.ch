@@ -11,7 +11,7 @@
 <script>
 /* Register Service Worker to force fresh HTML on every load */
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/bank/static/sw.js?v=20260528c')
+  navigator.serviceWorker.register('/bank/static/sw.js?v=20260528d')
     .then(reg => {
       /* Force update check immediately */
       reg.update();
@@ -2633,7 +2633,7 @@ let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
   try {
-    const r = await fetch(\'/bank/api/gallery\', { headers: { 'ngrok-skip-browser-warning': '1' } });
+    const r = await fetch('/bank/api/gallery', { headers: { 'ngrok-skip-browser-warning': '1' } });
     if (!r.ok) throw new Error();
     gcImages = await r.json();
   } catch (e) {
@@ -3784,7 +3784,7 @@ async function loadCuentosView() {
           ${c.date ? `<div style="font-size:.58rem;color:var(--text3);margin-top:2px">${esc(c.date)}</div>` : ''}
           ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Oculto para miembros</div>' : ''}
         </div>
-        ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem("dvd_token')||'')}" target="_blank"
+        ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
           class="btn btnG btnSm" style="text-decoration:none;flex-shrink:0">Leer →</a>` : ''}
       </div>`;
     }).filter(Boolean).join('');
@@ -3802,7 +3802,7 @@ async function cuentosUpload() {
   const fd = new FormData();
   fd.append('file', file);
   try {
-    const r = await fetch(\'/bank/api/cuentos/upload\', {
+    const r = await fetch('/bank/api/cuentos/upload', {
       method: 'POST',
       headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('dvd_token')||''), 'ngrok-skip-browser-warning': '1' },
       body: fd,
@@ -7560,7 +7560,7 @@ async function _showNotificationHistory(){
 
   // Load history
   try {
-    const response = await fetch(\'/bank/api/messages/admin/all-rooms\', {
+    const response = await fetch('/bank/api/messages/admin/all-rooms', {
       headers: { 'Authorization': 'Bearer ' + (localStorage.getItem('dvd_token') || localStorage.getItem('token')) }
     });
 
@@ -7764,7 +7764,7 @@ async function _markRoomAsRead(room){
 
     // También intentar via HTTP como respaldo
     try {
-      const markResponse = await fetch(\'/bank/api/messages/mark-room-read\', {
+      const markResponse = await fetch('/bank/api/messages/mark-room-read', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -8170,11 +8170,11 @@ function _playRoomOpenSound(){
     var t=tok(); if(!t) return;
     /* Use DB-backed endpoint — survives restarts; fallback to memory-only */
     var headers={'Authorization':'Bearer '+t,'ngrok-skip-browser-warning':'1'};
-    var p=fetch(\'/bank/api/rooms/status\',{headers:headers})
+    var p=fetch('/bank/api/rooms/status',{headers:headers})
       .then(function(r){
         if(r.ok) return r.json();
         /* fallback to memory endpoint if status not found */
-        return fetch(\'/bank/api/rooms/list\',{headers:headers}).then(function(r2){return r2.ok?r2.json():null;});
+        return fetch('/bank/api/rooms/list',{headers:headers}).then(function(r2){return r2.ok?r2.json():null;});
       });
     p.then(function(data){
       if(!data) return;
