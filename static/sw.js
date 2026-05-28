@@ -3,7 +3,7 @@
  * Ensures fresh HTML on every load and caches static assets
  */
 
-const CACHE_NAME = 'dvdcoin-bank-v6-20260528';
+const CACHE_NAME = 'dvdcoin-bank-v7-20260528';
 const BASE_PATH = '/bank';
 
 // Assets to cache
