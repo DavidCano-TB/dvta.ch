@@ -831,11 +831,10 @@ async def available_exams(user: dict = Depends(get_current_user)):
 
 @app.get("/")
 async def root():
-    """Hub principal — lista todos los módulos de la plataforma"""
+    """Hub principal — pantalla principal de dvta.ch"""
     hub_path = os.path.join(STATIC_DIR, "hub.html")
     if os.path.exists(hub_path):
         return FileResponse(hub_path)
-    # Fallback si el archivo no existe
     return RedirectResponse(url="/exams")
 
 @app.get("/hub")

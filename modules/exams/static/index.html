@@ -1,191 +1,1029 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DVDcoin Exams - Plataforma de Exámenes</title>
-    <link rel="stylesheet" href="/static/css/exams-style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>DVDcoin Exams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-dark:#2A4A78;--blue-main:#4A7AB8;--blue-light:#6B9BD4;--blue-pale:#8BB3E8;
+  --blue-glow:rgba(107,155,212,.25);
+  --bg:#1A2030;--bg2:#242B3D;--bg3:#2E3548;--bg-card:#323A50;
+  --border:rgba(107,155,212,.2);--border-h:rgba(107,155,212,.4);
+  --text:#E8EDF5;--text2:#A8B8D0;--text3:#7A8AA0;
+  --green:#38B87A;--red:#E05260;--warn:#F59E0B;--gold:#FFD700;
+  --r:10px;--rL:14px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;-webkit-font-smoothing:antialiased;padding-top:38px}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:var(--blue-dark);border-radius:3px}
+a{color:var(--blue-light);text-decoration:none}
+a:hover{color:var(--blue-pale)}
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <a href="/exams" class="logo">
-                <div class="logo-icon">📚</div>
-                <span>DVDcoin Exams</span>
-            </a>
-            <nav class="nav">
-                <a href="/exams" class="nav-link active">Inicio</a>
-                <a href="/opo" class="nav-link">Oposiciones</a>
-                <a href="#" class="nav-link" id="loginBtn">Iniciar Sesión</a>
-            </nav>
+<!-- ═══ LANG BAR ═══ -->
+<div id="langBar" style="position:fixed;top:0;left:0;right:0;z-index:1001;height:38px;
+  display:flex;justify-content:center;align-items:center;gap:6px;
+  background:rgba(26,32,48,.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(107,155,212,.1)">
+  <button class="lBtn" onclick="setLang('es')" data-lang="es">🇪🇸 ES</button>
+  <button class="lBtn" onclick="setLang('en')" data-lang="en">🇬🇧 EN</button>
+  <button class="lBtn" onclick="setLang('fr')" data-lang="fr">🇫🇷 FR</button>
+  <button class="lBtn" onclick="setLang('it')" data-lang="it">🇮🇹 IT</button>
+  <button class="lBtn" onclick="setLang('de')" data-lang="de">🇩🇪 DE</button>
+  <button class="lBtn" onclick="setLang('eu')" data-lang="eu">🏔 EU</button>
+  <button class="lBtn" onclick="setLang('ca')" data-lang="ca">🟡 CA</button>
+</div>
+<style>
+.lBtn{background:rgba(107,155,212,.07);border:1px solid rgba(107,155,212,.18);
+  color:var(--text3);border-radius:5px;padding:3px 9px;font-family:'Inter',sans-serif;
+  font-size:.62rem;cursor:pointer;transition:all .2s;letter-spacing:.06em}
+.lBtn:hover,.lBtn.on{background:rgba(107,155,212,.16);border-color:var(--blue-light);color:var(--blue-pale)}
+</style>
+
+<!-- ═══ HEADER ═══ -->
+<header id="mainHeader" style="position:sticky;top:38px;z-index:100;background:rgba(36,43,61,.92);
+  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 24px;height:56px;
+  display:flex;align-items:center;justify-content:space-between">
+  <a href="/exams" style="display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:700;color:var(--blue-light)">
+    <span style="font-size:1.5rem">📚</span> DVDcoin Exams
+  </a>
+  <div id="headerNav" style="display:flex;align-items:center;gap:16px">
+    <a href="/" style="font-size:.85rem;color:var(--text2)" data-i18n="navHub">Hub</a>
+    <a href="/opo" style="font-size:.85rem;color:var(--text2)" data-i18n="navOpo">Oposiciones</a>
+    <button id="btnHeaderAuth" class="hBtn" onclick="showView('auth')" data-i18n="navLogin">Iniciar Sesión</button>
+  </div>
+</header>
+<style>
+.hBtn{background:linear-gradient(135deg,var(--blue-main),var(--blue-light));color:#fff;border:none;
+  border-radius:var(--r);padding:8px 16px;font-size:.82rem;font-weight:500;cursor:pointer;transition:all .2s}
+.hBtn:hover{transform:translateY(-1px);box-shadow:0 4px 12px var(--blue-glow)}
+</style>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<main style="max-width:1100px;margin:0 auto;padding:32px 20px;min-height:calc(100vh - 94px)">
+
+<!-- ── VIEW: AUTH (Login/Register) ── -->
+<div id="view-auth" class="view" style="display:none">
+<div style="max-width:440px;margin:40px auto">
+  <div style="text-align:center;margin-bottom:24px">
+    <h1 style="font-size:1.8rem;color:var(--blue-light)" data-i18n="authTitle">Accede a DVDcoin Exams</h1>
+    <p style="color:var(--text2);margin-top:8px" data-i18n="authSub">Regístrate con tu email para acceder a todos los exámenes</p>
+  </div>
+  <!-- Tabs -->
+  <div style="display:flex;border-bottom:1px solid var(--border);margin-bottom:20px">
+    <button class="authTab on" onclick="authTab('login')" id="tabLogin" data-i18n="tabLogin">Iniciar Sesión</button>
+    <button class="authTab" onclick="authTab('register')" id="tabRegister" data-i18n="tabRegister">Registrarse</button>
+  </div>
+  <style>
+  .authTab{flex:1;padding:10px;background:none;border:none;color:var(--text3);font-size:.8rem;
+    cursor:pointer;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;position:relative}
+  .authTab.on{color:var(--blue-light)}
+  .authTab.on::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;
+    background:var(--blue-light);box-shadow:0 0 6px var(--blue-glow)}
+  </style>
+  <!-- Alert -->
+  <div id="authAlert" class="alert" style="display:none"></div>
+  <style>
+  .alert{padding:12px 16px;border-radius:var(--r);font-size:.82rem;margin-bottom:14px;border-left:3px solid}
+  .alert-e{background:rgba(224,82,96,.1);border-color:var(--red);color:#E06080}
+  .alert-s{background:rgba(56,184,122,.1);border-color:var(--green);color:#60D095}
+  .alert-i{background:rgba(107,155,212,.1);border-color:var(--blue-light);color:var(--blue-pale)}
+  </style>
+  <!-- Login Form -->
+  <form id="formLogin" onsubmit="doLogin(event)">
+    <div class="fg"><label data-i18n="lblEmail">Email</label>
+      <input type="email" id="loginEmail" required placeholder="tu@email.com"></div>
+    <div class="fg"><label data-i18n="lblPassword">Contraseña</label>
+      <input type="password" id="loginPass" required placeholder="••••••••"></div>
+    <button type="submit" class="hBtn" style="width:100%;padding:12px" data-i18n="btnLogin">Iniciar Sesión</button>
+    <p style="text-align:center;margin-top:12px;font-size:.78rem">
+      <a href="#" onclick="showForgot()" data-i18n="forgotLink">¿Olvidaste tu contraseña?</a></p>
+  </form>
+  <!-- Register Form -->
+  <form id="formRegister" onsubmit="doRegister(event)" style="display:none">
+    <div class="fg"><label data-i18n="lblUsername">Nombre de usuario</label>
+      <input type="text" id="regUser" required placeholder="usuario123" minlength="3"></div>
+    <div class="fg"><label data-i18n="lblEmail">Email</label>
+      <input type="email" id="regEmail" required placeholder="tu@email.com"></div>
+    <div class="fg"><label data-i18n="lblPassword">Contraseña</label>
+      <input type="password" id="regPass" required placeholder="Mínimo 6 caracteres" minlength="6"></div>
+    <div class="fg"><label data-i18n="lblPassConfirm">Confirmar contraseña</label>
+      <input type="password" id="regPass2" required placeholder="Repite la contraseña"></div>
+    <button type="submit" class="hBtn" style="width:100%;padding:12px" data-i18n="btnRegister">Crear Cuenta</button>
+  </form>
+  <!-- Forgot Password -->
+  <form id="formForgot" onsubmit="doForgot(event)" style="display:none">
+    <p style="color:var(--text2);margin-bottom:16px;font-size:.85rem" data-i18n="forgotDesc">
+      Introduce tu email y te enviaremos un enlace para restablecer tu contraseña.</p>
+    <div class="fg"><label data-i18n="lblEmail">Email</label>
+      <input type="email" id="forgotEmail" required placeholder="tu@email.com"></div>
+    <button type="submit" class="hBtn" style="width:100%;padding:12px" data-i18n="btnSendReset">Enviar enlace</button>
+    <p style="text-align:center;margin-top:12px;font-size:.78rem">
+      <a href="#" onclick="authTab('login')" data-i18n="backToLogin">Volver al login</a></p>
+  </form>
+</div>
+</div>
+
+<!-- ── VIEW: DASHBOARD (logged in) ── -->
+<div id="view-dashboard" class="view" style="display:none">
+  <!-- User info bar -->
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
+    <div>
+      <h2 style="font-size:1.4rem;color:var(--blue-light)" id="dashGreeting" data-i18n="dashHello">Hola, </h2>
+      <p style="color:var(--text3);font-size:.8rem" id="dashSubStatus"></p>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="sBtn" onclick="showView('stats')" data-i18n="btnStats">📊 Estadísticas</button>
+      <button class="sBtn" onclick="showView('plans')" data-i18n="btnPlans">💳 Suscripción</button>
+      <button class="sBtn btnDanger" onclick="doLogout()" data-i18n="btnLogout">Salir</button>
+    </div>
+  </div>
+  <style>
+  .sBtn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:var(--r);
+    padding:8px 14px;font-size:.78rem;cursor:pointer;transition:all .2s}
+  .sBtn:hover{border-color:var(--border-h);color:var(--blue-light)}
+  .btnDanger{border-color:rgba(224,82,96,.3);color:var(--red)}
+  .btnDanger:hover{background:rgba(224,82,96,.1);border-color:var(--red)}
+  </style>
+
+  <!-- Verification warning -->
+  <div id="verifyBanner" style="display:none;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);
+    border-radius:var(--rL);padding:16px 20px;margin-bottom:20px">
+    <p style="color:var(--warn);font-weight:600;margin-bottom:6px" data-i18n="verifyTitle">⚠️ Email no verificado</p>
+    <p style="color:var(--text2);font-size:.82rem" data-i18n="verifyMsg">Revisa tu bandeja de entrada y haz clic en el enlace de verificación.</p>
+    <button class="sBtn" style="margin-top:8px" onclick="resendVerification()" data-i18n="btnResend">Reenviar email</button>
+  </div>
+
+  <!-- Exams grid -->
+  <h3 style="margin-bottom:16px;color:var(--text)" data-i18n="availableExams">Exámenes Disponibles</h3>
+  <div id="examsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px">
+    <div style="text-align:center;padding:40px;color:var(--text3)">
+      <div class="spinner" style="margin:0 auto 12px"></div>
+      <span data-i18n="loading">Cargando...</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── VIEW: STATS ── -->
+<div id="view-stats" class="view" style="display:none">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+    <h2 style="color:var(--blue-light)" data-i18n="statsTitle">📊 Mis Estadísticas</h2>
+    <button class="sBtn" onclick="showView('dashboard')" data-i18n="btnBack">← Volver</button>
+  </div>
+  <!-- Stats cards -->
+  <div id="statsCards" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:24px">
+  </div>
+  <!-- Recent results -->
+  <h3 style="margin-bottom:12px;color:var(--text)" data-i18n="recentResults">Últimos Resultados</h3>
+  <div id="statsRecent" style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rL);overflow:hidden">
+    <p style="padding:20px;color:var(--text3);text-align:center" data-i18n="noResults">Sin resultados aún</p>
+  </div>
+</div>
+
+<!-- ── VIEW: PLANS ── -->
+<div id="view-plans" class="view" style="display:none">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+    <h2 style="color:var(--blue-light)" data-i18n="plansTitle">💳 Planes de Suscripción</h2>
+    <button class="sBtn" onclick="showView('dashboard')" data-i18n="btnBack">← Volver</button>
+  </div>
+  <p style="color:var(--text2);margin-bottom:24px" data-i18n="plansDesc">Accede a todos los exámenes y categorías con una suscripción premium.</p>
+  <div id="plansGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px">
+  </div>
+  <div id="currentSubInfo" style="margin-top:24px;display:none"></div>
+</div>
+
+<!-- ── VIEW: LANDING (not logged in) ── -->
+<div id="view-landing" class="view">
+  <div style="text-align:center;padding:48px 0 32px">
+    <div style="display:inline-block;background:rgba(107,155,212,.12);border:1px solid rgba(107,155,212,.3);
+      color:var(--blue-light);font-size:.7rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;
+      padding:4px 14px;border-radius:20px;margin-bottom:20px">dvta.ch/exams</div>
+    <h1 style="font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.15;
+      background:linear-gradient(135deg,#fff 0%,var(--blue-light) 60%,var(--blue-pale) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:16px"
+      data-i18n="heroTitle">Prepara tus Exámenes con Confianza</h1>
+    <p style="font-size:1.05rem;color:var(--text2);max-width:520px;margin:0 auto;line-height:1.6"
+      data-i18n="heroSub">Accede a miles de preguntas de oposiciones y exámenes oficiales. Practica, aprende y aprueba.</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:28px">
+      <button class="hBtn" onclick="showView('auth');authTab('register')" data-i18n="heroBtn1">Crear Cuenta</button>
+      <button class="sBtn" onclick="showView('auth');authTab('login')" data-i18n="heroBtn2">Ya tengo cuenta</button>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin:48px 0">
+    <div class="fCard"><div class="fIcon">✅</div><h3 data-i18n="feat1Title">Preguntas Actualizadas</h3>
+      <p data-i18n="feat1Desc">Base de datos constantemente actualizada con las últimas convocatorias.</p></div>
+    <div class="fCard"><div class="fIcon">📊</div><h3 data-i18n="feat2Title">Estadísticas Detalladas</h3>
+      <p data-i18n="feat2Desc">Sigue tu progreso con estadísticas completas y análisis de rendimiento.</p></div>
+    <div class="fCard"><div class="fIcon">🎯</div><h3 data-i18n="feat3Title">Simulacros Reales</h3>
+      <p data-i18n="feat3Desc">Practica con exámenes que simulan las condiciones reales de la oposición.</p></div>
+  </div>
+  <style>
+  .fCard{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rL);padding:24px;
+    transition:all .3s}
+  .fCard:hover{border-color:var(--border-h);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.3)}
+  .fCard .fIcon{font-size:2.2rem;margin-bottom:12px}
+  .fCard h3{font-size:1rem;margin-bottom:6px;color:var(--text)}
+  .fCard p{font-size:.82rem;color:var(--text2);line-height:1.5}
+  </style>
+
+  <!-- Categories preview -->
+  <h2 style="text-align:center;margin-bottom:24px" data-i18n="catTitle">Categorías de Exámenes</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:48px">
+    <div class="catCard"><span>🏥</span><div><strong data-i18n="cat1">Oposiciones Sanitarias</strong>
+      <small data-i18n="cat1d">TSID, Medicina Nuclear, Enfermería</small></div></div>
+    <div class="catCard"><span>👮</span><div><strong data-i18n="cat2">Fuerzas de Seguridad</strong>
+      <small data-i18n="cat2d">Policía Nacional, Guardia Civil</small></div></div>
+    <div class="catCard"><span>📖</span><div><strong data-i18n="cat3">Educación</strong>
+      <small data-i18n="cat3d">Maestros, Profesores</small></div></div>
+    <div class="catCard"><span>⚖️</span><div><strong data-i18n="cat4">Justicia</strong>
+      <small data-i18n="cat4d">Auxilio Judicial, Tramitación</small></div></div>
+    <div class="catCard"><span>🏛️</span><div><strong data-i18n="cat5">Administración General</strong>
+      <small data-i18n="cat5d">Auxiliar, Administrativo del Estado</small></div></div>
+  </div>
+  <style>
+  .catCard{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--border);
+    border-radius:var(--r);padding:16px 18px;transition:all .2s}
+  .catCard:hover{border-color:var(--border-h)}
+  .catCard span{font-size:1.8rem;flex-shrink:0}
+  .catCard strong{display:block;font-size:.9rem;color:var(--text);margin-bottom:2px}
+  .catCard small{font-size:.75rem;color:var(--text3)}
+  </style>
+</div>
+
+</main>
+
+<!-- ═══ GLOBAL STYLES ═══ -->
+<style>
+.view{display:none}.view.active{display:block}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.72rem;color:var(--text2);text-transform:uppercase;
+  letter-spacing:.1em;margin-bottom:6px;font-weight:500}
+.fg input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);
+  padding:11px 14px;color:var(--text);font-size:.9rem;outline:none;transition:all .2s;
+  font-family:'Inter',sans-serif}
+.fg input:focus{border-color:var(--blue-main);box-shadow:0 0 0 3px var(--blue-glow)}
+.fg input::placeholder{color:var(--text3)}
+.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--blue-main);
+  border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){
+  .lBtn{padding:2px 6px;font-size:.56rem}
+  #headerNav{gap:8px}
+  #headerNav a{font-size:.75rem}
+}
+</style>
+
+<!-- ═══ FOOTER ═══ -->
+<footer style="background:var(--bg2);padding:20px;text-align:center;border-top:1px solid var(--border)">
+  <p style="color:var(--text3);font-size:.75rem">© 2026 DVDcoin Exams · <a href="/">dvta.ch</a> · <a href="/bank">Bank</a></p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   DVDcoin Exams — Full SPA Logic
+   i18n · Auth · Dashboard · Stats · Subscriptions
+═══════════════════════════════════════════════════════════ */
+
+// ── i18n ──────────────────────────────────────────────────
+const LANGS = {
+es: {
+  navHub:"Hub",navOpo:"Oposiciones",navLogin:"Iniciar Sesión",navLogout:"Salir",
+  authTitle:"Accede a DVDcoin Exams",authSub:"Regístrate con tu email para acceder a todos los exámenes",
+  tabLogin:"Iniciar Sesión",tabRegister:"Registrarse",
+  lblEmail:"Email",lblPassword:"Contraseña",lblUsername:"Nombre de usuario",lblPassConfirm:"Confirmar contraseña",
+  btnLogin:"Iniciar Sesión",btnRegister:"Crear Cuenta",btnSendReset:"Enviar enlace",
+  forgotLink:"¿Olvidaste tu contraseña?",forgotDesc:"Introduce tu email y te enviaremos un enlace para restablecer tu contraseña.",
+  backToLogin:"Volver al login",
+  heroTitle:"Prepara tus Exámenes con Confianza",heroSub:"Accede a miles de preguntas de oposiciones y exámenes oficiales. Practica, aprende y aprueba.",
+  heroBtn1:"Crear Cuenta",heroBtn2:"Ya tengo cuenta",
+  feat1Title:"Preguntas Actualizadas",feat1Desc:"Base de datos constantemente actualizada con las últimas convocatorias.",
+  feat2Title:"Estadísticas Detalladas",feat2Desc:"Sigue tu progreso con estadísticas completas y análisis de rendimiento.",
+  feat3Title:"Simulacros Reales",feat3Desc:"Practica con exámenes que simulan las condiciones reales de la oposición.",
+  catTitle:"Categorías de Exámenes",
+  cat1:"Oposiciones Sanitarias",cat1d:"TSID, Medicina Nuclear, Enfermería",
+  cat2:"Fuerzas de Seguridad",cat2d:"Policía Nacional, Guardia Civil",
+  cat3:"Educación",cat3d:"Maestros, Profesores",
+  cat4:"Justicia",cat4d:"Auxilio Judicial, Tramitación",
+  cat5:"Administración General",cat5d:"Auxiliar, Administrativo del Estado",
+  dashHello:"Hola, ",btnStats:"📊 Estadísticas",btnPlans:"💳 Suscripción",btnLogout:"Salir",
+  verifyTitle:"⚠️ Email no verificado",verifyMsg:"Revisa tu bandeja de entrada y haz clic en el enlace de verificación.",
+  btnResend:"Reenviar email",availableExams:"Exámenes Disponibles",loading:"Cargando...",
+  statsTitle:"📊 Mis Estadísticas",btnBack:"← Volver",recentResults:"Últimos Resultados",noResults:"Sin resultados aún",
+  plansTitle:"💳 Planes de Suscripción",plansDesc:"Accede a todos los exámenes y categorías con una suscripción premium.",
+  planMonthly:"Mensual",planQuarterly:"Trimestral",planYearly:"Anual",
+  planBtn:"Suscribirse",planCurrent:"Plan actual",planActive:"Activa hasta",planCancel:"Cancelar suscripción",
+  errPassMatch:"Las contraseñas no coinciden",errGeneric:"Error de conexión",
+  successRegister:"Cuenta creada. Revisa tu email para verificar.",successLogin:"Sesión iniciada",
+  successVerify:"Email verificado correctamente",errVerifyInvalid:"Token de verificación inválido",
+  errVerifyExpired:"Token de verificación expirado",successReset:"Enlace enviado a tu email",
+  examStart:"Empezar Test",examLocked:"🔒 Premium",examQuestions:"preguntas",
+  statExams:"Exámenes",statAvg:"Media",statBest:"Mejor",statTime:"Tiempo total",statMin:"min",
+  subFree:"Gratuito",subPremium:"Premium",subExpired:"Expirada",
+  successSub:"Suscripción activada",successCancel:"Suscripción cancelada",
+  perMonth:"/mes",perQuarter:"/trimestre",perYear:"/año",save:"Ahorra"
+},
+en: {
+  navHub:"Hub",navOpo:"Exams",navLogin:"Sign In",navLogout:"Sign Out",
+  authTitle:"Access DVDcoin Exams",authSub:"Register with your email to access all exams",
+  tabLogin:"Sign In",tabRegister:"Sign Up",
+  lblEmail:"Email",lblPassword:"Password",lblUsername:"Username",lblPassConfirm:"Confirm password",
+  btnLogin:"Sign In",btnRegister:"Create Account",btnSendReset:"Send link",
+  forgotLink:"Forgot your password?",forgotDesc:"Enter your email and we'll send you a reset link.",
+  backToLogin:"Back to login",
+  heroTitle:"Prepare Your Exams with Confidence",heroSub:"Access thousands of official exam questions. Practice, learn and pass.",
+  heroBtn1:"Create Account",heroBtn2:"I have an account",
+  feat1Title:"Updated Questions",feat1Desc:"Database constantly updated with the latest exam calls.",
+  feat2Title:"Detailed Statistics",feat2Desc:"Track your progress with complete statistics and performance analysis.",
+  feat3Title:"Real Simulations",feat3Desc:"Practice with exams that simulate real exam conditions.",
+  catTitle:"Exam Categories",
+  cat1:"Healthcare Exams",cat1d:"Diagnostic Imaging, Nuclear Medicine, Nursing",
+  cat2:"Security Forces",cat2d:"National Police, Civil Guard",
+  cat3:"Education",cat3d:"Teachers, Professors",
+  cat4:"Justice",cat4d:"Court Clerk, Procedural Processing",
+  cat5:"General Administration",cat5d:"Administrative Assistant, State Admin",
+  dashHello:"Hello, ",btnStats:"📊 Statistics",btnPlans:"💳 Subscription",btnLogout:"Sign Out",
+  verifyTitle:"⚠️ Email not verified",verifyMsg:"Check your inbox and click the verification link.",
+  btnResend:"Resend email",availableExams:"Available Exams",loading:"Loading...",
+  statsTitle:"📊 My Statistics",btnBack:"← Back",recentResults:"Recent Results",noResults:"No results yet",
+  plansTitle:"💳 Subscription Plans",plansDesc:"Access all exams and categories with a premium subscription.",
+  planMonthly:"Monthly",planQuarterly:"Quarterly",planYearly:"Yearly",
+  planBtn:"Subscribe",planCurrent:"Current plan",planActive:"Active until",planCancel:"Cancel subscription",
+  errPassMatch:"Passwords don't match",errGeneric:"Connection error",
+  successRegister:"Account created. Check your email to verify.",successLogin:"Logged in",
+  successVerify:"Email verified successfully",errVerifyInvalid:"Invalid verification token",
+  errVerifyExpired:"Verification token expired",successReset:"Link sent to your email",
+  examStart:"Start Test",examLocked:"🔒 Premium",examQuestions:"questions",
+  statExams:"Exams",statAvg:"Average",statBest:"Best",statTime:"Total time",statMin:"min",
+  subFree:"Free",subPremium:"Premium",subExpired:"Expired",
+  successSub:"Subscription activated",successCancel:"Subscription cancelled",
+  perMonth:"/month",perQuarter:"/quarter",perYear:"/year",save:"Save"
+},
+fr: {
+  navHub:"Hub",navOpo:"Examens",navLogin:"Connexion",navLogout:"Déconnexion",
+  authTitle:"Accédez à DVDcoin Exams",authSub:"Inscrivez-vous avec votre email pour accéder à tous les examens",
+  tabLogin:"Connexion",tabRegister:"Inscription",
+  lblEmail:"Email",lblPassword:"Mot de passe",lblUsername:"Nom d'utilisateur",lblPassConfirm:"Confirmer le mot de passe",
+  btnLogin:"Se connecter",btnRegister:"Créer un compte",btnSendReset:"Envoyer le lien",
+  forgotLink:"Mot de passe oublié ?",forgotDesc:"Entrez votre email et nous vous enverrons un lien de réinitialisation.",
+  backToLogin:"Retour à la connexion",
+  heroTitle:"Préparez vos Examens en Confiance",heroSub:"Accédez à des milliers de questions d'examens officiels. Pratiquez, apprenez et réussissez.",
+  heroBtn1:"Créer un compte",heroBtn2:"J'ai déjà un compte",
+  feat1Title:"Questions Actualisées",feat1Desc:"Base de données constamment mise à jour avec les derniers concours.",
+  feat2Title:"Statistiques Détaillées",feat2Desc:"Suivez votre progression avec des statistiques complètes.",
+  feat3Title:"Simulations Réelles",feat3Desc:"Pratiquez avec des examens simulant les conditions réelles.",
+  catTitle:"Catégories d'Examens",
+  cat1:"Examens Sanitaires",cat1d:"Imagerie, Médecine Nucléaire, Infirmerie",
+  cat2:"Forces de Sécurité",cat2d:"Police Nationale, Gendarmerie",
+  cat3:"Éducation",cat3d:"Enseignants, Professeurs",
+  cat4:"Justice",cat4d:"Greffier, Procédure",
+  cat5:"Administration Générale",cat5d:"Assistant Administratif",
+  dashHello:"Bonjour, ",btnStats:"📊 Statistiques",btnPlans:"💳 Abonnement",btnLogout:"Déconnexion",
+  verifyTitle:"⚠️ Email non vérifié",verifyMsg:"Vérifiez votre boîte de réception et cliquez sur le lien.",
+  btnResend:"Renvoyer l'email",availableExams:"Examens Disponibles",loading:"Chargement...",
+  statsTitle:"📊 Mes Statistiques",btnBack:"← Retour",recentResults:"Résultats Récents",noResults:"Pas encore de résultats",
+  plansTitle:"💳 Plans d'Abonnement",plansDesc:"Accédez à tous les examens avec un abonnement premium.",
+  planMonthly:"Mensuel",planQuarterly:"Trimestriel",planYearly:"Annuel",
+  planBtn:"S'abonner",planCurrent:"Plan actuel",planActive:"Actif jusqu'au",planCancel:"Annuler l'abonnement",
+  errPassMatch:"Les mots de passe ne correspondent pas",errGeneric:"Erreur de connexion",
+  successRegister:"Compte créé. Vérifiez votre email.",successLogin:"Connecté",
+  successVerify:"Email vérifié",errVerifyInvalid:"Token invalide",errVerifyExpired:"Token expiré",
+  successReset:"Lien envoyé",examStart:"Commencer",examLocked:"🔒 Premium",examQuestions:"questions",
+  statExams:"Examens",statAvg:"Moyenne",statBest:"Meilleur",statTime:"Temps total",statMin:"min",
+  subFree:"Gratuit",subPremium:"Premium",subExpired:"Expiré",
+  successSub:"Abonnement activé",successCancel:"Abonnement annulé",
+  perMonth:"/mois",perQuarter:"/trimestre",perYear:"/an",save:"Économisez"
+},
+it: {
+  navHub:"Hub",navOpo:"Esami",navLogin:"Accedi",navLogout:"Esci",
+  authTitle:"Accedi a DVDcoin Exams",authSub:"Registrati con la tua email per accedere a tutti gli esami",
+  tabLogin:"Accedi",tabRegister:"Registrati",
+  lblEmail:"Email",lblPassword:"Password",lblUsername:"Nome utente",lblPassConfirm:"Conferma password",
+  btnLogin:"Accedi",btnRegister:"Crea Account",btnSendReset:"Invia link",
+  forgotLink:"Password dimenticata?",forgotDesc:"Inserisci la tua email e ti invieremo un link di reset.",
+  backToLogin:"Torna al login",
+  heroTitle:"Prepara i tuoi Esami con Fiducia",heroSub:"Accedi a migliaia di domande di esami ufficiali. Pratica, impara e supera.",
+  heroBtn1:"Crea Account",heroBtn2:"Ho già un account",
+  feat1Title:"Domande Aggiornate",feat1Desc:"Database costantemente aggiornato con gli ultimi concorsi.",
+  feat2Title:"Statistiche Dettagliate",feat2Desc:"Segui i tuoi progressi con statistiche complete.",
+  feat3Title:"Simulazioni Reali",feat3Desc:"Pratica con esami che simulano le condizioni reali.",
+  catTitle:"Categorie di Esami",
+  cat1:"Esami Sanitari",cat1d:"Diagnostica, Medicina Nucleare, Infermieristica",
+  cat2:"Forze di Sicurezza",cat2d:"Polizia, Carabinieri",
+  cat3:"Istruzione",cat3d:"Insegnanti, Professori",
+  cat4:"Giustizia",cat4d:"Cancelliere, Procedura",
+  cat5:"Amministrazione Generale",cat5d:"Assistente Amministrativo",
+  dashHello:"Ciao, ",btnStats:"📊 Statistiche",btnPlans:"💳 Abbonamento",btnLogout:"Esci",
+  verifyTitle:"⚠️ Email non verificata",verifyMsg:"Controlla la tua casella e clicca sul link di verifica.",
+  btnResend:"Reinvia email",availableExams:"Esami Disponibili",loading:"Caricamento...",
+  statsTitle:"📊 Le Mie Statistiche",btnBack:"← Indietro",recentResults:"Risultati Recenti",noResults:"Nessun risultato",
+  plansTitle:"💳 Piani di Abbonamento",plansDesc:"Accedi a tutti gli esami con un abbonamento premium.",
+  planMonthly:"Mensile",planQuarterly:"Trimestrale",planYearly:"Annuale",
+  planBtn:"Abbonati",planCurrent:"Piano attuale",planActive:"Attivo fino al",planCancel:"Annulla abbonamento",
+  errPassMatch:"Le password non corrispondono",errGeneric:"Errore di connessione",
+  successRegister:"Account creato. Verifica la tua email.",successLogin:"Accesso effettuato",
+  successVerify:"Email verificata",errVerifyInvalid:"Token non valido",errVerifyExpired:"Token scaduto",
+  successReset:"Link inviato",examStart:"Inizia",examLocked:"🔒 Premium",examQuestions:"domande",
+  statExams:"Esami",statAvg:"Media",statBest:"Migliore",statTime:"Tempo totale",statMin:"min",
+  subFree:"Gratuito",subPremium:"Premium",subExpired:"Scaduto",
+  successSub:"Abbonamento attivato",successCancel:"Abbonamento annullato",
+  perMonth:"/mese",perQuarter:"/trimestre",perYear:"/anno",save:"Risparmia"
+},
+de: {
+  navHub:"Hub",navOpo:"Prüfungen",navLogin:"Anmelden",navLogout:"Abmelden",
+  authTitle:"Zugang zu DVDcoin Exams",authSub:"Registriere dich mit deiner E-Mail für alle Prüfungen",
+  tabLogin:"Anmelden",tabRegister:"Registrieren",
+  lblEmail:"E-Mail",lblPassword:"Passwort",lblUsername:"Benutzername",lblPassConfirm:"Passwort bestätigen",
+  btnLogin:"Anmelden",btnRegister:"Konto erstellen",btnSendReset:"Link senden",
+  forgotLink:"Passwort vergessen?",forgotDesc:"Gib deine E-Mail ein und wir senden dir einen Reset-Link.",
+  backToLogin:"Zurück zum Login",
+  heroTitle:"Bereite deine Prüfungen mit Vertrauen vor",heroSub:"Zugang zu tausenden offiziellen Prüfungsfragen. Übe, lerne und bestehe.",
+  heroBtn1:"Konto erstellen",heroBtn2:"Ich habe ein Konto",
+  feat1Title:"Aktuelle Fragen",feat1Desc:"Datenbank ständig mit den neuesten Ausschreibungen aktualisiert.",
+  feat2Title:"Detaillierte Statistiken",feat2Desc:"Verfolge deinen Fortschritt mit vollständigen Statistiken.",
+  feat3Title:"Echte Simulationen",feat3Desc:"Übe mit Prüfungen unter realen Bedingungen.",
+  catTitle:"Prüfungskategorien",
+  cat1:"Gesundheitsprüfungen",cat1d:"Diagnostik, Nuklearmedizin, Pflege",
+  cat2:"Sicherheitskräfte",cat2d:"Polizei, Gendarmerie",
+  cat3:"Bildung",cat3d:"Lehrer, Professoren",
+  cat4:"Justiz",cat4d:"Gerichtsschreiber, Verfahren",
+  cat5:"Allgemeine Verwaltung",cat5d:"Verwaltungsassistent",
+  dashHello:"Hallo, ",btnStats:"📊 Statistiken",btnPlans:"💳 Abo",btnLogout:"Abmelden",
+  verifyTitle:"⚠️ E-Mail nicht verifiziert",verifyMsg:"Überprüfe deinen Posteingang und klicke auf den Link.",
+  btnResend:"E-Mail erneut senden",availableExams:"Verfügbare Prüfungen",loading:"Laden...",
+  statsTitle:"📊 Meine Statistiken",btnBack:"← Zurück",recentResults:"Letzte Ergebnisse",noResults:"Noch keine Ergebnisse",
+  plansTitle:"💳 Abo-Pläne",plansDesc:"Zugang zu allen Prüfungen mit einem Premium-Abo.",
+  planMonthly:"Monatlich",planQuarterly:"Vierteljährlich",planYearly:"Jährlich",
+  planBtn:"Abonnieren",planCurrent:"Aktueller Plan",planActive:"Aktiv bis",planCancel:"Abo kündigen",
+  errPassMatch:"Passwörter stimmen nicht überein",errGeneric:"Verbindungsfehler",
+  successRegister:"Konto erstellt. Überprüfe deine E-Mail.",successLogin:"Angemeldet",
+  successVerify:"E-Mail verifiziert",errVerifyInvalid:"Ungültiger Token",errVerifyExpired:"Token abgelaufen",
+  successReset:"Link gesendet",examStart:"Starten",examLocked:"🔒 Premium",examQuestions:"Fragen",
+  statExams:"Prüfungen",statAvg:"Durchschnitt",statBest:"Beste",statTime:"Gesamtzeit",statMin:"Min",
+  subFree:"Kostenlos",subPremium:"Premium",subExpired:"Abgelaufen",
+  successSub:"Abo aktiviert",successCancel:"Abo gekündigt",
+  perMonth:"/Monat",perQuarter:"/Quartal",perYear:"/Jahr",save:"Spare"
+},
+eu: {
+  navHub:"Hub",navOpo:"Azterketak",navLogin:"Sartu",navLogout:"Irten",
+  authTitle:"Sartu DVDcoin Exams-era",authSub:"Erregistratu zure emailarekin azterketa guztietara sartzeko",
+  tabLogin:"Sartu",tabRegister:"Erregistratu",
+  lblEmail:"Emaila",lblPassword:"Pasahitza",lblUsername:"Erabiltzaile izena",lblPassConfirm:"Pasahitza berretsi",
+  btnLogin:"Sartu",btnRegister:"Kontua sortu",btnSendReset:"Esteka bidali",
+  forgotLink:"Pasahitza ahaztu?",forgotDesc:"Sartu zure emaila eta berrezartzeko esteka bidaliko dizugu.",
+  backToLogin:"Loginera itzuli",
+  heroTitle:"Prestatu zure Azterketak Konfiantzaz",heroSub:"Milaka galdera ofizialetara sartu. Praktikatu, ikasi eta gainditu.",
+  heroBtn1:"Kontua sortu",heroBtn2:"Kontua daukat",
+  feat1Title:"Galdera Eguneratuak",feat1Desc:"Datu-basea etengabe eguneratua azken deialdiekin.",
+  feat2Title:"Estatistika Zehatzak",feat2Desc:"Jarraitu zure aurrerapena estatistika osoekin.",
+  feat3Title:"Benetako Simulazioak",feat3Desc:"Praktikatu benetako baldintzetako azterketekin.",
+  catTitle:"Azterketa Kategoriak",
+  cat1:"Osasun Azterketak",cat1d:"Diagnostikoa, Medikuntza Nuklearra",
+  cat2:"Segurtasun Indarrak",cat2d:"Polizia, Guardia Zibila",
+  cat3:"Hezkuntza",cat3d:"Irakasleak, Katedradunak",
+  cat4:"Justizia",cat4d:"Epaitegi Laguntzailea",
+  cat5:"Administrazio Orokorra",cat5d:"Administrari Laguntzailea",
+  dashHello:"Kaixo, ",btnStats:"📊 Estatistikak",btnPlans:"💳 Harpidetza",btnLogout:"Irten",
+  verifyTitle:"⚠️ Emaila ez da egiaztatu",verifyMsg:"Begiratu zure sarrera-ontzia eta egin klik estekan.",
+  btnResend:"Emaila birbidali",availableExams:"Azterketa Eskuragarriak",loading:"Kargatzen...",
+  statsTitle:"📊 Nire Estatistikak",btnBack:"← Atzera",recentResults:"Azken Emaitzak",noResults:"Emaitzarik ez oraindik",
+  plansTitle:"💳 Harpidetza Planak",plansDesc:"Sartu azterketa guztietara premium harpidetzarekin.",
+  planMonthly:"Hilabetekoa",planQuarterly:"Hiruhilekoa",planYearly:"Urtekoa",
+  planBtn:"Harpidetu",planCurrent:"Uneko plana",planActive:"Aktibo arte",planCancel:"Harpidetza ezeztatu",
+  errPassMatch:"Pasahitzak ez datoz bat",errGeneric:"Konexio errorea",
+  successRegister:"Kontua sortua. Egiaztatu emaila.",successLogin:"Saioa hasita",
+  successVerify:"Emaila egiaztatua",errVerifyInvalid:"Token baliogabea",errVerifyExpired:"Token iraungita",
+  successReset:"Esteka bidalita",examStart:"Hasi",examLocked:"🔒 Premium",examQuestions:"galdera",
+  statExams:"Azterketak",statAvg:"Batez bestekoa",statBest:"Onena",statTime:"Denbora guztira",statMin:"min",
+  subFree:"Doakoa",subPremium:"Premium",subExpired:"Iraungita",
+  successSub:"Harpidetza aktibatua",successCancel:"Harpidetza ezeztatua",
+  perMonth:"/hilabete",perQuarter:"/hiruhileko",perYear:"/urte",save:"Aurreztu"
+},
+ca: {
+  navHub:"Hub",navOpo:"Exàmens",navLogin:"Iniciar Sessió",navLogout:"Sortir",
+  authTitle:"Accedeix a DVDcoin Exams",authSub:"Registra't amb el teu email per accedir a tots els exàmens",
+  tabLogin:"Iniciar Sessió",tabRegister:"Registrar-se",
+  lblEmail:"Email",lblPassword:"Contrasenya",lblUsername:"Nom d'usuari",lblPassConfirm:"Confirmar contrasenya",
+  btnLogin:"Iniciar Sessió",btnRegister:"Crear Compte",btnSendReset:"Enviar enllaç",
+  forgotLink:"Has oblidat la contrasenya?",forgotDesc:"Introdueix el teu email i t'enviarem un enllaç de restabliment.",
+  backToLogin:"Tornar al login",
+  heroTitle:"Prepara els teus Exàmens amb Confiança",heroSub:"Accedeix a milers de preguntes d'oposicions i exàmens oficials. Practica, aprèn i aprova.",
+  heroBtn1:"Crear Compte",heroBtn2:"Ja tinc compte",
+  feat1Title:"Preguntes Actualitzades",feat1Desc:"Base de dades constantment actualitzada amb les últimes convocatòries.",
+  feat2Title:"Estadístiques Detallades",feat2Desc:"Segueix el teu progrés amb estadístiques completes.",
+  feat3Title:"Simulacres Reals",feat3Desc:"Practica amb exàmens que simulen les condicions reals.",
+  catTitle:"Categories d'Exàmens",
+  cat1:"Oposicions Sanitàries",cat1d:"TSID, Medicina Nuclear, Infermeria",
+  cat2:"Forces de Seguretat",cat2d:"Policia Nacional, Guàrdia Civil",
+  cat3:"Educació",cat3d:"Mestres, Professors",
+  cat4:"Justícia",cat4d:"Auxili Judicial, Tramitació",
+  cat5:"Administració General",cat5d:"Auxiliar, Administratiu de l'Estat",
+  dashHello:"Hola, ",btnStats:"📊 Estadístiques",btnPlans:"💳 Subscripció",btnLogout:"Sortir",
+  verifyTitle:"⚠️ Email no verificat",verifyMsg:"Revisa la teva safata d'entrada i fes clic a l'enllaç de verificació.",
+  btnResend:"Reenviar email",availableExams:"Exàmens Disponibles",loading:"Carregant...",
+  statsTitle:"📊 Les Meves Estadístiques",btnBack:"← Tornar",recentResults:"Últims Resultats",noResults:"Sense resultats encara",
+  plansTitle:"💳 Plans de Subscripció",plansDesc:"Accedeix a tots els exàmens amb una subscripció premium.",
+  planMonthly:"Mensual",planQuarterly:"Trimestral",planYearly:"Anual",
+  planBtn:"Subscriure's",planCurrent:"Pla actual",planActive:"Activa fins",planCancel:"Cancel·lar subscripció",
+  errPassMatch:"Les contrasenyes no coincideixen",errGeneric:"Error de connexió",
+  successRegister:"Compte creat. Revisa el teu email.",successLogin:"Sessió iniciada",
+  successVerify:"Email verificat correctament",errVerifyInvalid:"Token de verificació invàlid",
+  errVerifyExpired:"Token de verificació expirat",successReset:"Enllaç enviat",
+  examStart:"Començar",examLocked:"🔒 Premium",examQuestions:"preguntes",
+  statExams:"Exàmens",statAvg:"Mitjana",statBest:"Millor",statTime:"Temps total",statMin:"min",
+  subFree:"Gratuït",subPremium:"Premium",subExpired:"Expirada",
+  successSub:"Subscripció activada",successCancel:"Subscripció cancel·lada",
+  perMonth:"/mes",perQuarter:"/trimestre",perYear:"/any",save:"Estalvia"
+}
+};
+
+let curLang = localStorage.getItem('exams_lang') || 'es';
+let currentUser = null;
+
+function t(key) { return (LANGS[curLang] || LANGS.es)[key] || (LANGS.es)[key] || key; }
+
+function applyLang() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const val = t(key);
+    if (val) el.textContent = val;
+  });
+  document.querySelectorAll('.lBtn').forEach(b => b.classList.toggle('on', b.dataset.lang === curLang));
+  document.documentElement.lang = curLang;
+}
+
+function setLang(lang) {
+  curLang = lang;
+  localStorage.setItem('exams_lang', lang);
+  applyLang();
+  // Persist to server if logged in
+  if (currentUser) {
+    fetch('/api/auth/set-lang', {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({lang})
+    }).catch(()=>{});
+  }
+}
+
+// ── Views ─────────────────────────────────────────────────
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => { v.style.display = 'none'; v.classList.remove('active'); });
+  const el = document.getElementById('view-' + name);
+  if (el) { el.style.display = 'block'; el.classList.add('active'); }
+  
+  if (name === 'dashboard') loadDashboard();
+  if (name === 'stats') loadStats();
+  if (name === 'plans') loadPlans();
+}
+
+// ── Auth ──────────────────────────────────────────────────
+function authTab(tab) {
+  document.getElementById('formLogin').style.display = tab === 'login' ? 'block' : 'none';
+  document.getElementById('formRegister').style.display = tab === 'register' ? 'block' : 'none';
+  document.getElementById('formForgot').style.display = tab === 'forgot' ? 'block' : 'none';
+  document.getElementById('tabLogin').classList.toggle('on', tab === 'login');
+  document.getElementById('tabRegister').classList.toggle('on', tab === 'register');
+  hideAlert();
+}
+
+function showForgot() { authTab('forgot'); }
+
+function showAlert(msg, type='e') {
+  const el = document.getElementById('authAlert');
+  el.textContent = msg;
+  el.className = 'alert alert-' + type;
+  el.style.display = 'block';
+}
+function hideAlert() { document.getElementById('authAlert').style.display = 'none'; }
+
+async function doLogin(e) {
+  e.preventDefault();
+  hideAlert();
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass = document.getElementById('loginPass').value;
+  try {
+    const r = await fetch('/api/auth/login', {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({username: email, password: pass})
+    });
+    const data = await r.json();
+    if (!r.ok) { showAlert(data.detail || t('errGeneric')); return; }
+    localStorage.setItem('exams_token', data.token);
+    showAlert(t('successLogin'), 's');
+    setTimeout(() => checkAuthAndRoute(), 500);
+  } catch(err) { showAlert(t('errGeneric')); }
+}
+
+async function doRegister(e) {
+  e.preventDefault();
+  hideAlert();
+  const user = document.getElementById('regUser').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+  if (pass !== pass2) { showAlert(t('errPassMatch')); return; }
+  try {
+    const r = await fetch('/api/auth/register', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({username: user, email, password: pass})
+    });
+    const data = await r.json();
+    if (!r.ok) { showAlert(data.detail || t('errGeneric')); return; }
+    showAlert(t('successRegister'), 's');
+    setTimeout(() => authTab('login'), 2000);
+  } catch(err) { showAlert(t('errGeneric')); }
+}
+
+async function doForgot(e) {
+  e.preventDefault();
+  hideAlert();
+  const email = document.getElementById('forgotEmail').value.trim();
+  try {
+    const r = await fetch('/api/auth/forgot-password', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email})
+    });
+    if (r.ok) showAlert(t('successReset'), 's');
+    else showAlert(t('errGeneric'));
+  } catch(err) { showAlert(t('errGeneric')); }
+}
+
+async function doLogout() {
+  await fetch('/api/auth/logout', {method:'POST', credentials:'include'}).catch(()=>{});
+  localStorage.removeItem('exams_token');
+  currentUser = null;
+  updateHeaderForGuest();
+  showView('landing');
+}
+
+async function resendVerification() {
+  const token = localStorage.getItem('exams_token');
+  if (!token) return;
+  try {
+    await fetch('/api/auth/resend-verification', {
+      method:'POST', credentials:'include',
+      headers:{'Authorization':'Bearer '+token}
+    });
+    alert(t('successReset'));
+  } catch(e) {}
+}
+
+// ── Dashboard ─────────────────────────────────────────────
+function updateHeaderForUser(user) {
+  const nav = document.getElementById('headerNav');
+  const btn = document.getElementById('btnHeaderAuth');
+  btn.textContent = user.username;
+  btn.onclick = () => showView('dashboard');
+}
+
+function updateHeaderForGuest() {
+  const btn = document.getElementById('btnHeaderAuth');
+  btn.textContent = t('navLogin');
+  btn.onclick = () => showView('auth');
+}
+
+async function loadDashboard() {
+  if (!currentUser) return;
+  
+  // Greeting
+  document.getElementById('dashGreeting').textContent = t('dashHello') + currentUser.username;
+  
+  // Sub status
+  const subEl = document.getElementById('dashSubStatus');
+  if (currentUser.has_premium) subEl.textContent = '⭐ ' + t('subPremium');
+  else subEl.textContent = t('subFree');
+  
+  // Verify banner
+  document.getElementById('verifyBanner').style.display = currentUser.verified ? 'none' : 'block';
+  
+  // Load exams
+  await loadExamsGrid();
+}
+
+async function loadExamsGrid() {
+  const grid = document.getElementById('examsGrid');
+  grid.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3)"><div class="spinner" style="margin:0 auto 12px"></div></div>';
+  
+  try {
+    const token = localStorage.getItem('exams_token');
+    const r = await fetch('/api/exams/available', {
+      credentials:'include',
+      headers: token ? {'Authorization':'Bearer '+token} : {}
+    });
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+    
+    grid.innerHTML = '';
+    const cats = data.categories || [];
+    if (!cats.length) {
+      grid.innerHTML = '<p style="color:var(--text3);padding:20px">No hay exámenes disponibles</p>';
+      return;
+    }
+    
+    const icons = {'sanitarias':'🏥','seguridad':'👮','educacion':'📖','justicia':'⚖️','admin-general':'🏛️'};
+    
+    cats.forEach(cat => {
+      const icon = icons[cat.slug] || '📝';
+      const locked = cat.locked;
+      const card = document.createElement('div');
+      card.style.cssText = 'background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rL);padding:20px;transition:all .3s;'
+        + (locked ? 'opacity:.6;' : 'cursor:pointer;');
+      card.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <span style="font-size:2rem">${icon}</span>
+          <div>
+            <strong style="color:var(--text);font-size:1rem">${cat.name}</strong>
+            ${locked ? '<span style="font-size:.7rem;background:rgba(255,215,0,.15);color:var(--gold);padding:2px 8px;border-radius:10px;margin-left:8px">'+t('examLocked')+'</span>' : ''}
+          </div>
         </div>
-    </header>
+        <p style="color:var(--text2);font-size:.82rem;margin-bottom:12px">${cat.description || ''}</p>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="color:var(--text3);font-size:.75rem">${cat.question_count || 0} ${t('examQuestions')}</span>
+          ${locked
+            ? '<button class="sBtn" disabled>'+t('examLocked')+'</button>'
+            : '<button class="hBtn" style="padding:6px 14px;font-size:.78rem" onclick="startExam(\''+cat.slug+'\')">'+t('examStart')+'</button>'
+          }
+        </div>`;
+      if (!locked) {
+        card.onmouseenter = () => { card.style.borderColor = 'var(--border-h)'; card.style.transform = 'translateY(-3px)'; };
+        card.onmouseleave = () => { card.style.borderColor = 'var(--border)'; card.style.transform = 'none'; };
+      }
+      grid.appendChild(card);
+    });
+  } catch(e) {
+    grid.innerHTML = '<p style="color:var(--red);padding:20px">Error cargando exámenes</p>';
+  }
+}
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Hero Section -->
-        <section style="text-align: center; padding: 3rem 0;">
-            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, var(--blue-light), var(--blue-pale)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                Prepara tus Exámenes con Confianza
-            </h1>
-            <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2rem;">
-                Accede a miles de preguntas de oposiciones y exámenes oficiales. Practica, aprende y aprueba.
-            </p>
-            <div style="display: flex; gap: 1rem; justify-content: center;">
-                <a href="#" class="btn btn-primary" id="startBtn">Comenzar Ahora</a>
-                <a href="#categories" class="btn btn-outline">Ver Categorías</a>
-            </div>
-        </section>
+function startExam(slug) {
+  // Redirect to OPO panel with category
+  window.location.href = '/opo?category=' + slug;
+}
 
-        <!-- Stats -->
-        <section class="grid grid-3" style="margin: 3rem 0;">
-            <div class="card" style="text-align: center;">
-                <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;">5,000+</div>
-                <div style="color: var(--text-secondary);">Preguntas Disponibles</div>
-            </div>
-            <div class="card" style="text-align: center;">
-                <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;">15+</div>
-                <div style="color: var(--text-secondary);">Categorías de Exámenes</div>
-            </div>
-            <div class="card" style="text-align: center;">
-                <div style="font-size: 2.5rem; color: var(--blue-light); margin-bottom: 0.5rem;">98%</div>
-                <div style="color: var(--text-secondary);">Tasa de Satisfacción</div>
-            </div>
-        </section>
+// ── Stats ─────────────────────────────────────────────────
+async function loadStats() {
+  const token = localStorage.getItem('exams_token');
+  if (!token) return;
+  
+  try {
+    const r = await fetch('/api/stats/personal', {
+      credentials:'include',
+      headers:{'Authorization':'Bearer '+token}
+    });
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+    
+    // Overview cards
+    const cards = document.getElementById('statsCards');
+    const ov = data.overview;
+    cards.innerHTML = `
+      <div class="statCard"><div class="statVal">${ov.total_exams}</div><div class="statLbl">${t('statExams')}</div></div>
+      <div class="statCard"><div class="statVal">${ov.avg_score}%</div><div class="statLbl">${t('statAvg')}</div></div>
+      <div class="statCard"><div class="statVal">${ov.best_score}%</div><div class="statLbl">${t('statBest')}</div></div>
+      <div class="statCard"><div class="statVal">${ov.total_time_minutes} ${t('statMin')}</div><div class="statLbl">${t('statTime')}</div></div>
+    `;
+    
+    // Recent results
+    const recent = document.getElementById('statsRecent');
+    if (data.recent && data.recent.length) {
+      let html = '<table style="width:100%;border-collapse:collapse;font-size:.82rem">';
+      html += '<thead><tr style="background:var(--bg3)"><th style="padding:10px 14px;text-align:left;color:var(--text3)">Categoría</th><th style="padding:10px;color:var(--text3)">Score</th><th style="padding:10px;color:var(--text3)">✓/✗</th><th style="padding:10px;color:var(--text3)">Fecha</th></tr></thead><tbody>';
+      data.recent.forEach(r => {
+        const date = r.completed_at ? new Date(r.completed_at).toLocaleDateString() : '-';
+        const color = r.score >= 70 ? 'var(--green)' : r.score >= 50 ? 'var(--warn)' : 'var(--red)';
+        html += `<tr style="border-top:1px solid var(--border)">
+          <td style="padding:10px 14px;color:var(--text)">${r.category_name || '-'}</td>
+          <td style="padding:10px;text-align:center;color:${color};font-weight:600">${r.score}%</td>
+          <td style="padding:10px;text-align:center;color:var(--text2)">${r.correct}/${r.correct+r.wrong}</td>
+          <td style="padding:10px;text-align:center;color:var(--text3)">${date}</td>
+        </tr>`;
+      });
+      html += '</tbody></table>';
+      recent.innerHTML = html;
+    } else {
+      recent.innerHTML = '<p style="padding:20px;color:var(--text3);text-align:center">'+t('noResults')+'</p>';
+    }
+  } catch(e) {
+    document.getElementById('statsCards').innerHTML = '<p style="color:var(--red)">Error</p>';
+  }
+}
 
-        <!-- Categories -->
-        <section id="categories" style="margin: 4rem 0;">
-            <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">Categorías de Exámenes</h2>
-            
-            <div class="grid grid-2">
-                <!-- Oposiciones -->
-                <div class="card">
-                    <div class="card-header">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 2rem;">🏥</div>
-                            <div>
-                                <h3 class="card-title">Oposiciones Sanitarias</h3>
-                                <span class="badge badge-premium">Premium</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Prepara oposiciones del sector sanitario con miles de preguntas actualizadas.</p>
-                        <ul style="margin-top: 1rem; padding-left: 1.5rem; color: var(--text-secondary);">
-                            <li>Técnico Superior en Imagen para el Diagnóstico</li>
-                            <li>Medicina Nuclear</li>
-                            <li>Enfermería</li>
-                            <li>Y más...</li>
-                        </ul>
-                    </div>
-                    <div class="card-footer">
-                        <span style="color: var(--text-tertiary);">2,500+ preguntas</span>
-                        <a href="/opo" class="btn btn-primary">Acceder</a>
-                    </div>
-                </div>
+// ── Plans ─────────────────────────────────────────────────
+async function loadPlans() {
+  const grid = document.getElementById('plansGrid');
+  const infoEl = document.getElementById('currentSubInfo');
+  
+  const planData = [
+    {key:'monthly', price:'9.99€', period:t('perMonth'), highlight:false},
+    {key:'quarterly', price:'24.99€', period:t('perQuarter'), highlight:true, save:'17%'},
+    {key:'yearly', price:'79.99€', period:t('perYear'), highlight:false, save:'33%'}
+  ];
+  
+  const names = {monthly:t('planMonthly'), quarterly:t('planQuarterly'), yearly:t('planYearly')};
+  
+  grid.innerHTML = '';
+  planData.forEach(p => {
+    const card = document.createElement('div');
+    card.style.cssText = 'background:var(--bg-card);border:1px solid '+(p.highlight?'var(--blue-main)':'var(--border)')+';border-radius:var(--rL);padding:24px;text-align:center;position:relative';
+    if (p.highlight) card.style.boxShadow = '0 0 20px var(--blue-glow)';
+    card.innerHTML = `
+      ${p.save ? '<div style="position:absolute;top:-10px;right:16px;background:var(--green);color:#fff;font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:10px">'+t('save')+' '+p.save+'</div>' : ''}
+      <h3 style="color:var(--blue-light);margin-bottom:8px">${names[p.key]}</h3>
+      <div style="font-size:2rem;font-weight:700;color:var(--text);margin-bottom:4px">${p.price}</div>
+      <div style="color:var(--text3);font-size:.8rem;margin-bottom:20px">${p.period}</div>
+      <button class="hBtn" style="width:100%;padding:10px" onclick="doSubscribe('${p.key}')">${t('planBtn')}</button>
+    `;
+    grid.appendChild(card);
+  });
+  
+  // Show current subscription info
+  if (currentUser && currentUser.subscription) {
+    const sub = currentUser.subscription;
+    infoEl.style.display = 'block';
+    infoEl.innerHTML = `
+      <div style="background:rgba(56,184,122,.08);border:1px solid rgba(56,184,122,.3);border-radius:var(--rL);padding:16px 20px">
+        <p style="color:var(--green);font-weight:600">✅ ${t('planCurrent')}: ${names[sub.plan] || sub.plan}</p>
+        <p style="color:var(--text2);font-size:.82rem;margin-top:4px">${t('planActive')}: ${new Date(sub.expires_at).toLocaleDateString()}</p>
+        <button class="sBtn btnDanger" style="margin-top:10px" onclick="doCancelSub()">${t('planCancel')}</button>
+      </div>`;
+  } else {
+    infoEl.style.display = 'none';
+  }
+}
 
-                <!-- Más categorías próximamente -->
-                <div class="card" style="opacity: 0.6;">
-                    <div class="card-header">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 2rem;">👮</div>
-                            <div>
-                                <h3 class="card-title">Fuerzas y Cuerpos de Seguridad</h3>
-                                <span class="badge badge-warning">Próximamente</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Prepara oposiciones de Policía Nacional, Guardia Civil y más.</p>
-                    </div>
-                    <div class="card-footer">
-                        <span style="color: var(--text-tertiary);">Disponible pronto</span>
-                        <button class="btn btn-secondary" disabled>Próximamente</button>
-                    </div>
-                </div>
+async function doSubscribe(plan) {
+  const token = localStorage.getItem('exams_token');
+  if (!token) { showView('auth'); return; }
+  if (!currentUser.verified) { alert(t('verifyTitle')); return; }
+  
+  try {
+    const r = await fetch('/api/subscription/subscribe', {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({plan, payment_method:'card'})
+    });
+    const data = await r.json();
+    if (!r.ok) { alert(data.detail || t('errGeneric')); return; }
+    alert(t('successSub'));
+    await checkAuthAndRoute();
+  } catch(e) { alert(t('errGeneric')); }
+}
 
-                <div class="card" style="opacity: 0.6;">
-                    <div class="card-header">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 2rem;">📖</div>
-                            <div>
-                                <h3 class="card-title">Educación</h3>
-                                <span class="badge badge-warning">Próximamente</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Oposiciones de maestros, profesores y personal educativo.</p>
-                    </div>
-                    <div class="card-footer">
-                        <span style="color: var(--text-tertiary);">Disponible pronto</span>
-                        <button class="btn btn-secondary" disabled>Próximamente</button>
-                    </div>
-                </div>
+async function doCancelSub() {
+  if (!confirm(t('planCancel') + '?')) return;
+  const token = localStorage.getItem('exams_token');
+  try {
+    const r = await fetch('/api/subscription/cancel', {
+      method:'POST', credentials:'include',
+      headers:{'Authorization':'Bearer '+token}
+    });
+    if (r.ok) { alert(t('successCancel')); await checkAuthAndRoute(); }
+  } catch(e) {}
+}
 
-                <div class="card" style="opacity: 0.6;">
-                    <div class="card-header">
-                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="font-size: 2rem;">⚖️</div>
-                            <div>
-                                <h3 class="card-title">Justicia</h3>
-                                <span class="badge badge-warning">Próximamente</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <p>Auxilio Judicial, Tramitación Procesal y más.</p>
-                    </div>
-                    <div class="card-footer">
-                        <span style="color: var(--text-tertiary);">Disponible pronto</span>
-                        <button class="btn btn-secondary" disabled>Próximamente</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+// ── Init ──────────────────────────────────────────────────
+async function checkAuthAndRoute() {
+  const token = localStorage.getItem('exams_token');
+  if (!token) {
+    currentUser = null;
+    updateHeaderForGuest();
+    showView('landing');
+    return;
+  }
+  
+  try {
+    const r = await fetch('/api/auth/me', {
+      credentials:'include',
+      headers:{'Authorization':'Bearer '+token}
+    });
+    if (!r.ok) throw new Error();
+    const data = await r.json();
+    currentUser = data.user;
+    
+    // Set lang from user preference
+    if (currentUser.lang && currentUser.lang !== curLang) {
+      curLang = currentUser.lang;
+      localStorage.setItem('exams_lang', curLang);
+    }
+    
+    updateHeaderForUser(currentUser);
+    showView('dashboard');
+  } catch(e) {
+    localStorage.removeItem('exams_token');
+    currentUser = null;
+    updateHeaderForGuest();
+    showView('landing');
+  }
+}
 
-        <!-- Features -->
-        <section style="margin: 4rem 0;">
-            <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center;">¿Por qué elegirnos?</h2>
-            
-            <div class="grid grid-3">
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">✅</div>
-                    <h3 style="margin-bottom: 0.5rem;">Preguntas Actualizadas</h3>
-                    <p style="color: var(--text-secondary);">Base de datos constantemente actualizada con las últimas convocatorias.</p>
-                </div>
-                
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📊</div>
-                    <h3 style="margin-bottom: 0.5rem;">Estadísticas Detalladas</h3>
-                    <p style="color: var(--text-secondary);">Sigue tu progreso con estadísticas completas y análisis de rendimiento.</p>
-                </div>
-                
-                <div class="card">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎯</div>
-                    <h3 style="margin-bottom: 0.5rem;">Simulacros Reales</h3>
-                    <p style="color: var(--text-secondary);">Practica con exámenes que simulan las condiciones reales de la oposición.</p>
-                </div>
-            </div>
-        </section>
+// Handle URL params (verification, reset)
+function handleUrlParams() {
+  const params = new URLSearchParams(window.location.search);
+  const path = window.location.pathname;
+  
+  // Route-based navigation
+  if (path === '/register') {
+    setTimeout(() => { showView('auth'); authTab('register'); }, 50);
+    return true;
+  }
+  if (path === '/login') {
+    setTimeout(() => { showView('auth'); authTab('login'); }, 50);
+    return true;
+  }
+  if (path === '/dashboard') {
+    // Will be handled by checkAuthAndRoute — if not logged in, show auth
+    return false;
+  }
+  if (path === '/plans') {
+    setTimeout(() => {
+      if (currentUser) showView('plans');
+      else { showView('auth'); authTab('register'); }
+    }, 100);
+    return true;
+  }
+  if (path === '/stats') {
+    setTimeout(() => {
+      if (currentUser) showView('stats');
+      else { showView('auth'); authTab('login'); }
+    }, 100);
+    return true;
+  }
+  if (path === '/profile') {
+    setTimeout(() => {
+      if (currentUser) showView('dashboard');
+      else { showView('auth'); authTab('login'); }
+    }, 100);
+    return true;
+  }
+  
+  if (params.get('verified') === 'success') {
+    setTimeout(() => {
+      showView('auth');
+      authTab('login');
+      showAlert(t('successVerify'), 's');
+    }, 100);
+    history.replaceState(null, '', '/exams');
+    return true;
+  }
+  if (params.get('verified') === 'invalid') {
+    setTimeout(() => { showView('auth'); showAlert(t('errVerifyInvalid')); }, 100);
+    history.replaceState(null, '', '/exams');
+    return true;
+  }
+  if (params.get('verified') === 'expired') {
+    setTimeout(() => { showView('auth'); showAlert(t('errVerifyExpired')); }, 100);
+    history.replaceState(null, '', '/exams');
+    return true;
+  }
+  if (params.get('reset')) {
+    // Show reset password form (simplified — just show login with message)
+    setTimeout(() => { showView('auth'); authTab('login'); showAlert('Use your new password to login', 'i'); }, 100);
+    history.replaceState(null, '', '/exams');
+    return true;
+  }
+  return false;
+}
 
-        <!-- CTA -->
-        <section style="text-align: center; padding: 3rem; background: var(--bg-card); border-radius: var(--radius-lg); margin: 4rem 0;">
-            <h2 style="font-size: 2rem; margin-bottom: 1rem;">¿Listo para empezar?</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 2rem;">Regístrate ahora y accede a todo el contenido.</p>
-            <a href="#" class="btn btn-primary" id="registerBtn">Crear Cuenta Gratis</a>
-        </section>
-    </main>
+// Boot
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang();
+  
+  // First check auth, then handle URL routing
+  const path = window.location.pathname;
+  const needsAuth = ['/dashboard', '/plans', '/stats', '/profile'].includes(path);
+  
+  if (needsAuth) {
+    // Check auth first, then route
+    checkAuthAndRoute().then(() => {
+      if (currentUser) {
+        if (path === '/plans') showView('plans');
+        else if (path === '/stats') showView('stats');
+        // dashboard/profile already handled by checkAuthAndRoute
+      }
+    });
+  } else if (!handleUrlParams()) {
+    checkAuthAndRoute();
+  }
+});
+</script>
 
-    <!-- Footer -->
-    <footer style="background: var(--bg-secondary); padding: 2rem; text-align: center; margin-top: 4rem; border-top: 1px solid var(--border-main);">
-        <p style="color: var(--text-tertiary);">© 2026 DVDcoin Exams. Todos los derechos reservados.</p>
-    </footer>
-
-    <script src="/static/js/main.js"></script>
+<!-- Stats card style -->
+<style>
+.statCard{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rL);padding:20px;text-align:center}
+.statVal{font-size:1.8rem;font-weight:700;color:var(--blue-light);margin-bottom:4px}
+.statLbl{font-size:.72rem;color:var(--text3);text-transform:uppercase;letter-spacing:.08em}
+</style>
 </body>
 </html>
