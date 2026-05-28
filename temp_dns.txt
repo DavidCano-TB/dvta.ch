@@ -1,5 +1,0 @@
-Serveur :   fritz.box
-Address:  fdd3:c074:68b8:0:2e3a:fdff:fef6:2c1a
-
-Nom :    dvta.ch
-
