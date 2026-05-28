@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Games · DVDcoin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
+<style>
+:root{
+  --gold:#D4A843;--gold2:#F0C866;--gold3:#8B6010;--gold4:#5A3A06;
+  --noir:#04040A;--n2:#08080F;--n3:#0C0C1A;--n4:#111120;
+  --border:rgba(212,168,67,.13);--border2:rgba(212,168,67,.30);
+  --text:#EAE6D8;--text2:#9A9070;--text3:#504430;
+  --green:#38B87A;--red:#C83060;--blue:#4878D8;
+  --r:10px;--rL:16px;
+  --glass:rgba(255,255,255,.03);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px}
+body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px}
+
+.wrap{max-width:960px;margin:0 auto;padding:24px 20px 60px}
+
+.pageTitle{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold2);margin-bottom:4px}
+.pageSub{font-size:.72rem;color:var(--text3);letter-spacing:.08em;margin-bottom:24px}
+
+.gamesGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:32px}
+
+.gameCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:20px;cursor:pointer;transition:all .25s;text-decoration:none;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;overflow:hidden}
+.gameCard:hover{border-color:var(--gold);background:rgba(212,168,67,.08);transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,168,67,.15)}
+.gameCard.disabled{opacity:.4;pointer-events:none}
+.gameCard .gIcon{font-size:2.2rem;margin-bottom:10px}
+.gameCard .gName{font-family:'Oswald',sans-serif;font-size:1rem;color:var(--gold2);font-weight:600;letter-spacing:.05em;margin-bottom:4px}
+.gameCard .gDesc{font-size:.65rem;color:var(--text3);line-height:1.5}
+.gameCard .gBadge{position:absolute;top:8px;right:8px;font-size:.55rem;padding:2px 8px;border-radius:12px;letter-spacing:.06em;font-weight:700}
+.gBadge.live{background:rgba(56,184,122,.2);color:var(--green);border:1px solid rgba(56,184,122,.3)}
+.gBadge.off{background:rgba(200,48,96,.15);color:var(--red);border:1px solid rgba(200,48,96,.2)}
+
+/* Admin config panel */
+.adminPanel{background:var(--n3);border:1px solid var(--border2);border-radius:var(--rL);padding:20px;margin-bottom:24px}
+.adminPanel .apTitle{font-family:'Oswald',sans-serif;font-size:1rem;color:var(--gold2);font-weight:600;letter-spacing:.08em;margin-bottom:4px}
+.adminPanel .apSub{font-size:.65rem;color:var(--text3);margin-bottom:14px}
+.adminPanel .apGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+
+.btn{border:none;border-radius:22px;padding:8px 20px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:all .18s;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btnG{background:var(--green);color:#000}.btnG:hover{opacity:.85}
+.btnD{background:var(--red);color:#fff}.btnD:hover{opacity:.85}
+.btnO{background:rgba(212,168,67,.15);border:1px solid var(--border2);color:var(--gold2)}.btnO:hover{background:rgba(212,168,67,.25)}
+.btnN{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--text2)}.btnN:hover{border-color:var(--border2);color:var(--text)}
+.btnSm{padding:5px 14px;font-size:.63rem}
+
+.loginCard{background:var(--n3);border:1px solid var(--border);border-radius:var(--rL);padding:32px;max-width:400px;margin:80px auto;text-align:center}
+.loginCard .bigIcon{font-size:2.5rem;margin-bottom:14px;opacity:.6}
+.loginCard .cardTitle{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--text);margin-bottom:8px}
+.loginCard .cardSub{font-size:.72rem;color:var(--text3);line-height:1.6;margin-bottom:14px}
+
+.backLink{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;color:var(--text2);text-decoration:none;margin-bottom:16px;transition:color .2s}
+.backLink:hover{color:var(--gold2)}
+
+@media(max-width:600px){
+  .gamesGrid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .gameCard{padding:14px 10px}
+  .gameCard .gIcon{font-size:1.6rem;margin-bottom:6px}
+  .gameCard .gName{font-size:.85rem}
+}
+</style>
+</head>
+<body class="has-unified-nav">
+<div id="unifiedNavContainer"></div>
+
+<!-- Login required screen -->
+<div id="loginScreen" style="display:none">
+  <div class="loginCard">
+    <div class="bigIcon">🎮</div>
+    <div class="cardTitle">Games</div>
+    <div class="cardSub">Inicia sesión para acceder a los juegos</div>
+    <a href="/bank/" class="btn btnG">← Iniciar sesión</a>
+  </div>
+</div>
+
+<!-- Main content -->
+<div id="mainContent" style="display:none">
+  <div class="wrap">
+    <a href="/bank/" class="backLink">← Volver al banco</a>
+    <div class="pageTitle">🎮 Games</div>
+    <div class="pageSub">Todos los juegos disponibles</div>
+
+    <!-- Admin config panel (only visible for admins) -->
+    <div id="adminConfigPanel" class="adminPanel" style="display:none">
+      <div class="apTitle">⚙️ Panel de Configuración</div>
+      <div class="apSub">Gestiona y arranca los juegos desde aquí</div>
+      <div class="apGrid" id="adminGameGrid"></div>
+    </div>
+
+    <!-- Games grid -->
+    <div class="gamesGrid" id="gamesGrid"></div>
+  </div>
+</div>
+
+<script src="/bank/static/js/unified-nav.js"></script>
+<script>
+'use strict';
+
+const GAMES = [
+  { id: 'pasapalabra', icon: '🎯', name: 'Pasapalabra', desc: 'El rosco de preguntas', href: '/bank/pasapalabra/game.html', statusEndpoint: '/bank/api/pasapalabra/status', toggleEndpoint: '/bank/api/pasapalabra/toggle', adminHref: '/bank/pasapalabra.html' },
+  { id: 'millonario', icon: '💰', name: 'Millonario', desc: '¿Quién quiere ser millonario?', href: '/bank/millonario/game.html', statusEndpoint: '/bank/api/millonario/status', toggleEndpoint: '/bank/api/millonario/toggle', adminHref: '/bank/millonario.html' },
+  { id: 'quiensoy', icon: '🎭', name: '¿Quién soy?', desc: 'Adivina el personaje', href: '/bank/quiensoy/game.html', statusEndpoint: '/bank/api/quiensoy/status', toggleEndpoint: '/bank/api/quiensoy/toggle', adminHref: '/bank/quiensoy.html' },
+  { id: 'cifrasletras', icon: '🔤', name: 'Cifras y Letras', desc: 'Números y palabras', href: '/bank/cifrasletras/game.html', statusEndpoint: '/bank/api/cifrasletras/status', toggleEndpoint: '/bank/api/cifrasletras/toggle', adminHref: '/bank/cifrasletras.html' },
+  { id: 'hundirlaflota', icon: '⚓', name: 'Hundir la Flota', desc: 'Batalla naval estratégica', href: '/bank/hundirlaflota/game.html', statusEndpoint: '/bank/api/hundirlaflota/status', toggleEndpoint: '/bank/api/hundirlaflota/toggle', adminHref: '/bank/hundirlaflota/admin.html' },
+  { id: 'cuentos', icon: '📖', name: 'Cuentos', desc: 'Historias interactivas', href: '/bank/cuentos.html', statusEndpoint: '/bank/api/cuentos/status', toggleEndpoint: '/bank/api/cuentos/toggle', adminHref: '/bank/cuentos.html' }
+];
+
+let me = null;
+let gameStatuses = {};
+
+async function fetchAPI(endpoint) {
+  const token = localStorage.getItem('dvd_token');
+  const resp = await fetch(endpoint, {
+    headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
+  });
+  if (!resp.ok) throw new Error('HTTP ' + resp.status);
+  return resp.json();
+}
+
+async function init() {
+  const token = localStorage.getItem('dvd_token');
+  if (!token) {
+    document.getElementById('loginScreen').style.display = '';
+    return;
+  }
+
+  try {
+    me = await fetchAPI('/bank/api/me');
+    document.getElementById('mainContent').style.display = '';
+    await loadGameStatuses();
+    renderGames();
+    if (me.is_admin) renderAdminPanel();
+  } catch (e) {
+    console.error('Auth error:', e);
+    document.getElementById('loginScreen').style.display = '';
+  }
+}
+
+async function loadGameStatuses() {
+  const checks = GAMES.map(async g => {
+    try {
+      const data = await fetchAPI(g.statusEndpoint);
+      gameStatuses[g.id] = !!data.enabled;
+    } catch { gameStatuses[g.id] = false; }
+  });
+  await Promise.all(checks);
+}
+
+function renderGames() {
+  const grid = document.getElementById('gamesGrid');
+  grid.innerHTML = '';
+
+  GAMES.forEach(g => {
+    const enabled = gameStatuses[g.id];
+    const card = document.createElement('a');
+    card.className = 'gameCard' + (enabled || me.is_admin ? '' : ' disabled');
+    card.href = enabled || me.is_admin ? g.href : '#';
+    if (enabled || me.is_admin) {
+      card.onclick = function(e) {
+        e.preventDefault();
+        const t = localStorage.getItem('dvd_token');
+        window.location.href = g.href + (g.href.includes('?') ? '&' : '?') + 'token=' + encodeURIComponent(t);
+      };
+    }
+    card.innerHTML = `
+      <span class="gBadge ${enabled ? 'live' : 'off'}">${enabled ? '● LIVE' : '○ OFF'}</span>
+      <span class="gIcon">${g.icon}</span>
+      <span class="gName">${g.name}</span>
+      <span class="gDesc">${g.desc}</span>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderAdminPanel() {
+  const panel = document.getElementById('adminConfigPanel');
+  panel.style.display = '';
+  const grid = document.getElementById('adminGameGrid');
+  grid.innerHTML = '';
+
+  GAMES.forEach(g => {
+    const enabled = gameStatuses[g.id];
+    const div = document.createElement('div');
+    div.style.cssText = 'display:flex;flex-direction:column;gap:6px;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center';
+    div.innerHTML = `
+      <span style="font-size:1.4rem">${g.icon}</span>
+      <span style="font-family:'Oswald',sans-serif;font-size:.8rem;color:var(--gold2)">${g.name}</span>
+      <span style="font-size:.55rem;padding:2px 6px;border-radius:10px;align-self:center;${enabled ? 'color:var(--green);border:1px solid rgba(56,184,122,.3)' : 'color:var(--red);border:1px solid rgba(200,48,96,.2)'}">${enabled ? '● Activo' : '○ Inactivo'}</span>
+      <div style="display:flex;gap:4px;justify-content:center;margin-top:4px">
+        <button class="btn btnSm ${enabled ? 'btnD' : 'btnG'}" onclick="toggleGame('${g.id}',${!enabled})">${enabled ? '■ Off' : '▶ On'}</button>
+        <a href="${g.adminHref}" class="btn btnSm btnO" style="text-decoration:none">⚙</a>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+async function toggleGame(gameId, enable) {
+  const game = GAMES.find(g => g.id === gameId);
+  if (!game) return;
+  try {
+    const token = localStorage.getItem('dvd_token');
+    await fetch(game.toggleEndpoint, {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1' },
+      body: JSON.stringify({ enabled: enable })
+    });
+    gameStatuses[gameId] = enable;
+    renderGames();
+    renderAdminPanel();
+  } catch (e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

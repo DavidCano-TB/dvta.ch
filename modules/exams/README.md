@@ -89,8 +89,7 @@ STRIPE_PUBLISHABLE_KEY=pk_test_xxxxx
 ## 🎯 Oposiciones (OPO)
 
 ### Categorías actuales
-- Técnico Superior en Imagen para el Diagnóstico
-- Medicina Nuclear
+- Técnico Superior en Imagen para el Diagnóstico y Medicina Nuclear
 
 ### Tipos de examen
 - **Test rápido**: 20 preguntas, 15 minutos

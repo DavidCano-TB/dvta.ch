@@ -93,7 +93,7 @@ function generateSampleQuestions(count) {
     for (let i = 0; i < count; i++) {
         sampleQuestions.push({
             id: i + 1,
-            question: `Pregunta de ejemplo ${i + 1} sobre imagen diagnóstica y medicina nuclear. ¿Cuál es la respuesta correcta?`,
+            question: `Pregunta de ejemplo ${i + 1} sobre imagen diagnóstica. ¿Cuál es la respuesta correcta?`,
             options: {
                 a: 'Opción A - Primera respuesta posible',
                 b: 'Opción B - Segunda respuesta posible',

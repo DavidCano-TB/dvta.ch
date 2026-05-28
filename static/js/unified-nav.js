@@ -21,11 +21,7 @@
       { id: 'cuentos', icon: '📖', label: 'Cuentos', href: '/bank/cuentos.html', dynamic: true, checkEndpoint: '/bank/api/cuentos/status' },
       { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: '/bank/api/messages/status' },
       { id: 'video', icon: '🎥', label: 'Video', href: '/bank/video.html', dynamic: true, checkEndpoint: '/bank/api/rooms/status' },
-      { id: 'pasapalabra', icon: '🎯', label: 'Pasapalabra', href: '/bank/pasapalabra/game.html', dynamic: true, checkEndpoint: '/bank/api/pasapalabra/status' },
-      { id: 'millonario', icon: '💰', label: 'Millonario', href: '/bank/millonario/game.html', dynamic: true, checkEndpoint: '/bank/api/millonario/status' },
-      { id: 'quiensoy', icon: '🎭', label: '¿Quién soy?', href: '/bank/quiensoy/game.html', dynamic: true, checkEndpoint: '/bank/api/quiensoy/status' },
-      { id: 'cifrasletras', icon: '🔤', label: 'Cifras y Letras', href: '/bank/cifrasletras/game.html', dynamic: true, checkEndpoint: '/bank/api/cifrasletras/status' },
-      { id: 'hundirlaflota', icon: '⚓', label: 'Hundir la Flota', href: '/bank/hundirlaflota/game.html', dynamic: true, checkEndpoint: '/bank/api/hundirlaflota/status' },
+      { id: 'games', icon: '🎮', label: 'Games', href: '/bank/games.html' },
       { id: 'apuestas', icon: '🎲', label: 'Apuestas', href: '/bank/apuestas' },
       { id: 'votaciones', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' }
     ],
@@ -35,13 +31,9 @@
       { id: 'cuentos-admin', icon: '📖', label: 'Cuentos', href: '/bank/cuentos.html' },
       { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: '/bank/mensajes.html' },
       { id: 'video-admin', icon: '🎥', label: 'Video', href: '/bank/video.html' },
-      { id: 'pasapalabra-admin', icon: '🎯', label: 'Pasapalabra', href: '/bank/pasapalabra.html' },
-      { id: 'millonario-admin', icon: '💰', label: 'Millonario', href: '/bank/millonario.html' },
-      { id: 'quiensoy-admin', icon: '🎭', label: '¿Quién soy?', href: '/bank/quiensoy.html' },
-      { id: 'cifrasletras-admin', icon: '🔤', label: 'Cifras y Letras', href: '/bank/cifrasletras.html' },
+      { id: 'games-admin', icon: '🎮', label: 'Games', href: '/bank/games.html' },
       { id: 'apuestas-admin', icon: '🎲', label: 'Apuestas', href: '/bank/apuestas' },
-      { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' },
-      { id: 'admin', icon: '⚙️', label: 'Admin', href: '/bank', hash: '#admin' }
+      { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' }
     ],
 
     // Pestañas adicionales para superadmin
@@ -50,9 +42,7 @@
     ],
 
     // Pestañas exclusivas para dvd
-    dvd: [
-      { id: 'opo', icon: '🎓', label: 'OPO', href: '/bank/opo', hash: '' }
-    ]
+    dvd: []
   };
 
   // Estado global

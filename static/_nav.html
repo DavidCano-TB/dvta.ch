@@ -127,24 +127,9 @@
       </a>
       
       <!-- Juegos -->
-      <a href="/bank/pasapalabra.html" class="nav-tab" data-page="pasapalabra">
-        <span class="icon">🎯</span>
-        <span>Pasapalabra</span>
-      </a>
-      
-      <a href="/bank/millonario.html" class="nav-tab" data-page="millonario">
-        <span class="icon">💰</span>
-        <span>Millonario</span>
-      </a>
-      
-      <a href="/bank/quiensoy.html" class="nav-tab" data-page="quiensoy">
-        <span class="icon">🎭</span>
-        <span>¿Quién soy?</span>
-      </a>
-      
-      <a href="/bank/cifrasletras.html" class="nav-tab" data-page="cifrasletras">
-        <span class="icon">🔤</span>
-        <span>Cifras y Letras</span>
+      <a href="/bank/games.html" class="nav-tab" data-page="games">
+        <span class="icon">🎮</span>
+        <span>Games</span>
       </a>
       
       <!-- Apuestas -->
@@ -163,12 +148,6 @@
       <a href="/bank/stats" class="nav-tab" data-page="stats">
         <span class="icon">📊</span>
         <span>Estadísticas</span>
-      </a>
-      
-      <!-- Admin (solo visible para admins) -->
-      <a href="/bank/#admin" class="nav-tab" data-page="admin" id="navAdmin" style="display:none">
-        <span class="icon">⚙️</span>
-        <span>Admin</span>
       </a>
     </div>
   </div>
@@ -197,37 +176,17 @@
         tab.classList.add('active');
       } else if (hash === '#gallery' && page === 'gallery') {
         tab.classList.add('active');
-      } else if (hash === '#admin' && page === 'admin') {
-        tab.classList.add('active');
       } else if (path.includes(page)) {
         tab.classList.add('active');
       }
     });
   }
   
-  // Verificar si el usuario es admin para mostrar pestaña admin
-  function checkAdminAccess() {
-    const token = localStorage.getItem('dvd_token');
-    if (!token) return;
-    
-    fetch(\'/bank/api/me\', {
-      headers: {
-        'Authorization': 'Bearer ' + token,
-        'ngrok-skip-browser-warning': '1'
-      }
-    })
-    .then(r => r.json())
-    .then(user => {
-      if (user.is_admin) {
-        document.getElementById('navAdmin').style.display = '';
-      }
-    })
-    .catch(() => {});
-  }
+  // Verificar si el usuario es admin (no-op, admin tab removed)
+  function checkAdminAccess() {}
   
   // Inicializar
   setActiveTab();
-  checkAdminAccess();
   
   // Actualizar al cambiar hash
   window.addEventListener('hashchange', setActiveTab);

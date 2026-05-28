@@ -1470,18 +1470,12 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
       <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📖 Cuentos</button>
-      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
-      <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 <span data-i18n="navMillonario">Millonario</span></button>
-      <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
-      <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
-      <button class="navTab hidden" id="navHundirLaFlota" onclick="openHundirLaFlota()">⚓ <span data-i18n="navHundirLaFlota">Hundir la Flota</span></button>
+      <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navStats" onclick="window.location.href='/bank/stats'" data-i18n="navStats">📊 Stats</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
-      <button class="navTab hidden" id="navOpo" onclick="openOpo()">📚 <span data-i18n="navOpo">Oposiciones</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
       <button class="navTab" id="navVotaciones" onclick="openVotaciones()">🗳️ <span data-i18n="navVotaciones">Votaciones</span></button>
       <button class="navTab hidden" id="navVideo" onclick="openVideoAsync()">🎥 <span>Videollamadas</span></button>
-      <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">Admin</button>
     </div>
 
     <!-- ── OVERVIEW ──────────────────────────────────────────── -->
@@ -1531,58 +1525,6 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <div id="dashDvdStats" style="display:none;margin-top:8px">
       <!-- Estadísticas avanzadas — solo superadmins, solo en historial -->
       <div style="display:none" id="panelAdvancedStats"><!-- stats moved to History tab --></div>
-
-      <!-- OPO Management panel — acceso directo en nueva pestaña -->
-      <div class="panel" id="panelOpoMgr" style="margin-top:12px">
-        <div class="pHead" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-          <div>
-            <div class="pTitle"><span class="pDot"></span>📝 OPO · Simulacro</div>
-            <div class="pSub">Gestión de jugadores y resultados</div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <button class="btn btnO btnSm" onclick="showOpoResults()">📊 Resultados</button>
-            <a href="/bank/opo" class="btn btnG btnSm" style="text-decoration:none">▶ Abrir OPO</a>
-          </div>
-        </div>
-        <!-- Keep hidden inputs/lists so existing JS (opoAddPlayer, opoSuggest) still works -->
-        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;align-items:center">
-          <div style="position:relative;flex:1;min-width:160px">
-            <input id="opoAddInput" type="text" placeholder="🔍 Añadir usuario…"
-              autocomplete="off"
-              oninput="opoSuggest(this.value)"
-              onblur="setTimeout(()=>{const b=document.getElementById('opoSuggestBox');if(b)b.style.display='none'},200)"
-              style="width:100%;background:var(--n4);border:1px solid var(--border);
-                border-radius:var(--r);padding:7px 10px;font-family:'DM Mono',monospace;
-                font-size:.72rem;color:var(--text);outline:none;box-sizing:border-box"
-              onfocus="this.style.borderColor='var(--border2)'"
-              onblur="this.style.borderColor='var(--border)'">
-            <div id="opoSuggestBox"
-              style="position:absolute;top:100%;left:0;right:0;z-index:200;background:var(--n3);
-                border:1px solid var(--border2);border-radius:0 0 var(--r) var(--r);
-                max-height:180px;overflow-y:auto;display:none"></div>
-          </div>
-          <button class="btn btnG btnSm" onclick="opoAddPlayer()">+ Añadir</button>
-        </div>
-        <div id="opoAddAlert" class="alert" style="margin-bottom:8px"></div>
-        <div id="opoPlayersList" style="display:flex;flex-direction:column;gap:5px"></div>
-      </div>
-
-      <!-- OPO Results modal -->
-      <div id="opoResultsModal" style="display:none;position:fixed;inset:0;z-index:9000;
-        background:rgba(4,4,10,.95);overflow-y:auto;padding:20px">
-        <div style="max-width:720px;margin:0 auto;background:var(--n3);border:1px solid var(--border2);
-          border-radius:16px;overflow:hidden">
-          <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;
-            align-items:center;justify-content:space-between">
-            <div style="font-family:'Playfair Display',serif;color:var(--gold2);font-size:1rem">
-              📊 Resultados OPO — todos los usuarios
-            </div>
-            <button onclick="document.getElementById('opoResultsModal').style.display='none'"
-              class="btn btnN btnSm">✕ Cerrar</button>
-          </div>
-          <div id="opoResultsBody" style="padding:16px;max-height:70vh;overflow-y:auto">Cargando…</div>
-        </div>
-      </div>
     </div><!-- /dashDvdStats -->
 
     <!-- ── CHANGE PASSWORD PANEL (all users) ────────────────── -->
@@ -2476,20 +2418,8 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Cuentos">
       <span class="icon">📖</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game" data-i18n-title="navGame" title="Juegos">
-      <span class="icon">🎯</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavMillonario" onclick="openMillonario()" data-view="millonario" data-i18n-title="navMillonario" title="Millonario">
-      <span class="icon">💰</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavQuienSoy" onclick="openQuienSoy()" data-view="quiensoy" data-i18n-title="navQuienSoy" title="¿Quién soy?">
-      <span class="icon">🎭</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavCifrasLetras" onclick="openCifrasLetras()" data-view="cifrasletras" data-i18n-title="navCifrasLetras" title="Cifras y Letras">
-      <span class="icon">🔤</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavHundirLaFlota" onclick="openHundirLaFlota()" data-view="hundirlaflota" data-i18n-title="navHundirLaFlota" title="Hundir la Flota">
-      <span class="icon">⚓</span>
+    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
+      <span class="icon">🎮</span>
     </button>
     <button class="mNavBtn" id="mobileNavApuestas" onclick="openApuestas()" title="Apuestas">
       <span class="icon">🎲</span>
@@ -2503,9 +2433,6 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <span id="_mSocialBadge" style="display:none;position:absolute;top:2px;right:6px;
         background:var(--red);color:#fff;border-radius:50%;width:14px;height:14px;
         font-size:.5rem;font-weight:700;line-height:14px;text-align:center">●</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavAdm" onclick="nav('adm',this)" data-view="adm" title="Admin">
-      <span class="icon">⚙</span>
     </button>
   </nav>
 
@@ -3036,16 +2963,14 @@ async function loadApp() {
         document.getElementById(id)?.classList.remove('hidden')
       );
 
-      // OPO tab visible for users with opo_interest or opo_access
-      if (me.opo_interest || me.opo_access) {
-        document.getElementById('navOpo')?.classList.remove('hidden');
-      }
+      // Games tab visible for ALL logged-in users
+      ['navGame','mobileNavGame'].forEach(id =>
+        document.getElementById(id)?.classList.remove('hidden')
+      );
 
       if (me.is_admin) {
         // ── ADMIN / SUPERADMIN ─────────────────────────────────────
-        ['hAdm', 'navAdm', 'mobileNavAdm'].forEach(id =>
-          document.getElementById(id)?.classList.remove('hidden')
-        );
+        document.getElementById('hAdm')?.classList.remove('hidden');
         document.getElementById('navHist')?.classList.add('hidden');
         document.getElementById('mobileNavHist')?.classList.add('hidden');
         document.getElementById('dashRecentSection')?.classList.add('hidden');
@@ -3060,10 +2985,9 @@ async function loadApp() {
         // Historial oculto para todos los miembros
         document.getElementById('navHist')?.classList.add('hidden');
         document.getElementById('mobileNavHist')?.classList.add('hidden');
-        ['hAdm','navAdm','mobileNavAdm','navStats'].forEach(id =>
+        ['hAdm','navStats'].forEach(id =>
           document.getElementById(id)?.classList.add('hidden')
         );
-        document.getElementById('view-adm')?.classList.remove('on');
         if (mn) mn.style.gridTemplateColumns = 'repeat(5,1fr)';
       }
     } catch(e) { console.warn('nav setup error', e); }
@@ -3850,18 +3774,7 @@ async function checkGameStatus() {
     const d = await req('GET', '/bank/api/pasapalabra/status');
     gameEnabled = !!d.enabled;
   } catch (_) { gameEnabled = false; }
-  // Members: show Pasapalabra tab only when enabled
-  // Admins: never show it (they use admin panel)
-  if (!me?.is_admin) {
-    ['navGame', 'mobileNavGame'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !gameEnabled)
-    );
-  } else {
-    ['navGame', 'mobileNavGame'].forEach(id =>
-      document.getElementById(id)?.classList.add('hidden')
-    );
-  }
-  _recalcMobileNav();
+  // Games tab is always visible — individual game availability handled in games.html
 }
 
 async function toggleGame(enable) {
@@ -3873,7 +3786,8 @@ async function toggleGame(enable) {
 }
 
 function openGame() {
-  const token = localStorage.getItem('dvd_token');
+  openGames();
+}
   const url   = token ? '/pasapalabra?token=' + encodeURIComponent(token) : '/pasapalabra';
   window.open(url, '_blank');
 }
@@ -3908,16 +3822,7 @@ async function checkMillonarioStatus() {
     const d = await req('GET', '/bank/api/millonario/status');
     millonarioEnabled = !!d.enabled;
   } catch (_) { millonarioEnabled = false; }
-  // Members: show tab only when enabled; admins: always hidden (use admin panel)
-  if (!me?.is_admin) {
-    ['navMillonario', 'mobileNavMillonario'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !millonarioEnabled)
-    );
-  } else {
-    ['navMillonario', 'mobileNavMillonario'].forEach(id =>
-      document.getElementById(id)?.classList.add('hidden')
-    );
-  }
+  // Individual game tabs removed — availability handled in games.html
 }
 
 async function toggleMillonario(enable) {
@@ -3947,6 +3852,15 @@ function openOpo() {
   window.location.href = t ? '/bank/opo?token=' + encodeURIComponent(t) : '/bank/opo';
 }
 
+function openGames() {
+  const t = localStorage.getItem('dvd_token');
+  if (!t) {
+    alert('Debes iniciar sesión primero');
+    return;
+  }
+  window.location.href = '/bank/games.html?token=' + encodeURIComponent(t);
+}
+
 /* ── 9d. ¿Quién soy? game ─────────────────────── */
 let quienSoyEnabled  = false;
 let qsPlayers        = [];
@@ -3960,17 +3874,7 @@ async function checkQuienSoyStatus() {
     const d = await req('GET', '/bank/api/quiensoy/status');
     quienSoyEnabled = !!d.enabled;
   } catch (_) { quienSoyEnabled = false; }
-
-  // Members: show tab only when enabled; admins: always hidden
-  if (!me?.is_admin) {
-    ['navQuienSoy','mobileNavQuienSoy'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !quienSoyEnabled)
-    );
-  } else {
-    ['navQuienSoy','mobileNavQuienSoy'].forEach(id =>
-      document.getElementById(id)?.classList.add('hidden')
-    );
-  }
+  // Individual game tabs removed — availability handled in games.html
 }
 
 async function qsEnable() {
@@ -4005,16 +3909,7 @@ async function checkCifrasLetrasStatus() {
     const d = await req('GET', '/bank/api/cifrasletras/status');
     clEnabled = !!d.enabled;
   } catch (_) { clEnabled = false; }
-  // Members: show tab only when enabled; admins: always hidden
-  if (!me?.is_admin) {
-    ['navCifrasLetras','mobileNavCifrasLetras'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !clEnabled)
-    );
-  } else {
-    ['navCifrasLetras','mobileNavCifrasLetras'].forEach(id =>
-      document.getElementById(id)?.classList.add('hidden')
-    );
-  }
+  // Individual game tabs removed — availability handled in games.html
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -4058,17 +3953,7 @@ async function checkHundirLaFlotaStatus() {
     const d = await req('GET', '/bank/api/hundirlaflota/status');
     hundirLaFlotaEnabled = !!d.enabled;
   } catch (_) { hundirLaFlotaEnabled = false; }
-
-  // Members: show tab only when enabled; admins: always hidden
-  if (!me?.is_admin) {
-    ['navHundirLaFlota', 'mobileNavHundirLaFlota'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !hundirLaFlotaEnabled)
-    );
-  } else {
-    ['navHundirLaFlota', 'mobileNavHundirLaFlota'].forEach(id =>
-      document.getElementById(id)?.classList.add('hidden')
-    );
-  }
+  // Individual game tabs removed — availability handled in games.html
 }
 
 async function toggleHundirLaFlota(enable) {

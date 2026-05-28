@@ -1413,14 +1413,10 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab hidden" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
       <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📖 Cuentos</button>
-      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
-      <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 <span data-i18n="navMillonario">Millonario</span></button>
-      <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
-      <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
+      <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navStats" onclick="window.location.href="/bank/stats"" data-i18n="navStats">📊 Stats</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
       <button class="navTab hidden" id="navVideo" onclick="openVideoAsync()">🎥 <span>Videollamadas</span></button>
-      <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">Admin</button>
     </div>
 
     <!-- ── OVERVIEW ──────────────────────────────────────────── -->
@@ -2313,17 +2309,8 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Cuentos">
       <span class="icon">📖</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game" data-i18n-title="navGame" title="Juegos">
-      <span class="icon">🎯</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavMillonario" onclick="openMillonario()" data-view="millonario" data-i18n-title="navMillonario" title="Millonario">
-      <span class="icon">💰</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavQuienSoy" onclick="openQuienSoy()" data-view="quiensoy" data-i18n-title="navQuienSoy" title="¿Quién soy?">
-      <span class="icon">🎭</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavCifrasLetras" onclick="openCifrasLetras()" data-view="cifrasletras" data-i18n-title="navCifrasLetras" title="Cifras y Letras">
-      <span class="icon">🔤</span>
+    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
+      <span class="icon">🎮</span>
     </button>
     <!-- Social: badge navigates directly to unread notification -->
     <button class="mNavBtn hidden" id="mobileNavSocial" onclick="_mobileNavSocial()" data-view="social" title="Social" style="position:relative">
@@ -2331,9 +2318,6 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <span id="_mSocialBadge" style="display:none;position:absolute;top:2px;right:6px;
         background:var(--red);color:#fff;border-radius:50%;width:14px;height:14px;
         font-size:.5rem;font-weight:700;line-height:14px;text-align:center">●</span>
-    </button>
-    <button class="mNavBtn hidden" id="mobileNavAdm" onclick="nav('adm',this)" data-view="adm" title="Admin">
-      <span class="icon">⚙</span>
     </button>
   </nav>
 
@@ -2773,11 +2757,14 @@ async function loadApp() {
         document.getElementById(id)?.classList.remove('hidden')
       );
 
+      // Games tab visible for all logged-in users
+      ['navGame','mobileNavGame'].forEach(id =>
+        document.getElementById(id)?.classList.remove('hidden')
+      );
+
       if (me.is_admin) {
         // ── ADMIN / SUPERADMIN ─────────────────────────────────────
-        ['hAdm', 'navAdm', 'mobileNavAdm'].forEach(id =>
-          document.getElementById(id)?.classList.remove('hidden')
-        );
+        document.getElementById('hAdm')?.classList.remove('hidden');
         document.getElementById('navHist')?.classList.add('hidden');
         document.getElementById('mobileNavHist')?.classList.add('hidden');
         document.getElementById('dashRecentSection')?.classList.add('hidden');
@@ -2792,7 +2779,7 @@ async function loadApp() {
         // Historial oculto para todos los miembros
         document.getElementById('navHist')?.classList.add('hidden');
         document.getElementById('mobileNavHist')?.classList.add('hidden');
-        ['hAdm','navAdm','mobileNavAdm','navStats'].forEach(id =>
+        ['hAdm','navStats'].forEach(id =>
           document.getElementById(id)?.classList.add('hidden')
         );
         document.getElementById('view-adm')?.classList.remove('on');
@@ -3566,9 +3553,13 @@ async function toggleGame(enable) {
 }
 
 function openGame() {
+  openGames();
+}
+
+function openGames() {
   const token = localStorage.getItem('dvd_token');
-  const url   = token ? '/pasapalabra?token=' + encodeURIComponent(token) : '/pasapalabra';
-  window.location.href = url;
+  if (!token) { alert('Debes iniciar sesión primero'); return; }
+  window.location.href = '/bank/games.html?token=' + encodeURIComponent(token);
 }
 
 async function openVideo() {
