@@ -19,7 +19,7 @@ Write-Host "  DESINSTALADOR DE SERVICIOS WINDOWS - DVDcoin Platform" -Foreground
 Write-Host "═══════════════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
 Write-Host ""
 
-$baseDir = "C:\dvdcoin"
+$baseDir = Split-Path -Parent $PSScriptRoot
 $pythonExe = "python.exe"
 
 # Obtener todos los servicios DVDcoin

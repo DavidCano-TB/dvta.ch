@@ -46,6 +46,7 @@ modules/*/config/email.json
 
 # Cloudflare
 .cloudflared/
+credentials/*.json
 *.json
 !package.json
 !tsconfig.json

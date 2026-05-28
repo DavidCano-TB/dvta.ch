@@ -36,7 +36,7 @@ Write-Host "  AÑADIR NUEVO SERVICIO - DVDcoin Platform" -ForegroundColor Cyan
 Write-Host "═══════════════════════════════════════════════════════════════════════════" -ForegroundColor Cyan
 Write-Host ""
 
-$baseDir = "C:\dvdcoin"
+$baseDir = Split-Path -Parent $PSScriptRoot
 $pythonExe = "python.exe"
 
 Write-Host "Configuración del nuevo servicio:" -ForegroundColor Yellow

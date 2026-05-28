@@ -1,7 +1,7 @@
 # Configuracion de Cloudflare Tunnel para DVDcoin
 # Dominios: dvdbank.david.ch, dvdbank.ch, localhost
 tunnel: 6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33
-credentials-file: C:\Users\PC\.cloudflared\6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json
+credentials-file: credentials/6c0cb6da-aafe-4e61-89aa-42d9bd2e5b33.json
 
 ingress:
   # Dominio principal: dvdbank.david.ch (FUNCIONA YA)

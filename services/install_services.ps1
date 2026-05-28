@@ -20,7 +20,7 @@ Write-Host "══════════════════════�
 Write-Host ""
 
 # Configuración
-$baseDir = "C:\dvdcoin"
+$baseDir = Split-Path -Parent $PSScriptRoot
 $pythonExe = "python.exe"
 
 # Servicios a crear

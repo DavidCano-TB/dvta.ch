@@ -1,5 +1,5 @@
 tunnel: b75039b1-7b54-4da0-b2ab-0a338bfccdc5
-credentials-file: C:\Users\PC\.cloudflared\b75039b1-7b54-4da0-b2ab-0a338bfccdc5.json
+credentials-file: credentials/b75039b1-7b54-4da0-b2ab-0a338bfccdc5.json
 
 # Configuración de múltiples servidores con balanceo de carga
 ingress:

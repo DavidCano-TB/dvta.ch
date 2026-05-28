@@ -140,13 +140,12 @@ jobs:
       run: |
         Write-Host "`n🚀 Deployment ready!"
         Write-Host "The platform has been validated and is ready to run."
-        Write-Host "`nTo start all modules:"
-        Write-Host "  ARRANCAR_TODO.bat"
-        Write-Host "`nOr start individually:"
-        Write-Host "  • Bank:  python main.py"
-        Write-Host "  • Exams: cd modules/exams && python app_exams.py"
-        Write-Host "`nTo start Cloudflare Tunnel:"
-        Write-Host "  INICIAR_TUNNEL_MULTI.bat"
+        Write-Host "`nTo deploy on the server PC:"
+        Write-Host "  1. Run DEPLOY.bat (auto-pulls from git and restarts)"
+        Write-Host "  2. Or manually: git pull && ARRANCAR_TODO_PARALELO.bat"
+        Write-Host "`nTo deploy from another PC:"
+        Write-Host "  1. Make changes and push to GitHub"
+        Write-Host "  2. On the server PC, run DEPLOY.bat"
       shell: pwsh
       
     - name: Send deployment email
