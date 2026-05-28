@@ -716,7 +716,7 @@ async function sendPastedImage(){
   if(!pastedImage||!currentRoom)return;
   const form=new FormData();form.append('file',new File([pastedImage.blob],'imagen.jpg',{type:'image/jpeg'}));
   clearPaste();
-  try{const r=await fetch(\'/bank/api/messages/audio\',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'image'});clearReply();}
+  try{const r=await fetch('/bank/api/messages/audio',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'image'});clearReply();}
   catch{toast('Error al enviar la imagen');}
 }
 
@@ -738,7 +738,7 @@ function resetRecUI(){el('btnRec').classList.remove('rec');el('inputArea').style
 async function uploadAudio(blob,mime){
   if(!currentRoom)return;
   const ext=mime.split('/')[1].split(';')[0];const form=new FormData();form.append('file',new File([blob],`voice.${ext}`,{type:mime}));
-  try{const r=await fetch(\'/bank/api/messages/audio\',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'audio'});clearReply();}
+  try{const r=await fetch('/bank/api/messages/audio',{method:'POST',headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},body:form});if(!r.ok)throw new Error();const{url}=await r.json();wsSend({action:'send',room:currentRoom,content:url,msg_type:'audio'});clearReply();}
   catch{toast('Error al enviar el audio');}
 }
 

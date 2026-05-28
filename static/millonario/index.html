@@ -1060,7 +1060,7 @@ let gcImages = [], gcCur = 0, gcAuto;
 
 async function loadGallery() {
   try {
-    const r = await fetch(\'/bank/api/gallery\');
+    const r = await fetch('/bank/api/gallery');
     if (!r.ok) throw new Error();
     gcImages = await r.json();
   } catch (e) {

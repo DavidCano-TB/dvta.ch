@@ -1331,7 +1331,7 @@ async function resetAndNewGame() {
   
   try {
     // Paso 1: Desactivar el juego primero
-    const toggleResponse = await fetch(\'/bank/api/hundirlaflota/toggle\', {
+    const toggleResponse = await fetch('/bank/api/hundirlaflota/toggle', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -1345,7 +1345,7 @@ async function resetAndNewGame() {
     }
     
     // Paso 2: Resetear el estado del servidor
-    const response = await fetch(\'/bank/api/hundirlaflota/reset\', {
+    const response = await fetch('/bank/api/hundirlaflota/reset', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

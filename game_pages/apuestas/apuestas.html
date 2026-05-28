@@ -195,7 +195,7 @@ let porras=[],me=null,currentFilter='abierta';
 async function init(){
   if(!tok){alert('No session');return;}
   try{
-    const r=await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       me=await r.json();
       // Show deleted tab and admin panel only for DVD
@@ -240,7 +240,7 @@ async function init(){
 
 async function loadDvdGeneralStats(){
   try{
-    const r=await fetch(\'/bank/api/porras/admin/stats\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/porras/admin/stats',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(!r.ok) return;
     
     const data=await r.json();
@@ -325,7 +325,7 @@ async function loadUserStats(){
 
 async function loadPorras(){
   try{
-    const r=await fetch(\'/bank/api/porras/list\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/porras/list',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       const data=await r.json();
       porras=data.porras;
@@ -446,7 +446,7 @@ function filterPorras(filter,btn){
 
 async function loadMisApuestas(){
   try{
-    const r=await fetch(\'/bank/api/porras/mis-apuestas\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/porras/mis-apuestas',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       const data=await r.json();
       const list=document.getElementById('porrasList');
@@ -555,7 +555,7 @@ async function loadMisApuestas(){
 
 async function loadDeletedPorras(){
   try{
-    const r=await fetch(\'/bank/api/porras/deleted\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/porras/deleted',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       const data=await r.json();
       const list=document.getElementById('porrasList');
@@ -643,7 +643,7 @@ function showDeletedPorraDetails(porraId){
 
 async function loadAdminPanel(){
   try{
-    const r=await fetch(\'/bank/api/porras/admin/stats\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/porras/admin/stats',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(!r.ok){
       const err=await r.json();
       alert(err.detail||'Error loading admin panel');
@@ -939,7 +939,7 @@ async function createPorra(){
     
     console.log('Sending:', body);
     
-    const r=await fetch(\'/bank/api/porras/create\',{
+    const r=await fetch('/bank/api/porras/create',{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify(body)
@@ -1058,7 +1058,7 @@ async function resolverPorra(porraId){
   if(!confirm(`¿Confirmar resultado: ${porra.opciones[idx-1].nombre}?\nLas ganancias se pagarán automáticamente.`))return;
   
   try{
-    const r=await fetch(\'/bank/api/porras/resolver\',{
+    const r=await fetch('/bank/api/porras/resolver',{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify({porra_id:porraId,resultado})

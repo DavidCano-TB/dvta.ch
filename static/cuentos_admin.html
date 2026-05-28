@@ -324,7 +324,7 @@ function api(method, url, body) {
 
 // ── Global toggle ─────────────────────────────────────────────────────────────
 async function loadStatus() {
-  const r = await fetch(\'/bank/api/cuentos/status\', {headers:{'ngrok-skip-browser-warning':'1'}});
+  const r = await fetch('/bank/api/cuentos/status', {headers:{'ngrok-skip-browser-warning':'1'}});
   const d = await r.json();
   updateToggleUI(d.enabled);
 }

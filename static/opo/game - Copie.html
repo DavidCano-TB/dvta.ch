@@ -627,7 +627,7 @@ async function init() {
   const token = localStorage.getItem('dvd_token');
   if (!token) return;
   try {
-    const r = await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
+    const r = await fetch('/bank/api/me',{headers:{'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'}});
     if (!r.ok) return;
     me = await r.json();
     document.getElementById('userBadge').textContent = '@'+me.username;
@@ -915,7 +915,7 @@ async function loadAllOpoStats() {
     // superadmins call /bank/api/opo/players; others get basic list from status
     let players = [];
     if (isSA) {
-      const pr = await fetch(\'/bank/api/opo/players\', {headers: hdrs});
+      const pr = await fetch('/bank/api/opo/players', {headers: hdrs});
       if (pr.ok) players = await pr.json();
     }
     // Always ensure own user in list

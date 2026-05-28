@@ -206,7 +206,7 @@ let me=null,selectedOpt=null,porraData=null;
 async function init(){
   if(!tok){alert('Sin sesión. Abre desde la aplicación.');return;}
   try{
-    const r=await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok)me=await r.json();
   }catch(_){}
   
@@ -549,7 +549,7 @@ async function realizarApuesta(){
   console.log('🎲 Realizando apuesta:', {porra_id: PORRA_ID, opcion: selectedOpt, cantidad});
   
   try{
-    const r=await fetch(\'/bank/api/porras/apostar\',{
+    const r=await fetch('/bank/api/porras/apostar',{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify({porra_id:PORRA_ID,opcion:selectedOpt,cantidad})

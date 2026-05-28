@@ -126,7 +126,7 @@ let ws,st=null,me=null,isAdmin=false;
 async function init(){
   if(!tok){showOv('Sin sesión','Abre el juego desde la aplicación.');return;}
   try{
-    const r=await fetch(\'/bank/api/me\',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch('/bank/api/me',{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       me=await r.json();
       isAdmin=!!me.is_admin;

@@ -1183,7 +1183,7 @@ async function uploadAudio(blob, mime) {
   const form = new FormData();
   form.append('file', new File([blob], `voice.${ext}`, { type: mime }));
   try {
-    const r   = await fetch(\'/bank/api/messages/audio\', {
+    const r   = await fetch('/bank/api/messages/audio', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' },
       body: form,
