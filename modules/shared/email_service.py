@@ -201,58 +201,53 @@ class EmailService:
         Returns:
             True si se envió correctamente
         """
-        subject = "Verifica tu cuenta - DVDcoin Platform"
+        subject = "Activa tu cuenta — DVDcoin Platform"
         
-        html_content = f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <style>
-                body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
-                .container {{ max-width: 600px; margin: 0 auto; padding: 20px; }}
-                .header {{ background: linear-gradient(135deg, #4A7AB8, #6B9BD4); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }}
-                .content {{ background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }}
-                .button {{ display: inline-block; background: #4A7AB8; color: white; padding: 12px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }}
-                .footer {{ text-align: center; margin-top: 20px; color: #666; font-size: 12px; }}
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <div class="header">
-                    <h1>¡Bienvenido a DVDcoin Platform!</h1>
-                </div>
-                <div class="content">
-                    <p>Hola <strong>{username}</strong>,</p>
-                    <p>Gracias por registrarte en nuestra plataforma. Para activar tu cuenta, por favor verifica tu email haciendo clic en el siguiente botón:</p>
-                    <p style="text-align: center;">
-                        <a href="{verification_link}" class="button">Verificar mi cuenta</a>
-                    </p>
-                    <p>O copia y pega este enlace en tu navegador:</p>
-                    <p style="word-break: break-all; color: #4A7AB8;">{verification_link}</p>
-                    <p><strong>Este enlace expira en 24 horas.</strong></p>
-                    <p>Si no has creado esta cuenta, puedes ignorar este email.</p>
-                </div>
-                <div class="footer">
-                    <p>© 2026 DVDcoin Platform. Todos los derechos reservados.</p>
-                </div>
-            </div>
-        </body>
-        </html>
-        """
+        html_content = f"""<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f7;font-family:Arial,Helvetica,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f7;padding:40px 20px">
+<tr><td align="center">
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
+  <tr><td style="background:linear-gradient(135deg,#1a1a35,#0d0d1a);padding:32px 30px;text-align:center">
+    <h1 style="margin:0;color:#ffd700;font-size:22px;font-weight:700">DVDcoin Platform</h1>
+    <p style="margin:8px 0 0;color:#a0a0c0;font-size:13px">Verificación de cuenta</p>
+  </td></tr>
+  <tr><td style="padding:32px 30px">
+    <p style="margin:0 0 16px;color:#333;font-size:15px">Hola <strong>{username}</strong>,</p>
+    <p style="margin:0 0 16px;color:#555;font-size:14px;line-height:1.6">Gracias por crear tu cuenta en DVDcoin Platform. Solo falta un paso: confirma tu dirección de email para activar tu cuenta y acceder a todas las funcionalidades.</p>
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin:24px 0"><tr><td align="center">
+      <a href="{verification_link}" style="display:inline-block;background:#4A7AB8;color:#ffffff;padding:14px 36px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:0.5px">Activar mi cuenta</a>
+    </td></tr></table>
+    <p style="margin:0 0 12px;color:#888;font-size:12px">Si el botón no funciona, copia y pega este enlace en tu navegador:</p>
+    <p style="margin:0 0 20px;word-break:break-all;color:#4A7AB8;font-size:12px">{verification_link}</p>
+    <hr style="border:none;border-top:1px solid #eee;margin:20px 0">
+    <p style="margin:0 0 6px;color:#999;font-size:11px"><strong>Este enlace expira en 24 horas.</strong></p>
+    <p style="margin:0;color:#999;font-size:11px">Si no has creado esta cuenta, ignora este mensaje.</p>
+  </td></tr>
+  <tr><td style="background:#f8f8fa;padding:16px 30px;text-align:center;border-top:1px solid #eee">
+    <p style="margin:0;color:#aaa;font-size:11px">© 2026 DVDcoin Platform · dvta.ch</p>
+  </td></tr>
+</table>
+</td></tr></table>
+</body>
+</html>"""
         
-        text_content = f"""
-        ¡Bienvenido a DVDcoin Platform!
-        
-        Hola {username},
-        
-        Gracias por registrarte. Para activar tu cuenta, verifica tu email visitando:
-        {verification_link}
-        
-        Este enlace expira en 24 horas.
-        
-        Si no has creado esta cuenta, ignora este email.
-        """
+        text_content = f"""DVDcoin Platform - Activa tu cuenta
+
+Hola {username},
+
+Gracias por registrarte en DVDcoin Platform. Para activar tu cuenta, visita este enlace:
+
+{verification_link}
+
+Este enlace expira en 24 horas.
+
+Si no has creado esta cuenta, ignora este mensaje.
+
+— DVDcoin Platform (dvta.ch)
+"""
         
         return self.send_email(to_email, subject, html_content, text_content)
     
