@@ -15,43 +15,43 @@
       { id: 'history', icon: '📜', label: 'Historial', href: '/bank', hash: '#history' },
       { id: 'gallery', icon: '🖼️', label: 'Galería', href: '/bank', hash: '#gallery' }
     ],
-    
+
     // Pestañas para miembros (no admins)
     member: [
-      { id: 'cuentos', icon: '📖', label: 'Cuentos', href: \'/bank/cuentos.html\', dynamic: true, checkEndpoint: \'/bank/api/cuentos/status\' },
-      { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: \'/bank/api/messages/status\' },
-      { id: 'video', icon: '🎥', label: 'Video', href: \'/bank/video.html\', dynamic: true, checkEndpoint: \'/bank/api/rooms/status\' },
-      { id: 'pasapalabra', icon: '🎯', label: 'Pasapalabra', href: \'/bank/pasapalabra/game.html\', dynamic: true, checkEndpoint: \'/bank/api/pasapalabra/status\' },
-      { id: 'millonario', icon: '💰', label: 'Millonario', href: \'/bank/millonario/game.html\', dynamic: true, checkEndpoint: \'/bank/api/millonario/status\' },
-      { id: 'quiensoy', icon: '🎭', label: '¿Quién soy?', href: \'/bank/quiensoy/game.html\', dynamic: true, checkEndpoint: \'/bank/api/quiensoy/status\' },
-      { id: 'cifrasletras', icon: '🔤', label: 'Cifras y Letras', href: \'/bank/cifrasletras/game.html\', dynamic: true, checkEndpoint: \'/bank/api/cifrasletras/status\' },
-      { id: 'hundirlaflota', icon: '⚓', label: 'Hundir la Flota', href: \'/bank/hundirlaflota/game.html\', dynamic: true, checkEndpoint: \'/bank/api/hundirlaflota/status\' },
-      { id: 'apuestas', icon: '🎲', label: 'Apuestas', href: \'/bank/apuestas\' },
-      { id: 'votaciones', icon: '🗳️', label: 'Votaciones', href: \'/bank/votaciones\' }
+      { id: 'cuentos', icon: '📖', label: 'Cuentos', href: '/bank/cuentos.html', dynamic: true, checkEndpoint: '/bank/api/cuentos/status' },
+      { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: '/bank/api/messages/status' },
+      { id: 'video', icon: '🎥', label: 'Video', href: '/bank/video.html', dynamic: true, checkEndpoint: '/bank/api/rooms/status' },
+      { id: 'pasapalabra', icon: '🎯', label: 'Pasapalabra', href: '/bank/pasapalabra/game.html', dynamic: true, checkEndpoint: '/bank/api/pasapalabra/status' },
+      { id: 'millonario', icon: '💰', label: 'Millonario', href: '/bank/millonario/game.html', dynamic: true, checkEndpoint: '/bank/api/millonario/status' },
+      { id: 'quiensoy', icon: '🎭', label: '¿Quién soy?', href: '/bank/quiensoy/game.html', dynamic: true, checkEndpoint: '/bank/api/quiensoy/status' },
+      { id: 'cifrasletras', icon: '🔤', label: 'Cifras y Letras', href: '/bank/cifrasletras/game.html', dynamic: true, checkEndpoint: '/bank/api/cifrasletras/status' },
+      { id: 'hundirlaflota', icon: '⚓', label: 'Hundir la Flota', href: '/bank/hundirlaflota/game.html', dynamic: true, checkEndpoint: '/bank/api/hundirlaflota/status' },
+      { id: 'apuestas', icon: '🎲', label: 'Apuestas', href: '/bank/apuestas' },
+      { id: 'votaciones', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' }
     ],
-    
+
     // Pestañas para admins (no superadmins)
     admin: [
-      { id: 'cuentos-admin', icon: '📖', label: 'Cuentos', href: \'/bank/cuentos.html\' },
-      { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: \'/bank/mensajes.html\' },
-      { id: 'video-admin', icon: '🎥', label: 'Video', href: \'/bank/video.html\' },
-      { id: 'pasapalabra-admin', icon: '🎯', label: 'Pasapalabra', href: \'/bank/pasapalabra.html\' },
-      { id: 'millonario-admin', icon: '💰', label: 'Millonario', href: \'/bank/millonario.html\' },
-      { id: 'quiensoy-admin', icon: '🎭', label: '¿Quién soy?', href: \'/bank/quiensoy.html\' },
-      { id: 'cifrasletras-admin', icon: '🔤', label: 'Cifras y Letras', href: \'/bank/cifrasletras.html\' },
-      { id: 'apuestas-admin', icon: '🎲', label: 'Apuestas', href: \'/bank/apuestas\' },
-      { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: \'/bank/votaciones\' },
+      { id: 'cuentos-admin', icon: '📖', label: 'Cuentos', href: '/bank/cuentos.html' },
+      { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: '/bank/mensajes.html' },
+      { id: 'video-admin', icon: '🎥', label: 'Video', href: '/bank/video.html' },
+      { id: 'pasapalabra-admin', icon: '🎯', label: 'Pasapalabra', href: '/bank/pasapalabra.html' },
+      { id: 'millonario-admin', icon: '💰', label: 'Millonario', href: '/bank/millonario.html' },
+      { id: 'quiensoy-admin', icon: '🎭', label: '¿Quién soy?', href: '/bank/quiensoy.html' },
+      { id: 'cifrasletras-admin', icon: '🔤', label: 'Cifras y Letras', href: '/bank/cifrasletras.html' },
+      { id: 'apuestas-admin', icon: '🎲', label: 'Apuestas', href: '/bank/apuestas' },
+      { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' },
       { id: 'admin', icon: '⚙️', label: 'Admin', href: '/bank', hash: '#admin' }
     ],
-    
+
     // Pestañas adicionales para superadmin
     superadmin: [
-      { id: 'stats', icon: '📊', label: 'Stats', href: \'/bank/stats\' }
+      { id: 'stats', icon: '📊', label: 'Stats', href: '/bank/stats' }
     ],
-    
+
     // Pestañas exclusivas para dvd
     dvd: [
-      { id: 'opo', icon: '🎓', label: 'OPO', href: \'/bank/opo\', hash: '' }
+      { id: 'opo', icon: '🎓', label: 'OPO', href: '/bank/opo', hash: '' }
     ]
   };
 
@@ -63,7 +63,6 @@
    * Inicializa el sistema de navegación
    */
   async function init() {
-    // Obtener usuario actual
     const token = localStorage.getItem('dvd_token');
     if (!token) {
       console.warn('[UnifiedNav] No token found');
@@ -72,19 +71,10 @@
 
     try {
       currentUser = await fetchAPI('/bank/api/me');
-      
-      // Verificar estados dinámicos (juegos, features)
       await checkDynamicStates();
-      
-      // Renderizar navegación
       renderNav();
-      
-      // Marcar pestaña activa
       setActiveTab();
-      
-      // Escuchar cambios de hash
       window.addEventListener('hashchange', setActiveTab);
-      
     } catch (error) {
       console.error('[UnifiedNav] Init error:', error);
     }
@@ -95,24 +85,19 @@
    */
   async function checkDynamicStates() {
     const checks = [];
-    
-    // Solo verificar para miembros
+
     if (!currentUser.is_admin) {
-      NAV_CONFIG.member.forEach(tab => {
+      NAV_CONFIG.member.forEach(function(tab) {
         if (tab.dynamic && tab.checkEndpoint) {
           checks.push(
             fetchAPI(tab.checkEndpoint)
-              .then(data => {
-                dynamicStates[tab.id] = data.enabled || false;
-              })
-              .catch(() => {
-                dynamicStates[tab.id] = false;
-              })
+              .then(function(data) { dynamicStates[tab.id] = data.enabled || false; })
+              .catch(function() { dynamicStates[tab.id] = false; })
           );
         }
       });
     }
-    
+
     await Promise.all(checks);
   }
 
@@ -121,38 +106,24 @@
    */
   function getVisibleTabs() {
     if (!currentUser) return [];
-    
-    let tabs = [...NAV_CONFIG.common];
-    
-    // Determinar rol
-    const isDvd = currentUser.username === 'dvd';
-    const isSuperadmin = currentUser.is_superadmin || isDvd;
-    const isAdmin = currentUser.is_admin || isSuperadmin;
-    
+
+    var tabs = NAV_CONFIG.common.slice();
+
+    var isDvd = currentUser.username === 'dvd';
+    var isSuperadmin = currentUser.is_superadmin || isDvd;
+    var isAdmin = currentUser.is_admin || isSuperadmin;
+
     if (isAdmin) {
-      // Admins y superadmins ven pestañas de admin
-      tabs = [...tabs, ...NAV_CONFIG.admin];
-      
-      if (isSuperadmin) {
-        // Superadmins ven pestañas adicionales
-        tabs = [...tabs, ...NAV_CONFIG.superadmin];
-      }
-      
-      if (isDvd) {
-        // DVD ve pestañas exclusivas
-        tabs = [...tabs, ...NAV_CONFIG.dvd];
-      }
+      tabs = tabs.concat(NAV_CONFIG.admin);
+      if (isSuperadmin) tabs = tabs.concat(NAV_CONFIG.superadmin);
+      if (isDvd) tabs = tabs.concat(NAV_CONFIG.dvd);
     } else {
-      // Miembros ven pestañas de miembro
-      tabs = [...tabs, ...NAV_CONFIG.member.filter(tab => {
-        // Filtrar pestañas dinámicas según su estado
-        if (tab.dynamic) {
-          return dynamicStates[tab.id] === true;
-        }
+      tabs = tabs.concat(NAV_CONFIG.member.filter(function(tab) {
+        if (tab.dynamic) return dynamicStates[tab.id] === true;
         return true;
-      })];
+      }));
     }
-    
+
     return tabs;
   }
 
@@ -160,40 +131,31 @@
    * Renderiza la barra de navegación
    */
   function renderNav() {
-    const container = document.getElementById('unifiedNavContainer');
+    var container = document.getElementById('unifiedNavContainer');
     if (!container) {
       console.warn('[UnifiedNav] Container #unifiedNavContainer not found');
       return;
     }
-    
-    const tabs = getVisibleTabs();
-    
-    const html = `
-      <nav class="unified-nav">
-        <div class="nav-tabs">
-          ${tabs.map(tab => {
-            const href = tab.hash ? `${tab.href}${tab.hash}` : tab.href;
-            // Ensure label doesn't contain emoji - icon is already shown separately
-            const cleanLabel = tab.label.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
-            return `
-              <a href="${href}" 
-                 class="nav-tab" 
-                 data-tab-id="${tab.id}"
-                 data-tab-href="${tab.href}"
-                 data-tab-hash="${tab.hash || ''}"
-                 data-i18n="${tab.i18nKey || ''}">
-                <span class="nav-icon">${tab.icon}</span>
-                <span class="nav-label">${cleanLabel}</span>
-              </a>
-            `;
-          }).join('')}
-        </div>
-      </nav>
-    `;
-    
+
+    var tabs = getVisibleTabs();
+    var html = '<nav class="unified-nav"><div class="nav-tabs">';
+
+    tabs.forEach(function(tab) {
+      var href = tab.hash ? tab.href + tab.hash : tab.href;
+      var cleanLabel = tab.label.replace(/[\u{1F300}-\u{1F9FF}]/gu, '').trim();
+      html += '<a href="' + href + '" class="nav-tab"' +
+        ' data-tab-id="' + tab.id + '"' +
+        ' data-tab-href="' + tab.href + '"' +
+        ' data-tab-hash="' + (tab.hash || '') + '"' +
+        ' data-i18n="' + (tab.i18nKey || '') + '">' +
+        '<span class="nav-icon">' + tab.icon + '</span>' +
+        '<span class="nav-label">' + cleanLabel + '</span>' +
+        '</a>';
+    });
+
+    html += '</div></nav>';
     container.innerHTML = html;
-    
-    // Trigger i18n translation if available
+
     if (window.i18n && typeof window.i18n.translatePage === 'function') {
       window.i18n.translatePage();
     }
@@ -203,32 +165,25 @@
    * Marca la pestaña activa según la URL actual
    */
   function setActiveTab() {
-    const path = window.location.pathname;
-    const hash = window.location.hash;
-    
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    var path = window.location.pathname;
+    var hash = window.location.hash;
+
+    document.querySelectorAll('.nav-tab').forEach(function(tab) {
       tab.classList.remove('active');
-      
-      const tabHref = tab.getAttribute('data-tab-href');
-      const tabHash = tab.getAttribute('data-tab-hash');
-      
-      // Lógica de activación
-      let isActive = false;
-      
+
+      var tabHref = tab.getAttribute('data-tab-href');
+      var tabHash = tab.getAttribute('data-tab-hash');
+      var isActive = false;
+
       if (path === '/' && !hash && tabHref === '/' && !tabHash) {
-        // Página de inicio sin hash
         isActive = true;
       } else if (path === '/' && hash && tabHash === hash) {
-        // Página de inicio con hash específico
         isActive = true;
       } else if (path !== '/' && path.includes(tabHref) && tabHref !== '/') {
-        // Otras páginas
         isActive = true;
       }
-      
-      if (isActive) {
-        tab.classList.add('active');
-      }
+
+      if (isActive) tab.classList.add('active');
     });
   }
 
@@ -236,26 +191,21 @@
    * Helper para hacer peticiones a la API
    */
   async function fetchAPI(endpoint) {
-    const token = localStorage.getItem('dvd_token');
-    const response = await fetch(endpoint, {
+    var token = localStorage.getItem('dvd_token');
+    var response = await fetch(endpoint, {
       headers: {
         'Authorization': 'Bearer ' + token,
         'ngrok-skip-browser-warning': '1'
       }
     });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`);
-    }
-    
+
+    if (!response.ok) throw new Error('HTTP ' + response.status);
     return response.json();
   }
 
-  /**
-   * Exponer API pública
-   */
+  // Exponer API pública
   window.UnifiedNav = {
-    init,
+    init: init,
     refresh: async function() {
       await checkDynamicStates();
       renderNav();
