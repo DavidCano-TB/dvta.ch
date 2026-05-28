@@ -11,7 +11,7 @@
 <script>
 /* Register Service Worker to force fresh HTML on every load */
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/bank/static/sw.js?v=20260528b')
+  navigator.serviceWorker.register('/bank/static/sw.js?v=20260528c')
     .then(reg => {
       /* Force update check immediately */
       reg.update();
@@ -1475,7 +1475,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
       <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
       <button class="navTab hidden" id="navHundirLaFlota" onclick="openHundirLaFlota()">⚓ <span data-i18n="navHundirLaFlota">Hundir la Flota</span></button>
-      <button class="navTab hidden" id="navStats" onclick="window.location.href="/bank/stats"" data-i18n="navStats">📊 Stats</button>
+      <button class="navTab hidden" id="navStats" onclick="window.location.href='/bank/stats'" data-i18n="navStats">📊 Stats</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
       <button class="navTab hidden" id="navOpo" onclick="openOpo()">📚 <span data-i18n="navOpo">Oposiciones</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
@@ -2571,7 +2571,7 @@ let T = {}, curLang = localStorage.getItem('dvd_lang') || 'en';  // will be over
 
 async function loadLang(lang) {
   try {
-    const r = await fetch(`/static/i18n/${lang}.json?v=5`, { headers: { 'ngrok-skip-browser-warning': '1' } });
+    const r = await fetch(`/bank/static/i18n/${lang}.json?v=5`, { headers: { 'ngrok-skip-browser-warning': '1' } });
     if (!r.ok) throw new Error();
     T = await r.json();
     curLang = lang;
@@ -2580,7 +2580,7 @@ async function loadLang(lang) {
     updateLangButtons();
     // Save to DB if logged in
     if (me) {
-      req('POST', '/api/me/lang', { lang }).catch(() => {});
+      req('POST', '/bank/api/me/lang', { lang }).catch(() => {});
     }
   } catch (e) {
     if (lang !== 'en') await loadLang('en');
@@ -3130,7 +3130,7 @@ async function loadApp() {
         await new Promise(r=>setTimeout(r,400));
         // Get room title from active rooms
         try{
-          const d = await req('GET', '/api/rooms/active');
+          const d = await req('GET', '/bank/api/rooms/active');
           const room = (d.rooms||[]).find(r=>r.key===_joinKey);
           if(room) socialJoinRoom(_joinKey, room.title||_joinKey);
           else socialJoinRoom(_joinKey, _joinKey);
@@ -3155,7 +3155,7 @@ let acFocusIdx = -1;   // keyboard navigation index in dropdown
 // Load all users into memory (called on nav to transfer tab and after transfers)
 async function loadDropdown() {
   try {
-    const users = await req('GET', '/api/users');
+    const users = await req('GET', '/bank/api/users');
     acAllUsers = users.map(u => ({ name: u, isAdmin: ADMINS.has(u) }));
   } catch (e) { /* silent — list stays stale */ }
 }
@@ -3310,7 +3310,7 @@ async function doTransfer() {
   if (!amt || amt <= 0 || isNaN(amt)) return showAlert('txAlert', t('errorValidAmount'));
   const done = setLoading('btnTx', t('txBtn'));
   try {
-    const d = await req('POST', '/api/transfer', { to_user: to, amount: amt, concept: con });
+    const d = await req('POST', '/bank/api/transfer', { to_user: to, amount: amt, concept: con });
     showAlert('txAlert', d.message, 's');
     // Clear fields and reset autocomplete
     document.getElementById('txAmt').value = '';
@@ -3370,7 +3370,7 @@ function renderTx(id, txs) {
 
 async function loadHist(id, limit) {
   try {
-    const txs = await req('GET', '/api/history?limit=' + Math.min(limit || 100, 1000));
+    const txs = await req('GET', '/bank/api/history?limit=' + Math.min(limit || 100, 1000));
     renderTx(id, txs);
   } catch (e) {
     document.getElementById(id).innerHTML = `<div class="empty">${t('errorLoading')}</div>`;
@@ -3384,7 +3384,7 @@ async function loadUserApuestas() {
   if (!el || !section) return;
 
   try {
-    const stats = await req('GET', '/api/porras/mis-estadisticas');
+    const stats = await req('GET', '/bank/api/porras/mis-estadisticas');
 
     // Show section only if user has betting activity
     if (stats.total_apostado > 0 || stats.apuestas_activas > 0) {
@@ -3424,7 +3424,7 @@ async function loadUserApuestas() {
 let _pingIv = null;
 function startHeartbeat() {
   if (_pingIv) return;
-  const doPing = () => { if (me) req('POST', '/api/ping').catch(() => {}); };
+  const doPing = () => { if (me) req('POST', '/bank/api/ping').catch(() => {}); };
   doPing();
   _pingIv = setInterval(doPing, 30000);
 }
@@ -3582,7 +3582,7 @@ function _admRender() {
 
 async function loadAdmin() {
   try {
-    _admUsers = await req('GET', '/api/admin/users');
+    _admUsers = await req('GET', '/bank/api/admin/users');
     // Show/hide Last seen column + fix colspan (dvd only)
     const isDvdUser = !!(me.is_superadmin);
     const thLS = document.getElementById('thLastSeen');
@@ -3596,8 +3596,8 @@ async function loadAdmin() {
       if (th.dataset.col === _admSortCol)
         th.classList.add(_admSortDir === 1 ? 'sort-asc' : 'sort-desc');
     });
-    try { renderActivity(await req('GET', '/api/admin/activity')); } catch(e) {}
-    _ldgAll = await req('GET', '/api/admin/ledger?limit=1000');
+    try { renderActivity(await req('GET', '/bank/api/admin/activity')); } catch(e) {}
+    _ldgAll = await req('GET', '/bank/api/admin/ledger?limit=1000');
     ldgApply();
   } catch (e) { showAlert('admAlert', e.message); }
 }
@@ -3724,7 +3724,7 @@ function renderActivity(log) {
 
 async function checkCuentosStatus() {
   try {
-    const d = await req('GET', '/api/cuentos/status');
+    const d = await req('GET', '/bank/api/cuentos/status');
     const on = d.enabled;
     // Show Cuentos tab only for members when enabled; admins use admin panel
     if (!me?.is_admin) {
@@ -3753,7 +3753,7 @@ async function checkCuentosStatus() {
 
 async function toggleCuentos(enable) {
   try {
-    await req('POST', '/api/cuentos/toggle');
+    await req('POST', '/bank/api/cuentos/toggle');
     await checkCuentosStatus();
     showAlert('cuentosAlert', enable ? 'Cuentos activados ✓' : 'Cuentos desactivados', 's');
   } catch(e) { showAlert('cuentosAlert', e.message); }
@@ -3767,7 +3767,7 @@ async function loadCuentosView() {
   // Show upload panel for admins
   if (me?.is_admin) document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
   try {
-    const items = await req('GET', '/api/cuentos');
+    const items = await req('GET', '/bank/api/cuentos');
     if (!items.length) {
       el.innerHTML = '<div class="empty">Sin cuentos disponibles.</div>';
       return;
@@ -3818,7 +3818,7 @@ async function cuentosUpload() {
 async function admAct(action, username) {
   if (action === 'reset-pwd' && !confirm(t('admConfirmReset', { user: username }))) return;
   try {
-    const d = await req('POST', `/api/admin/${action}/${username}`);
+    const d = await req('POST', `/bank/api/admin/${action}/${username}`);
     showAlert('admAlert', d.message, 's');
     await Promise.all([loadAdmin(), loadDropdown()]);
   } catch (e) { showAlert('admAlert', e.message); }
@@ -3831,7 +3831,7 @@ async function admDelete(username) {
   }
 
   try {
-    const d = await req('POST', `/api/admin/delete/${username}`);
+    const d = await req('POST', `/bank/api/admin/delete/${username}`);
     showAlert('admAlert', d.message || 'Usuario eliminado correctamente', 's');
     await Promise.all([loadAdmin(), loadDropdown()]);
   } catch(e) {
@@ -3844,7 +3844,7 @@ let gameEnabled = false;
 
 async function checkGameStatus() {
   try {
-    const d = await req('GET', '/api/pasapalabra/status');
+    const d = await req('GET', '/bank/api/pasapalabra/status');
     gameEnabled = !!d.enabled;
   } catch (_) { gameEnabled = false; }
   // Members: show Pasapalabra tab only when enabled
@@ -3863,7 +3863,7 @@ async function checkGameStatus() {
 
 async function toggleGame(enable) {
   try {
-    await req('POST', '/api/pasapalabra/toggle', { enabled: enable });
+    await req('POST', '/bank/api/pasapalabra/toggle', { enabled: enable });
     await checkGameStatus();
     showAlert('gameAlert', enable ? 'Game enabled — the Games tab is now visible to all users.' : 'Game disabled.', 's');
   } catch (e) { showAlert('gameAlert', e.message); }
@@ -3902,7 +3902,7 @@ let millonarioEnabled = false;
 
 async function checkMillonarioStatus() {
   try {
-    const d = await req('GET', '/api/millonario/status');
+    const d = await req('GET', '/bank/api/millonario/status');
     millonarioEnabled = !!d.enabled;
   } catch (_) { millonarioEnabled = false; }
   // Members: show tab only when enabled; admins: always hidden (use admin panel)
@@ -3919,7 +3919,7 @@ async function checkMillonarioStatus() {
 
 async function toggleMillonario(enable) {
   try {
-    await req('POST', '/api/millonario/toggle', { enabled: enable });
+    await req('POST', '/bank/api/millonario/toggle', { enabled: enable });
     await checkMillonarioStatus();
     showAlert('millonarioAlert', enable ? 'Millonario enabled.' : 'Millonario disabled.', 's');
   } catch (e) { showAlert('millonarioAlert', e.message); }
@@ -3954,7 +3954,7 @@ let qsCharVerified   = false;   // true after successful verify
 /* ── Status / toggle ── */
 async function checkQuienSoyStatus() {
   try {
-    const d = await req('GET', '/api/quiensoy/status');
+    const d = await req('GET', '/bank/api/quiensoy/status');
     quienSoyEnabled = !!d.enabled;
   } catch (_) { quienSoyEnabled = false; }
 
@@ -3972,7 +3972,7 @@ async function checkQuienSoyStatus() {
 
 async function qsEnable() {
   try {
-    await req('POST', '/api/quiensoy/toggle', { enabled: true });
+    await req('POST', '/bank/api/quiensoy/toggle', { enabled: true });
     await checkQuienSoyStatus();
     showAlert('quienSoyAlert', '¿Quién soy? activado.', 's');
   } catch(e) { showAlert('quienSoyAlert', e.message); }
@@ -3980,7 +3980,7 @@ async function qsEnable() {
 
 async function toggleQuienSoy(enable) {
   try {
-    await req('POST', '/api/quiensoy/toggle', { enabled: enable });
+    await req('POST', '/bank/api/quiensoy/toggle', { enabled: enable });
     await checkQuienSoyStatus();
     showAlert('quienSoyAlert', enable ? 'Activado.' : 'Desactivado.', enable ? 's' : '');
   } catch(e) { showAlert('quienSoyAlert', e.message); }
@@ -3999,7 +3999,7 @@ let clAcIdx     = -1;
 
 async function checkCifrasLetrasStatus() {
   try {
-    const d = await req('GET', '/api/cifrasletras/status');
+    const d = await req('GET', '/bank/api/cifrasletras/status');
     clEnabled = !!d.enabled;
   } catch (_) { clEnabled = false; }
   // Members: show tab only when enabled; admins: always hidden
@@ -4023,7 +4023,7 @@ async function checkCifrasLetrasStatus() {
 async function checkRoomsStatus() {
   let rooms = [];
   try {
-    const d = await req('GET', '/api/rooms/status');
+    const d = await req('GET', '/bank/api/rooms/status');
     rooms = d.rooms || [];
   } catch (_) { rooms = []; }
   // Actualizar la pantalla social directamente
@@ -4031,12 +4031,12 @@ async function checkRoomsStatus() {
 }
 
 async function clLoadUsers() {
-  try { clAcUsers = await req('GET', '/api/cifrasletras/users'); } catch(_) { clAcUsers = []; }
+  try { clAcUsers = await req('GET', '/bank/api/cifrasletras/users'); } catch(_) { clAcUsers = []; }
 }
 
 async function toggleCifrasLetras(enable) {
   try {
-    await req('POST', '/api/cifrasletras/toggle', { enabled: enable });
+    await req('POST', '/bank/api/cifrasletras/toggle', { enabled: enable });
     await checkCifrasLetrasStatus();
     showAlert('clAlert', enable ? 'Cifras y Letras activado.' : 'Desactivado.', enable?'s':'');
   } catch(e) { showAlert('clAlert', e.message); }
@@ -4052,7 +4052,7 @@ let hundirLaFlotaEnabled = false;
 
 async function checkHundirLaFlotaStatus() {
   try {
-    const d = await req('GET', '/api/hundirlaflota/status');
+    const d = await req('GET', '/bank/api/hundirlaflota/status');
     hundirLaFlotaEnabled = !!d.enabled;
   } catch (_) { hundirLaFlotaEnabled = false; }
 
@@ -4070,7 +4070,7 @@ async function checkHundirLaFlotaStatus() {
 
 async function toggleHundirLaFlota(enable) {
   try {
-    await req('POST', '/api/hundirlaflota/toggle', { enabled: enable });
+    await req('POST', '/bank/api/hundirlaflota/toggle', { enabled: enable });
     await checkHundirLaFlotaStatus();
     showAlert('hundirLaFlotaAlert', enable ? 'Hundir la Flota activado.' : 'Hundir la Flota desactivado.', enable ? 's' : '');
   } catch(e) { showAlert('hundirLaFlotaAlert', e.message); }
@@ -4139,7 +4139,7 @@ async function clStartGame() {
   const roundTime = parseInt(document.getElementById('clSeconds')?.value||'30');
   if(!clPlayers.length){showAlert('clAlert','Añade al menos un jugador.');return;}
   try {
-    await req('POST','/api/cifrasletras/setup',{players:clPlayers,max_rounds:maxRounds,round_time:roundTime});
+    await req('POST', '/bank/api/cifrasletras/setup',{players:clPlayers,max_rounds:maxRounds,round_time:roundTime});
     await checkCifrasLetrasStatus();
     showAlert('clAlert','¡Partida iniciada! Abre la pantalla del juego.','s');
     clPlayers=[]; clRenderPills();
@@ -4149,7 +4149,7 @@ async function clStartGame() {
 async function clResetGame() {
   if(!confirm('¿Reiniciar la partida? Se perderán los datos actuales.')) return;
   try {
-    await req('POST','/api/cifrasletras/toggle',{enabled:false});
+    await req('POST', '/bank/api/cifrasletras/toggle',{enabled:false});
     await checkCifrasLetrasStatus();
     showAlert('clAlert','Partida reiniciada.','s');
   } catch(e){showAlert('clAlert',e.message);}
@@ -4158,7 +4158,7 @@ async function clResetGame() {
 /* ── Load members list ── */
 async function qsLoadUsers() {
   try {
-    qsAcAllUsers = await req('GET', '/api/quiensoy/users');
+    qsAcAllUsers = await req('GET', '/bank/api/quiensoy/users');
   } catch(_) { qsAcAllUsers = []; }
 }
 
@@ -4175,7 +4175,7 @@ async function qsVerifyChar() {
   const btn = document.getElementById('btnQsVerify');
   btn.textContent = '⏳'; btn.disabled = true;
   try {
-    const d = await req('GET', '/api/quiensoy/verify-character?name=' + encodeURIComponent(name));
+    const d = await req('GET', '/bank/api/quiensoy/verify-character?name=' + encodeURIComponent(name));
     const box    = document.getElementById('qsCharInfo');
     const status = document.getElementById('qsCharStatus');
     const hint   = document.getElementById('qsCharHint');
@@ -4318,7 +4318,7 @@ async function qsStartGame() {
   if (!qsPlayers.length) { showAlert('quienSoyAlert', 'Añade al menos un jugador.'); return; }
   try {
     // Enable + setup via HTTP (no WS needed from admin panel)
-    await req('POST', '/api/quiensoy/setup', {
+    await req('POST', '/bank/api/quiensoy/setup', {
       character,
       character_photo: window.qsCharPhoto || null,
       players: qsPlayers
@@ -4399,8 +4399,8 @@ let _ppWs = null;
 async function ppLoad() {
   try {
     const [st, users] = await Promise.all([
-      req('GET', '/api/pasapalabra/status'),
-      req('GET', '/api/pasapalabra/users'),
+      req('GET', '/bank/api/pasapalabra/status'),
+      req('GET', '/bank/api/pasapalabra/users'),
     ]);
     ppAllUsers = users || [];
     ppUpdateStatus(st.enabled);
@@ -4424,7 +4424,7 @@ function ppUpdateStatus(enabled) {
 function ppConnectWS() {
   if (_ppWs && _ppWs.readyState < 2) return;
   const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
-  _ppWs = new WebSocket(wsBase + '/ws/pasapalabra?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
+  _ppWs = new WebSocket(wsBase + '/bank/ws/pasapalabra?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
   _ppWs.onmessage = e => { try { ppHandleState(JSON.parse(e.data)); } catch(_){} };
   _ppWs.onclose   = () => { if (_curGamePanel === 'pasapalabra') setTimeout(ppConnectWS, 3000); };
 }
@@ -4455,7 +4455,7 @@ function ppHandleState(data) {
 
 async function ppToggle(on) {
   try {
-    await req('POST', '/api/pasapalabra/toggle', { enabled: on });
+    await req('POST', '/bank/api/pasapalabra/toggle', { enabled: on });
     ppUpdateStatus(on);
     showAlert('ppAlert1', on ? '✓ Activado' : 'Desactivado', on?'s':'');
   } catch(e) { showAlert('ppAlert1', e.message); }
@@ -4463,10 +4463,10 @@ async function ppToggle(on) {
 
 async function ppReset() {
   if (!confirm('¿Reiniciar la partida?')) return;
-  try { await req('POST', '/api/pasapalabra/reset'); showAlert('ppAlert1','✓ Reiniciada','s'); } catch(e){ showAlert('ppAlert1',e.message); }
+  try { await req('POST', '/bank/api/pasapalabra/reset'); showAlert('ppAlert1','✓ Reiniciada','s'); } catch(e){ showAlert('ppAlert1',e.message); }
 }
 
-function ppOpen() { window.open('/pasapalabra?token='+encodeURIComponent(localStorage.getItem('dvd_token')||''), '_blank'); }
+function ppOpen() { window.open('/bank/pasapalabra?token='+encodeURIComponent(localStorage.getItem('dvd_token')||''), '_blank'); }
 
 function ppAcFilter() {
   const q = document.getElementById('ppAcIn').value.trim().toLowerCase();
@@ -4491,7 +4491,7 @@ async function ppStartGame() {
   const rt = parseInt(document.getElementById('ppRoscoTime').value);
   const btn = document.getElementById('ppBtnStart'); btn.disabled=true; btn.textContent='⏳…';
   try {
-    await req('POST', '/api/pasapalabra/setup', { players: ppPlayers.slice(), rosco_time: rt });
+    await req('POST', '/bank/api/pasapalabra/setup', { players: ppPlayers.slice(), rosco_time: rt });
     ppUpdateStatus(true);
     showAlert('ppAlert2','✓ Partida iniciada — abriendo juego…','s');
     ppPlayers=[]; ppRenderPills();
@@ -4508,8 +4508,8 @@ let _mlWs = null;
 async function mlLoad() {
   try {
     const [st, users] = await Promise.all([
-      req('GET', '/api/millonario/status'),
-      req('GET', '/api/millonario/users'),
+      req('GET', '/bank/api/millonario/status'),
+      req('GET', '/bank/api/millonario/users'),
     ]);
     mlAllUsers = users || [];
     mlUpdateStatus(st.enabled);
@@ -4530,7 +4530,7 @@ function mlUpdateStatus(enabled) {
 function mlConnectWS() {
   if (_mlWs && _mlWs.readyState < 2) return;
   const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
-  _mlWs = new WebSocket(wsBase + '/ws/millonario?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
+  _mlWs = new WebSocket(wsBase + '/bank/ws/millonario?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
   _mlWs.onmessage = e => { try { mlHandleState(JSON.parse(e.data)); } catch(_){} };
   _mlWs.onclose   = () => { if (_curGamePanel === 'millonario') setTimeout(mlConnectWS, 3000); };
 }
@@ -4544,9 +4544,9 @@ function mlHandleState(data) {
     document.getElementById('mlLiveLevel').textContent  = 'Nivel ' + data.nivel + ' / 15' + (data.pregunta ? ' — ' + data.pregunta.premio : '');
   } else { card.style.display = 'none'; }
 }
-async function mlToggle(on) { try { await req('POST','/api/millonario/toggle',{enabled:on}); mlUpdateStatus(on); showAlert('mlAlert1',on?'✓ Activado':'Desactivado',on?'s':''); } catch(e){showAlert('mlAlert1',e.message);} }
-async function mlReset() { if(!confirm('¿Reiniciar?'))return; try{await req('POST','/api/millonario/reset');showAlert('mlAlert1','✓ Reiniciada','s');}catch(e){showAlert('mlAlert1',e.message);} }
-function mlOpen() { window.open('/millonario?token='+encodeURIComponent(localStorage.getItem('dvd_token')||''),'_blank'); }
+async function mlToggle(on) { try { await req('POST', '/bank/api/millonario/toggle',{enabled:on}); mlUpdateStatus(on); showAlert('mlAlert1',on?'✓ Activado':'Desactivado',on?'s':''); } catch(e){showAlert('mlAlert1',e.message);} }
+async function mlReset() { if(!confirm('¿Reiniciar?'))return; try{await req('POST', '/bank/api/millonario/reset');showAlert('mlAlert1','✓ Reiniciada','s');}catch(e){showAlert('mlAlert1',e.message);} }
+function mlOpen() { window.open('/bank/millonario?token='+encodeURIComponent(localStorage.getItem('dvd_token')||''),'_blank'); }
 
 function mlAcFilter() {
   const q = document.getElementById('mlAcIn').value.trim().toLowerCase();
@@ -4562,7 +4562,7 @@ function mlSelectUser(u) { mlSelected=u; document.getElementById('mlAcIn').value
 async function mlStartGame() {
   if(!mlSelected){showAlert('mlAlert2','Selecciona un jugador');return;}
   const btn=document.getElementById('mlBtnStart'); btn.disabled=true; btn.textContent='⏳…';
-  try { await req('POST','/api/millonario/setup',{player:mlSelected}); mlUpdateStatus(true); showAlert('mlAlert2','✓ Partida iniciada — abriendo juego…','s'); mlSelected=''; document.getElementById('mlAcIn').value=''; document.getElementById('mlSelected').textContent='Ningún jugador seleccionado'; document.getElementById('mlSelected').style.color=''; setTimeout(mlOpen,700); }
+  try { await req('POST', '/bank/api/millonario/setup',{player:mlSelected}); mlUpdateStatus(true); showAlert('mlAlert2','✓ Partida iniciada — abriendo juego…','s'); mlSelected=''; document.getElementById('mlAcIn').value=''; document.getElementById('mlSelected').textContent='Ningún jugador seleccionado'; document.getElementById('mlSelected').style.color=''; setTimeout(mlOpen,700); }
   catch(e){showAlert('mlAlert2',e.message);}
   finally{btn.disabled=!mlSelected;btn.textContent='▶ Iniciar partida';}
 }
@@ -4573,8 +4573,8 @@ async function mlStartGame() {
 async function qs2Load() {
   try {
     const [st, users] = await Promise.all([
-      req('GET', '/api/quiensoy/status'),
-      req('GET', '/api/quiensoy/users'),
+      req('GET', '/bank/api/quiensoy/status'),
+      req('GET', '/bank/api/quiensoy/users'),
     ]);
     qs2AcAllUsers = users || [];
     qs2UpdateStatus(st.enabled);
@@ -4593,7 +4593,7 @@ async function qsVerifyChar2() {
   if (!name) { showAlert('qsAlert3','Escribe un personaje primero.'); return; }
   const btn = document.getElementById('btnQsVerify2'); btn.textContent='⏳'; btn.disabled=true;
   try {
-    const d = await req('GET', '/api/quiensoy/verify-character?name=' + encodeURIComponent(name));
+    const d = await req('GET', '/bank/api/quiensoy/verify-character?name=' + encodeURIComponent(name));
     const box = document.getElementById('qsCharInfo2'); box.style.display='';
 
     if (d.valid) {
@@ -4655,7 +4655,7 @@ async function qsStartGame2(){
   if(!character){showAlert('qsAlert3','Escribe el personaje.');return;}
   if(!qs2Players.length){showAlert('qsAlert3','Añade al menos un jugador.');return;}
   try {
-    await req('POST','/api/quiensoy/setup',{
+    await req('POST', '/bank/api/quiensoy/setup',{
       character,
       character_photo: window.qs2CharPhoto || null,
       players:qs2Players
@@ -4675,8 +4675,8 @@ async function qsStartGame2(){
 async function cl2Load() {
   try {
     const [st, users] = await Promise.all([
-      req('GET', '/api/cifrasletras/status'),
-      req('GET', '/api/cifrasletras/users'),
+      req('GET', '/bank/api/cifrasletras/status'),
+      req('GET', '/bank/api/cifrasletras/users'),
     ]);
     cl2AllUsers = users || [];
     cl2UpdateStatus(st.enabled, st);
@@ -4695,7 +4695,7 @@ let _cl2Ws = null;
 function cl2ConnectWS() {
   if (_cl2Ws && _cl2Ws.readyState < 2) return;
   const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
-  _cl2Ws = new WebSocket(wsBase + '/ws/cifrasletras?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
+  _cl2Ws = new WebSocket(wsBase + '/bank/ws/cifrasletras?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
   _cl2Ws.onmessage = e => { try { cl2HandleState(JSON.parse(e.data)); } catch(_){} };
   _cl2Ws.onclose   = () => { if (_curGamePanel === 'cifrasletras') setTimeout(cl2ConnectWS, 3000); };
 }
@@ -4724,7 +4724,7 @@ async function clStartGame2(){
   const maxRounds=parseInt(document.getElementById('clRounds2').value);
   const roundTime=parseInt(document.getElementById('clSeconds2').value);
   const btn=document.getElementById('clBtnStart2');btn.disabled=true;btn.textContent='⏳…';
-  try{await req('POST','/api/cifrasletras/setup',{players:cl2Players.slice(),max_rounds:maxRounds,round_time:roundTime});cl2UpdateStatus(true);showAlert('clAlert3','✓ Partida iniciada','s');cl2Players=[];cl2RenderPills();setTimeout(openCifrasLetras,600);}catch(e){showAlert('clAlert3',e.message);}
+  try{await req('POST', '/bank/api/cifrasletras/setup',{players:cl2Players.slice(),max_rounds:maxRounds,round_time:roundTime});cl2UpdateStatus(true);showAlert('clAlert3','✓ Partida iniciada','s');cl2Players=[];cl2RenderPills();setTimeout(openCifrasLetras,600);}catch(e){showAlert('clAlert3',e.message);}
   finally{btn.disabled=!cl2Players.length;btn.textContent='▶ Iniciar partida';}
 }
 
@@ -4733,7 +4733,7 @@ async function clStartGame2(){
 ────────────────────────────────────────────────────────── */
 async function hlfLoad() {
   try {
-    const d = await req('GET', '/api/hundirlaflota/status');
+    const d = await req('GET', '/bank/api/hundirlaflota/status');
     const en = !!d.enabled;
     document.getElementById('hlfStatusSub').textContent = en ? '🟢 Juego activo' : '⚫ Juego desactivado';
     document.getElementById('hlfBtnOn')?.style.setProperty('display', en?'none':'');
@@ -4748,7 +4748,7 @@ async function hlfLoad() {
 
 async function hlfToggle(enable) {
   try {
-    await req('POST', '/api/hundirlaflota/toggle', { enabled: enable });
+    await req('POST', '/bank/api/hundirlaflota/toggle', { enabled: enable });
     await hlfLoad();
     await checkHundirLaFlotaStatus();
     showAlert('hlfAlert1', enable ? '✓ Hundir la Flota activado' : 'Hundir la Flota desactivado', enable?'s':'');
@@ -4760,7 +4760,7 @@ async function hlfToggle(enable) {
 ────────────────────────────────────────────────────────── */
 async function ctLoad() {
   try {
-    const d = await req('GET', '/api/cuentos/status');
+    const d = await req('GET', '/bank/api/cuentos/status');
     const en = !!d.enabled;
     document.getElementById('ctStatusSub').textContent = en ? '🟢 Visible para todos' : '⚫ Solo admins';
     document.getElementById('ctBtnOn')?.style.setProperty('display', en?'none':'');
@@ -4771,7 +4771,7 @@ async function ctLoad() {
 }
 async function toggleCuentos(en) {
   try {
-    await req('POST', '/api/cuentos/toggle');
+    await req('POST', '/bank/api/cuentos/toggle');
     await ctLoad();
     showAlert('ctAlert', en ? '✓ Cuentos visibles para todos' : 'Cuentos ocultos', en?'s':'');
   } catch(e) { showAlert('ctAlert', e.message); }
@@ -4784,8 +4784,8 @@ let _opoAllUsers2 = [];
 async function opoLoad2() {
   try {
     const [players, connected] = await Promise.all([
-      req('GET', '/api/opo/players'),
-      req('GET', '/api/admin/connected').catch(()=>[])
+      req('GET', '/bank/api/opo/players'),
+      req('GET', '/bank/api/admin/connected').catch(()=>[])
     ]);
     _opoPlayers = players;
     _ONLINE_MAP = {};
@@ -4811,19 +4811,19 @@ async function opoAddPlayer2() {
   const inp = document.getElementById('opoAddInput2');
   const uname = (inp?.value||'').trim().toLowerCase();
   if (!uname) return;
-  try { await req('POST', '/api/opo/players', { username: uname }); inp.value=''; document.getElementById('opoSuggestBox2').style.display='none'; showAlert('opoAlert2','@'+uname+' añadido al OPO','s'); await opoLoad2(); }
+  try { await req('POST', '/bank/api/opo/players', { username: uname }); inp.value=''; document.getElementById('opoSuggestBox2').style.display='none'; showAlert('opoAlert2','@'+uname+' añadido al OPO','s'); await opoLoad2(); }
   catch(e) { showAlert('opoAlert2', e.message||'Error'); }
 }
 async function opoRemovePlayer2(uname) {
   if (!confirm('¿Quitar a @'+uname+' del OPO?')) return;
-  try { await req('DELETE', '/api/opo/players/'+uname); showAlert('opoAlert2','@'+uname+' eliminado','s'); await opoLoad2(); }
+  try { await req('DELETE', '/bank/api/opo/players/'+uname); showAlert('opoAlert2','@'+uname+' eliminado','s'); await opoLoad2(); }
   catch(e) { showAlert('opoAlert2', e.message); }
 }
 async function opoSuggest2(val) {
   const box = document.getElementById('opoSuggestBox2'); if (!box) return;
   if (!val || val.length < 2) { box.style.display='none'; return; }
   if (!_opoAllUsers2.length) {
-    try { const d = await req('GET', '/api/admin/users'); _opoAllUsers2 = (d||[]).filter(u=>!u.is_admin&&!u.is_ghost).map(u=>u.username); } catch(_){}
+    try { const d = await req('GET', '/bank/api/admin/users'); _opoAllUsers2 = (d||[]).filter(u=>!u.is_admin&&!u.is_ghost).map(u=>u.username); } catch(_){}
   }
   const q = val.toLowerCase();
   const matches = _opoAllUsers2.filter(u => u.includes(q)).slice(0,8);
@@ -4839,7 +4839,7 @@ async function changePwd() {
   if (!old_p || !new_p) { showAlert('pwdAlert', 'Rellena ambos campos'); return; }
   if (new_p.length < 4)  { showAlert('pwdAlert', 'La nueva contraseña debe tener al menos 4 caracteres'); return; }
   try {
-    await req('POST', '/api/me/change-password', { old_password: old_p, new_password: new_p });
+    await req('POST', '/bank/api/me/change-password', { old_password: old_p, new_password: new_p });
     showAlert('pwdAlert', '✓ Contraseña actualizada correctamente', 's');
     document.getElementById('pwdOld').value = '';
     document.getElementById('pwdNew').value = '';
@@ -4873,7 +4873,7 @@ async function saveContactInfo() {
   const notifWhatsApp = document.getElementById('notifWhatsApp')?.checked;
   
   try {
-    await req('POST', '/api/me/update-profile', {
+    await req('POST', '/bank/api/me/update-profile', {
       email: email || null,
       phone: phone || null,
       whatsapp: whatsapp || null,
@@ -4977,8 +4977,8 @@ let _ONLINE_MAP = {};
 async function loadOpoDash() {
   try {
     const [players, connected] = await Promise.all([
-      req('GET', '/api/opo/players'),
-      req('GET', '/api/admin/connected').catch(()=>[])
+      req('GET', '/bank/api/opo/players'),
+      req('GET', '/bank/api/admin/connected').catch(()=>[])
     ]);
     _opoPlayers = players;
     _ONLINE_MAP = {};
@@ -5034,7 +5034,7 @@ async function opoAddPlayer() {
   const uname = (inp?.value || '').trim().toLowerCase();
   if (!uname) return;
   try {
-    await req('POST', '/api/opo/players', { username: uname });
+    await req('POST', '/bank/api/opo/players', { username: uname });
     inp.value = '';
     document.getElementById('opoSuggestBox').innerHTML = '';
     document.getElementById('opoSuggestBox').style.display = 'none';
@@ -5048,7 +5048,7 @@ async function opoAddPlayer() {
 async function opoRemovePlayer(uname) {
   if (!confirm(`¿Quitar a @${uname} del OPO?`)) return;
   try {
-    await req('DELETE', `/api/opo/players/${uname}`);
+    await req('DELETE', `/bank/api/opo/players/${uname}`);
     await loadOpoDash();
   } catch(e) { showAlert('opoAddAlert', e.message || 'Error'); }
 }
@@ -5062,7 +5062,7 @@ async function opoSuggest(val) {
   // Load users if not loaded
   if (!_opoAllUsers.length) {
     try {
-      const d = await req('GET', '/api/admin/users');
+      const d = await req('GET', '/bank/api/admin/users');
       _opoAllUsers = (d || []).filter(u => !u.is_admin && !u.is_ghost).map(u => u.username);
     } catch(e) { return; }
   }
@@ -5085,7 +5085,7 @@ async function checkOpoAccess() {
   // Regular admins: no OPO member panel
   if (me.is_admin) return;
   try {
-    const st = await req('GET', '/api/opo/status');
+    const st = await req('GET', '/bank/api/opo/status');
     if (st.is_opo_user) {
       // Show OPO panel on member home (2 buttons: advanced stats + select questionnaire)
       const panel = document.getElementById('dashMemberOpo');
@@ -5099,9 +5099,9 @@ async function loadDvdStats() {
   if (!el) return;
   try {
     const [summary, txSummary, apuestasSummary] = await Promise.all([
-      req('GET', '/api/stats/summary').catch(() => []),
-      req('GET', '/api/stats/transactions-summary').catch(() => ({})),
-      req('GET', '/api/stats/apuestas-summary').catch(() => ({})),
+      req('GET', '/bank/api/stats/summary').catch(() => []),
+      req('GET', '/bank/api/stats/transactions-summary').catch(() => ({})),
+      req('GET', '/bank/api/stats/apuestas-summary').catch(() => ({})),
     ]);
     const totalUsers = summary.length;
     const totalSessions = summary.reduce((s,u) => s + (u.total_sessions||0), 0);
@@ -5177,7 +5177,7 @@ async function showOpoResults() {
   modal.style.display = 'block';
   body.innerHTML = 'Cargando…';
   try {
-    const results = await req('GET', '/api/opo/results');
+    const results = await req('GET', '/bank/api/opo/results');
     if (!results.length) { body.innerHTML = '<div class="empty">Sin resultados</div>'; return; }
     // Group by user for summary
     const byUser = {};
@@ -5240,7 +5240,7 @@ async function showOpoResults() {
 /* ── Admin Management (superadmin only) ─────────────────────────────── */
 async function loadAdminMgmt() {
   try {
-    const admins = await req('GET', '/api/admin/list-admins');
+    const admins = await req('GET', '/bank/api/admin/list-admins');
     renderAdminsList(admins);
   } catch(e) { console.error('loadAdminMgmt', e); }
 }
@@ -5277,7 +5277,7 @@ async function createAdmin() {
   const pwd   = (document.getElementById('newAdminPwd')?.value || '').trim();
   if (!uname) { showAlert('adminMgmtAlert', 'Introduce un nombre de usuario'); return; }
   try {
-    await req('POST', '/api/admin/create-admin', { username: uname, password: pwd });
+    await req('POST', '/bank/api/admin/create-admin', { username: uname, password: pwd });
     document.getElementById('newAdminUser').value = '';
     document.getElementById('newAdminPwd').value = '';
     showAlert('adminMgmtAlert', `@${uname} es ahora admin`, 's');
@@ -5288,7 +5288,7 @@ async function createAdmin() {
 async function deleteAdmin(uname) {
   if (!confirm(`¿Quitar permisos de admin a @${uname}?`)) return;
   try {
-    await req('DELETE', `/api/admin/delete-admin/${uname}`);
+    await req('DELETE', `/bank/api/admin/delete-admin/${uname}`);
     showAlert('adminMgmtAlert', `@${uname} ya no es admin`, 's');
     await loadAdminMgmt();
   } catch(e) { showAlert('adminMgmtAlert', e.message || 'Error'); }
@@ -5297,7 +5297,7 @@ async function deleteAdmin(uname) {
 async function resetAdminPwd(uname) {
   if (!confirm(`¿Resetear la contraseña de @${uname}? Deberá registrarse de nuevo.`)) return;
   try {
-    await req('POST', `/api/admin/reset-admin-pwd/${uname}`);
+    await req('POST', `/bank/api/admin/reset-admin-pwd/${uname}`);
     showAlert('adminMgmtAlert', `Contraseña de @${uname} reseteada`, 's');
   } catch(e) { showAlert('adminMgmtAlert', e.message || 'Error'); }
 }
@@ -5307,7 +5307,7 @@ async function resetAdminPwd(uname) {
 ────────────────────────────────────────────────────────── */
 async function msgLoad() {
   try {
-    const status = await req('GET', '/api/messages/status');
+    const status = await req('GET', '/bank/api/messages/status');
     const enabled = !!status.enabled;
     const online = status.online || [];
     msgUpdateStatus(enabled, online);
@@ -5332,7 +5332,7 @@ function msgUpdateStatus(enabled, online) {
 
 async function msgToggle(on) {
   try {
-    await req('POST', '/api/messages/toggle', { enabled: on });
+    await req('POST', '/bank/api/messages/toggle', { enabled: on });
     msgUpdateStatus(on, []);
     showAlert('msgAlert1', on ? '✓ Mensajería activada' : 'Mensajería desactivada', on ? 's' : '');
     if (on) await msgLoadStats();
@@ -5345,7 +5345,7 @@ function msgOpen() {
 
 async function msgLoadStats() {
   try {
-    const d = await req('GET', '/api/messages/admin/stats');
+    const d = await req('GET', '/bank/api/messages/admin/stats');
     document.getElementById('msgStatTotal').textContent  = d.total_messages  ?? '—';
     document.getElementById('msgStatToday').textContent  = d.messages_today  ?? '—';
     document.getElementById('msgStatUsers').textContent  = d.unique_senders  ?? '—';
@@ -5425,7 +5425,7 @@ function _videoConnect(roomKey){
   if(_videoWS && _videoWS.readyState <= 1) return;
   const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
   const tok = localStorage.getItem('dvd_token') || '';
-  _videoWS = new WebSocket(`${proto}//${location.host}/ws/video?token=${encodeURIComponent(tok)}`);
+  _videoWS = new WebSocket(`${proto}//${location.host}/bank/ws/video?token=${encodeURIComponent(tok)}`);
   _videoWS.binaryType = 'arraybuffer';
 
   _videoWS.onopen = () => {
@@ -5797,7 +5797,7 @@ function _roomsWsConnect(){
   const tok   = localStorage.getItem('dvd_token') || '';
   if(!tok) return;
 
-  _roomsWS = new WebSocket(`${proto}//${location.host}/ws/rooms?token=${encodeURIComponent(tok)}`);
+  _roomsWS = new WebSocket(`${proto}//${location.host}/bank/ws/rooms?token=${encodeURIComponent(tok)}`);
 
   _roomsWS.onopen = () => {
     _roomsWS.send(JSON.stringify({action:'get-rooms'}));
@@ -5833,7 +5833,7 @@ function _roomsSseConnect(){
   if(!tok) return;
 
   try {
-    _roomsSSE = new EventSource(`/api/rooms/stream?token=${encodeURIComponent(tok)}`);
+    _roomsSSE = new EventSource(`/bank/api/rooms/stream?token=${encodeURIComponent(tok)}`);
 
     _roomsSSE.onmessage = (evt) => {
       try {
@@ -5866,7 +5866,7 @@ function _roomsSseConnect(){
 async function socialInit(){
   const sel=document.getElementById('socialDMUser');
   if(sel){
-    const users=acAllUsers.length?acAllUsers.map(u=>u.name):await req('GET','/api/users').catch(()=>[]);
+    const users=acAllUsers.length?acAllUsers.map(u=>u.name):await req('GET', '/bank/api/users').catch(()=>[]);
     sel.innerHTML='<option value="">— Seleccionar usuario —</option>'+
       [].concat(users).filter(u=>(typeof u==='string'?u:u.name)!==me.username)
         .map(u=>{
@@ -5888,7 +5888,7 @@ async function socialConnectWS(){
   if(_socialWS&&_socialWS.readyState<=1)return;
   const proto=location.protocol==='https:'?'wss:':'ws:';
   const tok=localStorage.getItem('dvd_token')||'';
-  _socialWS=new WebSocket(`${proto}//${location.host}/ws/messages?token=${encodeURIComponent(tok)}`);
+  _socialWS=new WebSocket(`${proto}//${location.host}/bank/ws/messages?token=${encodeURIComponent(tok)}`);
   _socialWS.onopen=()=>{
     _socialWS.send(JSON.stringify({action:'join',room:'group'}));
     _socialWS.send(JSON.stringify({action:'history',room:'group',limit:60}));
@@ -5956,12 +5956,12 @@ function _handleDeletedMsg(msg){
 // Pedir lista de salas activas via API REST — usa el endpoint simple y directo
 async function _refreshRoomsList(){
   try{
-    const d = await req('GET', '/api/rooms/status');
+    const d = await req('GET', '/bank/api/rooms/status');
     _renderRoomsList(d.rooms || []);
   }catch(_){
     // fallback al endpoint legacy
     try{
-      const d2 = await req('GET', '/api/rooms/list');
+      const d2 = await req('GET', '/bank/api/rooms/list');
       _renderRoomsList(d2.rooms || []);
     }catch(__){ }
   }
@@ -6290,7 +6290,7 @@ async function showCreateRoomModal(){
     '<div style="font-size:.68rem;color:var(--text3,#666);text-align:center;padding:8px">Cargando usuarios…</div>';
   // Pre-load users
   try{
-    const users = await req('GET','/api/users');
+    const users = await req('GET', '/bank/api/users');
     _renderCrUserList(Array.isArray(users)?users:(users.users||[]));
   }catch(e){
     document.getElementById('crUserList').innerHTML =
@@ -6346,7 +6346,7 @@ async function confirmCreateRoom(){
   // Esto garantiza que la sala existe aunque falle la cámara
   let roomData = null;
   try{
-    roomData = await req('POST', '/api/rooms/create', {room:key, title, mode, invites});
+    roomData = await req('POST', '/bank/api/rooms/create', {room:key, title, mode, invites});
   }catch(e){
     console.error('Error creando sala:', e);
     // Intentar igualmente entrar — la sala puede estar en memoria
@@ -6387,7 +6387,7 @@ async function showInviteModal(){
   const el = document.getElementById('inviteUserList');
   el.innerHTML = '<div style="font-size:.68rem;color:var(--text3,#666);text-align:center;padding:8px">Cargando…</div>';
   try{
-    const users = await req('GET','/api/users');
+    const users = await req('GET', '/bank/api/users');
     const all = Array.isArray(users)?users:(users.users||[]);
     const others = all.filter(u=>(typeof u==='string'?u:u.name||u.username) !== me?.username);
     if(!others.length){ el.innerHTML='<div style="font-size:.68rem;color:var(--text3);text-align:center;padding:8px">No hay otros usuarios</div>'; return; }
@@ -6413,7 +6413,7 @@ function closeInviteModal(){
 async function sendRoomInvite(username, btn){
   if(!_currentVideoRoom) return;
   try{
-    await req('POST','/api/rooms/invite',{room:_currentVideoRoom, username});
+    await req('POST', '/bank/api/rooms/invite',{room:_currentVideoRoom, username});
     if(btn){ btn.textContent='✓ Enviado'; btn.disabled=true; }
     _callInvited.add(username);
     _updateParticipants();
@@ -6429,7 +6429,7 @@ async function socialJoinRoom(key, title){
   } else {
     // Fallback REST
     try{
-      const d = await req('POST', '/api/rooms/join', {room:key, title:title||key});
+      const d = await req('POST', '/bank/api/rooms/join', {room:key, title:title||key});
       _handleRoomJoined({room:key, title:d.title, host:d.host, mode:d.mode, members:d.members, you:me?.username});
     }catch(e){ console.warn('REST room join failed:', e); }
   }
@@ -6506,7 +6506,7 @@ async function socialLeaveRoom(){
     _socialWS.send(JSON.stringify({action:'webrtc-leave',room:roomKey}));
   } else {
     // Fallback REST
-    req('POST', '/api/rooms/leave', {room:roomKey}).catch(()=>{});
+    req('POST', '/bank/api/rooms/leave', {room:roomKey}).catch(()=>{});
   }
 
   // Si el stream es el de permisos, solo deshabilitar tracks (no parar)
@@ -7185,7 +7185,7 @@ function _setTabBadge(tabId,count){
 
 async function _pollUnread(){
   try{
-    const d=await req('GET','/api/messages/unread');
+    const d=await req('GET', '/bank/api/messages/unread');
     // Solo actualizar contadores que realmente tienen mensajes no leídos en el servidor
     // No sobrescribir todo - mantener los que ya fueron marcados como leídos localmente
     if(d && typeof d === 'object'){
@@ -7210,7 +7210,7 @@ async function _pollUnread(){
 /* ── All rooms (superadmin) ───────────────────────────────────────── */
 async function socialLoadAllRooms(){
   try{
-    const d=await req('GET','/api/messages/admin/all-rooms');
+    const d=await req('GET', '/bank/api/messages/admin/all-rooms');
     const el=document.getElementById('socialAllRooms');if(!el)return;
     const rooms=d.rooms||[];
     if(!rooms.length){el.innerHTML='<div class="empty">Sin conversaciones</div>';return;}
@@ -7795,7 +7795,7 @@ async function loadAdvancedStats(){
   const el=document.getElementById('histAdvStatsContent');if(!el)return;
   el.innerHTML='<div class="empty">Cargando…</div>';
   try{
-    const d=await req('GET','/api/stats/advanced');
+    const d=await req('GET', '/bank/api/stats/advanced');
     const bySec=(d.by_section||[]).map(r=>`<tr><td>${esc(r.section)}</td><td>${r.n}</td><td>${Math.round((r.avg_s||0)/60)} min</td></tr>`).join('');
     const byUser=(d.by_user||[]).slice(0,10).map(r=>`<tr><td>${esc(r.username)}</td><td>${r.n}</td><td>${Math.round((r.total_s||0)/3600)}h</td></tr>`).join('');
     el.innerHTML=`<div style="font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin:8px 0 4px">Por sección</div>
