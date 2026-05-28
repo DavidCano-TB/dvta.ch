@@ -2,29 +2,28 @@ tunnel: b75039b1-7b54-4da0-b2ab-0a338bfccdc5
 credentials-file: credentials/b75039b1-7b54-4da0-b2ab-0a338bfccdc5.json
 
 ingress:
-  # DVDExams en puerto 8001 (servidor principal dvta.ch)
+  # Hub + Exams + Bank proxy + Games + Social (todo en puerto 8001)
   - hostname: dvta.ch
     service: http://localhost:8001
     originRequest:
       noTLSVerify: true
-      connectTimeout: 30s
+      connectTimeout: 10s
       
   - hostname: www.dvta.ch
     service: http://localhost:8001
     originRequest:
       noTLSVerify: true
-      connectTimeout: 30s
-  
-  # Bank subdomain en puerto 8000
+      connectTimeout: 10s
+
+  # Bank directo (legacy - mantener por compatibilidad)
   - hostname: bank.dvta.ch
     service: http://localhost:8000
     originRequest:
       noTLSVerify: true
-      connectTimeout: 30s
+      connectTimeout: 10s
   
-  # Catch-all - redirige a Exams (puerto 8001)
+  # Catch-all → Hub (puerto 8001)
   - service: http://localhost:8001
     originRequest:
       noTLSVerify: true
-      connectTimeout: 30s
-
+      connectTimeout: 10s
