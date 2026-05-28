@@ -350,7 +350,7 @@
       <div class="card-title">Bank</div>
       <div class="card-desc">Panel bancario principal. Transferencias, historial, saldo y gestión de cuenta.</div>
       <div class="card-footer">
-        <span class="card-tag">Puerto 8000</span>
+        <span class="card-tag">Finanzas</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
@@ -360,7 +360,7 @@
       <div class="card-title">Exams</div>
       <div class="card-desc">Plataforma de exámenes y oposiciones. Practica con miles de preguntas oficiales.</div>
       <div class="card-footer">
-        <span class="card-tag">Puerto 8001</span>
+        <span class="card-tag">Oposiciones</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
@@ -370,7 +370,7 @@
       <div class="card-title">Games</div>
       <div class="card-desc">Portal de juegos: Pasapalabra, ¿Quién quiere ser millonario?, Hundir la Flota y más.</div>
       <div class="card-footer">
-        <span class="card-tag">Puerto 8002</span>
+        <span class="card-tag">Entretenimiento</span>
         <span class="card-arrow">→</span>
       </div>
     </a>
@@ -427,7 +427,7 @@
       <span class="card-arrow">→</span>
     </a>
 
-    <a href="/bank/hundirlaflota" class="card card-sm" style="--accent-color: #16a085;">
+    <a href="/bank/hundirlaflota/game.html" class="card card-sm" style="--accent-color: #16a085;">
       <div class="card-icon">⚓</div>
       <div>
         <div class="card-title">Hundir la Flota</div>
@@ -526,11 +526,11 @@
       <span class="card-arrow">→</span>
     </a>
 
-    <a href="/bank/static/gallery" class="card card-sm" style="--accent-color: #ffd700;">
+    <a href="/bank" class="card card-sm" style="--accent-color: #ffd700;">
       <div class="card-icon">🖼️</div>
       <div>
         <div class="card-title">Galería</div>
-        <div class="card-desc">Fotos y multimedia</div>
+        <div class="card-desc">Fotos y multimedia (dentro de Bank)</div>
       </div>
       <span class="card-arrow">→</span>
     </a>
@@ -583,21 +583,21 @@
       <div class="health-dot unknown" id="dot-bank"></div>
       <div>
         <div class="health-name">Bank</div>
-        <div class="health-url">:8000 · /bank</div>
+        <div class="health-url">/bank</div>
       </div>
     </div>
     <div class="health-item">
       <div class="health-dot unknown" id="dot-exams"></div>
       <div>
         <div class="health-name">Exams</div>
-        <div class="health-url">:8001 · /exams</div>
+        <div class="health-url">/exams</div>
       </div>
     </div>
     <div class="health-item">
       <div class="health-dot unknown" id="dot-games"></div>
       <div>
         <div class="health-name">Games</div>
-        <div class="health-url">:8002 · /games</div>
+        <div class="health-url">/games</div>
       </div>
     </div>
     <div class="health-item">
@@ -662,10 +662,10 @@
 <script>
   // ── Health checks ──
   const checks = [
-    { id: 'bank',   url: '/bank/api/ping',  method: 'POST' },
-    { id: 'exams',  url: '/health',         method: 'GET'  },
-    { id: 'games',  url: '/api/health',     method: 'GET'  },
-    { id: 'social', url: '/api/health',     method: 'GET'  },
+    { id: 'bank',   url: '/bank/api/health', method: 'GET'  },
+    { id: 'exams',  url: '/health',          method: 'GET'  },
+    { id: 'games',  url: '/games/',          method: 'GET'  },
+    { id: 'social', url: '/social/',         method: 'GET'  },
   ];
 
   async function checkHealth() {
@@ -675,8 +675,6 @@
         const r = await fetch(c.url, {
           method: c.method,
           signal: AbortSignal.timeout(3000),
-          headers: { 'Content-Type': 'application/json' },
-          body: c.method === 'POST' ? '{}' : undefined,
         });
         const dot = document.getElementById('dot-' + c.id);
         if (dot) {
