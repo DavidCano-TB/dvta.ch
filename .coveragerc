@@ -1,0 +1,42 @@
+# Coverage configuration for DVDcoin Platform
+
+[run]
+source = 
+    modules/shared
+    modules/exams
+omit =
+    */tests/*
+    */test_*
+    */__pycache__/*
+    */venv/*
+    */env/*
+    */site-packages/*
+    */.venv/*
+    modules/exams/app_exams.py
+    modules/exams/start_exams.py
+
+branch = True
+
+[report]
+precision = 2
+show_missing = True
+skip_covered = False
+fail_under = 100
+
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod
+    except ImportError:
+    pass
+
+[html]
+directory = htmlcov
+title = DVDcoin Platform - Code Coverage Report
+
+[xml]
+output = coverage.xml

@@ -32,6 +32,12 @@ jobs:
           pip install -r modules/exams/requirements.txt
         }
       shell: pwsh
+    
+    - name: Install testing dependencies
+      run: |
+        Write-Host "Installing testing dependencies..."
+        pip install -r requirements-dev.txt
+      shell: pwsh
         
     - name: Verify installation
       run: |
@@ -72,16 +78,46 @@ jobs:
         Write-Host "All syntax checks passed"
       shell: pwsh
       
-    - name: Run tests (if exist)
+    - name: Run unit tests with 100% coverage requirement
       run: |
-        if (Test-Path "tests") {
-          Write-Host "Running tests..."
-          python -m pytest tests/ -v
-        } else {
-          Write-Host "No tests directory found, skipping tests"
+        Write-Host "========================================="
+        Write-Host "Running Unit Tests with Coverage"
+        Write-Host "========================================="
+        Write-Host ""
+        
+        if (-not (Test-Path "tests")) {
+          Write-Host "[ERROR] Tests directory not found!"
+          exit 1
         }
+        
+        Write-Host "Executing pytest with coverage..."
+        pytest tests/ -v --cov=modules --cov=main --cov-report=html --cov-report=term-missing --cov-report=xml --cov-fail-under=100
+        
+        if ($LASTEXITCODE -ne 0) {
+          Write-Host ""
+          Write-Host "========================================="
+          Write-Host "[FAILED] Tests failed or coverage < 100%"
+          Write-Host "========================================="
+          Write-Host ""
+          Write-Host "Deployment BLOCKED - Fix tests before deploying"
+          exit 1
+        }
+        
+        Write-Host ""
+        Write-Host "========================================="
+        Write-Host "[SUCCESS] All tests passed - 100% coverage"
+        Write-Host "========================================="
       shell: pwsh
-      continue-on-error: true
+      
+    - name: Upload coverage reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: |
+          htmlcov/
+          coverage.xml
+        retention-days: 30
       
     - name: Build summary
       run: |

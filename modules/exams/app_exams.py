@@ -72,7 +72,7 @@ logger = logging.getLogger("exams")
 # INICIALIZACIÓN
 # =============================================================================
 
-app = FastAPI(title="DVDcoin Exams", version="1.0.0")
+app = FastAPI(title="DVDcoin Exams", version="1.0.0", redirect_slashes=False)
 
 # CORS
 app.add_middleware(
@@ -405,8 +405,20 @@ async def verify_email(data: VerifyEmailRequest):
 
 @app.get("/")
 async def root():
-    """Página principal - redirige a /exams"""
+    """Hub principal — lista todos los módulos de la plataforma"""
+    hub_path = os.path.join(STATIC_DIR, "hub.html")
+    if os.path.exists(hub_path):
+        return FileResponse(hub_path)
+    # Fallback si el archivo no existe
     return RedirectResponse(url="/exams")
+
+@app.get("/hub")
+async def hub():
+    """Alias explícito del hub principal"""
+    hub_path = os.path.join(STATIC_DIR, "hub.html")
+    if os.path.exists(hub_path):
+        return FileResponse(hub_path)
+    return RedirectResponse(url="/")
 
 @app.get("/exams")
 async def exams_index():
@@ -453,8 +465,6 @@ async def opo_exam(user: dict = Depends(require_verified)):
     methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
 )
 async def bank_reverse_proxy(path: str, request: Request):
-    """
-    Reverse proxy a /bank{path} hacia el servicio Bank.
     Esto permite que dvta.ch/bank/* funcione exactamente igual que el Bank
     en bank.dvta.ch: mismo HTML (static/index.html), mismo login, mismas APIs.
 
@@ -468,9 +478,14 @@ async def bank_reverse_proxy(path: str, request: Request):
     if qs:
         target = f"{target}?{qs}"
 
-    # Forward headers (drop hop-by-hop)
+    # Forward headers (drop hop-by-hop).
+    # Also drop Accept-Encoding so the upstream responds uncompressed —
+    # httpx decompresses transparently but strips Content-Encoding from the
+    # response headers, which causes the browser to receive gzip bytes without
+    # knowing they are compressed (Content-Length mismatch → truncated HTML).
     HOP = {"host", "content-length", "connection", "keep-alive",
-           "transfer-encoding", "upgrade", "te", "trailers"}
+           "transfer-encoding", "upgrade", "te", "trailers",
+           "accept-encoding"}  # ← force uncompressed upstream response
     fwd_headers = {k: v for k, v in request.headers.items() if k.lower() not in HOP}
 
     body = await request.body() if request.method not in ("GET", "HEAD") else None
@@ -486,9 +501,14 @@ async def bank_reverse_proxy(path: str, request: Request):
                     headers=fwd_headers,
                     content=body,
                 )
-            # Filter response headers
+            # Filter hop-by-hop headers from the response.
+            # Also drop content-encoding/content-length: httpx already decoded
+            # the body, so these headers would be wrong for the decoded content.
+            RESP_HOP = {"transfer-encoding", "connection", "keep-alive",
+                        "upgrade", "te", "trailers",
+                        "content-encoding", "content-length"}
             resp_headers = {k: v for k, v in r.headers.items()
-                            if k.lower() not in HOP}
+                            if k.lower() not in RESP_HOP}
             return Response(
                 content=r.content,
                 status_code=r.status_code,
@@ -517,6 +537,90 @@ async def bank_reverse_proxy(path: str, request: Request):
          "detail": "Servicio Bank no responde. Intenta en unos segundos."},
         status_code=503,
     )
+
+# ── Games proxy (/games → localhost:8002) ─────────────────────────────────────
+
+@app.api_route(
+    "/games{path:path}",
+    methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
+)
+async def games_reverse_proxy(path: str, request: Request):
+    """Reverse proxy a /games{path} hacia el servicio Games (puerto 8002)."""
+    import httpx
+    target = f"/games{path}"
+    qs = request.url.query
+    if qs:
+        target = f"{target}?{qs}"
+    try:
+        body = await request.body()
+        async with httpx.AsyncClient(base_url="http://localhost:8002", timeout=15.0,
+                                     follow_redirects=False) as client:
+            r = await client.request(
+                method=request.method,
+                url=target,
+                headers={k: v for k, v in request.headers.items()
+                         if k.lower() not in ("host", "content-length")},
+                content=body,
+            )
+            return Response(
+                content=r.content,
+                status_code=r.status_code,
+                headers=dict(r.headers),
+                media_type=r.headers.get("content-type"),
+            )
+    except (httpx.ConnectError, httpx.TimeoutException):
+        if request.method == "GET":
+            return RedirectResponse(url=f"https://games.dvta.ch{target}", status_code=302)
+        return JSONResponse(
+            {"error": "games_proxy_unavailable", "detail": "Servicio Games no responde."},
+            status_code=503,
+        )
+    except Exception as e:
+        logger.exception(f"Games reverse proxy error: {e}")
+        return JSONResponse({"error": "proxy_error", "detail": str(e)}, status_code=502)
+
+
+# ── Social proxy (/social → localhost:8003) ───────────────────────────────────
+
+@app.api_route(
+    "/social{path:path}",
+    methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
+)
+async def social_reverse_proxy(path: str, request: Request):
+    """Reverse proxy a /social{path} hacia el servicio Social (puerto 8003)."""
+    import httpx
+    target = f"/social{path}"
+    qs = request.url.query
+    if qs:
+        target = f"{target}?{qs}"
+    try:
+        body = await request.body()
+        async with httpx.AsyncClient(base_url="http://localhost:8003", timeout=15.0,
+                                     follow_redirects=False) as client:
+            r = await client.request(
+                method=request.method,
+                url=target,
+                headers={k: v for k, v in request.headers.items()
+                         if k.lower() not in ("host", "content-length")},
+                content=body,
+            )
+            return Response(
+                content=r.content,
+                status_code=r.status_code,
+                headers=dict(r.headers),
+                media_type=r.headers.get("content-type"),
+            )
+    except (httpx.ConnectError, httpx.TimeoutException):
+        if request.method == "GET":
+            return RedirectResponse(url=f"https://social.dvta.ch{target}", status_code=302)
+        return JSONResponse(
+            {"error": "social_proxy_unavailable", "detail": "Servicio Social no responde."},
+            status_code=503,
+        )
+    except Exception as e:
+        logger.exception(f"Social reverse proxy error: {e}")
+        return JSONResponse({"error": "proxy_error", "detail": str(e)}, status_code=502)
+
 
 @app.get("/health")
 async def health_check():

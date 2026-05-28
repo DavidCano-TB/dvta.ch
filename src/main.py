@@ -2123,11 +2123,12 @@ async def me(user: str = Depends(get_current_user)):
     except Exception:
         pass
     
-    # Get OPO fields
-    email_verified = bool(row.get("email_verified", 0)) if "email_verified" in row.keys() else False
-    opo_interest = bool(row.get("opo_interest", 0)) if "opo_interest" in row.keys() else False
-    opo_access = bool(row.get("opo_access", 0)) if "opo_access" in row.keys() else False
-    payment_status = row.get("payment_status", "pending") if "payment_status" in row.keys() else "pending"
+    # Get OPO fields (sqlite3.Row is not a dict, doesn't support .get())
+    row_keys = set(row.keys()) if hasattr(row, 'keys') else set()
+    email_verified = bool(row["email_verified"]) if "email_verified" in row_keys and row["email_verified"] is not None else False
+    opo_interest = bool(row["opo_interest"]) if "opo_interest" in row_keys and row["opo_interest"] is not None else False
+    opo_access = bool(row["opo_access"]) if "opo_access" in row_keys and row["opo_access"] is not None else False
+    payment_status = row["payment_status"] if "payment_status" in row_keys and row["payment_status"] is not None else "pending"
     
     return {
         "username":      row["username"],

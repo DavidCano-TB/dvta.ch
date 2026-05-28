@@ -1463,7 +1463,7 @@ window._ssrRooms = {_json_ssr.dumps(ssr_rooms)};
     if(_sseConn&&_sseConn.readyState!==2)return;
     clearTimeout(_sseRetry);
     try{
-      _sseConn=new EventSource('/api/rooms/stream?token='+encodeURIComponent(t));
+      _sseConn=new EventSource('/bank/api/rooms/stream?token='+encodeURIComponent(t));
       _sseConn.onmessage=function(e){
         try{var msg=JSON.parse(e.data);if(msg.type==='rooms-update')applyRooms(msg.rooms||[]);}catch(ex){}
       };
