@@ -370,8 +370,9 @@ async def register(data: RegisterRequest):
 
 @app.post("/api/auth/login")
 async def login(data: LoginRequest, response: Response):
-    """Login de usuario"""
-    user = db_users.fetchone("SELECT * FROM users WHERE username=?", (data.username,))
+    """Login de usuario (acepta username o email)"""
+    # Buscar por username O por email
+    user = db_users.fetchone("SELECT * FROM users WHERE username=? OR email=?", (data.username, data.username))
     
     if not user or not verify_password(data.password, user["password_hash"]):
         raise HTTPException(401, "Invalid credentials")
