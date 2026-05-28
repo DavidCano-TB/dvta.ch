@@ -916,61 +916,76 @@ async def opo_exam(user: dict = Depends(require_verified)):
     """Ejecución del examen OPO"""
     return FileResponse(os.path.join(OPO_DIR, "exam.html"))
 
+
+# =============================================================================
+# SHARED HTTP CLIENT for Bank proxy (connection pooling - no new conn per request)
+# =============================================================================
+import httpx as _httpx
+
+_bank_client: _httpx.AsyncClient | None = None
+
+@app.on_event("startup")
+async def _start_bank_client():
+    global _bank_client
+    _bank_client = _httpx.AsyncClient(
+        base_url="http://localhost:8000",
+        timeout=_httpx.Timeout(15.0, connect=3.0),
+        follow_redirects=False,
+        limits=_httpx.Limits(max_connections=50, max_keepalive_connections=20),
+    )
+
+@app.on_event("shutdown")
+async def _stop_bank_client():
+    global _bank_client
+    if _bank_client:
+        await _bank_client.aclose()
+
+_HOP_REQ = frozenset({"host", "content-length", "connection", "keep-alive",
+                       "transfer-encoding", "upgrade", "te", "trailers",
+                       "accept-encoding"})
+_HOP_RESP = frozenset({"transfer-encoding", "connection", "keep-alive",
+                        "upgrade", "te", "trailers",
+                        "content-encoding", "content-length"})
+
 @app.api_route(
     "/bank{path:path}",
     methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
 )
 async def bank_reverse_proxy(path: str, request: Request):
     """
-    Reverse proxy a /bank{path} hacia el Bank principal (localhost:8000).
-    Directo, timeout 10s, sin hops intermedios.
+    Reverse proxy a /bank{path} → localhost:8000/bank{path}.
+    Usa client compartido con connection pooling.
     """
-    import httpx
     target = f"/bank{path}"
     qs = request.url.query
     if qs:
         target = f"{target}?{qs}"
 
-    HOP = {"host", "content-length", "connection", "keep-alive",
-           "transfer-encoding", "upgrade", "te", "trailers",
-           "accept-encoding"}
-    fwd_headers = {k: v for k, v in request.headers.items() if k.lower() not in HOP}
+    fwd_headers = {k: v for k, v in request.headers.items() if k.lower() not in _HOP_REQ}
+    fwd_headers["accept-encoding"] = "identity"
 
     body = await request.body() if request.method not in ("GET", "HEAD") else None
 
     try:
-        async with httpx.AsyncClient(base_url="http://localhost:8000", timeout=10.0,
-                                     follow_redirects=False) as client:
-            r = await client.request(
-                method=request.method,
-                url=target,
-                headers={**fwd_headers, "accept-encoding": "identity"},
-                content=body,
-            )
-        RESP_HOP = {"transfer-encoding", "connection", "keep-alive",
-                    "upgrade", "te", "trailers",
-                    "content-encoding", "content-length"}
-        resp_headers = {k: v for k, v in r.headers.items()
-                        if k.lower() not in RESP_HOP}
+        r = await _bank_client.request(
+            method=request.method,
+            url=target,
+            headers=fwd_headers,
+            content=body,
+        )
+        resp_headers = {k: v for k, v in r.headers.items() if k.lower() not in _HOP_RESP}
         return Response(
             content=r.content,
             status_code=r.status_code,
             headers=resp_headers,
             media_type=r.headers.get("content-type"),
         )
-    except (httpx.ConnectError, httpx.TimeoutException) as e:
-        logger.warning(f"Bank proxy: localhost:8000 not available: {e}")
-        return JSONResponse(
-            {"error": "bank_unavailable",
-             "detail": "Servicio Bank no responde. Asegúrate de que main.py está corriendo."},
-            status_code=503,
-        )
+    except (_httpx.ConnectError, _httpx.TimeoutException) as e:
+        logger.warning(f"Bank proxy: {e}")
+        return JSONResponse({"error": "bank_unavailable", "detail": "Bank (8000) no responde."}, status_code=503)
     except Exception as e:
-        logger.exception(f"Bank reverse proxy error: {e}")
-        return JSONResponse(
-            {"error": "proxy_error", "detail": str(e)},
-            status_code=502,
-        )
+        logger.exception(f"Bank proxy error: {e}")
+        return JSONResponse({"error": "proxy_error", "detail": str(e)}, status_code=502)
 
 
 # =============================================================================
