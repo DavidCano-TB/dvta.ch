@@ -1476,6 +1476,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
       <button class="navTab" id="navVotaciones" onclick="openVotaciones()">🗳️ <span data-i18n="navVotaciones">Votaciones</span></button>
       <button class="navTab hidden" id="navVideo" onclick="openVideoAsync()">🎥 <span>Videollamadas</span></button>
+      <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">⚙️ Admin</button>
     </div>
 
     <!-- ── OVERVIEW ──────────────────────────────────────────── -->
@@ -2434,6 +2435,9 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
         background:var(--red);color:#fff;border-radius:50%;width:14px;height:14px;
         font-size:.5rem;font-weight:700;line-height:14px;text-align:center">●</span>
     </button>
+    <button class="mNavBtn hidden" id="mobileNavAdm" onclick="nav('adm',this)" data-view="adm" title="Admin">
+      <span class="icon">⚙</span>
+    </button>
   </nav>
 
 </div><!-- /app -->
@@ -2970,7 +2974,9 @@ async function loadApp() {
 
       if (me.is_admin) {
         // ── ADMIN / SUPERADMIN ─────────────────────────────────────
-        document.getElementById('hAdm')?.classList.remove('hidden');
+        ['hAdm', 'navAdm', 'mobileNavAdm'].forEach(id =>
+          document.getElementById(id)?.classList.remove('hidden')
+        );
         document.getElementById('navHist')?.classList.add('hidden');
         document.getElementById('mobileNavHist')?.classList.add('hidden');
         document.getElementById('dashRecentSection')?.classList.add('hidden');
@@ -2985,7 +2991,7 @@ async function loadApp() {
         // Historial oculto para todos los miembros
         document.getElementById('navHist')?.classList.add('hidden');
         document.getElementById('mobileNavHist')?.classList.add('hidden');
-        ['hAdm','navStats'].forEach(id =>
+        ['hAdm','navAdm','mobileNavAdm','navStats'].forEach(id =>
           document.getElementById(id)?.classList.add('hidden')
         );
         if (mn) mn.style.gridTemplateColumns = 'repeat(5,1fr)';
