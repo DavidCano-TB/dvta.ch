@@ -88,7 +88,7 @@ function showThemeSelector() {
 if (checkAuth()) {
     // Actualizar título según categoría
     const categoryNames = {
-        'imagen-diagnostico': 'Técnico Superior en Imagen para el Diagnóstico',
+        'imagen-diagnostico': 'Técnico Superior en Imagen para el Diagnóstico y Medicina Nuclear',
         'enfermeria': 'Enfermería',
         'auxiliar-enfermeria': 'Auxiliar de Enfermería',
         'celador': 'Celador'
