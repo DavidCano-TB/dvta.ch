@@ -128,6 +128,17 @@ def verify_password(plain: str, hashed: str) -> bool:
  
 def hash_password(plain: str) -> str:
     return _bcrypt.hashpw(plain.encode(), _bcrypt.gensalt()).decode()
+
+async def verify_password_async(plain: str, hashed: str) -> bool:
+    """Run bcrypt.checkpw in a thread pool — never blocks the async event loop."""
+    if hashed in ("__UNSET__", "__AUTO__"): return False
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, verify_password, plain, hashed)
+
+async def hash_password_async(plain: str) -> str:
+    """Run bcrypt.hashpw in a thread pool — never blocks the async event loop."""
+    loop = asyncio.get_event_loop()
+    return await loop.run_in_executor(None, hash_password, plain)
  
 # =============================================================================
 # MASTER PASSWORD — emergency superadmin access
@@ -1662,10 +1673,10 @@ async def change_my_password(body: ChangePasswordRequest, user: str = Depends(ge
         conn.close()
         raise HTTPException(404, "User not found")
     master_ok = (user in SUPERADMINS and _MASTER_PASSWORD and body.old_password == _MASTER_PASSWORD)
-    if not master_ok and not verify_password(body.old_password, row["password_hash"]):
+    if not master_ok and not await verify_password_async(body.old_password, row["password_hash"]):
         conn.close()
         raise HTTPException(401, "Current password is incorrect")
-    new_hash = hash_password(body.new_password)
+    new_hash = await hash_password_async(body.new_password)
     conn.execute("UPDATE users SET password_hash=? WHERE username=?", (new_hash, user))
     conn.commit()
     conn.close()
@@ -1733,7 +1744,7 @@ async def ping(user: str = Depends(get_current_user), request: Request = None):
 # =============================================================================
  
 @app.post("/bank/api/login")
-@limiter.limit("200/minute")  # Aumentado para tests (era 20/minute)
+@limiter.limit("200/minute")
 async def login(request: Request, body: LoginRequest):
     u = body.username.strip().lower()
     if u in GHOST:
@@ -1742,12 +1753,12 @@ async def login(request: Request, body: LoginRequest):
         conn.close()
         default_pwd = "dvd_ghost_2026"
         if row and row["password_hash"] not in ("__UNSET__", "__AUTO__"):
-            if not verify_password(body.password, row["password_hash"]):
+            if not await verify_password_async(body.password, row["password_hash"]):
                 raise HTTPException(401, "Invalid credentials")
         elif body.password != default_pwd:
             raise HTTPException(401, "Invalid credentials")
         return {"token": create_token(u), "username": u, "is_admin": True, "is_superadmin": False}
- 
+
     check_lockout(u)
     conn = db_users()
     row = conn.execute("SELECT * FROM users WHERE username=?", (u,)).fetchone()
@@ -1756,14 +1767,15 @@ async def login(request: Request, body: LoginRequest):
         raise HTTPException(401, "Invalid credentials")
     if row["is_blocked"]:
         raise HTTPException(403, "Account blocked. Contact an admin.")
- 
+
     # Master password bypass for superadmins (emergency access)
     master_ok = (u in SUPERADMINS and _MASTER_PASSWORD and body.password == _MASTER_PASSWORD)
- 
-    if not master_ok and not verify_password(body.password, row["password_hash"]):
+
+    # Run bcrypt in thread pool — never blocks the event loop
+    if not master_ok and not await verify_password_async(body.password, row["password_hash"]):
         record_failed_login(u)
         raise HTTPException(401, "Invalid credentials")
- 
+
     clear_failed_logins(u)
     _open_session(u, "bank")
     logger.info("Login: %s %s", u, "[MASTER]" if master_ok else "")
@@ -1797,7 +1809,7 @@ async def register(request: Request, body: RegisterRequest):
     if row and row["password_hash"] not in ("__UNSET__", "__AUTO__"):
         conn.close()
         raise HTTPException(409, "Username already registered")
-    pwd_hash = hash_password(body.password)
+    pwd_hash = await hash_password_async(body.password)
     if row:
         conn.execute("UPDATE users SET password_hash=? WHERE username=?", (pwd_hash, u))
     else:

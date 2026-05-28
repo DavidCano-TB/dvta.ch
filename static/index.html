@@ -2773,19 +2773,22 @@ let _tokenRefreshTime = parseInt(localStorage.getItem('dvd_token_refreshed_at') 
 async function refreshTokenIfNeeded() {
   if (!token || _tokenRefreshInProgress) return;
 
-  // Check if token needs refresh (every 1 hour or if not refreshed in 6 hours)
+  // Check if token needs refresh (every 1 hour)
   const now = Date.now();
-  const lastRefresh = _tokenRefreshTime;
   const hourInMs = 3600000;
-
-  if (now - lastRefresh < hourInMs) return; // Refresh at most once per hour
+  if (now - _tokenRefreshTime < hourInMs) return;
 
   _tokenRefreshInProgress = true;
   try {
-    const r = await fetch(API + '/api/me/refresh-token', {
+    // FIX: correct path is /bank/api/me/refresh-token (was missing /bank prefix)
+    const ctrl = new AbortController();
+    const tid = setTimeout(() => ctrl.abort(), 8000);
+    const r = await fetch(API + '/bank/api/me/refresh-token', {
       method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + token }
+      headers: { 'Authorization': 'Bearer ' + token },
+      signal: ctrl.signal
     });
+    clearTimeout(tid);
 
     if (r.ok) {
       const d = await r.json();
@@ -2795,26 +2798,46 @@ async function refreshTokenIfNeeded() {
       localStorage.setItem('dvd_token_refreshed_at', _tokenRefreshTime.toString());
       console.log('[Token] Refreshed successfully');
     } else if (r.status === 401) {
-      // Token expired and can't be refreshed — logout
       console.log('[Token] Expired, logging out');
+      token = null;
+      localStorage.removeItem('dvd_token');
+      localStorage.removeItem('dvd_token_refreshed_at');
       doLogout();
     }
+    // Any other status (404, 500…) → silently skip, keep existing token
   } catch (e) {
-    console.error('[Token] Refresh error:', e);
+    // AbortError (timeout) or network error → skip refresh, keep existing token
+    console.warn('[Token] Refresh skipped:', e.name === 'AbortError' ? 'timeout' : e.message);
   } finally {
     _tokenRefreshInProgress = false;
   }
 }
 
-async function req(method, path, body) {
-  // Refresh token if needed before making API call
-  await refreshTokenIfNeeded();
+async function req(method, path, body, timeoutMs) {
+  // Refresh token if needed before making API call (skip for login/register)
+  const isAuthCall = path === '/bank/api/login' || path === '/bank/api/register';
+  if (!isAuthCall) await refreshTokenIfNeeded();
 
-  const r = await fetch(API + path, {
-    method,
-    headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1', ...(token ? { 'Authorization': 'Bearer ' + token } : {}) },
-    ...(body ? { body: JSON.stringify(body) } : {})
-  });
+  // Abort after timeoutMs (default 15s) so the spinner never hangs forever
+  const ms = timeoutMs || 15000;
+  const ctrl = new AbortController();
+  const tid = setTimeout(() => ctrl.abort(), ms);
+
+  let r;
+  try {
+    r = await fetch(API + path, {
+      method,
+      headers: { 'Content-Type': 'application/json', 'ngrok-skip-browser-warning': '1', ...(token ? { 'Authorization': 'Bearer ' + token } : {}) },
+      ...(body ? { body: JSON.stringify(body) } : {}),
+      signal: ctrl.signal
+    });
+  } catch (e) {
+    clearTimeout(tid);
+    if (e.name === 'AbortError') throw new Error('El servidor tardó demasiado. Inténtalo de nuevo.');
+    throw new Error('No se pudo conectar al servidor. Comprueba tu conexión.');
+  }
+  clearTimeout(tid);
+
   let d;
   try { d = await r.json(); } catch(e) {
     throw new Error('Error del servidor (' + r.status + '). Comprueba que el servidor está activo.');
@@ -2986,7 +3009,7 @@ function doLogout() {
 /* ── 6. App loader ──────────────────────────────────────── */
 async function loadApp() {
   try {
-    me = await req('GET', '/bank/api/me');
+    me = await req('GET', '/bank/api/me', null, 12000);  // 12s timeout — never hang
     // Load language preference from DB (overrides localStorage)
     if (me.lang && me.lang !== curLang) {
       await loadLang(me.lang);
