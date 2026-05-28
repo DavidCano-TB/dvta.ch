@@ -797,7 +797,7 @@ async def available_exams(user: dict = Depends(get_current_user)):
     if not categories:
         categories = [
             {"id": 1, "name": "Oposiciones Sanitarias", "slug": "sanitarias",
-             "description": "Técnico Superior en Imagen para el Diagnóstico y Medicina Nuclear"},
+             "description": "Técnico Superior en Imagen para el Diagnóstico"},
             {"id": 2, "name": "Fuerzas de Seguridad", "slug": "seguridad",
              "description": "Policía Nacional, Guardia Civil"},
             {"id": 3, "name": "Educación", "slug": "educacion",

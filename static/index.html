@@ -3788,9 +3788,6 @@ async function toggleGame(enable) {
 function openGame() {
   openGames();
 }
-  const url   = token ? '/pasapalabra?token=' + encodeURIComponent(token) : '/pasapalabra';
-  window.open(url, '_blank');
-}
 
 async function openVideo() {
   const username = localStorage.getItem('dvd_username');
