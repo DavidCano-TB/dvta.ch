@@ -189,7 +189,9 @@
 <div id="unifiedNavContainer"></div>
 
 <!-- ── Header ── -->
-
+<div id="hdr">
+  <div class="hLeft">
+    <span class="hTitle" id="hdrTitle">Cuento</span>
   </div>
   <span class="userBadge" id="userBadge">—</span>
 </div>
@@ -313,7 +315,7 @@ async function init() {
 
   const filename = getFilename();
   if (!filename) {
-    window.location.href = '/cuentos';
+    window.location.href = '/bank/cuentos';
     return;
   }
 
