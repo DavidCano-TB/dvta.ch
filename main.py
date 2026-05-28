@@ -3770,7 +3770,7 @@ async def gallery_images():
             if os.path.splitext(filename.lower())[1] in GALLERY_EXTENSIONS:
                 images.append({
                     "file": filename,
-                    "url":  f"/static/gallery/{filename}"
+                    "url":  f"/bank/static/gallery/{filename}"
                 })
  
         # Write a reference manifest alongside the images.

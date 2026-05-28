@@ -2909,6 +2909,9 @@ async function doLogin() {
     console.log('[DEBUG] Login response:', d);
     token = d.token;
     localStorage.setItem('dvd_token', token);
+    // Mark token as fresh so refreshTokenIfNeeded skips for the next hour
+    _tokenRefreshTime = Date.now();
+    localStorage.setItem('dvd_token_refreshed_at', _tokenRefreshTime.toString());
     await loadApp();
     // Solo solicitar permisos de notificaciones, NO audio/video
     _requestNotificationPermission();
@@ -3931,12 +3934,12 @@ function openMillonario() {
 
 function openApuestas() {
   const t = localStorage.getItem('dvd_token');
-  window.location.href = t ? '/apuestas?token=' + encodeURIComponent(t) : '/apuestas';
+  window.location.href = t ? '/bank/apuestas?token=' + encodeURIComponent(t) : '/bank/apuestas';
 }
 
 function openVotaciones() {
   const t = localStorage.getItem('dvd_token');
-  window.location.href = t ? '/votaciones?token=' + encodeURIComponent(t) : '/votaciones';
+  window.location.href = t ? '/bank/votaciones?token=' + encodeURIComponent(t) : '/bank/votaciones';
 }
 
 function openOpo() {
