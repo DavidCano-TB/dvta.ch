@@ -338,12 +338,14 @@ async def register(data: RegisterRequest):
     verification_token = generate_token()
     verification_expires = (datetime.now() + timedelta(hours=24)).isoformat()
     
-    # Insertar usuario
+    # Insertar usuario (auto-verificado para acceso inmediato)
     user_id = db_users.insert("users", {
         "email": data.email,
         "username": data.username,
         "password_hash": password_hash,
         "role": "admin" if data.username in ADMINS else "free",
+        "verified": 1,
+        "verified_at": datetime.now().isoformat(),
         "verification_token": verification_token,
         "verification_expires": verification_expires
     })
