@@ -641,8 +641,31 @@ async function doRegister(e) {
     });
     const data = await r.json();
     if (!r.ok) { showAlert(data.detail || t('errGeneric')); return; }
-    showAlert(t('successRegister'), 's');
-    setTimeout(() => authTab('login'), 2000);
+    // Show success with resend button
+    const alertEl = document.getElementById('authAlert');
+    alertEl.className = 'alert alert-s';
+    alertEl.innerHTML = t('successRegister') + 
+      '<br><button onclick="resendPublic(\'' + email.replace(/'/g,"\\'") + '\')" style="margin-top:8px;background:var(--blue-main);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:.78rem;cursor:pointer">' + t('btnResend') + '</button>';
+    alertEl.style.display = 'block';
+    // Store email for resend
+    window._lastRegEmail = email;
+  } catch(err) { showAlert(t('errGeneric')); }
+}
+
+async function resendPublic(email) {
+  try {
+    const r = await fetch('/api/auth/resend-verification-public', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({email})
+    });
+    const data = await r.json();
+    if (r.ok && data.email_sent) {
+      showAlert(t('successReset'), 's');
+    } else if (r.ok) {
+      showAlert(t('successReset'), 'i');
+    } else {
+      showAlert(t('errGeneric'));
+    }
   } catch(err) { showAlert(t('errGeneric')); }
 }
 

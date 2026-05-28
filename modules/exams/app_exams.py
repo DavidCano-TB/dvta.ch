@@ -349,13 +349,20 @@ async def register(data: RegisterRequest):
     })
     
     # Enviar email de verificación
-    verification_link = f"https://dvta.ch/verify?token={verification_token}"
-    email_service.send_verification_email(data.email, data.username, verification_link)
+    email_sent = False
+    try:
+        verification_link = f"https://dvta.ch/verify?token={verification_token}"
+        email_sent = email_service.send_verification_email(data.email, data.username, verification_link)
+        if not email_sent:
+            logger.warning(f"Verification email NOT sent to {data.email} (returned False)")
+    except Exception as e:
+        logger.error(f"Failed to send verification email to {data.email}: {e}")
     
-    logger.info(f"User registered: {data.username}")
+    logger.info(f"User registered: {data.username}, email_sent={email_sent}")
     
     return {
         "success": True,
+        "email_sent": email_sent,
         "message": "Registration successful. Please check your email to verify your account."
     }
 
@@ -507,7 +514,7 @@ async def get_me(user: dict = Depends(get_current_user)):
 
 @app.post("/api/auth/resend-verification")
 async def resend_verification(user: dict = Depends(get_current_user)):
-    """Reenvía el email de verificación"""
+    """Reenvía el email de verificación (usuario logueado)"""
     if user["verified"]:
         return {"success": True, "message": "Already verified"}
     
@@ -521,10 +528,51 @@ async def resend_verification(user: dict = Depends(get_current_user)):
     }, "id=?", (user["id"],))
     
     # Enviar email
-    verification_link = f"https://dvta.ch/verify?token={verification_token}"
-    email_service.send_verification_email(user["email"], user["username"], verification_link)
+    email_sent = False
+    try:
+        verification_link = f"https://dvta.ch/verify?token={verification_token}"
+        email_sent = email_service.send_verification_email(user["email"], user["username"], verification_link)
+    except Exception as e:
+        logger.error(f"Resend verification failed: {e}")
     
-    return {"success": True, "message": "Verification email sent"}
+    return {"success": True, "email_sent": email_sent, "message": "Verification email sent"}
+
+
+class ResendByEmailRequest(BaseModel):
+    email: EmailStr
+
+
+@app.post("/api/auth/resend-verification-public")
+async def resend_verification_public(data: ResendByEmailRequest):
+    """Reenvía el email de verificación (sin login, por email)"""
+    user = db_users.fetchone("SELECT * FROM users WHERE email=?", (data.email,))
+    
+    if not user:
+        # No revelar si el email existe
+        return {"success": True, "message": "If the email is registered, a verification link has been sent"}
+    
+    if user["verified"]:
+        return {"success": True, "message": "Already verified"}
+    
+    # Generar nuevo token
+    verification_token = generate_token()
+    verification_expires = (datetime.now() + timedelta(hours=24)).isoformat()
+    
+    db_users.update("users", {
+        "verification_token": verification_token,
+        "verification_expires": verification_expires
+    }, "id=?", (user["id"],))
+    
+    # Enviar email
+    email_sent = False
+    try:
+        verification_link = f"https://dvta.ch/verify?token={verification_token}"
+        email_sent = email_service.send_verification_email(user["email"], user["username"], verification_link)
+        logger.info(f"Resend verification to {data.email}: sent={email_sent}")
+    except Exception as e:
+        logger.error(f"Resend verification public failed for {data.email}: {e}")
+    
+    return {"success": True, "email_sent": email_sent, "message": "If the email is registered, a verification link has been sent"}
 
 
 @app.post("/api/auth/forgot-password")
