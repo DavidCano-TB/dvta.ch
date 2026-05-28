@@ -998,8 +998,7 @@ _HOP_RESP = frozenset({"transfer-encoding", "connection", "keep-alive",
                         "content-encoding", "content-length"})
 
 # =============================================================================
-# ACCESO DIRECTO A APUESTAS Y VOTACIONES (dvta.ch/apuestas, dvta.ch/votaciones)
-# Redirigen a /bank/apuestas y /bank/votaciones con token si está logueado
+# ACCESO DIRECTO DESDE dvta.ch (redirigen a /bank/* con login)
 # =============================================================================
 
 @app.get("/apuestas")
@@ -1015,6 +1014,34 @@ async def votaciones_redirect(token: str = ""):
     if token:
         return RedirectResponse(url=f"/bank/votaciones?token={token}")
     return RedirectResponse(url="/bank/votaciones")
+
+@app.get("/mensajes")
+async def mensajes_redirect(token: str = ""):
+    """Redirige a /bank (sección social/mensajes)."""
+    if token:
+        return RedirectResponse(url=f"/bank?token={token}#social")
+    return RedirectResponse(url="/bank")
+
+@app.get("/social")
+async def social_redirect(token: str = ""):
+    """Redirige a /bank (sección social)."""
+    if token:
+        return RedirectResponse(url=f"/bank?token={token}#social")
+    return RedirectResponse(url="/bank")
+
+@app.get("/video")
+async def video_redirect(token: str = ""):
+    """Redirige a /bank/video (videollamadas)."""
+    if token:
+        return RedirectResponse(url=f"/bank/video?token={token}")
+    return RedirectResponse(url="/bank/video")
+
+@app.get("/salas")
+async def salas_redirect(token: str = ""):
+    """Redirige a /bank/salas (salas de video)."""
+    if token:
+        return RedirectResponse(url=f"/bank/salas?token={token}")
+    return RedirectResponse(url="/bank/salas")
 
 @app.api_route(
     "/bank{path:path}",
