@@ -856,6 +856,36 @@ async def exams_index_slash():
     """Página principal de exámenes (con slash)"""
     return FileResponse(os.path.join(STATIC_DIR, "index.html"))
 
+@app.get("/register")
+async def register_page():
+    """Página de registro — sirve la SPA que muestra el formulario de registro"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+@app.get("/login")
+async def login_page():
+    """Página de login — sirve la SPA que muestra el formulario de login"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+@app.get("/dashboard")
+async def dashboard_page():
+    """Página de dashboard — sirve la SPA"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+@app.get("/profile")
+async def profile_page():
+    """Página de perfil — sirve la SPA"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+@app.get("/plans")
+async def plans_page():
+    """Página de planes — sirve la SPA"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
+@app.get("/stats")
+async def stats_page_exams():
+    """Página de estadísticas — sirve la SPA"""
+    return FileResponse(os.path.join(STATIC_DIR, "index.html"))
+
 @app.get("/opo")
 async def opo_index():
     """Panel de gestión de tests OPO (sin login)"""
@@ -941,6 +971,63 @@ async def bank_reverse_proxy(path: str, request: Request):
             {"error": "proxy_error", "detail": str(e)},
             status_code=502,
         )
+
+
+# =============================================================================
+# WEBSOCKET PROXY - Para juegos del Bank (pasapalabra, millonario, etc.)
+# =============================================================================
+
+import asyncio
+import websockets as _ws_lib
+from fastapi import WebSocket, WebSocketDisconnect
+
+@app.websocket("/bank/ws/{path:path}")
+async def bank_ws_proxy(websocket: WebSocket, path: str):
+    """
+    Proxy WebSocket: dvta.ch/bank/ws/{game} → localhost:8000/bank/ws/{game}
+    Esto permite que los juegos funcionen a través del proxy.
+    """
+    await websocket.accept()
+
+    # Build upstream URL preserving query params (token)
+    qs = websocket.query_params
+    qs_str = ("?" + "&".join(f"{k}={v}" for k, v in qs.items())) if qs else ""
+    target = f"ws://localhost:8000/bank/ws/{path}{qs_str}"
+
+    try:
+        async with _ws_lib.connect(target, max_size=None, ping_interval=20) as upstream:
+            async def client_to_upstream():
+                try:
+                    while True:
+                        msg = await websocket.receive_text()
+                        await upstream.send(msg)
+                except WebSocketDisconnect:
+                    pass
+                except Exception:
+                    pass
+
+            async def upstream_to_client():
+                try:
+                    async for msg in upstream:
+                        if isinstance(msg, bytes):
+                            await websocket.send_bytes(msg)
+                        else:
+                            await websocket.send_text(msg)
+                except Exception:
+                    pass
+
+            done, pending = await asyncio.gather(
+                client_to_upstream(), upstream_to_client(),
+                return_exceptions=True
+            )
+    except Exception as e:
+        logger.warning(f"WS proxy /bank/ws/{path} error: {e}")
+    finally:
+        try:
+            await websocket.close()
+        except Exception:
+            pass
+
 
 @app.get("/games", response_class=HTMLResponse)
 @app.get("/games/", response_class=HTMLResponse)

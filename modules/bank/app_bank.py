@@ -306,7 +306,7 @@ async def ws_proxy(websocket: WebSocket, path: str):
     qs = websocket.query_params
     qs_str = ("?" + urlencode(dict(qs))) if qs else ""
     upstream_url = BANK_UPSTREAM.replace("http://", "ws://").replace("https://", "wss://")
-    target = f"{upstream_url}/ws/{path}{qs_str}"
+    target = f"{upstream_url}/bank/ws/{path}{qs_str}"
 
     try:
         async with websockets.connect(target, max_size=None) as upstream:
@@ -332,6 +332,46 @@ async def ws_proxy(websocket: WebSocket, path: str):
                                  return_exceptions=True)
     except Exception as e:
         logger.warning(f"WS proxy error: {e}")
+        try:
+            await websocket.close()
+        except Exception:
+            pass
+
+
+@app.websocket("/bank/ws/{path:path}")
+async def bank_ws_proxy(websocket: WebSocket, path: str):
+    """Reverse proxy de WebSocket para juegos: /bank/ws/{game} → localhost:8000/bank/ws/{game}"""
+    await websocket.accept()
+
+    qs = websocket.query_params
+    qs_str = ("?" + urlencode(dict(qs))) if qs else ""
+    upstream_url = BANK_UPSTREAM.replace("http://", "ws://").replace("https://", "wss://")
+    target = f"{upstream_url}/bank/ws/{path}{qs_str}"
+
+    try:
+        async with websockets.connect(target, max_size=None, ping_interval=20) as upstream:
+            async def client_to_upstream():
+                try:
+                    while True:
+                        msg = await websocket.receive_text()
+                        await upstream.send(msg)
+                except WebSocketDisconnect:
+                    await upstream.close()
+
+            async def upstream_to_client():
+                try:
+                    async for msg in upstream:
+                        if isinstance(msg, bytes):
+                            await websocket.send_bytes(msg)
+                        else:
+                            await websocket.send_text(msg)
+                except Exception:
+                    pass
+
+            await asyncio.gather(client_to_upstream(), upstream_to_client(),
+                                 return_exceptions=True)
+    except Exception as e:
+        logger.warning(f"Bank WS proxy /bank/ws/{path} error: {e}")
         try:
             await websocket.close()
         except Exception:
