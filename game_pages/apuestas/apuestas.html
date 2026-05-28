@@ -213,11 +213,11 @@ async function init(){
       // Verificar qué juegos están habilitados
       try{
         const statusChecks = [
-          {endpoint:'/api/cuentos/status', navId:'navCuentos'},
-          {endpoint:'/api/millonario/status', navId:'navMillonario'},
-          {endpoint:'/api/quiensoy/status', navId:'navQuienSoy'},
-          {endpoint:'/api/cifrasletras/status', navId:'navCifrasLetras'},
-          {endpoint:'/api/pasapalabra/status', navId:'navPasapalabra'}
+          {endpoint:'/bank/api/cuentos/status', navId:'navCuentos'},
+          {endpoint:'/bank/api/millonario/status', navId:'navMillonario'},
+          {endpoint:'/bank/api/quiensoy/status', navId:'navQuienSoy'},
+          {endpoint:'/bank/api/cifrasletras/status', navId:'navCifrasLetras'},
+          {endpoint:'/bank/api/pasapalabra/status', navId:'navPasapalabra'}
         ];
         for(const check of statusChecks){
           try{
@@ -293,7 +293,7 @@ async function loadDvdGeneralStats(){
 
 async function loadUserStats(){
   try{
-    const r=await fetch(`/api/porras/stats/${me.username}`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
+    const r=await fetch(`/bank/api/porras/stats/${me.username}`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){
       const stats=await r.json();
       const el=document.getElementById('userStats');
@@ -598,7 +598,7 @@ async function loadDeletedPorras(){
 async function restorePorra(porraId){
   if(!confirm('Restore this bet? It will be visible again to all users.'))return;
   try{
-    const r=await fetch(`/api/porras/${porraId}/restore`,{
+    const r=await fetch(`/bank/api/porras/${porraId}/restore`,{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
     });
@@ -618,7 +618,7 @@ async function restorePorra(porraId){
 
 function showDeletedPorraDetails(porraId){
   // Fetch and show full details of deleted porra
-  fetch(`/api/porras/deleted`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}})
+  fetch(`/bank/api/porras/deleted`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}})
     .then(r=>r.json())
     .then(data=>{
       const porra=data.porras.find(p=>p.id===porraId);
@@ -999,7 +999,7 @@ async function cerrarPorra(porraId){
     if(!confirm(`✅ CONFIRMAR GANADOR:\n\n"${nombreGanador}"\n\nEl bote se distribuirá automáticamente entre todos los apostadores que eligieron esta opción.\n\nEsta acción es IRREVERSIBLE. ¿Continuar?`))return;
     
     try{
-      const r=await fetch(`/api/porras/cerrar-y-resolver/${porraId}`,{
+      const r=await fetch(`/bank/api/porras/cerrar-y-resolver/${porraId}`,{
         method:'POST',
         headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
         body:JSON.stringify({resultado})
@@ -1023,7 +1023,7 @@ async function cerrarPorra(porraId){
     // Just close (old behavior)
     if(!confirm('¿Cerrar apuestas? No se podrán realizar más apuestas. Podrás resolver el ganador después.'))return;
     try{
-      const r=await fetch(`/api/porras/cerrar/${porraId}`,{
+      const r=await fetch(`/bank/api/porras/cerrar/${porraId}`,{
         method:'POST',
         headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
       });
@@ -1083,7 +1083,7 @@ async function cancelarPorra(porraId){
   console.log('✕ Cancelando porra:', porraId);
   if(!confirm('¿Cancelar apuesta? El dinero será devuelto ÍNTEGRAMENTE a todos los apostadores.'))return;
   try{
-    const r=await fetch(`/api/porras/cancelar/${porraId}`,{
+    const r=await fetch(`/bank/api/porras/cancelar/${porraId}`,{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
     });
@@ -1113,7 +1113,7 @@ async function relanzarPorra(porraId){
   if(!confirm(`¿Relanzar apuesta con nuevas fechas?\nFecha límite: ${nuevaFechaLimite}\nEvento: ${nuevaFechaEvento}`))return;
   
   try{
-    const r=await fetch(`/api/porras/relanzar/${porraId}`,{
+    const r=await fetch(`/bank/api/porras/relanzar/${porraId}`,{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify({
@@ -1136,7 +1136,7 @@ async function relanzarPorra(porraId){
 async function enmascararPorra(porraId,enmascarar){
   console.log('👁️ Enmascarando porra:', porraId, 'enmascarar:', enmascarar);
   try{
-    const r=await fetch(`/api/porras/enmascarar/${porraId}`,{
+    const r=await fetch(`/bank/api/porras/enmascarar/${porraId}`,{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify({enmascarada:enmascarar})
@@ -1181,7 +1181,7 @@ async function cerrarYResolverAdmin(porraId){
   if(!confirm(`✅ CONFIRMAR GANADOR:\n\n"${nombreGanador}"\n\nEl bote se distribuirá automáticamente entre todos los apostadores que eligieron esta opción.\n\nEsta acción es IRREVERSIBLE. ¿Continuar?`))return;
   
   try{
-    const r=await fetch(`/api/porras/cerrar-y-resolver-admin/${porraId}`,{
+    const r=await fetch(`/bank/api/porras/cerrar-y-resolver-admin/${porraId}`,{
       method:'POST',
       headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json','ngrok-skip-browser-warning':'1'},
       body:JSON.stringify({resultado, admin_password: password})
@@ -1208,7 +1208,7 @@ async function borrarPorra(porraId){
   if(!confirm('DELETE bet permanently? This action cannot be undone.'))return;
   if(!confirm('Are you COMPLETELY SURE? This action is IRREVERSIBLE.'))return;
   try{
-    const r=await fetch(`/api/porras/${porraId}`,{
+    const r=await fetch(`/bank/api/porras/${porraId}`,{
       method:'DELETE',
       headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}
     });

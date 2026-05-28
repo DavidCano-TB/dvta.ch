@@ -477,7 +477,7 @@
         // Load votaciones
         async function loadVotaciones() {
             try {
-                const data = await apiCall('/api/votaciones/list');
+                const data = await apiCall('/bank/api/votaciones/list');
                 const container = document.getElementById('votacionesList');
                 
                 if (!data.votaciones || data.votaciones.length === 0) {
@@ -513,7 +513,7 @@
             sessionStorage.setItem('previousPage', window.location.pathname);
             
             try {
-                const data = await apiCall(`/api/votaciones/${votacionId}`);
+                const data = await apiCall(`/bank/api/votaciones/${votacionId}`);
                 const v = data;
                 const stats = data.stats || {};
                 const isDvd = data.is_dvd;
@@ -625,7 +625,7 @@
         // Vote
         async function vote(votacionId, opcion) {
             try {
-                await apiCall('/api/votaciones/votar', 'POST', {
+                await apiCall('/bank/api/votaciones/votar', 'POST', {
                     votacion_id: votacionId,
                     opcion: opcion
                 });
@@ -644,7 +644,7 @@
             if (!confirm('¿Estás seguro de que quieres eliminar tu voto?')) return;
 
             try {
-                await apiCall(`/api/votaciones/${votacionId}/voto`, 'DELETE');
+                await apiCall(`/bank/api/votaciones/${votacionId}/voto`, 'DELETE');
 
                 await showDetail(votacionId);
                 await loadVotaciones();
@@ -660,7 +660,7 @@
             if (!confirm('¿Estás seguro de que quieres finalizar esta votación? Esta acción no se puede deshacer.')) return;
 
             try {
-                await apiCall('/api/votaciones/finalizar', 'POST', {
+                await apiCall('/bank/api/votaciones/finalizar', 'POST', {
                     votacion_id: votacionId
                 });
 
@@ -678,7 +678,7 @@
             if (!confirm('¿Estás seguro de que quieres eliminar esta votación? Esto eliminará todos los votos y no se puede deshacer.')) return;
 
             try {
-                await apiCall(`/api/votaciones/${votacionId}`, 'DELETE');
+                await apiCall(`/bank/api/votaciones/${votacionId}`, 'DELETE');
 
                 closeDetailModal();
                 await loadVotaciones();
@@ -748,7 +748,7 @@
             }
 
             try {
-                const response = await apiCall('/api/votaciones/create', 'POST', {
+                const response = await apiCall('/bank/api/votaciones/create', 'POST', {
                     titulo: title,
                     descripcion: description,
                     opciones: opciones,
@@ -788,7 +788,7 @@
         // Initialize
         async function init() {
             try {
-                const me = await apiCall('/api/me');
+                const me = await apiCall('/bank/api/me');
                 currentUser = me.username;
                 
                 // Mostrar pestañas de navegación según permisos del usuario
@@ -798,11 +798,11 @@
                 // Verificar qué juegos están habilitados
                 try{
                     const statusChecks = [
-                        {endpoint:'/api/cuentos/status', navId:'navCuentos'},
-                        {endpoint:'/api/millonario/status', navId:'navMillonario'},
-                        {endpoint:'/api/quiensoy/status', navId:'navQuienSoy'},
-                        {endpoint:'/api/cifrasletras/status', navId:'navCifrasLetras'},
-                        {endpoint:'/api/pasapalabra/status', navId:'navPasapalabra'}
+                        {endpoint:'/bank/api/cuentos/status', navId:'navCuentos'},
+                        {endpoint:'/bank/api/millonario/status', navId:'navMillonario'},
+                        {endpoint:'/bank/api/quiensoy/status', navId:'navQuienSoy'},
+                        {endpoint:'/bank/api/cifrasletras/status', navId:'navCifrasLetras'},
+                        {endpoint:'/bank/api/pasapalabra/status', navId:'navPasapalabra'}
                     ];
                     for(const check of statusChecks){
                         try{
