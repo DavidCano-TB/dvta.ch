@@ -994,6 +994,25 @@ _HOP_RESP = frozenset({"transfer-encoding", "connection", "keep-alive",
                         "upgrade", "te", "trailers",
                         "content-encoding", "content-length"})
 
+# =============================================================================
+# ACCESO DIRECTO A APUESTAS Y VOTACIONES (dvta.ch/apuestas, dvta.ch/votaciones)
+# Redirigen a /bank/apuestas y /bank/votaciones con token si está logueado
+# =============================================================================
+
+@app.get("/apuestas")
+async def apuestas_redirect(token: str = ""):
+    """Redirige a /bank/apuestas con token si lo tiene."""
+    if token:
+        return RedirectResponse(url=f"/bank/apuestas?token={token}")
+    return RedirectResponse(url="/bank/apuestas")
+
+@app.get("/votaciones")
+async def votaciones_redirect(token: str = ""):
+    """Redirige a /bank/votaciones con token si lo tiene."""
+    if token:
+        return RedirectResponse(url=f"/bank/votaciones?token={token}")
+    return RedirectResponse(url="/bank/votaciones")
+
 @app.api_route(
     "/bank{path:path}",
     methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"],
