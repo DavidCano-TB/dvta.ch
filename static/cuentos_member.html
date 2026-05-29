@@ -104,6 +104,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
   </div>
 
   <div id="cuentosList"><div class="loading">Cargando…</div></div>
+
+  <!-- Información sobre formato de anuncios -->
+  <div id="infoBox" style="margin-top:24px;padding:14px 16px;background:rgba(212,168,67,.04);border:1px solid var(--border);border-radius:var(--r);font-size:.62rem;color:var(--text3);line-height:1.6">
+    <div id="infoText"></div>
+  </div>
 </div>
 
 <nav id="cuentosMobileNav">
@@ -226,6 +231,23 @@ async function load() {
     currentUser = me;
   } catch(e) { window.location.href = '/bank'; return; }
   loadList();
+  showInfoText();
+}
+
+function showInfoText() {
+  const infoTexts = {
+    es: '📝 La primera línea del archivo aparecerá como el título del anuncio, las siguientes como el cuerpo. No olviden poner todas las informaciones necesarias en su anuncio.',
+    en: '📝 The first line of the file will appear as the announcement title, the following lines as the body. Don\'t forget to include all necessary information in your announcement.',
+    fr: '📝 La première ligne du fichier apparaîtra comme le titre de l\'annonce, les suivantes comme le corps. N\'oubliez pas de mettre toutes les informations nécessaires dans votre annonce.',
+    de: '📝 Die erste Zeile der Datei erscheint als Titel der Ankündigung, die folgenden als Inhalt. Vergessen Sie nicht, alle notwendigen Informationen in Ihre Ankündigung aufzunehmen.',
+    it: '📝 La prima riga del file apparirà come titolo dell\'annuncio, le successive come corpo. Non dimenticate di inserire tutte le informazioni necessarie nel vostro annuncio.',
+    ca: '📝 La primera línia del fitxer apareixerà com a títol de l\'anunci, les següents com a cos. No oblideu posar totes les informacions necessàries al vostre anunci.',
+    eu: '📝 Fitxategiaren lehen lerroa iragarki-izenburua izango da, hurrengoak gorputza. Ez ahaztu beharrezko informazio guztia zuen iragarkian jartzea.'
+  };
+  const lang = localStorage.getItem('dvd_lang') || navigator.language?.slice(0,2) || 'es';
+  const text = infoTexts[lang] || infoTexts['es'];
+  const el = document.getElementById('infoText');
+  if (el) el.textContent = text;
 }
 
 window.addEventListener('load', () => {

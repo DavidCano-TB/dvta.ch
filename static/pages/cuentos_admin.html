@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gestión Cuentos · DVDcoin</title>
+<title>Gestión Anuncios · DVDcoin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Mono:wght@300;400&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/bank/static/css/unified-nav.css">
@@ -188,7 +188,7 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
   <!-- Global toggle -->
   <div class="toggleRow" id="toggleRow">
     <div>
-      <div class="toggleLabel">📖 Sección Cuentos</div>
+      <div class="toggleLabel">📋 Sección Anuncios</div>
       <div class="toggleSub" id="toggleSub">Cargando…</div>
     </div>
     <div class="toggleBtns">
@@ -199,7 +199,7 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
 
   <!-- Upload zone -->
   <div class="secHead">
-    <div><div class="secTitle">Subir cuento</div>
+    <div><div class="secTitle">Subir anuncio</div>
     <div class="secSub">Arrastra el archivo o haz clic para seleccionar</div></div>
   </div>
 
@@ -216,7 +216,7 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
   <!-- Story list -->
   <div class="secHead">
     <div>
-      <div class="secTitle">Cuentos en la sala</div>
+      <div class="secTitle">Anuncios publicados</div>
       <div class="secSub" id="listSub">Cargando…</div>
     </div>
     <button class="btn btnN btnSm" onclick="loadList()">↻ Actualizar</button>
@@ -228,7 +228,7 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
 <!-- Confirm delete overlay -->
 <div class="overlay" id="confirmOverlay">
   <div class="overlayBox">
-    <div class="overlayTitle">¿Eliminar cuento?</div>
+    <div class="overlayTitle">¿Eliminar anuncio?</div>
     <div class="overlaySub" id="confirmText">Esta acción no se puede deshacer.</div>
     <div class="overlayBtns">
       <button class="btn btnN" onclick="closeConfirm()">Cancelar</button>
@@ -245,8 +245,8 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);
     <!-- Filters -->
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:flex-end">
       <div>
-        <div style="font-size:.6rem;color:var(--text3);margin-bottom:3px;text-transform:uppercase">Cuento / Juego</div>
-        <input id="sfDetail" type="text" placeholder="nombre del cuento…"
+        <div style="font-size:.6rem;color:var(--text3);margin-bottom:3px;text-transform:uppercase">Anuncio / Juego</div>
+        <input id="sfDetail" type="text" placeholder="nombre del anuncio…"
           style="background:var(--n3);border:1px solid var(--border);border-radius:6px;
             padding:6px 10px;font-size:.72rem;color:var(--text);outline:none;width:180px"
           oninput="loadSessions()">
@@ -407,10 +407,10 @@ async function loadList() {
     if (!r.ok) throw new Error('Error ' + r.status);
     const stories = await r.json();
     document.getElementById('listSub').textContent =
-      stories.length + (stories.length === 1 ? ' cuento' : ' cuentos');
+      stories.length + (stories.length === 1 ? ' anuncio' : ' anuncios');
 
     if (!stories.length) {
-      container.innerHTML = `<div class="empty"><div class="emptyIcon">📭</div>No hay cuentos aún.<br><span style="font-size:.65rem">Sube el primero arriba.</span></div>`;
+      container.innerHTML = `<div class="empty"><div class="emptyIcon">📭</div>No hay anuncios aún.<br><span style="font-size:.65rem">Sube el primero arriba.</span></div>`;
       return;
     }
 
@@ -467,7 +467,7 @@ async function doDelete(filename) {
   closeConfirm();
   const r = await api('DELETE', '/bank/api/cuentos/file/' + encodeURIComponent(filename));
   if (r.ok) {
-    showAlert('Cuento eliminado', 'ok');
+    showAlert('Anuncio eliminado', 'ok');
     loadList();
   } else {
     const e = await r.json().catch(()=>({detail:'Error'}));
