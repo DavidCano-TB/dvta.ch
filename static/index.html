@@ -1472,6 +1472,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Bulletin Board</button>
       <button class="navTab" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
+      <button class="navTab" id="navExams" onclick="openExams()">🎓 <span>Exámenes</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
       <button class="navTab" id="navVotaciones" onclick="openVotaciones()">🗳️ <span data-i18n="navVotaciones">Votaciones</span></button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">⚙️ Admin</button>
@@ -2416,6 +2417,9 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     </button>
     <button class="mNavBtn" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
       <span class="icon">🎮</span>
+    </button>
+    <button class="mNavBtn" id="mobileNavExams" onclick="openExams()" title="Exámenes">
+      <span class="icon">🎓</span>
     </button>
     <button class="mNavBtn" id="mobileNavApuestas" onclick="openApuestas()" title="Apuestas">
       <span class="icon">🎲</span>
@@ -3852,6 +3856,11 @@ function openMillonario() {
 function openApuestas() {
   const t = localStorage.getItem('dvd_token');
   window.location.href = t ? '/bank/apuestas?token=' + encodeURIComponent(t) : '/bank/apuestas';
+}
+
+function openExams() {
+  const t = localStorage.getItem('dvd_token');
+  window.location.href = t ? '/exams?token=' + encodeURIComponent(t) : '/exams';
 }
 
 function openVotaciones() {

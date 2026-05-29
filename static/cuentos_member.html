@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#04040A">
-<title>📖 Cuentos — DVDcoin</title>
+<title>📋 Tablón de Anuncios — DVDcoin</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
@@ -18,8 +18,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh}
-
-/* ── NAV BAR (same as main app) ── */
 #cuentosNav{
   position:sticky;top:0;z-index:200;
   background:rgba(4,4,10,.96);backdrop-filter:blur(12px);
@@ -37,8 +35,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 .cNavBtn:hover,.cNavBtn.on{color:var(--text);border-bottom-color:var(--gold)}
 .cNavLogo{font-family:'Playfair Display',serif;color:var(--gold2);font-size:.9rem;
   font-weight:700;padding:0 10px 0 4px;white-space:nowrap;text-decoration:none}
-
-/* ── Page content ── */
 .wrap{max-width:680px;margin:0 auto;padding:16px 14px 80px}
 .secTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:4px}
 .secSub{font-size:.65rem;color:var(--text3);margin-bottom:16px}
@@ -52,14 +48,23 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 .cInfo{flex:1;min-width:0}
 .cTitle{font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cMeta{font-size:.58rem;color:var(--text3);margin-top:3px}
+.cActions{display:flex;gap:6px;align-items:center;flex-shrink:0}
 .btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;
   border:1px solid var(--border2);background:none;color:var(--gold2);font-family:'DM Mono',monospace;
   font-size:.7rem;cursor:pointer;text-decoration:none;transition:all .15s}
 .btn:hover{background:rgba(212,168,67,.1)}
+.btnDel{color:var(--red);border-color:rgba(200,75,75,.3)}
+.btnDel:hover{background:rgba(200,75,75,.12);border-color:rgba(200,75,75,.5)}
+.btnDel{border-color:rgba(200,75,75,.4);color:var(--red);padding:5px 10px;font-size:.6rem}
+.btnDel:hover{background:rgba(200,75,75,.12)}
+.btnUpload{background:rgba(56,184,122,.08);border-color:rgba(56,184,122,.4);color:var(--green);padding:8px 18px;font-size:.72rem;margin-bottom:16px}
+.btnUpload:hover{background:rgba(56,184,122,.18)}
 .empty{text-align:center;padding:40px;color:var(--text3);font-size:.75rem}
 .loading{text-align:center;padding:30px;color:var(--text3);font-size:.7rem}
-
-/* ── Bottom mobile nav ── */
+.uploadArea{margin-bottom:16px;padding:16px;border:1px dashed var(--border2);border-radius:var(--r);text-align:center;display:none}
+.uploadArea.show{display:block}
+.uploadArea input[type=file]{display:none}
+.uploadMsg{font-size:.65rem;color:var(--green);margin-top:8px;display:none}
 #cuentosMobileNav{
   display:none;position:fixed;bottom:0;left:0;right:0;
   background:rgba(4,4,10,.98);border-top:1px solid var(--border);
@@ -74,101 +79,138 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 </style>
 </head>
 <body class="has-unified-nav">
-<!-- Navegación Unificada -->
 <div id="unifiedNavContainer"></div>
-
-<!-- ── NAV BAR ── -->
 <nav id="cuentosNav">
   <a class="cNavLogo" href="/bank/">◈ DVDcoin</a>
   <button class="cNavBtn" onclick="goTo('dash')">⌂ Inicio</button>
   <button class="cNavBtn" onclick="goTo('tx')">⇄ Enviar</button>
-  <button class="cNavBtn" id="cNavHist" onclick="goTo('hist')">≡ Historial</button>
+  <button class="cNavBtn" onclick="goTo('hist')">≡ Historial</button>
   <button class="cNavBtn" onclick="goTo('gallery')">◫ Galería</button>
-  <button class="cNavBtn on" onclick="void 0">📖 Cuentos</button>
+  <button class="cNavBtn on" onclick="void 0">📋 Anuncios</button>
   <button class="cNavBtn" onclick="goTo('social')">💬 Social</button>
-  <button class="cNavBtn" id="cNavOpo" style="display:none" onclick="goTo('opo')">📝 OPO</button>
-  <button class="cNavBtn" id="cNavStats" style="display:none" onclick="window.location.href="/bank/stats"">📊 Stats</button>
-  <button class="cNavBtn" id="cNavAdm" style="display:none" onclick="goTo('adm')">⚙ Admin</button>
 </nav>
 
-<!-- ── CONTENT ── -->
 <div class="wrap">
-  <div class="secTitle">📖 Cuentos</div>
-  <div class="secSub">Biblioteca de historias de la comunidad</div>
+  <div class="secTitle">📋 Tablón de Anuncios</div>
+  <div class="secSub">Publica y lee los anuncios de la comunidad</div>
+
+  <!-- Upload area -->
+  <button class="btn btnUpload" id="btnShowUpload" onclick="toggleUpload()">＋ Publicar anuncio</button>
+  <div class="uploadArea" id="uploadArea">
+    <p style="font-size:.72rem;color:var(--text2);margin-bottom:10px">Sube un archivo .docx, .odt o .txt</p>
+    <input type="file" id="fileInput" accept=".docx,.odt,.txt" onchange="uploadFile()">
+    <button class="btn" onclick="document.getElementById('fileInput').click()">📎 Seleccionar archivo</button>
+    <div class="uploadMsg" id="uploadMsg"></div>
+  </div>
+
   <div id="cuentosList"><div class="loading">Cargando…</div></div>
 </div>
 
-<!-- ── Mobile bottom nav ── -->
 <nav id="cuentosMobileNav">
   <button class="cMNavBtn" onclick="goTo('dash')"><span class="icon">⌂</span>Inicio</button>
   <button class="cMNavBtn" onclick="goTo('tx')"><span class="icon">⇄</span>Enviar</button>
   <button class="cMNavBtn" onclick="goTo('social')"><span class="icon">💬</span>Social</button>
-  <button class="cMNavBtn"><span class="icon">📖</span>Cuentos</button>
+  <button class="cMNavBtn"><span class="icon">📋</span>Anuncios</button>
 </nav>
 
 <script>
 'use strict';
 const token = localStorage.getItem('dvd_token');
+let currentUser = null;
 
-function goTo(view) {
-  // Navigate to main app and switch to the correct view
-  window.location.href = '/#' + view;
-}
+function goTo(view) { window.location.href = '/bank/#' + view; }
 
-async function api(method, path) {
-  const r = await fetch(path, {
-    method,
-    headers: {'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1'}
-  });
-  if (!r.ok) { const d = await r.json().catch(()=>{}); throw new Error(d?.detail || 'Error ' + r.status); }
+async function api(method, path, body) {
+  const opts = { method, headers: {'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'} };
+  if (body) { opts.body = body; }
+  const r = await fetch(path, opts);
+  if (!r.ok) { const d = await r.json().catch(()=>{}); throw new Error(d?.detail || 'Error '+r.status); }
   return r.json();
 }
 
-function esc(s) {
-  return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function esc(s) { return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function toggleUpload() {
+  const area = document.getElementById('uploadArea');
+  area.classList.toggle('show');
 }
 
-async function load() {
-  if (!token) { window.location.href = '/bank'; return; }
-
-  // Check user role to show/hide admin nav items
+async function uploadFile() {
+  const input = document.getElementById('fileInput');
+  if (!input.files.length) return;
+  const file = input.files[0];
+  const fd = new FormData();
+  fd.append('file', file);
+  const msg = document.getElementById('uploadMsg');
+  msg.style.display = '';
+  msg.textContent = '⏳ Subiendo...';
+  msg.style.color = 'var(--text2)';
   try {
-    const me = await api('GET', '/bank/api/me');
-    if (me.is_admin) { document.getElementById('cNavAdm').style.display=''; }
-    if (me.is_superadmin) { document.getElementById('cNavStats').style.display=''; }
-    // Check OPO access
-    api('GET', '/bank/api/opo/my-access').then(r => {
-      if (r.is_opo_user) document.getElementById('cNavOpo').style.display='';
-    }).catch(()=>{});
-    if (!me.is_admin) {
-      document.getElementById('cNavHist').style.display = '';
-    }
-  } catch(e) { window.location.href = '/bank'; return; }
+    const res = await fetch('/bank/api/cuentos/upload', {
+      method: 'POST',
+      headers: {'Authorization':'Bearer '+token,'ngrok-skip-browser-warning':'1'},
+      body: fd
+    });
+    if (!res.ok) { const d = await res.json().catch(()=>{}); throw new Error(d?.detail||'Error'); }
+    const data = await res.json();
+    msg.textContent = '✓ Publicado: ' + (data.title || file.name);
+    msg.style.color = 'var(--green)';
+    input.value = '';
+    setTimeout(() => { document.getElementById('uploadArea').classList.remove('show'); msg.style.display='none'; }, 2000);
+    loadList();
+  } catch(e) {
+    msg.textContent = '✗ ' + e.message;
+    msg.style.color = 'var(--red)';
+  }
+}
 
+async function deletePost(filename) {
+  if (!confirm('¿Eliminar este anuncio?')) return;
+  try {
+    await api('DELETE', '/bank/api/cuentos/file/' + encodeURIComponent(filename));
+    loadList();
+  } catch(e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+async function loadList() {
   try {
     const items = await api('GET', '/bank/api/cuentos');
     const el = document.getElementById('cuentosList');
     if (!items.length) {
-      el.innerHTML = '<div class="empty">Sin cuentos disponibles en este momento.</div>';
+      el.innerHTML = '<div class="empty">No hay anuncios publicados todavía.</div>';
       return;
     }
     el.innerHTML = items.map(c => {
       const masked = c.masked || false;
-      const name = c.filename || c.name || '';
-      const label = (c.label || name).replace(/_/g,' ').replace(/\.docx$/i,'');
+      const name = c.filename || '';
+      const title = c.title || name.replace(/_/g,' ').replace(/\.\w+$/,'');
+      const creator = c.creator ? `@${esc(c.creator)}` : '';
+      const date = c.date || '';
+      const meta = [creator, date].filter(Boolean).join(' · ');
+
       if (masked) {
         return `<div class="cuento-card" style="opacity:.4">
-          <span class="cIcon">📖</span>
-          <div class="cInfo"><div class="cTitle">${esc(label)}</div><div class="cMeta">No disponible</div></div>
+          <span class="cIcon">📋</span>
+          <div class="cInfo"><div class="cTitle">${esc(title)}</div><div class="cMeta">Oculto</div></div>
         </div>`;
       }
+
+      const delBtn = c.can_delete
+        ? `<button class="btn btnDel" onclick="deletePost('${esc(name)}')" title="Eliminar">🗑</button>`
+        : '';
+
       return `<div class="cuento-card">
-        <span class="cIcon">📖</span>
+        <span class="cIcon">📋</span>
         <div class="cInfo">
-          <div class="cTitle">${esc(label)}</div>
-          ${c.pages ? `<div class="cMeta">${c.pages} páginas</div>` : ''}
+          <div class="cTitle">${esc(title)}</div>
+          <div class="cMeta">${meta}</div>
         </div>
-        <a href="/bank/cuento/${encodeURIComponent(name)}" class="btn">Leer →</a>
+        <div class="cActions">
+          <a href="/bank/cuento/${encodeURIComponent(name)}" class="btn">Leer →</a>
+          ${delBtn}
+        </div>
       </div>`;
     }).join('');
   } catch(e) {
@@ -177,20 +219,21 @@ async function load() {
   }
 }
 
-// Handle #view hash from main app navigation
+async function load() {
+  if (!token) { window.location.href = '/bank'; return; }
+  try {
+    const me = await api('GET', '/bank/api/me');
+    currentUser = me;
+  } catch(e) { window.location.href = '/bank'; return; }
+  loadList();
+}
+
 window.addEventListener('load', () => {
   const hash = location.hash.replace('#','');
-  if (hash && hash !== 'cuentos') {
-    // Redirect back to main app with the requested view
-    window.location.href = '/bank' + '#' + hash;
-    return;
-  }
+  if (hash && hash !== 'cuentos') { window.location.href = '/bank#' + hash; return; }
   load();
 });
 </script>
-
-<!-- Sistema de Navegación Unificada -->
 <script src="/bank/static/js/unified-nav.js"></script>
-
 </body>
 </html>

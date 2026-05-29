@@ -119,7 +119,9 @@ class TestServiceWorkerVersion:
     """sw.js cache name must be current so browsers pick up the fixed nav file."""
 
     @pytest.mark.unit
-    def test_cache_name_is_v4(self):
-        """Cache name must be v4 (bumped after unified-nav.js fix)."""
+    def test_cache_name_is_current(self):
+        """Cache name must be v7 or higher (bumped after nav fixes)."""
         sw = SW_JS.read_text(encoding="utf-8")
-        assert "v4-" in sw, "SW cache name must be bumped to v4 after the nav fix"
+        assert "v7-" in sw or "v8-" in sw or "v9-" in sw or "v10" in sw, (
+            "SW cache name must be v7+ after the nav fix"
+        )

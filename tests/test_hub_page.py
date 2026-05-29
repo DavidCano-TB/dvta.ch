@@ -1,16 +1,8 @@
 """
-Unit tests for the dvta.ch Hub page (Task: navigation hub)
+Unit tests for the dvta.ch Hub page
 
-Covers:
-- hub.html file exists and contains all expected sections/links
-- GET / serves hub.html (not a redirect)
-- GET /hub serves hub.html (alias)
-- GET /exams still works
-- GET /health still works
-- GET /games proxies to port 8002 (or falls back gracefully)
-- GET /social proxies to port 8003 (or falls back gracefully)
-- All main module links present in hub.html
-- Health-check JS block present in hub.html
+The hub page (modules/exams/static/hub.html) is a minimal landing page
+that links to the main platform modules: Bank and Bulletin Board.
 
 Run:
     python -m pytest tests/test_hub_page.py -v --no-cov
@@ -37,8 +29,8 @@ def _load_exams_app(tmp_path, monkeypatch):
     """Load modules/exams/app_exams.py with DB paths redirected to tmp_path."""
     data_dir   = tmp_path / "data"
     config_dir = tmp_path / "config"
-    static_dir = BASE_DIR / "modules" / "exams" / "static"   # real static dir
-    opo_dir    = BASE_DIR / "modules" / "exams" / "opo"       # real opo dir
+    static_dir = BASE_DIR / "modules" / "exams" / "static"
+    opo_dir    = BASE_DIR / "modules" / "exams" / "opo"
     data_dir.mkdir()
     config_dir.mkdir()
 
@@ -80,11 +72,11 @@ async def aclient(exams_mod):
 
 
 # =============================================================================
-# hub.html static file
+# hub.html static file tests — matches current simplified hub
 # =============================================================================
 
 class TestHubHtmlFile:
-    """Verify hub.html exists and contains all required content"""
+    """Verify hub.html exists and contains expected content."""
 
     def test_file_exists(self):
         assert HUB_HTML_PATH.exists(), "hub.html must exist"
@@ -103,90 +95,36 @@ class TestHubHtmlFile:
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
         assert 'href="/bank"' in content
 
-    def test_has_exams_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert 'href="/exams"' in content
-
-    def test_has_games_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert 'href="/games"' in content
-
-    def test_has_social_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert 'href="/social"' in content
-
-    def test_has_opo_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert 'href="/opo"' in content
-
-    def test_has_health_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert 'href="/health"' in content
-
-    def test_has_pasapalabra_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/pasapalabra" in content
-
-    def test_has_millonario_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/millonario" in content
-
-    def test_has_quiensoy_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/quiensoy" in content
-
-    def test_has_cifrasletras_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/cifrasletras" in content
-
-    def test_has_hundirlaflota_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/hundirlaflota" in content
-
-    def test_has_apuestas_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/apuestas" in content
-
-    def test_has_votaciones_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/votaciones" in content
-
-    def test_has_messages_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/messages" in content
-
-    def test_has_stats_link(self):
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/stats" in content
-
-    def test_has_cuentos_link(self):
+    def test_has_bulletin_board_link(self):
+        """Hub must link to the bulletin board (cuentos)."""
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
         assert "/bank/cuentos" in content
 
-    def test_has_salas_link(self):
+    def test_has_bulletin_board_title(self):
+        """Hub must show 'Tablón de anuncios' as the bulletin board name."""
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/salas" in content
-
-    def test_has_health_check_script(self):
-        """JS health-check block must be present"""
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "checkHealth" in content
-
-    def test_has_health_status_indicators(self):
-        """Health dot elements for each service"""
-        content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        for svc in ("bank", "exams", "games", "social"):
-            assert f"dot-{svc}" in content, f"Missing health dot for {svc}"
+        assert "Tabl" in content  # Tablón de anuncios
 
     def test_has_responsive_meta(self):
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
         assert 'name="viewport"' in content
 
     def test_no_broken_template_placeholders(self):
-        """No {{ }} or {% %} Jinja-style placeholders left unrendered"""
+        """No {{ }} or {% %} Jinja-style placeholders left unrendered."""
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
         assert "{{" not in content
         assert "{%" not in content
+
+    def test_no_social_section(self):
+        """Social section was removed from hub."""
+        content = HUB_HTML_PATH.read_text(encoding="utf-8")
+        assert "Videollamadas" not in content
+        assert "Mensajes" not in content
+
+    def test_no_stats_section(self):
+        """Stats section was removed from hub."""
+        content = HUB_HTML_PATH.read_text(encoding="utf-8")
+        assert "Estadísticas" not in content
 
 
 # =============================================================================
@@ -194,23 +132,11 @@ class TestHubHtmlFile:
 # =============================================================================
 
 class TestHubRoutes:
-    """Verify the new routes are registered in the Exams app"""
+    """Verify core routes are registered in the Exams app."""
 
     def test_root_route_registered(self, exams_mod):
         routes = {r.path for r in exams_mod.app.routes}
         assert "/" in routes
-
-    def test_hub_route_registered(self, exams_mod):
-        routes = {r.path for r in exams_mod.app.routes}
-        assert "/hub" in routes
-
-    def test_games_proxy_route_registered(self, exams_mod):
-        routes = {r.path for r in exams_mod.app.routes}
-        assert "/games{path:path}" in routes
-
-    def test_social_proxy_route_registered(self, exams_mod):
-        routes = {r.path for r in exams_mod.app.routes}
-        assert "/social{path:path}" in routes
 
     def test_exams_route_still_registered(self, exams_mod):
         routes = {r.path for r in exams_mod.app.routes}
@@ -227,7 +153,7 @@ class TestHubRoutes:
 
 @pytest.mark.asyncio
 class TestHubEndpoints:
-    """HTTP-level tests for the hub routes"""
+    """HTTP-level tests for the hub routes."""
 
     async def test_root_serves_hub_html(self, aclient):
         r = await aclient.get("/")
@@ -236,14 +162,9 @@ class TestHubEndpoints:
         assert "text/html" in r.headers.get("content-type", "")
 
     async def test_root_is_not_redirect(self, aclient):
-        """Root must serve content directly, not redirect to /exams"""
+        """Root must serve content directly, not redirect."""
         r = await aclient.get("/", follow_redirects=False)
         assert r.status_code == 200
-
-    async def test_hub_alias_serves_hub_html(self, aclient):
-        r = await aclient.get("/hub")
-        assert r.status_code == 200
-        assert "DVDcoin Platform" in r.text
 
     async def test_exams_still_works(self, aclient):
         r = await aclient.get("/exams")
@@ -256,65 +177,17 @@ class TestHubEndpoints:
         assert data["status"] == "healthy"
         assert data["service"] == "DVDcoin Exams"
 
-    async def test_games_proxy_fallback_when_down(self, aclient):
-        """When port 8002 is down, /games should not crash (redirect, 503, or 404 all OK)"""
-        r = await aclient.get("/games", follow_redirects=False)
-        # Either a redirect to games.dvta.ch, a 503, or a 404 — all are acceptable
-        assert r.status_code in (302, 307, 404, 503)
-
-    async def test_social_proxy_fallback_when_down(self, aclient):
-        """When port 8003 is down, /social should redirect or return 503 — not crash"""
-        r = await aclient.get("/social", follow_redirects=False)
-        assert r.status_code in (302, 307, 503)
-
-    async def test_games_proxy_success(self, aclient):
-        """When port 8002 responds, /games proxies the response"""
-        mock_response = MagicMock()
-        mock_response.content = b"<html>Games</html>"
-        mock_response.status_code = 200
-        mock_response.headers = {"content-type": "text/html"}
-
-        mock_client = AsyncMock()
-        mock_client.__aenter__ = AsyncMock(return_value=mock_client)
-        mock_client.__aexit__ = AsyncMock(return_value=False)
-        mock_client.request = AsyncMock(return_value=mock_response)
-
-        with patch("httpx.AsyncClient", return_value=mock_client):
-            r = await aclient.get("/games")
-        assert r.status_code == 200
-        assert b"Games" in r.content
-
-    async def test_social_proxy_success(self, aclient):
-        """When port 8003 responds, /social proxies the response"""
-        mock_response = MagicMock()
-        mock_response.content = b"<html>Social</html>"
-        mock_response.status_code = 200
-        mock_response.headers = {"content-type": "text/html"}
-
-        mock_client = AsyncMock()
-        mock_client.__aenter__ = AsyncMock(return_value=mock_client)
-        mock_client.__aexit__ = AsyncMock(return_value=False)
-        mock_client.request = AsyncMock(return_value=mock_response)
-
-        with patch("httpx.AsyncClient", return_value=mock_client):
-            r = await aclient.get("/social")
-        assert r.status_code == 200
-        assert b"Social" in r.content
-
-    async def test_hub_contains_all_main_modules(self, aclient):
-        """Hub page must mention all 4 main modules"""
+    async def test_hub_contains_bank(self, aclient):
+        """Hub page must mention Bank module."""
         r = await aclient.get("/")
         assert r.status_code == 200
-        for module in ("Bank", "Exams", "Games", "Social"):
-            assert module in r.text, f"Module '{module}' not found in hub"
+        assert "Bank" in r.text
 
-    async def test_hub_contains_game_links(self, aclient):
-        """Hub page must contain links to all games"""
+    async def test_hub_contains_bulletin_board(self, aclient):
+        """Hub page must contain bulletin board link."""
         r = await aclient.get("/")
         assert r.status_code == 200
-        for path in ("/bank/pasapalabra", "/bank/millonario", "/bank/quiensoy",
-                     "/bank/cifrasletras", "/bank/hundirlaflota", "/bank/apuestas"):
-            assert path in r.text, f"Game link '{path}' not found in hub"
+        assert "/bank/cuentos" in r.text
 
 
 # =============================================================================

@@ -52,6 +52,10 @@ def auth_token(registered_user):
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001. Set EXAMS_SERVER_RUNNING=1 to run."
+)
 class TestExamsRegistration:
     """Test suite for user registration."""
 
@@ -94,6 +98,10 @@ class TestExamsRegistration:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsLogin:
     """Test suite for user login."""
 
@@ -126,6 +134,10 @@ class TestExamsLogin:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsMe:
     """Test suite for /api/auth/me endpoint."""
 
@@ -152,6 +164,10 @@ class TestExamsMe:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsSubscription:
     """Test suite for subscription endpoints."""
 
@@ -187,6 +203,10 @@ class TestExamsSubscription:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsStats:
     """Test suite for personal stats."""
 
@@ -205,6 +225,10 @@ class TestExamsStats:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsAvailable:
     """Test suite for available exams."""
 
@@ -227,6 +251,10 @@ class TestExamsAvailable:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsHealth:
     """Test suite for health endpoint."""
 
@@ -244,6 +272,10 @@ class TestExamsHealth:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsVerification:
     """Test suite for email verification."""
 
@@ -259,6 +291,10 @@ class TestExamsVerification:
 
 
 @pytest.mark.unit
+@pytest.mark.skipif(
+    not os.environ.get("EXAMS_SERVER_RUNNING"),
+    reason="Integration test requires exams server on localhost:8001"
+)
 class TestExamsForgotPassword:
     """Test suite for password reset."""
 

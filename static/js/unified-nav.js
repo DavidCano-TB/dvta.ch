@@ -22,6 +22,7 @@
       { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: '/bank/api/messages/status' },
       { id: 'video', icon: '🎥', label: 'Video', href: '/bank/video.html', dynamic: true, checkEndpoint: '/bank/api/rooms/status' },
       { id: 'games', icon: '🎮', label: 'Games', href: '/bank/games.html' },
+      { id: 'exams', icon: '🎓', label: 'Exámenes', href: '/exams' },
       { id: 'apuestas', icon: '🎲', label: 'Apuestas', href: '/bank/apuestas' },
       { id: 'votaciones', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' }
     ],
@@ -32,6 +33,7 @@
       { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: '/bank/mensajes.html' },
       { id: 'video-admin', icon: '🎥', label: 'Video', href: '/bank/video.html' },
       { id: 'games-admin', icon: '🎮', label: 'Games', href: '/bank/games.html' },
+      { id: 'exams-admin', icon: '🎓', label: 'Exámenes', href: '/exams' },
       { id: 'apuestas-admin', icon: '🎲', label: 'Apuestas', href: '/bank/apuestas' },
       { id: 'votaciones-admin', icon: '🗳️', label: 'Votaciones', href: '/bank/votaciones' }
     ],
