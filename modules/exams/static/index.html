@@ -760,26 +760,31 @@ async function loadExamsGrid() {
     cats.forEach(cat => {
       const icon = icons[cat.slug] || '📝';
       const locked = cat.locked;
+      const noQuestions = !cat.question_count || cat.question_count === 0;
+      const disabled = locked || noQuestions;
       const card = document.createElement('div');
       card.style.cssText = 'background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rL);padding:20px;transition:all .3s;'
-        + (locked ? 'opacity:.6;' : 'cursor:pointer;');
+        + (disabled ? 'opacity:.45;pointer-events:none;' : 'cursor:pointer;');
       card.innerHTML = `
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
           <span style="font-size:2rem">${icon}</span>
           <div>
             <strong style="color:var(--text);font-size:1rem">${cat.name}</strong>
             ${locked ? '<span style="font-size:.7rem;background:rgba(255,215,0,.15);color:var(--gold);padding:2px 8px;border-radius:10px;margin-left:8px">'+t('examLocked')+'</span>' : ''}
+            ${noQuestions && !locked ? '<span style="font-size:.7rem;background:rgba(120,120,140,.15);color:var(--text3);padding:2px 8px;border-radius:10px;margin-left:8px">Próximamente</span>' : ''}
           </div>
         </div>
         <p style="color:var(--text2);font-size:.82rem;margin-bottom:12px">${cat.description || ''}</p>
         <div style="display:flex;justify-content:space-between;align-items:center">
           <span style="color:var(--text3);font-size:.75rem">${cat.question_count || 0} ${t('examQuestions')}</span>
-          ${locked
-            ? '<button class="sBtn" disabled>'+t('examLocked')+'</button>'
-            : '<button class="hBtn" style="padding:6px 14px;font-size:.78rem" onclick="startExam(\''+cat.slug+'\')">'+t('examStart')+'</button>'
-          }
+          <button class="sBtn" disabled style="opacity:.5">${disabled ? (locked ? t('examLocked') : 'Próximamente') : t('examStart')}</button>
         </div>`;
-      if (!locked) {
+      if (!disabled) {
+        card.style.pointerEvents = 'auto';
+        card.querySelector('button').disabled = false;
+        card.querySelector('button').className = 'hBtn';
+        card.querySelector('button').style.cssText = 'padding:6px 14px;font-size:.78rem;opacity:1';
+        card.querySelector('button').onclick = () => startExam(cat.slug);
         card.onmouseenter = () => { card.style.borderColor = 'var(--border-h)'; card.style.transform = 'translateY(-3px)'; };
         card.onmouseleave = () => { card.style.borderColor = 'var(--border)'; card.style.transform = 'none'; };
       }
