@@ -145,7 +145,7 @@ async function init(){
 }
 
 function connect(){
-  ws=new WebSocket(WSB+'/ws/pasapalabra?token='+encodeURIComponent(tok));
+  ws=new WebSocket(WSB+'/bank/ws/pasapalabra?token='+encodeURIComponent(tok));
   ws.onopen=()=>{document.getElementById('connDot').className='connDot on';};
   ws.onmessage=ev=>{try{handle(JSON.parse(ev.data));}catch(_){}};
   ws.onclose=()=>{document.getElementById('connDot').className='connDot';setTimeout(connect,1000);};

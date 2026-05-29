@@ -143,7 +143,7 @@ async function init(){
   connect();
 }
 function connect(){
-  ws=new WebSocket(WSB+'/ws/quiensoy?token='+encodeURIComponent(tok));
+  ws=new WebSocket(WSB+'/bank/ws/quiensoy?token='+encodeURIComponent(tok));
   ws.onopen=()=>document.getElementById('connDot').className='connDot on';
   ws.onmessage=ev=>{try{if(JSON.parse(ev.data).type==='state'){st=JSON.parse(ev.data);render();}}catch(_){}};
   ws.onclose=()=>{document.getElementById('connDot').className='connDot';setTimeout(connect,3000);};
@@ -160,7 +160,21 @@ function render(){
   }
   if(st.status==='waiting'&&!isAdmin){showOv('🎭 ¿Quién soy?','Esperando a que el host configure la partida…');return;}
   if(st.status==='finished'){
-    const char=st.character?` El personaje era: ${st.character}`:'';
+    let charText = '';
+    if(st.character){
+      if(typeof st.character === 'string'){
+        charText = st.character;
+      }else if(st.character.name){
+        charText = st.character.name;
+      }else if(st.character.character){
+        charText = st.character.character;
+      }else if(st.character.corrected_name){
+        charText = st.character.corrected_name;
+      }else{
+        charText = 'Desconocido';
+      }
+    }
+    const char=charText?` El personaje era: ${charText}`:'';
     if(st.winner)showOv('🎉 ¡'+st.winner+' lo adivinó!',char);
     else showOv('😔 Nadie lo adivinó',char);
     return;
@@ -171,7 +185,19 @@ function render(){
   const cc=document.getElementById('charCard');
   if(st.character&&isAdmin){
     cc.style.display='';
-    document.getElementById('charName').textContent=st.character;
+    let charDisplay = '';
+    if(typeof st.character === 'string'){
+      charDisplay = st.character;
+    }else if(st.character.corrected_name){
+      charDisplay = st.character.corrected_name;
+    }else if(st.character.name){
+      charDisplay = st.character.name;
+    }else if(st.character.character){
+      charDisplay = st.character.character;
+    }else{
+      charDisplay = 'Personaje configurado';
+    }
+    document.getElementById('charName').textContent=charDisplay;
     // Show photo if available
     const photo=st.character_photo;
     const photoEl=document.getElementById('charPhoto');

@@ -4449,7 +4449,8 @@ def _load_millonario_questions():
 def _build_game_questions():
     bank = _load_millonario_questions()
     result = []
-    for lvl in range(1, 16):  # 15 niveles
+    num_levels = len(PREMIOS)  # Use actual PREMIOS length (10)
+    for lvl in range(1, num_levels + 1):
         pool = bank.get(str(lvl), [])
         if pool:
             q = _random_m.choice(pool)

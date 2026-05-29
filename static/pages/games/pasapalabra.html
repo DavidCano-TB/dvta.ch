@@ -191,7 +191,7 @@ function updateStatus() {
 
 function connectWS() {
   if (wsConn && wsConn.readyState < 2) return;
-  wsConn = new WebSocket(wsBase + '/ws/pasapalabra?token=' + encodeURIComponent(token));
+  wsConn = new WebSocket(wsBase + '/bank/ws/pasapalabra?token=' + encodeURIComponent(token));
   wsConn.onmessage = e => { try { handleState(JSON.parse(e.data)); } catch(_){} };
   wsConn.onclose   = () => { setTimeout(connectWS, 3000); };
   wsConn.onerror   = () => {};

@@ -133,7 +133,7 @@ async function init(){
   connect();
 }
 function connect(){
-  ws=new WebSocket(WSB+'/ws/millonario?token='+encodeURIComponent(tok));
+  ws=new WebSocket(WSB+'/bank/ws/millonario?token='+encodeURIComponent(tok));
   ws.onopen=()=>document.getElementById('connDot').className='connDot on';
   ws.onmessage=ev=>{try{if(JSON.parse(ev.data).type==='state'){st=JSON.parse(ev.data);render();}}catch(_){}};
   ws.onclose=()=>{document.getElementById('connDot').className='connDot';setTimeout(connect,3000);};

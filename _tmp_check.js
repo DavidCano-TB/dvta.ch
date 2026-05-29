@@ -2194,7 +2194,7 @@ function ppUpdateStatus(enabled) {
 function ppConnectWS() {
   if (_ppWs && _ppWs.readyState < 2) return;
   const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
-  _ppWs = new WebSocket(wsBase + '/ws/pasapalabra?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
+  _ppWs = new WebSocket(wsBase + '/bank/ws/pasapalabra?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
   _ppWs.onmessage = e => { try { ppHandleState(JSON.parse(e.data)); } catch(_){} };
   _ppWs.onclose   = () => { if (_curGamePanel === 'pasapalabra') setTimeout(ppConnectWS, 3000); };
 }
@@ -2300,7 +2300,7 @@ function mlUpdateStatus(enabled) {
 function mlConnectWS() {
   if (_mlWs && _mlWs.readyState < 2) return;
   const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
-  _mlWs = new WebSocket(wsBase + '/ws/millonario?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
+  _mlWs = new WebSocket(wsBase + '/bank/ws/millonario?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
   _mlWs.onmessage = e => { try { mlHandleState(JSON.parse(e.data)); } catch(_){} };
   _mlWs.onclose   = () => { if (_curGamePanel === 'millonario') setTimeout(mlConnectWS, 3000); };
 }
@@ -2465,7 +2465,7 @@ let _cl2Ws = null;
 function cl2ConnectWS() {
   if (_cl2Ws && _cl2Ws.readyState < 2) return;
   const wsBase = location.protocol === 'https:' ? 'wss://' + location.host : 'ws://' + location.host;
-  _cl2Ws = new WebSocket(wsBase + '/ws/cifrasletras?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
+  _cl2Ws = new WebSocket(wsBase + '/bank/ws/cifrasletras?token=' + encodeURIComponent(localStorage.getItem('dvd_token')||''));
   _cl2Ws.onmessage = e => { try { cl2HandleState(JSON.parse(e.data)); } catch(_){} };
   _cl2Ws.onclose   = () => { if (_curGamePanel === 'cifrasletras') setTimeout(cl2ConnectWS, 3000); };
 }

@@ -129,7 +129,7 @@ async function init(){
 }
 function connect(){
   console.log('QuienSoy: Conectando WebSocket...');
-  ws=new WebSocket(WSB+'/ws/quiensoy?token='+encodeURIComponent(tok));
+  ws=new WebSocket(WSB+'/bank/ws/quiensoy?token='+encodeURIComponent(tok));
   ws.onopen=()=>{
     console.log('QuienSoy: WebSocket conectado');
     document.getElementById('connDot').className='connDot on';
