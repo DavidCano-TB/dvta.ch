@@ -1469,10 +1469,10 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab"              onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Bulletin Board</button>
+      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Anuncios</button>
       <button class="navTab" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
-      <button class="navTab" id="navExams" onclick="openExams()">🎓 <span>Exámenes</span></button>
+      <button class="navTab hidden" id="navExams" onclick="openExams()">🎓 <span>Exámenes</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
       <button class="navTab" id="navVotaciones" onclick="openVotaciones()">🗳️ <span data-i18n="navVotaciones">Votaciones</span></button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">⚙️ Admin</button>
@@ -1964,7 +1964,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
           <button class="btn btnS" onclick="openGamePanel('hundirlaflota')" style="justify-content:flex-start;gap:8px">⚓ <span data-i18n="navHundirLaFlota">Hundir la Flota</span></button>
-          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Bulletin Board</span></button>
+          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></button>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
@@ -2412,13 +2412,13 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Bulletin Board">
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
       <span class="icon">📋</span>
     </button>
     <button class="mNavBtn" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
       <span class="icon">🎮</span>
     </button>
-    <button class="mNavBtn" id="mobileNavExams" onclick="openExams()" title="Exámenes">
+    <button class="mNavBtn hidden" id="mobileNavExams" onclick="openExams()" title="Exámenes" style="display:none">
       <span class="icon">🎓</span>
     </button>
     <button class="mNavBtn" id="mobileNavApuestas" onclick="openApuestas()" title="Apuestas">
@@ -4265,7 +4265,7 @@ const GAME_META = {
   quiensoy:     { icon:'🎭', get label(){ return t('navQuienSoy','¿Quién soy?'); } },
   cifrasletras: { icon:'🔤', get label(){ return t('navCifrasLetras','Cifras y Letras'); } },
   hundirlaflota:{ icon:'⚓', get label(){ return t('navHundirLaFlota','Hundir la Flota'); } },
-  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Bulletin Board'); } },
+  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); } },
   opo:          { icon:'📝', label:'OPO' },
   mensajes:     { icon:'💬', get label(){ return t('socialTitle','Mensajes'); } },
 };
