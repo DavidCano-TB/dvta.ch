@@ -3896,7 +3896,7 @@ async function toggleQuienSoy(enable) {
 
 function openQuienSoy() {
   const t = localStorage.getItem('dvd_token');
-  window.open(t ? '/quiensoy?token=' + encodeURIComponent(t) : '/quiensoy', '_blank');
+  window.open(t ? '/bank/quiensoy?token=' + encodeURIComponent(t) : '/bank/quiensoy', '_blank');
 }
 
 /* ── 9e. Cifras y Letras ─────────────────────────── */
@@ -3943,7 +3943,7 @@ async function toggleCifrasLetras(enable) {
 
 function openCifrasLetras() {
   const t = localStorage.getItem('dvd_token');
-  window.open(t ? '/cifrasletras?token=' + encodeURIComponent(t) : '/cifrasletras', '_blank');
+  window.open(t ? '/bank/cifrasletras?token=' + encodeURIComponent(t) : '/bank/cifrasletras', '_blank');
 }
 
 /* ── 9f. Hundir la Flota game ─────────────────────── */
@@ -3967,7 +3967,7 @@ async function toggleHundirLaFlota(enable) {
 
 function openHundirLaFlota() {
   const t = localStorage.getItem('dvd_token');
-  window.open(t ? '/hundirlaflota/game.html?token=' + encodeURIComponent(t) : '/hundirlaflota/game.html', '_blank');
+  window.open(t ? '/bank/hundirlaflota/game.html?token=' + encodeURIComponent(t) : '/bank/hundirlaflota/game.html', '_blank');
 }
 
 function clAcType() {

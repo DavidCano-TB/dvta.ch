@@ -108,12 +108,12 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);mi
 'use strict';
 
 const GAMES = [
-  { id: 'pasapalabra', icon: '🎯', name: 'Pasapalabra', desc: 'El rosco de preguntas', href: '/bank/pasapalabra/game.html', statusEndpoint: '/bank/api/pasapalabra/status', toggleEndpoint: '/bank/api/pasapalabra/toggle', adminHref: '/bank/pasapalabra.html' },
-  { id: 'millonario', icon: '💰', name: 'Millonario', desc: '¿Quién quiere ser millonario?', href: '/bank/millonario/game.html', statusEndpoint: '/bank/api/millonario/status', toggleEndpoint: '/bank/api/millonario/toggle', adminHref: '/bank/millonario.html' },
-  { id: 'quiensoy', icon: '🎭', name: '¿Quién soy?', desc: 'Adivina el personaje', href: '/bank/quiensoy/game.html', statusEndpoint: '/bank/api/quiensoy/status', toggleEndpoint: '/bank/api/quiensoy/toggle', adminHref: '/bank/quiensoy.html' },
-  { id: 'cifrasletras', icon: '🔤', name: 'Cifras y Letras', desc: 'Números y palabras', href: '/bank/cifrasletras/game.html', statusEndpoint: '/bank/api/cifrasletras/status', toggleEndpoint: '/bank/api/cifrasletras/toggle', adminHref: '/bank/cifrasletras.html' },
-  { id: 'hundirlaflota', icon: '⚓', name: 'Hundir la Flota', desc: 'Batalla naval estratégica', href: '/bank/hundirlaflota/game.html', statusEndpoint: '/bank/api/hundirlaflota/status', toggleEndpoint: '/bank/api/hundirlaflota/toggle', adminHref: '/bank/hundirlaflota/admin.html' },
-  { id: 'cuentos', icon: '📖', name: 'Cuentos', desc: 'Historias interactivas', href: '/bank/cuentos.html', statusEndpoint: '/bank/api/cuentos/status', toggleEndpoint: '/bank/api/cuentos/toggle', adminHref: '/bank/cuentos.html' }
+  { id: 'pasapalabra', icon: '🎯', name: 'Pasapalabra', desc: 'The question wheel', href: '/bank/pasapalabra', statusEndpoint: '/bank/api/pasapalabra/status', toggleEndpoint: '/bank/api/pasapalabra/toggle', adminHref: '/bank/admin/games/pasapalabra' },
+  { id: 'millonario', icon: '💰', name: 'Millonario', desc: 'Who wants to be a millionaire?', href: '/bank/millonario', statusEndpoint: '/bank/api/millonario/status', toggleEndpoint: '/bank/api/millonario/toggle', adminHref: '/bank/admin/games/millonario' },
+  { id: 'quiensoy', icon: '🎭', name: 'Who am I?', desc: 'Guess the character', href: '/bank/quiensoy', statusEndpoint: '/bank/api/quiensoy/status', toggleEndpoint: '/bank/api/quiensoy/toggle', adminHref: '/bank/admin/games/quiensoy' },
+  { id: 'cifrasletras', icon: '🔤', name: 'Numbers & Letters', desc: 'Numbers and words', href: '/bank/cifrasletras', statusEndpoint: '/bank/api/cifrasletras/status', toggleEndpoint: '/bank/api/cifrasletras/toggle', adminHref: '/bank/admin/games/cifrasletras' },
+  { id: 'hundirlaflota', icon: '⚓', name: 'Battleship', desc: 'Strategic naval battle', href: '/bank/hundirlaflota/game.html', statusEndpoint: '/bank/api/hundirlaflota/status', toggleEndpoint: '/bank/api/hundirlaflota/toggle', adminHref: '/bank/hundirlaflota/admin.html' },
+  { id: 'cuentos', icon: '📖', name: 'Stories', desc: 'Interactive stories', href: '/bank/cuentos.html', statusEndpoint: '/bank/api/cuentos/status', toggleEndpoint: '/bank/api/cuentos/toggle', adminHref: '/bank/admin/games/cuentos' }
 ];
 
 let me = null;

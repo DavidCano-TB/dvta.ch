@@ -112,17 +112,17 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointe
   </div>
 
   <div class="section" id="secConfig">
-    <div class="sTitle">⚙️ Configurar nueva partida</div>
+    <div class="sTitle">⚙️ Configure new game</div>
     <div style="margin-bottom:14px">
-      <div class="lbl">🎯 Tamaño del tablero</div>
+      <div class="lbl">🎯 Board size</div>
       <select class="sel" id="boardSize">
-        <option value="8">8x8 — Rápido</option>
-        <option value="10" selected>10x10 — Clásico</option>
-        <option value="12">12x12 — Épico</option>
+        <option value="8">8x8 — Quick</option>
+        <option value="10" selected>10x10 — Classic</option>
+        <option value="12">12x12 — Epic</option>
       </select>
     </div>
     <div style="margin-bottom:14px">
-      <div class="lbl">⏱ Tiempo por turno (segundos)</div>
+      <div class="lbl">⏱ Turn time (seconds)</div>
       <select class="sel" id="turnTime">
         <option value="30">30 s</option>
         <option value="60" selected>60 s</option>
@@ -136,36 +136,36 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointe
       <div class="lbl">🚢 Configuración de flota</div>
       <div id="shipConfig" style="display:grid;gap:8px;margin-top:8px;">
         <div class="shipConfigRow">
-          <span style="font-size:.75rem;color:var(--text);">🚢 Portaaviones (5)</span>
+          <span style="font-size:.75rem;color:var(--text);">🚢 Carrier (5)</span>
           <input type="number" class="inp" id="ship_carrier" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
         </div>
         <div class="shipConfigRow">
-          <span style="font-size:.75rem;color:var(--text);">⛴️ Acorazado (4)</span>
+          <span style="font-size:.75rem;color:var(--text);">⛴️ Battleship (4)</span>
           <input type="number" class="inp" id="ship_battleship" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
         </div>
         <div class="shipConfigRow">
-          <span style="font-size:.75rem;color:var(--text);">🚤 Submarino (3)</span>
+          <span style="font-size:.75rem;color:var(--text);">🚤 Submarine (3)</span>
           <input type="number" class="inp" id="ship_submarine" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
         </div>
         <div class="shipConfigRow">
-          <span style="font-size:.75rem;color:var(--text);">🛥️ Destructor (2)</span>
+          <span style="font-size:.75rem;color:var(--text);">🛥️ Destroyer (2)</span>
           <input type="number" class="inp" id="ship_destroyer" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
         </div>
         <div class="shipConfigRow">
-          <span style="font-size:.75rem;color:var(--text);">⛵ Patrullera (1)</span>
+          <span style="font-size:.75rem;color:var(--text);">⛵ Patrol Boat (1)</span>
           <input type="number" class="inp" id="ship_patrol" min="0" max="5" value="1" style="width:60px;padding:6px 10px;">
         </div>
       </div>
     </div>
     
-    <div class="lbl">👥 Jugadores (2-4)</div>
+    <div class="lbl">👥 Players (2-4)</div>
     <div class="acWrap">
       <input class="inp" id="acIn" type="text" autocomplete="off"
-        placeholder="🔍 Buscar usuario…"
+        placeholder="🔍 Search user…"
         oninput="acFilter()" onkeydown="acKey(event)" onfocus="acFilter()">
       <div class="acDrop" id="acDrop"></div>
     </div>
-    <div class="pills" id="pills"><span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span></div>
+    <div class="pills" id="pills"><span style="font-size:.62rem;color:var(--text3)">Add players…</span></div>
     <div class="pillCount" id="pillCount">0 / 4</div>
     <button class="btn btnG w100" id="btnStart" onclick="startGame()" disabled style="margin-top:14px">
       ▶ Start game
@@ -285,7 +285,7 @@ async function toggle(on) {
 }
 
 async function resetGame() {
-  if (!confirm('¿Reiniciar la partida? Esto eliminará el juego actual y permitirá configurar uno nuevo.')) return;
+  if (!confirm('Reset the game? This will clear the current game and allow configuring a new one.')) return;
   
   const btn = document.getElementById('btnReset');
   const originalText = btn.textContent;
@@ -319,7 +319,7 @@ async function resetGame() {
     document.getElementById('boardSize').value = 10;
     document.getElementById('turnTime').value = 60;
     
-    showAlert('alert1', '✓ Partida reiniciada — Configura una nueva partida', 'ok');
+    showAlert('alert1', '✓ Game reset — Configure a new game', 'ok');
     
     // Recargar la página después de un breve delay para asegurar que todo se resetea
     setTimeout(() => {
@@ -327,7 +327,7 @@ async function resetGame() {
     }, 1500);
   } catch(e) { 
     console.error('❌ Error al reiniciar:', e);
-    showAlert('alert1', 'Error: ' + e.message + ' — Recargando página...', 'err');
+    showAlert('alert1', 'Error: ' + e.message + ' — Reloading page...', 'err');
     
     // Recargar de todas formas después de un breve delay
     setTimeout(() => {
@@ -342,38 +342,38 @@ async function resetGame() {
 function openGame() { window.open('/bank/hundirlaflota/game.html?token=' + encodeURIComponent(token), '_blank'); }
 
 async function startGame() {
-  if (players.length < 2) { showAlert('alert2', 'Se necesitan al menos 2 jugadores'); return; }
+  if (players.length < 2) { showAlert('alert2', 'At least 2 players required'); return; }
   const boardSize = parseInt(document.getElementById('boardSize').value);
   const turnTime = parseInt(document.getElementById('turnTime').value);
   
   // Obtener configuración de barcos
   const ships = {
     carrier: {
-      name: "Portaaviones",
+      name: "Carrier",
       size: 5,
       icon: "🚢",
       count: parseInt(document.getElementById('ship_carrier').value) || 0
     },
     battleship: {
-      name: "Acorazado",
+      name: "Battleship",
       size: 4,
       icon: "⛴️",
       count: parseInt(document.getElementById('ship_battleship').value) || 0
     },
     submarine: {
-      name: "Submarino",
+      name: "Submarine",
       size: 3,
       icon: "🚤",
       count: parseInt(document.getElementById('ship_submarine').value) || 0
     },
     destroyer: {
-      name: "Destructor",
+      name: "Destroyer",
       size: 2,
       icon: "🛥️",
       count: parseInt(document.getElementById('ship_destroyer').value) || 0
     },
     patrol: {
-      name: "Patrullera",
+      name: "Patrol Boat",
       size: 1,
       icon: "⛵",
       count: parseInt(document.getElementById('ship_patrol').value) || 0
@@ -383,7 +383,7 @@ async function startGame() {
   // Verificar que hay al menos un barco
   const totalShips = Object.values(ships).reduce((sum, ship) => sum + ship.count, 0);
   if (totalShips === 0) {
-    showAlert('alert2', 'Debes configurar al menos un barco');
+    showAlert('alert2', 'You must configure at least one ship');
     return;
   }
   
@@ -443,7 +443,7 @@ function renderPills() {
   const el = document.getElementById('pills');
   el.innerHTML = players.length
     ? players.map((u,i)=>`<span class="pill">@${u}<button class="pillX" onclick="removePlayer(${i})">✕</button></span>`).join('')
-    : '<span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span>';
+    : '<span style="font-size:.62rem;color:var(--text3)">Add players…</span>';
   document.getElementById('pillCount').textContent = players.length+' / 4';
   document.getElementById('btnStart').disabled = players.length < 2;
 }

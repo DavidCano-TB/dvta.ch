@@ -249,7 +249,7 @@ async function resetGame() {
   } catch(e) { showAlert('alert1', e.message); }
 }
 
-function openGame() { window.open('/bank/cifrasletras/game.html?token=' + encodeURIComponent(token), '_blank'); }
+function openGame() { window.open('/bank/cifrasletras?token=' + encodeURIComponent(token), '_blank'); }
 
 async function startGame() {
   if (!players.length) { showAlert('alert2', 'Añade al menos un jugador'); return; }

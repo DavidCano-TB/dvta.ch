@@ -213,7 +213,7 @@ async function resetGame() {
   } catch(e) { showAlert('alert1', e.message); }
 }
 
-function openGame() { window.open('/bank/millonario/game.html?token=' + encodeURIComponent(token), '_blank'); }
+function openGame() { window.open('/bank/millonario?token=' + encodeURIComponent(token), '_blank'); }
 
 async function startGame() {
   if (!selected) { showAlert('alert2', 'Selecciona un jugador'); return; }
