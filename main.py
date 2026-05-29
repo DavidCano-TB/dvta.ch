@@ -2728,7 +2728,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         if is_masked and user not in ALL_ADMINS:
             continue
         creator = creators.get(fname, "")
-        can_delete = user in ALL_ADMINS or user == creator
+        can_delete = user in ALL_ADMINS or user == creator or creator == ""
         items.append({
             "filename": fname,
             "title":    _office_title(path),
