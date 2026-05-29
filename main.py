@@ -2605,12 +2605,11 @@ async def cuentos_toggle(user: str = Depends(get_current_user)):
 @app.post("/bank/api/cuentos/upload")
 async def cuentos_upload(file: UploadFile = File(...), user:
     str = Depends(get_current_user)):
-    if user not in ALL_ADMINS:
-        raise HTTPException(403, "Solo admins")
+    """Upload a bulletin board post. Any logged-in user can upload."""
     fname = os.path.basename(file.filename or "upload.docx")
     ext   = os.path.splitext(fname)[1].lower()
     if ext not in _SUPPORTED_EXT:
-        raise HTTPException(400, "Solo .docx, .odt y .txt")
+        raise HTTPException(400, "Only .docx, .odt and .txt supported")
     os.makedirs(CUENTOS_DIR, exist_ok=True)
     dest = os.path.join(CUENTOS_DIR, fname)
     base, ext2 = os.path.splitext(fname)
@@ -2621,22 +2620,32 @@ async def cuentos_upload(file: UploadFile = File(...), user:
     with open(dest, "wb") as fout:
         fout.write(await file.read())
     final = os.path.basename(dest)
-    logger.info("Cuento uploaded: %s by %s", final, user)
-    return {"ok": True, "filename": final, "title": _office_title(dest)}
+    # Store creator in meta
+    meta = _load_meta()
+    creators = meta.get("creators", {})
+    creators[final] = user
+    meta["creators"] = creators
+    _save_meta(meta)
+    logger.info("Bulletin post uploaded: %s by %s", final, user)
+    return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user}
  
  
 @app.delete("/bank/api/cuentos/file/{filename:path}")
 async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
-    """Delete a story file."""
-    if user not in ALL_ADMINS:
-        raise HTTPException(403, "Solo admins")
+    """Delete a bulletin post. Allowed for the creator or any admin."""
     filename = os.path.basename(filename)
     path = os.path.join(CUENTOS_DIR, filename)
     if not os.path.exists(path):
-        raise HTTPException(404, "No encontrado")
-    os.remove(path)
+        raise HTTPException(404, "Not found")
     meta = _load_meta()
+    creator = meta.get("creators", {}).get(filename, "")
+    if user not in ALL_ADMINS and user != creator:
+        raise HTTPException(403, "Only the author or an admin can delete this post")
+    os.remove(path)
     meta["masked"] = [f for f in meta.get("masked", []) if f != filename]
+    creators = meta.get("creators", {})
+    creators.pop(filename, None)
+    meta["creators"] = creators
     _save_meta(meta)
     return {"ok": True}
  
@@ -2700,12 +2709,14 @@ async def cuento_page(filename: str):
  
 @app.get("/bank/api/cuentos")
 async def list_cuentos(user: str = Depends(get_current_user)):
-    """List stories. When enabled: all users. When disabled: admins only."""
+    """List bulletin board posts. When enabled: all users. When disabled: admins only."""
     if not _cuentos_enabled and user not in ALL_ADMINS:
-        raise HTTPException(403, "Cuentos desactivados")
+        raise HTTPException(403, "Bulletin board disabled")
     _ping_session(user, "cuentos")
     if not os.path.exists(CUENTOS_DIR):
         return []
+    meta = _load_meta()
+    creators = meta.get("creators", {})
     items = []
     for fname in os.listdir(CUENTOS_DIR):
         if os.path.splitext(fname)[1].lower() not in _SUPPORTED_EXT:
@@ -2713,15 +2724,18 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         if fname.startswith("~") or fname.startswith("."):
             continue
         path      = os.path.join(CUENTOS_DIR, fname)
-        meta      = _load_meta()
         is_masked = fname in meta.get("masked", [])
         if is_masked and user not in ALL_ADMINS:
             continue
+        creator = creators.get(fname, "")
+        can_delete = user in ALL_ADMINS or user == creator
         items.append({
             "filename": fname,
             "title":    _office_title(path),
             "date":     _office_date(fname),
             "masked":   is_masked,
+            "creator":  creator,
+            "can_delete": can_delete,
         })
     dated   = sorted([x for x in items if x["date"]],
                      key=lambda x: (x["date"][6:], x["date"][3:5], x["date"][:2]),

@@ -1469,7 +1469,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab"              onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📖 Cuentos</button>
+      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Bulletin Board</button>
       <button class="navTab" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
@@ -1891,18 +1891,15 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <!-- ── CUENTOS ───────────────────────────────────────────── -->
     <div id="view-cuentos" class="view">
       <div class="secHead">
-        <div class="secTitle">📖 Cuentos</div>
-        <div class="secSub">Biblioteca de historias de la comunidad</div>
+        <div class="secTitle" data-i18n="cuentosTitle">📋 Bulletin Board</div>
+        <div class="secSub" data-i18n="cuentosSub">Community announcements and posts</div>
       </div>
-      <!-- Upload panel (admins only) -->
+      <!-- Upload panel (all users) -->
       <div class="panel" id="cuentosUploadPanel" style="display:none;margin-bottom:12px">
         <div class="pHead" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
           <div>
-            <div class="pTitle"><span class="pDot"></span>📤 Subir cuento</div>
-            <div class="pSub">Archivos .docx o .txt</div>
-          </div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap">
-            <a href="/bank/admin/cuentos" target="_blank" class="btn btnS btnSm" style="text-decoration:none">⚙ Gestionar</a>
+            <div class="pTitle"><span class="pDot"></span>📤 <span data-i18n="cuentosUpload">Upload post</span></div>
+            <div class="pSub" data-i18n="cuentosUploadSub">Files .docx or .txt</div>
           </div>
         </div>
         <div id="cuentosUploadAlert" class="alert"></div>
@@ -1910,7 +1907,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <input type="file" id="cuentosFileInput" accept=".docx,.odt,.txt"
             style="flex:1;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
               padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.75rem;outline:none">
-          <button class="btn btnG btnSm" onclick="cuentosUpload()">↑ Subir</button>
+          <button class="btn btnG btnSm" onclick="cuentosUpload()">↑ <span data-i18n="cuentosUploadBtn">Upload</span></button>
         </div>
       </div>
       <!-- Stories list -->
@@ -1966,7 +1963,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
           <button class="btn btnS" onclick="openGamePanel('hundirlaflota')" style="justify-content:flex-start;gap:8px">⚓ <span data-i18n="navHundirLaFlota">Hundir la Flota</span></button>
-          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📖 <span data-i18n="navCuentos">Cuentos</span></button>
+          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Bulletin Board</span></button>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
@@ -2414,8 +2411,8 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Cuentos">
-      <span class="icon">📖</span>
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Bulletin Board">
+      <span class="icon">📋</span>
     </button>
     <button class="mNavBtn" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
       <span class="icon">🎮</span>
@@ -3694,34 +3691,48 @@ async function toggleCuentos(enable) {
 async function loadCuentosView() {
   const el = document.getElementById('cuentosViewList');
   if (!el) return;
-  el.innerHTML = '<div class="empty">Cargando…</div>';
-  // Show upload panel for admins
-  if (me?.is_admin) document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
+  el.innerHTML = '<div class="empty">Loading…</div>';
+  // Show upload panel for all logged-in users
+  document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
   try {
     const items = await req('GET', '/bank/api/cuentos');
     if (!items.length) {
-      el.innerHTML = '<div class="empty">Sin cuentos disponibles.</div>';
+      el.innerHTML = '<div class="empty">No posts available.</div>';
       return;
     }
     el.innerHTML = items.map(c => {
       const name  = c.filename || '';
       const label = (c.title || name).replace(/_/g,' ').replace(/\.(docx|odt)$/i,'');
       const masked = c.masked || false;
+      const creator = c.creator || '';
+      const canDelete = c.can_delete || false;
       if (masked && !me?.is_admin) return '';
       return `<div class="panel" style="display:flex;align-items:center;gap:12px;padding:14px 16px;${masked?'opacity:.5':''}">
-        <span style="font-size:1.4rem;flex-shrink:0">📖</span>
+        <span style="font-size:1.4rem;flex-shrink:0">📋</span>
         <div style="flex:1;min-width:0">
           <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
           ${c.date ? `<div style="font-size:.58rem;color:var(--text3);margin-top:2px">${esc(c.date)}</div>` : ''}
-          ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Oculto para miembros</div>' : ''}
+          ${creator ? `<div style="font-size:.55rem;color:var(--text3);margin-top:1px">by @${esc(creator)}</div>` : ''}
+          ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
         </div>
-        ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
-          class="btn btnG btnSm" style="text-decoration:none;flex-shrink:0">Leer →</a>` : ''}
+        <div style="display:flex;gap:6px;flex-shrink:0;align-items:center">
+          ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
+            class="btn btnG btnSm" style="text-decoration:none">Read →</a>` : ''}
+          ${canDelete ? `<button class="btn btnD btnSm" onclick="deleteCuento('${esc(name)}')">🗑</button>` : ''}
+        </div>
       </div>`;
     }).filter(Boolean).join('');
   } catch(e) {
     el.innerHTML = `<div class="empty">Error: ${esc(e.message)}</div>`;
   }
+}
+
+async function deleteCuento(filename) {
+  if (!confirm('Delete this post permanently?')) return;
+  try {
+    await req('DELETE', '/bank/api/cuentos/file/' + encodeURIComponent(filename));
+    loadCuentosView();
+  } catch(e) { alert('Error: ' + e.message); }
 }
 
 async function cuentosUpload() {
@@ -4245,7 +4256,7 @@ const GAME_META = {
   quiensoy:     { icon:'🎭', get label(){ return t('navQuienSoy','¿Quién soy?'); } },
   cifrasletras: { icon:'🔤', get label(){ return t('navCifrasLetras','Cifras y Letras'); } },
   hundirlaflota:{ icon:'⚓', get label(){ return t('navHundirLaFlota','Hundir la Flota'); } },
-  cuentos:      { icon:'📖', get label(){ return t('navCuentos','Cuentos'); } },
+  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Bulletin Board'); } },
   opo:          { icon:'📝', label:'OPO' },
   mensajes:     { icon:'💬', get label(){ return t('socialTitle','Mensajes'); } },
 };
