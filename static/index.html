@@ -1470,12 +1470,10 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
       <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📖 Cuentos</button>
-      <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
-      <button class="navTab hidden" id="navStats" onclick="window.location.href='/bank/stats'" data-i18n="navStats">📊 Stats</button>
+      <button class="navTab" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
       <button class="navTab" id="navVotaciones" onclick="openVotaciones()">🗳️ <span data-i18n="navVotaciones">Votaciones</span></button>
-      <button class="navTab hidden" id="navVideo" onclick="openVideoAsync()">🎥 <span>Videollamadas</span></button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">⚙️ Admin</button>
     </div>
 
@@ -1958,8 +1956,8 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <!-- ══ GAME MANAGEMENT PANEL ══════════════════════════════════ -->
       <div class="panel" id="panelGameBtns" style="display:none">
         <div class="pHead">
-          <div class="pTitle"><span class="pDot"></span>🎮 Juegos</div>
-          <div class="pSub">Selecciona un juego para gestionar</div>
+          <div class="pTitle"><span class="pDot"></span>🎮 <span data-i18n="gameAdminTitle">Game Manager</span></div>
+          <div class="pSub" data-i18n="gameAdminSub">Select a game to manage</div>
         </div>
         <!-- Game selector buttons -->
         <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;margin-top:4px" id="gameBtnGrid">
@@ -2419,7 +2417,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Cuentos">
       <span class="icon">📖</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
+    <button class="mNavBtn" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
       <span class="icon">🎮</span>
     </button>
     <button class="mNavBtn" id="mobileNavApuestas" onclick="openApuestas()" title="Apuestas">

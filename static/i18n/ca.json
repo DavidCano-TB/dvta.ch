@@ -265,5 +265,7 @@
   "votacionesVote": "Votar",
   "votacionesResults": "Resultats",
   "votacionesOpen": "Oberta",
-  "votacionesClosed": "Tancada"
+  "votacionesClosed": "Tancada",
+  "gameAdminTitle": "Administrador de jocs",
+  "gameAdminSub": "Selecciona un joc per gestionar"
 }

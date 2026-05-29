@@ -96,14 +96,12 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointe
   <div class="section">
     <div class="sTitle">⚙️ Control del juego</div>
     <div class="statusRow">
-      <div class="statusDot off" id="dot"></div>
-      <div class="statusText"><strong id="statusText">Cargando…</strong></div>
+      <div class="statusDot on" id="dot"></div>
+      <div class="statusText"><strong id="statusText">Game active</strong></div>
     </div>
     <div class="btnRow">
-      <button class="btn btnG btnSm" id="btnOn"    onclick="toggle(true)">▶ Activar</button>
-      <button class="btn btnR btnSm" id="btnOff"   onclick="toggle(false)">■ Desactivar</button>
-      <button class="btn btnO btnSm" id="btnReset" onclick="resetGame()">↺ Reiniciar</button>
-      <button class="btn btnS btnSm" id="btnOpen"  onclick="openGame()">↗ Abrir juego</button>
+      <button class="btn btnO btnSm" id="btnReset" onclick="resetGame()">↺ Reset</button>
+      <button class="btn btnS btnSm" id="btnOpen"  onclick="openGame()">↗ Open game</button>
     </div>
     <div class="alert" id="alert1"></div>
   </div>
@@ -170,7 +168,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointe
     <div class="pills" id="pills"><span style="font-size:.62rem;color:var(--text3)">Añade jugadores…</span></div>
     <div class="pillCount" id="pillCount">0 / 4</div>
     <button class="btn btnG w100" id="btnStart" onclick="startGame()" disabled style="margin-top:14px">
-      ▶ Iniciar partida
+      ▶ Start game
     </button>
     <div class="alert" id="alert2"></div>
   </div>
@@ -221,24 +219,22 @@ async function load() {
       api('GET', '/bank/api/hundirlaflota/status'),
       api('GET', '/bank/api/hundirlaflota/users'),
     ]);
-    enabled = !!status.enabled;
+    enabled = true;
     allUsers = users || [];
+    // Auto-enable game if not already enabled
+    if (!status.enabled) {
+      await api('POST', '/bank/api/hundirlaflota/toggle', { enabled: true });
+    }
     updateStatus();
     connectWS();
   } catch(e) { showAlert('alert1', e.message); }
 }
 
 function updateStatus() {
-  document.getElementById('dot').className = 'statusDot ' + (enabled ? 'on' : 'off');
-  document.getElementById('badge').textContent = enabled ? '🟢 Activo' : '⚫ Desactivado';
-  document.getElementById('badge').className   = 'badge ' + (enabled ? 'on' : 'off');
-  document.getElementById('statusText').textContent = enabled ? 'Juego activo' : 'Juego desactivado';
-  
-  // Mostrar/ocultar botones según estado
-  document.getElementById('btnOn').style.display    = enabled ? 'none' : 'inline-flex';
-  document.getElementById('btnOff').style.display   = enabled ? 'inline-flex' : 'none';
-  document.getElementById('btnReset').style.display = 'inline-flex'; // Siempre visible
-  document.getElementById('btnOpen').style.display  = enabled ? 'inline-flex' : 'none';
+  document.getElementById('dot').className = 'statusDot on';
+  document.getElementById('badge').textContent = '🟢 Active';
+  document.getElementById('badge').className = 'badge on';
+  document.getElementById('statusText').textContent = 'Game active';
 }
 
 function connectWS() {
@@ -343,7 +339,7 @@ async function resetGame() {
   }
 }
 
-function openGame() { window.open('/hundirlaflota/game.html?token=' + encodeURIComponent(token), '_blank'); }
+function openGame() { window.open('/bank/hundirlaflota/game.html?token=' + encodeURIComponent(token), '_blank'); }
 
 async function startGame() {
   if (players.length < 2) { showAlert('alert2', 'Se necesitan al menos 2 jugadores'); return; }

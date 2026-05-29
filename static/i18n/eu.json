@@ -201,5 +201,7 @@
   "apuestasDistribucion": "Apustuen Banaketa",
   "apuestasBote": "Pote Osoa",
   "apuestasParticipantes": "Parte-hartzaileak",
-  "apuestasCuota": "Kuota"
+  "apuestasCuota": "Kuota",
+  "gameAdminTitle": "Jokoen kudeatzailea",
+  "gameAdminSub": "Hautatu joko bat kudeatzeko"
 }

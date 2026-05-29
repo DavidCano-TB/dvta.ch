@@ -265,5 +265,7 @@
   "votacionesVote": "Voter",
   "votacionesResults": "Résultats",
   "votacionesOpen": "Ouvert",
-  "votacionesClosed": "Fermé"
+  "votacionesClosed": "Fermé",
+  "gameAdminTitle": "Gestionnaire de jeux",
+  "gameAdminSub": "Sélectionnez un jeu à gérer"
 }

@@ -220,7 +220,7 @@ const videos = {
 // CONEXIÓN WEBSOCKET
 // ═══════════════════════════════════════════════════════════
 function connectWS() {
-  ws = new WebSocket(wsBase + '/ws/hundirlaflota?token=' + encodeURIComponent(token));
+  ws = new WebSocket(wsBase + '/bank/ws/hundirlaflota?token=' + encodeURIComponent(token));
   
   ws.onopen = () => {
     console.log('✓ WebSocket conectado');

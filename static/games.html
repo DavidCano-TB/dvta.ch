@@ -79,22 +79,22 @@ body{font-family:'DM Mono',monospace;background:var(--noir);color:var(--text);mi
   <div class="loginCard">
     <div class="bigIcon">🎮</div>
     <div class="cardTitle">Games</div>
-    <div class="cardSub">Inicia sesión para acceder a los juegos</div>
-    <a href="/bank/" class="btn btnG">← Iniciar sesión</a>
+    <div class="cardSub">Log in to access games</div>
+    <a href="/bank/" class="btn btnG">← Sign in</a>
   </div>
 </div>
 
 <!-- Main content -->
 <div id="mainContent" style="display:none">
   <div class="wrap">
-    <a href="/bank/" class="backLink">← Volver al banco</a>
+    <a href="/bank/" class="backLink">← Back to bank</a>
     <div class="pageTitle">🎮 Games</div>
-    <div class="pageSub">Todos los juegos disponibles</div>
+    <div class="pageSub">All available games</div>
 
     <!-- Admin config panel (only visible for admins) -->
     <div id="adminConfigPanel" class="adminPanel" style="display:none">
-      <div class="apTitle">⚙️ Panel de Configuración</div>
-      <div class="apSub">Gestiona y arranca los juegos desde aquí</div>
+      <div class="apTitle">⚙️ <span data-i18n="gameAdminTitle">Game Manager</span></div>
+      <div class="apSub" data-i18n="gameAdminSub">Manage and start games from here</div>
       <div class="apGrid" id="adminGameGrid"></div>
     </div>
 
@@ -162,19 +162,15 @@ function renderGames() {
   grid.innerHTML = '';
 
   GAMES.forEach(g => {
-    const enabled = gameStatuses[g.id];
     const card = document.createElement('a');
-    card.className = 'gameCard' + (enabled || me.is_admin ? '' : ' disabled');
-    card.href = enabled || me.is_admin ? g.href : '#';
-    if (enabled || me.is_admin) {
-      card.onclick = function(e) {
-        e.preventDefault();
-        const t = localStorage.getItem('dvd_token');
-        window.location.href = g.href + (g.href.includes('?') ? '&' : '?') + 'token=' + encodeURIComponent(t);
-      };
-    }
+    card.className = 'gameCard';
+    card.href = g.href;
+    card.onclick = function(e) {
+      e.preventDefault();
+      const t = localStorage.getItem('dvd_token');
+      window.location.href = g.href + (g.href.includes('?') ? '&' : '?') + 'token=' + encodeURIComponent(t);
+    };
     card.innerHTML = `
-      <span class="gBadge ${enabled ? 'live' : 'off'}">${enabled ? '● LIVE' : '○ OFF'}</span>
       <span class="gIcon">${g.icon}</span>
       <span class="gName">${g.name}</span>
       <span class="gDesc">${g.desc}</span>
@@ -190,16 +186,13 @@ function renderAdminPanel() {
   grid.innerHTML = '';
 
   GAMES.forEach(g => {
-    const enabled = gameStatuses[g.id];
     const div = document.createElement('div');
     div.style.cssText = 'display:flex;flex-direction:column;gap:6px;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:12px;text-align:center';
     div.innerHTML = `
       <span style="font-size:1.4rem">${g.icon}</span>
       <span style="font-family:'Oswald',sans-serif;font-size:.8rem;color:var(--gold2)">${g.name}</span>
-      <span style="font-size:.55rem;padding:2px 6px;border-radius:10px;align-self:center;${enabled ? 'color:var(--green);border:1px solid rgba(56,184,122,.3)' : 'color:var(--red);border:1px solid rgba(200,48,96,.2)'}">${enabled ? '● Activo' : '○ Inactivo'}</span>
       <div style="display:flex;gap:4px;justify-content:center;margin-top:4px">
-        <button class="btn btnSm ${enabled ? 'btnD' : 'btnG'}" onclick="toggleGame('${g.id}',${!enabled})">${enabled ? '■ Off' : '▶ On'}</button>
-        <a href="${g.adminHref}" class="btn btnSm btnO" style="text-decoration:none">⚙</a>
+        <a href="${g.adminHref}" class="btn btnSm btnO" style="text-decoration:none">⚙ Configure</a>
       </div>
     `;
     grid.appendChild(div);

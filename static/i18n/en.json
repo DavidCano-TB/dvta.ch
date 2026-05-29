@@ -265,5 +265,7 @@
   "votacionesVote": "Vote",
   "votacionesResults": "Results",
   "votacionesOpen": "Open",
-  "votacionesClosed": "Closed"
+  "votacionesClosed": "Closed",
+  "gameAdminTitle": "Game Manager",
+  "gameAdminSub": "Select a game to manage"
 }

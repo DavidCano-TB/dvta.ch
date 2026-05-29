@@ -201,5 +201,7 @@
   "apuestasDistribucion": "Distribuzione Scommesse",
   "apuestasBote": "Pool Totale",
   "apuestasParticipantes": "Partecipanti",
-  "apuestasCuota": "Quota"
+  "apuestasCuota": "Quota",
+  "gameAdminTitle": "Gestore giochi",
+  "gameAdminSub": "Seleziona un gioco da gestire"
 }

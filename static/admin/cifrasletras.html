@@ -195,14 +195,14 @@ async function load() {
 }
 
 function updateStatus() {
-  document.getElementById('dot').className = 'statusDot ' + (enabled ? 'on' : 'off');
-  document.getElementById('badge').textContent = enabled ? '🟢 Activo' : '⚫ Desactivado';
-  document.getElementById('badge').className   = 'badge ' + (enabled ? 'on' : 'off');
-  document.getElementById('statusText').textContent = enabled ? 'Juego activo' : 'Juego desactivado';
-  document.getElementById('btnOn').style.display    = enabled ? 'none' : '';
-  document.getElementById('btnOff').style.display   = enabled ? '' : 'none';
-  document.getElementById('btnReset').style.display = enabled ? '' : 'none';
-  document.getElementById('btnOpen').style.display  = enabled ? '' : 'none';
+  document.getElementById('dot').className = 'statusDot on';
+  document.getElementById('badge').textContent = '🟢 Active';
+  document.getElementById('badge').className   = 'badge on';
+  document.getElementById('statusText').textContent = 'Game active';
+  document.getElementById('btnOn').style.display    = 'none';
+  document.getElementById('btnOff').style.display   = 'none';
+  document.getElementById('btnReset').style.display = '';
+  document.getElementById('btnOpen').style.display  = '';
 }
 
 function connectWS() {
@@ -249,7 +249,7 @@ async function resetGame() {
   } catch(e) { showAlert('alert1', e.message); }
 }
 
-function openGame() { window.open('/cifrasletras?token=' + encodeURIComponent(token), '_blank'); }
+function openGame() { window.open('/bank/cifrasletras/game.html?token=' + encodeURIComponent(token), '_blank'); }
 
 async function startGame() {
   if (!players.length) { showAlert('alert2', 'Añade al menos un jugador'); return; }

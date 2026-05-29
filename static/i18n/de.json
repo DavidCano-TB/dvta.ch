@@ -201,5 +201,7 @@
   "apuestasDistribucion": "Wettverteilung",
   "apuestasBote": "Gesamtpool",
   "apuestasParticipantes": "Teilnehmer",
-  "apuestasCuota": "Quote"
+  "apuestasCuota": "Quote",
+  "gameAdminTitle": "Spielverwaltung",
+  "gameAdminSub": "Wähle ein Spiel zur Verwaltung"
 }

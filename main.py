@@ -3075,8 +3075,8 @@ async def quien_soy_page():
  
 @app.get("/bank/api/quiensoy/status")
 async def quien_soy_status():
-    """Return Quien Soy enabled state."""
-    return {"enabled": quien_soy_manager.enabled}
+    """Return Quien Soy enabled state. Always enabled."""
+    return {"enabled": True}
  
  
 class QuienSoyToggleRequest(BaseModel):
@@ -3592,8 +3592,8 @@ async def cifras_letras_page():
  
 @app.get("/bank/api/cifrasletras/status")
 async def cifras_letras_status():
-    """Return Cifras y Letras enabled state."""
-    return {"enabled": cifras_letras_manager.enabled}
+    """Return Cifras y Letras enabled state. Always enabled."""
+    return {"enabled": True}
  
  
 class CifrasLetrasToggleRequest(BaseModel):
@@ -4193,8 +4193,8 @@ async def pasapalabra_page():
  
 @app.get("/bank/api/pasapalabra/status")
 async def pasapalabra_status():
-    """Return Pasapalabra enabled state."""
-    return {"enabled": game_manager.enabled}
+    """Return Pasapalabra enabled state. Always enabled."""
+    return {"enabled": True}
  
 @app.get("/bank/api/pasapalabra/users")
 async def pasapalabra_users(user: str = Depends(get_current_user)):
@@ -4740,8 +4740,8 @@ async def porra_individual_page(porra_id: int):
  
 @app.get("/bank/api/millonario/status")
 async def millonario_status():
-    """Return Millonario enabled state."""
-    return {"enabled": millonario_manager.enabled}
+    """Return Millonario enabled state. Always enabled."""
+    return {"enabled": True}
  
  
 @app.get("/bank/api/millonario/users")
@@ -9114,8 +9114,8 @@ async def hundirlaflota_game_page():
 
 @app.get("/bank/api/hundirlaflota/status")
 async def hundirlaflota_status():
-    """Return Hundir la Flota enabled state."""
-    return {"enabled": hundirlaflota_manager.enabled}
+    """Return Hundir la Flota enabled state. Always enabled."""
+    return {"enabled": True}
 
 
 @app.get("/bank/api/hundirlaflota/users")

@@ -160,12 +160,10 @@ class TestOnclickHandlers:
         assert not missing, f"onclick functions not defined: {missing}"
 
     @pytest.mark.unit
-    def test_navstats_onclick_valid_quotes(self, html):
-        """navStats onclick must use valid HTML attribute quoting."""
-        # The broken version had onclick="window.location.href="/bank/stats""
-        assert 'onclick="window.location.href="/bank/stats""' not in html
-        # The fixed version uses single quotes inside
-        assert "onclick=\"window.location.href='/bank/stats'\"" in html
+    def test_navstats_onclick_removed(self, html):
+        """navStats tab has been removed from the navigation."""
+        # Stats tab was intentionally removed from the UI
+        assert 'id="navStats"' not in html
 
     @pytest.mark.unit
     def test_dologin_defined(self, html):
