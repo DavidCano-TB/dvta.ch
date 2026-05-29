@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 from contextlib import asynccontextmanager, contextmanager
  
-from fastapi import FastAPI, HTTPException, Depends, Request, WebSocket, WebSocketDisconnect, UploadFile, File
+from fastapi import FastAPI, HTTPException, Depends, Request, WebSocket, WebSocketDisconnect, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -2603,8 +2603,11 @@ async def cuentos_toggle(user: str = Depends(get_current_user)):
  
  
 @app.post("/bank/api/cuentos/upload")
-async def cuentos_upload(file: UploadFile = File(...), user:
-    str = Depends(get_current_user)):
+async def cuentos_upload(
+    file: UploadFile = File(...),
+    expires_at: str = Form(""),
+    user: str = Depends(get_current_user)
+):
     """Upload a bulletin board post. Any logged-in user can upload."""
     fname = os.path.basename(file.filename or "upload.docx")
     ext   = os.path.splitext(fname)[1].lower()
@@ -2620,14 +2623,19 @@ async def cuentos_upload(file: UploadFile = File(...), user:
     with open(dest, "wb") as fout:
         fout.write(await file.read())
     final = os.path.basename(dest)
-    # Store creator in meta
+    # Store creator and expiry in meta
     meta = _load_meta()
     creators = meta.get("creators", {})
     creators[final] = user
     meta["creators"] = creators
+    # Store expiry date if provided (format: YYYY-MM-DD)
+    if expires_at and expires_at.strip():
+        expiries = meta.get("expires", {})
+        expiries[final] = expires_at.strip()
+        meta["expires"] = expiries
     _save_meta(meta)
-    logger.info("Bulletin post uploaded: %s by %s", final, user)
-    return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user}
+    logger.info("Bulletin post uploaded: %s by %s (expires: %s)", final, user, expires_at or "never")
+    return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user, "expires_at": expires_at or None}
  
  
 @app.delete("/bank/api/cuentos/file/{filename:path}")
@@ -2717,11 +2725,17 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         return []
     meta = _load_meta()
     creators = meta.get("creators", {})
+    expiries = meta.get("expires", {})
+    today = datetime.now().strftime("%Y-%m-%d")
     items = []
     for fname in os.listdir(CUENTOS_DIR):
         if os.path.splitext(fname)[1].lower() not in _SUPPORTED_EXT:
             continue
         if fname.startswith("~") or fname.startswith("."):
+            continue
+        # Skip expired posts (unless admin)
+        expires = expiries.get(fname, "")
+        if expires and expires < today and user not in ALL_ADMINS:
             continue
         path      = os.path.join(CUENTOS_DIR, fname)
         is_masked = fname in meta.get("masked", [])
@@ -2729,6 +2743,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             continue
         creator = creators.get(fname, "")
         can_delete = user in ALL_ADMINS or user == creator or creator == ""
+        is_expired = bool(expires and expires < today)
         items.append({
             "filename": fname,
             "title":    _office_title(path),
@@ -2736,6 +2751,8 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             "masked":   is_masked,
             "creator":  creator,
             "can_delete": can_delete,
+            "expires_at": expires or None,
+            "expired": is_expired,
         })
     dated   = sorted([x for x in items if x["date"]],
                      key=lambda x: (x["date"][6:], x["date"][3:5], x["date"][:2]),
