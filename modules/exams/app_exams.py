@@ -1008,6 +1008,14 @@ async def apuestas_redirect(token: str = ""):
         return RedirectResponse(url=f"/bank/apuestas?token={token}")
     return RedirectResponse(url="/bank/apuestas")
 
+
+@app.get("/apuestas/porra/{porra_id}")
+async def apuestas_porra_redirect(porra_id: int, token: str = ""):
+    """Redirige a /bank/apuestas/porra/{id} con token si lo tiene."""
+    if token:
+        return RedirectResponse(url=f"/bank/apuestas/porra/{porra_id}?token={token}")
+    return RedirectResponse(url=f"/bank/apuestas/porra/{porra_id}")
+
 @app.get("/votaciones")
 async def votaciones_redirect(token: str = ""):
     """Redirige a /bank/votaciones con token si lo tiene."""
