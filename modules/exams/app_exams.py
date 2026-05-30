@@ -56,6 +56,10 @@ STATIC_DIR = os.path.join(BASE_DIR, "static")
 OPO_DIR = os.path.join(BASE_DIR, "opo")
 CONFIG_DIR = os.path.join(BASE_DIR, "config")
 
+# Root del proyecto (c:\dvdcoin)
+PROJECT_ROOT = os.path.normpath(os.path.join(BASE_DIR, "..", ".."))
+PORRAS_DIR = os.path.join(PROJECT_ROOT, "game_pages", "apuestas", "porras")
+
 # Bases de datos
 DB_USERS = os.path.join(DATA_DIR, "users_exams.db")
 DB_EXAMS = os.path.join(DATA_DIR, "exams.db")
@@ -1066,11 +1070,7 @@ async def exams_admin_list_users(user: dict = Depends(get_current_user)):
 @app.get("/apuestas/porra/{porra_id}")
 async def apuestas_porra_redirect(porra_id: int, token: str = ""):
     """Serve porra page directly or redirect to bank."""
-    # Try to serve the file directly first (faster, no proxy needed)
-    porras_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
-                              "..", "game_pages", "apuestas", "porras")
-    porras_dir = os.path.normpath(porras_dir)
-    page_path = os.path.join(porras_dir, f"porra_{porra_id}.html")
+    page_path = os.path.join(PORRAS_DIR, f"porra_{porra_id}.html")
     if os.path.exists(page_path):
         return FileResponse(page_path)
     # Fallback: redirect to bank which can generate the page
@@ -1116,17 +1116,25 @@ async def salas_redirect(token: str = ""):
 
 # ── Direct porra page serving (avoids proxy issues) ──
 @app.get("/bank/apuestas/porra/{porra_id}", response_class=HTMLResponse)
-async def bank_porra_direct(porra_id: int):
+async def bank_porra_direct(porra_id: int, request: Request):
     """Serve porra page directly without going through bank proxy."""
-    porras_dir = os.path.normpath(os.path.join(
-        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-        "..", "game_pages", "apuestas", "porras"
-    ))
-    page_path = os.path.join(porras_dir, f"porra_{porra_id}.html")
+    page_path = os.path.join(PORRAS_DIR, f"porra_{porra_id}.html")
     if os.path.exists(page_path):
         return FileResponse(page_path)
-    # If file doesn't exist, let the bank proxy handle it (it can generate the page)
-    raise HTTPException(404, f"Porra {porra_id} not found")
+    # File doesn't exist - proxy to bank so it can generate the page
+    target = f"/bank/apuestas/porra/{porra_id}"
+    qs = request.url.query
+    if qs:
+        target = f"{target}?{qs}"
+    fwd_headers = {k: v for k, v in request.headers.items() if k.lower() not in _HOP_REQ}
+    fwd_headers["accept-encoding"] = "identity"
+    try:
+        r = await _bank_client.request(method="GET", url=target, headers=fwd_headers)
+        resp_headers = {k: v for k, v in r.headers.items() if k.lower() not in _HOP_RESP}
+        return Response(content=r.content, status_code=r.status_code, headers=resp_headers,
+                        media_type=r.headers.get("content-type"))
+    except Exception:
+        raise HTTPException(404, f"Porra {porra_id} not found")
 
 @app.api_route(
     "/bank{path:path}",
