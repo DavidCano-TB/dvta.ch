@@ -1069,11 +1069,7 @@ async def exams_admin_list_users(user: dict = Depends(get_current_user)):
 
 @app.get("/apuestas/porra/{porra_id}")
 async def apuestas_porra_redirect(porra_id: int, token: str = ""):
-    """Serve porra page directly or redirect to bank."""
-    page_path = os.path.join(PORRAS_DIR, f"porra_{porra_id}.html")
-    if os.path.exists(page_path):
-        return FileResponse(page_path)
-    # Fallback: redirect to bank which can generate the page
+    """Redirect to bank porra page."""
     if token:
         return RedirectResponse(url=f"/bank/apuestas/porra/{porra_id}?token={token}")
     return RedirectResponse(url=f"/bank/apuestas/porra/{porra_id}")
@@ -1113,28 +1109,6 @@ async def salas_redirect(token: str = ""):
         return RedirectResponse(url=f"/bank/salas?token={token}")
     return RedirectResponse(url="/bank/salas")
 
-
-# ── Direct porra page serving (avoids proxy issues) ──
-@app.get("/bank/apuestas/porra/{porra_id}", response_class=HTMLResponse)
-async def bank_porra_direct(porra_id: int, request: Request):
-    """Serve porra page directly without going through bank proxy."""
-    page_path = os.path.join(PORRAS_DIR, f"porra_{porra_id}.html")
-    if os.path.exists(page_path):
-        return FileResponse(page_path)
-    # File doesn't exist - proxy to bank so it can generate the page
-    target = f"/bank/apuestas/porra/{porra_id}"
-    qs = request.url.query
-    if qs:
-        target = f"{target}?{qs}"
-    fwd_headers = {k: v for k, v in request.headers.items() if k.lower() not in _HOP_REQ}
-    fwd_headers["accept-encoding"] = "identity"
-    try:
-        r = await _bank_client.request(method="GET", url=target, headers=fwd_headers)
-        resp_headers = {k: v for k, v in r.headers.items() if k.lower() not in _HOP_RESP}
-        return Response(content=r.content, status_code=r.status_code, headers=resp_headers,
-                        media_type=r.headers.get("content-type"))
-    except Exception:
-        raise HTTPException(404, f"Porra {porra_id} not found")
 
 @app.api_route(
     "/bank{path:path}",
