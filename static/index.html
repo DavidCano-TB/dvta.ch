@@ -1325,85 +1325,29 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
             onkeydown="if(event.key==='Enter')doLogin()">
         </div>
         <button class="btn btnG" id="btnL" onclick="doLogin()" data-i18n="btnLogin">Login</button>
+        <p style="text-align:center;margin-top:10px;font-size:.65rem;color:var(--text3)">¿Olvidaste tu contraseña? Contacta a un admin.</p>
       </div>
 
       <!-- Register form -->
       <div id="fReg" class="hidden">
-        <!-- Prominent registration warning — gold box, very visible -->
-        <div class="regNote">
-          <div class="regNoteTitle" data-i18n="regNoteTitle">⚠ Importante</div>
-          <div class="regNoteBody" data-i18n="regNoteBody">Completa todos los campos para crear tu cuenta.</div>
-        </div>
-        
         <!-- Username -->
         <div class="fg">
-          <label data-i18n="labelUsername">Usuario *</label>
+          <label data-i18n="labelUsername">Nuevo usuario</label>
           <input id="rU" type="text" autocomplete="username" required
             data-i18n-placeholder="placeholderUsername"
-            placeholder="Tu nombre de usuario">
-        </div>
-        
-        <!-- Email -->
-        <div class="fg">
-          <label data-i18n="labelEmail">Email *</label>
-          <input id="rEmail" type="email" autocomplete="email" required
-            data-i18n-placeholder="placeholderEmail"
-            placeholder="tu@email.com">
+            placeholder="Tu nombre de usuario"
+            onkeydown="if(event.key==='Enter')document.getElementById('rP').focus()">
         </div>
         
         <!-- Password -->
         <div class="fg">
-          <label data-i18n="labelPasswordNew">Contraseña *</label>
+          <label data-i18n="labelPassword">Contraseña</label>
           <input id="rP" type="password" autocomplete="new-password" required
-            data-i18n-placeholder="placeholderPasswordNew"
-            placeholder="Mínimo 4 caracteres">
-        </div>
-        
-        <!-- Confirm Password -->
-        <div class="fg">
-          <label data-i18n="labelPasswordConfirm">Confirmar Contraseña *</label>
-          <input id="rPConfirm" type="password" autocomplete="new-password" required
-            data-i18n-placeholder="placeholderPasswordConfirm"
-            placeholder="Repite tu contraseña">
-        </div>
-        
-        <!-- Full Name -->
-        <div class="fg">
-          <label data-i18n="labelFullName">Nombre Completo</label>
-          <input id="rFullName" type="text" autocomplete="name"
-            data-i18n-placeholder="placeholderFullName"
-            placeholder="Tu nombre completo (opcional)">
-        </div>
-        
-        <!-- Phone -->
-        <div class="fg">
-          <label data-i18n="labelPhone">Teléfono</label>
-          <input id="rPhone" type="tel" autocomplete="tel"
-            data-i18n-placeholder="placeholderPhone"
-            placeholder="+34 600 000 000 (opcional)">
-        </div>
-        
-        <!-- OPO Interest -->
-        <div class="fg" style="display: flex; align-items: center; gap: 10px;">
-          <input id="rOpoInterest" type="checkbox" style="width: auto; margin: 0;">
-          <label for="rOpoInterest" data-i18n="labelOpoInterest" style="margin: 0; cursor: pointer;">
-            Estoy interesado en Oposiciones
-          </label>
-        </div>
-        
-        <!-- Terms -->
-        <div class="fg" style="display: flex; align-items: center; gap: 10px;">
-          <input id="rTerms" type="checkbox" required style="width: auto; margin: 0;">
-          <label for="rTerms" data-i18n="labelTerms" style="margin: 0; cursor: pointer;">
-            Acepto los términos y condiciones *
-          </label>
+            placeholder="Mínimo 4 caracteres"
+            onkeydown="if(event.key==='Enter')doReg()">
         </div>
         
         <button class="btn btnG" id="btnR" onclick="doReg()" data-i18n="btnRegister">Registrarse</button>
-        
-        <div style="margin-top: 15px; font-size: 0.75rem; color: var(--text3); text-align: center;">
-          <span data-i18n="regNote2">* Campos obligatorios</span>
-        </div>
       </div>
 
     </div>
@@ -2853,74 +2797,29 @@ async function doLogin() {
 }
 
 async function doReg() {
-  console.log('[DEBUG] doReg called');
-  
-  // Obtener valores
   const u = (document.getElementById('rU').value || '').trim().toLowerCase();
-  const p = document.getElementById('rP').value || '';
-  const pConfirm = document.getElementById('rPConfirm').value || '';
-  const email = (document.getElementById('rEmail').value || '').trim();
-  const fullName = (document.getElementById('rFullName').value || '').trim();
-  const phone = (document.getElementById('rPhone').value || '').trim();
-  const opoInterest = document.getElementById('rOpoInterest').checked;
-  const terms = document.getElementById('rTerms').checked;
+  const p = (document.getElementById('rP').value || '').trim();
   
-  // Validaciones
-  if (!u || !p || !email) {
-    return showAlert('authAlert', 'Por favor completa todos los campos obligatorios (*)');
+  if (!u || !p) {
+    return showAlert('authAlert', t('errorFillAll'));
   }
-  
-  if (!terms) {
-    return showAlert('authAlert', 'Debes aceptar los términos y condiciones');
-  }
-  
   if (p.length < 4) {
     return showAlert('authAlert', 'La contraseña debe tener al menos 4 caracteres');
-  }
-  
-  if (p !== pConfirm) {
-    return showAlert('authAlert', 'Las contraseñas no coinciden');
-  }
-  
-  // Validar email
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return showAlert('authAlert', 'Por favor ingresa un email válido');
   }
   
   const done = setLoading('btnR', t('btnRegister'));
   
   try {
-    console.log('[DEBUG] Calling API:', '/bank/api/register');
     const d = await req('POST', '/bank/api/register', { 
       username: u, 
-      password: p,
-      email: email,
-      full_name: fullName,
-      phone: phone,
-      opo_interest: opoInterest
+      password: p
     });
-    console.log('[DEBUG] Register response:', d);
     
-    // Si el registro requiere verificación de email
-    if (d.requires_verification) {
-      showAlert('authAlert', 
-        '✅ Cuenta creada! Revisa tu email para verificar tu cuenta.', 
-        's'
-      );
-      // Cambiar a tab de login después de 3 segundos
-      setTimeout(() => {
-        authTab('login', document.querySelector('.tab'));
-      }, 3000);
-    } else {
-      // Login automático si no requiere verificación
-      token = d.token;
-      localStorage.setItem('dvd_token', token);
-      await loadApp();
-      _requestNotificationPermission();
-    }
+    token = d.token;
+    localStorage.setItem('dvd_token', token);
+    await loadApp();
+    _requestNotificationPermission();
   } catch (e) { 
-    console.error('[DEBUG] Register error:', e);
     showAlert('authAlert', e.message); 
   }
   finally { done(); }

@@ -1148,6 +1148,7 @@ class LoginRequest(BaseModel):
 class RegisterRequest(BaseModel):
     username: str
     password: str
+    email: str = ""
  
 class TransferRequest(BaseModel):
     to_user: str
@@ -1797,26 +1798,37 @@ async def login(request: Request, body: LoginRequest):
 @app.post("/bank/api/register")
 @limiter.limit("100/minute")  # Aumentado para tests (era 10/minute)
 async def register(request: Request, body: RegisterRequest):
+    import re
     u = body.username.strip().lower()
+    p = body.password.strip()
+    email = (body.email or "").strip().lower()
     if not (2 <= len(u) <= 30):
         raise HTTPException(400, "Username must be 2–30 characters")
-    if len(body.password) < 4:
+    if not p or len(p) < 4:
         raise HTTPException(400, "Password must be at least 4 characters")
     if u in GHOST:
         raise HTTPException(400, "Reserved username")
     conn = db_users()
-    row = conn.execute("SELECT password_hash FROM users WHERE username=?", (u,)).fetchone()
-    if row and row["password_hash"] not in ("__UNSET__", "__AUTO__"):
+    row = conn.execute("SELECT password_hash, email FROM users WHERE username=?", (u,)).fetchone()
+    if row and row["password_hash"] not in ("__UNSET__", "__AUTO__", ""):
         conn.close()
         raise HTTPException(409, "Username already registered")
-    pwd_hash = await hash_password_async(body.password)
+    # Check duplicate email if provided
+    if email:
+        email_row = conn.execute("SELECT username FROM users WHERE email=? AND email IS NOT NULL AND email != ''", (email,)).fetchone()
+        if email_row and email_row["username"] != u:
+            conn.close()
+            raise HTTPException(409, "Email already registered")
+    # Hash password
+    import bcrypt
+    hashed = bcrypt.hashpw(p.encode(), bcrypt.gensalt()).decode()
     if row:
-        conn.execute("UPDATE users SET password_hash=? WHERE username=?", (pwd_hash, u))
+        conn.execute("UPDATE users SET password_hash=?, email=? WHERE username=?", (hashed, email, u))
     else:
-        conn.execute("INSERT INTO users(username,password_hash) VALUES(?,?)", (u, pwd_hash))
+        conn.execute("INSERT INTO users(username, password_hash, email, balance) VALUES(?, ?, ?, 0.0)", (u, hashed, email))
     conn.commit(); conn.close()
     _open_session(u, "bank")
-    logger.info("Register: %s", u)
+    logger.info("Register: %s (email: %s)", u, email or "none")
     return {"token": create_token(u), "username": u, "is_admin": False, "is_superadmin": False}
  
 @app.get("/bank/api/me")
