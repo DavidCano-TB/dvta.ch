@@ -1009,6 +1009,60 @@ async def apuestas_redirect(token: str = ""):
     return RedirectResponse(url="/bank/apuestas")
 
 
+# =============================================================================
+# ADMIN PANEL - USERS (dvd & nebulosa only)
+# =============================================================================
+
+EXAMS_SUPERADMINS = {"dvd", "nebulosa", "tata"}
+
+
+@app.get("/exams/admin/users", response_class=HTMLResponse)
+async def exams_admin_users_page():
+    """Serve the exams admin users panel."""
+    path = os.path.join(STATIC_DIR, "admin_users.html")
+    if not os.path.exists(path):
+        return HTMLResponse("<h1>Admin page not found</h1>", status_code=404)
+    return FileResponse(path)
+
+
+@app.get("/api/admin/users")
+async def exams_admin_list_users(user: dict = Depends(get_current_user)):
+    """List all exams users with last login info. Superadmins only."""
+    if user["username"] not in EXAMS_SUPERADMINS:
+        raise HTTPException(403, "Superadmin access required")
+    rows = db_users.fetchall(
+        "SELECT id, email, username, role, verified, subscription_status, "
+        "subscription_plan, lang, created_at, last_login FROM users ORDER BY last_login DESC"
+    )
+    now = datetime.now()
+    result = []
+    for r in rows:
+        last_login = r.get("last_login") or r.get("created_at") or ""
+        # Consider "online" if last_login within last 10 minutes
+        is_online = False
+        if last_login:
+            try:
+                ll = datetime.fromisoformat(last_login.replace("Z", "+00:00").replace("+00:00", ""))
+                diff = (now - ll).total_seconds()
+                is_online = diff < 600  # 10 minutes
+            except Exception:
+                pass
+        result.append({
+            "id": r["id"],
+            "email": r["email"],
+            "username": r["username"],
+            "role": r["role"],
+            "verified": bool(r["verified"]),
+            "subscription": r.get("subscription_status") or "none",
+            "plan": r.get("subscription_plan") or "",
+            "lang": r.get("lang") or "es",
+            "created_at": r.get("created_at") or "",
+            "last_login": last_login,
+            "online": is_online,
+        })
+    return {"users": result, "total": len(result)}
+
+
 @app.get("/apuestas/porra/{porra_id}")
 async def apuestas_porra_redirect(porra_id: int, token: str = ""):
     """Redirige a /bank/apuestas/porra/{id} con token si lo tiene."""

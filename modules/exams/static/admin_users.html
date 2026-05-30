@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin — Usuarios Exams</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1A2030;--bg2:#242B3D;--bg3:#2E3548;--border:rgba(107,155,212,.2);--border-h:rgba(107,155,212,.4);
+  --text:#E8EDF5;--text2:#A8B8D0;--text3:#7A8AA0;--blue:#6B9BD4;--green:#38B87A;--red:#E05260;--gold:#FFD700;--r:10px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:20px}
+.container{max-width:900px;margin:0 auto}
+.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.header h1{font-size:1.4rem;color:var(--blue)}
+.backBtn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:var(--r);
+  padding:8px 16px;font-size:.78rem;cursor:pointer;text-decoration:none;transition:all .2s}
+.backBtn:hover{border-color:var(--border-h);color:var(--blue)}
+.stats{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.stat{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:12px 18px;flex:1;min-width:120px}
+.statNum{font-size:1.5rem;font-weight:700;color:var(--blue)}
+.statLabel{font-size:.68rem;color:var(--text3);margin-top:2px}
+.search{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);
+  padding:10px 14px;color:var(--text);font-size:.82rem;margin-bottom:16px;outline:none}
+.search:focus{border-color:var(--border-h)}
+table{width:100%;border-collapse:collapse;background:var(--bg2);border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+th{background:var(--bg3);padding:10px 12px;text-align:left;font-size:.68rem;color:var(--text3);
+  text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border)}
+td{padding:10px 12px;font-size:.78rem;border-bottom:1px solid rgba(107,155,212,.08)}
+tr:hover td{background:rgba(107,155,212,.04)}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.dot.on{background:var(--green);box-shadow:0 0 6px rgba(56,184,122,.5)}
+.dot.off{background:var(--text3)}
+.badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.62rem;font-weight:600}
+.badge-admin{background:rgba(255,215,0,.15);color:var(--gold);border:1px solid rgba(255,215,0,.3)}
+.badge-free{background:rgba(107,155,212,.1);color:var(--blue);border:1px solid rgba(107,155,212,.2)}
+.badge-premium{background:rgba(56,184,122,.1);color:var(--green);border:1px solid rgba(56,184,122,.3)}
+.time{font-size:.7rem;color:var(--text3)}
+.time.recent{color:var(--green)}
+.empty{text-align:center;padding:30px;color:var(--text3)}
+.error{text-align:center;padding:20px;color:var(--red)}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>👥 Usuarios Exams</h1>
+    <a class="backBtn" href="/exams">← Volver a Exams</a>
+  </div>
+  <div class="stats" id="statsBar">
+    <div class="stat"><div class="statNum" id="totalUsers">-</div><div class="statLabel">Total usuarios</div></div>
+    <div class="stat"><div class="statNum" id="onlineUsers">-</div><div class="statLabel">Conectados ahora</div></div>
+    <div class="stat"><div class="statNum" id="verifiedUsers">-</div><div class="statLabel">Verificados</div></div>
+    <div class="stat"><div class="statNum" id="premiumUsers">-</div><div class="statLabel">Premium</div></div>
+  </div>
+  <input class="search" id="search" type="text" placeholder="🔍 Buscar por nombre o email..." oninput="filterUsers()">
+  <table>
+    <thead><tr>
+      <th style="width:30px"></th>
+      <th>Usuario</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Suscripción</th>
+      <th>Idioma</th>
+      <th>Última conexión</th>
+      <th>Registro</th>
+    </tr></thead>
+    <tbody id="usersTable"><tr><td colspan="8" class="empty">Cargando...</td></tr></tbody>
+  </table>
+</div>
+<script>
+'use strict';
+let allUsers = [];
+const token = document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith('exams_token='));
+const authToken = token ? token.split('=')[1] : localStorage.getItem('exams_token') || '';
+
+async function loadUsers() {
+  try {
+    const r = await fetch('/api/admin/users', {
+      headers: {'Authorization': 'Bearer ' + authToken}
+    });
+    if (r.status === 403) { document.getElementById('usersTable').innerHTML = '<tr><td colspan="8" class="error">Acceso denegado. Solo dvd y nebulosa.</td></tr>'; return; }
+    if (!r.ok) throw new Error('Error ' + r.status);
+    const data = await r.json();
+    allUsers = data.users || [];
+    document.getElementById('totalUsers').textContent = data.total;
+    document.getElementById('onlineUsers').textContent = allUsers.filter(u => u.online).length;
+    document.getElementById('verifiedUsers').textContent = allUsers.filter(u => u.verified).length;
+    document.getElementById('premiumUsers').textContent = allUsers.filter(u => u.subscription === 'active').length;
+    renderUsers(allUsers);
+  } catch(e) {
+    document.getElementById('usersTable').innerHTML = `<tr><td colspan="8" class="error">${e.message}</td></tr>`;
+  }
+}
+
+function renderUsers(users) {
+  const tbody = document.getElementById('usersTable');
+  if (!users.length) { tbody.innerHTML = '<tr><td colspan="8" class="empty">Sin usuarios</td></tr>'; return; }
+  tbody.innerHTML = users.map(u => {
+    const dotCls = u.online ? 'dot on' : 'dot off';
+    const roleBadge = u.role === 'admin' ? '<span class="badge badge-admin">Admin</span>'
+      : u.subscription === 'active' ? '<span class="badge badge-premium">Premium</span>'
+      : '<span class="badge badge-free">Free</span>';
+    const subText = u.subscription === 'active' ? `✓ ${u.plan || 'active'}` : u.subscription || 'none';
+    const lastLogin = formatTime(u.last_login);
+    const created = formatDate(u.created_at);
+    return `<tr>
+      <td><span class="${dotCls}" title="${u.online ? 'Conectado' : 'Desconectado'}"></span></td>
+      <td><strong>${esc(u.username)}</strong></td>
+      <td style="font-size:.72rem;color:var(--text2)">${esc(u.email)}</td>
+      <td>${roleBadge}</td>
+      <td style="font-size:.72rem">${subText}</td>
+      <td style="font-size:.72rem">${u.lang || 'es'}</td>
+      <td class="time ${u.online ? 'recent' : ''}">${lastLogin}</td>
+      <td class="time">${created}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filterUsers() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const filtered = allUsers.filter(u => u.username.toLowerCase().includes(q) || u.email.toLowerCase().includes(q));
+  renderUsers(filtered);
+}
+
+function formatTime(iso) {
+  if (!iso) return '—';
+  try {
+    const d = new Date(iso);
+    const now = new Date();
+    const diff = (now - d) / 1000;
+    if (diff < 60) return 'Ahora';
+    if (diff < 3600) return Math.floor(diff/60) + ' min';
+    if (diff < 86400) return Math.floor(diff/3600) + ' h';
+    if (diff < 604800) return Math.floor(diff/86400) + ' días';
+    return d.toLocaleDateString('es');
+  } catch(e) { return iso; }
+}
+
+function formatDate(iso) {
+  if (!iso) return '—';
+  try { return new Date(iso).toLocaleDateString('es'); } catch(e) { return iso; }
+}
+
+function esc(s) { return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+loadUsers();
+setInterval(loadUsers, 30000); // Refresh every 30s
+</script>
+</body>
+</html>
