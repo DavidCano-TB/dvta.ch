@@ -1065,7 +1065,15 @@ async def exams_admin_list_users(user: dict = Depends(get_current_user)):
 
 @app.get("/apuestas/porra/{porra_id}")
 async def apuestas_porra_redirect(porra_id: int, token: str = ""):
-    """Redirige a /bank/apuestas/porra/{id} con token si lo tiene."""
+    """Serve porra page directly or redirect to bank."""
+    # Try to serve the file directly first (faster, no proxy needed)
+    porras_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                              "..", "game_pages", "apuestas", "porras")
+    porras_dir = os.path.normpath(porras_dir)
+    page_path = os.path.join(porras_dir, f"porra_{porra_id}.html")
+    if os.path.exists(page_path):
+        return FileResponse(page_path)
+    # Fallback: redirect to bank which can generate the page
     if token:
         return RedirectResponse(url=f"/bank/apuestas/porra/{porra_id}?token={token}")
     return RedirectResponse(url=f"/bank/apuestas/porra/{porra_id}")
@@ -1104,6 +1112,21 @@ async def salas_redirect(token: str = ""):
     if token:
         return RedirectResponse(url=f"/bank/salas?token={token}")
     return RedirectResponse(url="/bank/salas")
+
+
+# ── Direct porra page serving (avoids proxy issues) ──
+@app.get("/bank/apuestas/porra/{porra_id}", response_class=HTMLResponse)
+async def bank_porra_direct(porra_id: int):
+    """Serve porra page directly without going through bank proxy."""
+    porras_dir = os.path.normpath(os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "..", "game_pages", "apuestas", "porras"
+    ))
+    page_path = os.path.join(porras_dir, f"porra_{porra_id}.html")
+    if os.path.exists(page_path):
+        return FileResponse(page_path)
+    # If file doesn't exist, let the bank proxy handle it (it can generate the page)
+    raise HTTPException(404, f"Porra {porra_id} not found")
 
 @app.api_route(
     "/bank{path:path}",
