@@ -9316,9 +9316,9 @@ async def votaciones_list(user: str = Depends(get_current_user)):
         votaciones = []
         for row in rows:
             vid = row[0]
-            # Count total votes
+            # Count unique participants (not total votes)
             total_votos = c.execute(
-                "SELECT COUNT(*) FROM votos WHERE votacion_id=?", (vid,)
+                "SELECT COUNT(DISTINCT username) FROM votos WHERE votacion_id=?", (vid,)
             ).fetchone()[0]
             
             # Check if user has voted
@@ -9445,6 +9445,8 @@ async def votacion_detail(votacion_id: int, user: str = Depends(get_current_user
             SELECT DISTINCT username FROM votos WHERE votacion_id=?
         """, (votacion_id,)).fetchall()
         
+        total_participantes = len(participantes)
+        
         # Calculate results if closed
         resultado = None
         if votacion_data["estado"] == "cerrada":
@@ -9471,7 +9473,9 @@ async def votacion_detail(votacion_id: int, user: str = Depends(get_current_user
             **votacion_data,
             "opciones": opciones,
             "mis_votos": mis_votos,
-            "total_votos": total_votos,
+            "total_votos": total_participantes,
+            "total_votos_raw": total_votos,
+            "participantes": total_participantes,
             "stats": stats,
             "is_dvd": user in ADMINS,
             "resultado": resultado
