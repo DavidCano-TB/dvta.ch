@@ -1,5 +1,5 @@
 """
-Unit tests for the new Registration System (Task 3)
+Unit tests for the Registration System (Task 3)
 
 Covers:
 - RegisterRequest Pydantic model (new fields: email, full_name, phone, opo_interest)

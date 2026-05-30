@@ -286,9 +286,8 @@ function render(){
     
     document.getElementById('totalBote').textContent=stats.total_bote.toFixed(1);
     
-    // Calcular total de votos (apostadores únicos)
-    const totalVotos = new Set(apuestas.map(a=>a.username)).size;
-    document.getElementById('totalVotos').textContent=totalVotos;
+    // Usar total_apostadores del backend (usuarios únicos reales)
+    document.getElementById('totalVotos').textContent=stats.total_apostadores;
     
     // Mostrar botón de cerrar solo para DVD si la porra está abierta
     if(isDvd && p.estado === 'abierta'){
@@ -437,7 +436,7 @@ function render(){
 
 function renderDvdStats(stats, apuestas, porra){
   // Estadísticas generales
-  const totalApostantes = new Set(apuestas.map(a=>a.username)).size;
+  const totalApostantes = stats.total_apostadores || new Set(apuestas.map(a=>a.username)).size;
   const comision = stats.total_bote * porra.comision;
   const boteNeto = stats.total_bote - comision;
   
