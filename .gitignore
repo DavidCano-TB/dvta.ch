@@ -69,9 +69,17 @@ desktop.ini
 # Backups
 BACKUP_*/
 backup_*/
+bdd_copy/
 *.backup
 *.bak
 *_backup_*
+!scripts/configurar_backup_5min.py
+!scripts/configurar_backup_30min.py
+!scripts/configurar_backup_automatico.py
+!scripts/backup_cada_5min.py
+!scripts/backup_cada_30min.py
+!scripts/backup_databases.py
+!tests/test_backup_5min.py
 
 # Temporal
 temp/
