@@ -1412,7 +1412,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab hidden" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')" data-i18n="navCuentos">📋 Anuncios</button>
+      <button class="navTab" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')" data-i18n="navCuentos">📋 Anuncios</button>
       <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
       <button class="navTab hidden" id="navStats" onclick="window.location.href="/bank/stats"" data-i18n="navStats">📊 Stats</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
@@ -2306,7 +2306,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
+    <button class="mNavBtn" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
       <span class="icon">📋</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
@@ -3373,16 +3373,10 @@ async function checkCuentosStatus() {
   try {
     const d = await req('GET', '/bank/api/cuentos/status');
     const on = d.enabled;
-    // Show Cuentos tab only for members when enabled; admins use admin panel
-    if (!me?.is_admin) {
-      ['navCuentos','mobileNavCuentos'].forEach(id =>
-        document.getElementById(id)?.classList.toggle('hidden', !on)
-      );
-    } else {
-      ['navCuentos','mobileNavCuentos'].forEach(id =>
-        document.getElementById(id)?.classList.add('hidden')
-      );
-    }
+    // Always show Cuentos tab for all users (everyone can post)
+    ['navCuentos','mobileNavCuentos'].forEach(id =>
+      document.getElementById(id)?.classList.remove('hidden')
+    );
     // Admin panel controls (kept for ctLoad in drawer)
     const sub = document.getElementById('cuentosStatusSub');
     if (sub) sub.textContent = on ? 'Activado — visible para todos' : 'Desactivado';
@@ -3390,11 +3384,6 @@ async function checkCuentosStatus() {
     const btnOff = document.getElementById('btnCuentosOff');
     if (btnOn)  btnOn.style.display  = on ? 'none' : '';
     if (btnOff) btnOff.style.display = on ? '' : 'none';
-    // Nav tabs: show only when enabled
-    ['navCuentos','mobileNavCuentos'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) { on ? el.classList.remove('hidden') : el.classList.add('hidden'); }
-    });
   } catch(e) {}
 }
 
