@@ -249,8 +249,8 @@ class TestCommentsFrontend:
         # Must destructure creator and created_at from story response
         assert "creator" in content
         assert "created_at" in content
-        # Must use commentsPostedBy i18n key for author prefix
-        assert "commentsPostedBy" in content
+        # Must show @username
+        assert "@${escHtml(creator)}" in content or "@${esc(creator)}" in content
 
     @pytest.mark.unit
     def test_cuento_page_has_reply_functionality(self):

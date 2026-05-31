@@ -395,7 +395,7 @@ async function loadList() {
       const date = c.date || '';
       const createdAt = c.created_at || '';
       const metaParts = [];
-      if (creator) metaParts.push(`${t('commentsPostedBy','Publicado por')} ${creator}`);
+      if (creator) metaParts.push(`${creator}`);
       if (createdAt) {
         const parts = createdAt.split(' ');
         if (parts.length === 2) {

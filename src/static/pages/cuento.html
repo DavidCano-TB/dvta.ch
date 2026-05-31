@@ -331,6 +331,31 @@
 <script>
 'use strict';
 
+// =============================================================================
+// i18n SYSTEM
+// =============================================================================
+let _i18n = {};
+let _lang = 'es';
+
+async function loadI18n() {
+  // Detect language from localStorage or browser
+  _lang = localStorage.getItem('dvd_lang') || navigator.language?.split('-')[0] || 'es';
+  const supported = ['es','en','fr','de','it','ca','eu'];
+  if (!supported.includes(_lang)) _lang = 'es';
+  try {
+    const r = await fetch(`/bank/static/i18n/${_lang}.json`, {headers:{'ngrok-skip-browser-warning':'1'}});
+    if (r.ok) _i18n = await r.json();
+  } catch(e) { /* fallback to hardcoded */ }
+}
+
+function t(key, fallback) {
+  return _i18n[key] || fallback || key;
+}
+
+// =============================================================================
+// HELPERS
+// =============================================================================
+
 function getFilename() {
   // URL is /cuento/<filename>
   const parts = location.pathname.split('/cuento/');
@@ -352,7 +377,7 @@ function renderStory(story) {
 
   let metaHtml = '';
   // Show author
-  if (creator) metaHtml += `<span>por @${escHtml(creator)}</span><span class="metaDot"></span>`;
+  if (creator) metaHtml += `<span>@${escHtml(creator)}</span><span class="metaDot"></span>`;
   // Show formatted date
   if (created_at) {
     const parts = created_at.split(' ');
@@ -369,12 +394,12 @@ function renderStory(story) {
   // Detect moraleja block (last heading + following paragraphs)
   let moralejaStart = -1;
   for (let i = 0; i < blocks.length; i++) {
-    const t = blocks[i].text.toLowerCase();
-    if (blocks[i].type === 'heading' && (t.includes('moraleja') || t.includes('moral'))) {
+    const t2 = blocks[i].text.toLowerCase();
+    if (blocks[i].type === 'heading' && (t2.includes('moraleja') || t2.includes('moral'))) {
       moralejaStart = i;
       break;
     }
-    if (blocks[i].type === 'bold' && (t.includes('moraleja') || t.includes('moral'))) {
+    if (blocks[i].type === 'bold' && (t2.includes('moraleja') || t2.includes('moral'))) {
       moralejaStart = i;
       break;
     }
@@ -384,18 +409,18 @@ function renderStory(story) {
   const moralBlocks = moralejaStart > 0 ? blocks.slice(moralejaStart + 1) : [];
 
   function renderBlock(b, isFirst) {
-    const t = escHtml(b.text);
+    const txt = escHtml(b.text);
     if (b.type === 'heading') {
-      return `<div class="heading-p">${t}</div>`;
+      return `<div class="heading-p">${txt}</div>`;
     }
     if (b.type === 'bold') {
-      return `<div class="bold-p">${t}</div>`;
+      return `<div class="bold-p">${txt}</div>`;
     }
     // Dialogue detection: starts with — or -
     const isDialogue = b.text.trimStart().startsWith('—') || b.text.trimStart().startsWith('–');
     const cls = isDialogue ? ' dialogue' : '';
     const firstCls = isFirst && !isDialogue ? ' class="first-para"' : '';
-    return `<p class="${cls.trim()}"${firstCls}>${t}</p>`;
+    return `<p class="${cls.trim()}"${firstCls}>${txt}</p>`;
   }
 
   let bodyHtml = '<div class="storyBody">';
@@ -420,24 +445,25 @@ function renderStory(story) {
     ${bodyHtml}
     ${moralejaHtml}
     <div class="commentsSection">
-      <div class="commentsTitle">💬 Comentarios <span class="commentCount" id="commentCount"></span></div>
+      <div class="commentsTitle">💬 ${t('commentsTitle','Comentarios')} <span class="commentCount" id="commentCount"></span></div>
       <div class="commentForm">
-        <textarea id="commentInput" placeholder="Escribe un comentario..." maxlength="2000" oninput="updateCharCount()"></textarea>
+        <textarea id="commentInput" placeholder="${t('commentsPlaceholder','Escribe un comentario...')}" maxlength="2000" oninput="updateCharCount()"></textarea>
         <div class="commentFormActions">
           <span class="commentCharCount" id="charCount">0 / 2000</span>
-          <button class="btnComment" id="btnPostComment" onclick="postComment()">Publicar</button>
+          <button class="btnComment" id="btnPostComment" onclick="postComment()">${t('commentsPost','Publicar')}</button>
         </div>
       </div>
-      <div id="commentsList"><div class="commentsLoading">Cargando comentarios…</div></div>
+      <div id="commentsList"><div class="commentsLoading">${t('commentsLoading','Cargando comentarios…')}</div></div>
     </div>
     <div class="storyNav">
-      <a href="/bank/cuentos">← Todos los anuncios</a>
-      <a href="/bank/" >⌂ Banco</a>
+      <a href="/bank/cuentos">← ${t('cuentosAllAnnouncements','Todos los anuncios')}</a>
+      <a href="/bank/" >⌂ ${t('cuentosBank','Banco')}</a>
     </div>`;
   loadComments();
 }
 
 async function init() {
+  await loadI18n();
   const token = localStorage.getItem('dvd_token');
   if (!token) {
     document.getElementById('authScreen').style.display = 'flex';
@@ -480,7 +506,7 @@ async function init() {
         <div class="icon">⚠</div>
         <div>${e.message}</div>
         <div style="margin-top:16px">
-          <a href="/bank/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← Volver a los cuentos</a>
+          <a href="/bank/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← ${t('cuentosAllAnnouncements','Volver a los anuncios')}</a>
         </div>
       </div>`;
   }
@@ -531,9 +557,9 @@ function renderComment(c, isReply) {
   const cls = isReply ? 'comment reply' : 'comment';
   const canDelete = _isAdmin || c.username === _currentUser;
   const deleteBtn = canDelete
-    ? `<button class="commentAction delete" onclick="deleteComment(${c.id})">🗑 Eliminar</button>`
+    ? `<button class="commentAction delete" onclick="deleteComment(${c.id})">🗑 ${t('commentsDelete','Eliminar')}</button>`
     : '';
-  const replyBtn = `<button class="commentAction" onclick="toggleReply(${c.id})">↩ Responder</button>`;
+  const replyBtn = `<button class="commentAction" onclick="toggleReply(${c.id})">↩ ${t('commentsReply','Responder')}</button>`;
 
   let html = `<div class="${cls}" id="comment-${c.id}">
     <div class="commentHeader">
@@ -544,10 +570,10 @@ function renderComment(c, isReply) {
     <div class="commentActions">${replyBtn}${deleteBtn}</div>
   </div>
   <div class="replyForm" id="replyForm-${c.id}">
-    <textarea id="replyInput-${c.id}" placeholder="Escribe una respuesta..." maxlength="2000"></textarea>
+    <textarea id="replyInput-${c.id}" placeholder="${t('commentsReplyPlaceholder','Escribe una respuesta...')}" maxlength="2000"></textarea>
     <div class="replyFormActions">
-      <button class="btnReplyCancel" onclick="toggleReply(${c.id})">Cancelar</button>
-      <button class="btnReply" onclick="postReply(${c.id})">Responder</button>
+      <button class="btnReplyCancel" onclick="toggleReply(${c.id})">${t('commentsCancel','Cancelar')}</button>
+      <button class="btnReply" onclick="postReply(${c.id})">${t('commentsReply','Responder')}</button>
     </div>
   </div>`;
 
@@ -572,14 +598,14 @@ async function loadComments() {
     const countEl = document.getElementById('commentCount');
     if (countEl) countEl.textContent = `(${comments.length})`;
     if (!comments.length) {
-      el.innerHTML = '<div class="commentsEmpty">Sé el primero en comentar</div>';
+      el.innerHTML = `<div class="commentsEmpty">${t('commentsEmpty','Sé el primero en comentar')}</div>`;
       return;
     }
     const threads = buildThreads(comments);
     el.innerHTML = threads.map(c => `<div class="commentThread">${renderComment(c, false)}</div>`).join('');
   } catch(e) {
     const el = document.getElementById('commentsList');
-    if (el) el.innerHTML = '<div class="commentsEmpty">Error al cargar comentarios</div>';
+    if (el) el.innerHTML = `<div class="commentsEmpty">${t('commentsError','Error al cargar comentarios')}</div>`;
   }
 }
 
@@ -641,7 +667,7 @@ async function postReply(parentId) {
 }
 
 async function deleteComment(commentId) {
-  if (!confirm('¿Eliminar este comentario?')) return;
+  if (!confirm(t('commentsDeleteConfirm','¿Eliminar este comentario?'))) return;
   const token = localStorage.getItem('dvd_token');
   try {
     const r = await fetch('/bank/api/cuentos/comments/' + commentId, {

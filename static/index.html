@@ -3641,7 +3641,7 @@ async function loadCuentosView() {
       if (masked && !me?.is_admin) return '';
       // Build meta line
       let metaParts = [];
-      if (creator) metaParts.push(`${t('commentsPostedBy')} @${esc(creator)}`);
+      if (creator) metaParts.push(`@${esc(creator)}`);
       if (createdAt) {
         const parts = createdAt.split(' ');
         if (parts.length === 2) {

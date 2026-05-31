@@ -377,7 +377,7 @@ function renderStory(story) {
 
   let metaHtml = '';
   // Show author
-  if (creator) metaHtml += `<span>${t('commentsPostedBy','por')} @${escHtml(creator)}</span><span class="metaDot"></span>`;
+  if (creator) metaHtml += `<span>@${escHtml(creator)}</span><span class="metaDot"></span>`;
   // Show formatted date
   if (created_at) {
     const parts = created_at.split(' ');
