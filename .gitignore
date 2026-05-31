@@ -80,6 +80,7 @@ bdd_copy/
 !scripts/backup_cada_30min.py
 !scripts/backup_databases.py
 !tests/test_backup_5min.py
+!INSTALAR_BACKUP_5MIN.bat
 
 # Temporal
 temp/
