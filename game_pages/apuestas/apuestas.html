@@ -96,7 +96,7 @@ button{-webkit-appearance:none;appearance:none;font-family:inherit;cursor:pointe
 
 <div class="wrap">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
-    <h1 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);">Apuestas Deportivas</h1>
+    <h1 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--gold2);">Apuestas</h1>
     <button class="btn btnG" onclick="openCreateModal()">+ Nueva Apuesta</button>
   </div>
 
@@ -292,6 +292,7 @@ async function loadDvdGeneralStats(){
 }
 
 async function loadUserStats(){
+  if(!me) return;
   try{
     const r=await fetch(`/bank/api/porras/stats/${me.username}`,{headers:{'Authorization':'Bearer '+tok,'ngrok-skip-browser-warning':'1'}});
     if(r.ok){

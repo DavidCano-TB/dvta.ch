@@ -8186,13 +8186,7 @@ async def porra_user_stats(username: str, user: str = Depends(get_current_user))
     try:
         c = db_bets()
         
-        # Get basic stats from estadisticas_porras
-        stats = c.execute("""
-            SELECT total_apostado, total_ganado, porras_ganadas, porras_perdidas
-            FROM estadisticas_porras WHERE username = ?
-        """, (username,)).fetchone()
-        
-        # Get detailed bet history
+        # Calculate stats directly from apuestas_usuarios (source of truth)
         apuestas = c.execute("""
             SELECT p.id, p.titulo, p.estado, p.resultado, p.opciones_json,
                    a.opcion, a.cantidad, a.fecha, a.pagado, a.ganancia
@@ -8204,11 +8198,13 @@ async def porra_user_stats(username: str, user: str = Depends(get_current_user))
         
         c.close()
         
-        # Calculate comprehensive statistics
-        total_apostado = stats["total_apostado"] if stats else 0
-        total_ganado = stats["total_ganado"] if stats else 0
-        porras_ganadas = stats["porras_ganadas"] if stats else 0
-        porras_perdidas = stats["porras_perdidas"] if stats else 0
+        # Calculate all statistics from actual bet data
+        total_apostado = sum(a["cantidad"] for a in apuestas)
+        total_ganado = sum(a["ganancia"] for a in apuestas if a["pagado"])
+        
+        # Count wins/losses from finalized porras
+        porras_ganadas = sum(1 for a in apuestas if a["estado"] == "finalizada" and a["pagado"] and a["ganancia"] > 0)
+        porras_perdidas = sum(1 for a in apuestas if a["estado"] == "finalizada" and (not a["pagado"] or a["ganancia"] == 0))
         
         # Additional calculations
         total_porras = len(apuestas)
@@ -8315,27 +8311,22 @@ async def porra_mis_estadisticas(user: str = Depends(get_current_user)):
     try:
         c = db_bets()
         
-        # Get basic stats from estadisticas_porras
-        stats = c.execute("""
-            SELECT total_apostado, total_ganado, porras_ganadas, porras_perdidas
-            FROM estadisticas_porras WHERE username = ?
-        """, (user,)).fetchone()
-        
-        # Count active bets
-        apuestas_activas = c.execute("""
-            SELECT COUNT(*) n FROM apuestas_usuarios a
+        # Calculate stats directly from apuestas_usuarios (source of truth)
+        apuestas = c.execute("""
+            SELECT a.cantidad, a.pagado, a.ganancia, p.estado
+            FROM apuestas_usuarios a
             JOIN porras p ON a.porra_id = p.id
-            WHERE a.username = ? AND p.estado IN ('abierta', 'cerrada')
-        """, (user,)).fetchone()
+            WHERE a.username = ?
+        """, (user,)).fetchall()
         
         c.close()
         
-        total_apostado = stats["total_apostado"] if stats else 0
-        total_ganado = stats["total_ganado"] if stats else 0
-        porras_ganadas = stats["porras_ganadas"] if stats else 0
-        porras_perdidas = stats["porras_perdidas"] if stats else 0
+        total_apostado = sum(a["cantidad"] for a in apuestas)
+        total_ganado = sum(a["ganancia"] for a in apuestas if a["pagado"])
+        porras_ganadas = sum(1 for a in apuestas if a["estado"] == "finalizada" and a["pagado"] and a["ganancia"] > 0)
+        porras_perdidas = sum(1 for a in apuestas if a["estado"] == "finalizada" and (not a["pagado"] or a["ganancia"] == 0))
         ganancia_neta = total_ganado - total_apostado
-        activas = apuestas_activas["n"] if apuestas_activas else 0
+        activas = sum(1 for a in apuestas if a["estado"] in ("abierta", "cerrada"))
         
         return {
             "total_apostado": round(total_apostado, 2),
@@ -8384,22 +8375,38 @@ async def porra_ranking(user: str = Depends(get_current_user)):
 
 @app.get("/bank/api/porras/mis-apuestas")
 async def mis_apuestas(user: str = Depends(get_current_user)):
-    """Get all bets from current user."""
+    """Get all bets from current user with detailed stats."""
     try:
         c = db_bets()
         
         rows = c.execute("""
-            SELECT p.id, p.titulo, p.estado, p.resultado, p.opciones_json,
-                   a.opcion, a.cantidad, a.fecha, a.pagado, a.ganancia
+            SELECT p.id, p.titulo, p.descripcion, p.estado, p.resultado, p.opciones_json,
+                   p.comision, a.opcion, a.cantidad, a.fecha, a.pagado, a.ganancia
             FROM apuestas_usuarios a
             JOIN porras p ON a.porra_id = p.id
             WHERE a.username = ?
             ORDER BY a.fecha DESC
         """, (user,)).fetchall()
         
+        # Get total bets per porra for pot calculations
+        porra_ids = list({r["id"] for r in rows})
+        porra_totals = {}
+        for pid in porra_ids:
+            total_row = c.execute(
+                "SELECT COALESCE(SUM(cantidad), 0) total FROM apuestas_usuarios WHERE porra_id = ?",
+                (pid,)
+            ).fetchone()
+            porra_totals[pid] = total_row["total"] if total_row else 0
+        
         c.close()
         
         apuestas = []
+        total_apostado = 0
+        total_ganado = 0
+        porras_ganadas = 0
+        porras_perdidas = 0
+        porras_activas = 0
+        
         for r in rows:
             try:
                 opciones = _json.loads(r["opciones_json"])
@@ -8407,18 +8414,64 @@ async def mis_apuestas(user: str = Depends(get_current_user)):
                 opciones = []
             opcion_nombre = next((o["nombre"] for o in opciones if o["valor"] == r["opcion"]), r["opcion"])
             
+            cantidad = r["cantidad"]
+            bote_total = porra_totals.get(r["id"], 0)
+            porcentaje_bote = (cantidad / bote_total * 100) if bote_total > 0 else 0
+            comision = r["comision"] if r["comision"] else 5.0
+            bote_neto = bote_total * (1 - comision / 100)
+            
+            # Calculate approximate odds
+            cuota = (bote_neto / cantidad) if cantidad > 0 else 1.0
+            ganancia_potencial = bote_neto * (cantidad / bote_total) if bote_total > 0 else 0
+            roi_potencial = ((ganancia_potencial - cantidad) / cantidad * 100) if cantidad > 0 else 0
+            
+            es_ganador = r["estado"] == "finalizada" and r["resultado"] == r["opcion"]
+            es_perdedor = r["estado"] == "finalizada" and r["resultado"] != r["opcion"]
+            
+            total_apostado += cantidad
+            if r["pagado"] and r["ganancia"] > 0:
+                total_ganado += r["ganancia"]
+                porras_ganadas += 1
+            elif r["estado"] == "finalizada":
+                porras_perdidas += 1
+            if r["estado"] in ("abierta", "cerrada"):
+                porras_activas += 1
+            
             apuestas.append({
                 "porra_id": r["id"],
                 "titulo": r["titulo"],
+                "descripcion": r["descripcion"] or "",
                 "estado": r["estado"],
-                "opcion": opcion_nombre,
-                "cantidad": r["cantidad"],
-                "fecha": r["fecha"],
-                "ganador": r["estado"] == "finalizada" and r["resultado"] == r["opcion"],
-                "ganancia": r["ganancia"] if r["pagado"] else 0
+                "opcion_nombre": opcion_nombre,
+                "cantidad_apostada": cantidad,
+                "fecha_apuesta": r["fecha"],
+                "es_ganador": es_ganador,
+                "es_perdedor": es_perdedor,
+                "bote_total": bote_total,
+                "porcentaje_bote": round(porcentaje_bote, 1),
+                "cuota": round(cuota, 2),
+                "ganancia_potencial": round(ganancia_potencial, 1),
+                "roi_potencial": round(roi_potencial, 1),
+                "ganancia_real": r["ganancia"] if r["pagado"] else 0,
             })
         
-        return {"apuestas": apuestas}
+        beneficio_total = total_ganado - total_apostado
+        roi_total = (beneficio_total / total_apostado * 100) if total_apostado > 0 else 0
+        finalizadas = porras_ganadas + porras_perdidas
+        tasa_acierto = (porras_ganadas / finalizadas * 100) if finalizadas > 0 else 0
+        
+        resumen = {
+            "total_apuestas": len(apuestas),
+            "total_apostado": round(total_apostado, 2),
+            "beneficio_total": round(beneficio_total, 2),
+            "roi_total": round(roi_total, 2),
+            "porras_ganadas": porras_ganadas,
+            "porras_perdidas": porras_perdidas,
+            "porras_activas": porras_activas,
+            "tasa_acierto": round(tasa_acierto, 1),
+        }
+        
+        return {"apuestas": apuestas, "resumen": resumen}
     except Exception as e:
         logger.error(f"Error getting user bets: {e}")
         raise HTTPException(500, f"Error al obtener apuestas: {str(e)}")

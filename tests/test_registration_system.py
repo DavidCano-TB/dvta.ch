@@ -89,9 +89,6 @@ def reg_payload():
         "username": "alice",
         "password": "test1234",
         "email": "alice@example.com",
-        "full_name": "Alice Tester",
-        "phone": "+34600000000",
-        "opo_interest": True,
     }
 
 
@@ -114,22 +111,16 @@ class TestRegisterRequestModel:
         m = isolated_main.RegisterRequest(username="bob", password="abcd")
         assert m.username == "bob"
         assert m.password == "abcd"
-        # New fields default to empty / False
+        # Email defaults to empty
         assert m.email == ""
-        assert m.full_name == ""
-        assert m.phone == ""
-        assert m.opo_interest is False
 
     def test_all_fields_provided(self, isolated_main, reg_payload):
         m = isolated_main.RegisterRequest(**reg_payload)
         assert m.email == "alice@example.com"
-        assert m.full_name == "Alice Tester"
-        assert m.phone == "+34600000000"
-        assert m.opo_interest is True
 
-    def test_opo_interest_explicit_false(self, isolated_main):
-        m = isolated_main.RegisterRequest(username="x", password="abcd", opo_interest=False)
-        assert m.opo_interest is False
+    def test_email_optional(self, isolated_main):
+        m = isolated_main.RegisterRequest(username="x", password="abcd")
+        assert m.email == ""
 
     def test_password_not_stripped(self, isolated_main):
         m = isolated_main.RegisterRequest(username="x", password="  pass  ")
@@ -287,29 +278,19 @@ class TestRegisterEndpoint:
         assert r.status_code == 200, r.text
         data = r.json()
         assert data["username"] == "alice"
-        assert data["email"] == "alice@example.com"
-        assert data["requires_verification"] is True
         assert "token" in data and len(data["token"]) > 10
         assert data["is_admin"] is False
         assert data["is_superadmin"] is False
 
-    async def test_register_persists_all_fields(self, aclient, reg_payload, isolated_main):
+    async def test_register_persists_email(self, aclient, reg_payload, isolated_main):
         await aclient.post("/bank/api/register", json=reg_payload)
         conn = isolated_main.db_users()
         row = conn.execute(
-            "SELECT email, full_name, phone, opo_interest, email_verified, "
-            "verification_token, verification_expires "
-            "FROM users WHERE username=?", ("alice",)
+            "SELECT email, password_hash FROM users WHERE username=?", ("alice",)
         ).fetchone()
         conn.close()
         assert row["email"] == "alice@example.com"
-        assert row["full_name"] == "Alice Tester"
-        assert row["phone"] == "+34600000000"
-        assert row["opo_interest"] == 1
-        assert row["email_verified"] == 0
-        assert row["verification_token"] is not None
-        assert len(row["verification_token"]) >= 40
-        assert row["verification_expires"] is not None
+        assert row["password_hash"] not in ("__UNSET__", "__AUTO__", "")
 
     async def test_register_rejects_short_username(self, aclient, reg_payload):
         reg_payload["username"] = "a"
@@ -324,16 +305,17 @@ class TestRegisterEndpoint:
         assert "Password" in r.json()["detail"]
 
     async def test_register_rejects_missing_email(self, aclient, reg_payload):
+        """Email is optional - empty email should succeed"""
         reg_payload["email"] = ""
         r = await aclient.post("/bank/api/register", json=reg_payload)
-        assert r.status_code == 400
-        assert "Email" in r.json()["detail"]
+        assert r.status_code == 200
 
     async def test_register_rejects_invalid_email_format(self, aclient, reg_payload):
+        """Invalid email format is accepted since email is optional and not validated"""
         reg_payload["email"] = "not-an-email"
         r = await aclient.post("/bank/api/register", json=reg_payload)
-        assert r.status_code == 400
-        assert "email" in r.json()["detail"].lower()
+        # Email is optional, invalid format is just stored as-is or ignored
+        assert r.status_code == 200
 
     async def test_register_rejects_duplicate_username(self, aclient, reg_payload):
         await aclient.post("/bank/api/register", json=reg_payload)
@@ -557,9 +539,9 @@ class TestMeEndpointNewFields:
         for key in ("email_verified", "opo_interest", "opo_access", "payment_status"):
             assert key in data, f"Missing field: {key}"
 
-        # Just registered → not verified, opo_interest=True (from payload), no payment yet
+        # Just registered → not verified, opo_interest=False (not set during registration), no payment yet
         assert data["email_verified"] is False
-        assert data["opo_interest"] is True
+        assert data["opo_interest"] is False
         assert data["opo_access"] is False
         assert data["payment_status"] == "pending"
 

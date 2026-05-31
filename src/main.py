@@ -1151,9 +1151,6 @@ class RegisterRequest(BaseModel):
     username: str
     password: str
     email: str = ""
-    full_name: str = ""
-    phone: str = ""
-    opo_interest: bool = False
  
 class TransferRequest(BaseModel):
     to_user: str
@@ -1763,117 +1760,38 @@ async def login_alias(request: Request, body: LoginRequest):
 @app.post("/bank/api/register")
 @limiter.limit("100/minute")  # Aumentado para tests (era 10/minute)
 async def register(request: Request, body: RegisterRequest):
-    from fastapi.responses import JSONResponse
-    import secrets
-    
+    import re
     u = body.username.strip().lower()
-    email = body.email.strip().lower() if body.email else ""
-    
-    # Validaciones
+    p = body.password.strip()
+    email = (body.email or "").strip().lower()
     if not (2 <= len(u) <= 30):
-        raise HTTPException(400, "Username must be 2–30 characters")
-    if len(body.password) < 4:
+        raise HTTPException(400, "Username must be 2\u201330 characters")
+    if not p or len(p) < 4:
         raise HTTPException(400, "Password must be at least 4 characters")
-    if not email:
-        raise HTTPException(400, "Email is required")
     if u in GHOST:
         raise HTTPException(400, "Reserved username")
-    
-    # Validar formato de email
-    import re
-    email_regex = r'^[^\s@]+@[^\s@]+\.[^\s@]+$'
-    if not re.match(email_regex, email):
-        raise HTTPException(400, "Invalid email format")
-    
     conn = db_users()
-    
-    # Verificar si el usuario ya existe
     row = conn.execute("SELECT password_hash, email FROM users WHERE username=?", (u,)).fetchone()
-    if row and row["password_hash"] not in ("__UNSET__", "__AUTO__"):
+    if row and row["password_hash"] not in ("__UNSET__", "__AUTO__", ""):
         conn.close()
         raise HTTPException(409, "Username already registered")
-    
-    # Verificar si el email ya está en uso
-    email_row = conn.execute("SELECT username FROM users WHERE email=? AND email IS NOT NULL", (email,)).fetchone()
-    if email_row:
-        conn.close()
-        raise HTTPException(409, "Email already registered")
-    
-    # Generar token de verificación
-    verification_token = secrets.token_urlsafe(32)
-    verification_expires = (datetime.utcnow() + timedelta(hours=24)).isoformat()
-    
-    pwd_hash = hash_password(body.password)
-    
-    # Insertar o actualizar usuario con todos los campos
+    # Check duplicate email if provided
+    if email:
+        email_row = conn.execute("SELECT username FROM users WHERE email=? AND email IS NOT NULL AND email != ''", (email,)).fetchone()
+        if email_row and email_row["username"] != u:
+            conn.close()
+            raise HTTPException(409, "Email already registered")
+    # Hash password
+    import bcrypt
+    hashed = bcrypt.hashpw(p.encode(), bcrypt.gensalt()).decode()
     if row:
-        conn.execute("""
-            UPDATE users 
-            SET password_hash=?, email=?, full_name=?, phone=?, 
-                opo_interest=?, verification_token=?, verification_expires=?,
-                email_verified=0
-            WHERE username=?
-        """, (pwd_hash, email, body.full_name, body.phone, 
-              1 if body.opo_interest else 0, verification_token, verification_expires, u))
+        conn.execute("UPDATE users SET password_hash=?, email=? WHERE username=?", (hashed, email, u))
     else:
-        conn.execute("""
-            INSERT INTO users(
-                username, password_hash, email, full_name, phone, 
-                opo_interest, verification_token, verification_expires, email_verified
-            ) VALUES(?,?,?,?,?,?,?,?,0)
-        """, (u, pwd_hash, email, body.full_name, body.phone, 
-              1 if body.opo_interest else 0, verification_token, verification_expires))
-    
-    conn.commit()
-    conn.close()
-    
-    # Enviar email de verificación
-    try:
-        from modules.shared.email_service import create_email_service
-        import os
-        
-        # Cargar configuración de email
-        config_path = os.path.join(CONF_DIR, "email_config.json")
-        email_service = create_email_service(config_path)
-        
-        # Construir link de verificación
-        base_url = str(request.base_url).rstrip('/')
-        verification_link = f"{base_url}/bank/verify-email?token={verification_token}"
-        
-        email_sent = email_service.send_verification_email(email, u, verification_link)
-        
-        if email_sent:
-            logger.info(f"Verification email sent to {email} for user {u}")
-        else:
-            logger.warning(f"Failed to send verification email to {email} for user {u} (email service may be disabled)")
-    except Exception as e:
-        logger.error(f"Error sending verification email: {e}")
-    
+        conn.execute("INSERT INTO users(username, password_hash, email, balance) VALUES(?, ?, ?, 0.0)", (u, hashed, email))
+    conn.commit(); conn.close()
     _open_session(u, "bank")
-    logger.info("Register: %s (email: %s, opo_interest: %s)", u, email, body.opo_interest)
-    
-    # Crear token JWT
-    token = create_token(u)
-    response = JSONResponse(content={
-        "token": token,
-        "username": u,
-        "email": email,
-        "is_admin": False,
-        "is_superadmin": False,
-        "requires_verification": True,
-        "message": "Cuenta creada. Por favor verifica tu email para activar todas las funcionalidades."
-    })
-    
-    # Establecer cookie HTTP-only segura
-    response.set_cookie(
-        key="dvd_token",
-        value=token,
-        httponly=True,
-        secure=False,
-        samesite="lax",
-        max_age=JWT_EXPIRE_H * 3600
-    )
-    return response
+    logger.info("Register: %s (email: %s)", u, email or "none")
+    return {"token": create_token(u), "username": u, "is_admin": False, "is_superadmin": False}
 
 # Alias para compatibilidad con archivos HTML antiguos
 @app.post("/api/register")
