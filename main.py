@@ -1121,6 +1121,10 @@ if _has_limiter:
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True,
     allow_methods=["*"], allow_headers=["*"])
 
+# GZip compression for faster responses over network
+from starlette.middleware.gzip import GZipMiddleware
+app.add_middleware(GZipMiddleware, minimum_size=500)
+
 # Ngrok browser warning bypass — add header to ALL responses
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request as _StarletteRequest
@@ -2457,21 +2461,38 @@ _CUENTOS_META  = os.path.join(CUENTOS_DIR, ".meta.json")
  
  
 # ── Meta helpers (masked list + enabled flag) ─────────────────────────────────
- 
+
+_meta_cache: dict = None
+_meta_cache_mtime: float = 0
+
+
 def _load_meta() -> dict:
+    """Load meta with file-mtime caching to avoid repeated disk reads."""
+    global _meta_cache, _meta_cache_mtime
     try:
         if os.path.exists(_CUENTOS_META):
+            mtime = os.path.getmtime(_CUENTOS_META)
+            if _meta_cache is not None and mtime == _meta_cache_mtime:
+                return _meta_cache
             with open(_CUENTOS_META, encoding="utf-8") as f:
-                return _json.load(f)
+                _meta_cache = _json.load(f)
+                _meta_cache_mtime = mtime
+                return _meta_cache
     except Exception:
         pass
     return {"masked": [], "enabled": False}
  
  
 def _save_meta(meta: dict):
+    global _meta_cache, _meta_cache_mtime
     os.makedirs(CUENTOS_DIR, exist_ok=True)
     with open(_CUENTOS_META, "w", encoding="utf-8") as f:
         _json.dump(meta, f, ensure_ascii=False, indent=2)
+    _meta_cache = meta
+    try:
+        _meta_cache_mtime = os.path.getmtime(_CUENTOS_META)
+    except Exception:
+        _meta_cache_mtime = 0
  
  
 # ── Enabled state (persisted to disk) ─────────────────────────────────────────
