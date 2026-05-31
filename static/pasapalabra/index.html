@@ -1092,7 +1092,7 @@ select option { background:var(--n4); color:var(--text); }
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')" data-i18n="navCuentos">📋 Anuncios</button>
+      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Anuncios</button>
       <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 Millonario</button>
       <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 ¿Quién soy?</button>
@@ -1754,7 +1754,7 @@ select option { background:var(--n4); color:var(--text); }
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery">
       <span class="icon">◫</span><span data-i18n="navGallery">Gallery</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos">
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos">
       <span class="icon">📋</span><span>Anuncios</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavGame" class="mNavBtn hidden" onclick="openGame()" data-view="game">

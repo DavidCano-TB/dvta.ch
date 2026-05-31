@@ -397,9 +397,9 @@ async function init() {
   } catch(e) { showAuth(); return; }
 
   // Show cuentos nav if enabled
+  // Show cuentos nav always (everyone can post)
   try {
-    const ct = await apiFetch('/api/cuentos/status');
-    if (ct.enabled) document.getElementById('sNavCuentos').style.display = '';
+    document.getElementById('sNavCuentos').style.display = '';
   } catch(e) {}
 
   await loadAll();
