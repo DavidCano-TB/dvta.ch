@@ -177,6 +177,126 @@
   }
   .storyNav a:hover { color:var(--gold2); border-color:var(--border2); }
 
+  /* ── Comments Section ── */
+  .commentsSection {
+    margin-top:48px; padding-top:28px;
+    border-top:1px solid var(--border);
+  }
+  .commentsTitle {
+    font-family:'Oswald',sans-serif; font-size:.85rem; font-weight:600;
+    color:var(--gold); letter-spacing:.1em; text-transform:uppercase;
+    margin-bottom:20px; display:flex; align-items:center; gap:10px;
+  }
+  .commentsTitle::after {
+    content:''; flex:1; height:1px; background:var(--border);
+  }
+  .commentCount {
+    font-size:.65rem; color:var(--text3); font-weight:400;
+    letter-spacing:0; text-transform:none;
+  }
+
+  /* Comment form */
+  .commentForm {
+    margin-bottom:24px; background:var(--glass);
+    border:1px solid var(--border); border-radius:var(--r);
+    padding:14px 16px;
+  }
+  .commentForm textarea {
+    width:100%; min-height:70px; max-height:200px; resize:vertical;
+    background:var(--n2); border:1px solid var(--border2); border-radius:6px;
+    padding:10px 12px; color:var(--text); font-family:'DM Mono',monospace;
+    font-size:.78rem; line-height:1.5; outline:none; transition:border-color .2s;
+  }
+  .commentForm textarea:focus { border-color:var(--gold); }
+  .commentForm textarea::placeholder { color:var(--text3); }
+  .commentFormActions {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:10px; gap:8px;
+  }
+  .commentCharCount { font-size:.58rem; color:var(--text3); }
+  .btnComment {
+    background:var(--gold); color:#000; border:none; border-radius:20px;
+    padding:7px 18px; font-family:'DM Mono',monospace; font-size:.68rem;
+    font-weight:600; cursor:pointer; transition:opacity .18s;
+  }
+  .btnComment:hover { opacity:.85; }
+  .btnComment:disabled { opacity:.4; cursor:not-allowed; }
+
+  /* Comment thread */
+  .commentThread { margin-bottom:12px; }
+  .comment {
+    background:var(--glass); border:1px solid var(--border);
+    border-radius:var(--r); padding:12px 14px; margin-bottom:6px;
+    transition:border-color .15s;
+  }
+  .comment:hover { border-color:var(--border2); }
+  .comment.reply {
+    margin-left:24px; border-left:2px solid var(--gold3);
+    background:rgba(255,255,255,.02);
+  }
+  .commentHeader {
+    display:flex; align-items:center; gap:8px; margin-bottom:6px;
+    flex-wrap:wrap;
+  }
+  .commentAuthor {
+    font-size:.72rem; font-weight:600; color:var(--gold2);
+  }
+  .commentDate {
+    font-size:.56rem; color:var(--text3); letter-spacing:.04em;
+  }
+  .commentBody {
+    font-size:.78rem; color:var(--text); line-height:1.6;
+    word-break:break-word; white-space:pre-wrap;
+  }
+  .commentActions {
+    display:flex; gap:12px; margin-top:8px;
+  }
+  .commentAction {
+    background:none; border:none; font-family:'DM Mono',monospace;
+    font-size:.58rem; color:var(--text3); cursor:pointer;
+    padding:2px 0; transition:color .15s;
+  }
+  .commentAction:hover { color:var(--gold2); }
+  .commentAction.delete:hover { color:var(--red); }
+
+  /* Reply form (inline) */
+  .replyForm {
+    margin-top:8px; margin-left:24px; padding:10px 12px;
+    background:var(--n2); border:1px solid var(--border);
+    border-radius:6px; display:none;
+  }
+  .replyForm.show { display:block; }
+  .replyForm textarea {
+    width:100%; min-height:50px; max-height:120px; resize:vertical;
+    background:var(--noir); border:1px solid var(--border2); border-radius:4px;
+    padding:8px 10px; color:var(--text); font-family:'DM Mono',monospace;
+    font-size:.72rem; line-height:1.4; outline:none;
+  }
+  .replyForm textarea:focus { border-color:var(--gold); }
+  .replyFormActions {
+    display:flex; justify-content:flex-end; gap:8px; margin-top:8px;
+  }
+  .btnReplyCancel {
+    background:none; border:1px solid var(--border); border-radius:16px;
+    padding:5px 12px; font-family:'DM Mono',monospace; font-size:.6rem;
+    color:var(--text3); cursor:pointer; transition:all .15s;
+  }
+  .btnReplyCancel:hover { border-color:var(--border2); color:var(--text2); }
+  .btnReply {
+    background:var(--gold); color:#000; border:none; border-radius:16px;
+    padding:5px 14px; font-family:'DM Mono',monospace; font-size:.6rem;
+    font-weight:600; cursor:pointer; transition:opacity .18s;
+  }
+  .btnReply:hover { opacity:.85; }
+
+  .commentsEmpty {
+    text-align:center; padding:24px; color:var(--text3);
+    font-size:.72rem; font-style:italic;
+  }
+  .commentsLoading {
+    text-align:center; padding:20px; color:var(--text3); font-size:.68rem;
+  }
+
   @media(max-width:540px) {
     .wrap { padding:24px 14px 60px; }
     .storyTitle { font-size:1.35rem; }
@@ -211,6 +331,31 @@
 <script>
 'use strict';
 
+// =============================================================================
+// i18n SYSTEM
+// =============================================================================
+let _i18n = {};
+let _lang = 'es';
+
+async function loadI18n() {
+  // Detect language from localStorage or browser
+  _lang = localStorage.getItem('dvd_lang') || navigator.language?.split('-')[0] || 'es';
+  const supported = ['es','en','fr','de','it','ca','eu'];
+  if (!supported.includes(_lang)) _lang = 'es';
+  try {
+    const r = await fetch(`/bank/static/i18n/${_lang}.json`, {headers:{'ngrok-skip-browser-warning':'1'}});
+    if (r.ok) _i18n = await r.json();
+  } catch(e) { /* fallback to hardcoded */ }
+}
+
+function t(key, fallback) {
+  return _i18n[key] || fallback || key;
+}
+
+// =============================================================================
+// HELPERS
+// =============================================================================
+
 function getFilename() {
   // URL is /cuento/<filename>
   const parts = location.pathname.split('/cuento/');
@@ -224,25 +369,37 @@ function escHtml(s) {
 }
 
 function renderStory(story) {
-  const { title, date, blocks } = story;
+  const { title, date, blocks, creator, created_at } = story;
 
   // Update page title and header
   document.title = title + ' · DVDcoin';
   document.getElementById('hdrTitle').textContent = title;
 
   let metaHtml = '';
-  if (date) metaHtml = `<span>${escHtml(date)}</span><span class="metaDot"></span>`;
-  metaHtml += `<span>Cuento de la sala</span>`;
+  // Show author
+  if (creator) metaHtml += `<span>${t('commentsPostedBy','por')} @${escHtml(creator)}</span><span class="metaDot"></span>`;
+  // Show formatted date
+  if (created_at) {
+    const parts = created_at.split(' ');
+    if (parts.length === 2) {
+      const [y, m, d] = parts[0].split('-');
+      metaHtml += `<span>${d}/${m}/${y} · ${parts[1]}</span>`;
+    } else {
+      metaHtml += `<span>${escHtml(created_at)}</span>`;
+    }
+  } else if (date) {
+    metaHtml += `<span>${escHtml(date)}</span>`;
+  }
 
   // Detect moraleja block (last heading + following paragraphs)
   let moralejaStart = -1;
   for (let i = 0; i < blocks.length; i++) {
-    const t = blocks[i].text.toLowerCase();
-    if (blocks[i].type === 'heading' && (t.includes('moraleja') || t.includes('moral'))) {
+    const t2 = blocks[i].text.toLowerCase();
+    if (blocks[i].type === 'heading' && (t2.includes('moraleja') || t2.includes('moral'))) {
       moralejaStart = i;
       break;
     }
-    if (blocks[i].type === 'bold' && (t.includes('moraleja') || t.includes('moral'))) {
+    if (blocks[i].type === 'bold' && (t2.includes('moraleja') || t2.includes('moral'))) {
       moralejaStart = i;
       break;
     }
@@ -252,18 +409,18 @@ function renderStory(story) {
   const moralBlocks = moralejaStart > 0 ? blocks.slice(moralejaStart + 1) : [];
 
   function renderBlock(b, isFirst) {
-    const t = escHtml(b.text);
+    const txt = escHtml(b.text);
     if (b.type === 'heading') {
-      return `<div class="heading-p">${t}</div>`;
+      return `<div class="heading-p">${txt}</div>`;
     }
     if (b.type === 'bold') {
-      return `<div class="bold-p">${t}</div>`;
+      return `<div class="bold-p">${txt}</div>`;
     }
     // Dialogue detection: starts with — or -
     const isDialogue = b.text.trimStart().startsWith('—') || b.text.trimStart().startsWith('–');
     const cls = isDialogue ? ' dialogue' : '';
     const firstCls = isFirst && !isDialogue ? ' class="first-para"' : '';
-    return `<p class="${cls.trim()}"${firstCls}>${t}</p>`;
+    return `<p class="${cls.trim()}"${firstCls}>${txt}</p>`;
   }
 
   let bodyHtml = '<div class="storyBody">';
@@ -287,13 +444,26 @@ function renderStory(story) {
     <div class="goldenLine"></div>
     ${bodyHtml}
     ${moralejaHtml}
+    <div class="commentsSection">
+      <div class="commentsTitle">💬 ${t('commentsTitle','Comentarios')} <span class="commentCount" id="commentCount"></span></div>
+      <div class="commentForm">
+        <textarea id="commentInput" placeholder="${t('commentsPlaceholder','Escribe un comentario...')}" maxlength="2000" oninput="updateCharCount()"></textarea>
+        <div class="commentFormActions">
+          <span class="commentCharCount" id="charCount">0 / 2000</span>
+          <button class="btnComment" id="btnPostComment" onclick="postComment()">${t('commentsPost','Publicar')}</button>
+        </div>
+      </div>
+      <div id="commentsList"><div class="commentsLoading">${t('commentsLoading','Cargando comentarios…')}</div></div>
+    </div>
     <div class="storyNav">
-      <a href="/bank/cuentos">← Todos los anuncios</a>
-      <a href="/bank/" >⌂ Banco</a>
+      <a href="/bank/cuentos">← ${t('cuentosAllAnnouncements','Todos los anuncios')}</a>
+      <a href="/bank/" >⌂ ${t('cuentosBank','Banco')}</a>
     </div>`;
+  loadComments();
 }
 
 async function init() {
+  await loadI18n();
   const token = localStorage.getItem('dvd_token');
   if (!token) {
     document.getElementById('authScreen').style.display = 'flex';
@@ -308,6 +478,8 @@ async function init() {
     if (!r.ok) throw new Error();
     const me = await r.json();
     document.getElementById('userBadge').textContent = '@' + me.username;
+    _currentUser = me.username;
+    _isAdmin = !!me.is_admin;
   } catch {
     document.getElementById('authScreen').style.display = 'flex';
     return;
@@ -334,13 +506,180 @@ async function init() {
         <div class="icon">⚠</div>
         <div>${e.message}</div>
         <div style="margin-top:16px">
-          <a href="/bank/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← Volver a los cuentos</a>
+          <a href="/bank/cuentos" style="color:var(--gold);text-decoration:none;font-size:.7rem">← ${t('cuentosAllAnnouncements','Volver a los anuncios')}</a>
         </div>
       </div>`;
   }
 }
 
 init();
+
+// =============================================================================
+// COMMENTS SYSTEM
+// =============================================================================
+
+let _currentUser = '';
+let _isAdmin = false;
+
+function updateCharCount() {
+  const ta = document.getElementById('commentInput');
+  if (!ta) return;
+  const el = document.getElementById('charCount');
+  if (el) el.textContent = ta.value.length + ' / 2000';
+}
+
+function formatCommentDate(isoStr) {
+  if (!isoStr) return '';
+  // "2026-05-31 14:30:00" → "31/05/2026 · 14:30"
+  const parts = isoStr.split(' ');
+  if (parts.length < 2) return isoStr;
+  const [y, m, d] = parts[0].split('-');
+  const time = parts[1].substring(0, 5);
+  return `${d}/${m}/${y} · ${time}`;
+}
+
+function buildThreads(comments) {
+  // Build tree structure from flat list
+  const map = {};
+  const roots = [];
+  comments.forEach(c => { map[c.id] = { ...c, replies: [] }; });
+  comments.forEach(c => {
+    if (c.parent_id && map[c.parent_id]) {
+      map[c.parent_id].replies.push(map[c.id]);
+    } else {
+      roots.push(map[c.id]);
+    }
+  });
+  return roots;
+}
+
+function renderComment(c, isReply) {
+  const cls = isReply ? 'comment reply' : 'comment';
+  const canDelete = _isAdmin || c.username === _currentUser;
+  const deleteBtn = canDelete
+    ? `<button class="commentAction delete" onclick="deleteComment(${c.id})">🗑 ${t('commentsDelete','Eliminar')}</button>`
+    : '';
+  const replyBtn = `<button class="commentAction" onclick="toggleReply(${c.id})">↩ ${t('commentsReply','Responder')}</button>`;
+
+  let html = `<div class="${cls}" id="comment-${c.id}">
+    <div class="commentHeader">
+      <span class="commentAuthor">@${escHtml(c.username)}</span>
+      <span class="commentDate">${formatCommentDate(c.created_at)}</span>
+    </div>
+    <div class="commentBody">${escHtml(c.body)}</div>
+    <div class="commentActions">${replyBtn}${deleteBtn}</div>
+  </div>
+  <div class="replyForm" id="replyForm-${c.id}">
+    <textarea id="replyInput-${c.id}" placeholder="${t('commentsReplyPlaceholder','Escribe una respuesta...')}" maxlength="2000"></textarea>
+    <div class="replyFormActions">
+      <button class="btnReplyCancel" onclick="toggleReply(${c.id})">${t('commentsCancel','Cancelar')}</button>
+      <button class="btnReply" onclick="postReply(${c.id})">${t('commentsReply','Responder')}</button>
+    </div>
+  </div>`;
+
+  // Render replies recursively
+  if (c.replies && c.replies.length) {
+    c.replies.forEach(r => { html += renderComment(r, true); });
+  }
+  return html;
+}
+
+async function loadComments() {
+  const filename = getFilename();
+  if (!filename) return;
+  const token = localStorage.getItem('dvd_token');
+  try {
+    const r = await fetch('/bank/api/cuentos/comments/' + encodeURIComponent(filename), {
+      headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
+    });
+    if (!r.ok) throw new Error('Error ' + r.status);
+    const comments = await r.json();
+    const el = document.getElementById('commentsList');
+    const countEl = document.getElementById('commentCount');
+    if (countEl) countEl.textContent = `(${comments.length})`;
+    if (!comments.length) {
+      el.innerHTML = `<div class="commentsEmpty">${t('commentsEmpty','Sé el primero en comentar')}</div>`;
+      return;
+    }
+    const threads = buildThreads(comments);
+    el.innerHTML = threads.map(c => `<div class="commentThread">${renderComment(c, false)}</div>`).join('');
+  } catch(e) {
+    const el = document.getElementById('commentsList');
+    if (el) el.innerHTML = `<div class="commentsEmpty">${t('commentsError','Error al cargar comentarios')}</div>`;
+  }
+}
+
+async function postComment() {
+  const ta = document.getElementById('commentInput');
+  const btn = document.getElementById('btnPostComment');
+  if (!ta || !ta.value.trim()) return;
+  btn.disabled = true;
+  const filename = getFilename();
+  const token = localStorage.getItem('dvd_token');
+  try {
+    const r = await fetch('/bank/api/cuentos/comments/' + encodeURIComponent(filename), {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': '1'
+      },
+      body: JSON.stringify({ body: ta.value.trim() })
+    });
+    if (!r.ok) { const d = await r.json().catch(()=>{}); throw new Error(d?.detail || 'Error'); }
+    ta.value = '';
+    updateCharCount();
+    await loadComments();
+  } catch(e) {
+    alert('Error: ' + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function toggleReply(commentId) {
+  const form = document.getElementById('replyForm-' + commentId);
+  if (form) form.classList.toggle('show');
+}
+
+async function postReply(parentId) {
+  const ta = document.getElementById('replyInput-' + parentId);
+  if (!ta || !ta.value.trim()) return;
+  const filename = getFilename();
+  const token = localStorage.getItem('dvd_token');
+  try {
+    const r = await fetch('/bank/api/cuentos/comments/' + encodeURIComponent(filename), {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': '1'
+      },
+      body: JSON.stringify({ body: ta.value.trim(), parent_id: parentId })
+    });
+    if (!r.ok) { const d = await r.json().catch(()=>{}); throw new Error(d?.detail || 'Error'); }
+    ta.value = '';
+    toggleReply(parentId);
+    await loadComments();
+  } catch(e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+async function deleteComment(commentId) {
+  if (!confirm(t('commentsDeleteConfirm','¿Eliminar este comentario?'))) return;
+  const token = localStorage.getItem('dvd_token');
+  try {
+    const r = await fetch('/bank/api/cuentos/comments/' + commentId, {
+      method: 'DELETE',
+      headers: { 'Authorization': 'Bearer ' + token, 'ngrok-skip-browser-warning': '1' }
+    });
+    if (!r.ok) { const d = await r.json().catch(()=>{}); throw new Error(d?.detail || 'Error'); }
+    await loadComments();
+  } catch(e) {
+    alert('Error: ' + e.message);
+  }
+}
 </script>
 
 <!-- Sistema de Navegación Unificada -->

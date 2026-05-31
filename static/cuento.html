@@ -250,15 +250,27 @@ function escHtml(s) {
 }
 
 function renderStory(story) {
-  const { title, date, blocks } = story;
+  const { title, date, blocks, creator, created_at } = story;
 
   // Update page title and header
   document.title = title + ' · DVDcoin';
   document.getElementById('hdrTitle').textContent = title;
 
   let metaHtml = '';
-  if (date) metaHtml = `<span>${escHtml(date)}</span><span class="metaDot"></span>`;
-  metaHtml += `<span>Cuento de la sala</span>`;
+  // Show author
+  if (creator) metaHtml += `<span>por @${escHtml(creator)}</span><span class="metaDot"></span>`;
+  // Show formatted date
+  if (created_at) {
+    const parts = created_at.split(' ');
+    if (parts.length === 2) {
+      const [y, m, d] = parts[0].split('-');
+      metaHtml += `<span>${d}/${m}/${y} · ${parts[1]}</span>`;
+    } else {
+      metaHtml += `<span>${escHtml(created_at)}</span>`;
+    }
+  } else if (date) {
+    metaHtml += `<span>${escHtml(date)}</span>`;
+  }
 
   // Detect moraleja block (last heading + following paragraphs)
   let moralejaStart = -1;

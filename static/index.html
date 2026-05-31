@@ -1417,7 +1417,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <!-- Games tab removed -->
       <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame" style="display:none">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
-      <button class="navTab hidden" id="navExams" onclick="openExams()">🎓 <span>Exámenes</span></button>
+
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
       <button class="navTab" id="navVotaciones" onclick="openVotaciones()">🗳️ <span data-i18n="navVotaciones">Votaciones</span></button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">⚙️ Admin</button>
@@ -1571,18 +1571,6 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       </div>
     </div>
 
-    <!-- ── MEMBER OPO ACCESS PANEL (non-superadmin OPO users) ── -->
-    <div id="dashMemberOpo" style="display:none;margin-top:8px">
-      <div class="panel">
-        <div class="pHead">
-          <div class="pTitle"><span class="pDot"></span>📝 OPO — Simulacro</div>
-          <div class="pSub">Tienes acceso al simulacro de oposición</div>
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:4px">
-          <a href="/bank/opo" class="btn btnG btnSm" style="text-decoration:none">▶ Abrir OPO</a>
-        </div>
-      </div>
-    </div>
     </div><!-- /view-dash -->
 
     <!-- ── TRANSFER ───────────────────────────────────────────── -->
@@ -1831,8 +1819,6 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
         <div id="socialAllRooms" style="display:flex;flex-direction:column;gap:0;margin-top:8px"></div>
       </div>
     </div><!-- /view-social -->
-
-    <!-- ── OPO: acceso solo desde nueva pestaña (/opo) ──────── -->
 
     <!-- ── CUENTOS ───────────────────────────────────────────── -->
     <div id="view-cuentos" class="view">
@@ -2148,33 +2134,6 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           </div>
         </div>
 
-        <!-- ── OPO ──────────────────────────────────────────────── -->
-        <div id="gp-opo" class="gamePanel" style="display:none">
-          <div class="panel">
-            <div class="pHead" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-              <div>
-                <div class="pTitle"><span class="pDot"></span>Jugadores OPO</div>
-                <div class="pSub">Quién puede acceder al simulacro</div>
-              </div>
-              <div style="display:flex;gap:8px">
-                <button class="btn btnO btnSm" onclick="showOpoResults()">📊 Resultados</button>
-                <a href="/bank/opo" class="btn btnG btnSm" style="text-decoration:none">▶ Jugar</a>
-              </div>
-            </div>
-            <div style="display:flex;gap:8px;margin:10px 0;align-items:center">
-              <div style="position:relative;flex:1">
-                <input id="opoAddInput2" type="text" placeholder="🔍 Añadir usuario…" autocomplete="off"
-                  oninput="opoSuggest2(this.value)"
-                  onblur="setTimeout(()=>{const b=document.getElementById('opoSuggestBox2');if(b)b.style.display='none'},200)"
-                  style="width:100%;background:var(--glass);border:1px solid var(--border);border-radius:var(--r);padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.8rem;outline:none;box-sizing:border-box">
-                <div id="opoSuggestBox2" style="position:absolute;top:100%;left:0;right:0;z-index:200;background:var(--n3);border:1px solid var(--border2);border-radius:0 0 var(--r) var(--r);max-height:180px;overflow-y:auto;display:none"></div>
-              </div>
-              <button class="btn btnG btnSm" onclick="opoAddPlayer2()">+ Añadir</button>
-            </div>
-            <div class="alert" id="opoAlert2" style="margin-bottom:6px"></div>
-            <div id="opoPlayersList2" style="display:flex;flex-direction:column;gap:4px"></div>
-          </div>
-        </div>
 
         <!-- ── MENSAJES ──────────────────────────────────────────── -->
         <div id="gp-mensajes" class="gamePanel" style="display:none">
@@ -2364,9 +2323,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games" style="display:none">
       <span class="icon">🎮</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavExams" onclick="openExams()" title="Exámenes" style="display:none">
-      <span class="icon">🎓</span>
-    </button>
+
     <button class="mNavBtn" id="mobileNavApuestas" onclick="openApuestas()" title="Apuestas">
       <span class="icon">🎲</span>
     </button>
@@ -2940,7 +2897,6 @@ async function loadApp() {
         document.getElementById('panelAdminMgmt')?.style.setProperty('display', '');
         loadAdminMgmt().catch(()=>{});
         document.getElementById('dashDvdStats')?.style.setProperty('display', '');
-        loadOpoDash().catch(()=>{});
         loadDvdStats().catch(()=>{});
       }
       // Change password — all users
@@ -3605,7 +3561,7 @@ async function loadCuentosView() {
       el.innerHTML = '<div class="empty">No posts available.</div>';
       return;
     }
-    el.innerHTML = items.map(c => {
+    el.innerHTML = items.map((c, idx) => {
       const name  = c.filename || '';
       const label = (c.title || name).replace(/_/g,' ').replace(/\.(docx|odt)$/i,'');
       const masked = c.masked || false;
@@ -3615,7 +3571,7 @@ async function loadCuentosView() {
       if (masked && !me?.is_admin) return '';
       // Build meta line: "Publicado por @user · 31/05/2026 14:30"
       let metaParts = [];
-      if (creator) metaParts.push(`por @${esc(creator)}`);
+      if (creator) metaParts.push(`${t('commentsPostedBy')} @${esc(creator)}`);
       if (createdAt) {
         const parts = createdAt.split(' ');
         if (parts.length === 2) {
@@ -3628,23 +3584,147 @@ async function loadCuentosView() {
         metaParts.push(esc(c.date));
       }
       const metaLine = metaParts.length ? metaParts.join(' · ') : '';
-      return `<div class="panel" style="display:flex;align-items:center;gap:12px;padding:14px 16px;${masked?'opacity:.5':''}">
-        <span style="font-size:1.4rem;flex-shrink:0">📋</span>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
-          ${metaLine ? `<div style="font-size:.58rem;color:var(--text3);margin-top:3px">${metaLine}</div>` : ''}
-          ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
+      const commentCount = c.comment_count || 0;
+      const commentBtnLabel = commentCount
+        ? `${t('commentsShowComments')} (${commentCount})`
+        : t('commentsShowComments');
+      return `<div class="panel" style="padding:0;overflow:hidden;${masked?'opacity:.5':''}">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;">
+          <span style="font-size:1.4rem;flex-shrink:0">📋</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
+            ${metaLine ? `<div style="font-size:.58rem;color:var(--text3);margin-top:3px">${metaLine}</div>` : ''}
+            ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;flex-wrap:wrap">
+            ${!masked ? `<button class="btn btnG btnSm" onclick="toggleCuentoComments('${esc(name)}',${idx})" id="cBtnComments-${idx}" style="font-size:.6rem;padding:5px 10px">${commentBtnLabel}</button>` : ''}
+            ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
+              class="btn btnG btnSm" style="text-decoration:none">${t('cuentosRead')}</a>` : ''}
+            ${canDelete ? `<button class="btn btnD btnSm" onclick="deleteCuento('${esc(name)}')">🗑</button>` : ''}
+          </div>
         </div>
-        <div style="display:flex;gap:6px;flex-shrink:0;align-items:center">
-          ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
-            class="btn btnG btnSm" style="text-decoration:none">Read →</a>` : ''}
-          ${canDelete ? `<button class="btn btnD btnSm" onclick="deleteCuento('${esc(name)}')">🗑</button>` : ''}
-        </div>
+        ${!masked ? `<div id="cComments-${idx}" data-filename="${esc(name)}" style="display:none;padding:0 14px 14px;background:rgba(0,0,0,.2);border-top:1px solid var(--border)"></div>` : ''}
       </div>`;
     }).filter(Boolean).join('');
   } catch(e) {
     el.innerHTML = `<div class="empty">Error: ${esc(e.message)}</div>`;
   }
+}
+
+// ── Inline comments for SPA cuentos view ──
+function toggleCuentoComments(filename, idx) {
+  const panel = document.getElementById('cComments-' + idx);
+  const btn = document.getElementById('cBtnComments-' + idx);
+  if (!panel) return;
+  const isOpen = panel.style.display !== 'none';
+  if (isOpen) {
+    panel.style.display = 'none';
+    if (btn) btn.style.background = '';
+  } else {
+    panel.style.display = '';
+    if (btn) btn.style.background = 'rgba(212,168,67,.15)';
+    loadCuentoInlineComments(filename, idx);
+  }
+}
+
+function _fmtCDate(isoStr) {
+  if (!isoStr) return '';
+  const parts = isoStr.split(' ');
+  if (parts.length < 2) return isoStr;
+  const [y, m, d] = parts[0].split('-');
+  return `${d}/${m}/${y} · ${parts[1].substring(0,5)}`;
+}
+
+function _buildCThreads(comments) {
+  const map = {};
+  const roots = [];
+  comments.forEach(c => { map[c.id] = { ...c, replies: [] }; });
+  comments.forEach(c => {
+    if (c.parent_id && map[c.parent_id]) map[c.parent_id].replies.push(map[c.id]);
+    else roots.push(map[c.id]);
+  });
+  return roots;
+}
+
+function _renderCComment(c, isReply, filename, idx) {
+  const cls = isReply ? 'margin-left:18px;border-left:2px solid var(--gold3);padding-left:10px;' : '';
+  const canDel = me?.is_admin || c.username === me?.username;
+  const delBtn = canDel ? `<button onclick="deleteCuentoComment(${c.id},'${esc(filename)}',${idx})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">🗑 ${t('commentsDelete')}</button>` : '';
+  const replyBtn = `<button onclick="toggleCuentoReply(${c.id})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">↩ ${t('commentsReply')}</button>`;
+  let html = `<div style="${cls}margin-bottom:6px;background:var(--glass);border:1px solid var(--border);border-radius:6px;padding:8px 10px;">
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:3px;flex-wrap:wrap">
+      <span style="font-size:.66rem;font-weight:600;color:var(--gold2)">@${esc(c.username)}</span>
+      <span style="font-size:.5rem;color:var(--text3)">${_fmtCDate(c.created_at)}</span>
+    </div>
+    <div style="font-size:.7rem;color:var(--text);line-height:1.5;white-space:pre-wrap;word-break:break-word">${esc(c.body)}</div>
+    <div style="display:flex;gap:10px;margin-top:4px">${replyBtn}${delBtn}</div>
+  </div>
+  <div id="crf-${c.id}" style="display:none;margin-left:18px;margin-bottom:6px;padding:8px;background:var(--n3);border:1px solid var(--border);border-radius:6px">
+    <textarea id="cri-${c.id}" placeholder="${t('commentsReplyPlaceholder')}" maxlength="2000" style="width:100%;min-height:40px;resize:vertical;background:var(--noir);border:1px solid var(--border2);border-radius:4px;padding:6px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:.68rem;outline:none"></textarea>
+    <div style="display:flex;justify-content:flex-end;gap:6px;margin-top:6px">
+      <button onclick="toggleCuentoReply(${c.id})" class="btn btnSm" style="font-size:.56rem;padding:3px 8px">${t('commentsCancel')}</button>
+      <button onclick="postCuentoReply(${c.id},'${esc(filename)}',${idx})" class="btn btnG btnSm" style="font-size:.56rem;padding:3px 10px">${t('commentsReply')}</button>
+    </div>
+  </div>`;
+  if (c.replies && c.replies.length) {
+    c.replies.forEach(r => { html += _renderCComment(r, true, filename, idx); });
+  }
+  return html;
+}
+
+async function loadCuentoInlineComments(filename, idx) {
+  const panel = document.getElementById('cComments-' + idx);
+  if (!panel) return;
+  panel.innerHTML = `<div style="text-align:center;padding:12px;color:var(--text3);font-size:.65rem">${t('commentsLoading')}</div>`;
+  try {
+    const comments = await req('GET', '/bank/api/cuentos/comments/' + encodeURIComponent(filename));
+    const threads = _buildCThreads(comments);
+    const formHtml = `<div style="margin-bottom:10px;margin-top:8px">
+      <textarea id="cta2-${idx}" placeholder="${t('commentsPlaceholder')}" maxlength="2000" style="width:100%;min-height:50px;resize:vertical;background:var(--n2);border:1px solid var(--border2);border-radius:6px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;outline:none" oninput="document.getElementById('cc2-${idx}').textContent=this.value.length+' / 2000'"></textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span id="cc2-${idx}" style="font-size:.52rem;color:var(--text3)">0 / 2000</span>
+        <button class="btn btnG btnSm" style="font-size:.6rem;padding:4px 12px" onclick="postCuentoComment('${esc(filename)}',${idx})">${t('commentsPost')}</button>
+      </div>
+    </div>`;
+    if (!comments.length) {
+      panel.innerHTML = formHtml + `<div style="text-align:center;padding:14px;color:var(--text3);font-size:.68rem;font-style:italic">${t('commentsEmpty')}</div>`;
+    } else {
+      panel.innerHTML = formHtml + threads.map(c => _renderCComment(c, false, filename, idx)).join('');
+    }
+  } catch(e) {
+    panel.innerHTML = `<div style="text-align:center;padding:12px;color:var(--text3);font-size:.65rem">${t('commentsError')}</div>`;
+  }
+}
+
+async function postCuentoComment(filename, idx) {
+  const ta = document.getElementById('cta2-' + idx);
+  if (!ta || !ta.value.trim()) return;
+  try {
+    await req('POST', '/bank/api/cuentos/comments/' + encodeURIComponent(filename), { body: ta.value.trim() });
+    await loadCuentoInlineComments(filename, idx);
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+function toggleCuentoReply(commentId) {
+  const form = document.getElementById('crf-' + commentId);
+  if (form) form.style.display = form.style.display === 'none' ? '' : 'none';
+}
+
+async function postCuentoReply(parentId, filename, idx) {
+  const ta = document.getElementById('cri-' + parentId);
+  if (!ta || !ta.value.trim()) return;
+  try {
+    await req('POST', '/bank/api/cuentos/comments/' + encodeURIComponent(filename), { body: ta.value.trim(), parent_id: parentId });
+    await loadCuentoInlineComments(filename, idx);
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function deleteCuentoComment(commentId, filename, idx) {
+  if (!confirm(t('commentsDeleteConfirm'))) return;
+  try {
+    await req('DELETE', '/bank/api/cuentos/comments/' + commentId);
+    await loadCuentoInlineComments(filename, idx);
+  } catch(e) { alert('Error: ' + e.message); }
 }
 
 async function deleteCuento(filename) {
@@ -3774,19 +3854,9 @@ function openApuestas() {
   window.location.href = t ? '/bank/apuestas?token=' + encodeURIComponent(t) : '/bank/apuestas';
 }
 
-function openExams() {
-  const t = localStorage.getItem('dvd_token');
-  window.location.href = t ? '/exams?token=' + encodeURIComponent(t) : '/exams';
-}
-
 function openVotaciones() {
   const t = localStorage.getItem('dvd_token');
   window.location.href = t ? '/bank/votaciones?token=' + encodeURIComponent(t) : '/bank/votaciones';
-}
-
-function openOpo() {
-  const t = localStorage.getItem('dvd_token');
-  window.location.href = t ? '/bank/opo?token=' + encodeURIComponent(t) : '/bank/opo';
 }
 
 function openGames() {
@@ -4182,7 +4252,6 @@ const GAME_META = {
   cifrasletras: { icon:'🔤', get label(){ return t('navCifrasLetras','Cifras y Letras'); } },
   hundirlaflota:{ icon:'⚓', get label(){ return t('navHundirLaFlota','Hundir la Flota'); } },
   cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); }, url: 'https://dvta.ch' },
-  opo:          { icon:'📝', label:'OPO' },
   mensajes:     { icon:'💬', get label(){ return t('socialTitle','Mensajes'); } },
 };
 
@@ -4203,7 +4272,6 @@ async function openGamePanel(name) {
   if (name === 'cifrasletras') await cl2Load();
   if (name === 'hundirlaflota') await hlfLoad();
   if (name === 'cuentos')      await ctLoad();
-  if (name === 'opo')          await opoLoad2();
   if (name === 'mensajes')     await msgLoad();
 }
 
@@ -4602,61 +4670,6 @@ async function toggleCuentos(en) {
   } catch(e) { showAlert('ctAlert', e.message); }
 }
 
-/* ──────────────────────────────────────────────────────────
-   OPO DRAWER (reuses existing OPO logic with new element IDs)
-────────────────────────────────────────────────────────── */
-let _opoAllUsers2 = [];
-async function opoLoad2() {
-  try {
-    const [players, connected] = await Promise.all([
-      req('GET', '/bank/api/opo/players'),
-      req('GET', '/bank/api/admin/connected').catch(()=>[])
-    ]);
-    _opoPlayers = players;
-    _ONLINE_MAP = {};
-    (connected||[]).forEach(u => { _ONLINE_MAP[u] = true; });
-    renderOpoPlayers2();
-  } catch(e) { showAlert('opoAlert2', e.message); }
-}
-function renderOpoPlayers2() {
-  const el = document.getElementById('opoPlayersList2');
-  if (!el) return;
-  if (!_opoPlayers.length) { el.innerHTML = '<div style="font-size:.72rem;color:var(--text3);padding:8px 0">Sin jugadores OPO registrados</div>'; return; }
-  el.innerHTML = _opoPlayers.map(p => {
-    const online = !!_ONLINE_MAP[p.username];
-    const isSuperadmin = p.username === 'dvd';
-    return `<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--glass);border:1px solid var(--border);border-radius:8px">
-      <span style="width:8px;height:8px;border-radius:50%;background:${online?'var(--green)':'var(--text3)'};flex-shrink:0"></span>
-      <span style="flex:1;font-size:.78rem;color:var(--text)">@${esc(p.username)}</span>
-      ${!isSuperadmin ? `<button onclick="opoRemovePlayer2('${esc(p.username)}')" class="btn btnD btnSm" style="padding:3px 8px;font-size:.6rem">✕</button>` : ''}
-    </div>`;
-  }).join('');
-}
-async function opoAddPlayer2() {
-  const inp = document.getElementById('opoAddInput2');
-  const uname = (inp?.value||'').trim().toLowerCase();
-  if (!uname) return;
-  try { await req('POST', '/bank/api/opo/players', { username: uname }); inp.value=''; document.getElementById('opoSuggestBox2').style.display='none'; showAlert('opoAlert2','@'+uname+' añadido al OPO','s'); await opoLoad2(); }
-  catch(e) { showAlert('opoAlert2', e.message||'Error'); }
-}
-async function opoRemovePlayer2(uname) {
-  if (!confirm('¿Quitar a @'+uname+' del OPO?')) return;
-  try { await req('DELETE', '/bank/api/opo/players/'+uname); showAlert('opoAlert2','@'+uname+' eliminado','s'); await opoLoad2(); }
-  catch(e) { showAlert('opoAlert2', e.message); }
-}
-async function opoSuggest2(val) {
-  const box = document.getElementById('opoSuggestBox2'); if (!box) return;
-  if (!val || val.length < 2) { box.style.display='none'; return; }
-  if (!_opoAllUsers2.length) {
-    try { const d = await req('GET', '/bank/api/admin/users'); _opoAllUsers2 = (d||[]).filter(u=>!u.is_admin&&!u.is_ghost).map(u=>u.username); } catch(_){}
-  }
-  const q = val.toLowerCase();
-  const matches = _opoAllUsers2.filter(u => u.includes(q)).slice(0,8);
-  if (!matches.length) { box.style.display='none'; return; }
-  box.style.display='block';
-  box.innerHTML = matches.map(u => `<div style="padding:6px 10px;cursor:pointer;font-size:.72rem;color:var(--text);border-bottom:1px solid var(--border)" onmouseover="this.style.background='var(--n4)'" onmouseout="this.style.background=''" onmousedown="document.getElementById('opoAddInput2').value='${u}';document.getElementById('opoSuggestBox2').style.display='none'">@${esc(u)}</div>`).join('');
-}
-
 /* ── Change password ───────────────────────────────────── */
 async function changePwd() {
   const old_p = (document.getElementById('pwdOld')?.value || '').trim();
@@ -4792,133 +4805,6 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-/* ── OPO Dashboard ─────────────────────────────────────── */
-const escHtml = s => String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-let _opoPlayers = [];
-
-// Map of username → online status (populated from /bank/api/admin/connected)
-let _ONLINE_MAP = {};
-
-async function loadOpoDash() {
-  try {
-    const [players, connected] = await Promise.all([
-      req('GET', '/bank/api/opo/players'),
-      req('GET', '/bank/api/admin/connected').catch(()=>[])
-    ]);
-    _opoPlayers = players;
-    _ONLINE_MAP = {};
-    (connected||[]).forEach(u => { _ONLINE_MAP[u] = true; });
-    renderOpoPlayers();
-  } catch(e) { console.error('OPO dash error', e); }
-}
-
-function renderOpoPlayers() {
-  const el = document.getElementById('opoPlayersList');
-  if (!el) return;
-  if (!_opoPlayers.length) {
-    el.innerHTML = '<div style="font-size:.7rem;color:var(--text3);padding:10px 0">Sin jugadores añadidos.</div>';
-    return;
-  }
-  const totalAllS = _opoPlayers.reduce((s,p)=>s+(p.total_s||0),0);
-  const rows = _opoPlayers.map(p => {
-    const isDvdNeb = p.username==='dvd' || p.username==='nebulosa';
-    const isOnline = !!(_ONLINE_MAP && _ONLINE_MAP[p.username]);
-    const dot = isOnline
-      ? '<span class="onlineDot" title="Online"></span>'
-      : '<span class="offlineDot" title="Offline"></span>';
-    const lastC  = p.last_conn ? fmtDate(p.last_conn) : '—';
-    const totalH = p.total_s  > 0 ? fmtDuration(p.total_s) : '—';
-    const removeBtn = !isDvdNeb
-      ? `<button class="btn btnD btnSm" onclick="opoRemovePlayer('${escHtml(p.username)}')">✕ Quitar</button>`
-      : '';
-    return `<tr>
-      <td style="padding:4px 2px;text-align:center">${dot}</td>
-      <td style="font-weight:500;color:var(--text)">@${escHtml(p.username)}</td>
-      <td style="color:var(--gold3)">${p.tests_done} test${p.tests_done!==1?'s':''}</td>
-      <td style="color:var(--text3)">${lastC}</td>
-      <td style="color:var(--text3)">${totalH}</td>
-      <td style="display:flex;gap:5px;flex-wrap:wrap">${removeBtn}</td>
-    </tr>`;
-  }).join('');
-  el.innerHTML = `
-    <table class="tbl" style="margin-top:4px">
-      <thead><tr>
-        <th style="width:18px;padding:4px 2px"></th>
-        <th>Usuario</th><th>Tests</th><th>Última conexión</th>
-        <th>Tiempo total</th><th>Acciones</th>
-      </tr></thead>
-      <tbody>${rows}</tbody>
-    </table>
-    <div style="padding:5px 2px;font-size:.62rem;color:var(--text3);text-align:right;border-top:1px solid var(--border);margin-top:4px">
-      Tiempo total OPO: <strong style="color:var(--gold2)">${fmtDuration(totalAllS)}</strong>
-    </div>`;
-}
-
-async function opoAddPlayer() {
-  const inp = document.getElementById('opoAddInput');
-  const uname = (inp?.value || '').trim().toLowerCase();
-  if (!uname) return;
-  try {
-    await req('POST', '/bank/api/opo/players', { username: uname });
-    inp.value = '';
-    document.getElementById('opoSuggestBox').innerHTML = '';
-    document.getElementById('opoSuggestBox').style.display = 'none';
-    showAlert('opoAddAlert', `@${uname} puede acceder al OPO`, 's');
-    await loadOpoDash();
-  } catch(e) {
-    showAlert('opoAddAlert', e.message || 'Error al añadir');
-  }
-}
-
-async function opoRemovePlayer(uname) {
-  if (!confirm(`¿Quitar a @${uname} del OPO?`)) return;
-  try {
-    await req('DELETE', `/bank/api/opo/players/${uname}`);
-    await loadOpoDash();
-  } catch(e) { showAlert('opoAddAlert', e.message || 'Error'); }
-}
-
-// Autocomplete for OPO add input
-let _opoAllUsers = [];
-async function opoSuggest(val) {
-  const box = document.getElementById('opoSuggestBox');
-  if (!box) return;
-  if (!val || val.length < 1) { box.style.display = 'none'; box.innerHTML = ''; return; }
-  // Load users if not loaded
-  if (!_opoAllUsers.length) {
-    try {
-      const d = await req('GET', '/bank/api/admin/users');
-      _opoAllUsers = (d || []).filter(u => !u.is_admin && !u.is_ghost).map(u => u.username);
-    } catch(e) { return; }
-  }
-  const q = val.toLowerCase();
-  const matches = _opoAllUsers.filter(u => u.includes(q)).slice(0, 8);
-  if (!matches.length) { box.style.display = 'none'; return; }
-  box.style.display = 'block';
-  box.innerHTML = matches.map(u =>
-    `<div style="padding:6px 10px;cursor:pointer;font-size:.72rem;color:var(--text);
-      border-bottom:1px solid var(--border)"
-      onmousedown="document.getElementById('opoAddInput').value='${u}';
-        document.getElementById('opoSuggestBox').style.display='none'"
-    >@${escHtml(u)}</div>`
-  ).join('');
-}
-
-async function checkOpoAccess() {
-  // Superadmins have full OPO management in dashDvdStats already
-  if (me.is_superadmin) return;
-  // Regular admins: no OPO member panel
-  if (me.is_admin) return;
-  try {
-    const st = await req('GET', '/bank/api/opo/status');
-    if (st.is_opo_user) {
-      // Show OPO panel on member home (2 buttons: advanced stats + select questionnaire)
-      const panel = document.getElementById('dashMemberOpo');
-      if (panel) panel.style.display = '';
-    }
-  } catch(e) {}
-}
-
 async function loadDvdStats() {
   const el = document.getElementById('dvdStatsContent');
   if (!el) return;
@@ -4987,78 +4873,6 @@ async function loadDvdStats() {
     document.getElementById('dvdStatsSub').textContent = `${totalUsers} miembros · ${totalSessions} sesiones · ${porrasAbiertas} porras activas`;
   } catch(e) {
     el.innerHTML = '<div class="empty">No se pudieron cargar las estadísticas</div>';
-  }
-}
-
-function showMemberOpoSelect() {
-  // Open OPO with block selection visible — just navigate to the game
-  window.open('/opo?token=' + encodeURIComponent(localStorage.getItem('dvd_token')), '_blank');
-}
-
-async function showOpoResults() {
-  const modal = document.getElementById('opoResultsModal');
-  const body = document.getElementById('opoResultsBody');
-  if (!modal || !body) return;
-  modal.style.display = 'block';
-  body.innerHTML = 'Cargando…';
-  try {
-    const results = await req('GET', '/bank/api/opo/results');
-    if (!results.length) { body.innerHTML = '<div class="empty">Sin resultados</div>'; return; }
-    // Group by user for summary
-    const byUser = {};
-    results.forEach(r => {
-      if (!byUser[r.username]) byUser[r.username] = {correct:0, wrong:0, tests:0};
-      byUser[r.username].correct += r.correct;
-      byUser[r.username].wrong   += r.wrong;
-      byUser[r.username].tests++;
-    });
-    const summaryRows = Object.entries(byUser)
-      .sort((a,b) => b[1].correct - a[1].correct)
-      .map(([u,s]) => {
-        const total = s.correct + s.wrong;
-        const pct = total > 0 ? Math.round(s.correct/total*100) : 0;
-        return `<div style="display:flex;gap:10px;align-items:center;padding:5px 8px;
-          background:var(--n4);border-radius:7px;border:1px solid var(--border);font-size:.7rem">
-          <span style="flex:1;color:var(--text)">@${escHtml(u)}</span>
-          <span style="color:var(--text3)">${s.tests} test${s.tests!==1?'s':''}</span>
-          <span style="color:var(--green)">✓ ${s.correct}</span>
-          <span style="color:var(--red)">✗ ${s.wrong}</span>
-          <span style="color:var(--gold2);font-weight:700">${pct}%</span>
-        </div>`;
-      }).join('');
-
-    body.innerHTML = `
-      <div style="margin-bottom:14px">
-        <div style="font-size:.6rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Resumen por usuario</div>
-        <div style="display:flex;flex-direction:column;gap:4px">${summaryRows}</div>
-      </div>
-      <div style="font-size:.6rem;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Todos los resultados</div>
-      <table style="width:100%;border-collapse:collapse;font-size:.68rem">
-        <thead><tr style="color:var(--text3);font-size:.58rem;letter-spacing:.08em;
-          text-transform:uppercase;border-bottom:1px solid var(--border)">
-          <th style="padding:5px 6px;text-align:left">Usuario</th>
-          <th style="padding:5px 6px;text-align:center">Test</th>
-          <th style="padding:5px 6px;text-align:center">Fecha y hora</th>
-          <th style="padding:5px 6px;text-align:center">✓</th>
-          <th style="padding:5px 6px;text-align:center">✗</th>
-        </tr></thead>
-        <tbody>
-          ${results.map(r => {
-            const total = r.correct + r.wrong;
-            const pct = total > 0 ? Math.round(r.correct/total*100) : 0;
-            return `<tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:5px 6px;color:var(--text)">@${escHtml(r.username)}</td>
-              <td style="padding:5px 6px;text-align:center;color:var(--gold2);font-family:'Oswald',sans-serif;font-weight:600">
-                Test ${r.block_n}</td>
-              <td style="padding:5px 6px;text-align:center;color:var(--text3)">${fmtDate(r.played_at)}</td>
-              <td style="padding:5px 6px;text-align:center;color:var(--green)">${r.correct}</td>
-              <td style="padding:5px 6px;text-align:center;color:var(--red)">${r.wrong}</td>
-            </tr>`;
-          }).join('')}
-        </tbody>
-      </table>`;
-  } catch(e) {
-    body.innerHTML = '<div class="empty">Error cargando resultados</div>';
   }
 }
 
@@ -7630,7 +7444,7 @@ async function loadAdvancedStats(){
   }catch(e){el.innerHTML=`<div class="empty">Error: ${esc(e.message)}</div>`;}
 }
 
-/* ── Hook social/opo into existing nav() function ── */
+/* ── Hook social into existing nav() function ── */
 (function(){
   const __nav=window.nav;
   if(typeof __nav==='function'){

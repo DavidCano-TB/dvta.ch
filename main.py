@@ -1068,6 +1068,8 @@ async def lifespan(app: FastAPI):
     # Load cuentos enabled flag
     global _cuentos_enabled
     _cuentos_enabled = _load_cuentos_enabled()
+    # Migrate: ensure all existing announcement files have creator/created_at in meta
+    _migrate_anuncios_meta()
     # Background tasks
     asyncio.create_task(cleanup_old_transactions())
     asyncio.create_task(_no_sleep_task())
@@ -2479,6 +2481,37 @@ _cuentos_enabled: bool = False  # loaded from disk in lifespan
  
 def _load_cuentos_enabled() -> bool:
     return bool(_load_meta().get("enabled", False))
+
+
+def _migrate_anuncios_meta():
+    """Ensure all existing announcement files have creator and created_at in meta.
+    Called once at startup. For files without creator, leaves them as unknown.
+    For files without created_at, uses the file modification time."""
+    if not os.path.exists(CUENTOS_DIR):
+        return
+    meta = _load_meta()
+    creators = meta.get("creators", {})
+    created_dates = meta.get("created_at", {})
+    changed = False
+    for fname in os.listdir(CUENTOS_DIR):
+        if os.path.splitext(fname)[1].lower() not in _SUPPORTED_EXT:
+            continue
+        if fname.startswith("~") or fname.startswith("."):
+            continue
+        # Ensure created_at exists (use file mtime as fallback)
+        if fname not in created_dates:
+            path = os.path.join(CUENTOS_DIR, fname)
+            try:
+                mtime = os.path.getmtime(path)
+                created_dates[fname] = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+                changed = True
+            except Exception:
+                pass
+    if changed:
+        meta["created_at"] = created_dates
+        meta["creators"] = creators
+        _save_meta(meta)
+        logger.info("Migrated anuncios meta: added created_at for %d files", sum(1 for _ in created_dates))
  
  
 # ── Office file readers ───────────────────────────────────────────────────────
@@ -2635,11 +2668,15 @@ async def cuentos_upload(
     with open(dest, "wb") as fout:
         fout.write(await file.read())
     final = os.path.basename(dest)
-    # Store creator and expiry in meta
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    # Store creator, created_at, and expiry in meta
     meta = _load_meta()
     creators = meta.get("creators", {})
     creators[final] = user
     meta["creators"] = creators
+    created_dates = meta.get("created_at", {})
+    created_dates[final] = now
+    meta["created_at"] = created_dates
     # Store expiry date if provided (format: YYYY-MM-DD)
     if expires_at and expires_at.strip():
         expiries = meta.get("expires", {})
@@ -2647,7 +2684,7 @@ async def cuentos_upload(
         meta["expires"] = expiries
     _save_meta(meta)
     logger.info("Bulletin post uploaded: %s by %s (expires: %s)", final, user, expires_at or "never")
-    return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user, "expires_at": expires_at or None}
+    return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user, "created_at": now, "expires_at": expires_at or None}
  
  
 @app.delete("/bank/api/cuentos/file/{filename:path}")
@@ -2666,8 +2703,35 @@ async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
     creators = meta.get("creators", {})
     creators.pop(filename, None)
     meta["creators"] = creators
+    # Also clean up created_at
+    created_dates = meta.get("created_at", {})
+    created_dates.pop(filename, None)
+    meta["created_at"] = created_dates
     _save_meta(meta)
     return {"ok": True}
+
+
+@app.patch("/bank/api/cuentos/file/{filename:path}")
+async def cuentos_patch_meta(filename: str, request: Request, user: str = Depends(get_current_user)):
+    """Patch creator/created_at for an existing post. Admin only."""
+    if user not in ALL_ADMINS:
+        raise HTTPException(403, "Solo admins")
+    filename = os.path.basename(filename)
+    path = os.path.join(CUENTOS_DIR, filename)
+    if not os.path.exists(path):
+        raise HTTPException(404, "Not found")
+    data = await request.json()
+    meta = _load_meta()
+    if "creator" in data:
+        creators = meta.get("creators", {})
+        creators[filename] = data["creator"]
+        meta["creators"] = creators
+    if "created_at" in data:
+        created_dates = meta.get("created_at", {})
+        created_dates[filename] = data["created_at"]
+        meta["created_at"] = created_dates
+    _save_meta(meta)
+    return {"ok": True, "filename": filename}
  
  
 @app.post("/bank/api/cuentos/mask/{filename:path}")
@@ -2756,12 +2820,14 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         creator = creators.get(fname, "")
         can_delete = user in ALL_ADMINS or user == creator or creator == ""
         is_expired = bool(expires and expires < today)
-        # Get upload time from file modification time
-        try:
-            mtime = os.path.getmtime(path)
-            created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
-        except Exception:
-            created_at = ""
+        # Get upload time from meta first, fallback to file modification time
+        created_at = meta.get("created_at", {}).get(fname, "")
+        if not created_at:
+            try:
+                mtime = os.path.getmtime(path)
+                created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+            except Exception:
+                created_at = ""
         items.append({
             "filename": fname,
             "title":    _office_title(path),
@@ -2773,6 +2839,21 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             "expires_at": expires or None,
             "expired": is_expired,
         })
+    # Fetch comment counts in one query
+    conn = db_comments()
+    all_filenames = [i["filename"] for i in items]
+    comment_counts = {}
+    if all_filenames:
+        placeholders = ",".join("?" * len(all_filenames))
+        rows = conn.execute(
+            f"SELECT filename, COUNT(*) as cnt FROM comments WHERE filename IN ({placeholders}) GROUP BY filename",
+            all_filenames
+        ).fetchall()
+        for r in rows:
+            comment_counts[r["filename"]] = r["cnt"]
+    conn.close()
+    for item in items:
+        item["comment_count"] = comment_counts.get(item["filename"], 0)
     dated   = sorted([x for x in items if x["date"]],
                      key=lambda x: (x["date"][6:], x["date"][3:5], x["date"][:2]),
                      reverse=True)
@@ -2796,19 +2877,134 @@ async def get_cuento(filename: str, user: str = Depends(get_current_user)):
     if not blocks:
         blocks = [{"type": "paragraph", "text": "(Documento vacío o no legible)"}]
     _open_session(user, "cuentos", detail=_office_title(path))
+    meta = _load_meta()
+    creator = meta.get("creators", {}).get(filename, "")
+    # Get created_at from meta first, fallback to file modification time
+    created_at = meta.get("created_at", {}).get(filename, "")
+    if not created_at:
+        try:
+            mtime = os.path.getmtime(path)
+            created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+        except Exception:
+            created_at = ""
     return {
         "filename": filename,
         "title":    _office_title(path),
         "date":     _office_date(filename),
         "blocks":   blocks,
+        "creator":  creator,
+        "created_at": created_at,
     }
- 
- 
- 
+
+
+# =============================================================================
+# CUENTOS — COMMENTS
+# =============================================================================
+
+DB_COMMENTS = os.path.join(DATA_DIR, "comments.db")
+
+
+def db_comments() -> sqlite3.Connection:
+    return _open_db(DB_COMMENTS)
+
+
+def _init_comments_db():
+    """Create comments table if not exists."""
+    conn = db_comments()
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS comments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            filename TEXT NOT NULL,
+            username TEXT NOT NULL,
+            body TEXT NOT NULL,
+            parent_id INTEGER DEFAULT NULL,
+            created_at TEXT NOT NULL DEFAULT (datetime('now')),
+            FOREIGN KEY (parent_id) REFERENCES comments(id) ON DELETE CASCADE
+        )
+    """)
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_comments_filename ON comments(filename)")
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id)")
+    conn.commit()
+    conn.close()
+
+
+_init_comments_db()
+
+
+@app.get("/bank/api/cuentos/comments/{filename:path}")
+async def get_comments(filename: str, user: str = Depends(get_current_user)):
+    """Get all comments for a bulletin post, threaded."""
+    filename = os.path.basename(filename)
+    conn = db_comments()
+    rows = conn.execute(
+        "SELECT id, filename, username, body, parent_id, created_at FROM comments WHERE filename=? ORDER BY created_at ASC",
+        (filename,)
+    ).fetchall()
+    conn.close()
+    comments = [
+        {"id": r["id"], "username": r["username"], "body": r["body"],
+         "parent_id": r["parent_id"], "created_at": r["created_at"]}
+        for r in rows
+    ]
+    return comments
+
+
+@app.post("/bank/api/cuentos/comments/{filename:path}")
+async def post_comment(filename: str, request: Request, user: str = Depends(get_current_user)):
+    """Post a comment on a bulletin post."""
+    filename = os.path.basename(filename)
+    # Verify the post exists
+    path = os.path.join(CUENTOS_DIR, filename)
+    if not os.path.exists(path):
+        raise HTTPException(404, "Post not found")
+    data = await request.json()
+    body = (data.get("body") or "").strip()
+    if not body:
+        raise HTTPException(400, "Comment body is required")
+    if len(body) > 2000:
+        raise HTTPException(400, "Comment too long (max 2000 chars)")
+    parent_id = data.get("parent_id")
+    # Validate parent exists if provided
+    conn = db_comments()
+    if parent_id is not None:
+        parent = conn.execute("SELECT id FROM comments WHERE id=? AND filename=?", (parent_id, filename)).fetchone()
+        if not parent:
+            conn.close()
+            raise HTTPException(400, "Parent comment not found")
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    cur = conn.execute(
+        "INSERT INTO comments (filename, username, body, parent_id, created_at) VALUES (?, ?, ?, ?, ?)",
+        (filename, user, body, parent_id, now)
+    )
+    conn.commit()
+    comment_id = cur.lastrowid
+    conn.close()
+    logger.info("Comment #%d on %s by %s", comment_id, filename, user)
+    return {"id": comment_id, "username": user, "body": body, "parent_id": parent_id, "created_at": now}
+
+
+@app.delete("/bank/api/cuentos/comments/{comment_id:int}")
+async def delete_comment(comment_id: int, user: str = Depends(get_current_user)):
+    """Delete a comment. Allowed for the author or any admin."""
+    conn = db_comments()
+    row = conn.execute("SELECT id, username FROM comments WHERE id=?", (comment_id,)).fetchone()
+    if not row:
+        conn.close()
+        raise HTTPException(404, "Comment not found")
+    if user not in ALL_ADMINS and user != row["username"]:
+        conn.close()
+        raise HTTPException(403, "Only the author or an admin can delete this comment")
+    # Delete the comment and all its replies (cascade)
+    conn.execute("DELETE FROM comments WHERE id=? OR parent_id=?", (comment_id, comment_id))
+    conn.commit()
+    conn.close()
+    return {"ok": True}
+
+
 # =============================================================================
 # QUIEN SOY
 # =============================================================================
- 
+
 class QuienSoyManager:
     """
     Multi-player 'Who Am I?' game.
