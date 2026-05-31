@@ -3622,7 +3622,7 @@ function _buildCThreads(comments) {
 
 function _renderCComment(c, isReply, filename, idx) {
   const cls = isReply ? 'margin-left:18px;border-left:2px solid var(--gold3);padding-left:10px;' : '';
-  const canDel = me?.is_admin || c.username === me?.username;
+  const canDel = me?.is_admin;
   const delBtn = canDel ? `<button onclick="deleteCuentoComment(${c.id},'${esc(filename)}',${idx})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">🗑 ${t('commentsDelete')}</button>` : '';
   const replyBtn = `<button onclick="toggleCuentoReply(${c.id})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">↩ ${t('commentsReply')}</button>`;
   let html = `<div style="${cls}margin-bottom:6px;background:var(--glass);border:1px solid var(--border);border-radius:6px;padding:8px 10px;">

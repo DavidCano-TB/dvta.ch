@@ -113,33 +113,36 @@ class TestCommentsDatabase:
 
 
 class TestCommentsPermissions:
-    """Test permission logic for comment deletion."""
+    """Test permission logic for comment deletion — only admins can delete."""
 
     ADMINS = {"dvd", "nebulosa", "nina", "victor", "yu", "roy", "admin", "aitor"}
 
     @pytest.mark.unit
-    def test_author_can_delete_own_comment(self):
-        """The author of a comment can delete it."""
+    def test_author_cannot_delete_own_comment(self):
+        """Regular authors can no longer delete their own comments."""
         user = "alice"
-        comment_author = "alice"
-        can_delete = user in self.ADMINS or user == comment_author
-        assert can_delete is True
+        can_delete = user in self.ADMINS
+        assert can_delete is False
 
     @pytest.mark.unit
     def test_admin_can_delete_any_comment(self):
         """Admin users can delete any comment."""
         user = "dvd"
-        comment_author = "alice"
-        can_delete = user in self.ADMINS or user == comment_author
+        can_delete = user in self.ADMINS
         assert can_delete is True
 
     @pytest.mark.unit
-    def test_non_author_non_admin_cannot_delete(self):
-        """A regular user who didn't write the comment cannot delete it."""
+    def test_non_admin_cannot_delete(self):
+        """A regular user cannot delete any comment."""
         user = "charlie"
-        comment_author = "alice"
-        can_delete = user in self.ADMINS or user == comment_author
+        can_delete = user in self.ADMINS
         assert can_delete is False
+
+    @pytest.mark.unit
+    def test_all_admins_can_delete(self):
+        """Every admin in the set can delete comments."""
+        for admin in self.ADMINS:
+            assert admin in self.ADMINS
 
 
 class TestCommentsValidation:

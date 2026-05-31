@@ -3445,20 +3445,31 @@ async function loadCuentosView() {
         metaParts.push(esc(c.date));
       }
       const metaLine = metaParts.length ? metaParts.join(' · ') : '';
+      // Render full content blocks inline
+      const blocks = c.blocks || [];
+      let bodyHtml = '';
+      if (!masked && blocks.length) {
+        const contentParagraphs = blocks.filter(b => b.text && b.text.trim()).map(b => {
+          const txt = esc(b.text);
+          if (b.type === 'heading') return `<div style="font-size:.82rem;font-weight:600;color:var(--gold);margin-top:10px;margin-bottom:4px">${txt}</div>`;
+          if (b.type === 'bold') return `<div style="font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:4px">${txt}</div>`;
+          return `<div style="font-size:.78rem;color:var(--text);line-height:1.6;margin-bottom:4px">${txt}</div>`;
+        }).join('');
+        bodyHtml = `<div style="padding:0 16px 14px;border-top:1px solid var(--border);margin-top:0">${contentParagraphs}</div>`;
+      }
       return `<div class="panel" style="padding:0;overflow:hidden;${masked?'opacity:.5':''}">
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;">
           <span style="font-size:1.4rem;flex-shrink:0">📋</span>
           <div style="flex:1;min-width:0">
-            <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
+            <div style="font-size:.84rem;font-weight:600;color:var(--gold2)">${esc(label)}</div>
             ${metaLine ? `<div style="font-size:.58rem;color:var(--text3);margin-top:3px">${metaLine}</div>` : ''}
             ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
           </div>
           <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;flex-wrap:wrap">
-            ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
-              class="btn btnG btnSm" style="text-decoration:none;font-size:.6rem;padding:5px 10px">${t('cuentosRead')}</a>` : ''}
             ${canDelete ? `<button class="btn btnD btnSm" onclick="deleteCuento('${esc(name)}')">🗑</button>` : ''}
           </div>
         </div>
+        ${bodyHtml}
         ${!masked ? `<div id="cComments-${idx}" data-filename="${esc(name)}" style="padding:0 14px 14px;background:rgba(0,0,0,.12);border-top:1px solid var(--border)"></div>` : ''}
       </div>`;
     }).filter(Boolean).join('');
@@ -3517,7 +3528,7 @@ function _buildCThreads(comments) {
 
 function _renderCComment(c, isReply, filename, idx) {
   const cls = isReply ? 'margin-left:18px;border-left:2px solid var(--gold3);padding-left:10px;' : '';
-  const canDel = me?.is_admin || c.username === me?.username;
+  const canDel = me?.is_admin;
   const delBtn = canDel ? `<button onclick="deleteCuentoComment(${c.id},'${esc(filename)}',${idx})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">🗑 ${t('commentsDelete')}</button>` : '';
   const replyBtn = `<button onclick="toggleCuentoReply(${c.id})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">↩ ${t('commentsReply')}</button>`;
   let html = `<div style="${cls}margin-bottom:6px;background:var(--glass);border:1px solid var(--border);border-radius:6px;padding:8px 10px;">

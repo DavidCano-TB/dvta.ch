@@ -413,7 +413,7 @@ function buildThreads(comments) {
 
 function renderInlineComment(c, isReply, filename, idx) {
   const cls = isReply ? 'comment reply' : 'comment';
-  const canDelete = _isAdmin || c.username === _currentUser;
+  const canDelete = _isAdmin;
   const deleteBtn = canDelete
     ? `<button class="commentAction delete" onclick="deleteInlineComment(${c.id},'${esc(filename)}',${idx})">🗑 ${t('commentsDelete','Eliminar')}</button>`
     : '';

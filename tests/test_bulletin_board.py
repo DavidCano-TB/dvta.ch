@@ -87,7 +87,7 @@ class TestBulletinBoardMeta:
 
 
 class TestBulletinBoardPermissions:
-    """Test permission logic for bulletin board delete."""
+    """Test permission logic for bulletin board delete — only admins can delete."""
 
     ADMINS = {"dvd", "nebulosa", "nina", "victor", "yu", "roy", "admin", "aitor"}
 
@@ -95,46 +95,42 @@ class TestBulletinBoardPermissions:
     def test_admin_can_delete_any_post(self):
         """Admin users can delete any post regardless of creator."""
         user = "dvd"
-        creator = "alice"
-        assert user in self.ADMINS or user == creator
+        can_delete = user in self.ADMINS
+        assert can_delete is True
 
     @pytest.mark.unit
-    def test_creator_can_delete_own_post(self):
-        """The creator of a post can delete it."""
+    def test_creator_cannot_delete_own_post(self):
+        """Regular creators can no longer delete their own posts."""
         user = "alice"
-        creator = "alice"
-        assert user == creator
+        can_delete = user in self.ADMINS
+        assert can_delete is False
 
     @pytest.mark.unit
-    def test_non_creator_non_admin_cannot_delete(self):
-        """A regular user who didn't create the post cannot delete it."""
+    def test_non_admin_cannot_delete(self):
+        """A regular user cannot delete any post."""
         user = "charlie"
-        creator = "alice"
-        can_delete = user in self.ADMINS or user == creator
+        can_delete = user in self.ADMINS
         assert can_delete is False
 
     @pytest.mark.unit
     def test_can_delete_field_true_for_admin(self):
         """API response should set can_delete=True for admins."""
         user = "dvd"
-        creator = "alice"
-        can_delete = user in self.ADMINS or user == creator
+        can_delete = user in self.ADMINS
         assert can_delete is True
 
     @pytest.mark.unit
-    def test_can_delete_field_true_for_creator(self):
-        """API response should set can_delete=True for the creator."""
+    def test_can_delete_field_false_for_creator(self):
+        """API response should set can_delete=False for the creator (non-admin)."""
         user = "bob"
-        creator = "bob"
-        can_delete = user in self.ADMINS or user == creator
-        assert can_delete is True
+        can_delete = user in self.ADMINS
+        assert can_delete is False
 
     @pytest.mark.unit
     def test_can_delete_field_false_for_others(self):
-        """API response should set can_delete=False for non-admin non-creator."""
+        """API response should set can_delete=False for non-admin users."""
         user = "random_user"
-        creator = "alice"
-        can_delete = user in self.ADMINS or user == creator
+        can_delete = user in self.ADMINS
         assert can_delete is False
 
 

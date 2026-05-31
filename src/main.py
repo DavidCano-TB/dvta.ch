@@ -2873,16 +2873,15 @@ async def cuentos_upload(
  
 @app.delete("/bank/api/cuentos/file/{filename:path}")
 async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
-    """Delete a bulletin post. Allowed for the creator or any admin."""
+    """Delete a bulletin post. Only admins can delete."""
     filename = os.path.basename(filename)
     path = os.path.join(CUENTOS_DIR, filename)
     if not os.path.exists(path):
         raise HTTPException(404, "No encontrado")
-    meta = _load_meta()
-    creator = meta.get("creators", {}).get(filename, "")
-    if user not in ALL_ADMINS and user != creator:
-        raise HTTPException(403, "Solo el autor o un admin puede eliminar este anuncio")
+    if user not in ALL_ADMINS:
+        raise HTTPException(403, "Solo un admin puede eliminar anuncios")
     os.remove(path)
+    meta = _load_meta()
     meta["masked"] = [f for f in meta.get("masked", []) if f != filename]
     creators = meta.get("creators", {})
     creators.pop(filename, None)
@@ -2978,7 +2977,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         if is_masked and user not in ALL_ADMINS:
             continue
         creator = creators.get(fname, "")
-        can_delete = user in ALL_ADMINS or user == creator or creator == ""
+        can_delete = user in ALL_ADMINS
         is_expired = bool(expires and expires < today)
         # Get upload time from meta first, fallback to file modification time
         created_at = meta.get("created_at", {}).get(fname, "")
@@ -2998,6 +2997,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             "can_delete": can_delete,
             "expires_at": expires or None,
             "expired": is_expired,
+            "blocks":   _read_blocks(path) if not is_masked else [],
         })
     # Fetch comment counts (if comments DB available)
     comment_counts = {}

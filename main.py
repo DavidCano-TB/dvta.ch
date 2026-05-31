@@ -2710,25 +2710,40 @@ async def cuentos_upload(
  
 @app.delete("/bank/api/cuentos/file/{filename:path}")
 async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
-    """Delete a bulletin post. Allowed for the creator or any admin."""
+    """Delete a bulletin post. Moves it to old/ folder with who deleted it and when."""
     filename = os.path.basename(filename)
     path = os.path.join(CUENTOS_DIR, filename)
     if not os.path.exists(path):
         raise HTTPException(404, "Not found")
+    if user not in ALL_ADMINS:
+        raise HTTPException(403, "Only an admin can delete posts")
+    # Archive to old/ folder
+    old_dir = os.path.join(CUENTOS_DIR, "old")
+    os.makedirs(old_dir, exist_ok=True)
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    # Move the original file with metadata in the name
+    archive_name = f"{now}_borrado_por_{user}_{filename}"
+    archive_path = os.path.join(old_dir, archive_name)
+    import shutil
+    shutil.move(path, archive_path)
+    # Also save a log entry
+    log_path = os.path.join(old_dir, f"{now}_borrado_por_{user}_{filename}.log")
+    with open(log_path, "w", encoding="utf-8") as f:
+        f.write(f"Anuncio eliminado\n")
+        f.write(f"Archivo: {filename}\n")
+        f.write(f"Borrado por: {user}\n")
+        f.write(f"Fecha: {now.replace('_', ' ', 1).replace('_', ':').replace('-', '/', 2)}\n")
+    # Clean up meta
     meta = _load_meta()
-    creator = meta.get("creators", {}).get(filename, "")
-    if user not in ALL_ADMINS and user != creator:
-        raise HTTPException(403, "Only the author or an admin can delete this post")
-    os.remove(path)
     meta["masked"] = [f for f in meta.get("masked", []) if f != filename]
     creators = meta.get("creators", {})
     creators.pop(filename, None)
     meta["creators"] = creators
-    # Also clean up created_at
     created_dates = meta.get("created_at", {})
     created_dates.pop(filename, None)
     meta["created_at"] = created_dates
     _save_meta(meta)
+    logger.info("Post '%s' archived to old/ by %s", filename, user)
     return {"ok": True}
 
 
@@ -2837,7 +2852,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         if is_masked and user not in ALL_ADMINS:
             continue
         creator = creators.get(fname, "")
-        can_delete = user in ALL_ADMINS or user == creator or creator == ""
+        can_delete = user in ALL_ADMINS
         is_expired = bool(expires and expires < today)
         # Get upload time from meta first, fallback to file modification time
         created_at = meta.get("created_at", {}).get(fname, "")
@@ -2857,6 +2872,7 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             "can_delete": can_delete,
             "expires_at": expires or None,
             "expired": is_expired,
+            "blocks":   _read_blocks(path) if not is_masked else [],
         })
     # Fetch comment counts in one query
     conn = db_comments()
@@ -3002,19 +3018,47 @@ async def post_comment(filename: str, request: Request, user: str = Depends(get_
 
 @app.delete("/bank/api/cuentos/comments/{comment_id:int}")
 async def delete_comment(comment_id: int, user: str = Depends(get_current_user)):
-    """Delete a comment. Allowed for the author or any admin."""
+    """Delete a comment or reply. Moves it to old/ folder with who deleted it and when."""
     conn = db_comments()
-    row = conn.execute("SELECT id, username FROM comments WHERE id=?", (comment_id,)).fetchone()
+    row = conn.execute("SELECT id, username, body, filename, parent_id, created_at FROM comments WHERE id=?", (comment_id,)).fetchone()
     if not row:
         conn.close()
         raise HTTPException(404, "Comment not found")
     if user not in ALL_ADMINS and user != row["username"]:
         conn.close()
         raise HTTPException(403, "Only the author or an admin can delete this comment")
-    # Delete the comment and all its replies (cascade)
+    # Also collect replies that will be deleted
+    replies = conn.execute(
+        "SELECT id, username, body, filename, parent_id, created_at FROM comments WHERE parent_id=?",
+        (comment_id,)
+    ).fetchall()
+    # Archive to old/ folder
+    old_dir = os.path.join(CUENTOS_DIR, "old")
+    os.makedirs(old_dir, exist_ok=True)
+    now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    archive_name = f"{now}_comentario_borrado_por_{user}_id{comment_id}.log"
+    archive_path = os.path.join(old_dir, archive_name)
+    with open(archive_path, "w", encoding="utf-8") as f:
+        f.write(f"Comentario eliminado\n")
+        f.write(f"ID: {row['id']}\n")
+        f.write(f"Anuncio: {row['filename']}\n")
+        f.write(f"Autor: {row['username']}\n")
+        f.write(f"Fecha original: {row['created_at']}\n")
+        f.write(f"Borrado por: {user}\n")
+        f.write(f"Fecha borrado: {now.replace('_', ' ', 1).replace('_', ':').replace('-', '/', 2)}\n")
+        f.write(f"\n--- Texto del comentario ---\n")
+        f.write(row["body"])
+        f.write("\n")
+        if replies:
+            f.write(f"\n--- Respuestas eliminadas ({len(replies)}) ---\n")
+            for r in replies:
+                f.write(f"\n  ID: {r['id']} | Autor: {r['username']} | Fecha: {r['created_at']}\n")
+                f.write(f"  {r['body']}\n")
+    # Delete the comment and all its replies
     conn.execute("DELETE FROM comments WHERE id=? OR parent_id=?", (comment_id, comment_id))
     conn.commit()
     conn.close()
+    logger.info("Comment #%d archived to old/ by %s", comment_id, user)
     return {"ok": True}
 
 
