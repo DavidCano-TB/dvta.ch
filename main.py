@@ -2793,9 +2793,7 @@ async def cuento_page(filename: str):
  
 @app.get("/bank/api/cuentos")
 async def list_cuentos(user: str = Depends(get_current_user)):
-    """List bulletin board posts. When enabled: all users. When disabled: admins only."""
-    if not _cuentos_enabled and user not in ALL_ADMINS:
-        raise HTTPException(403, "Bulletin board disabled")
+    """List bulletin board posts. Available to all logged-in users."""
     _ping_session(user, "cuentos")
     if not os.path.exists(CUENTOS_DIR):
         return []
@@ -2865,8 +2863,6 @@ async def list_cuentos(user: str = Depends(get_current_user)):
 @app.get("/bank/api/cuento/{filename:path}")
 async def get_cuento(filename: str, user: str = Depends(get_current_user)):
     """Return full story content as structured blocks."""
-    if not _cuentos_enabled and user not in ALL_ADMINS:
-        raise HTTPException(403, "Cuentos desactivados")
     filename = os.path.basename(filename)
     if os.path.splitext(filename)[1].lower() not in _SUPPORTED_EXT:
         raise HTTPException(400, "Solo .docx, .odt y .txt")
