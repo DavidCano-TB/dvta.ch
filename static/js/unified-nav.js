@@ -18,7 +18,7 @@
 
     // Pestañas para miembros (no admins)
     member: [
-      { id: 'cuentos', icon: '📋', label: 'Anuncios', href: '/bank/cuentos.html', dynamic: true, checkEndpoint: '/bank/api/cuentos/status' },
+      { id: 'cuentos', icon: '📋', label: 'Anuncios', href: '/bank/cuentos' },
       { id: 'social', icon: '💬', label: 'Social', href: '/', hash: '#social', dynamic: true, checkEndpoint: '/bank/api/messages/status' },
       { id: 'video', icon: '🎥', label: 'Video', href: '/bank/video.html', dynamic: true, checkEndpoint: '/bank/api/rooms/status' },
       { id: 'games', icon: '🎮', label: 'Games', href: '/bank/games.html' },
@@ -29,7 +29,7 @@
 
     // Pestañas para admins (no superadmins)
     admin: [
-      { id: 'cuentos-admin', icon: '📋', label: 'Anuncios', href: '/bank/cuentos.html' },
+      { id: 'cuentos-admin', icon: '📋', label: 'Anuncios', href: '/bank/cuentos' },
       { id: 'mensajes-admin', icon: '💬', label: 'Mensajes', href: '/bank/mensajes.html' },
       { id: 'video-admin', icon: '🎥', label: 'Video', href: '/bank/video.html' },
       { id: 'games-admin', icon: '🎮', label: 'Games', href: '/bank/games.html' },

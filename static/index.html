@@ -1895,7 +1895,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
           <button class="btn btnS" onclick="openGamePanel('hundirlaflota')" style="justify-content:flex-start;gap:8px">⚓ <span data-i18n="navHundirLaFlota">Hundir la Flota</span></button>
-          <a href="https://dvta.ch" target="_blank" class="btn btnS" style="text-decoration:none;justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></a>
+          <button class="btn btnS" onclick="openGamePanel('cuentos')" style="justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></button>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
@@ -4240,7 +4240,7 @@ const GAME_META = {
   quiensoy:     { icon:'🎭', get label(){ return t('navQuienSoy','¿Quién soy?'); } },
   cifrasletras: { icon:'🔤', get label(){ return t('navCifrasLetras','Cifras y Letras'); } },
   hundirlaflota:{ icon:'⚓', get label(){ return t('navHundirLaFlota','Hundir la Flota'); } },
-  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); }, url: 'https://dvta.ch' },
+  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); } },
   mensajes:     { icon:'💬', get label(){ return t('socialTitle','Mensajes'); } },
 };
 
@@ -4765,6 +4765,7 @@ function nav(name, el) {
   if (name === 'dash')    { loadHist('dashH', 10); loadUserApuestas(); }
   if (name === 'tx')      { loadDropdown(); }
   if (name === 'gallery') loadGallery();
+  if (name === 'cuentos') loadCuentosView();
   // NO solicitar permisos automáticamente al abrir Social
   // Los permisos se solicitarán cuando el usuario inicie/se una a una videollamada
 }
