@@ -155,7 +155,16 @@ header{position:sticky;top:0;z-index:100;background:rgba(13,13,26,.95);backdrop-
     <!-- Tab: File upload -->
     <div class="publishPanel" id="panelFile">
       <div class="formGroup">
-        <label>Archivo (.docx, .odt, .txt)</label>
+        <label>Título del anuncio</label>
+        <input type="text" id="fileTitle" placeholder="Título del anuncio (opcional si es .txt)" maxlength="200">
+      </div>
+      <div class="formGroup">
+        <label>Descripción / Texto</label>
+        <textarea id="fileBody" placeholder="Texto descriptivo del anuncio (opcional)" maxlength="10000"></textarea>
+        <div class="charCount" id="fileCharCount">0 / 10000</div>
+      </div>
+      <div class="formGroup">
+        <label>Archivo adjunto (.docx, .odt, .txt)</label>
         <input type="file" id="fileInput" accept=".docx,.odt,.txt">
         <button class="btn-file" onclick="document.getElementById('fileInput').click()">📎 Seleccionar archivo</button>
         <div class="fileName" id="fileName"></div>
@@ -197,8 +206,8 @@ let _publishMode = 'file';
 
 // Post-it colors (rotate per post)
 const POSTIT_COLORS = [
-  '#fff9b1', '#ffb3ba', '#baffc9', '#bae1ff', '#e8d5f5',
-  '#ffd6a5', '#caffbf', '#fdffb6', '#a0c4ff', '#ffc6ff'
+  '#fffde6', '#ffe8ec', '#e6f9ed', '#e8f2ff', '#f3eafc',
+  '#fff0e0', '#eafce8', '#feffe6', '#e4efff', '#fce8ff'
 ];
 
 // ─── Auth ───
