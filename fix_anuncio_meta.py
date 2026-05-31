@@ -10,8 +10,8 @@ import os
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-META_PATH = os.path.join(BASE_DIR, "static", "anuncios", ".meta.json")
-ANUNCIOS_DIR = os.path.join(BASE_DIR, "static", "anuncios")
+META_PATH = os.path.join(BASE_DIR, "static", "cuentos", ".meta.json")
+ANUNCIOS_DIR = os.path.join(BASE_DIR, "static", "cuentos")
 
 
 def load_meta():
