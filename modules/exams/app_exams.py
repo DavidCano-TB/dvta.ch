@@ -12,7 +12,7 @@ import logging
 # Añadir módulos compartidos al path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'shared'))
 
-from fastapi import FastAPI, HTTPException, Depends, Request, Response
+from fastapi import FastAPI, HTTPException, Depends, Request, Response, File, UploadFile, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -1482,6 +1482,285 @@ async def save_opo_result(
     logger.info(f"OPO result saved: user={user['username']}, category={data.category}, score={data.score}")
     
     return {"success": True, "result_id": result_id}
+
+# =============================================================================
+# ANUNCIOS (Tablón de Anuncios)
+# =============================================================================
+
+import re as _re
+import shutil as _shutil
+import json as _json
+
+ANUNCIOS_DIR = os.path.join(BASE_DIR, "anuncios")
+ANUNCIOS_UPLOADS = os.path.join(ANUNCIOS_DIR, "uploads")
+ANUNCIOS_OLD = os.path.join(ANUNCIOS_DIR, "old")
+DB_ANUNCIOS = os.path.join(DATA_DIR, "anuncios.db")
+
+SCHEMA_ANUNCIOS = """
+CREATE TABLE IF NOT EXISTS anuncios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL DEFAULT '',
+    filename TEXT,
+    has_file INTEGER NOT NULL DEFAULT 0,
+    creator TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now','localtime')),
+    expires_at TEXT,
+    deleted INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE IF NOT EXISTS anuncios_comments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    anuncio_id INTEGER NOT NULL,
+    username TEXT NOT NULL,
+    body TEXT NOT NULL,
+    created_at TEXT NOT NULL DEFAULT (datetime('now','localtime')),
+    FOREIGN KEY (anuncio_id) REFERENCES anuncios(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_anuncios_creator ON anuncios(creator);
+CREATE INDEX IF NOT EXISTS idx_anuncios_deleted ON anuncios(deleted);
+CREATE INDEX IF NOT EXISTS idx_comments_anuncio ON anuncios_comments(anuncio_id);
+"""
+
+db_anuncios = DatabaseHelper(DB_ANUNCIOS)
+db_anuncios.create_tables(SCHEMA_ANUNCIOS)
+
+# Admin email for anuncios delete permission
+ANUNCIOS_ADMIN_EMAIL = "davidcno.ch@gmail.com"
+
+os.makedirs(ANUNCIOS_UPLOADS, exist_ok=True)
+os.makedirs(ANUNCIOS_OLD, exist_ok=True)
+
+logger.info("Anuncios system initialized")
+
+
+def _anuncio_can_delete(user: dict, creator: str) -> bool:
+    """Check if user can delete an anuncio (creator or admin)."""
+    if user["username"] == creator:
+        return True
+    if user["username"] in ADMINS:
+        return True
+    if user["email"] == ANUNCIOS_ADMIN_EMAIL:
+        return True
+    return False
+
+
+@app.get("/anuncios")
+async def anuncios_page():
+    """Serve the anuncios page."""
+    return FileResponse(os.path.join(ANUNCIOS_DIR, "anuncios.html"))
+
+
+@app.get("/api/anuncios")
+async def list_anuncios(user: dict = Depends(get_current_user)):
+    """List all active anuncios."""
+    today = datetime.now().strftime("%Y-%m-%d")
+    rows = db_anuncios.fetchall(
+        "SELECT * FROM anuncios WHERE deleted=0 ORDER BY created_at DESC"
+    )
+    items = []
+    for row in rows:
+        # Skip expired unless admin/creator
+        if row["expires_at"] and row["expires_at"] < today:
+            if user["username"] != row["creator"] and user["username"] not in ADMINS:
+                continue
+        # Comment count
+        cc = db_anuncios.fetchone(
+            "SELECT COUNT(*) as cnt FROM anuncios_comments WHERE anuncio_id=?",
+            (row["id"],)
+        )
+        items.append({
+            "id": row["id"],
+            "title": row["title"],
+            "body": row["body"],
+            "filename": row["filename"] or "",
+            "has_file": bool(row["has_file"]),
+            "creator": row["creator"],
+            "created_at": row["created_at"],
+            "expires_at": row["expires_at"] or "",
+            "comment_count": cc["cnt"] if cc else 0,
+            "can_delete": _anuncio_can_delete(user, row["creator"])
+        })
+    return items
+
+
+@app.post("/api/anuncios/upload")
+async def anuncios_upload(
+    file: UploadFile = File(...),
+    expires_at: str = Form(""),
+    user: dict = Depends(get_current_user)
+):
+    """Upload a file as an anuncio."""
+    fname = os.path.basename(file.filename or "upload.txt")
+    ext = os.path.splitext(fname)[1].lower()
+    if ext not in {".docx", ".odt", ".txt"}:
+        raise HTTPException(400, "Solo .docx, .odt y .txt")
+    # Save file
+    dest = os.path.join(ANUNCIOS_UPLOADS, fname)
+    base, ext2 = os.path.splitext(fname)
+    n = 1
+    while os.path.exists(dest):
+        dest = os.path.join(ANUNCIOS_UPLOADS, f"{base}_{n}{ext2}")
+        n += 1
+    content_bytes = await file.read()
+    with open(dest, "wb") as f:
+        f.write(content_bytes)
+    final_name = os.path.basename(dest)
+    # Extract title from file (first line for .txt)
+    title = os.path.splitext(final_name)[0].replace('_', ' ')
+    body = ""
+    if ext == ".txt":
+        try:
+            text = content_bytes.decode("utf-8")
+            lines = text.strip().split("\n")
+            if lines:
+                title = lines[0].strip()
+                body = "\n".join(lines[1:]).strip()
+        except Exception:
+            pass
+    # Insert into DB
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    anuncio_id = db_anuncios.insert("anuncios", {
+        "title": title,
+        "body": body,
+        "filename": final_name,
+        "has_file": 1,
+        "creator": user["username"],
+        "created_at": now,
+        "expires_at": expires_at.strip() if expires_at else None
+    })
+    logger.info(f"Anuncio uploaded: {final_name} by {user['username']}")
+    return {"ok": True, "id": anuncio_id, "title": title, "filename": final_name}
+
+
+@app.post("/api/anuncios/write")
+async def anuncios_write(request: Request, user: dict = Depends(get_current_user)):
+    """Create an anuncio from text written in the browser."""
+    data = await request.json()
+    title = (data.get("title") or "").strip()
+    body = (data.get("body") or "").strip()
+    expires_at = (data.get("expires_at") or "").strip()
+    if not title:
+        raise HTTPException(400, "El título no puede estar vacío")
+    if not body:
+        raise HTTPException(400, "El contenido no puede estar vacío")
+    # Also save as .txt file
+    safe_title = _re.sub(r'[^\w\s\-]', '', title).strip().replace(' ', '_')
+    if not safe_title:
+        safe_title = "anuncio"
+    now_suffix = datetime.now().strftime("%d_%m_%Y")
+    fname = f"{safe_title}_{now_suffix}.txt"
+    dest = os.path.join(ANUNCIOS_UPLOADS, fname)
+    base, ext2 = os.path.splitext(fname)
+    n = 1
+    while os.path.exists(dest):
+        dest = os.path.join(ANUNCIOS_UPLOADS, f"{base}_{n}{ext2}")
+        n += 1
+    with open(dest, "w", encoding="utf-8") as f:
+        f.write(f"{title}\n\n{body}")
+    final_name = os.path.basename(dest)
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    anuncio_id = db_anuncios.insert("anuncios", {
+        "title": title,
+        "body": body,
+        "filename": final_name,
+        "has_file": 1,
+        "creator": user["username"],
+        "created_at": now,
+        "expires_at": expires_at if expires_at else None
+    })
+    logger.info(f"Anuncio written: {final_name} by {user['username']}")
+    return {"ok": True, "id": anuncio_id, "title": title, "filename": final_name}
+
+
+@app.delete("/api/anuncios/{anuncio_id}")
+async def anuncios_delete(anuncio_id: int, user: dict = Depends(get_current_user)):
+    """Delete (archive) an anuncio. Only creator or admin."""
+    row = db_anuncios.fetchone("SELECT * FROM anuncios WHERE id=? AND deleted=0", (anuncio_id,))
+    if not row:
+        raise HTTPException(404, "Anuncio no encontrado")
+    if not _anuncio_can_delete(user, row["creator"]):
+        raise HTTPException(403, "No tienes permiso para eliminar este anuncio")
+    # Mark as deleted
+    db_anuncios.update("anuncios", {"deleted": 1}, "id=?", (anuncio_id,))
+    # Move file to old/ if exists
+    if row["filename"]:
+        src = os.path.join(ANUNCIOS_UPLOADS, row["filename"])
+        if os.path.exists(src):
+            now_str = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            archive_name = f"{now_str}_borrado_por_{user['username']}_{row['filename']}"
+            _shutil.move(src, os.path.join(ANUNCIOS_OLD, archive_name))
+    logger.info(f"Anuncio {anuncio_id} deleted by {user['username']}")
+    return {"ok": True}
+
+
+@app.get("/api/anuncios/{anuncio_id}/comments")
+async def anuncios_get_comments(anuncio_id: int, user: dict = Depends(get_current_user)):
+    """Get comments for an anuncio."""
+    comments = db_anuncios.fetchall(
+        "SELECT * FROM anuncios_comments WHERE anuncio_id=? ORDER BY created_at ASC",
+        (anuncio_id,)
+    )
+    return [
+        {
+            "id": c["id"],
+            "username": c["username"],
+            "body": c["body"],
+            "created_at": c["created_at"],
+            "can_delete": _isAdmin_or_author(user, c["username"])
+        }
+        for c in comments
+    ]
+
+
+def _isAdmin_or_author(user: dict, author: str) -> bool:
+    """Check if user is admin or the comment author."""
+    if user["username"] == author:
+        return True
+    if user["username"] in ADMINS:
+        return True
+    if user["email"] == ANUNCIOS_ADMIN_EMAIL:
+        return True
+    return False
+
+
+@app.post("/api/anuncios/{anuncio_id}/comments")
+async def anuncios_post_comment(anuncio_id: int, request: Request, user: dict = Depends(get_current_user)):
+    """Post a comment on an anuncio."""
+    # Verify anuncio exists
+    row = db_anuncios.fetchone("SELECT id FROM anuncios WHERE id=? AND deleted=0", (anuncio_id,))
+    if not row:
+        raise HTTPException(404, "Anuncio no encontrado")
+    data = await request.json()
+    body = (data.get("body") or "").strip()
+    if not body:
+        raise HTTPException(400, "El comentario no puede estar vacío")
+    if len(body) > 2000:
+        raise HTTPException(400, "Comentario demasiado largo (máx 2000 caracteres)")
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    comment_id = db_anuncios.insert("anuncios_comments", {
+        "anuncio_id": anuncio_id,
+        "username": user["username"],
+        "body": body,
+        "created_at": now
+    })
+    logger.info(f"Comment on anuncio {anuncio_id} by {user['username']}")
+    return {"ok": True, "id": comment_id}
+
+
+@app.delete("/api/anuncios/comments/{comment_id}")
+async def anuncios_delete_comment(comment_id: int, user: dict = Depends(get_current_user)):
+    """Delete a comment. Only author or admin."""
+    comment = db_anuncios.fetchone("SELECT * FROM anuncios_comments WHERE id=?", (comment_id,))
+    if not comment:
+        raise HTTPException(404, "Comentario no encontrado")
+    if not _isAdmin_or_author(user, comment["username"]):
+        raise HTTPException(403, "No tienes permiso para eliminar este comentario")
+    db_anuncios.execute("DELETE FROM anuncios_comments WHERE id=?", (comment_id,))
+    logger.info(f"Comment {comment_id} deleted by {user['username']}")
+    return {"ok": True}
+
 
 # Montar archivos estáticos ANTES de las rutas catch-all
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")

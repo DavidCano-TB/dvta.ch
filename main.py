@@ -2455,7 +2455,7 @@ async def stats_members_overview(user: str = Depends(get_current_user)):
 import zipfile as _zipfile
 import re as _re
  
-CUENTOS_DIR    = os.path.join(BASE_DIR, "static", "anuncios")
+CUENTOS_DIR    = os.path.join(BASE_DIR, "static", "cuentos")
 _SUPPORTED_EXT = {".docx", ".odt", ".txt"}
 _CUENTOS_META  = os.path.join(CUENTOS_DIR, ".meta.json")
  

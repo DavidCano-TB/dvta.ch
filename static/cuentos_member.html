@@ -21,20 +21,25 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 .wrap{max-width:680px;margin:0 auto;padding:20px 14px 80px}
 .secTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:4px}
 .secSub{font-size:.65rem;color:var(--text3);margin-bottom:16px}
-.cuento-card{
-  background:var(--glass);border:1px solid var(--border);border-radius:var(--r);
-  padding:14px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;
-  transition:border-color .15s;
+/* Post-it grid */
+.postit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:16px}
+.postit{
+  border-radius:var(--r);padding:18px 16px 14px;position:relative;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .15s,box-shadow .15s;
+  display:flex;flex-direction:column;min-height:160px;
 }
-.cuento-card:hover{border-color:var(--border2)}
-.cuento-card.expired{opacity:.5;border-color:rgba(200,75,75,.3)}
-.cIcon{font-size:1.4rem;flex-shrink:0}
-.cInfo{flex:1;min-width:0}
-.cTitle{font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cMeta{font-size:.58rem;color:var(--text3);margin-top:3px}
-.cExpiry{font-size:.56rem;color:var(--orange);margin-top:2px}
-.cExpiry.expired{color:var(--red)}
-.cActions{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.postit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.postit.expired{opacity:.5}
+.postit-title{font-size:.9rem;font-weight:700;margin-bottom:8px;line-height:1.3;color:#1a1a1a}
+.postit-body{font-size:.74rem;color:#333;line-height:1.5;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
+.postit-meta{margin-top:10px;font-size:.62rem;color:rgba(0,0,0,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+.postit-expiry{font-size:.58rem;color:#c0392b;margin-top:4px}
+.postit-actions{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.postit-btn{background:rgba(0,0,0,.08);border:none;border-radius:12px;padding:4px 10px;font-size:.6rem;cursor:pointer;color:#333;font-family:inherit;transition:background .15s;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.postit-btn:hover{background:rgba(0,0,0,.15)}
+.postit-btn.delete{color:#c0392b}
+.postit-btn.delete:hover{background:rgba(192,57,43,.15)}
+@media(max-width:600px){.postit-grid{grid-template-columns:1fr}}
 .btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:20px;
   border:1px solid var(--border2);background:none;color:var(--gold2);font-family:'DM Mono',monospace;
   font-size:.7rem;cursor:pointer;text-decoration:none;transition:all .15s}
@@ -86,7 +91,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 /* ── Inline Comments ── */
 .commentsInline{
   margin-top:8px;padding:12px 14px;
-  background:var(--n2);border:1px solid var(--border);border-radius:var(--r);
+  background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.1);border-radius:var(--r);
   display:none;
 }
 .commentsInline.show{display:block}
@@ -156,9 +161,6 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 .btnReply:hover{opacity:.85}
 .commentsEmpty{text-align:center;padding:16px;color:var(--text3);font-size:.68rem;font-style:italic}
 .commentsLoading{text-align:center;padding:12px;color:var(--text3);font-size:.64rem}
-.btnComments{border-color:rgba(212,168,67,.3);color:var(--gold2);padding:5px 12px;font-size:.64rem}
-.btnComments:hover{background:rgba(212,168,67,.1)}
-.btnComments.active{background:rgba(212,168,67,.12);border-color:var(--gold)}
 </style>
 </head>
 <body class="has-unified-nav">
@@ -220,6 +222,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 const token = localStorage.getItem('dvd_token');
 let _currentUser = '';
 let _isAdmin = false;
+
+// Post-it colors (rotate per post)
+const POSTIT_COLORS = [
+  '#fff9b1', '#ffb3ba', '#baffc9', '#bae1ff', '#e8d5f5',
+  '#ffd6a5', '#caffbf', '#fdffb6', '#a0c4ff', '#ffc6ff'
+];
 
 // =============================================================================
 // i18n
@@ -380,13 +388,12 @@ async function loadList() {
       el.innerHTML = `<div class="empty">${t('cuentosEmpty','No hay anuncios publicados todavía.')}</div>`;
       return;
     }
-    el.innerHTML = items.map((c, idx) => {
+    el.innerHTML = '<div class="postit-grid">' + items.map((c, idx) => {
       const name = c.filename || '';
       const title = c.title || name.replace(/_/g,' ').replace(/\.\w+$/,'');
       const creator = c.creator ? `@${esc(c.creator)}` : '';
       const date = c.date || '';
       const createdAt = c.created_at || '';
-      // Show: "Publicado por @user · 31/05/2026 14:30"
       const metaParts = [];
       if (creator) metaParts.push(`${t('commentsPostedBy','Publicado por')} ${creator}`);
       if (createdAt) {
@@ -402,51 +409,44 @@ async function loadList() {
       }
       const meta = metaParts.join(' · ');
       const isExpired = c.expired || false;
-
-      // Expiry badge
-      let expiryHtml = '';
-      if (c.expires_at) {
-        const cls = isExpired ? 'cExpiry expired' : 'cExpiry';
-        const label = isExpired ? '⚠️ Expirado' : `⏳ Vence: ${formatDate(c.expires_at)}`;
-        expiryHtml = `<div class="${cls}">${label}</div>`;
-      }
+      const color = POSTIT_COLORS[idx % POSTIT_COLORS.length];
 
       if (c.masked) {
-        return `<div class="cuento-card" style="opacity:.4">
-          <span class="cIcon">📋</span>
-          <div class="cInfo"><div class="cTitle">${esc(title)}</div><div class="cMeta">Oculto</div></div>
+        return `<div class="postit" style="background:#ccc;opacity:.4">
+          <div class="postit-title">📋 ${esc(title)}</div>
+          <div class="postit-meta"><span>🔒 Oculto</span></div>
         </div>`;
       }
 
-      const cardClass = isExpired ? 'cuento-card expired' : 'cuento-card';
-      const delBtn = c.can_delete
-        ? `<button class="btn btnDel" onclick="event.stopPropagation();deletePost('${esc(name)}')" title="${t('commentsDelete','Eliminar')}">🗑</button>`
-        : '';
-      const commentCount = c.comment_count || 0;
-      const commentBadge = commentCount ? `<span style="font-size:.56rem;color:var(--text3);margin-left:6px">💬 ${commentCount}</span>` : '';
-      const commentBtnLabel = commentCount
-        ? `${t('commentsShowComments','💬 Comentarios')} (${commentCount})`
-        : t('commentsShowComments','💬 Comentarios');
+      // Expiry info
+      let expiryHtml = '';
+      if (c.expires_at) {
+        const label = isExpired ? '⚠️ Expirado' : `⏳ Vence: ${formatDate(c.expires_at)}`;
+        expiryHtml = `<div class="postit-expiry">${label}</div>`;
+      }
 
-      return `<div>
-        <div class="${cardClass}">
-          <span class="cIcon">📋</span>
-          <div class="cInfo">
-            <div class="cTitle">${esc(title)}${commentBadge}</div>
-            <div class="cMeta">${meta}</div>
-            ${expiryHtml}
-          </div>
-          <div class="cActions">
-            <button class="btn btnComments" onclick="event.stopPropagation();toggleComments('${esc(name)}', ${idx})" id="btnComments-${idx}">${commentBtnLabel}</button>
-            <a href="/bank/cuento/${encodeURIComponent(name)}" class="btn">${t('cuentosRead','Leer →')}</a>
-            ${delBtn}
-          </div>
+      const commentCount = c.comment_count || 0;
+      const commentBtnLabel = commentCount
+        ? `💬 ${commentCount}`
+        : '💬';
+      const delBtn = c.can_delete
+        ? `<button class="postit-btn delete" onclick="event.stopPropagation();deletePost('${esc(name)}')">🗑 ${t('commentsDelete','Eliminar')}</button>`
+        : '';
+
+      return `<div class="postit${isExpired ? ' expired' : ''}" style="background:${color}">
+        <div class="postit-title">${esc(title)}</div>
+        <div class="postit-meta"><span>${meta}</span></div>
+        ${expiryHtml}
+        <div class="postit-actions">
+          <button class="postit-btn" onclick="event.stopPropagation();toggleComments('${esc(name)}', ${idx})" id="btnComments-${idx}">${commentBtnLabel}</button>
+          <a href="/bank/cuento/${encodeURIComponent(name)}" class="postit-btn">${t('cuentosRead','Leer →')}</a>
+          ${delBtn}
         </div>
         <div class="commentsInline" id="comments-${idx}" data-filename="${esc(name)}">
           <div class="commentsLoading">${t('commentsLoading','Cargando comentarios…')}</div>
         </div>
       </div>`;
-    }).join('');
+    }).join('') + '</div>';
   } catch(e) {
     document.getElementById('cuentosList').innerHTML =
       `<div class="empty">Error al cargar: ${esc(e.message)}</div>`;

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+<meta name="theme-color" content="#0d0d1a">
+<title>📋 Anuncios — dvta.ch</title>
+<link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0d1a;--bg2:#13132a;--border:rgba(255,255,255,.08);
+  --text:#e8e8f0;--text2:#a0a0c0;--text3:#606080;
+  --blue:#4a7ab8;--blue2:#6b9bd4;--green:#27ae60;--red:#c0392b;
+  --gold:#ffd700;--radius:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(74,122,184,.08) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+header{position:sticky;top:0;z-index:100;background:rgba(13,13,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--gold);font-size:1rem;font-weight:700}
+.user-info{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text2)}
+.user-info strong{color:var(--blue2)}
+.btn-logout{background:none;border:1px solid rgba(192,57,43,.4);color:var(--red);padding:4px 12px;border-radius:16px;font-size:.68rem;cursor:pointer;transition:all .15s}
+.btn-logout:hover{background:rgba(192,57,43,.15)}
+
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:24px 16px 80px}
+.page-title{font-size:1.4rem;font-weight:700;color:var(--gold);margin-bottom:4px}
+.page-sub{font-size:.78rem;color:var(--text3);margin-bottom:20px}
+
+/* Publish button & area */
+.btn{display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:20px;border:1px solid rgba(74,122,184,.4);background:none;color:var(--blue2);font-family:inherit;font-size:.75rem;cursor:pointer;transition:all .15s}
+.btn:hover{background:rgba(74,122,184,.12)}
+.btn-publish{background:rgba(39,174,96,.08);border-color:rgba(39,174,96,.4);color:var(--green);padding:10px 20px;font-size:.8rem;margin-bottom:16px}
+.btn-publish:hover{background:rgba(39,174,96,.18)}
+
+.publishArea{display:none;margin-bottom:20px;padding:18px;border:1px solid var(--border);border-radius:var(--radius);background:var(--bg2)}
+.publishArea.show{display:block}
+.publishTabs{display:flex;gap:0;margin-bottom:14px;border-bottom:1px solid var(--border)}
+.publishTab{flex:1;padding:10px 12px;background:none;border:none;border-bottom:2px solid transparent;color:var(--text3);font-family:inherit;font-size:.72rem;cursor:pointer;transition:all .15s}
+.publishTab:hover{color:var(--text2)}
+.publishTab.active{color:var(--blue2);border-bottom-color:var(--blue)}
+.publishPanel{margin-bottom:10px}
+.formGroup{margin-bottom:10px}
+.formGroup label{display:block;font-size:.68rem;color:var(--text2);margin-bottom:4px}
+.formGroup input[type=text],.formGroup input[type=date],.formGroup textarea{
+  width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;
+  padding:10px 12px;color:var(--text);font-family:inherit;font-size:.78rem;outline:none;transition:border-color .2s;
+}
+.formGroup input:focus,.formGroup textarea:focus{border-color:var(--blue)}
+.formGroup textarea{min-height:120px;max-height:300px;resize:vertical;line-height:1.5}
+.formGroup input[type=file]{display:none}
+.charCount{font-size:.56rem;color:var(--text3);text-align:right;margin-top:2px}
+.btn-file{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;border:1px dashed var(--border);background:none;color:var(--text2);font-family:inherit;font-size:.72rem;cursor:pointer;transition:all .15s}
+.btn-file:hover{border-color:var(--blue);color:var(--blue2)}
+.fileName{font-size:.68rem;color:var(--green);margin-top:6px}
+.publishMsg{font-size:.7rem;margin-top:10px;display:none}
+
+/* Post-it grid */
+.postit-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:16px}
+.postit{
+  border-radius:var(--radius);padding:18px 16px 14px;position:relative;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .15s,box-shadow .15s;
+  display:flex;flex-direction:column;min-height:160px;
+}
+.postit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.postit-title{font-size:.9rem;font-weight:700;margin-bottom:8px;line-height:1.3;color:#1a1a1a}
+.postit-body{font-size:.74rem;color:#333;line-height:1.5;flex:1;overflow:hidden;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
+.postit-meta{margin-top:10px;font-size:.62rem;color:rgba(0,0,0,.5);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px}
+.postit-actions{display:flex;gap:6px;margin-top:8px}
+.postit-btn{background:rgba(0,0,0,.08);border:none;border-radius:12px;padding:4px 10px;font-size:.6rem;cursor:pointer;color:#333;font-family:inherit;transition:background .15s}
+.postit-btn:hover{background:rgba(0,0,0,.15)}
+.postit-btn.delete{color:#c0392b}
+.postit-btn.delete:hover{background:rgba(192,57,43,.15)}
+.postit-file{font-size:.62rem;color:rgba(0,0,0,.6);margin-top:4px;display:flex;align-items:center;gap:4px}
+
+/* Comments panel */
+.comments-panel{display:none;margin-top:10px;padding:12px;background:rgba(0,0,0,.06);border-radius:8px}
+.comments-panel.show{display:block}
+.comment-item{padding:8px 10px;background:rgba(255,255,255,.6);border-radius:6px;margin-bottom:6px}
+.comment-header{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.comment-author{font-size:.66rem;font-weight:600;color:#2c3e50}
+.comment-date{font-size:.56rem;color:rgba(0,0,0,.4)}
+.comment-body{font-size:.72rem;color:#333;line-height:1.4;white-space:pre-wrap}
+.comment-form{margin-top:8px}
+.comment-form textarea{width:100%;min-height:50px;max-height:100px;resize:vertical;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.1);border-radius:6px;padding:8px;font-family:inherit;font-size:.72rem;color:#333;outline:none}
+.comment-form textarea:focus{border-color:var(--blue)}
+.comment-form-actions{display:flex;justify-content:flex-end;margin-top:6px}
+.btn-comment{background:#2c3e50;color:#fff;border:none;border-radius:12px;padding:5px 14px;font-size:.64rem;cursor:pointer;font-family:inherit;transition:opacity .15s}
+.btn-comment:hover{opacity:.85}
+.comment-delete{background:none;border:none;font-size:.56rem;color:rgba(192,57,43,.7);cursor:pointer;margin-left:auto;padding:2px 6px}
+.comment-delete:hover{color:#c0392b}
+
+.empty{text-align:center;padding:60px 20px;color:var(--text3);font-size:.82rem}
+.loading{text-align:center;padding:40px;color:var(--text3);font-size:.76rem}
+
+/* Login overlay */
+.login-overlay{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.login-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;width:100%;max-width:380px;text-align:center}
+.login-box h2{font-size:1.2rem;color:var(--gold);margin-bottom:6px}
+.login-box p{font-size:.74rem;color:var(--text3);margin-bottom:20px}
+.login-box .formGroup{text-align:left}
+.login-box .formGroup input{margin-bottom:0}
+.btn-login{width:100%;padding:12px;border-radius:8px;border:none;background:var(--blue);color:#fff;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:opacity .15s;margin-top:14px}
+.btn-login:hover{opacity:.88}
+.login-error{font-size:.7rem;color:var(--red);margin-top:10px;display:none}
+.login-register{font-size:.7rem;color:var(--text3);margin-top:14px}
+.login-register a{color:var(--blue2);text-decoration:none}
+.login-register a:hover{text-decoration:underline}
+
+@media(max-width:600px){.postit-grid{grid-template-columns:1fr}.wrap{padding:16px 12px 60px}}
+</style>
+</head>
+<body>
+
+<!-- Login overlay -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <h2>📋 Tablón de Anuncios</h2>
+    <p>Inicia sesión para ver y publicar anuncios</p>
+    <div class="formGroup">
+      <label>Nombre de usuario</label>
+      <input type="text" id="loginUser" placeholder="Tu nombre de usuario" autocomplete="username">
+    </div>
+    <div class="formGroup" style="margin-top:10px">
+      <label>Contraseña</label>
+      <input type="password" id="loginPass" placeholder="Contraseña" autocomplete="current-password">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Entrar</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-register">¿No tienes cuenta? <a href="/exams#register">Regístrate aquí</a></div>
+  </div>
+</div>
+
+<header>
+  <a href="/" class="logo"><span style="font-size:1.3rem">◆</span> dvta.ch</a>
+  <div class="user-info">
+    <span>👤 <strong id="headerUser">—</strong></span>
+    <button class="btn-logout" onclick="doLogout()">Salir</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="page-title">📋 Tablón de Anuncios</div>
+  <div class="page-sub">Publica y lee los anuncios de la comunidad</div>
+
+  <button class="btn btn-publish" onclick="togglePublish()">＋ Publicar anuncio</button>
+
+  <div class="publishArea" id="publishArea">
+    <div class="publishTabs">
+      <button class="publishTab active" id="tabFile" onclick="switchTab('file')">📎 Subir archivo</button>
+      <button class="publishTab" id="tabWrite" onclick="switchTab('write')">✏️ Escribir texto</button>
+    </div>
+
+    <!-- Tab: File upload -->
+    <div class="publishPanel" id="panelFile">
+      <div class="formGroup">
+        <label>Archivo (.docx, .odt, .txt)</label>
+        <input type="file" id="fileInput" accept=".docx,.odt,.txt">
+        <button class="btn-file" onclick="document.getElementById('fileInput').click()">📎 Seleccionar archivo</button>
+        <div class="fileName" id="fileName"></div>
+      </div>
+    </div>
+
+    <!-- Tab: Write text -->
+    <div class="publishPanel" id="panelWrite" style="display:none">
+      <div class="formGroup">
+        <label>Título del anuncio</label>
+        <input type="text" id="writeTitle" placeholder="Título del anuncio" maxlength="200">
+      </div>
+      <div class="formGroup">
+        <label>Contenido</label>
+        <textarea id="writeBody" placeholder="Escribe el contenido del anuncio..." maxlength="10000"></textarea>
+        <div class="charCount" id="writeCharCount">0 / 10000</div>
+      </div>
+    </div>
+
+    <div class="formGroup">
+      <label>📅 Fecha de vencimiento (opcional)</label>
+      <input type="date" id="expiryDate" min="">
+    </div>
+    <button class="btn btn-publish" onclick="publishAnuncio()" style="margin-bottom:0">📤 Publicar</button>
+    <div class="publishMsg" id="publishMsg"></div>
+  </div>
+
+  <div id="anunciosList"><div class="loading">Cargando anuncios…</div></div>
+</div>
+
+<script>
+'use strict';
+
+// ─── State ───
+let _token = '';
+let _user = '';
+let _isAdmin = false;
+let _publishMode = 'file';
+
+// Post-it colors (rotate per post)
+const POSTIT_COLORS = [
+  '#fff9b1', '#ffb3ba', '#baffc9', '#bae1ff', '#e8d5f5',
+  '#ffd6a5', '#caffbf', '#fdffb6', '#a0c4ff', '#ffc6ff'
+];
+
+// ─── Auth ───
+async function doLogin() {
+  const username = document.getElementById('loginUser').value.trim();
+  const password = document.getElementById('loginPass').value;
+  const errEl = document.getElementById('loginError');
+  errEl.style.display = 'none';
+  if (!username || !password) { errEl.textContent = 'Rellena todos los campos'; errEl.style.display = ''; return; }
+  try {
+    const r = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({username, password})
+    });
+    const d = await r.json();
+    if (!r.ok) { errEl.textContent = d.detail || 'Credenciales incorrectas'; errEl.style.display = ''; return; }
+    _token = d.token;
+    localStorage.setItem('exams_token', _token);
+    initApp();
+  } catch(e) {
+    errEl.textContent = 'Error de conexión'; errEl.style.display = '';
+  }
+}
+
+function doLogout() {
+  localStorage.removeItem('exams_token');
+  _token = '';
+  _user = '';
+  location.reload();
+}
+
+async function initApp() {
+  _token = localStorage.getItem('exams_token');
+  if (!_token) { document.getElementById('loginOverlay').style.display = ''; return; }
+  try {
+    const r = await fetch('/api/auth/me', {headers:{'Authorization':'Bearer '+_token}});
+    if (!r.ok) throw new Error('unauthorized');
+    const d = await r.json();
+    _user = d.user.username;
+    _isAdmin = d.user.role === 'admin';
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('headerUser').textContent = _user;
+    loadAnuncios();
+  } catch(e) {
+    localStorage.removeItem('exams_token');
+    document.getElementById('loginOverlay').style.display = '';
+  }
+}
+
+// Allow Enter on password field
+document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+// ─── Publish ───
+function togglePublish() { document.getElementById('publishArea').classList.toggle('show'); }
+
+function switchTab(mode) {
+  _publishMode = mode;
+  document.getElementById('tabFile').classList.toggle('active', mode === 'file');
+  document.getElementById('tabWrite').classList.toggle('active', mode === 'write');
+  document.getElementById('panelFile').style.display = mode === 'file' ? '' : 'none';
+  document.getElementById('panelWrite').style.display = mode === 'write' ? '' : 'none';
+}
+
+document.getElementById('fileInput').addEventListener('change', function() {
+  document.getElementById('fileName').textContent = this.files[0] ? '📄 ' + this.files[0].name : '';
+});
+
+document.getElementById('writeBody').addEventListener('input', function() {
+  document.getElementById('writeCharCount').textContent = this.value.length + ' / 10000';
+});
+
+// Set min date
+document.getElementById('expiryDate').min = new Date().toISOString().split('T')[0];
+
+async function publishAnuncio() {
+  const msg = document.getElementById('publishMsg');
+  msg.style.display = ''; msg.textContent = '⏳ Publicando...'; msg.style.color = 'var(--text2)';
+  const expiry = document.getElementById('expiryDate').value;
+  try {
+    let res;
+    if (_publishMode === 'file') {
+      const input = document.getElementById('fileInput');
+      if (!input.files.length) { msg.textContent = '⚠️ Selecciona un archivo'; msg.style.color = 'var(--red)'; return; }
+      const fd = new FormData();
+      fd.append('file', input.files[0]);
+      fd.append('expires_at', expiry || '');
+      res = await fetch('/api/anuncios/upload', {method:'POST', headers:{'Authorization':'Bearer '+_token}, body:fd});
+    } else {
+      const title = document.getElementById('writeTitle').value.trim();
+      const body = document.getElementById('writeBody').value.trim();
+      if (!title) { msg.textContent = '⚠️ Escribe un título'; msg.style.color = 'var(--red)'; return; }
+      if (!body) { msg.textContent = '⚠️ Escribe el contenido'; msg.style.color = 'var(--red)'; return; }
+      res = await fetch('/api/anuncios/write', {
+        method:'POST',
+        headers:{'Authorization':'Bearer '+_token,'Content-Type':'application/json'},
+        body: JSON.stringify({title, body, expires_at: expiry || ''})
+      });
+    }
+    if (!res.ok) { const d = await res.json().catch(()=>{}); throw new Error(d?.detail || 'Error'); }
+    const data = await res.json();
+    msg.textContent = '✓ Publicado: ' + (data.title || 'Anuncio'); msg.style.color = 'var(--green)';
+    // Reset
+    document.getElementById('fileInput').value = '';
+    document.getElementById('fileName').textContent = '';
+    document.getElementById('writeTitle').value = '';
+    document.getElementById('writeBody').value = '';
+    document.getElementById('writeCharCount').textContent = '0 / 10000';
+    document.getElementById('expiryDate').value = '';
+    setTimeout(() => { document.getElementById('publishArea').classList.remove('show'); msg.style.display = 'none'; }, 2000);
+    loadAnuncios();
+  } catch(e) {
+    msg.textContent = '✗ ' + e.message; msg.style.color = 'var(--red)';
+  }
+}
+
+// ─── List ───
+function esc(s) { return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function formatDate(iso) {
+  if (!iso) return '';
+  if (iso.includes(' ')) {
+    const [d, t] = iso.split(' ');
+    const [y, m, day] = d.split('-');
+    return `${day}/${m}/${y} ${t}`;
+  }
+  const [y, m, d] = iso.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+async function loadAnuncios() {
+  try {
+    const r = await fetch('/api/anuncios', {headers:{'Authorization':'Bearer '+_token}});
+    if (!r.ok) throw new Error('Error');
+    const items = await r.json();
+    const el = document.getElementById('anunciosList');
+    if (!items.length) { el.innerHTML = '<div class="empty">No hay anuncios publicados todavía. ¡Sé el primero!</div>'; return; }
+    el.innerHTML = '<div class="postit-grid">' + items.map((a, i) => {
+      const color = POSTIT_COLORS[i % POSTIT_COLORS.length];
+      const canDelete = _isAdmin || a.creator === _user;
+      const delBtn = canDelete ? `<button class="postit-btn delete" onclick="event.stopPropagation();deleteAnuncio(${a.id})">🗑 Eliminar</button>` : '';
+      const commentCount = a.comment_count || 0;
+      const fileInfo = a.has_file ? `<div class="postit-file">📎 ${esc(a.filename)}</div>` : '';
+      return `<div class="postit" style="background:${color}" id="postit-${a.id}">
+        <div class="postit-title">${esc(a.title)}</div>
+        <div class="postit-body">${esc(a.body)}</div>
+        ${fileInfo}
+        <div class="postit-meta">
+          <span>👤 ${esc(a.creator)} · ${formatDate(a.created_at)}</span>
+          ${a.expires_at ? `<span>⏳ ${formatDate(a.expires_at)}</span>` : ''}
+        </div>
+        <div class="postit-actions">
+          <button class="postit-btn" onclick="event.stopPropagation();toggleComments(${a.id})">💬 ${commentCount ? commentCount + ' ' : ''}Comentarios</button>
+          ${delBtn}
+        </div>
+        <div class="comments-panel" id="comments-${a.id}"></div>
+      </div>`;
+    }).join('') + '</div>';
+  } catch(e) {
+    document.getElementById('anunciosList').innerHTML = '<div class="empty">Error al cargar anuncios</div>';
+  }
+}
+
+// ─── Delete ───
+async function deleteAnuncio(id) {
+  if (!confirm('¿Seguro que quieres eliminar este anuncio?')) return;
+  try {
+    const r = await fetch('/api/anuncios/' + id, {method:'DELETE', headers:{'Authorization':'Bearer '+_token}});
+    if (!r.ok) { const d = await r.json().catch(()=>{}); alert(d?.detail || 'Error'); return; }
+    loadAnuncios();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+// ─── Comments ───
+async function toggleComments(id) {
+  const panel = document.getElementById('comments-' + id);
+  if (panel.classList.contains('show')) { panel.classList.remove('show'); return; }
+  panel.classList.add('show');
+  panel.innerHTML = '<div style="font-size:.68rem;color:rgba(0,0,0,.4);padding:8px">Cargando...</div>';
+  try {
+    const r = await fetch('/api/anuncios/' + id + '/comments', {headers:{'Authorization':'Bearer '+_token}});
+    if (!r.ok) throw new Error('Error');
+    const comments = await r.json();
+    let html = `<div class="comment-form">
+      <textarea id="ct-${id}" placeholder="Escribe un comentario..." maxlength="2000"></textarea>
+      <div class="comment-form-actions"><button class="btn-comment" onclick="postComment(${id})">Publicar</button></div>
+    </div>`;
+    if (!comments.length) {
+      html += '<div style="text-align:center;font-size:.68rem;color:rgba(0,0,0,.4);padding:10px">Sé el primero en comentar</div>';
+    } else {
+      comments.forEach(c => {
+        const canDel = _isAdmin || c.username === _user;
+        const delBtn = canDel ? `<button class="comment-delete" onclick="deleteComment(${c.id},${id})">🗑</button>` : '';
+        html += `<div class="comment-item">
+          <div class="comment-header">
+            <span class="comment-author">@${esc(c.username)}</span>
+            <span class="comment-date">${formatDate(c.created_at)}</span>
+            ${delBtn}
+          </div>
+          <div class="comment-body">${esc(c.body)}</div>
+        </div>`;
+      });
+    }
+    panel.innerHTML = html;
+  } catch(e) {
+    panel.innerHTML = '<div style="font-size:.68rem;color:rgba(192,57,43,.7);padding:8px">Error al cargar</div>';
+  }
+}
+
+async function postComment(anuncioId) {
+  const ta = document.getElementById('ct-' + anuncioId);
+  if (!ta || !ta.value.trim()) return;
+  try {
+    const r = await fetch('/api/anuncios/' + anuncioId + '/comments', {
+      method:'POST',
+      headers:{'Authorization':'Bearer '+_token,'Content-Type':'application/json'},
+      body: JSON.stringify({body: ta.value.trim()})
+    });
+    if (!r.ok) { const d = await r.json().catch(()=>{}); alert(d?.detail || 'Error'); return; }
+    toggleComments(anuncioId); // close
+    toggleComments(anuncioId); // reopen to reload
+    loadAnuncios(); // refresh counts
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function deleteComment(commentId, anuncioId) {
+  if (!confirm('¿Eliminar este comentario?')) return;
+  try {
+    const r = await fetch('/api/anuncios/comments/' + commentId, {method:'DELETE', headers:{'Authorization':'Bearer '+_token}});
+    if (!r.ok) { const d = await r.json().catch(()=>{}); alert(d?.detail || 'Error'); return; }
+    toggleComments(anuncioId);
+    toggleComments(anuncioId);
+    loadAnuncios();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+// ─── Init ───
+initApp();
+</script>
+</body>
+</html>
