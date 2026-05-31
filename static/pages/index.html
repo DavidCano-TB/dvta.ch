@@ -3403,7 +3403,10 @@ async function loadCuentosView() {
   // Show upload panel for all logged-in users
   document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
   try {
-    const items = await req('GET', '/bank/api/cuentos');
+    const [items, unreadMap] = await Promise.all([
+      req('GET', '/bank/api/cuentos'),
+      req('GET', '/bank/api/cuentos/unread')
+    ]);
     if (!items.length) {
       el.innerHTML = '<div class="empty">Sin cuentos disponibles.</div>';
       return;
@@ -3430,6 +3433,11 @@ async function loadCuentosView() {
         metaParts.push(esc(c.date));
       }
       const metaLine = metaParts.length ? metaParts.join(' · ') : '';
+      // Unread badge
+      const unread = unreadMap[name] || 0;
+      const unreadBadge = unread > 0
+        ? `<span id="cUnread-${idx}" style="display:inline-flex;align-items:center;gap:3px;background:rgba(200,75,75,.15);border:1px solid rgba(200,75,75,.4);color:#e85555;font-size:.55rem;font-weight:600;padding:2px 8px;border-radius:12px;margin-left:6px">💬 ${unread} ${unread===1?'nuevo':'nuevos'}</span>`
+        : '';
       // Render full content blocks inline
       const blocks = c.blocks || [];
       let bodyHtml = '';
@@ -3446,7 +3454,7 @@ async function loadCuentosView() {
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;">
           <span style="font-size:1.4rem;flex-shrink:0">📋</span>
           <div style="flex:1;min-width:0">
-            <div style="font-size:.84rem;font-weight:600;color:var(--gold2)">${esc(label)}</div>
+            <div style="font-size:.84rem;font-weight:600;color:var(--gold2)">${esc(label)}${unreadBadge}</div>
             ${metaLine ? `<div style="font-size:.58rem;color:var(--text3);margin-top:3px">${metaLine}</div>` : ''}
             ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
           </div>
@@ -3552,6 +3560,12 @@ async function loadCuentoInlineComments(filename, idx) {
       panel.innerHTML = formHtml + `<div style="text-align:center;padding:10px;color:var(--text3);font-size:.65rem;font-style:italic">${t('commentsEmpty')}</div>`;
     } else {
       panel.innerHTML = formHtml + threads.map(c => _renderCComment(c, false, filename, idx)).join('');
+    }
+    // Mark as read and hide unread badge
+    if (comments.length) {
+      req('POST', '/bank/api/cuentos/comments/mark-read/' + encodeURIComponent(filename)).catch(()=>{});
+      const badge = document.getElementById('cUnread-' + idx);
+      if (badge) badge.style.display = 'none';
     }
   } catch(e) {
     panel.innerHTML = `<div style="text-align:center;padding:12px;color:var(--text3);font-size:.65rem">${t('commentsError')}</div>`;

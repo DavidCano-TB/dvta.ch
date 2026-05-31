@@ -2957,6 +2957,16 @@ def _init_comments_db():
     """)
     conn.execute("CREATE INDEX IF NOT EXISTS idx_comments_filename ON comments(filename)")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_comments_parent ON comments(parent_id)")
+    # Track which comments each user has read (last seen comment id per file)
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS comment_reads (
+            username TEXT NOT NULL,
+            filename TEXT NOT NULL,
+            last_read_id INTEGER NOT NULL DEFAULT 0,
+            updated_at TEXT NOT NULL DEFAULT (datetime('now')),
+            PRIMARY KEY (username, filename)
+        )
+    """)
     conn.commit()
     conn.close()
 
@@ -3060,6 +3070,50 @@ async def delete_comment(comment_id: int, user: str = Depends(get_current_user))
     conn.close()
     logger.info("Comment #%d archived to old/ by %s", comment_id, user)
     return {"ok": True}
+
+
+@app.post("/bank/api/cuentos/comments/mark-read/{filename:path}")
+async def mark_comments_read(filename: str, user: str = Depends(get_current_user)):
+    """Mark all comments on a post as read for the current user."""
+    filename = os.path.basename(filename)
+    conn = db_comments()
+    # Get the max comment id for this file
+    row = conn.execute("SELECT MAX(id) as max_id FROM comments WHERE filename=?", (filename,)).fetchone()
+    max_id = row["max_id"] if row and row["max_id"] else 0
+    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    conn.execute("""
+        INSERT INTO comment_reads (username, filename, last_read_id, updated_at)
+        VALUES (?, ?, ?, ?)
+        ON CONFLICT(username, filename) DO UPDATE SET last_read_id=excluded.last_read_id, updated_at=excluded.updated_at
+    """, (user, filename, max_id, now))
+    conn.commit()
+    conn.close()
+    return {"ok": True, "last_read_id": max_id}
+
+
+@app.get("/bank/api/cuentos/unread")
+async def get_unread_counts(user: str = Depends(get_current_user)):
+    """Get unread comment counts for all posts for the current user."""
+    conn = db_comments()
+    # Get all comment counts per file
+    rows = conn.execute("""
+        SELECT c.filename, COUNT(*) as total,
+               COALESCE(r.last_read_id, 0) as last_read_id
+        FROM comments c
+        LEFT JOIN comment_reads r ON r.filename = c.filename AND r.username = ?
+        GROUP BY c.filename
+    """, (user,)).fetchall()
+    result = {}
+    for row in rows:
+        # Count comments with id > last_read_id
+        unread = conn.execute(
+            "SELECT COUNT(*) as cnt FROM comments WHERE filename=? AND id > ?",
+            (row["filename"], row["last_read_id"])
+        ).fetchone()["cnt"]
+        if unread > 0:
+            result[row["filename"]] = unread
+    conn.close()
+    return result
 
 
 # =============================================================================
