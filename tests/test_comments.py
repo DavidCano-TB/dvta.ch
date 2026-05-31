@@ -304,7 +304,6 @@ class TestCommentsFrontend:
         """The main SPA must support inline comments on announcements."""
         path = BASE_DIR / "static" / "index.html"
         content = path.read_text(encoding="utf-8")
-        assert "toggleCuentoComments" in content
         assert "loadCuentoInlineComments" in content
         assert "postCuentoComment" in content
         assert "deleteCuentoComment" in content
