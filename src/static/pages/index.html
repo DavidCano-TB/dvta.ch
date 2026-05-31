@@ -1412,7 +1412,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab hidden" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')">📋 <span data-i18n="navCuentos">Anuncios</span></button>
+      <button class="navTab" id="navCuentos" onclick="nav('cuentos',this)">📋 <span data-i18n="navCuentos">Anuncios</span></button>
       <!-- Games tab removed -->
       <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame" style="display:none">Games</button>
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 <span data-i18n="navMillonario">Millonario</span></button>
@@ -1886,7 +1886,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('millonario')"  style="justify-content:flex-start;gap:8px">💰 <span data-i18n="navMillonario">Millonario</span></button>
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
-          <a href="https://dvta.ch" target="_blank" class="btn btnS" style="text-decoration:none;justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></a>
+          <button class="btn btnS" onclick="openGamePanel('cuentos')" style="justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></button>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
@@ -2311,7 +2311,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
+    <button class="mNavBtn" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
       <span class="icon">📋</span>
     </button>
     <!-- Games mobile nav removed -->
@@ -3388,16 +3388,10 @@ async function checkCuentosStatus() {
   try {
     const d = await req('GET', '/api/cuentos/status');
     const on = d.enabled;
-    // Show Cuentos tab only for members when enabled; admins use admin panel
-    if (!me?.is_admin) {
-      ['navCuentos','mobileNavCuentos'].forEach(id =>
-        document.getElementById(id)?.classList.toggle('hidden', !on)
-      );
-    } else {
-      ['navCuentos','mobileNavCuentos'].forEach(id =>
-        document.getElementById(id)?.classList.add('hidden')
-      );
-    }
+    // Always show Cuentos tab for all users (everyone can post)
+    ['navCuentos','mobileNavCuentos'].forEach(id =>
+      document.getElementById(id)?.classList.remove('hidden')
+    );
     // Admin panel controls (kept for ctLoad in drawer)
     const sub = document.getElementById('cuentosStatusSub');
     if (sub) sub.textContent = on ? 'Activado — visible para todos' : 'Desactivado';
@@ -3405,11 +3399,6 @@ async function checkCuentosStatus() {
     const btnOff = document.getElementById('btnCuentosOff');
     if (btnOn)  btnOn.style.display  = on ? 'none' : '';
     if (btnOff) btnOff.style.display = on ? '' : 'none';
-    // Nav tabs: show only when enabled
-    ['navCuentos','mobileNavCuentos'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) { on ? el.classList.remove('hidden') : el.classList.add('hidden'); }
-    });
   } catch(e) {}
 }
 
@@ -3973,7 +3962,7 @@ const GAME_META = {
   millonario:   { icon:'💰', get label(){ return t('navMillonario','Millonario'); } },
   quiensoy:     { icon:'🎭', get label(){ return t('navQuienSoy','¿Quién soy?'); } },
   cifrasletras: { icon:'🔤', get label(){ return t('navCifrasLetras','Cifras y Letras'); } },
-  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); }, url: 'https://dvta.ch' },
+  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); } },
   opo:          { icon:'📝', label:'OPO' },
   mensajes:     { icon:'💬', get label(){ return t('socialTitle','Mensajes'); } },
 };
