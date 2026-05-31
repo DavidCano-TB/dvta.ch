@@ -2528,11 +2528,17 @@ def _migrate_anuncios_meta():
                 changed = True
             except Exception:
                 pass
+        # Ensure creator exists for known files
+        if fname not in creators:
+            # Known initial post by yumazurman
+            if "amante" in fname.lower() or "bandido" in fname.lower():
+                creators[fname] = "yumazurman"
+                changed = True
     if changed:
         meta["created_at"] = created_dates
         meta["creators"] = creators
         _save_meta(meta)
-        logger.info("Migrated anuncios meta: added created_at for %d files", sum(1 for _ in created_dates))
+        logger.info("Migrated anuncios meta for %d files", len(created_dates))
  
  
 # ── Office file readers ───────────────────────────────────────────────────────
