@@ -372,12 +372,12 @@ function render(){
         if(isDvd){
           // DVD ve estadísticas adicionales
           const ganancia_por_dvdc=d.total>0?(stats.total_bote/d.total):0;
-          const roi_potencial=d.total>0?((ganancia_por_dvdc-1)*100):0;
+          const ganancia_pct=d.total>0?((ganancia_por_dvdc-1)*100):0;
           
           html+=`<div class="optStat"><span class="optStatLbl">Total Apostado:</span><span class="optStatVal">${d.total.toFixed(1)} DVDc</span></div>
             <div class="optStat"><span class="optStatLbl">Cuota:</span><span class="optStatVal">${d.cuota_implicita>0?d.cuota_implicita.toFixed(2)+'x':'-'}</span></div>
             <div class="optStat"><span class="optStatLbl">Ganancia/DVDc:</span><span class="optStatVal">${ganancia_por_dvdc>0?ganancia_por_dvdc.toFixed(2)+' DVDc':'-'}</span></div>
-            <div class="optStat"><span class="optStatLbl">ROI Potencial:</span><span class="optStatVal" style="color:${roi_potencial>=0?'var(--green)':'var(--red)'}">${roi_potencial>0?'+':''}${roi_potencial.toFixed(1)}%</span></div>`;
+            <div class="optStat"><span class="optStatLbl">Ganancia Potencial:</span><span class="optStatVal" style="color:${ganancia_pct>=0?'var(--green)':'var(--red)'}">${ganancia_pct>0?'+':''}${ganancia_pct.toFixed(1)}%</span></div>`;
         }
         
         el.innerHTML = html;
