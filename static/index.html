@@ -3598,11 +3598,10 @@ async function loadCuentosView() {
   // Show upload panel for all logged-in users
   document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
   try {
-    // Fetch announcements and unread counts in parallel
-    const [items, unreadMap] = await Promise.all([
-      req('GET', '/bank/api/cuentos'),
-      req('GET', '/bank/api/cuentos/unread')
-    ]);
+    // Fetch announcements (required) and unread counts (optional, non-blocking)
+    const items = await req('GET', '/bank/api/cuentos');
+    let unreadMap = {};
+    try { unreadMap = await req('GET', '/bank/api/cuentos/unread'); } catch(e) { /* ignore */ }
     if (!items.length) {
       el.innerHTML = '<div class="empty">No posts available.</div>';
       return;

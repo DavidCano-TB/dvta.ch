@@ -3403,10 +3403,9 @@ async function loadCuentosView() {
   // Show upload panel for all logged-in users
   document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
   try {
-    const [items, unreadMap] = await Promise.all([
-      req('GET', '/bank/api/cuentos'),
-      req('GET', '/bank/api/cuentos/unread')
-    ]);
+    const items = await req('GET', '/bank/api/cuentos');
+    let unreadMap = {};
+    try { unreadMap = await req('GET', '/bank/api/cuentos/unread'); } catch(e) { /* ignore */ }
     if (!items.length) {
       el.innerHTML = '<div class="empty">Sin cuentos disponibles.</div>';
       return;
