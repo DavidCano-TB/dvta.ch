@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 from typing import Optional
 from contextlib import asynccontextmanager, contextmanager
  
-from fastapi import FastAPI, HTTPException, Depends, Request, WebSocket, WebSocketDisconnect, UploadFile, File
+from fastapi import FastAPI, HTTPException, Depends, Request, WebSocket, WebSocketDisconnect, UploadFile, File, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -2832,10 +2832,12 @@ async def cuentos_toggle(user: str = Depends(get_current_user)):
  
  
 @app.post("/bank/api/cuentos/upload")
-async def cuentos_upload(file: UploadFile = File(...), user:
-    str = Depends(get_current_user)):
-    if user not in ALL_ADMINS:
-        raise HTTPException(403, "Solo admins")
+async def cuentos_upload(
+    file: UploadFile = File(...),
+    expires_at: str = Form(""),
+    user: str = Depends(get_current_user)
+):
+    """Upload a bulletin board post. Any logged-in user can upload."""
     fname = os.path.basename(file.filename or "upload.docx")
     ext   = os.path.splitext(fname)[1].lower()
     if ext not in _SUPPORTED_EXT:
@@ -2850,22 +2852,44 @@ async def cuentos_upload(file: UploadFile = File(...), user:
     with open(dest, "wb") as fout:
         fout.write(await file.read())
     final = os.path.basename(dest)
-    logger.info("Cuento uploaded: %s by %s", final, user)
-    return {"ok": True, "filename": final, "title": _office_title(dest)}
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    # Store creator, created_at, and expiry in meta
+    meta = _load_meta()
+    creators = meta.get("creators", {})
+    creators[final] = user
+    meta["creators"] = creators
+    created_dates = meta.get("created_at", {})
+    created_dates[final] = now
+    meta["created_at"] = created_dates
+    # Store expiry date if provided (format: YYYY-MM-DD)
+    if expires_at and expires_at.strip():
+        expiries = meta.get("expires", {})
+        expiries[final] = expires_at.strip()
+        meta["expires"] = expiries
+    _save_meta(meta)
+    logger.info("Bulletin post uploaded: %s by %s (expires: %s)", final, user, expires_at or "never")
+    return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user, "created_at": now, "expires_at": expires_at or None}
  
  
 @app.delete("/bank/api/cuentos/file/{filename:path}")
 async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
-    """Delete a story file."""
-    if user not in ALL_ADMINS:
-        raise HTTPException(403, "Solo admins")
+    """Delete a bulletin post. Allowed for the creator or any admin."""
     filename = os.path.basename(filename)
     path = os.path.join(CUENTOS_DIR, filename)
     if not os.path.exists(path):
         raise HTTPException(404, "No encontrado")
-    os.remove(path)
     meta = _load_meta()
+    creator = meta.get("creators", {}).get(filename, "")
+    if user not in ALL_ADMINS and user != creator:
+        raise HTTPException(403, "Solo el autor o un admin puede eliminar este anuncio")
+    os.remove(path)
     meta["masked"] = [f for f in meta.get("masked", []) if f != filename]
+    creators = meta.get("creators", {})
+    creators.pop(filename, None)
+    meta["creators"] = creators
+    created_dates = meta.get("created_at", {})
+    created_dates.pop(filename, None)
+    meta["created_at"] = created_dates
     _save_meta(meta)
     return {"ok": True}
  
@@ -2929,19 +2953,25 @@ async def cuento_page(filename: str):
  
 @app.get("/bank/api/cuentos")
 async def list_cuentos(user: str = Depends(get_current_user)):
-    """List stories. When enabled: all users. When disabled: admins only."""
+    """List bulletin board posts. When enabled: all users. When disabled: admins only."""
     if not _cuentos_enabled and user not in ALL_ADMINS:
         raise HTTPException(403, "Cuentos desactivados")
     _ping_session(user, "cuentos")
     if not os.path.exists(CUENTOS_DIR):
         return []
-    items = []
     meta = _load_meta()
     creators = meta.get("creators", {})
+    expiries = meta.get("expires", {})
+    today = datetime.now().strftime("%Y-%m-%d")
+    items = []
     for fname in os.listdir(CUENTOS_DIR):
         if os.path.splitext(fname)[1].lower() not in _SUPPORTED_EXT:
             continue
         if fname.startswith("~") or fname.startswith("."):
+            continue
+        # Skip expired posts (unless admin)
+        expires = expiries.get(fname, "")
+        if expires and expires < today and user not in ALL_ADMINS:
             continue
         path      = os.path.join(CUENTOS_DIR, fname)
         is_masked = fname in meta.get("masked", [])
@@ -2949,12 +2979,15 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             continue
         creator = creators.get(fname, "")
         can_delete = user in ALL_ADMINS or user == creator or creator == ""
-        # Get upload time from file modification time
-        try:
-            mtime = os.path.getmtime(path)
-            created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
-        except Exception:
-            created_at = ""
+        is_expired = bool(expires and expires < today)
+        # Get upload time from meta first, fallback to file modification time
+        created_at = meta.get("created_at", {}).get(fname, "")
+        if not created_at:
+            try:
+                mtime = os.path.getmtime(path)
+                created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+            except Exception:
+                created_at = ""
         items.append({
             "filename": fname,
             "title":    _office_title(path),
@@ -2963,7 +2996,27 @@ async def list_cuentos(user: str = Depends(get_current_user)):
             "creator":  creator,
             "created_at": created_at,
             "can_delete": can_delete,
+            "expires_at": expires or None,
+            "expired": is_expired,
         })
+    # Fetch comment counts (if comments DB available)
+    comment_counts = {}
+    try:
+        conn = db_comments()
+        all_filenames = [i["filename"] for i in items]
+        if all_filenames:
+            placeholders = ",".join("?" * len(all_filenames))
+            rows = conn.execute(
+                f"SELECT filename, COUNT(*) as cnt FROM comments WHERE filename IN ({placeholders}) GROUP BY filename",
+                all_filenames
+            ).fetchall()
+            for r in rows:
+                comment_counts[r["filename"]] = r["cnt"]
+        conn.close()
+    except Exception:
+        pass
+    for item in items:
+        item["comment_count"] = comment_counts.get(item["filename"], 0)
     dated   = sorted([x for x in items if x["date"]],
                      key=lambda x: (x["date"][6:], x["date"][3:5], x["date"][:2]),
                      reverse=True)

@@ -149,6 +149,48 @@ class TestBulletinBoardUpload:
         assert True  # Verified by removing admin check in cuentos_upload
 
     @pytest.mark.unit
+    def test_upload_no_admin_check_in_main(self):
+        """The main.py upload endpoint must NOT have admin-only restriction."""
+        main_path = BASE_DIR / "main.py"
+        content = main_path.read_text(encoding="utf-8")
+        # Find the upload function
+        upload_start = content.find("@app.post(\"/bank/api/cuentos/upload\")")
+        assert upload_start != -1, "Upload endpoint not found in main.py"
+        # Get the function body (up to next @app decorator or class)
+        next_decorator = content.find("\n@app.", upload_start + 10)
+        upload_body = content[upload_start:next_decorator] if next_decorator != -1 else content[upload_start:]
+        # Must NOT contain admin-only check
+        assert "if user not in ALL_ADMINS" not in upload_body, (
+            "Upload endpoint should NOT restrict to admins only"
+        )
+        # Must contain docstring indicating any user can upload
+        assert "Any logged-in user" in upload_body or "any" in upload_body.lower()
+
+    @pytest.mark.unit
+    def test_upload_stores_creator_in_meta(self):
+        """Upload must store the creator username in meta."""
+        main_path = BASE_DIR / "main.py"
+        content = main_path.read_text(encoding="utf-8")
+        upload_start = content.find("@app.post(\"/bank/api/cuentos/upload\")")
+        next_decorator = content.find("\n@app.", upload_start + 10)
+        upload_body = content[upload_start:next_decorator]
+        assert "creators[final] = user" in upload_body, (
+            "Upload must store creator in meta"
+        )
+
+    @pytest.mark.unit
+    def test_upload_stores_created_at(self):
+        """Upload must store the created_at timestamp in meta."""
+        main_path = BASE_DIR / "main.py"
+        content = main_path.read_text(encoding="utf-8")
+        upload_start = content.find("@app.post(\"/bank/api/cuentos/upload\")")
+        next_decorator = content.find("\n@app.", upload_start + 10)
+        upload_body = content[upload_start:next_decorator]
+        assert "created_dates[final] = now" in upload_body, (
+            "Upload must store created_at in meta"
+        )
+
+    @pytest.mark.unit
     def test_supported_extensions(self):
         """Only .docx, .odt, and .txt files are supported."""
         supported = {".docx", ".odt", ".txt"}
@@ -167,6 +209,66 @@ class TestBulletinBoardUpload:
         assert "if (me?.is_admin) document.getElementById('cuentosUploadPanel')" not in content
         # Must show panel unconditionally for logged-in users
         assert "document.getElementById('cuentosUploadPanel')?.style.setProperty('display','')" in content
+
+    @pytest.mark.unit
+    def test_member_page_upload_visible_for_all(self):
+        """The cuentos_member.html upload button must be visible for all users."""
+        member_path = BASE_DIR / "static" / "cuentos_member.html"
+        content = member_path.read_text(encoding="utf-8")
+        # Upload button must exist
+        assert "Publicar anuncio" in content
+        # Must NOT have admin-only gate
+        assert "if (_isAdmin)" not in content.split("toggleUpload")[0][-200:]
+
+
+class TestBulletinBoardComments:
+    """Test that all members can comment and reply to announcements."""
+
+    @pytest.mark.unit
+    def test_comment_endpoint_no_admin_restriction(self):
+        """The post_comment endpoint must NOT restrict to admins."""
+        main_path = BASE_DIR / "main.py"
+        content = main_path.read_text(encoding="utf-8")
+        # Find the post comment function
+        comment_start = content.find("@app.post(\"/bank/api/cuentos/comments/{filename:path}\")")
+        assert comment_start != -1, "Comment endpoint not found"
+        next_decorator = content.find("\n@app.", comment_start + 10)
+        comment_body = content[comment_start:next_decorator] if next_decorator != -1 else content[comment_start:]
+        assert "if user not in ALL_ADMINS" not in comment_body, (
+            "Comment endpoint should NOT restrict to admins"
+        )
+
+    @pytest.mark.unit
+    def test_reply_supported_via_parent_id(self):
+        """Comments support replies via parent_id field."""
+        main_path = BASE_DIR / "main.py"
+        content = main_path.read_text(encoding="utf-8")
+        comment_start = content.find("@app.post(\"/bank/api/cuentos/comments/{filename:path}\")")
+        next_decorator = content.find("\n@app.", comment_start + 10)
+        comment_body = content[comment_start:next_decorator]
+        assert "parent_id" in comment_body, "Comment endpoint must support parent_id for replies"
+
+    @pytest.mark.unit
+    def test_member_page_has_reply_button_for_all(self):
+        """The reply button in cuentos_member.html must be shown for all users."""
+        member_path = BASE_DIR / "static" / "cuentos_member.html"
+        content = member_path.read_text(encoding="utf-8")
+        # Reply button must exist without admin check
+        assert "toggleInlineReply" in content
+        assert "postInlineReply" in content
+        # The replyBtn must NOT be gated by _isAdmin
+        reply_section = content[content.find("const replyBtn"):content.find("const replyBtn") + 200]
+        assert "_isAdmin" not in reply_section, "Reply button must not be gated by admin check"
+
+    @pytest.mark.unit
+    def test_member_page_has_comment_form_for_all(self):
+        """The comment form in cuentos_member.html must be shown for all users."""
+        member_path = BASE_DIR / "static" / "cuentos_member.html"
+        content = member_path.read_text(encoding="utf-8")
+        # Comment form must exist
+        assert "postInlineComment" in content
+        # The comment textarea must be rendered without admin check
+        assert "commentForm" in content
 
 
 class TestBulletinBoardI18n:
