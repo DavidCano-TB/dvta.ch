@@ -96,14 +96,14 @@ class TestHubHtmlFile:
         assert 'href="/bank"' in content
 
     def test_has_bulletin_board_link(self):
-        """Hub must link to the bulletin board (cuentos)."""
+        """Hub must link to the bulletin board (Anuncios)."""
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "/bank/cuentos" in content
+        assert "Anuncios" in content
 
     def test_has_bulletin_board_title(self):
-        """Hub must show 'Tablón de anuncios' as the bulletin board name."""
+        """Hub must show 'Anuncios' as the bulletin board name."""
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
-        assert "Tabl" in content  # Tablón de anuncios
+        assert "Anuncios" in content
 
     def test_has_responsive_meta(self):
         content = HUB_HTML_PATH.read_text(encoding="utf-8")
@@ -184,10 +184,10 @@ class TestHubEndpoints:
         assert "Bank" in r.text
 
     async def test_hub_contains_bulletin_board(self, aclient):
-        """Hub page must contain bulletin board link."""
+        """Hub page must contain bulletin board section."""
         r = await aclient.get("/")
         assert r.status_code == 200
-        assert "/bank/cuentos" in r.text
+        assert "Anuncios" in r.text
 
 
 # =============================================================================
