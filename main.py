@@ -2652,6 +2652,19 @@ async def cuentos_admin_page():
 async def cuentos_status():
     """Return cuentos enabled state."""
     return {"enabled": _cuentos_enabled}
+
+
+@app.get("/bank/api/status/batch")
+async def status_batch():
+    """Return all game/feature status in a single response for fast boot."""
+    return {
+        "pasapalabra": True,
+        "millonario": True,
+        "quiensoy": True,
+        "cifrasletras": True,
+        "hundirlaflota": True,
+        "cuentos": _cuentos_enabled,
+    }
  
  
 @app.post("/bank/api/cuentos/toggle")

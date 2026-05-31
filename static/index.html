@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Cache-Control" content="no-cache">
 <meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta name="build" content="20260530-v12-register-fix">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <script>
@@ -2646,6 +2645,63 @@ async function refreshTokenIfNeeded() {
   }
 }
 
+/* ── API Response Cache (stale-while-revalidate) ─────────────────── */
+const _apiCache = {};
+const _CACHE_TTL = { default: 30000, '/bank/api/status/batch': 60000, '/bank/api/me': 10000 };
+
+function _cacheGet(path) {
+  const entry = _apiCache[path];
+  if (!entry) return null;
+  return entry; // always return — caller decides if stale
+}
+function _cacheSet(path, data) {
+  _apiCache[path] = { data, ts: Date.now() };
+  // Persist critical data to sessionStorage for instant boot
+  try { sessionStorage.setItem('_ac:' + path, JSON.stringify({ data, ts: Date.now() })); } catch(e) {}
+}
+function _cacheIsFresh(path) {
+  const entry = _apiCache[path];
+  if (!entry) return false;
+  const ttl = _CACHE_TTL[path] || _CACHE_TTL.default;
+  return (Date.now() - entry.ts) < ttl;
+}
+// Restore from sessionStorage on load
+(function _restoreCache() {
+  try {
+    for (let i = 0; i < sessionStorage.length; i++) {
+      const key = sessionStorage.key(i);
+      if (key?.startsWith('_ac:')) {
+        const path = key.slice(4);
+        const entry = JSON.parse(sessionStorage.getItem(key));
+        if (entry && entry.data) _apiCache[path] = entry;
+      }
+    }
+  } catch(e) {}
+})();
+
+/**
+ * Cached GET — returns cached data instantly if available, refreshes in background
+ * @param {string} path - API path
+ * @param {object} opts - { forceRefresh: bool, ttl: ms }
+ * @returns {Promise<any>}
+ */
+async function cachedGet(path, opts) {
+  const o = opts || {};
+  const cached = _cacheGet(path);
+  if (cached && !o.forceRefresh && _cacheIsFresh(path)) {
+    return cached.data;
+  }
+  if (cached && !o.forceRefresh) {
+    // Stale — return immediately, refresh in background
+    req('GET', path).then(d => _cacheSet(path, d)).catch(()=>{});
+    return cached.data;
+  }
+  // No cache or forced — fetch and cache
+  const d = await req('GET', path);
+  _cacheSet(path, d);
+  return d;
+}
+
 async function req(method, path, body, timeoutMs) {
   // Refresh token if needed before making API call (skip for login/register)
   const isAuthCall = path === '/bank/api/login' || path === '/bank/api/register';
@@ -2685,6 +2741,8 @@ async function req(method, path, body, timeoutMs) {
     }
     throw new Error(d.detail || t('errorLoading'));
   }
+  // Auto-cache successful GET responses
+  if (method === 'GET') _cacheSet(path, d);
   return d;
 }
 
@@ -2875,17 +2933,12 @@ async function loadApp() {
     // Fetch inmediato de salas por REST como primer dato visible
     _refreshRoomsList();
 
-    // Fire status checks — all wrapped, no crash propagation
-    // Members only get game tabs when games are ENABLED (handled inside each check fn)
+    // Fire status checks — single batch call replaces 6 individual requests
+    // Plus remaining checks that need auth context
     await Promise.all([
       loadDropdown().catch(()=>{}),
-      checkGameStatus().catch(()=>{}),
-      checkMillonarioStatus().catch(()=>{}),
-      checkQuienSoyStatus().catch(()=>{}),
-      checkCifrasLetrasStatus().catch(()=>{}),
-      checkHundirLaFlotaStatus().catch(()=>{}),
+      _loadStatusBatch().catch(()=>{}),
       checkRoomsStatus().catch(()=>{}),
-      checkCuentosStatus().catch(()=>{}),
       ...(me.is_admin ? [] : [loadHist('dashH', 10).catch(()=>{}), loadUserApuestas().catch(()=>{})])
     ]);
 
@@ -3776,6 +3829,36 @@ async function admDelete(username) {
     await Promise.all([loadAdmin(), loadDropdown()]);
   } catch(e) {
     showAlert('admAlert', e.message || 'Error al eliminar usuario');
+  }
+}
+
+/* ── 9a. Batch status loader (replaces 6 individual calls) ──── */
+async function _loadStatusBatch() {
+  try {
+    const d = await cachedGet('/bank/api/status/batch');
+    gameEnabled = !!d.pasapalabra;
+    millonarioEnabled = !!d.millonario;
+    hundirLaFlotaEnabled = !!d.hundirlaflota;
+    // Cuentos — always show tab (everyone can post)
+    ['navCuentos','mobileNavCuentos'].forEach(id =>
+      document.getElementById(id)?.classList.remove('hidden')
+    );
+    const sub = document.getElementById('cuentosStatusSub');
+    if (sub) sub.textContent = d.cuentos ? 'Activado — visible para todos' : 'Desactivado';
+    const btnOn  = document.getElementById('btnCuentosOn');
+    const btnOff = document.getElementById('btnCuentosOff');
+    if (btnOn)  btnOn.style.display  = d.cuentos ? 'none' : '';
+    if (btnOff) btnOff.style.display = d.cuentos ? '' : 'none';
+  } catch(e) {
+    // Fallback: try individual calls
+    await Promise.all([
+      checkGameStatus().catch(()=>{}),
+      checkMillonarioStatus().catch(()=>{}),
+      checkQuienSoyStatus().catch(()=>{}),
+      checkCifrasLetrasStatus().catch(()=>{}),
+      checkHundirLaFlotaStatus().catch(()=>{}),
+      checkCuentosStatus().catch(()=>{}),
+    ]);
   }
 }
 
