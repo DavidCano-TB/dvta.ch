@@ -1413,7 +1413,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab"              onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')" data-i18n="navCuentos">📋 Anuncios</button>
+      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Anuncios</button>
       <!-- Games tab removed -->
       <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame" style="display:none">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
@@ -2357,7 +2357,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
       <span class="icon">📋</span>
     </button>
     <!-- Games mobile nav removed -->
