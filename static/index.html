@@ -3558,7 +3558,7 @@ async function loadCuentosView() {
       const createdAt = c.created_at || '';
       const canDelete = c.can_delete || false;
       if (masked && !me?.is_admin) return '';
-      // Build meta line: "Publicado por @user · 31/05/2026 14:30"
+      // Build meta line: "por @user · 31/05/2026 14:30"
       let metaParts = [];
       if (creator) metaParts.push(`${t('commentsPostedBy')} @${esc(creator)}`);
       if (createdAt) {
@@ -3573,10 +3573,6 @@ async function loadCuentosView() {
         metaParts.push(esc(c.date));
       }
       const metaLine = metaParts.length ? metaParts.join(' · ') : '';
-      const commentCount = c.comment_count || 0;
-      const commentBtnLabel = commentCount
-        ? `${t('commentsShowComments')} (${commentCount})`
-        : t('commentsShowComments');
       return `<div class="panel" style="padding:0;overflow:hidden;${masked?'opacity:.5':''}">
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;">
           <span style="font-size:1.4rem;flex-shrink:0">📋</span>
@@ -3586,33 +3582,22 @@ async function loadCuentosView() {
             ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
           </div>
           <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;flex-wrap:wrap">
-            ${!masked ? `<button class="btn btnG btnSm" onclick="toggleCuentoComments('${esc(name)}',${idx})" id="cBtnComments-${idx}" style="font-size:.6rem;padding:5px 10px">${commentBtnLabel}</button>` : ''}
             ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
-              class="btn btnG btnSm" style="text-decoration:none">${t('cuentosRead')}</a>` : ''}
+              class="btn btnG btnSm" style="text-decoration:none;font-size:.6rem;padding:5px 10px">${t('cuentosRead')}</a>` : ''}
             ${canDelete ? `<button class="btn btnD btnSm" onclick="deleteCuento('${esc(name)}')">🗑</button>` : ''}
           </div>
         </div>
-        ${!masked ? `<div id="cComments-${idx}" data-filename="${esc(name)}" style="display:none;padding:0 14px 14px;background:rgba(0,0,0,.2);border-top:1px solid var(--border)"></div>` : ''}
+        ${!masked ? `<div id="cComments-${idx}" data-filename="${esc(name)}" style="padding:0 14px 14px;background:rgba(0,0,0,.12);border-top:1px solid var(--border)"></div>` : ''}
       </div>`;
     }).filter(Boolean).join('');
+    // Auto-load comments for all visible announcements
+    items.forEach((c, idx) => {
+      if (c.masked && !me?.is_admin) return;
+      const name = c.filename || '';
+      loadCuentoInlineComments(name, idx);
+    });
   } catch(e) {
     el.innerHTML = `<div class="empty">Error: ${esc(e.message)}</div>`;
-  }
-}
-
-// ── Inline comments for SPA cuentos view ──
-function toggleCuentoComments(filename, idx) {
-  const panel = document.getElementById('cComments-' + idx);
-  const btn = document.getElementById('cBtnComments-' + idx);
-  if (!panel) return;
-  const isOpen = panel.style.display !== 'none';
-  if (isOpen) {
-    panel.style.display = 'none';
-    if (btn) btn.style.background = '';
-  } else {
-    panel.style.display = '';
-    if (btn) btn.style.background = 'rgba(212,168,67,.15)';
-    loadCuentoInlineComments(filename, idx);
   }
 }
 
@@ -3648,11 +3633,11 @@ function _renderCComment(c, isReply, filename, idx) {
     <div style="font-size:.7rem;color:var(--text);line-height:1.5;white-space:pre-wrap;word-break:break-word">${esc(c.body)}</div>
     <div style="display:flex;gap:10px;margin-top:4px">${replyBtn}${delBtn}</div>
   </div>
-  <div id="crf-${c.id}" style="display:none;margin-left:18px;margin-bottom:6px;padding:8px;background:var(--n3);border:1px solid var(--border);border-radius:6px">
-    <textarea id="cri-${c.id}" placeholder="${t('commentsReplyPlaceholder')}" maxlength="2000" style="width:100%;min-height:40px;resize:vertical;background:var(--noir);border:1px solid var(--border2);border-radius:4px;padding:6px 8px;color:var(--text);font-family:'DM Mono',monospace;font-size:.68rem;outline:none"></textarea>
-    <div style="display:flex;justify-content:flex-end;gap:6px;margin-top:6px">
-      <button onclick="toggleCuentoReply(${c.id})" class="btn btnSm" style="font-size:.56rem;padding:3px 8px">${t('commentsCancel')}</button>
-      <button onclick="postCuentoReply(${c.id},'${esc(filename)}',${idx})" class="btn btnG btnSm" style="font-size:.56rem;padding:3px 10px">${t('commentsReply')}</button>
+  <div id="crf-${c.id}" style="display:none;margin-left:18px;margin-bottom:6px">
+    <div style="display:flex;gap:8px;align-items:flex-end">
+      <textarea id="cri-${c.id}" placeholder="${t('commentsReplyPlaceholder')}" maxlength="2000" rows="1" style="flex:1;min-height:32px;max-height:100px;resize:none;background:var(--noir);border:1px solid var(--border2);border-radius:6px;padding:6px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:.66rem;outline:none;line-height:1.4" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      <button onclick="postCuentoReply(${c.id},'${esc(filename)}',${idx})" class="btn btnG btnSm" style="font-size:.56rem;padding:5px 10px;border-radius:6px;height:32px;white-space:nowrap">${t('commentsPost')}</button>
+      <button onclick="toggleCuentoReply(${c.id})" class="btn btnSm" style="font-size:.56rem;padding:5px 8px;border-radius:6px;height:32px">✕</button>
     </div>
   </div>`;
   if (c.replies && c.replies.length) {
@@ -3668,15 +3653,13 @@ async function loadCuentoInlineComments(filename, idx) {
   try {
     const comments = await req('GET', '/bank/api/cuentos/comments/' + encodeURIComponent(filename));
     const threads = _buildCThreads(comments);
-    const formHtml = `<div style="margin-bottom:10px;margin-top:8px">
-      <textarea id="cta2-${idx}" placeholder="${t('commentsPlaceholder')}" maxlength="2000" style="width:100%;min-height:50px;resize:vertical;background:var(--n2);border:1px solid var(--border2);border-radius:6px;padding:8px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;outline:none" oninput="document.getElementById('cc2-${idx}').textContent=this.value.length+' / 2000'"></textarea>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
-        <span id="cc2-${idx}" style="font-size:.52rem;color:var(--text3)">0 / 2000</span>
-        <button class="btn btnG btnSm" style="font-size:.6rem;padding:4px 12px" onclick="postCuentoComment('${esc(filename)}',${idx})">${t('commentsPost')}</button>
-      </div>
+    // Comment form: simple textarea + publish button inline
+    const formHtml = `<div style="display:flex;gap:8px;align-items:flex-end;margin-top:10px;margin-bottom:10px">
+      <textarea id="cta2-${idx}" placeholder="${t('commentsPlaceholder')}" maxlength="2000" rows="1" style="flex:1;min-height:34px;max-height:120px;resize:none;background:var(--n2);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;outline:none;line-height:1.4" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea>
+      <button class="btn btnG btnSm" style="font-size:.62rem;padding:6px 14px;white-space:nowrap;border-radius:8px;height:34px" onclick="postCuentoComment('${esc(filename)}',${idx})">${t('commentsPost')}</button>
     </div>`;
     if (!comments.length) {
-      panel.innerHTML = formHtml + `<div style="text-align:center;padding:14px;color:var(--text3);font-size:.68rem;font-style:italic">${t('commentsEmpty')}</div>`;
+      panel.innerHTML = formHtml + `<div style="text-align:center;padding:10px;color:var(--text3);font-size:.65rem;font-style:italic">${t('commentsEmpty')}</div>`;
     } else {
       panel.innerHTML = formHtml + threads.map(c => _renderCComment(c, false, filename, idx)).join('');
     }

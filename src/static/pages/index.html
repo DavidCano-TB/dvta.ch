@@ -3423,22 +3423,51 @@ async function loadCuentosView() {
       el.innerHTML = '<div class="empty">Sin cuentos disponibles.</div>';
       return;
     }
-    el.innerHTML = items.map(c => {
+    el.innerHTML = items.map((c, idx) => {
       const name  = c.filename || '';
       const label = (c.title || name).replace(/_/g,' ').replace(/\.(docx|odt)$/i,'');
       const masked = c.masked || false;
+      const creator = c.creator || '';
+      const createdAt = c.created_at || '';
+      const canDelete = c.can_delete || false;
       if (masked && !me?.is_admin) return '';
-      return `<div class="panel" style="display:flex;align-items:center;gap:12px;padding:14px 16px;${masked?'opacity:.5':''}">
-        <span style="font-size:1.4rem;flex-shrink:0">📖</span>
-        <div style="flex:1;min-width:0">
-          <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
-          ${c.date ? `<div style="font-size:.58rem;color:var(--text3);margin-top:2px">${esc(c.date)}</div>` : ''}
-          ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Oculto para miembros</div>' : ''}
+      let metaParts = [];
+      if (creator) metaParts.push(`${t('commentsPostedBy')} @${esc(creator)}`);
+      if (createdAt) {
+        const parts = createdAt.split(' ');
+        if (parts.length === 2) {
+          const [y, m, d] = parts[0].split('-');
+          metaParts.push(`${d}/${m}/${y} ${parts[1]}`);
+        } else {
+          metaParts.push(esc(createdAt));
+        }
+      } else if (c.date) {
+        metaParts.push(esc(c.date));
+      }
+      const metaLine = metaParts.length ? metaParts.join(' · ') : '';
+      return `<div class="panel" style="padding:0;overflow:hidden;${masked?'opacity:.5':''}">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;">
+          <span style="font-size:1.4rem;flex-shrink:0">📋</span>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
+            ${metaLine ? `<div style="font-size:.58rem;color:var(--text3);margin-top:3px">${metaLine}</div>` : ''}
+            ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0;align-items:center;flex-wrap:wrap">
+            ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem('dvd_token')||'')}" target="_blank"
+              class="btn btnG btnSm" style="text-decoration:none;font-size:.6rem;padding:5px 10px">${t('cuentosRead')}</a>` : ''}
+            ${canDelete ? `<button class="btn btnD btnSm" onclick="deleteCuento('${esc(name)}')">🗑</button>` : ''}
+          </div>
         </div>
-        ${!masked ? `<a href="/bank/cuento/${encodeURIComponent(name)}?token=${encodeURIComponent(localStorage.getItem("dvd_token')||'')}" target="_blank"
-          class="btn btnG btnSm" style="text-decoration:none;flex-shrink:0">Leer →</a>` : ''}
+        ${!masked ? `<div id="cComments-${idx}" data-filename="${esc(name)}" style="padding:0 14px 14px;background:rgba(0,0,0,.12);border-top:1px solid var(--border)"></div>` : ''}
       </div>`;
     }).filter(Boolean).join('');
+    // Auto-load comments for all visible announcements
+    items.forEach((c, idx) => {
+      if (c.masked && !me?.is_admin) return;
+      const name = c.filename || '';
+      loadCuentoInlineComments(name, idx);
+    });
   } catch(e) {
     el.innerHTML = `<div class="empty">Error: ${esc(e.message)}</div>`;
   }
@@ -3464,6 +3493,112 @@ async function cuentosUpload() {
     inp.value = '';
     await loadCuentosView();
   } catch(e) { showAlert('cuentosUploadAlert', e.message); }
+}
+
+// ── Inline comments for cuentos ──
+function _fmtCDate(isoStr) {
+  if (!isoStr) return '';
+  const parts = isoStr.split(' ');
+  if (parts.length < 2) return isoStr;
+  const [y, m, d] = parts[0].split('-');
+  return `${d}/${m}/${y} · ${parts[1].substring(0,5)}`;
+}
+
+function _buildCThreads(comments) {
+  const map = {};
+  const roots = [];
+  comments.forEach(c => { map[c.id] = { ...c, replies: [] }; });
+  comments.forEach(c => {
+    if (c.parent_id && map[c.parent_id]) map[c.parent_id].replies.push(map[c.id]);
+    else roots.push(map[c.id]);
+  });
+  return roots;
+}
+
+function _renderCComment(c, isReply, filename, idx) {
+  const cls = isReply ? 'margin-left:18px;border-left:2px solid var(--gold3);padding-left:10px;' : '';
+  const canDel = me?.is_admin || c.username === me?.username;
+  const delBtn = canDel ? `<button onclick="deleteCuentoComment(${c.id},'${esc(filename)}',${idx})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">🗑 ${t('commentsDelete')}</button>` : '';
+  const replyBtn = `<button onclick="toggleCuentoReply(${c.id})" style="background:none;border:none;color:var(--text3);font-size:.55rem;cursor:pointer;font-family:inherit">↩ ${t('commentsReply')}</button>`;
+  let html = `<div style="${cls}margin-bottom:6px;background:var(--glass);border:1px solid var(--border);border-radius:6px;padding:8px 10px;">
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:3px;flex-wrap:wrap">
+      <span style="font-size:.66rem;font-weight:600;color:var(--gold2)">@${esc(c.username)}</span>
+      <span style="font-size:.5rem;color:var(--text3)">${_fmtCDate(c.created_at)}</span>
+    </div>
+    <div style="font-size:.7rem;color:var(--text);line-height:1.5;white-space:pre-wrap;word-break:break-word">${esc(c.body)}</div>
+    <div style="display:flex;gap:10px;margin-top:4px">${replyBtn}${delBtn}</div>
+  </div>
+  <div id="crf-${c.id}" style="display:none;margin-left:18px;margin-bottom:6px">
+    <div style="display:flex;gap:8px;align-items:flex-end">
+      <textarea id="cri-${c.id}" placeholder="${t('commentsReplyPlaceholder')}" maxlength="2000" rows="1" style="flex:1;min-height:32px;max-height:100px;resize:none;background:var(--noir);border:1px solid var(--border2);border-radius:6px;padding:6px 10px;color:var(--text);font-family:'DM Mono',monospace;font-size:.66rem;outline:none;line-height:1.4" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      <button onclick="postCuentoReply(${c.id},'${esc(filename)}',${idx})" class="btn btnG btnSm" style="font-size:.56rem;padding:5px 10px;border-radius:6px;height:32px;white-space:nowrap">${t('commentsPost')}</button>
+      <button onclick="toggleCuentoReply(${c.id})" class="btn btnSm" style="font-size:.56rem;padding:5px 8px;border-radius:6px;height:32px">✕</button>
+    </div>
+  </div>`;
+  if (c.replies && c.replies.length) {
+    c.replies.forEach(r => { html += _renderCComment(r, true, filename, idx); });
+  }
+  return html;
+}
+
+async function loadCuentoInlineComments(filename, idx) {
+  const panel = document.getElementById('cComments-' + idx);
+  if (!panel) return;
+  panel.innerHTML = `<div style="text-align:center;padding:12px;color:var(--text3);font-size:.65rem">${t('commentsLoading')}</div>`;
+  try {
+    const comments = await req('GET', '/bank/api/cuentos/comments/' + encodeURIComponent(filename));
+    const threads = _buildCThreads(comments);
+    const formHtml = `<div style="display:flex;gap:8px;align-items:flex-end;margin-top:10px;margin-bottom:10px">
+      <textarea id="cta2-${idx}" placeholder="${t('commentsPlaceholder')}" maxlength="2000" rows="1" style="flex:1;min-height:34px;max-height:120px;resize:none;background:var(--n2);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;outline:none;line-height:1.4" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea>
+      <button class="btn btnG btnSm" style="font-size:.62rem;padding:6px 14px;white-space:nowrap;border-radius:8px;height:34px" onclick="postCuentoComment('${esc(filename)}',${idx})">${t('commentsPost')}</button>
+    </div>`;
+    if (!comments.length) {
+      panel.innerHTML = formHtml + `<div style="text-align:center;padding:10px;color:var(--text3);font-size:.65rem;font-style:italic">${t('commentsEmpty')}</div>`;
+    } else {
+      panel.innerHTML = formHtml + threads.map(c => _renderCComment(c, false, filename, idx)).join('');
+    }
+  } catch(e) {
+    panel.innerHTML = `<div style="text-align:center;padding:12px;color:var(--text3);font-size:.65rem">${t('commentsError')}</div>`;
+  }
+}
+
+async function postCuentoComment(filename, idx) {
+  const ta = document.getElementById('cta2-' + idx);
+  if (!ta || !ta.value.trim()) return;
+  try {
+    await req('POST', '/bank/api/cuentos/comments/' + encodeURIComponent(filename), { body: ta.value.trim() });
+    await loadCuentoInlineComments(filename, idx);
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+function toggleCuentoReply(commentId) {
+  const form = document.getElementById('crf-' + commentId);
+  if (form) form.style.display = form.style.display === 'none' ? '' : 'none';
+}
+
+async function postCuentoReply(parentId, filename, idx) {
+  const ta = document.getElementById('cri-' + parentId);
+  if (!ta || !ta.value.trim()) return;
+  try {
+    await req('POST', '/bank/api/cuentos/comments/' + encodeURIComponent(filename), { body: ta.value.trim(), parent_id: parentId });
+    await loadCuentoInlineComments(filename, idx);
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function deleteCuentoComment(commentId, filename, idx) {
+  if (!confirm(t('commentsDeleteConfirm'))) return;
+  try {
+    await req('DELETE', '/bank/api/cuentos/comments/' + commentId);
+    await loadCuentoInlineComments(filename, idx);
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+async function deleteCuento(filename) {
+  if (!confirm('Delete this post permanently?')) return;
+  try {
+    await req('DELETE', '/bank/api/cuentos/file/' + encodeURIComponent(filename));
+    loadCuentosView();
+  } catch(e) { alert('Error: ' + e.message); }
 }
 
 async function admAct(action, username) {
