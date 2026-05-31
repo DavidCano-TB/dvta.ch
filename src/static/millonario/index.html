@@ -737,7 +737,8 @@ select option { background:var(--n4); color:var(--text); }
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Juegos</button>
+      <!-- Games tab removed -->
+      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame" style="display:none">Juegos</button>
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 Millonario</button>
       <button class="navTab hidden" id="navAdm" onclick="nav('adm',this)" data-i18n="navAdmin">Admin</button>
     </div>
@@ -933,7 +934,8 @@ select option { background:var(--n4); color:var(--text); }
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery">
       <span class="icon">◫</span><span data-i18n="navGallery">Gallery</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game">
+    <!-- Games mobile nav removed -->
+    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game" style="display:none">
       <span class="icon">🎯</span><span data-i18n="navGame">Juegos</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavMillonario" onclick="openMillonario()" data-view="millonario">
@@ -1597,9 +1599,9 @@ async function checkGameStatus() {
     const d = await req('GET', '/api/pasapalabra/status');
     gameEnabled = !!d.enabled;
   } catch (_) { gameEnabled = false; }
-  // Show/hide Juegos tab for all users
+  // Games tab REMOVED — always hidden
   ['navGame', 'mobileNavGame'].forEach(id => {
-    document.getElementById(id)?.classList.toggle('hidden', !gameEnabled);
+    document.getElementById(id)?.classList.add('hidden');
   });
   // Adjust mobile nav column count
   const mn = document.getElementById('mobileNav');

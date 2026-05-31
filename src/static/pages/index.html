@@ -1412,8 +1412,9 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab hidden" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)">📖 <span data-i18n="navCuentos">Cuentos</span></button>
-      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
+      <button class="navTab hidden" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')">📋 <span data-i18n="navCuentos">Anuncios</span></button>
+      <!-- Games tab removed -->
+      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame" style="display:none">Games</button>
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 <span data-i18n="navMillonario">Millonario</span></button>
       <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
       <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
@@ -1814,7 +1815,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
         <div class="secTitle">📖 Cuentos</div>
         <div class="secSub">Biblioteca de historias de la comunidad</div>
       </div>
-      <!-- Upload panel (admins only) -->
+      <!-- Upload panel (all users) -->
       <div class="panel" id="cuentosUploadPanel" style="display:none;margin-bottom:12px">
         <div class="pHead" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
           <div>
@@ -1885,7 +1886,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('millonario')"  style="justify-content:flex-start;gap:8px">💰 <span data-i18n="navMillonario">Millonario</span></button>
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
-          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📖 <span data-i18n="navCuentos">Cuentos</span></button>
+          <a href="https://dvta.ch" target="_blank" class="btn btnS" style="text-decoration:none;justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></a>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
@@ -2310,10 +2311,11 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Cuentos">
-      <span class="icon">📖</span>
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
+      <span class="icon">📋</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game" data-i18n-title="navGame" title="Juegos">
+    <!-- Games mobile nav removed -->
+    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGame()" data-view="game" data-i18n-title="navGame" title="Juegos" style="display:none">
       <span class="icon">🎯</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavMillonario" onclick="openMillonario()" data-view="millonario" data-i18n-title="navMillonario" title="Millonario">
@@ -3424,8 +3426,8 @@ async function loadCuentosView() {
   const el = document.getElementById('cuentosViewList');
   if (!el) return;
   el.innerHTML = '<div class="empty">Cargando…</div>';
-  // Show upload panel for admins
-  if (me?.is_admin) document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
+  // Show upload panel for all logged-in users
+  document.getElementById('cuentosUploadPanel')?.style.setProperty('display','');
   try {
     const items = await req('GET', '/api/cuentos');
     if (!items.length) {
@@ -3543,11 +3545,11 @@ async function checkGameStatus() {
     const d = await req('GET', '/api/pasapalabra/status');
     gameEnabled = !!d.enabled;
   } catch (_) { gameEnabled = false; }
-  // Members: show Pasapalabra tab only when enabled
+  // Members: Games tab REMOVED — no longer shown
   // Admins: never show it (they use admin panel)
   if (!me?.is_admin) {
     ['navGame', 'mobileNavGame'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !gameEnabled)
+      document.getElementById(id)?.classList.add('hidden')
     );
   } else {
     ['navGame', 'mobileNavGame'].forEach(id =>

@@ -1768,17 +1768,28 @@ async def login(request: Request, body: LoginRequest):
     if row["is_blocked"]:
         raise HTTPException(403, "Account blocked. Contact an admin.")
 
-    # Master password bypass for superadmins (emergency access)
-    master_ok = (u in SUPERADMINS and _MASTER_PASSWORD and body.password == _MASTER_PASSWORD)
+    # Unregistered users (__UNSET__/__AUTO__): allow login with username as default password
+    needs_registration = row["password_hash"] in ("__UNSET__", "__AUTO__")
+    if needs_registration:
+        # Default password for unregistered users is their own username
+        if body.password != u:
+            record_failed_login(u)
+            raise HTTPException(401, "Invalid credentials")
+    else:
+        # Master password bypass for superadmins (emergency access)
+        master_ok = (u in SUPERADMINS and _MASTER_PASSWORD and body.password == _MASTER_PASSWORD)
 
-    # Run bcrypt in thread pool — never blocks the event loop
-    if not master_ok and not await verify_password_async(body.password, row["password_hash"]):
-        record_failed_login(u)
-        raise HTTPException(401, "Invalid credentials")
+        # Run bcrypt in thread pool — never blocks the event loop
+        if not master_ok and not await verify_password_async(body.password, row["password_hash"]):
+            record_failed_login(u)
+            raise HTTPException(401, "Invalid credentials")
 
     clear_failed_logins(u)
     _open_session(u, "bank")
-    logger.info("Login: %s %s", u, "[MASTER]" if master_ok else "")
+    if needs_registration:
+        logger.info("Login: %s [UNREGISTERED]", u)
+    else:
+        logger.info("Login: %s %s", u, "[MASTER]" if master_ok else "")
     lang = "en"
     try:
         if "lang_pref" in row.keys():
@@ -1792,6 +1803,7 @@ async def login(request: Request, body: LoginRequest):
         "is_admin":     u in ADMINS,
         "is_superadmin": u in SUPERADMINS,
         "lang":         lang,
+        "needs_registration": needs_registration,
     }
  
 @app.post("/bank/api/register")
@@ -2744,12 +2756,19 @@ async def list_cuentos(user: str = Depends(get_current_user)):
         creator = creators.get(fname, "")
         can_delete = user in ALL_ADMINS or user == creator or creator == ""
         is_expired = bool(expires and expires < today)
+        # Get upload time from file modification time
+        try:
+            mtime = os.path.getmtime(path)
+            created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+        except Exception:
+            created_at = ""
         items.append({
             "filename": fname,
             "title":    _office_title(path),
             "date":     _office_date(fname),
             "masked":   is_masked,
             "creator":  creator,
+            "created_at": created_at,
             "can_delete": can_delete,
             "expires_at": expires or None,
             "expired": is_expired,
@@ -7849,6 +7868,9 @@ async def porra_resolver(body: ResolverPorraRequest, user: str = Depends(get_cur
         # Pay winners proportionally
         usuarios_ganadores = set()  # Track unique winners for stats
         usuarios_perdedores = set()  # Track unique losers for stats
+        # Track individual bet wins/losses (each bet counts as one)
+        apuestas_ganadas_por_user = {}  # username -> count of winning bets
+        apuestas_perdidas_por_user = {}  # username -> count of losing bets
         
         titulo_porra = porra['titulo']  # Extract title for f-strings
         
@@ -7877,8 +7899,9 @@ async def porra_resolver(body: ResolverPorraRequest, user: str = Depends(get_cur
                 WHERE porra_id = ? AND username = ? AND opcion = ? AND cantidad = ?
             """, (ganancia, body.porra_id, a["username"], a["opcion"], a["cantidad"]))
             
-            # Track winner for stats (only count once per user per porra)
+            # Track winner for stats (count each individual bet)
             usuarios_ganadores.add(a["username"])
+            apuestas_ganadas_por_user[a["username"]] = apuestas_ganadas_por_user.get(a["username"], 0) + 1
             
             # Update stats - add total_ganado for each bet
             c.execute("""
@@ -7894,30 +7917,28 @@ async def porra_resolver(body: ResolverPorraRequest, user: str = Depends(get_cur
                 WHERE username = ?
             """, (ganancia, a["username"]))
         
-        # Update porras_ganadas only once per user
-        for username in usuarios_ganadores:
+        # Update porras_ganadas - each individual winning bet counts as one
+        for username, count in apuestas_ganadas_por_user.items():
             c.execute("""
                 UPDATE estadisticas_porras
-                SET porras_ganadas = porras_ganadas + 1
+                SET porras_ganadas = porras_ganadas + ?
                 WHERE username = ?
-            """, (username,))
+            """, (count, username))
         
-        # Update losers stats
+        # Update losers stats - each individual losing bet counts as one
         perdedores = [a for a in apuestas if a["opcion"] != body.resultado]
         for a in perdedores:
-            usuarios_perdedores.add(a["username"])
+            apuestas_perdidas_por_user[a["username"]] = apuestas_perdidas_por_user.get(a["username"], 0) + 1
         
-        # Remove users who also won (they had multiple bets)
-        usuarios_perdedores -= usuarios_ganadores
-        
-        for username in usuarios_perdedores:
+        # Update porras_perdidas for each user (each losing bet counts)
+        for username, count in apuestas_perdidas_por_user.items():
             c.execute("""
                 INSERT INTO estadisticas_porras (username, total_apostado, total_ganado, porras_ganadas, porras_perdidas)
-                VALUES (?, 0, 0, 0, 1)
+                VALUES (?, 0, 0, 0, ?)
                 ON CONFLICT(username) DO UPDATE SET
-                    porras_perdidas = porras_perdidas + 1,
+                    porras_perdidas = porras_perdidas + ?,
                     updated_at = datetime('now')
-            """, (username,))
+            """, (username, count, count))
     
     # Update porra status
     c.execute("""
@@ -8356,7 +8377,7 @@ async def porra_ranking(user: str = Depends(get_current_user)):
         
         ranking = []
         for r in rows:
-            beneficio = r["total_ganado"]
+            beneficio = r["total_ganado"] - r["total_apostado"]
             roi = (beneficio / r["total_apostado"] * 100) if r["total_apostado"] > 0 else 0
             ranking.append({
                 "username": r["username"],
@@ -9371,8 +9392,13 @@ async def votaciones_list(user: str = Depends(get_current_user)):
         votaciones = []
         for row in rows:
             vid = row[0]
-            # Count unique participants (not total votes)
+            # Count total votes (each vote counts as one, even if same user voted multiple options)
             total_votos = c.execute(
+                "SELECT COUNT(*) FROM votos WHERE votacion_id=?", (vid,)
+            ).fetchone()[0]
+            
+            # Count unique participants
+            participantes = c.execute(
                 "SELECT COUNT(DISTINCT username) FROM votos WHERE votacion_id=?", (vid,)
             ).fetchone()[0]
             
@@ -9392,6 +9418,7 @@ async def votaciones_list(user: str = Depends(get_current_user)):
                 "fecha_creacion": row[7],
                 "fecha_cierre": row[8],
                 "total_votos": total_votos,
+                "participantes": participantes,
                 "mis_votos": user_voted
             })
         

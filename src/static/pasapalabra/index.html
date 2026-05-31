@@ -1092,8 +1092,9 @@ select option { background:var(--n4); color:var(--text); }
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab" id="navHist" onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="window.location.href="/bank/cuentos"">📖 <span data-i18n="navCuentos">Cuentos</span></button>
-      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame">Games</button>
+      <button class="navTab hidden" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')">📋 <span data-i18n="navCuentos">Anuncios</span></button>
+      <!-- Games tab removed -->
+      <button class="navTab hidden" id="navGame" onclick="openGame()" data-i18n="navGame" style="display:none">Games</button>
       <button class="navTab hidden" id="navMillonario" onclick="openMillonario()">💰 Millonario</button>
       <button class="navTab hidden" id="navQuienSoy" onclick="openQuienSoy()">🎭 ¿Quién soy?</button>
       <button class="navTab hidden" id="navCifrasLetras" onclick="openCifrasLetras()">🔤 Cifras y Letras</button>
@@ -1378,7 +1379,7 @@ select option { background:var(--n4); color:var(--text); }
           <button class="btn btnS" onclick="openGamePanel('millonario')"  style="justify-content:flex-start;gap:8px">💰 Millonario</button>
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 ¿Quién soy?</button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 Cifras y Letras</button>
-          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📖 Cuentos</button>
+          <a href="https://dvta.ch" target="_blank" class="btn btnS" style="text-decoration:none;justify-content:flex-start;gap:8px">📋 Anuncios</a>
           <button class="btn btnS" onclick="openGamePanel('opo')"         style="justify-content:flex-start;gap:8px">📝 OPO</button>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 Estadísticas</a>
         </div>
@@ -1754,10 +1755,11 @@ select option { background:var(--n4); color:var(--text); }
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery">
       <span class="icon">◫</span><span data-i18n="navGallery">Gallery</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" class="mNavBtn hidden" onclick="window.location.href="/bank/cuentos"" data-view="cuentos">
-      <span class="icon">📖</span><span>Cuentos</span>
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos">
+      <span class="icon">📋</span><span>Anuncios</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavGame" class="mNavBtn hidden" onclick="openGame()" data-view="game">
+    <!-- Games mobile nav removed -->
+    <button class="mNavBtn hidden" id="mobileNavGame" class="mNavBtn hidden" onclick="openGame()" data-view="game" style="display:none">
       <span class="icon">🎯</span><span data-i18n="navGame">Games</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavMillonario" class="mNavBtn hidden" onclick="openMillonario()" data-view="millonario">
@@ -2895,11 +2897,11 @@ async function checkGameStatus() {
     const d = await req('GET', '/api/pasapalabra/status');
     gameEnabled = !!d.enabled;
   } catch (_) { gameEnabled = false; }
-  // Members: show Pasapalabra tab only when enabled
+  // Members: Games tab REMOVED — no longer shown
   // Admins: never show it (they use admin panel)
   if (!me?.is_admin) {
     ['navGame', 'mobileNavGame'].forEach(id =>
-      document.getElementById(id)?.classList.toggle('hidden', !gameEnabled)
+      document.getElementById(id)?.classList.add('hidden')
     );
   } else {
     ['navGame', 'mobileNavGame'].forEach(id =>
@@ -3283,7 +3285,7 @@ const GAME_META = {
   millonario:   { icon:'💰', label:'Millonario' },
   quiensoy:     { icon:'🎭', label:'¿Quién soy?' },
   cifrasletras: { icon:'🔤', label:'Cifras y Letras' },
-  cuentos:      { icon:'📖', label:'Cuentos' },
+  cuentos:      { icon:'📋', label:'Anuncios' },
   opo:          { icon:'📝', label:'OPO' },
 };
 

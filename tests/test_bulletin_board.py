@@ -158,6 +158,16 @@ class TestBulletinBoardUpload:
         assert ".pdf" not in supported
         assert ".exe" not in supported
 
+    @pytest.mark.unit
+    def test_upload_panel_visible_for_all_users_in_html(self):
+        """The upload panel in index.html must be shown for all users, not just admins."""
+        index_path = BASE_DIR / "src" / "static" / "pages" / "index.html"
+        content = index_path.read_text(encoding="utf-8")
+        # Must NOT have admin-only gate for upload panel
+        assert "if (me?.is_admin) document.getElementById('cuentosUploadPanel')" not in content
+        # Must show panel unconditionally for logged-in users
+        assert "document.getElementById('cuentosUploadPanel')?.style.setProperty('display','')" in content
+
 
 class TestBulletinBoardI18n:
     """Test that i18n files have bulletin board translations."""

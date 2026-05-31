@@ -1413,8 +1413,9 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
       <button class="navTab"              onclick="nav('tx',this)"      data-i18n="navTransfer">Transfer</button>
       <button class="navTab"              onclick="nav('hist',this)"    data-i18n="navHistory">History</button>
       <button class="navTab"              onclick="nav('gallery',this)" data-i18n="navGallery">Gallery</button>
-      <button class="navTab hidden" id="navCuentos" onclick="nav('cuentos',this)" data-i18n="navCuentos">📋 Anuncios</button>
-      <button class="navTab" id="navGame" onclick="openGames()" data-i18n="navGame">🎮 Games</button>
+      <button class="navTab hidden" id="navCuentos" onclick="window.open('https://dvta.ch','_blank')" data-i18n="navCuentos">📋 Anuncios</button>
+      <!-- Games tab removed -->
+      <button class="navTab hidden" id="navGame" onclick="openGames()" data-i18n="navGame" style="display:none">🎮 Games</button>
       <button class="navTab hidden" id="navSocial" onclick="nav('social',this)"><span data-i18n="navSocial">💬 Social</span></button>
       <button class="navTab hidden" id="navExams" onclick="openExams()">🎓 <span>Exámenes</span></button>
       <button class="navTab" id="navApuestas" onclick="openApuestas()">🎲 <span>Apuestas</span></button>
@@ -1908,7 +1909,7 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
           <button class="btn btnS" onclick="openGamePanel('quiensoy')"    style="justify-content:flex-start;gap:8px">🎭 <span data-i18n="navQuienSoy">¿Quién soy?</span></button>
           <button class="btn btnS" onclick="openGamePanel('cifrasletras')" style="justify-content:flex-start;gap:8px">🔤 <span data-i18n="navCifrasLetras">Cifras y Letras</span></button>
           <button class="btn btnS" onclick="openGamePanel('hundirlaflota')" style="justify-content:flex-start;gap:8px">⚓ <span data-i18n="navHundirLaFlota">Hundir la Flota</span></button>
-          <button class="btn btnS" onclick="openGamePanel('cuentos')"     style="justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></button>
+          <a href="https://dvta.ch" target="_blank" class="btn btnS" style="text-decoration:none;justify-content:flex-start;gap:8px">📋 <span data-i18n="navCuentos">Anuncios</span></a>
           <a href="/bank/stats" class="btn btnO" style="text-decoration:none;justify-content:flex-start;gap:8px">📊 <span data-i18n="navStats">Stats</span></a>
         </div>
       </div>
@@ -2356,10 +2357,11 @@ div[id^="vtile-"]:hover .vf-expand-btn{opacity:1}
     <button class="mNavBtn" onclick="nav('gallery',this)" data-view="gallery" title="Galería">
       <span class="icon">◫</span>
     </button>
-    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="nav('cuentos',this)" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
+    <button class="mNavBtn hidden" id="mobileNavCuentos" onclick="window.open('https://dvta.ch','_blank')" data-view="cuentos" data-i18n-title="navCuentos" title="Anuncios">
       <span class="icon">📋</span>
     </button>
-    <button class="mNavBtn" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games">
+    <!-- Games mobile nav removed -->
+    <button class="mNavBtn hidden" id="mobileNavGame" onclick="openGames()" data-view="game" data-i18n-title="navGame" title="Games" style="display:none">
       <span class="icon">🎮</span>
     </button>
     <button class="mNavBtn hidden" id="mobileNavExams" onclick="openExams()" title="Exámenes" style="display:none">
@@ -2865,10 +2867,10 @@ async function loadApp() {
         document.getElementById(id)?.classList.remove('hidden')
       );
 
-      // Games tab visible for ALL logged-in users
-      ['navGame','mobileNavGame'].forEach(id =>
-        document.getElementById(id)?.classList.remove('hidden')
-      );
+      // Games tab REMOVED — no longer shown
+      // ['navGame','mobileNavGame'].forEach(id =>
+      //   document.getElementById(id)?.classList.remove('hidden')
+      // );
 
       if (me.is_admin) {
         // ── ADMIN / SUPERADMIN ─────────────────────────────────────
@@ -3608,14 +3610,29 @@ async function loadCuentosView() {
       const label = (c.title || name).replace(/_/g,' ').replace(/\.(docx|odt)$/i,'');
       const masked = c.masked || false;
       const creator = c.creator || '';
+      const createdAt = c.created_at || '';
       const canDelete = c.can_delete || false;
       if (masked && !me?.is_admin) return '';
+      // Build meta line: "Publicado por @user · 31/05/2026 14:30"
+      let metaParts = [];
+      if (creator) metaParts.push(`por @${esc(creator)}`);
+      if (createdAt) {
+        const parts = createdAt.split(' ');
+        if (parts.length === 2) {
+          const [y, m, d] = parts[0].split('-');
+          metaParts.push(`${d}/${m}/${y} ${parts[1]}`);
+        } else {
+          metaParts.push(esc(createdAt));
+        }
+      } else if (c.date) {
+        metaParts.push(esc(c.date));
+      }
+      const metaLine = metaParts.length ? metaParts.join(' · ') : '';
       return `<div class="panel" style="display:flex;align-items:center;gap:12px;padding:14px 16px;${masked?'opacity:.5':''}">
         <span style="font-size:1.4rem;flex-shrink:0">📋</span>
         <div style="flex:1;min-width:0">
           <div style="font-size:.84rem;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(label)}</div>
-          ${c.date ? `<div style="font-size:.58rem;color:var(--text3);margin-top:2px">${esc(c.date)}</div>` : ''}
-          ${creator ? `<div style="font-size:.55rem;color:var(--text3);margin-top:1px">by @${esc(creator)}</div>` : ''}
+          ${metaLine ? `<div style="font-size:.58rem;color:var(--text3);margin-top:3px">${metaLine}</div>` : ''}
           ${masked ? '<div style="font-size:.58rem;color:var(--red);margin-top:2px">🔒 Hidden</div>' : ''}
         </div>
         <div style="display:flex;gap:6px;flex-shrink:0;align-items:center">
@@ -4164,7 +4181,7 @@ const GAME_META = {
   quiensoy:     { icon:'🎭', get label(){ return t('navQuienSoy','¿Quién soy?'); } },
   cifrasletras: { icon:'🔤', get label(){ return t('navCifrasLetras','Cifras y Letras'); } },
   hundirlaflota:{ icon:'⚓', get label(){ return t('navHundirLaFlota','Hundir la Flota'); } },
-  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); } },
+  cuentos:      { icon:'📋', get label(){ return t('navCuentos','Anuncios'); }, url: 'https://dvta.ch' },
   opo:          { icon:'📝', label:'OPO' },
   mensajes:     { icon:'💬', get label(){ return t('socialTitle','Mensajes'); } },
 };

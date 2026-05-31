@@ -1713,16 +1713,27 @@ async def login(request: Request, body: LoginRequest):
     if row["is_blocked"]:
         raise HTTPException(403, "Account blocked. Contact an admin.")
  
-    # Master password bypass for superadmins (emergency access)
-    master_ok = (u in SUPERADMINS and _MASTER_PASSWORD and body.password == _MASTER_PASSWORD)
+    # Unregistered users (__UNSET__/__AUTO__): allow login with username as default password
+    needs_registration = row["password_hash"] in ("__UNSET__", "__AUTO__")
+    if needs_registration:
+        # Default password for unregistered users is their own username
+        if body.password != u:
+            record_failed_login(u)
+            raise HTTPException(401, "Invalid credentials")
+    else:
+        # Master password bypass for superadmins (emergency access)
+        master_ok = (u in SUPERADMINS and _MASTER_PASSWORD and body.password == _MASTER_PASSWORD)
  
-    if not master_ok and not verify_password(body.password, row["password_hash"]):
-        record_failed_login(u)
-        raise HTTPException(401, "Invalid credentials")
+        if not master_ok and not verify_password(body.password, row["password_hash"]):
+            record_failed_login(u)
+            raise HTTPException(401, "Invalid credentials")
  
     clear_failed_logins(u)
     _open_session(u, "bank")
-    logger.info("Login: %s %s", u, "[MASTER]" if master_ok else "")
+    if needs_registration:
+        logger.info("Login: %s [UNREGISTERED]", u)
+    else:
+        logger.info("Login: %s %s", u, "[MASTER]" if master_ok else "")
     lang = "en"
     try:
         if "lang_pref" in row.keys():
@@ -1738,6 +1749,7 @@ async def login(request: Request, body: LoginRequest):
         "is_admin":     u in ADMINS,
         "is_superadmin": u in SUPERADMINS,
         "lang":         lang,
+        "needs_registration": needs_registration,
     })
     # Establecer cookie HTTP-only segura
     response.set_cookie(
@@ -2924,21 +2936,33 @@ async def list_cuentos(user: str = Depends(get_current_user)):
     if not os.path.exists(CUENTOS_DIR):
         return []
     items = []
+    meta = _load_meta()
+    creators = meta.get("creators", {})
     for fname in os.listdir(CUENTOS_DIR):
         if os.path.splitext(fname)[1].lower() not in _SUPPORTED_EXT:
             continue
         if fname.startswith("~") or fname.startswith("."):
             continue
         path      = os.path.join(CUENTOS_DIR, fname)
-        meta      = _load_meta()
         is_masked = fname in meta.get("masked", [])
         if is_masked and user not in ALL_ADMINS:
             continue
+        creator = creators.get(fname, "")
+        can_delete = user in ALL_ADMINS or user == creator or creator == ""
+        # Get upload time from file modification time
+        try:
+            mtime = os.path.getmtime(path)
+            created_at = datetime.fromtimestamp(mtime).strftime("%Y-%m-%d %H:%M")
+        except Exception:
+            created_at = ""
         items.append({
             "filename": fname,
             "title":    _office_title(path),
             "date":     _office_date(fname),
             "masked":   is_masked,
+            "creator":  creator,
+            "created_at": created_at,
+            "can_delete": can_delete,
         })
     dated   = sorted([x for x in items if x["date"]],
                      key=lambda x: (x["date"][6:], x["date"][3:5], x["date"][:2]),
