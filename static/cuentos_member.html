@@ -6,6 +6,7 @@
 <meta name="theme-color" content="#04040A">
 <title>📋 Tablón de Anuncios — DVDcoin</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/bank/static/css/unified-nav.css">
 <style>
 :root{
   --gold:#D4A843;--gold2:#F0C866;--gold3:#B8922E;
@@ -17,19 +18,6 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh}
-.topBar{
-  position:sticky;top:0;z-index:200;
-  background:rgba(4,4,10,.96);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:12px;padding:0 16px;height:48px;
-}
-.backBtn{
-  background:none;border:1px solid var(--border2);border-radius:20px;
-  padding:6px 14px;font-family:'DM Mono',monospace;font-size:.7rem;
-  color:var(--gold2);cursor:pointer;text-decoration:none;transition:all .15s;
-}
-.backBtn:hover{background:rgba(212,168,67,.1)}
-.topTitle{font-family:'Playfair Display',serif;color:var(--gold2);font-size:.9rem;font-weight:700}
 .wrap{max-width:680px;margin:0 auto;padding:20px 14px 80px}
 .secTitle{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--gold2);margin-bottom:4px}
 .secSub{font-size:.65rem;color:var(--text3);margin-bottom:16px}
@@ -61,6 +49,31 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 .uploadArea.show{display:block}
 .uploadArea input[type=file]{display:none}
 .uploadMsg{font-size:.65rem;margin-top:8px;display:none}
+/* Publish tabs */
+.publishTabs{display:flex;gap:0;margin-bottom:12px;border-bottom:1px solid var(--border)}
+.publishTab{
+  flex:1;padding:8px 12px;background:none;border:none;border-bottom:2px solid transparent;
+  color:var(--text3);font-family:'DM Mono',monospace;font-size:.68rem;cursor:pointer;transition:all .15s;
+}
+.publishTab:hover{color:var(--text2)}
+.publishTab.active{color:var(--gold2);border-bottom-color:var(--gold)}
+.publishPanel{margin-bottom:8px}
+.writeInput{
+  width:100%;background:var(--n3);border:1px solid var(--border2);border-radius:6px;
+  padding:8px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;
+  outline:none;transition:border-color .2s;
+}
+.writeInput:focus{border-color:var(--gold)}
+.writeInput::placeholder{color:var(--text3)}
+.writeTextarea{
+  width:100%;min-height:120px;max-height:300px;resize:vertical;
+  background:var(--n3);border:1px solid var(--border2);border-radius:6px;
+  padding:10px 12px;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;
+  line-height:1.5;outline:none;transition:border-color .2s;
+}
+.writeTextarea:focus{border-color:var(--gold)}
+.writeTextarea::placeholder{color:var(--text3)}
+.writeCharCount{font-size:.52rem;color:var(--text3);text-align:right}
 .formRow{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
 .formRow label{font-size:.65rem;color:var(--text2)}
 .formRow input[type=date]{
@@ -148,12 +161,10 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
 .btnComments.active{background:rgba(212,168,67,.12);border-color:var(--gold)}
 </style>
 </head>
-<body>
+<body class="has-unified-nav">
 
-<div class="topBar">
-  <a class="backBtn" href="/bank/">← Dashboard</a>
-  <span class="topTitle">📋 Tablón de Anuncios</span>
-</div>
+<!-- Navegación Unificada -->
+<div id="unifiedNavContainer"></div>
 
 <div class="wrap">
   <div class="secTitle">📋 Tablón de Anuncios</div>
@@ -162,15 +173,39 @@ body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-
   <!-- Upload -->
   <button class="btn btnUpload" onclick="toggleUpload()">＋ Publicar anuncio</button>
   <div class="uploadArea" id="uploadArea">
-    <p style="font-size:.72rem;color:var(--text2);margin-bottom:10px">Sube un archivo .docx, .odt o .txt</p>
-    <input type="file" id="fileInput" accept=".docx,.odt,.txt">
-    <button class="btn" onclick="document.getElementById('fileInput').click()">📎 Seleccionar archivo</button>
+    <!-- Tabs -->
+    <div class="publishTabs">
+      <button class="publishTab active" id="tabFile" onclick="switchPublishTab('file')">📎 Subir archivo</button>
+      <button class="publishTab" id="tabWrite" onclick="switchPublishTab('write')">✏️ Escribir texto</button>
+    </div>
+
+    <!-- Tab: Subir archivo -->
+    <div class="publishPanel" id="panelFile">
+      <p style="font-size:.72rem;color:var(--text2);margin-bottom:10px">Sube un archivo .docx, .odt o .txt</p>
+      <input type="file" id="fileInput" accept=".docx,.odt,.txt">
+      <button class="btn" onclick="document.getElementById('fileInput').click()">📎 Seleccionar archivo</button>
+    </div>
+
+    <!-- Tab: Escribir texto -->
+    <div class="publishPanel" id="panelWrite" style="display:none">
+      <p style="font-size:.72rem;color:var(--text2);margin-bottom:10px">Escribe directamente tu anuncio</p>
+      <div class="formRow" style="flex-direction:column;align-items:stretch;gap:6px">
+        <label for="writeTitle" style="font-size:.65rem;color:var(--text2)">Título del anuncio:</label>
+        <input type="text" id="writeTitle" placeholder="Título del anuncio" maxlength="200" class="writeInput">
+      </div>
+      <div class="formRow" style="flex-direction:column;align-items:stretch;gap:6px;margin-top:10px">
+        <label for="writeBody" style="font-size:.65rem;color:var(--text2)">Contenido:</label>
+        <textarea id="writeBody" placeholder="Escribe el contenido del anuncio..." maxlength="10000" class="writeTextarea"></textarea>
+        <span class="writeCharCount" id="writeCharCount">0 / 10000</span>
+      </div>
+    </div>
+
     <div class="formRow">
       <label for="expiryDate">📅 Fecha de vencimiento (opcional):</label>
       <input type="date" id="expiryDate" min="">
     </div>
     <div style="margin-top:12px">
-      <button class="btn btnUpload" onclick="uploadFile()" style="margin-bottom:0">📤 Publicar</button>
+      <button class="btn btnUpload" onclick="publishAnuncio()" style="margin-bottom:0">📤 Publicar</button>
     </div>
     <div class="uploadMsg" id="uploadMsg"></div>
   </div>
@@ -225,6 +260,69 @@ function esc(s) { return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'
 
 function toggleUpload() {
   document.getElementById('uploadArea').classList.toggle('show');
+}
+
+let _publishMode = 'file'; // 'file' or 'write'
+
+function switchPublishTab(mode) {
+  _publishMode = mode;
+  document.getElementById('tabFile').classList.toggle('active', mode === 'file');
+  document.getElementById('tabWrite').classList.toggle('active', mode === 'write');
+  document.getElementById('panelFile').style.display = mode === 'file' ? '' : 'none';
+  document.getElementById('panelWrite').style.display = mode === 'write' ? '' : 'none';
+}
+
+// Character count for write textarea
+document.addEventListener('DOMContentLoaded', () => {
+  const ta = document.getElementById('writeBody');
+  if (ta) ta.addEventListener('input', () => {
+    const el = document.getElementById('writeCharCount');
+    if (el) el.textContent = ta.value.length + ' / 10000';
+  });
+});
+
+function publishAnuncio() {
+  if (_publishMode === 'file') {
+    uploadFile();
+  } else {
+    writeAnuncio();
+  }
+}
+
+async function writeAnuncio() {
+  const title = document.getElementById('writeTitle').value.trim();
+  const body = document.getElementById('writeBody').value.trim();
+  if (!title) { alert('Escribe un título para el anuncio'); return; }
+  if (!body) { alert('Escribe el contenido del anuncio'); return; }
+  const expiry = document.getElementById('expiryDate').value;
+  const msg = document.getElementById('uploadMsg');
+  msg.style.display = '';
+  msg.textContent = '⏳ Publicando...';
+  msg.style.color = 'var(--text2)';
+  try {
+    const res = await fetch('/bank/api/cuentos/write', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': '1'
+      },
+      body: JSON.stringify({ title, body, expires_at: expiry || '' })
+    });
+    if (!res.ok) { const d = await res.json().catch(()=>{}); throw new Error(d?.detail || 'Error'); }
+    const data = await res.json();
+    msg.textContent = '✓ Publicado: ' + (data.title || title);
+    msg.style.color = 'var(--green)';
+    document.getElementById('writeTitle').value = '';
+    document.getElementById('writeBody').value = '';
+    document.getElementById('writeCharCount').textContent = '0 / 10000';
+    document.getElementById('expiryDate').value = '';
+    setTimeout(() => { document.getElementById('uploadArea').classList.remove('show'); msg.style.display='none'; }, 2000);
+    loadList();
+  } catch(e) {
+    msg.textContent = '✗ ' + e.message;
+    msg.style.color = 'var(--red)';
+  }
 }
 
 function formatDate(isoDate) {
@@ -533,5 +631,7 @@ async function deleteInlineComment(commentId, filename, idx) {
   }
 }
 </script>
+<!-- Sistema de Navegación Unificada -->
+<script src="/bank/static/js/unified-nav.js"></script>
 </body>
 </html>

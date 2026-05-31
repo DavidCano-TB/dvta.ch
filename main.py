@@ -2719,8 +2719,56 @@ async def cuentos_upload(
     _save_meta(meta)
     logger.info("Bulletin post uploaded: %s by %s (expires: %s)", final, user, expires_at or "never")
     return {"ok": True, "filename": final, "title": _office_title(dest), "creator": user, "created_at": now, "expires_at": expires_at or None}
- 
- 
+
+
+@app.post("/bank/api/cuentos/write")
+async def cuentos_write(request: Request, user: str = Depends(get_current_user)):
+    """Create a bulletin post from text written directly in the browser."""
+    data = await request.json()
+    title = (data.get("title") or "").strip()
+    body = (data.get("body") or "").strip()
+    expires_at = (data.get("expires_at") or "").strip()
+    if not body:
+        raise HTTPException(400, "El contenido no puede estar vacío")
+    if not title:
+        raise HTTPException(400, "El título no puede estar vacío")
+    # Build filename from title (sanitize)
+    safe_title = _re.sub(r'[^\w\s\-]', '', title).strip().replace(' ', '_')
+    if not safe_title:
+        safe_title = "anuncio"
+    # Add date suffix
+    now_suffix = datetime.now().strftime("%d_%m_%Y")
+    fname = f"{safe_title}_{now_suffix}.txt"
+    os.makedirs(CUENTOS_DIR, exist_ok=True)
+    dest = os.path.join(CUENTOS_DIR, fname)
+    base, ext2 = os.path.splitext(fname)
+    n = 1
+    while os.path.exists(dest):
+        dest = os.path.join(CUENTOS_DIR, f"{base}_{n}{ext2}")
+        n += 1
+    # Write .txt with title as first line
+    content = f"{title}\n\n{body}"
+    with open(dest, "w", encoding="utf-8") as fout:
+        fout.write(content)
+    final = os.path.basename(dest)
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+    # Store creator, created_at, and expiry in meta
+    meta = _load_meta()
+    creators = meta.get("creators", {})
+    creators[final] = user
+    meta["creators"] = creators
+    created_dates = meta.get("created_at", {})
+    created_dates[final] = now
+    meta["created_at"] = created_dates
+    if expires_at:
+        expiries = meta.get("expires", {})
+        expiries[final] = expires_at
+        meta["expires"] = expiries
+    _save_meta(meta)
+    logger.info("Bulletin post written: %s by %s (expires: %s)", final, user, expires_at or "never")
+    return {"ok": True, "filename": final, "title": title, "creator": user, "created_at": now, "expires_at": expires_at or None}
+
+
 @app.delete("/bank/api/cuentos/file/{filename:path}")
 async def cuentos_delete(filename: str, user: str = Depends(get_current_user)):
     """Delete a bulletin post. Moves it to old/ folder with who deleted it and when."""
